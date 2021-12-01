@@ -1,0 +1,53 @@
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% if caseSearches and caseSearches.hasData %}
+  <div class="flex-space-between">
+    <h2 class="govuk-heading-m">Case Searches Results</h2>
+    <button id="searchesCsvBtn" class="govuk-button">Download CSV</button>
+  </div>
+
+  <div>
+    {{ govukTable({
+      firstCellIsHeader: true,
+      head: [
+        {
+          text: "User ID"
+        },
+        {
+          text: "Case Refs"
+        },
+        {
+          text: "Timestamp"
+        }
+      ],
+      rows: caseSearches.rows
+    }) }}
+  </div>
+
+  <div class="flex-space-between">
+    <p class="govuk-body">Total: {{ caseSearches.noOfRows }} records</p>
+    <div>
+      {% if (caseSearches.currentPage > 1) %}
+        <a id="case-searches-previous-btn" class="govuk-link pagination-link" href="/case-searches/page/{{ caseSearches.currentPage | int - 1 }}">&lt; Previous</a>
+      {% else %}
+        <span class="disabled-link">&lt; Previous</span>
+      {% endif %}
+
+      {% if caseSearches.moreRecords %}
+        <a id="case-searches-next-btn" class="govuk-link pagination-link" href="/case-searches/page/{{ caseSearches.currentPage | int + 1 }}">Next &gt;</a>
+      {% else %}
+        <span class="disabled-link">Next &gt;</span>
+      {% endif %}
+    </div>
+  </div>
+
+{% elseif caseSearches %}
+
+  <h2 class="govuk-heading-m">Case Searches Results</h2>
+  <p class="govuk-body">No results found</p>
+
+{% else %}
+
+  <h2 class="govuk-heading-m">Use the Search tab to conduct a search</h2>
+
+{% endif %}

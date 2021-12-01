@@ -1,0 +1,72 @@
+{% extends "../common/template.njk" %}
+{% from "govuk/components/tabs/macro.njk" import govukTabs %}
+
+{% block content %}
+
+  {% block error_summary %}
+    {% include "common/error/summary.njk" %}
+  {% endblock %}
+
+  {% set caseSearchTabHtml %}
+    {% include '../search/case-template.njk' %}
+  {% endset -%}
+
+  {% set caseActivityTabHtml %}
+    {%  include '../case-activity/template.njk' %}
+  {% endset -%}
+
+  {% set caseSearchesTabHtml %}
+    {% include '../case-searches/template.njk' %}
+  {% endset -%}
+
+  {% set logonSearchTabHtml %}
+    {% include '../search/logon-template.njk' %}
+  {% endset -%}
+
+  {% set logonsTabHtml %}
+    {%  include '../logons/template.njk' %}
+  {% endset -%}
+
+  {{ govukTabs({
+    classes: 'home-tabs',
+    items: [
+      {
+        label: "Case Audit Search",
+        id: "case-search-tab",
+        panel: {
+          html: caseSearchTabHtml
+        }
+      },
+      {
+        label: "Case Activity",
+        id: "case-activity-tab",
+        panel: {
+          html: caseActivityTabHtml
+        }
+      },
+      {
+        label: "Case Searches",
+        id: "case-searches-tab",
+        panel: {
+          html: caseSearchesTabHtml
+        }
+      },
+
+      {
+        label: "Logons Audit Search",
+        id: "logon-search-tab",
+        panel: {
+          html: logonSearchTabHtml
+        }
+      },
+      {
+        label: "Logons Results",
+        id: "logons-tab",
+          panel: {
+          html: logonsTabHtml
+        }
+      }
+    ]
+  }) }}
+
+{% endblock %}

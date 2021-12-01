@@ -1,0 +1,56 @@
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% if logons and logons.hasData %}
+  <div class="flex-space-between">
+    <h2 class="govuk-heading-m">Logons Audit Results</h2>
+    <button id="logonsCsvBtn" class="govuk-button">Download CSV</button>
+  </div>
+
+  <div>
+    {{ govukTable({
+      firstCellIsHeader: true,
+      head: [
+        {
+          text: "User ID"
+        },
+        {
+          text: "Email Address"
+        },
+        {
+          text: "IP Address"
+        },
+        {
+          text: "Timestamp"
+        }
+      ],
+      rows: logons.rows
+    }) }}
+  </div>
+
+  <div class="flex-space-between">
+    <p class="govuk-body">Total: {{ logons.noOfRows }} records</p>
+    <div>
+      {% if (logons.currentPage > 1) %}
+        <a id="logons-previous-btn" class="govuk-link pagination-link" href="/logons/page/{{ logons.currentPage | int - 1 }}">&lt; Previous</a>
+      {% else %}
+        <span class="disabled-link">&lt; Previous</span>
+      {% endif %}
+
+      {% if logons.moreRecords %}
+        <a id="logons-next-btn" class="govuk-link pagination-link" href="/logons/page/{{ logons.currentPage | int + 1 }}">Next &gt;</a>
+      {% else %}
+        <span class="disabled-link">Next &gt;</span>
+      {% endif %}
+    </div>
+  </div>
+
+{% elseif logons %}
+
+  <h2 class="govuk-heading-m">System Logon Results</h2>
+  <p class="govuk-body">No results found</p>
+
+{% else %}
+
+  <h2 class="govuk-heading-m">Use the Search tab to conduct a search</h2>
+
+{% endif %}

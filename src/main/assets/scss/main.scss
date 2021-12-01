@@ -1,0 +1,51 @@
+@import '~govuk-frontend';
+@import './loading-spinner';
+@import './flatpickr';
+
+$color-grey: #808080;
+$color-white: #fff;
+
+.flex-space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.disabled-link {
+  color: $color-grey;
+  cursor: default;
+  font-family: 'GDS Transport', arial, sans-serif;
+  font-size: 16px;
+}
+
+.govuk-width-container {
+  max-width: 1000px;
+}
+
+.case-refs-cell {
+  max-width: 425px;
+}
+
+// Logon search tab
+.home-tabs ul li:nth-child(4) {
+  margin-left: 50px;
+}
+
+.loading-overlay {
+  align-items: center;
+  background-color: $color-white;
+  display: none;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  opacity: .7;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+
+  .spinner {
+    transform: scale(5);
+  }
+}

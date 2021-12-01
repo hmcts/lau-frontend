@@ -1,0 +1,24 @@
+---
+testUrl: TEST_URL
+redis:
+  host: REDIS_HOST
+  port: REDIS_PORT
+  password: REDIS_PASSWORD
+  useTLS: REDIS_USE_TLS
+  enabled: USE_REDIS
+  secret: REDIS_SECRET
+pagination:
+  maxRecords: MAX_RECORDS
+services:
+  case-backend:
+    url: LAU_CASE_BACKEND_URL
+  idam-backend:
+    url: LAU_IDAM_BACKEND_URL
+  idam:
+    enabled: IDAM_ENABLED
+    authorizationURL: IDAM_WEB_URL
+    tokenURL: IDAM_API_URL
+    s2sURL: S2S_URL
+    clientID: IDAM_CLIENT_ID
+    clientSecret: IDAM_CLIENT_SECRET
+    callbackURL: OAUTH_CLIENT_REDIRECT

@@ -1,0 +1,19 @@
+nodejs:
+  # Don't modify below here
+  image: ${IMAGE_NAME}
+  ingressHost: ${SERVICE_FQDN}
+  environment:
+    REDIS_HOST: ${SERVICE_NAME}-redis-master
+    REDIS_PORT: 6379
+    REDIS_USE_TLS: false
+    OAUTH_CLIENT_REDIRECT: https://${SERVICE_FQDN}/oauth2/callback
+    MAX_RECORDS: 15
+
+redis:
+  enabled: true
+
+idam-pr:
+  enabled: true
+  redirect_uris:
+    Log and Audit:
+      - https://${SERVICE_FQDN}/oauth2/callback

@@ -1,0 +1,104 @@
+{
+  "logonLog": [
+    {
+      "userId": "3748201",
+      "emailAddress": "Mark.Taylor@company.com",
+      "service": "idam-web-admin",
+      "ipAddress": "192.158.1.38",
+      "timestamp": "2021-06-23T22:20:05.293Z"
+    },
+    {
+      "userId": "3748202",
+      "emailAddress": "Dan.Morgan@company.com",
+      "service": "idam-web-admin",
+      "ipAddress": "192.151.1.28",
+      "timestamp": "2020-02-02T08:16:27.234Z"
+    },
+    {
+      "userId": "3748203",
+      "emailAddress": "Mark.Taylor@company.com",
+      "service": "idam-web-admin",
+      "ipAddress": "192.158.1.38",
+      "timestamp": "2021-06-23T22:20:05.293Z"
+    },
+    {
+      "userId": "3748204",
+      "emailAddress": "Dan.Morgan@company.com",
+      "service": "idam-web-admin",
+      "ipAddress": "192.151.1.28",
+      "timestamp": "2020-02-02T08:16:27.234Z"
+    },
+    {
+      "userId": "3748205",
+      "emailAddress": "Mark.Taylor@company.com",
+      "service": "idam-web-admin",
+      "ipAddress": "192.158.1.38",
+      "timestamp": "2021-06-23T22:20:05.293Z"
+    },
+    {
+      "userId": "3748206",
+      "emailAddress": "Dan.Morgan@company.com",
+      "service": "idam-web-admin",
+      "ipAddress": "192.151.1.28",
+      "timestamp": "2020-02-02T08:16:27.234Z"
+    },
+    {
+      "userId": "3748207",
+      "emailAddress": "Mark.Taylor@company.com",
+      "service": "idam-web-admin",
+      "ipAddress": "192.158.1.38",
+      "timestamp": "2021-06-23T22:20:05.293Z"
+    },
+    {
+      "userId": "3748208",
+      "emailAddress": "Dan.Morgan@company.com",
+      "service": "idam-web-admin",
+      "ipAddress": "192.151.1.28",
+      "timestamp": "2020-02-02T08:16:27.234Z"
+    },
+    {
+      "userId": "3748209",
+      "emailAddress": "Mark.Taylor@company.com",
+      "service": "idam-web-admin",
+      "ipAddress": "192.158.1.38",
+      "timestamp": "2021-06-23T22:20:05.293Z"
+    },
+    {
+      "userId": "3748210",
+      "emailAddress": "Dan.Morgan@company.com",
+      "service": "idam-web-admin",
+      "ipAddress": "192.151.1.28",
+      "timestamp": "2020-02-02T08:16:27.234Z"
+    },
+    {
+      "userId": "3748211",
+      "emailAddress": "Mark.Taylor@company.com",
+      "service": "idam-web-admin",
+      "ipAddress": "192.158.1.38",
+      "timestamp": "2021-06-23T22:20:05.293Z"
+    },
+    {
+      "userId": "3748212",
+      "emailAddress": "Dan.Morgan@company.com",
+      "service": "idam-web-admin",
+      "ipAddress": "192.151.1.28",
+      "timestamp": "2020-02-02T08:16:27.234Z"
+    },
+    {
+      "userId": "3748213",
+      "emailAddress": "Mark.Taylor@company.com",
+      "service": "idam-web-admin",
+      "ipAddress": "192.158.1.38",
+      "timestamp": "2021-06-23T22:20:05.293Z"
+    },
+    {
+      "userId": "3748214",
+      "emailAddress": "Dan.Morgan@company.com",
+      "service": "idam-web-admin",
+      "ipAddress": "192.151.1.28",
+      "timestamp": "2020-02-02T08:16:27.234Z"
+    }
+  ],
+  "moreRecords": false,
+  "startRecordNumber": 1
+}

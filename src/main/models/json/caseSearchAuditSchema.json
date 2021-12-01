@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "classpath:/JsonSchema/case_search_audit_schema.json",
+  "type": "object",
+  "title": "The LAU Case Search Audit Schema",
+  "required": [
+    "searchLog",
+    "startRecordNumber",
+    "moreRecords"
+  ],
+  "properties": {
+    "searchLog": {
+      "id": "#searchLog",
+      "type": "array",
+      "items": { "$ref": "caseSearchLogSchema.json" },
+      "title": "Array of case search logs"
+    },
+    "startRecordNumber": {
+      "id": "#startRecordNumber",
+      "type": "integer",
+      "minimum": 1,
+      "title": "The index of the first record out of the full result set provided"
+    },
+    "moreRecords": {
+      "id": "#moreRecords",
+      "type": "boolean",
+      "title": "Indicates whether there are more records beyond the current page in the full result set"
+    }
+  }
+}

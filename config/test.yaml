@@ -1,0 +1,10 @@
+---
+environment: 'test'
+testUrl: http://localhost:4000
+pagination:
+  maxRecords: 5
+services:
+  idam:
+    enabled: false
+    s2sEnabled: false
+    s2sURL: 'http://localhost:4552'

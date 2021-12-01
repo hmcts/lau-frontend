@@ -1,0 +1,16 @@
+{
+  "searchLog": [
+    {
+      "userId": "3748238",
+      "caseRefs": ["1615817621013640","1615817621013643"],
+      "timestamp": "2021-06-23T22:20:05.293Z"
+    },
+    {
+      "userId": "3748239",
+      "caseRefs": ["1615817621013640"],
+      "timestamp": "2020-02-02T08:16:27.234Z"
+    }
+  ],
+  "startRecordNumber": 1,
+  "moreRecords": false
+}

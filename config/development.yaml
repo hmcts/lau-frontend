@@ -1,0 +1,16 @@
+---
+environment: 'dev'
+pagination:
+  maxRecords: 20
+redis:
+  enabled: false
+services:
+  idam:
+    enabled: false
+    s2sEnabled: false
+    authorizationURL: 'http://localhost:9002/login'
+    tokenURL: 'http://localhost:5000/o/token'
+    s2sURL: 'http://localhost:4552'
+    clientID: 'lau'
+    clientSecret: '12345678'
+    callbackURL: 'https://localhost:4000/oauth2/callback'

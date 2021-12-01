@@ -1,0 +1,62 @@
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% if caseActivities and caseActivities.hasData %}
+  <div class="flex-space-between">
+    <h2 class="govuk-heading-m">Case Activity Results</h2>
+    <button id="activityCsvBtn" class="govuk-button">Download CSV</button>
+  </div>
+
+  <div>
+    {{ govukTable({
+      firstCellIsHeader: true,
+      head: [
+        {
+          text: "User ID"
+        },
+        {
+          text: "Activity"
+        },
+        {
+          text: "Case Ref"
+        },
+        {
+          text: "Jurisdiction ID"
+        },
+        {
+          text: "Case Type ID"
+        },
+        {
+          text: "Timestamp"
+        }
+      ],
+      rows: caseActivities.rows
+    }) }}
+  </div>
+
+  <div class="flex-space-between">
+    <p class="govuk-body">Total: {{ caseActivities.noOfRows }} records</p>
+    <div>
+      {% if (caseActivities.currentPage > 1) %}
+        <a id="case-activity-previous-btn" class="govuk-link pagination-link" href="/case-activity/page/{{ caseActivities.currentPage | int - 1 }}">&lt; Previous</a>
+      {% else %}
+        <span class="disabled-link">&lt; Previous</span>
+      {% endif %}
+
+      {% if caseActivities.moreRecords %}
+        <a id="case-activity-next-btn" class="govuk-link pagination-link" href="/case-activity/page/{{ caseActivities.currentPage | int + 1 }}">Next &gt;</a>
+      {% else %}
+        <span class="disabled-link">Next &gt;</span>
+      {% endif %}
+    </div>
+  </div>
+
+{% elseif caseActivities %}
+
+  <h2 class="govuk-heading-m">Case Activity Results</h2>
+  <p class="govuk-body">No results found</p>
+
+{% else %}
+
+  <h2 class="govuk-heading-m">Use the Search tab to conduct a search</h2>
+
+{% endif %}

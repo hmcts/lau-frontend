@@ -1,0 +1,20 @@
+#!groovy
+
+@Library("Infrastructure")
+
+def type = "nodejs"
+def product = "lau"
+def component = "frontend"
+def branchesToSync = ['demo', 'perftest', 'ithc']
+
+def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
+
+withPipeline(type, product, component) {
+  disableLegacyDeployment()
+  syncBranchesWithMaster(branchesToSync)
+
+  after('build') {
+    yarnBuilder.yarn('build')
+  }
+
+}

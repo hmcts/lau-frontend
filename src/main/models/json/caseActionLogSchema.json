@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "classpath:/JsonSchema/case_action_log_schema.json",
+  "type": "object",
+  "title": "The LAU Case Action Log Schema",
+  "required": [
+    "userId",
+    "caseRef",
+    "caseJurisdictionId",
+    "caseTypeId",
+    "timestamp"
+  ],
+  "properties": {
+    "userId": {
+      "id": "#userId",
+      "type": "string",
+      "title": "IdAM user identifier",
+      "maxLength": 64
+    },
+    "caseRef": {
+      "id": "#caseRef",
+      "type": "string",
+      "title": "Core Case Data reference identifier",
+      "pattern": "^\\d{16}$"
+    },
+    "caseJurisdictionId": {
+      "id": "#caseJurisdictionId",
+      "type": "string",
+      "title": "Jurisdiction name from CCD",
+      "maxLength": 70
+    },
+    "caseTypeId": {
+      "id": "#caseTypeId",
+      "type": "string",
+      "title": "Case type name from CCD",
+      "maxLength": 70
+    },
+    "timestamp": {
+      "id": "#timestamp",
+      "type": "string",
+      "title": "UTC log timestamp",
+      "pattern": "^\\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T(2[0-3]|[01][0-9]):?([0-5][0-9]):?([0-5][0-9].\\d{3})?(Z|[+-](?:2[0-3]|[01][0-9])(?::?[0-5][0-9])?)$"
+    }
+  }
+}

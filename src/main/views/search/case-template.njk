@@ -1,0 +1,114 @@
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set calendarIcon %}
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+  </svg>
+{% endset %}
+
+<form id="case-search-form" class="form" method="post" action="/case-search" novalidate>
+  <div class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">Case Audit Search</h1>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+
+      {{ govukInput({
+        label: {
+          text: "User ID"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "caseUserId",
+        name: "userId",
+        value: caseForm.userId
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Case Ref"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "caseRef",
+        name: "caseRef",
+        value: caseForm.caseRef
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Time from (UTC)"
+        },
+        classes: "govuk-!-width-three-quarters",
+        suffix: {
+          html: calendarIcon,
+          classes: "start-timestamp-suffix"
+        },
+        id: "caseStartTimestamp",
+        name: "startTimestamp",
+        value: caseForm.startTimestamp
+      }) }}
+
+    </div>
+    <div class="govuk-grid-column-one-half">
+
+      {{ govukInput({
+        label: {
+          text: "Case Type ID"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "caseTypeId",
+        name: "caseTypeId",
+        value: caseForm.caseTypeId
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Jurisdiction ID"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "caseJurisdictionId",
+        name: "caseJurisdictionId",
+        value: caseForm.caseJurisdictionId
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Time to (UTC)"
+        },
+        classes: "govuk-!-width-three-quarters",
+        suffix: {
+          html: calendarIcon,
+          classes: "end-timestamp-suffix"
+        },
+        id: "caseEndTimestamp",
+        name: "endTimestamp",
+        value: caseForm.endTimestamp
+      }) }}
+
+      <input type="hidden" name="page" value="1">
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      {{ govukButton({
+        name: "case-search-btn",
+        text: "Search",
+        classes: "govuk-!-width-three-quarters govuk-!-margin-top-7",
+        preventDoubleClick: true
+      }) }}
+    </div>
+
+    <div class="govuk-grid-column-one-half">
+      <p class="govuk-body govuk-body govuk-!-font-size-16">
+        <b>Note:</b> Please include time parameters in your search using the 'Time from' and 'Time to' fields, and
+        enter at least one other parameter to obtain search results.
+      </p>
+      <p class="govuk-body govuk-body govuk-!-font-size-16">'Case Type ID' and 'Jurisdiction ID' are only available in
+        Case Activity results.</p>
+    </div>
+  </div>
+</form>

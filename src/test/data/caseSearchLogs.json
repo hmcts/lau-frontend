@@ -1,0 +1,76 @@
+{
+  "searchLog": [
+    {
+      "userId": "U0001",
+      "caseRefs": ["123","456"],
+      "timestamp": "2020-07-20T15:00:00"
+    },
+    {
+      "userId": "U0002",
+      "caseRefs": [],
+      "timestamp": "2020-07-20T15:00:00"
+    },
+    {
+      "userId": "U0003",
+      "caseRefs": [],
+      "timestamp": "2020-07-20T15:00:00"
+    },
+    {
+      "userId": "U0004",
+      "caseRefs": ["123","456"],
+      "timestamp": "2020-07-20T15:00:00"
+    },
+    {
+      "userId": "U0005",
+      "caseRefs": ["123","456"],
+      "timestamp": "2020-07-20T15:00:00"
+    },
+    {
+      "userId": "U0006",
+      "caseRefs": ["123","456"],
+      "timestamp": "2020-07-20T15:00:00"
+    },
+    {
+      "userId": "U0007",
+      "caseRefs": ["123","456"],
+      "timestamp": "2020-07-20T15:00:00"
+    },
+    {
+      "userId": "U0008",
+      "caseRefs": ["123","456"],
+      "timestamp": "2020-07-20T15:00:00"
+    },
+    {
+      "userId": "U0009",
+      "caseRefs": ["123","456"],
+      "timestamp": "2020-07-20T15:00:00"
+    },
+    {
+      "userId": "U0010",
+      "caseRefs": ["123","456"],
+      "timestamp": "2020-07-20T15:00:00"
+    },
+    {
+      "userId": "U0011",
+      "caseRefs": ["123","456"],
+      "timestamp": "2020-07-20T15:00:00"
+    },
+    {
+      "userId": "U0012",
+      "caseRefs": ["123","456"],
+      "timestamp": "2020-07-20T15:00:00"
+    },
+    {
+      "userId": "U0013",
+      "caseRefs": ["123","456"],
+      "timestamp": "2020-07-20T15:00:00"
+    },
+    {
+      "userId": "U0014",
+      "caseRefs": ["123","456"],
+      "timestamp": "2020-07-20T15:00:00"
+    }
+  ],
+  "moreRecords": false,
+  "startRecordNumber": 1
+}

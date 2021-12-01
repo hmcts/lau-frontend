@@ -1,0 +1,157 @@
+version: '2'
+
+services:
+  lau-frontend:
+    build:
+      context: .
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    environment:
+      - USE_REDIS=true
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - IDAM_WEB_URL=http://localhost:9002/login
+      - IDAM_API_URL=http://idam-api:5000/o/token
+      - IDAM_CLIENT_ID=lau
+      - IDAM_CLIENT_SECRET=12345678
+      - OAUTH_CLIENT_REDIRECT=http://localhost:4000/oauth2/callback
+      - S2S_URL=http://service-auth-provider-api:8080
+      - LAU_CASE_BACKEND_URL=http://host.docker.internal:4550
+      - LAU_IDAM_BACKEND_URL=http://host.docker.internal:4551
+    ports:
+      - "4000:4000"
+    depends_on:
+      - redis
+      - idam-web-public
+
+  redis:
+    image: bitnami/redis:6.0.15
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+
+  shared-db:
+    image: hmctsprivate.azurecr.io/idam/shared-db:latest
+    mem_limit: 512m
+    memswap_limit: 0
+    ports:
+      - "5051:5432"
+
+  idam-api:
+    image: hmctspublic.azurecr.io/idam/api:stable
+    tmpfs: /opt/app/es
+    environment:
+      - JAVA_OPTS=-Xms128m -Xms512m
+      - SPRING_PROFILES_ACTIVE=local
+      - CACHING_ENABLED=false
+      - SPRING_DATA_ELASTICSEARCH_PROPERTIES_PATH_HOME=/tmp/es
+      - TESTING_SUPPORT_ENABLED=true
+      - IDAMHEALTHCHECK_AM_ENABLED=false
+      - IDAMHEALTHCHECK_IDM_ENABLED=false
+      - STRATEGIC_ADMIN_URL=http://idam-web-admin:8082
+      - STRATEGIC_WEBPUBLIC_URL=http://idam-web-public:9002
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://shared-db:5432/openidm?currentSchema=fridam
+      - SPRING_DATASOURCE_USERNAME=openidm
+      - SPRING_DATASOURCE_PASSWORD=openidm
+      - SECURITY_OAUTH2_CLIENT_CLIENTSECRET=password
+      - SECURITY_OAUTH2_CLIENT_PRE_ESTABLISHED_REDIRECT_URI=http://idam-web-public:9002/login
+      - SECURITY_OAUTH2_CLIENT_REGISTERED_REDIRECT_URI=http://idam-web-public:9002/login
+      - IDAM_SPI_FORGEROCK_AM_ROOT=http://fr-am:8080/openam
+      - IDAM_SPI_FORGEROCK_AM_TOPLEVELHOST=fr-am
+      - IDAM_SPI_FORGEROCK_AM_USERNAME=amadmin
+      - IDAM_SPI_FORGEROCK_AM_PASSWORD=Pa55word11
+      - IDAM_SPI_FORGEROCK_AM_JWKSURIFOROAUTH2CLIENTS=http://fr-am:8080/openam/oauth2/hmcts/connect/jwk_uri
+      - IDAM_SPI_FORGEROCK_IDM_ROOT=http://fr-idm:18080/openidm
+      - IDAM_SPI_FORGEROCK_IDM_USERNAME=openidm-admin
+      - IDAM_SPI_FORGEROCK_IDM_PASSWORD=openidm-admin
+      - IDAM_SPI_FORGEROCK_IDM_PIN_DEFAULTPASSWORD=BlaBlaBlackSh33p
+      - APPINSIGHTS_INSTRUMENTATIONKEY=fake-key
+    ports:
+      - "5000:5000"
+    depends_on:
+      shared-db:
+        condition: service_started
+      fr-am:
+        condition: service_started
+      fr-idm:
+        condition: service_started
+
+  fr-am:
+    image: "hmctsprivate.azurecr.io/idam/idam-fr-am:latest"
+    hostname: localam
+    environment:
+      JAVA_OPTS: -Xms128m -Xmx512m
+    ports:
+      - "2889:8080"
+      - "1389:1389"
+    depends_on:
+      shared-db:
+        condition: service_started
+
+  fr-idm:
+    image: "hmctsprivate.azurecr.io/idam/idam-fr-idm:latest"
+    hostname: localidm
+    mem_limit: 1024m
+    memswap_limit: 0
+    ports:
+      - "18080:18080"
+      - "9010:9010"
+    depends_on:
+      fr-am:
+        condition: service_started
+      shared-db:
+        condition: service_started
+
+  idam-web-public:
+    image: hmctspublic.azurecr.io/idam/web-public:stable
+    mem_limit: 512m
+    memswap_limit: 0
+    ports:
+      - "9002:8080"
+    environment:
+      - JAVA_OPTS=-Xms128m -Xms512m
+      - STRATEGIC_SERVICE_URL=http://idam-api:5000
+    depends_on:
+      idam-api:
+        condition: service_started
+
+  idam-web-admin:
+    image: "hmctspublic.azurecr.io/idam/web-admin:stable"
+    mem_limit: 512m
+    memswap_limit: 0
+    ports:
+      - "8082:8080"
+    environment:
+      - JAVA_OPTS=-Xms128m -Xms512m
+      - STRATEGIC_SERVICE_URL=http://idam-api:5000
+      - STRATEGIC_PUBLIC_URL=http://idam-web-public:9002
+    depends_on:
+      idam-api:
+        condition: service_started
+
+  idam-importer:
+    build:
+      context: docker/idam-importer  # local
+    environment:
+      - IDAM_API_URL=http://idam-api:5000
+      - IDAM_ADMIN_USER=idamowner%40hmcts.net
+      - IDAM_ADMIN_PASSWORD=Ref0rmIsFun
+      - WAIT_HOSTS=idam-api:5000
+      - WAIT_HOSTS_TIMEOUT=900
+    depends_on:
+      idam-api:
+        condition: service_started
+
+  service-auth-provider-api:
+    image: hmctspublic.azurecr.io/rpe/service-auth-provider
+    ports:
+      - "4552:8080"
+    environment:
+      - SERVER_PORT=8080
+      - JAVA_OPTS=-Xms8m -Xmx256m -Djava.security.egd=file:/dev/./urandom -XX:MaxMetaspaceSize=128m
+      - JWT_KEY=wThK0f0/lh3FlxFcL4xUWDMI5C1J9KyQBgXV4wseh1e5J1uYJIjvTvArHxQDrYoHJ23xFxjHkOnvNbR5dXRoxA==
+      - MICROSERVICEKEYS_LAU_CASE_FRONTEND=AAAAAAAAAAAAAAAA
+      - TESTING_SUPPORT_ENABLED=true
+    mem_limit: 512m
+    memswap_limit: 0
