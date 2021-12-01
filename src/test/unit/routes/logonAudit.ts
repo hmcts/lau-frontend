@@ -7,7 +7,7 @@ describe('Logon Audit Route', () => {
   app.use('/logons/csv', (new LogonController()).getPage);
 
   it('responds with a CSV file', async () => {
-    nock('http://localhost:4550')
+    nock('http://localhost:4551')
       .get('/audit/logon?')
       .reply(
         200,

@@ -106,7 +106,7 @@ describe('Logon Search Controller', () => {
     });
 
     it('redirects to the logon results tab', async () => {
-      nock('http://localhost:4550')
+      nock('http://localhost:4551')
         .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&size=5')
         .reply(
           200,
