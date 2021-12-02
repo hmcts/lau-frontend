@@ -1,7 +1,7 @@
 import nock from 'nock';
 import request from 'supertest';
 import {app} from '../../../main/app';
-import {CaseActivityController} from '../../../main/controllers/case-activity.controller';
+import {CaseActivityController} from '../../../main/controllers/CaseActivity.controller';
 
 describe('Case Activity Route', () => {
   app.use('/case-activity/csv', (new CaseActivityController()).getPage);

@@ -5,8 +5,10 @@ $pressed-colour: #ded;
   font-family: 'GDS Transport', arial, sans-serif;
 }
 
-.start-timestamp-suffix,
-.end-timestamp-suffix {
+.case-start-timestamp-suffix,
+.case-end-timestamp-suffix,
+.logon-start-timestamp-suffix,
+.logon-end-timestamp-suffix {
   cursor: pointer;
 
   &:hover {

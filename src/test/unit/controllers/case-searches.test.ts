@@ -4,7 +4,7 @@ import {CaseSearchRequest} from '../../../main/models/case/CaseSearchRequest';
 import {AppRequest, LogData} from '../../../main/models/appRequest';
 import caseSearchLogs from '../../data/caseSearchLogs.json';
 import {Response} from 'express';
-import {CaseSearchesController} from '../../../main/controllers/case-searches.controller';
+import {CaseSearchesController} from '../../../main/controllers/CaseSearches.controller';
 import {CaseSearchLog} from '../../../main/models/case/CaseSearchLogs';
 import {CaseSearchAudit} from '../../../main/models/case/CaseSearchAudit';
 

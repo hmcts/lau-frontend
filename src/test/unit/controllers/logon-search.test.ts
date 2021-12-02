@@ -1,6 +1,6 @@
 import nock from 'nock';
 import sinon from 'sinon';
-import {LogonSearchController} from '../../../main/controllers/logon-search.controller';
+import {LogonSearchController} from '../../../main/controllers/LogonSearch.controller';
 import {AppRequest} from '../../../main/models/appRequest';
 
 describe('Logon Search Controller', () => {

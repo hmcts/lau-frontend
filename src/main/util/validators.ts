@@ -1,8 +1,7 @@
-import {CaseSearchRequest} from '../models/case/CaseSearchRequest';
 import moment, {Moment} from 'moment';
 import {isDateValid, partialDateRegex} from './Date';
 
-export const atLeastOneFieldIsFilled = (fields: Partial<CaseSearchRequest>): string => {
+export const atLeastOneFieldIsFilled = (fields: { [s: string]: unknown; }): string => {
   if (!fields || (Object.keys(fields).length === 0) || !Object.values(fields).some(field => field !== '')) {
     return 'required';
   }
@@ -21,7 +20,7 @@ export const validDateInput = (date: string): string => {
   }
 };
 
-export const startDateBeforeEndDate = (fields: Partial<CaseSearchRequest>): string => {
+export const startDateBeforeEndDate = (fields: { [s: string]: unknown; }): string => {
   if (fields.startTimestamp && fields.endTimestamp) {
     const startDate: Moment = moment.utc(fields.startTimestamp, 'yyyy-MM-dd HH:mm:ss');
     const endDate: Moment = moment.utc(fields.endTimestamp, 'yyyy-MM-dd HH:mm:ss');

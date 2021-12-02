@@ -1,11 +1,9 @@
 import {LoggerInstance} from 'winston';
 const {Logger} = require('@hmcts/nodejs-logging');
 
-import autobind from 'autobind-decorator';
 import config from 'config';
 import {AppRequest, FormError} from '../models/appRequest';
 import {Response} from 'express';
-import {CaseSearchRequest} from '../models/case/CaseSearchRequest';
 import {
   atLeastOneFieldIsFilled,
   fillPartialTimestamp,
@@ -14,35 +12,36 @@ import {
   validDateInput,
 } from '../util/validators';
 import {formDateToRequestDate} from '../util/Date';
-import {CaseActivityController} from './case-activity.controller';
-import {CaseSearchesController} from './case-searches.controller';
+
+interface SearchTypeCommon {
+  startTimestamp: string;
+  endTimestamp: string;
+  page: number;
+}
 
 /**
- * Search Controller class to handle search tab functionality
+ * Base Search Controller class containing common functionality for the search controllers
  */
-@autobind
-export class CaseSearchController {
-  private logger: LoggerInstance = Logger.getLogger('SearchController');
+export abstract class BaseSearchController<SearchType extends SearchTypeCommon> {
+  abstract formId: string;
+  abstract requiredFields: string[];
 
-  private pageSize: number = config.get('pagination.maxRecords');
+  logger: LoggerInstance = Logger.getLogger(this.constructor.name);
+  pageSize: number = config.get('pagination.maxRecords');
 
-  private caseActivityController = new CaseActivityController();
-  private caseSearchesController = new CaseSearchesController();
   private errors: FormError[] = [];
 
   /**
    * Returns the array containing the list of Form Errors, empty array if none.
    */
-  public getErrors(): FormError[] {
+  getErrors(): FormError[] {
     return this.errors;
   }
 
   /**
    * Reset the errors array to an empty array.
-   *
-   * @private
    */
-  private resetErrors(): void {
+  resetErrors(): void {
     this.errors = [];
   }
 
@@ -57,8 +56,8 @@ export class CaseSearchController {
    */
   private validate(
     id: string,
-    fields: Partial<CaseSearchRequest> | string,
-    validator: (f: Partial<CaseSearchRequest> | string) => string,
+    fields: Partial<SearchType> | string,
+    validator: (f: Partial<SearchType> | string) => string,
     errorType?: string,
   ): void {
     const error = validator(fields);
@@ -70,18 +69,20 @@ export class CaseSearchController {
    *
    * @param form Search form to validate. Contains a partial of the search request object.
    */
-  public validateSearchForm(form: Partial<CaseSearchRequest>): FormError[] {
+  public validateSearchForm(form: Partial<SearchType>): FormError[] {
     this.resetErrors();
+
+    const requiredFieldsObj: Partial<SearchType> = {};
+    this.requiredFields.forEach(field => {
+      // @ts-ignore
+      requiredFieldsObj[field] = form[field];
+    });
 
     // At least one of the string form inputs
     this.validate(
-      'caseSearchForm',
-      {
-        caseTypeId: form.caseTypeId,
-        caseJurisdictionId: form.caseJurisdictionId,
-        caseRef: form.caseRef,
-        userId: form.userId,
-      },
+      this.formId,
+      requiredFieldsObj,
+      // @ts-ignore
       atLeastOneFieldIsFilled,
       'stringFieldRequired',
     );
@@ -97,7 +98,8 @@ export class CaseSearchController {
     this.validate('endTimestamp', form.endTimestamp, validDateInput);
 
     // Start date is before end date
-    this.validate('caseSearchForm', {
+    // @ts-ignore
+    this.validate(this.formId, {
       startTimestamp: form.startTimestamp,
       endTimestamp: form.endTimestamp,
     }, startDateBeforeEndDate);
@@ -105,42 +107,9 @@ export class CaseSearchController {
     return this.getErrors();
   }
 
-  /**
-   * POST function for Search Controller
-   *
-   * @param req AppRequest - extension of Express Request
-   * @param res Express Response
-   */
-  public async post(req: AppRequest, res: Response): Promise<void> {
-    const searchRequest: Partial<CaseSearchRequest> = req.body;
-    req.session.caseFormState = searchRequest;
-    req.session.errors = this.validateSearchForm(searchRequest);
+  abstract post(req: AppRequest, res: Response): Promise<void>;
 
-    if (this.getErrors().length === 0) {
-      searchRequest.size = this.pageSize;
-
-      // To be sent to API GET
-      this.logger.info('API Request Parameters: ', searchRequest);
-
-      this.formatSearchRequest(searchRequest);
-
-      await Promise.all([
-        this.caseActivityController.getLogData(req),
-        this.caseSearchesController.getLogData(req),
-      ]).then(value => {
-        req.session.caseActivities = value[0];
-        req.session.caseSearches = value[1];
-        res.redirect('/#case-activity-tab');
-      }).catch(err => {
-        this.logger.error(err);
-        res.redirect('/error');
-      });
-    } else {
-      res.redirect('/');
-    }
-  }
-
-  private formatSearchRequest(request: Partial<CaseSearchRequest>) {
+  formatSearchRequest(request: Partial<SearchType>): void {
     // Remove any properties with empty strings from the request object
     // @ts-ignore
     Object.keys(request).forEach(key => request[key] === '' ? delete request[key] : {});

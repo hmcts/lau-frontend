@@ -1,7 +1,7 @@
 import nock from 'nock';
 import sinon from 'sinon';
 import {CaseSearchRequest} from '../../../main/models/case/CaseSearchRequest';
-import {CaseActivityController} from '../../../main/controllers/case-activity.controller';
+import {CaseActivityController} from '../../../main/controllers/CaseActivity.controller';
 import {AppRequest, LogData} from '../../../main/models/appRequest';
 import {CaseActions, CaseActivityLog} from '../../../main/models/case/CaseActivityLogs';
 import {CaseActivityAudit} from '../../../main/models/case/CaseActivityAudit';

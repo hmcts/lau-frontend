@@ -1,6 +1,6 @@
 import {Application} from 'express';
-import {CaseActivityController} from '../controllers/case-activity.controller';
-import {CaseSearchesController} from '../controllers/case-searches.controller';
+import {CaseActivityController} from '../controllers/CaseActivity.controller';
+import {CaseSearchesController} from '../controllers/CaseSearches.controller';
 
 export default function (app: Application): void {
   const activityController = new CaseActivityController();

@@ -1,7 +1,7 @@
 import nock from 'nock';
 import request from 'supertest';
 import {app} from '../../../main/app';
-import {CaseSearchesController} from '../../../main/controllers/case-searches.controller';
+import {CaseSearchesController} from '../../../main/controllers/CaseSearches.controller';
 
 describe('Case Searches Route', () => {
   app.use('/case-searches/csv', (new CaseSearchesController()).getPage);

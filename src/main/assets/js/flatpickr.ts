@@ -11,8 +11,10 @@ const formatDate = (date: Date): string => {
     + ` ${zeroPad(date.getHours())}:${zeroPad(date.getMinutes())}:${zeroPad(date.getSeconds())}`;
 };
 
-const startTimestampSuffix = document.getElementsByClassName('start-timestamp-suffix')[0] as HTMLElement;
-const endTimestampSuffix = document.getElementsByClassName('end-timestamp-suffix')[0] as HTMLElement;
+const caseStartTimestampSuffix = document.getElementsByClassName('case-start-timestamp-suffix')[0] as HTMLElement;
+const logonStartTimestampSuffix = document.getElementsByClassName('logon-start-timestamp-suffix')[0] as HTMLElement;
+const caseEndTimestampSuffix = document.getElementsByClassName('case-end-timestamp-suffix')[0] as HTMLElement;
+const logonEndTimestampSuffix = document.getElementsByClassName('logon-end-timestamp-suffix')[0] as HTMLElement;
 
 const getOptions = (suffixEl: HTMLElement): Options => {
   return {
@@ -23,8 +25,10 @@ const getOptions = (suffixEl: HTMLElement): Options => {
     clickOpens: false,
     closeOnSelect: true,
     ignoredFocusElements: [
-      startTimestampSuffix,
-      endTimestampSuffix,
+      caseStartTimestampSuffix,
+      logonStartTimestampSuffix,
+      caseEndTimestampSuffix,
+      logonEndTimestampSuffix,
     ],
     formatDate: (date: Date) => {
       return formatDate(date);
@@ -38,16 +42,28 @@ const getOptions = (suffixEl: HTMLElement): Options => {
   };
 };
 
-const form = getById('case-search-form') as HTMLFormElement | null;
-
-if (form && getById('startTimestamp') && getById('endTimestamp')) {
-  const startCal: flatpickr.Instance = flatpickr('#startTimestamp', getOptions(startTimestampSuffix)) as flatpickr.Instance;
-  startTimestampSuffix.addEventListener('click', () => {
+const caseForm = getById('case-search-form') as HTMLFormElement | null;
+if (caseForm && getById('caseStartTimestamp') && getById('caseEndTimestamp')) {
+  const startCal: flatpickr.Instance = flatpickr('#caseStartTimestamp', getOptions(caseStartTimestampSuffix)) as flatpickr.Instance;
+  caseStartTimestampSuffix.addEventListener('click', () => {
     startCal.isOpen ? startCal.close() : startCal.open();
   });
 
-  const endCal: flatpickr.Instance = flatpickr('#endTimestamp', getOptions(endTimestampSuffix)) as flatpickr.Instance;
-  endTimestampSuffix.addEventListener('click', () => {
+  const endCal: flatpickr.Instance = flatpickr('#caseEndTimestamp', getOptions(caseEndTimestampSuffix)) as flatpickr.Instance;
+  caseEndTimestampSuffix.addEventListener('click', () => {
+    endCal.isOpen ? endCal.close() : endCal.open();
+  });
+}
+
+const logonForm = getById('logon-search-form') as HTMLFormElement | null;
+if (logonForm && getById('logonStartTimestamp') && getById('logonEndTimestamp')) {
+  const startCal: flatpickr.Instance = flatpickr('#logonStartTimestamp', getOptions(logonStartTimestampSuffix)) as flatpickr.Instance;
+  logonStartTimestampSuffix.addEventListener('click', () => {
+    startCal.isOpen ? startCal.close() : startCal.open();
+  });
+
+  const endCal: flatpickr.Instance = flatpickr('#logonEndTimestamp', getOptions(logonEndTimestampSuffix)) as flatpickr.Instance;
+  logonEndTimestampSuffix.addEventListener('click', () => {
     endCal.isOpen ? endCal.close() : endCal.open();
   });
 }

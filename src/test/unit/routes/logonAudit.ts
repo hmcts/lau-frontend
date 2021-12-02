@@ -1,7 +1,7 @@
 import nock from 'nock';
 import request from 'supertest';
 import {app} from '../../../main/app';
-import {LogonController} from '../../../main/controllers/logon.controller';
+import {LogonController} from '../../../main/controllers/Logon.controller';
 
 describe('Logon Audit Route', () => {
   app.use('/logons/csv', (new LogonController()).getPage);
