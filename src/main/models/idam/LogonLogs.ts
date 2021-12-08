@@ -9,5 +9,5 @@ export interface LogonLog {
 }
 
 export class LogonLogs extends Logs<LogonLog> {
-  public _fields: string[] = ['userId', 'emailAddress', 'ipAddress', 'timestamp'];
+  public _fields: string[] = ['userId', 'emailAddress', 'service', 'ipAddress', 'timestamp'];
 }

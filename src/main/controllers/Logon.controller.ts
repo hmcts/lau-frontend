@@ -71,10 +71,8 @@ export class LogonController {
       const row: {text: string}[] = [];
       const keys = Object.keys(log);
       keys.forEach((key: keyof LogonLog) => {
-        if (key !== 'service') {
-          const text = key === 'timestamp' ? requestDateToFormDate(log[key]) : log[key];
-          row.push({ text });
-        }
+        const text = key === 'timestamp' ? requestDateToFormDate(log[key]) : log[key];
+        row.push({ text });
       });
 
       rows.push(row);
@@ -89,10 +87,8 @@ export class LogonController {
 
       const row: {text: string}[] = [];
       keys.forEach((key: keyof LogonLog) => {
-        if (key !== 'service') {
-          const text = key === 'timestamp' ? requestDateToFormDate(lastLog[key]) : lastLog[key];
-          row.push({ text });
-        }
+        const text = key === 'timestamp' ? requestDateToFormDate(lastLog[key]) : lastLog[key];
+        row.push({ text });
       });
       rows.push(row);
     }
