@@ -23,7 +23,7 @@ export class SessionStorage {
         saveUninitialized: false,
         secret: config.get('redis.password'),
         cookie: {
-          httpOnly: false,
+          httpOnly: true,
           maxAge: this.cookieMaxAge,
           secure: false,
           sameSite: 'lax',
