@@ -15,6 +15,7 @@ describe('Logon Service', () => {
     it('return logon audit data', async () => {
       const logonAudit: LogonAudit = {
         logonLog: [],
+        totalNumberOfRecords: 0,
         startRecordNumber: 1,
         moreRecords: false,
       };

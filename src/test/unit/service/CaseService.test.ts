@@ -16,6 +16,7 @@ describe('Case Service', () => {
     it('return case activity audit data', async () => {
       const caseActivityAudit: CaseActivityAudit = {
         actionLog: [],
+        totalNumberOfRecords: 0,
         startRecordNumber: 1,
         moreRecords: false,
       };
@@ -51,6 +52,7 @@ describe('Case Service', () => {
     it('return case searches audit data', async () => {
       const caseSearchAudit: CaseSearchAudit = {
         searchLog: [],
+        totalNumberOfRecords: 0,
         startRecordNumber: 1,
         moreRecords: false,
       };

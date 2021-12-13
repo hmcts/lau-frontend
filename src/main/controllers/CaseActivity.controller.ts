@@ -2,6 +2,7 @@ import {LoggerInstance} from 'winston';
 const {Logger} = require('@hmcts/nodejs-logging');
 
 import autobind from 'autobind-decorator';
+import config from 'config';
 import {Response} from 'express';
 import {CaseService} from '../service/CaseService';
 import {AppRequest, LogData} from '../models/appRequest';
@@ -21,13 +22,16 @@ export class CaseActivityController {
   public async getLogData(req: AppRequest): Promise<LogData> {
     this.logger.info('getLogData called');
     return this.service.getCaseActivities(req).then(caseActivities => {
+      const recordsPerPage = Number(config.get('pagination.maxRecords'));
       return {
         hasData: caseActivities.actionLog.length > 0,
         rows: this.convertDataToTableRows(caseActivities.actionLog),
         noOfRows: caseActivities.actionLog.length,
+        totalNumberOfRecords: caseActivities.totalNumberOfRecords,
         startRecordNumber: caseActivities.startRecordNumber,
         moreRecords: caseActivities.moreRecords,
         currentPage: req.session.caseFormState.page,
+        lastPage: caseActivities.totalNumberOfRecords > 0 ? Math.ceil(caseActivities.totalNumberOfRecords / recordsPerPage) : 1,
       };
     });
   }
@@ -54,7 +58,7 @@ export class CaseActivityController {
   }
 
   public async getCsv(req: AppRequest, res: Response): Promise<void> {
-    return this.service.getCaseActivities(req).then(caseActivities => {
+    return this.service.getCaseActivities(req, true).then(caseActivities => {
       const caseActivityLogs = new CaseActivityLogs(caseActivities.actionLog);
       const filename = `caseActivity ${csvDate()}.csv`;
       jsonToCsv(caseActivityLogs).then(csv => {
@@ -64,10 +68,8 @@ export class CaseActivityController {
   }
 
   private convertDataToTableRows(logs: CaseActivityLog[]): {text:string}[][] {
-    const splitList = logs.length > 12;
-
     const rows: {text:string}[][] = [];
-    logs.slice(0, splitList ? 10 : 12).forEach((log) => {
+    logs.forEach((log) => {
       const row: {text: string}[] = [];
       const keys = Object.keys(log);
       keys.forEach((key: keyof CaseActivityLog) => {
@@ -77,21 +79,6 @@ export class CaseActivityController {
 
       rows.push(row);
     });
-
-    if (splitList) {
-      const lastLog = logs.slice(-1)[0];
-      const keys = Object.keys(lastLog);
-
-      const elipsesRow = [{text: '...'}].concat(Array(keys.length - 1).fill({text: ''}));
-      rows.push(elipsesRow);
-
-      const row: {text: string}[] = [];
-      keys.forEach((key: keyof CaseActivityLog) => {
-        const text = key === 'timestamp' ? requestDateToFormDate(lastLog[key]) : lastLog[key];
-        row.push({ text });
-      });
-      rows.push(row);
-    }
 
     return rows;
   }

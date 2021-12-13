@@ -4,4 +4,5 @@ export interface CaseActivityAudit {
   actionLog: CaseActivityLog[];
   startRecordNumber: number;
   moreRecords: boolean;
+  totalNumberOfRecords: number;
 }

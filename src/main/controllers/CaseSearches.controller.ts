@@ -2,6 +2,7 @@ import {LoggerInstance} from 'winston';
 const {Logger} = require('@hmcts/nodejs-logging');
 
 import autobind from 'autobind-decorator';
+import config from 'config';
 import {CaseService} from '../service/CaseService';
 import {AppRequest, LogData} from '../models/appRequest';
 import {csvDate, requestDateToFormDate} from '../util/Date';
@@ -21,13 +22,16 @@ export class CaseSearchesController {
   public async getLogData(req: AppRequest): Promise<LogData> {
     this.logger.info('getLogData called');
     return this.service.getCaseSearches(req).then(caseSearches => {
+      const recordsPerPage = Number(config.get('pagination.maxRecords'));
       return {
         hasData: caseSearches.searchLog.length > 0,
         rows: this.convertDataToTableRows(caseSearches.searchLog),
         noOfRows: caseSearches.searchLog.length,
+        totalNumberOfRecords: caseSearches.totalNumberOfRecords,
         startRecordNumber: caseSearches.startRecordNumber,
         moreRecords: caseSearches.moreRecords,
         currentPage: req.session.caseFormState.page,
+        lastPage: caseSearches.totalNumberOfRecords > 0 ? Math.ceil(caseSearches.totalNumberOfRecords / recordsPerPage) : 1,
       };
     });
   }
@@ -64,28 +68,14 @@ export class CaseSearchesController {
   }
 
   private convertDataToTableRows(logs: CaseSearchLog[]): {text:string, classes?: string}[][] {
-    const splitList = logs.length > 12;
-
     const rows: {text:string}[][] = [];
-    logs.slice(0, splitList ? 10 : 12).forEach((log) => {
+    logs.forEach((log) => {
       const row: {text: string, classes?: string}[] = [];
       const keys = Object.keys(log);
       keys.forEach((key: keyof CaseSearchLog) => row.push(this.formatRowData(log, key)));
 
       rows.push(row);
     });
-
-    if (splitList) {
-      const lastLog = logs.slice(-1)[0];
-      const keys = Object.keys(lastLog);
-
-      const elipsesRow = [{text: '...'}].concat(Array(keys.length - 1).fill({text: ''}));
-      rows.push(elipsesRow);
-
-      const row: {text: string, classes?: string}[] = [];
-      keys.forEach((key: keyof CaseSearchLog) => row.push(this.formatRowData(lastLog, key)));
-      rows.push(row);
-    }
 
     return rows;
   }

@@ -3,7 +3,7 @@
 {% if caseSearches and caseSearches.hasData %}
   <div class="flex-space-between">
     <h2 class="govuk-heading-m">Case Searches Results</h2>
-    <button id="searchesCsvBtn" class="govuk-button">Download CSV</button>
+    <button id="searchesCsvBtn" class="govuk-button">Download all records to CSV</button>
   </div>
 
   <div>
@@ -25,18 +25,22 @@
   </div>
 
   <div class="flex-space-between">
-    <p class="govuk-body">Total: {{ caseSearches.noOfRows }} records</p>
+    <p class="govuk-body">Displaying <b>{{ caseSearches.startRecordNumber }} to {{ caseSearches.startRecordNumber + (caseSearches.noOfRows - 1) }}</b> of {{ caseSearches.totalNumberOfRecords }} records</p>
     <div>
+      {% if (caseSearches.currentPage > 2) %}
+        <a id="case-searches-previous-btn" class="govuk-link" href="/case-searches/page/1">&lt;&lt; First</a>
+      {% endif %}
       {% if (caseSearches.currentPage > 1) %}
-        <a id="case-searches-previous-btn" class="govuk-link pagination-link" href="/case-searches/page/{{ caseSearches.currentPage | int - 1 }}">&lt; Previous</a>
-      {% else %}
-        <span class="disabled-link">&lt; Previous</span>
+        <a id="case-searches-previous-btn" class="govuk-link" href="/case-searches/page/{{ caseSearches.currentPage | int - 1 }}">&lt; Previous</a>
       {% endif %}
 
-      {% if caseSearches.moreRecords %}
-        <a id="case-searches-next-btn" class="govuk-link pagination-link" href="/case-searches/page/{{ caseSearches.currentPage | int + 1 }}">Next &gt;</a>
-      {% else %}
-        <span class="disabled-link">Next &gt;</span>
+      <span class="govuk-body-s">&emsp;Page {{ caseSearches.currentPage }} / {{ caseSearches.lastPage}}&emsp;</span>
+
+      {% if (caseSearches.lastPage - caseSearches.currentPage) > 0 %}
+        <a id="case-searches-next-btn" class="govuk-link" href="/case-searches/page/{{ caseSearches.currentPage | int + 1 }}">Next &gt;</a>
+      {% endif %}
+      {% if (caseSearches.lastPage - caseSearches.currentPage) > 1 %}
+        <a id="case-searches-next-btn" class="govuk-link" href="/case-searches/page/{{ caseSearches.lastPage }}">Last &gt;&gt;</a>
       {% endif %}
     </div>
   </div>
