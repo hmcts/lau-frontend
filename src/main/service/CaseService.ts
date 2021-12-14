@@ -5,9 +5,11 @@ import {CaseActivityAudit} from '../models/case/CaseActivityAudit';
 import {CaseSearchRequest} from '../models/case/CaseSearchRequest';
 import {CaseSearchAudit} from '../models/case/CaseSearchAudit';
 import {AppRequest} from '../models/appRequest';
+import {LauServiceName} from './AuthService';
 
 export class CaseService extends BaseService<CaseSearchRequest> {
   baseApiUrl = String(config.get('services.case-backend.url'));
+  serviceName: LauServiceName = 'lau_case_frontend';
 
   public getCaseActivities(req: AppRequest, csv?: boolean): Promise<CaseActivityAudit> {
     const endpoint: string = config.get('services.case-backend.endpoints.caseActivity');

@@ -3,11 +3,13 @@ const {Logger} = require('@hmcts/nodejs-logging');
 
 import config from 'config';
 import fetch, {Response as FetchResponse} from 'node-fetch';
-import {AuthService} from './AuthService';
+import {AuthService, LauServiceName} from './AuthService';
 import {UserDetails} from '../models/appRequest';
 
 export abstract class BaseService<RequestType> {
   abstract baseApiUrl: string;
+  // TODO Remove once LAU-227 completed
+  abstract serviceName: LauServiceName;
 
   private logger: LoggerInstance = Logger.getLogger(this.constructor.name);
 
@@ -15,7 +17,7 @@ export abstract class BaseService<RequestType> {
   private s2sEnabled: string = config.get('services.idam.s2sEnabled');
 
   async get(userDetails: UserDetails, endpoint: string, qs?: string): Promise<unknown> {
-    const s2sToken = this.s2sEnabled ? await this.authService.retrieveServiceToken() : {bearerToken: ''};
+    const s2sToken = this.s2sEnabled ? await this.authService.retrieveServiceToken(this.serviceName) : {bearerToken: ''};
     const response: FetchResponse = await fetch(
       `${this.baseApiUrl}${endpoint}${qs || ''}`,
       {
