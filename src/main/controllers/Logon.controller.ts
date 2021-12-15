@@ -22,6 +22,8 @@ export class LogonController {
   public async getLogData(req: AppRequest): Promise<LogData> {
     this.logger.info('getLogData called');
     return this.service.getLogons(req).then(logons => {
+      this.logger.info('Response: ');
+      this.logger.info(JSON.stringify(logons));
       const recordsPerPage = Number(config.get('pagination.maxRecords'));
       return {
         hasData: logons.logonLog.length > 0,
