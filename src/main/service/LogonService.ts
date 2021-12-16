@@ -4,9 +4,11 @@ import config from 'config';
 import {LogonAudit} from '../models/idam/LogonAudit';
 import {LogonSearchRequest} from '../models/idam/LogonSearchRequest';
 import {AppRequest} from '../models/appRequest';
+import {LauServiceName} from './AuthService';
 
 export class LogonService extends BaseService<LogonSearchRequest> {
   baseApiUrl = String(config.get('services.idam-backend.url'));
+  serviceName: LauServiceName = 'lau_frontend';
 
   public getLogons(req: AppRequest): Promise<LogonAudit> {
     const endpoint: string = config.get('services.idam-backend.endpoints.logon');

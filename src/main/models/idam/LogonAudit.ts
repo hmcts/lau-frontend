@@ -4,4 +4,5 @@ export interface LogonAudit {
   logonLog: LogonLog[];
   startRecordNumber: number;
   moreRecords: boolean;
+  totalNumberOfRecords: number;
 }

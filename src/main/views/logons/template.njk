@@ -3,7 +3,7 @@
 {% if logons and logons.hasData %}
   <div class="flex-space-between">
     <h2 class="govuk-heading-m">Logons Audit Results</h2>
-    <button id="logonsCsvBtn" class="govuk-button">Download CSV</button>
+    <button id="logonsCsvBtn" class="govuk-button">Download all records to CSV</button>
   </div>
 
   <div>
@@ -31,18 +31,22 @@
   </div>
 
   <div class="flex-space-between">
-    <p class="govuk-body">Total: {{ logons.noOfRows }} records</p>
+    <p class="govuk-body">Displaying <b>{{ logons.startRecordNumber }} to {{ logons.startRecordNumber + (logons.noOfRows - 1) }}</b> of {{ logons.totalNumberOfRecords }} records</p>
     <div>
+      {% if (logons.currentPage > 2) %}
+        <a id="logons-previous-btn" class="govuk-link" href="/logons/page/1">&lt;&lt; First</a>
+      {% endif %}
       {% if (logons.currentPage > 1) %}
-        <a id="logons-previous-btn" class="govuk-link pagination-link" href="/logons/page/{{ logons.currentPage | int - 1 }}">&lt; Previous</a>
-      {% else %}
-        <span class="disabled-link">&lt; Previous</span>
+        <a id="logons-previous-btn" class="govuk-link" href="/logons/page/{{ logons.currentPage | int - 1 }}">&lt; Previous</a>
       {% endif %}
 
-      {% if logons.moreRecords %}
-        <a id="logons-next-btn" class="govuk-link pagination-link" href="/logons/page/{{ logons.currentPage | int + 1 }}">Next &gt;</a>
-      {% else %}
-        <span class="disabled-link">Next &gt;</span>
+      <span class="govuk-body-s">&emsp;Page {{ logons.currentPage }} / {{ logons.lastPage}}&emsp;</span>
+
+      {% if (logons.lastPage - logons.currentPage) > 0 %}
+        <a id="logons-next-btn" class="govuk-link" href="/logons/page/{{ logons.currentPage | int + 1 }}">Next &gt;</a>
+      {% endif %}
+      {% if (logons.lastPage - logons.currentPage) > 1 %}
+        <a id="logons-next-btn" class="govuk-link" href="/logons/page/{{ logons.lastPage }}">Last &gt;&gt;</a>
       {% endif %}
     </div>
   </div>

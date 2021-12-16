@@ -17,7 +17,7 @@ describe('Case Searches Controller', () => {
         .get('/audit/caseSearch?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
         .reply(
           200,
-          {searchLog: [], startRecordNumber: 1, moreRecords: false},
+          {searchLog: [], totalNumberOfRecords: 0, startRecordNumber: 1, moreRecords: false},
         );
 
       const searchRequest: Partial<CaseSearchRequest> = {
@@ -41,7 +41,9 @@ describe('Case Searches Controller', () => {
           rows: [],
           startRecordNumber: 1,
           noOfRows: 0,
+          totalNumberOfRecords: 0,
           currentPage: 1,
+          lastPage: 1,
         };
         expect(caseSearches).toStrictEqual(expectCaseSearches);
         nock.cleanAll();
@@ -66,6 +68,7 @@ describe('Case Searches Controller', () => {
         searchLog: caseSearchLogs,
         moreRecords: false,
         startRecordNumber: 1,
+        totalNumberOfRecords: 2,
       };
 
       nock('http://localhost:4550')
@@ -99,7 +102,9 @@ describe('Case Searches Controller', () => {
           ],
           startRecordNumber: 1,
           noOfRows: 2,
+          totalNumberOfRecords: 2,
           currentPage: 1,
+          lastPage: 1,
         };
         expect(caseSearches).toStrictEqual(expectCaseSearches);
         nock.cleanAll();
@@ -111,6 +116,7 @@ describe('Case Searches Controller', () => {
         searchLog: caseSearchLogs.searchLog as CaseSearchLog[],
         moreRecords: false,
         startRecordNumber: 1,
+        totalNumberOfRecords: 14,
       };
 
       nock('http://localhost:4550')
@@ -149,12 +155,16 @@ describe('Case Searches Controller', () => {
             [{'text': 'U0008'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
             [{'text': 'U0009'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
             [{'text': 'U0010'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': '...'}, {'text': ''}, {'text': ''}],
+            [{'text': 'U0011'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0012'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0013'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
             [{'text': 'U0014'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
           ],
           startRecordNumber: 1,
           noOfRows: 14,
+          totalNumberOfRecords: 14,
           currentPage: 1,
+          lastPage: 3,
         };
         expect(caseSearches).toStrictEqual(expectCaseSearches);
         nock.cleanAll();
@@ -168,6 +178,7 @@ describe('Case Searches Controller', () => {
         searchLog: caseSearchLogs.searchLog as CaseSearchLog[],
         moreRecords: false,
         startRecordNumber: 1,
+        totalNumberOfRecords: 0,
       };
 
       nock('http://localhost:4550')

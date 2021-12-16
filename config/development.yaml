@@ -1,13 +1,13 @@
 ---
 environment: 'dev'
 pagination:
-  maxRecords: 20
+  maxRecords: 10
 redis:
   enabled: false
 services:
   idam:
-    enabled: false
-    s2sEnabled: false
+    enabled: true
+    s2sEnabled: true
     authorizationURL: 'http://localhost:9002/login'
     tokenURL: 'http://localhost:5000/o/token'
     s2sURL: 'http://localhost:4552'

@@ -17,7 +17,7 @@ describe('Case Activity Controller', () => {
         .get('/audit/caseAction?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
         .reply(
           200,
-          {actionLog: [], startRecordNumber: 1, moreRecords: false},
+          {actionLog: [], totalNumberOfRecords: 0, startRecordNumber: 1, moreRecords: false},
         );
 
       const searchRequest: Partial<CaseSearchRequest> = {
@@ -40,7 +40,9 @@ describe('Case Activity Controller', () => {
           rows: [],
           startRecordNumber: 1,
           noOfRows: 0,
+          totalNumberOfRecords: 0,
           currentPage: 1,
+          lastPage: 1,
         };
         expect(caseActivities).toStrictEqual(expectCaseActivities);
         nock.cleanAll();
@@ -71,6 +73,7 @@ describe('Case Activity Controller', () => {
         actionLog: caseActivityLogs,
         moreRecords: false,
         startRecordNumber: 1,
+        totalNumberOfRecords: 2,
       };
 
       nock('http://localhost:4550')
@@ -103,7 +106,9 @@ describe('Case Activity Controller', () => {
           ],
           startRecordNumber: 1,
           noOfRows: 2,
+          totalNumberOfRecords: 2,
           currentPage: 1,
+          lastPage: 1,
         };
         expect(caseActivities).toStrictEqual(expectCaseActivities);
         nock.cleanAll();
@@ -115,6 +120,7 @@ describe('Case Activity Controller', () => {
         actionLog: caseActivityLogs.actionLog as CaseActivityLog[],
         moreRecords: false,
         startRecordNumber: 1,
+        totalNumberOfRecords: 14,
       };
 
       nock('http://localhost:4550')
@@ -152,12 +158,16 @@ describe('Case Activity Controller', () => {
             [{'text': 'U0008'}, {'text': 'VIEW'}, {'text': 'C0001'}, {'text': 'DIVORCE'}, {'text': 'FinancialRemedyMVP2'}, {'text': '2020-07-20 15:00:00'}],
             [{'text': 'U0009'}, {'text': 'VIEW'}, {'text': 'C0001'}, {'text': 'DIVORCE'}, {'text': 'FinancialRemedyMVP2'}, {'text': '2020-07-20 15:00:00'}],
             [{'text': 'U0010'}, {'text': 'VIEW'}, {'text': 'C0001'}, {'text': 'DIVORCE'}, {'text': 'FinancialRemedyMVP2'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': '...'}, {'text': ''}, {'text': ''}, {'text': ''}, {'text': ''}, {'text': ''}],
+            [{'text': 'U0011'}, {'text': 'VIEW'}, {'text': 'C0001'}, {'text': 'DIVORCE'}, {'text': 'FinancialRemedyMVP2'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0012'}, {'text': 'VIEW'}, {'text': 'C0001'}, {'text': 'DIVORCE'}, {'text': 'FinancialRemedyMVP2'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0013'}, {'text': 'VIEW'}, {'text': 'C0001'}, {'text': 'DIVORCE'}, {'text': 'FinancialRemedyMVP2'}, {'text': '2020-07-20 15:00:00'}],
             [{'text': 'U0014'}, {'text': 'VIEW'}, {'text': 'C0001'}, {'text': 'DIVORCE'}, {'text': 'FinancialRemedyMVP2'}, {'text': '2020-07-20 15:00:00'}],
           ],
           startRecordNumber: 1,
           noOfRows: 14,
+          totalNumberOfRecords: 14,
           currentPage: 1,
+          lastPage: 3,
         };
         expect(caseActivities).toStrictEqual(expectCaseActivities);
         nock.cleanAll();
@@ -171,6 +181,7 @@ describe('Case Activity Controller', () => {
         actionLog: caseActivityLogs.actionLog as CaseActivityLog[],
         moreRecords: false,
         startRecordNumber: 1,
+        totalNumberOfRecords: 0,
       };
 
       nock('http://localhost:4550')

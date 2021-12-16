@@ -5,6 +5,11 @@
 $color-grey: #808080;
 $color-white: #fff;
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
 .flex-space-between {
   display: flex;
   flex-direction: row;

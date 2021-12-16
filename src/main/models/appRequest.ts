@@ -32,9 +32,11 @@ export interface LogData {
   hasData: boolean;
   rows: {text:string, classes?: string}[][];
   noOfRows: number;
+  totalNumberOfRecords: number;
   startRecordNumber: number;
   moreRecords: boolean;
   currentPage: number;
+  lastPage: number;
 }
 
 export interface UserDetails {
