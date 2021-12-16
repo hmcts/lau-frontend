@@ -4,14 +4,14 @@ import {app} from '../../../main/app';
 import {CaseSearchesController} from '../../../main/controllers/CaseSearches.controller';
 
 describe('Case Searches Route', () => {
-  app.use('/case-searches/csv', (new CaseSearchesController()).getPage);
+  app.use('/case-searches/csv', (new CaseSearchesController()).getCsv);
 
   it('responds with a CSV file', async () => {
     nock('http://localhost:4550')
-      .get('/audit/caseSearch?')
+      .get('/audit/caseSearch?page=1&size=0')
       .reply(
         200,
-        {searchLog: [], startRecordNumber: 1, moreRecords: false},
+        {searchLog: [], startRecordNumber: 1, moreRecords: false, totalNumberOfRecords: 0},
       );
 
     const res = await request(app).get('/case-searches/csv');

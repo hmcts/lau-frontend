@@ -58,7 +58,7 @@ export class CaseSearchesController {
   }
 
   public async getCsv(req: AppRequest, res: Response): Promise<void> {
-    return this.service.getCaseSearches(req).then(caseSearches => {
+    return this.service.getCaseSearches(req, true).then(caseSearches => {
       const caseSearchLogs = new CaseSearchLogs(caseSearches.searchLog);
       const filename = `caseSearches ${csvDate()}.csv`;
       jsonToCsv(caseSearchLogs).then(csv => {

@@ -58,7 +58,7 @@ export class LogonController {
   }
 
   public async getCsv(req: AppRequest, res: Response): Promise<void> {
-    return this.service.getLogons(req).then(logons => {
+    return this.service.getLogons(req, true).then(logons => {
       const logonLogs = new LogonLogs(logons.logonLog);
       const filename = `logon ${csvDate()}.csv`;
       jsonToCsv(logonLogs).then(csv => {

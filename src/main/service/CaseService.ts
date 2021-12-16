@@ -21,9 +21,13 @@ export class CaseService extends BaseService<CaseSearchRequest> {
     return this.get(req.session.user, endpoint, this.getQueryString(searchParameters)) as Promise<CaseActivityAudit>;
   }
 
-  public getCaseSearches(req: AppRequest): Promise<CaseSearchAudit> {
+  public getCaseSearches(req: AppRequest, csv?: boolean): Promise<CaseSearchAudit> {
     const endpoint: string = config.get('services.case-backend.endpoints.caseSearch');
     const searchParameters = req.session.caseFormState || {};
+    if (csv) {
+      searchParameters.page = 1;
+      searchParameters.size = req.session.caseSearches?.totalNumberOfRecords || 0;
+    }
     return this.get(req.session.user, endpoint, this.getQueryString(searchParameters)) as Promise<CaseSearchAudit>;
   }
 }
