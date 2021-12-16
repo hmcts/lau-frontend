@@ -2,6 +2,7 @@ import {LoggerInstance} from 'winston';
 const {Logger} = require('@hmcts/nodejs-logging');
 
 import autobind from 'autobind-decorator';
+import config from 'config';
 import {Response} from 'express';
 import {LogonService} from '../service/LogonService';
 import {AppRequest, LogData} from '../models/appRequest';
@@ -10,7 +11,7 @@ import {csvDate, requestDateToFormDate} from '../util/Date';
 import {jsonToCsv} from '../util/CsvHandler';
 
 /**
- * Logons Controller class to handle logon results tab functionality
+ * Logons Controller class to handle logon results tab functionality.
  */
 @autobind
 export class LogonController {
@@ -21,19 +22,22 @@ export class LogonController {
   public async getLogData(req: AppRequest): Promise<LogData> {
     this.logger.info('getLogData called');
     return this.service.getLogons(req).then(logons => {
+      const recordsPerPage = Number(config.get('pagination.maxRecords'));
       return {
         hasData: logons.logonLog.length > 0,
         rows: this.convertDataToTableRows(logons.logonLog),
         noOfRows: logons.logonLog.length,
+        totalNumberOfRecords: logons.totalNumberOfRecords,
         startRecordNumber: logons.startRecordNumber,
         moreRecords: logons.moreRecords,
         currentPage: req.session.logonFormState.page,
+        lastPage: logons.totalNumberOfRecords > 0 ? Math.ceil(logons.totalNumberOfRecords / recordsPerPage) : 0,
       };
     });
   }
 
   /**
-   * Function to return the next set of log data for the logon data
+   * Function to return the next set of log data for the logon data.
    *
    * @param req AppRequest - extension of Express Request
    * @param res Express Response
@@ -46,7 +50,7 @@ export class LogonController {
 
     await this.getLogData(req).then(logData => {
       req.session.logons = logData;
-      res.redirect('/#logon-results-tab');
+      res.redirect('/#logons-tab');
     }).catch((err) => {
       this.logger.error(err);
       res.redirect('/error');
@@ -64,10 +68,8 @@ export class LogonController {
   }
 
   private convertDataToTableRows(logs: LogonLog[]): {text:string}[][] {
-    const splitList = logs.length > 12;
-
     const rows: {text:string}[][] = [];
-    logs.slice(0, splitList ? 10 : 12).forEach((log) => {
+    logs.forEach((log) => {
       const row: {text: string}[] = [];
       const keys = Object.keys(log);
       keys.forEach((key: keyof LogonLog) => {
@@ -79,23 +81,6 @@ export class LogonController {
 
       rows.push(row);
     });
-
-    if (splitList) {
-      const lastLog = logs.slice(-1)[0];
-      const keys = Object.keys(lastLog);
-
-      const elipsesRow = [{text: '...'}].concat(Array(keys.length - 2).fill({text: ''}));
-      rows.push(elipsesRow);
-
-      const row: {text: string}[] = [];
-      keys.forEach((key: keyof LogonLog) => {
-        if (key !== 'service') {
-          const text = key === 'timestamp' ? requestDateToFormDate(lastLog[key]) : lastLog[key];
-          row.push({ text });
-        }
-      });
-      rows.push(row);
-    }
 
     return rows;
   }

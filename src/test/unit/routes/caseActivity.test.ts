@@ -1,20 +1,19 @@
 import nock from 'nock';
 import request from 'supertest';
 import {app} from '../../../main/app';
-import {CaseActivityController} from '../../../main/controllers/CaseActivity.controller';
 
 describe('Case Activity Route', () => {
-  app.use('/case-activity/csv', (new CaseActivityController()).getPage);
+  const agent = request(app);
 
   it('responds with a CSV file', async () => {
     nock('http://localhost:4550')
-      .get('/audit/caseAction?')
+      .get('/audit/caseAction?page=1&size=0')
       .reply(
         200,
-        {actionLog: [], startRecordNumber: 1, moreRecords: false},
+        {actionLog: [], startRecordNumber: 1, moreRecords: false, totalNumberOfRecords: 0},
       );
 
-    const res = await request(app).get('/case-activity/csv');
+    const res = await agent.get('/case-activity/csv');
     expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res.statusCode).toBe(200);
     expect(res.type).toBe('application/json');

@@ -4,4 +4,5 @@ export interface CaseSearchAudit {
   searchLog: CaseSearchLog[];
   startRecordNumber: number;
   moreRecords: boolean;
+  totalNumberOfRecords: number;
 }

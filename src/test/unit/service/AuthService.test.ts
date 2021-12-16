@@ -24,7 +24,7 @@ describe('AuthService', () => {
           serviceToken,
         );
 
-      const returnedToken: ServiceAuthToken = await authService.retrieveServiceToken();
+      const returnedToken: ServiceAuthToken = await authService.retrieveServiceToken('lau_case_frontend');
 
       expect(returnedToken.bearerToken).toBe(serviceToken);
       const bearerToken: BearerToken = jwt_decode(returnedToken.bearerToken);
