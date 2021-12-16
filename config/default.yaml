@@ -8,7 +8,7 @@ security:
 appInsights:
   instrumentationKey: false
 pagination:
-  maxRecords: 10
+  maxRecords: 100
 redis:
   host: 'localhost'
   port: 6379
