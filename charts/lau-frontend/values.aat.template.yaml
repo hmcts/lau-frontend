@@ -2,8 +2,6 @@ nodejs:
   # Don't modify below here
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
-  environment:
-    MAX_RECORDS: 10
 
 idam-pr:
   enabled: false
