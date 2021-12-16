@@ -11,7 +11,7 @@ import {csvDate, requestDateToFormDate} from '../util/Date';
 import {jsonToCsv} from '../util/CsvHandler';
 
 /**
- * Logons Controller class to handle logon results tab functionality
+ * Logons Controller class to handle logon results tab functionality.
  */
 @autobind
 export class LogonController {
