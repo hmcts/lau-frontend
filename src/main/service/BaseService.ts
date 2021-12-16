@@ -18,18 +18,15 @@ export abstract class BaseService<RequestType> {
 
   async get(userDetails: UserDetails, endpoint: string, qs?: string): Promise<unknown> {
     const s2sToken = this.s2sEnabled ? await this.authService.retrieveServiceToken(this.serviceName) : {bearerToken: ''};
-    const headers = {
-      'Content-Type': 'application/json',
-      'ServiceAuthorization': 'Bearer ' + s2sToken.bearerToken,
-      'Authorization': 'Bearer ' + userDetails?.accessToken || '',
-    };
-    this.logger.info('Headers:');
-    this.logger.info(JSON.stringify(headers));
     const response: FetchResponse = await fetch(
       `${this.baseApiUrl}${endpoint}${qs || ''}`,
       {
         method: 'GET',
-        headers,
+        headers: {
+          'Content-Type': 'application/json',
+          'ServiceAuthorization': 'Bearer ' + s2sToken.bearerToken,
+          'Authorization': 'Bearer ' + userDetails?.accessToken || '',
+        },
       },
     ).catch(err => {
       this.logger.error(err);
