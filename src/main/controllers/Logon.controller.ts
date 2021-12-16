@@ -37,7 +37,7 @@ export class LogonController {
   }
 
   /**
-   * Function to return the next set of log data for the logon data
+   * Function to return the next set of log data for the logon data.
    *
    * @param req AppRequest - extension of Express Request
    * @param res Express Response
