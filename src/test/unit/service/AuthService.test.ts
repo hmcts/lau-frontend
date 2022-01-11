@@ -9,8 +9,8 @@ describe('AuthService', () => {
 
   describe('retrieveServiceToken', () => {
 
-    // { "sub": "lau_case_frontend", "exp": 1634657845 } (exp: 19th Oct 2021 16:37:25 GMT)
-    const serviceToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsYXVfY2FzZV9mcm9udGVuZCIsImV4cCI6MTYzNDY1Nzg0NX0.U_DjKcHscgsSLGe3SYOiVivpryVZsiNeEDGVQk3pxnmdTPRE91TyrUlvJCvBFm9x4j_f29F6LBCTrnJDxtWe-g';
+    // { "sub": "lau_frontend", "exp": 1634657845 } (exp: 19th Oct 2021 16:37:25 GMT)
+    const serviceToken = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsYXVfZnJvbnRlbmQiLCJleHAiOjE2MzQ2NTc4NDV9.jQGcekdBA_vLnBmo0gCs6Hwuti6cT7BFlcPVU1gtciiaV9SlIrNeNzHcuigeNGwNIrSZ3F28pjPAWi48rDr0nw';
 
     afterEach(() => {
       nock.cleanAll();
@@ -24,11 +24,11 @@ describe('AuthService', () => {
           serviceToken,
         );
 
-      const returnedToken: ServiceAuthToken = await authService.retrieveServiceToken('lau_case_frontend');
+      const returnedToken: ServiceAuthToken = await authService.retrieveServiceToken();
 
       expect(returnedToken.bearerToken).toBe(serviceToken);
       const bearerToken: BearerToken = jwt_decode(returnedToken.bearerToken);
-      expect(bearerToken.sub).toBe('lau_case_frontend');
+      expect(bearerToken.sub).toBe('lau_frontend');
       expect(bearerToken.exp).toBe(1634657845);
       expect(returnedToken.expired).toBeTruthy();
     });

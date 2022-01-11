@@ -6,19 +6,16 @@ import totp from 'totp-generator';
 import {ServiceAuthToken} from '../idam/ServiceAuthToken';
 import fetch from 'node-fetch';
 
-// TODO Remove once LAU-227 completed
-export type LauServiceName = 'lau_case_frontend' | 'lau_frontend';
-
-// TODO re-add const microserviceName = 'lau_frontend';
+const microserviceName = 'lau_frontend';
 const s2sUrl = config.get<string>('services.idam.s2sURL');
 const totpSecret = config.get<string>('services.idam.s2sSecretLAU');
 
 export class AuthService {
   private logger: LoggerInstance = Logger.getLogger('AuthService');
 
-  retrieveServiceToken(serviceName: LauServiceName): Promise<ServiceAuthToken> {
+  retrieveServiceToken(): Promise<ServiceAuthToken> {
     const params = {
-      microservice: serviceName, // microserviceName
+      microservice: microserviceName,
       oneTimePassword: totp(totpSecret),
     };
 
