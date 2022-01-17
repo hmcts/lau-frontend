@@ -9,7 +9,7 @@ import jwt_decode from 'jwt-decode';
 import {AppSession, UserDetails} from '../models/appRequest';
 import {HttpResponseError} from '../util/HttpResponseError';
 
-interface IdTokenJwtPayload {
+export interface IdTokenJwtPayload {
   uid: string;
   sub: string;
   given_name: string;
@@ -17,7 +17,7 @@ interface IdTokenJwtPayload {
   roles: string[];
 }
 
-interface IdamResponseData {
+export interface IdamResponseData {
   access_token: string;
   refresh_token: string;
   scope: string;
@@ -116,7 +116,6 @@ export class AuthService {
       }
 
       const data: IdamResponseData = await response.json();
-      console.log(data);
       const expiresAt: number = requestTimeInSeconds + Number(data.expires_in);
 
       const jwt: IdTokenJwtPayload = jwt_decode(data.id_token);
