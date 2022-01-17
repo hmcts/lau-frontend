@@ -9,7 +9,6 @@ import {AppRequest, LogData} from '../models/appRequest';
 import {LogonLog, LogonLogs} from '../models/idam/LogonLogs';
 import {csvDate, requestDateToFormDate} from '../util/Date';
 import {jsonToCsv} from '../util/CsvHandler';
-import {AuthService} from '../service/AuthService';
 
 /**
  * Logons Controller class to handle logon results tab functionality.
@@ -18,7 +17,7 @@ import {AuthService} from '../service/AuthService';
 export class LogonController {
   private logger: LoggerInstance = Logger.getLogger('LogonsController');
 
-  private service = new LogonService(new AuthService());
+  private service = new LogonService();
 
   public async getLogData(req: AppRequest): Promise<LogData> {
     this.logger.info('getLogData called');
