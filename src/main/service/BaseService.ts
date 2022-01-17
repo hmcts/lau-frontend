@@ -11,8 +11,13 @@ export abstract class BaseService<RequestType> {
 
   private logger: LoggerInstance = Logger.getLogger(this.constructor.name);
 
-  private authService = new AuthService();
+  private authService: AuthService;
   private s2sEnabled: string = config.get('services.idam.s2sEnabled');
+
+  constructor(authService?: AuthService) {
+    // Allow for Inversion of Control
+    this.authService = authService || new AuthService();
+  }
 
   async get(session: AppSession, endpoint: string, qs?: string): Promise<unknown> {
 
