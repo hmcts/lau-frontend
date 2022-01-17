@@ -16,7 +16,7 @@ export class CaseService extends BaseService<CaseSearchRequest> {
       searchParameters.page = 1;
       searchParameters.size = req.session.caseActivities?.totalNumberOfRecords || 0;
     }
-    return this.get(req.session.user, endpoint, this.getQueryString(searchParameters)) as Promise<CaseActivityAudit>;
+    return this.get(req.session, endpoint, this.getQueryString(searchParameters)) as Promise<CaseActivityAudit>;
   }
 
   public getCaseSearches(req: AppRequest, csv?: boolean): Promise<CaseSearchAudit> {
@@ -26,6 +26,6 @@ export class CaseService extends BaseService<CaseSearchRequest> {
       searchParameters.page = 1;
       searchParameters.size = req.session.caseSearches?.totalNumberOfRecords || 0;
     }
-    return this.get(req.session.user, endpoint, this.getQueryString(searchParameters)) as Promise<CaseSearchAudit>;
+    return this.get(req.session, endpoint, this.getQueryString(searchParameters)) as Promise<CaseSearchAudit>;
   }
 }
