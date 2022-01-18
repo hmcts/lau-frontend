@@ -41,6 +41,8 @@ export interface LogData {
 
 export interface UserDetails {
   accessToken: string;
+  expiresAt: number;
+  refreshToken: string;
   idToken: string;
   id: string;
   roles: string[];
