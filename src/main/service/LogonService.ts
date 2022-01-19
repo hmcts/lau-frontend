@@ -15,6 +15,6 @@ export class LogonService extends BaseService<LogonSearchRequest> {
       searchParameters.page = 1;
       searchParameters.size = req.session.logons?.totalNumberOfRecords || 0;
     }
-    return this.get(req.session.user, endpoint, this.getQueryString(searchParameters)) as Promise<LogonAudit>;
+    return this.get(req.session, endpoint, this.getQueryString(searchParameters)) as Promise<LogonAudit>;
   }
 }
