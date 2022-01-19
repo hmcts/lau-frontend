@@ -21,7 +21,7 @@ export abstract class BaseService<RequestType> {
 
   async get(session: AppSession, endpoint: string, qs?: string): Promise<unknown> {
 
-    if (session.user?.expiresAt > Math.round(Date.now() / 1000)) {
+    if (session.user?.expiresAt < Math.round(Date.now() / 1000)) {
       // Refresh the IdAM session
       await this.authService.getIdAMToken(IdamGrantType.REFRESH, session);
     }

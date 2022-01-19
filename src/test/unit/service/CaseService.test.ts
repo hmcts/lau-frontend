@@ -77,7 +77,7 @@ describe('Case Service', () => {
         session: {
           caseFormState: searchParameters,
           user: {
-            expiresAt: Date.now(), // Date.now() ensures the expired statement evaluates as true
+            expiresAt: 1,
           },
         },
       };
