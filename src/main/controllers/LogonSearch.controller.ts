@@ -45,7 +45,7 @@ export class LogonSearchController extends BaseSearchController<LogonSearchReque
         res.redirect('/error');
       });
     } else {
-      res.redirect('/');
+      res.redirect('/#logon-search-tab');
     }
   }
 }

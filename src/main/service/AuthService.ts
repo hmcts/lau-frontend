@@ -6,22 +6,22 @@ import totp from 'totp-generator';
 import {ServiceAuthToken} from '../idam/ServiceAuthToken';
 import fetch from 'node-fetch';
 
-const microserviceName = 'lau_frontend';
-const s2sUrl = config.get<string>('services.idam.s2sURL');
-const totpSecret = config.get<string>('services.idam.s2sSecretLAU');
-
 export class AuthService {
   private logger: LoggerInstance = Logger.getLogger('AuthService');
 
+  private microserviceName = 'lau_frontend';
+  private s2sUrl: string = config.get('services.idam.s2sURL');
+  private totpSecret: string = config.get('services.idam.s2sSecretLAU');
+
   retrieveServiceToken(): Promise<ServiceAuthToken> {
     const params = {
-      microservice: microserviceName,
-      oneTimePassword: totp(totpSecret),
+      microservice: this.microserviceName,
+      oneTimePassword: totp(this.totpSecret),
     };
 
     return new Promise((resolve, reject) => {
       fetch(
-        s2sUrl + '/lease',
+        this.s2sUrl + '/lease',
         {
           method: 'POST',
           headers: {
