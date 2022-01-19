@@ -25,8 +25,6 @@ export class SessionStorage {
         cookie: {
           httpOnly: true,
           maxAge: this.cookieMaxAge,
-          secure: false,
-          sameSite: 'lax',
         },
         rolling: true, // Renew the cookie for another 20 minutes on each request
         store: this.getStore(),
@@ -44,6 +42,7 @@ export class SessionStorage {
       const tlsOptions = {
         password: password,
         tls: true,
+        connectTimeout: 15000,
       };
 
       const redisOptions = config.get('redis.useTLS') === 'true' ? tlsOptions : {};
