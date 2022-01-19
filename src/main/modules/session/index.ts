@@ -38,6 +38,7 @@ export class SessionStorage {
       const host: string = config.get('redis.host');
       const password: string = config.get('redis.password');
       const port: number = config.get('redis.port');
+      const ttl: number = config.get('redis.ttl');
 
       const tlsOptions = {
         password: password,
@@ -51,7 +52,7 @@ export class SessionStorage {
 
       const client = new Redis(port, host, redisOptions);
 
-      return new this.RedisStore({ client });
+      return new this.RedisStore({ client, ttl });
     } else if (config.get('environment') === 'prod') {
       throw new Error('Redis disabled in production!');
     }
