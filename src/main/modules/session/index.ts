@@ -25,8 +25,6 @@ export class SessionStorage {
         cookie: {
           httpOnly: true,
           maxAge: this.cookieMaxAge,
-          secure: false,
-          sameSite: 'lax',
         },
         rolling: true, // Renew the cookie for another 30 minutes on each request
         store: this.getStore(),
@@ -40,10 +38,12 @@ export class SessionStorage {
       const host: string = config.get('redis.host');
       const password: string = config.get('redis.password');
       const port: number = config.get('redis.port');
+      const ttl: number = config.get('redis.ttl');
 
       const tlsOptions = {
         password: password,
         tls: true,
+        connectTimeout: 15000,
       };
 
       const redisOptions = config.get('redis.useTLS') === 'true' ? tlsOptions : {};
@@ -52,7 +52,7 @@ export class SessionStorage {
 
       const client = new Redis(port, host, redisOptions);
 
-      return new this.RedisStore({ client });
+      return new this.RedisStore({ client, ttl });
     } else if (config.get('environment') === 'prod') {
       throw new Error('Redis disabled in production!');
     }

@@ -59,7 +59,7 @@
     "glob": "^7.1.6",
     "govuk-frontend": "^3.13.0",
     "helmet": "^4.2.0",
-    "ioredis": "^4.27.9",
+    "ioredis": "^4.28.3",
     "jquery": "^3.5.1",
     "json2csv": "^5.0.6",
     "jwt-decode": "^3.1.2",

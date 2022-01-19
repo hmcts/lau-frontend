@@ -19,6 +19,7 @@ redis:
   proxy: true
   resave: false
   saveUninitialized: false
+  ttl: 28800 # ms (8 hours)
   cookie:
     secure: false
     httpOnly: true
