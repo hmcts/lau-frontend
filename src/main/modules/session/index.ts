@@ -11,7 +11,7 @@ export class SessionStorage {
   private RedisStore = ConnectRedis(session);
   private MemoryStore = require('express-session').MemoryStore;
 
-  private cookieMaxAge = 10 * (60 * 1000); // 10 minutes
+  private cookieMaxAge = 30 * (60 * 1000); // 30 minutes
 
   public enableFor(app: Application): void {
     app.use(cookieParser());
@@ -26,7 +26,7 @@ export class SessionStorage {
           httpOnly: true,
           maxAge: this.cookieMaxAge,
         },
-        rolling: true, // Renew the cookie for another 20 minutes on each request
+        rolling: true, // Renew the cookie for another 30 minutes on each request
         store: this.getStore(),
       }),
     );
