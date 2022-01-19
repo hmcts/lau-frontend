@@ -88,6 +88,7 @@ export class OidcMiddleware {
       }
 
       const data: IdamResponseData = await response.json();
+      logger.info(data);
       const jwt: IdTokenJwtPayload = jwt_decode(data.id_token);
 
       req.session.user = {
