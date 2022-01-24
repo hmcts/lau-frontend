@@ -10,7 +10,7 @@ import {Logs as LogsModel} from '../models/Logs';
 function parseFields(fields: string[]): FieldInfo<string>[] {
   return fields.map(field => {
     const addSpaces = field.replace(/([A-Z])/g, ' $1');
-    const capitalize = addSpaces.charAt(0).toUpperCase() + addSpaces.slice(1);
+    const capitalize = addSpaces === 'timestamp' ? 'Timestamp (UTC)' : addSpaces.charAt(0).toUpperCase() + addSpaces.slice(1);
 
     return {
       label: capitalize,
