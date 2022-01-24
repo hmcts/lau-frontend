@@ -22,8 +22,8 @@ export const validDateInput = (date: string): string => {
 
 export const startDateBeforeEndDate = (fields: { [s: string]: unknown; }): string => {
   if (fields.startTimestamp && fields.endTimestamp) {
-    const startDate: Moment = moment.utc(fields.startTimestamp, 'yyyy-MM-dd HH:mm:ss');
-    const endDate: Moment = moment.utc(fields.endTimestamp, 'yyyy-MM-dd HH:mm:ss');
+    const startDate: Moment = moment.utc(fields.startTimestamp, 'yyyy-MM-DD HH:mm:ss');
+    const endDate: Moment = moment.utc(fields.endTimestamp, 'yyyy-MM-DD HH:mm:ss');
 
     if ((startDate.isValid() && endDate.isValid()) && startDate.isAfter(endDate) || fields.startTimestamp === fields.endTimestamp) {
       return 'startDateBeforeEndDate';
