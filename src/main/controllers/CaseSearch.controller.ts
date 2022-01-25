@@ -42,6 +42,7 @@ export class CaseSearchController extends BaseSearchController<CaseSearchRequest
         this.caseActivityController.getLogData(req),
         this.caseSearchesController.getLogData(req),
       ]).then(value => {
+        this.logger.info('Case search promise complete... updating session and redirecting...');
         req.session.caseActivities = value[0];
         req.session.caseSearches = value[1];
         res.redirect('/#case-activity-tab');
