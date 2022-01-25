@@ -22,6 +22,7 @@ export class CaseActivityController {
   public async getLogData(req: AppRequest): Promise<LogData> {
     this.logger.info('getLogData called');
     return this.service.getCaseActivities(req).then(caseActivities => {
+      this.logger.info('Case activities retrieved');
       const recordsPerPage = Number(config.get('pagination.maxRecords'));
       return {
         hasData: caseActivities.actionLog.length > 0,

@@ -24,6 +24,7 @@ export const app = express();
 app.locals.ENV = env;
 
 const logger = Logger.getLogger('app');
+logger.info('Environment: ' + env);
 
 new PropertiesVolume().enableFor(app);
 new Nunjucks(developmentMode).enableFor(app);

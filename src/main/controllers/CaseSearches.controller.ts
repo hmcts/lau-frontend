@@ -22,6 +22,7 @@ export class CaseSearchesController {
   public async getLogData(req: AppRequest): Promise<LogData> {
     this.logger.info('getLogData called');
     return this.service.getCaseSearches(req).then(caseSearches => {
+      this.logger.info('Case searches retrieved');
       const recordsPerPage = Number(config.get('pagination.maxRecords'));
       return {
         hasData: caseSearches.searchLog.length > 0,
