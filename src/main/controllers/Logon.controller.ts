@@ -31,7 +31,7 @@ export class LogonController {
         startRecordNumber: logons.startRecordNumber,
         moreRecords: logons.moreRecords,
         currentPage: req.session.logonFormState.page,
-        lastPage: logons.totalNumberOfRecords > 0 ? Math.ceil(logons.totalNumberOfRecords / recordsPerPage) : 0,
+        lastPage: logons.totalNumberOfRecords > 0 ? Math.ceil(logons.totalNumberOfRecords / recordsPerPage) : 1,
       };
     });
   }
