@@ -23,12 +23,17 @@ $color-white: #fff;
   font-size: 16px;
 }
 
-.govuk-width-container {
+.search-form {
   max-width: 1000px;
+  margin: auto;
 }
 
-.case-refs-cell {
-  max-width: 425px;
+.govuk-width-container {
+  max-width: 80%;
+}
+
+.overflow-wrap {
+  overflow-wrap: anywhere;
 }
 
 // Logon search tab
