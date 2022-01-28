@@ -9,6 +9,8 @@ appInsights:
   instrumentationKey: false
 pagination:
   maxRecords: 100
+csv:
+  maxRecords: 100000
 redis:
   host: 'localhost'
   port: 6379

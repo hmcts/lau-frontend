@@ -14,7 +14,8 @@ export class CaseService extends BaseService<CaseSearchRequest> {
     const searchParameters = req.session.caseFormState || {};
     if (csv) {
       searchParameters.page = 1;
-      searchParameters.size = req.session.caseActivities?.totalNumberOfRecords || 0;
+      const totalRecords = req.session.caseActivities?.totalNumberOfRecords || 0;
+      searchParameters.size = totalRecords > this.maxCsvRecords ? this.maxCsvRecords : totalRecords;
     }
     return this.get(req.session, endpoint, this.getQueryString(searchParameters)) as Promise<CaseActivityAudit>;
   }
@@ -24,7 +25,8 @@ export class CaseService extends BaseService<CaseSearchRequest> {
     const searchParameters = req.session.caseFormState || {};
     if (csv) {
       searchParameters.page = 1;
-      searchParameters.size = req.session.caseSearches?.totalNumberOfRecords || 0;
+      const totalRecords = req.session.caseSearches?.totalNumberOfRecords || 0;
+      searchParameters.size = totalRecords > this.maxCsvRecords ? this.maxCsvRecords : totalRecords;
     }
     return this.get(req.session, endpoint, this.getQueryString(searchParameters)) as Promise<CaseSearchAudit>;
   }
