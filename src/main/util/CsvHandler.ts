@@ -1,5 +1,9 @@
 import {AsyncParser, FieldInfo} from 'json2csv';
 import {Logs as LogsModel} from '../models/Logs';
+import {LoggerInstance} from 'winston';
+
+const {Logger} = require('@hmcts/nodejs-logging');
+const logger: LoggerInstance = Logger.getLogger('CsvHandler');
 
 /**
  * Function to convert the string array of fields to the FieldInfo object for json2csv.
@@ -34,12 +38,16 @@ function jsonToCsv(Logs: LogsModel<unknown>): Promise<string> {
 
   // This may need to be changed to an observable (RXJS).
   return new Promise((resolve, reject) => {
+    logger.info('Processing CSV...');
+    const startTime = performance.now();
     asyncParser.processor
       .on('data', chunk => (csv += chunk.toString()))
       .on('end', () => resolve(csv))
       .on('error', err => reject(err));
     Logs.csvData.forEach(d => asyncParser.input.push(d));
     asyncParser.input.end();
+    const processTime = performance.now() - startTime;
+    logger.info('CSV process time: ' + processTime + ' milliseconds');
   });
 }
 
