@@ -52,4 +52,17 @@ function jsonToCsv(Logs: LogsModel<unknown>): Promise<string> {
   });
 }
 
-export {jsonToCsv};
+function csvJson(Logs: LogsModel<unknown>): Promise<unknown> {
+  const fields = parseFields(Logs.fields);
+
+  // This may need to be changed to an observable (RXJS).
+  return new Promise((resolve) => {
+    resolve({
+      fields,
+      csvData: Logs.csvData,
+    });
+  });
+}
+
+
+export {jsonToCsv, csvJson};
