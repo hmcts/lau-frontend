@@ -1,6 +1,7 @@
 import {AsyncParser, FieldInfo} from 'json2csv';
 import {Logs as LogsModel} from '../models/Logs';
 import {LoggerInstance} from 'winston';
+import { performance } from'perf_hooks';
 
 const {Logger} = require('@hmcts/nodejs-logging');
 const logger: LoggerInstance = Logger.getLogger('CsvHandler');
