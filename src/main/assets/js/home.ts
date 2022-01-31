@@ -44,12 +44,15 @@ for (const form of forms) {
         const innerHtml = btn.innerHTML;
         btn.innerHTML = '<div class="spinner"></div> Generating CSV ...';
 
-        const startTime = performance.now();
-
+        const startFetchTime = performance.now();
         fetch(uri)
           .then(res => res.json())
           .then(json => {
+            const fetchTime = performance.now() - startFetchTime;
+            console.log('CSV Data Fetch Time: ' + fetchTime + ' milliseconds');
+
             console.log('Processing CSV...');
+            const startProcessTime = performance.now();
             const replacer = (key: string, value: string) => value === null ? '' : value; // specify how you want to handle null values here
             const header = Object.keys(json.json.fields);
             const csv = [
@@ -64,7 +67,7 @@ for (const form of forms) {
             link.href = 'data:text/csv;charset=utf-8,' + csv;
 
             // Measure CSV performance
-            const processTime = performance.now() - startTime;
+            const processTime = performance.now() - startProcessTime;
             console.log('CSV process time: ' + processTime + ' milliseconds');
 
             link.click();
