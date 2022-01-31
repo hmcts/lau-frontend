@@ -50,15 +50,17 @@ for (const form of forms) {
           .then(json => {
             const fetchTime = performance.now() - startFetchTime;
             console.log('CSV Data Fetch Time: ' + fetchTime + ' milliseconds');
-
             console.log('Processing CSV...');
+
             const startProcessTime = performance.now();
-            const replacer = (key: string, value: string) => value === null ? '' : value; // specify how you want to handle null values here
-            const header = Object.keys(json.json.fields);
+
+            const {fields, data} = json.csvJson;
+            const header = fields.map((field: {label: string, value: string}) => field.label);
+            const replacer = (key: string, value: string) => value === null ? '' : value; // specify how to handle null values
             const csv = [
               header.join(','), // header row first
               // @ts-ignore
-              ...json.json.csvData.map(row => header.map(fieldName => JSON.stringify(row[fieldName.value], replacer)).join(',')),
+              ...data.map((row: Record<string, unknown>[]) => fields.map(field => JSON.stringify(row[field.value], replacer)).join(',')),
             ].join('\r\n');
 
             // Need to create link element to set the filename

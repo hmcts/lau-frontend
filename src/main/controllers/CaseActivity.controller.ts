@@ -63,12 +63,8 @@ export class CaseActivityController {
     return this.service.getCaseActivities(req, true).then(caseActivities => {
       const caseActivityLogs = new CaseActivityLogs(caseActivities.actionLog);
       const filename = `caseActivity ${csvDate()}.csv`;
-      // jsonToCsv(caseActivityLogs).then(csv => {
-      //   res.status(200).json({filename, csv});
-      // });
-      csvJson(caseActivityLogs).then(json => {
-        res.status(200).json({filename, json});
-      });
+
+      res.status(200).json({filename, csvJson: csvJson(caseActivityLogs)});
     });
   }
 
