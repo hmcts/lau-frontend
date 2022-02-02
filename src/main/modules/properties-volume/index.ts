@@ -11,6 +11,7 @@ export class PropertiesVolume {
       PropertiesVolume.setSecret('secrets.lau.frontend-redis-access-key', 'redis.password');
       PropertiesVolume.setSecret('secrets.lau.idam-client-secret', 'services.idam.clientSecret');
       PropertiesVolume.setSecret('secrets.lau.s2s-secret', 'services.idam.s2sSecretLAU');
+      PropertiesVolume.setSecret('secrets.lau.launchdarkly-sdk-key', 'featureToggles.ldKey');
     }
   }
 

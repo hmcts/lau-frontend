@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { formatQueryString } from '../util/Url';
+import { formatQueryString } from '../../util/Url';
 import { get } from 'config';
 // @ts-ignore (No declaration file)
 import { Logger } from '@hmcts/nodejs-logging';

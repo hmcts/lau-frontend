@@ -48,3 +48,6 @@ services:
     clientID: 'lau'
     clientSecret: 'SECRET'
     callbackURL: 'https://localhost:4000/oauth2/callback'
+featureToggles:
+  enabled: true
+  ldKey: 'LD_SDK_KEY'

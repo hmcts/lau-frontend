@@ -8,3 +8,5 @@ services:
     enabled: false
     s2sEnabled: false
     s2sURL: 'http://localhost:4552'
+featureToggles:
+  enabled: false

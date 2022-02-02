@@ -29,3 +29,5 @@ smoke-output/
 coverage/
 infrastructure/.terraform/modules/**
 .stryker-tmp/
+
+config/dev.yaml

@@ -14,6 +14,7 @@ import { AppInsights } from './modules/appinsights';
 import {SessionStorage} from './modules/session';
 import {OidcMiddleware} from './modules/oidc';
 import {HealthCheck} from './modules/health';
+import {LaunchDarklyClient} from './components/featureToggle/LaunchDarklyClient';
 
 const { setupDev } = require('./development');
 
@@ -25,6 +26,8 @@ app.locals.ENV = env;
 
 const logger = Logger.getLogger('app');
 logger.info('Environment: ' + env);
+
+LaunchDarklyClient.initialise();
 
 new PropertiesVolume().enableFor(app);
 new Nunjucks(developmentMode).enableFor(app);
