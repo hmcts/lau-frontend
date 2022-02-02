@@ -1,7 +1,8 @@
 import {Application, Response} from 'express';
 import {AppRequest} from '../models/appRequest';
+import {LaunchDarklyClient} from '../components/featureToggle/LaunchDarklyClient';
 
-function homeHandler(req: AppRequest, res: Response) {
+async function homeHandler(req: AppRequest, res: Response) {
   const caseFormState = req.session?.caseFormState || {};
   const logonFormState = req.session?.logonFormState || {};
   const sessionErrors = req.session?.errors || [];
@@ -9,7 +10,10 @@ function homeHandler(req: AppRequest, res: Response) {
   const caseSearches = req.session?.caseSearches;
   const logons = req.session?.logons;
 
+  const test = await LaunchDarklyClient.instance.variation('test');
+
   res.render('home/template', {
+    test,
     caseForm: caseFormState,
     logonForm: logonFormState,
     caseActivities,
