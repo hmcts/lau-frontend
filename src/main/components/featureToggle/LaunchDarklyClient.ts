@@ -15,8 +15,6 @@ export class LaunchDarklyClient {
 
   private constructor() {
     const options = config.get('featureToggles.enabled') ? {diagnosticOptOut: true} : {offline: true};
-    this.logger.info('LD Key');
-    this.logger.info(config.get('featureToggles.ldKey'));
     this.client = LaunchDarklySDK.init(config.get('featureToggles.ldKey'),  options);
     this.client.once('ready', () => {
       this.ready = true;

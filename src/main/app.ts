@@ -27,9 +27,8 @@ app.locals.ENV = env;
 const logger = Logger.getLogger('app');
 logger.info('Environment: ' + env);
 
-LaunchDarklyClient.initialise();
-
 new PropertiesVolume().enableFor(app);
+LaunchDarklyClient.initialise();
 new Nunjucks(developmentMode).enableFor(app);
 new Helmet(config.get('security')).enableFor(app);
 new AppInsights().enable();
