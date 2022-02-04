@@ -7,7 +7,9 @@ export class AppInsights {
   enable(): void {
     if (config.get('appInsights.instrumentationKey')) {
       appInsights.setup(config.get('appInsights.instrumentationKey'))
+        .setDistributedTracingMode(appInsights.DistributedTracingModes.AI_AND_W3C)
         .setSendLiveMetrics(true)
+        .setAutoCollectConsole(true, true)
         .start();
 
       appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = 'lau-frontend';
