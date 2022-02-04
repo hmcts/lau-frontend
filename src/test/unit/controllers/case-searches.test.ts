@@ -97,8 +97,8 @@ describe('Case Searches Controller', () => {
           hasData: true,
           moreRecords: false,
           rows: [
-            [{text: 'U0001'}, {text: '123, 456', 'classes': 'case-refs-cell'}, {text: '2020-07-20 15:00:00'}],
-            [{text: 'U0002'}, {text: '', 'classes': 'case-refs-cell'}, {text: '2020-07-20 15:00:00'}],
+            [{text: 'U0001'}, {text: '123, 456'}, {text: '2020-07-20 15:00:00'}],
+            [{text: 'U0002'}, {text: ''}, {text: '2020-07-20 15:00:00'}],
           ],
           startRecordNumber: 1,
           noOfRows: 2,
@@ -106,6 +106,9 @@ describe('Case Searches Controller', () => {
           currentPage: 1,
           lastPage: 1,
         };
+        // Add `classes: 'overflow-wrap'` to all cells in rows
+        expectCaseSearches.rows.forEach(row => row.forEach(cell => cell.classes = 'overflow-wrap'));
+
         expect(caseSearches).toStrictEqual(expectCaseSearches);
         nock.cleanAll();
       });
@@ -145,20 +148,20 @@ describe('Case Searches Controller', () => {
           hasData: true,
           moreRecords: false,
           rows: [
-            [{'text': 'U0001'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': 'U0002'}, {'text': '', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': 'U0003'}, {'text': '', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': 'U0004'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': 'U0005'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': 'U0006'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': 'U0007'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': 'U0008'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': 'U0009'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': 'U0010'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': 'U0011'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': 'U0012'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': 'U0013'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': 'U0014'}, {'text': '123, 456', 'classes': 'case-refs-cell'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0001'}, {'text': '123, 456', 'classes': 'overflow-wrap'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0002'}, {'text': '', 'classes': 'overflow-wrap'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0003'}, {'text': '', 'classes': 'overflow-wrap'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0004'}, {'text': '123, 456', 'classes': 'overflow-wrap'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0005'}, {'text': '123, 456', 'classes': 'overflow-wrap'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0006'}, {'text': '123, 456', 'classes': 'overflow-wrap'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0007'}, {'text': '123, 456', 'classes': 'overflow-wrap'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0008'}, {'text': '123, 456', 'classes': 'overflow-wrap'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0009'}, {'text': '123, 456', 'classes': 'overflow-wrap'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0010'}, {'text': '123, 456', 'classes': 'overflow-wrap'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0011'}, {'text': '123, 456', 'classes': 'overflow-wrap'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0012'}, {'text': '123, 456', 'classes': 'overflow-wrap'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0013'}, {'text': '123, 456', 'classes': 'overflow-wrap'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0014'}, {'text': '123, 456', 'classes': 'overflow-wrap'}, {'text': '2020-07-20 15:00:00'}],
           ],
           startRecordNumber: 1,
           noOfRows: 14,
@@ -166,6 +169,9 @@ describe('Case Searches Controller', () => {
           currentPage: 1,
           lastPage: 3,
         };
+        // Add `classes: 'overflow-wrap'` to all cells in rows
+        expectCaseSearches.rows.forEach(row => row.forEach(cell => cell.classes = 'overflow-wrap'));
+
         expect(caseSearches).toStrictEqual(expectCaseSearches);
         nock.cleanAll();
       });
