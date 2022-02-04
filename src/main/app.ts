@@ -29,9 +29,9 @@ logger.info('Environment: ' + env);
 
 new PropertiesVolume().enableFor(app);
 LaunchDarklyClient.initialise();
+new AppInsights().enable();
 new Nunjucks(developmentMode).enableFor(app);
 new Helmet(config.get('security')).enableFor(app);
-new AppInsights().enable();
 new SessionStorage().enableFor(app);
 new HealthCheck().enableFor(app);
 new OidcMiddleware().enableFor(app);

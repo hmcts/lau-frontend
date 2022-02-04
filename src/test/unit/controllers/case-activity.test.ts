@@ -110,6 +110,9 @@ describe('Case Activity Controller', () => {
           currentPage: 1,
           lastPage: 1,
         };
+        // Add `classes: 'overflow-wrap'` to all cells in rows
+        expectCaseActivities.rows.forEach(row => row.forEach(cell => cell.classes = 'overflow-wrap'));
+
         expect(caseActivities).toStrictEqual(expectCaseActivities);
         nock.cleanAll();
       });
@@ -169,6 +172,9 @@ describe('Case Activity Controller', () => {
           currentPage: 1,
           lastPage: 3,
         };
+        // Add `classes: 'overflow-wrap'` to all cells in rows
+        expectCaseActivities.rows.forEach(row => row.forEach(cell => cell.classes = 'overflow-wrap'));
+
         expect(caseActivities).toStrictEqual(expectCaseActivities);
         nock.cleanAll();
       });

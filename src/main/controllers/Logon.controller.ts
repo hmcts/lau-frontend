@@ -31,7 +31,7 @@ export class LogonController {
         startRecordNumber: logons.startRecordNumber,
         moreRecords: logons.moreRecords,
         currentPage: req.session.logonFormState.page,
-        lastPage: logons.totalNumberOfRecords > 0 ? Math.ceil(logons.totalNumberOfRecords / recordsPerPage) : 0,
+        lastPage: logons.totalNumberOfRecords > 0 ? Math.ceil(logons.totalNumberOfRecords / recordsPerPage) : 1,
       };
     });
   }
@@ -67,14 +67,14 @@ export class LogonController {
     });
   }
 
-  private convertDataToTableRows(logs: LogonLog[]): {text:string}[][] {
-    const rows: {text:string}[][] = [];
+  private convertDataToTableRows(logs: LogonLog[]): {text: string, classes: string}[][] {
+    const rows: {text: string, classes: string}[][] = [];
     logs.forEach((log) => {
-      const row: {text: string}[] = [];
+      const row: {text: string, classes: string}[] = [];
       const keys = Object.keys(log);
       keys.forEach((key: keyof LogonLog) => {
         const text = key === 'timestamp' ? requestDateToFormDate(log[key]) : log[key];
-        row.push({ text });
+        row.push({ text, classes: 'overflow-wrap' });
       });
 
       rows.push(row);
