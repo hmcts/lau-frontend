@@ -1,13 +1,14 @@
 import {Application, Response} from 'express';
 import {AppRequest} from '../models/appRequest';
 
-function homeHandler(req: AppRequest, res: Response) {
+async function homeHandler(req: AppRequest, res: Response) {
   const caseFormState = req.session?.caseFormState || {};
   const logonFormState = req.session?.logonFormState || {};
   const sessionErrors = req.session?.errors || [];
   const caseActivities = req.session?.caseActivities;
   const caseSearches = req.session?.caseSearches;
   const logons = req.session?.logons;
+
 
   res.render('home/template', {
     caseForm: caseFormState,

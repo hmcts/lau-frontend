@@ -22,3 +22,5 @@ services:
     clientID: IDAM_CLIENT_ID
     clientSecret: IDAM_CLIENT_SECRET
     callbackURL: OAUTH_CLIENT_REDIRECT
+featureToggles:
+  ldKey: LD_SDK_KEY

@@ -14,3 +14,5 @@ services:
     clientID: 'lau'
     clientSecret: '12345678'
     callbackURL: 'https://localhost:4000/oauth2/callback'
+featureToggles:
+  enabled: false

@@ -3,7 +3,7 @@ const {Logger} = require('@hmcts/nodejs-logging');
 
 import config from 'config';
 import totp from 'totp-generator';
-import {ServiceAuthToken} from '../idam/ServiceAuthToken';
+import {ServiceAuthToken} from '../components/idam/ServiceAuthToken';
 import fetch, {Response as FetchResponse} from 'node-fetch';
 import jwt_decode from 'jwt-decode';
 import {AppSession, UserDetails} from '../models/appRequest';

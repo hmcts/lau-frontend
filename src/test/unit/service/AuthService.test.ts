@@ -2,7 +2,7 @@ import nock from 'nock';
 import config from 'config';
 import jwt_decode from 'jwt-decode';
 import {AuthService, IdamGrantType, IdamResponseData} from '../../../main/service/AuthService';
-import {BearerToken, ServiceAuthToken} from '../../../main/idam/ServiceAuthToken';
+import {BearerToken, ServiceAuthToken} from '../../../main/components/idam/ServiceAuthToken';
 import {AppSession, UserDetails} from '../../../main/models/appRequest';
 
 describe('AuthService', () => {
