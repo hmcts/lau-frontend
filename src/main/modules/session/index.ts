@@ -25,6 +25,7 @@ export class SessionStorage {
         cookie: {
           httpOnly: true,
           maxAge: this.cookieMaxAge,
+          secure: true,
         },
         rolling: true, // Renew the cookie for another 30 minutes on each request
         store: this.getStore(),
