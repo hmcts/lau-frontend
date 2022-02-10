@@ -3,11 +3,19 @@ const readFileSync = require('fs').readFileSync;
 const writeFileSync = require('fs').writeFileSync;
 
 function getGitCommitHash() {
-  return execSync('git rev-parse HEAD').toString().trim();
+  try {
+    return execSync('git rev-parse HEAD').toString().trim();
+  } catch (e) {
+    return 'unknown';
+  }
 }
 
 function getGitCommitDate() {
-  return execSync('git log -1 --format=%cd').toString().trim();
+  try {
+    return execSync('git log -1 --format=%cd').toString().trim();
+  } catch (e) {
+    return 'unknown';
+  }
 }
 
 function getAppVersion() {
