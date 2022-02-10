@@ -6,7 +6,7 @@ nodejs:
   environment:
     REFORM_TEAM: lau
     REFORM_SERVICE_NAME: lau-frontend
-    REFORM_ENVIRONMENT: {{ .Values.global.environment }}
+    REFORM_ENVIRONMENT: '{{ .Values.global.environment }}'
     USE_REDIS: true
     REDIS_USE_TLS: true
     REDIS_PORT: 6380
