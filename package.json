@@ -6,6 +6,7 @@
     "node": ">=14.16.0"
   },
   "scripts": {
+    "setup": "NODE_PATH=. node createVersionFile.js",
     "start": "NODE_ENV=production ./node_modules/.bin/ts-node -r tsconfig-paths/register src/main/server.ts",
     "start:dev": "NODE_ENV=development nodemon --config nodemon.json",
     "lint": "stylelint '**/*.scss' && eslint . --ext .js,.jsx,.ts,.tsx",

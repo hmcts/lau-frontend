@@ -31,13 +31,13 @@ export enum IdamGrantType {AUTH_CODE = 'authorization_code', REFRESH = 'refresh_
 export class AuthService {
   private logger: LoggerInstance = Logger.getLogger('AuthService');
 
-  private clientId: string = config.get('services.idam.clientID');
-  private clientSecret: string = config.get('services.idam.clientSecret');
-  private redirectUri: string = config.get('services.idam.callbackURL');
-  private tokenUrl: string = config.get('services.idam.tokenURL');
+  private clientId: string = config.get('services.idam-api.clientID');
+  private clientSecret: string = config.get('services.idam-api.clientSecret');
+  private redirectUri: string = config.get('services.idam-api.callbackURL');
+  private tokenUrl: string = String(config.get('services.idam-api.url')) + String(config.get('services.idam-api.endpoints.token'));
   private microserviceName = 'lau_frontend';
-  private s2sUrl: string = config.get('services.idam.s2sURL');
-  private totpSecret: string = config.get('services.idam.s2sSecretLAU');
+  private s2sUrl: string = config.get('services.s2s.url');
+  private totpSecret: string = config.get('services.s2s.lauSecret');
 
   retrieveServiceToken(): Promise<ServiceAuthToken> {
     const params = {

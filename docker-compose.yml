@@ -13,7 +13,7 @@ services:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - IDAM_WEB_URL=http://localhost:9002/login
-      - IDAM_API_URL=http://idam-api:5000/o/token
+      - IDAM_API_URL=http://idam-api:5000
       - IDAM_CLIENT_ID=lau
       - IDAM_CLIENT_SECRET=12345678
       - OAUTH_CLIENT_REDIRECT=http://localhost:4000/oauth2/callback

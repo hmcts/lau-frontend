@@ -31,3 +31,5 @@ infrastructure/.terraform/modules/**
 .stryker-tmp/
 
 config/dev.yaml
+
+version
