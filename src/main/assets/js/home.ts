@@ -61,7 +61,7 @@ for (const form of forms) {
                 return '';
               } else if (Array.isArray(value)) {
                 // Need to add space so Excel doesn't do some funky formatting
-                return value.toString().replace(',', ', ');
+                return `[${value.toString().replace(',', ', ')}]`;
               } else {
                 return value;
               }
