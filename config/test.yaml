@@ -2,7 +2,7 @@
 environment: 'test'
 testUrl: http://localhost:4000
 pagination:
-  maxRecords: 5
+  maxPerPage: 5
 services:
   idam:
     enabled: false
