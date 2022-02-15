@@ -56,8 +56,8 @@ describe('AuthService', () => {
         expires_in: 123,
       };
 
-      nock(config.get('services.idam.tokenURL'))
-        .post('')
+      nock(config.get('services.idam-api.url'))
+        .post(config.get('services.idam-api.endpoints.token'))
         .reply(
           200,
           idamResponse,
@@ -94,8 +94,8 @@ describe('AuthService', () => {
         expires_in: 123,
       };
 
-      nock(config.get('services.idam.tokenURL'))
-        .post('')
+      nock(config.get('services.idam-api.url'))
+        .post(config.get('services.idam-api.endpoints.token'))
         .reply(
           200,
           idamResponse,

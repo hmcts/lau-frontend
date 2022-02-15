@@ -9,8 +9,8 @@ export class PropertiesVolume {
       propertiesVolume.addTo(config);
       PropertiesVolume.setSecret('secrets.lau.AppInsightsInstrumentationKey', 'appInsights.instrumentationKey');
       PropertiesVolume.setSecret('secrets.lau.frontend-redis-access-key', 'redis.password');
-      PropertiesVolume.setSecret('secrets.lau.idam-client-secret', 'services.idam.clientSecret');
-      PropertiesVolume.setSecret('secrets.lau.s2s-secret', 'services.idam.s2sSecretLAU');
+      PropertiesVolume.setSecret('secrets.lau.idam-client-secret', 'services.idam-api.clientSecret');
+      PropertiesVolume.setSecret('secrets.lau.s2s-secret', 'services.s2s.lauSecret');
       PropertiesVolume.setSecret('secrets.lau.launchdarkly-sdk-key', 'featureToggles.ldKey');
     }
   }
