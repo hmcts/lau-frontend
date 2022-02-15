@@ -82,11 +82,11 @@ export class CaseSearchesController {
   private formatRowData(log: CaseSearchLog, key: keyof CaseSearchLog): {text: string, classes?: string} {
     switch (key) {
       case 'caseRefs':
-        return { text: String(log[key]).replace(/,/g, ', '), classes: 'case-refs-cell' };
+        return { text: String(log[key]).replace(/,/g, ', '), classes: 'overflow-wrap' };
       case 'timestamp':
-        return { text: requestDateToFormDate(log[key]) };
+        return { text: requestDateToFormDate(log[key]), classes: 'overflow-wrap' };
       default:
-        return { text: String(log[key]) };
+        return { text: String(log[key]), classes: 'overflow-wrap' };
     }
   }
 }

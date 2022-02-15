@@ -2,7 +2,7 @@ import nock from 'nock';
 import config from 'config';
 import jwt_decode from 'jwt-decode';
 import {AuthService, IdamGrantType, IdamResponseData} from '../../../main/service/AuthService';
-import {BearerToken, ServiceAuthToken} from '../../../main/idam/ServiceAuthToken';
+import {BearerToken, ServiceAuthToken} from '../../../main/components/idam/ServiceAuthToken';
 import {AppSession, UserDetails} from '../../../main/models/appRequest';
 
 describe('AuthService', () => {
@@ -56,8 +56,8 @@ describe('AuthService', () => {
         expires_in: 123,
       };
 
-      nock(config.get('services.idam.tokenURL'))
-        .post('')
+      nock(config.get('services.idam-api.url'))
+        .post(config.get('services.idam-api.endpoints.token'))
         .reply(
           200,
           idamResponse,
@@ -94,8 +94,8 @@ describe('AuthService', () => {
         expires_in: 123,
       };
 
-      nock(config.get('services.idam.tokenURL'))
-        .post('')
+      nock(config.get('services.idam-api.url'))
+        .post(config.get('services.idam-api.endpoints.token'))
         .reply(
           200,
           idamResponse,

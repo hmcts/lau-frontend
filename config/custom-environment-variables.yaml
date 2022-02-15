@@ -10,15 +10,19 @@ redis:
 pagination:
   maxRecords: MAX_RECORDS
 services:
-  case-backend:
+  lau-case-backend:
     url: LAU_CASE_BACKEND_URL
-  idam-backend:
+  lau-idam-backend:
     url: LAU_IDAM_BACKEND_URL
-  idam:
+  idam-api:
     enabled: IDAM_ENABLED
     authorizationURL: IDAM_WEB_URL
-    tokenURL: IDAM_API_URL
-    s2sURL: S2S_URL
+    url: IDAM_API_URL
     clientID: IDAM_CLIENT_ID
     clientSecret: IDAM_CLIENT_SECRET
     callbackURL: OAUTH_CLIENT_REDIRECT
+  s2s:
+    enabled: S2S_ENABLED
+    url: S2S_URL
+featureToggles:
+  ldKey: LD_SDK_KEY

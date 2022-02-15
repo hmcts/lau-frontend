@@ -68,14 +68,14 @@ export class CaseActivityController {
     });
   }
 
-  private convertDataToTableRows(logs: CaseActivityLog[]): {text:string}[][] {
-    const rows: {text:string}[][] = [];
+  private convertDataToTableRows(logs: CaseActivityLog[]): {text: string, classes: string}[][] {
+    const rows: {text: string, classes: string}[][] = [];
     logs.forEach((log) => {
-      const row: {text: string}[] = [];
+      const row: {text: string, classes: string}[] = [];
       const keys = Object.keys(log);
       keys.forEach((key: keyof CaseActivityLog) => {
         const text = key === 'timestamp' ? requestDateToFormDate(log[key]) : log[key];
-        row.push({ text });
+        row.push({ text, classes: 'overflow-wrap' });
       });
 
       rows.push(row);

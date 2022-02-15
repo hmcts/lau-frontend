@@ -12,7 +12,7 @@ export abstract class BaseService<RequestType> {
   logger: LoggerInstance = Logger.getLogger(this.constructor.name);
 
   private authService: AuthService;
-  private s2sEnabled: string = config.get('services.idam.s2sEnabled');
+  private s2sEnabled: string = config.get('services.s2s.enabled');
 
   constructor(authService?: AuthService) {
     // Allow for Inversion of Control
