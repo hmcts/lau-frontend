@@ -44,13 +44,43 @@ for (const form of forms) {
         const innerHtml = btn.innerHTML;
         btn.innerHTML = '<div class="spinner"></div> Generating CSV ...';
 
+        const startFetchTime = performance.now();
         fetch(uri)
           .then(res => res.json())
           .then(json => {
+            const fetchTime = performance.now() - startFetchTime;
+            console.log('CSV Data Fetch Time: ' + fetchTime + ' milliseconds');
+            console.log('Processing CSV...');
+
+            const startProcessTime = performance.now();
+
+            const {fields, data} = json.csvJson;
+            const header = fields.map((field: {label: string, value: string}) => field.label);
+            const replacer = (key: string, value: string | []) => {
+              if (value === null) {
+                return '';
+              } else if (Array.isArray(value)) {
+                // Need to add space so Excel doesn't do some funky formatting
+                return `[${value.toString().replace(',', ', ')}]`;
+              } else {
+                return value;
+              }
+            };
+            const csv = [
+              header.join(','), // header row first
+              // @ts-ignore
+              ...data.map((row: Record<string, unknown>[]) => fields.map(field => JSON.stringify(row[field.value], replacer)).join(',')),
+            ].join('\r\n');
+
             // Need to create link element to set the filename
             const link = document.createElement('a');
             link.download = json.filename;
-            link.href = 'data:text/csv;charset=utf-8,' + json.csv;
+            link.href = 'data:text/csv;charset=utf-8,' + csv;
+
+            // Measure CSV performance
+            const processTime = performance.now() - startProcessTime;
+            console.log('CSV process time: ' + processTime + ' milliseconds');
+
             link.click();
             link.remove();
 

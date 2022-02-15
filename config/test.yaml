@@ -4,9 +4,10 @@ testUrl: http://localhost:4000
 pagination:
   maxRecords: 5
 services:
-  idam:
+  idam-api:
     enabled: false
-    s2sEnabled: false
-    s2sURL: 'http://localhost:4552'
+  s2s:
+    enabled: false
+    url: 'http://localhost:4552'
 featureToggles:
   enabled: false

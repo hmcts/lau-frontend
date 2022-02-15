@@ -33,8 +33,8 @@ new AppInsights().enable();
 new Nunjucks(developmentMode).enableFor(app);
 new Helmet(config.get('security')).enableFor(app);
 new SessionStorage().enableFor(app);
-new HealthCheck().enableFor(app);
 new OidcMiddleware().enableFor(app);
+new HealthCheck().enableFor(app);
 
 app.use(favicon(path.join(__dirname, '/public/assets/images/favicon.ico')));
 app.use(express.json());

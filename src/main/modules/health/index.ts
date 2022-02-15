@@ -1,7 +1,11 @@
 import { Application } from 'express';
-import {SessionStorage} from '../session';
 import {MetadataObj} from '../../models/common';
 import * as os from 'os';
+import Redis from 'ioredis';
+
+interface HealthResponse {
+  body: { status: string; }
+}
 
 const logger = (require('@hmcts/nodejs-logging')).Logger.getLogger('healthcheck');
 const healthcheck = require('@hmcts/nodejs-healthcheck');
@@ -16,16 +20,21 @@ export class HealthCheck {
     const checks: MetadataObj = {};
     const readinessChecks: MetadataObj = {};
 
-    const sessionStore = new SessionStorage().getStore();
-    if (sessionStore.constructor.name === 'RedisStore') {
-      const redisHealthcheck = healthcheck.raw(() => {
-        // @ts-ignore 'status' is in client object. TS doesn't seem to know this.
-        const healthy = sessionStore.client.status === 'ready';
-        if (!healthy) {
-          logger.info('redis is DOWN');
-        }
-        return healthy ? healthcheck.up() : healthcheck.down();
-      });
+    const services = [
+      'lau-case-backend',
+      'lau-idam-backend',
+      'idam-api',
+      's2s',
+    ];
+
+    services.forEach(service => {
+      if (config.get(`services.${service}.enabled`) as boolean) {
+        checks[service] = this.serviceHealthcheck(service);
+      }
+    });
+
+    if (config.get('redis.enabled') as boolean) {
+      const redisHealthcheck = this.redisHealthCheck(app);
       checks.redis = redisHealthcheck;
       readinessChecks.redis = redisHealthcheck;
     }
@@ -41,5 +50,41 @@ export class HealthCheck {
     };
 
     healthcheck.addTo(app, healthCheckConfig);
+  }
+
+  private serviceHealthcheck(serviceName: string, timeout = 5000, deadline = 10000) {
+    return healthcheck.web(new URL('/health', config.get(`services.${serviceName}.url`)), {
+      callback: (err: ErrorCallback, res: HealthResponse) => {
+        const status = err ? 'DOWN' : res.body.status || 'DOWN';
+        if (status === 'DOWN') {
+          logger.warn(`${serviceName} is DOWN`);
+          logger.warn(err);
+        }
+        return status === 'UP' ? healthcheck.up() : healthcheck.down();
+      },
+      timeout: timeout,
+      deadline: deadline,
+    });
+  }
+
+  private redisHealthCheck(app: Application) {
+    const sessionStore = app.locals.sessionStore;
+    const redisClient: Redis.Redis = sessionStore.client;
+
+    return healthcheck.raw(async () => {
+      const healthy = await this.getRedisHealth(redisClient);
+      if (!healthy) {
+        logger.info('redis is DOWN');
+      }
+      return healthy ? healthcheck.up() : healthcheck.down();
+    });
+  }
+
+  private getRedisHealth(redisClient: Redis.Redis, timeout = 1200): Promise<boolean> {
+    // If the ping response is not returned within the specified timeout, false is return.
+    return Promise.race([
+      redisClient.ping().then(value => value === 'PONG'),
+      new Promise(resolve => setTimeout(() => resolve(false), timeout)),
+    ]) as Promise<boolean>;
   }
 }
