@@ -11,6 +11,7 @@ export class OidcMiddleware {
   private nonProtectedUrls = [
     '/health',
     '/health/readiness',
+    '/health/liveness',
     '/unauthorized',
     '/main-dev.js',
     '/main-dev.css',
