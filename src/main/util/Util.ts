@@ -7,6 +7,6 @@ export const formatQueryString = function (params: Record<string, unknown>): str
 };
 
 export const numberWithCommas = function (x: string | number): string {
-  const num: string = typeof x === 'number' ? x.toString() : x;
-  return num.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+  const num: number = typeof x === 'string' ? parseInt(x) : x;
+  return isNaN(num) ? '' : num.toLocaleString();
 };
