@@ -8,7 +8,7 @@ import {AppRequest, LogData} from '../models/appRequest';
 import {csvDate, requestDateToFormDate} from '../util/Date';
 import {CaseSearchLog, CaseSearchLogs} from '../models/case/CaseSearchLogs';
 import {Response} from 'express';
-import {jsonToCsv} from '../util/CsvHandler';
+import {csvJson} from '../util/CsvHandler';
 
 /**
  * Case Searches Controller class to handle case searches tab functionality
@@ -62,9 +62,7 @@ export class CaseSearchesController {
     return this.service.getCaseSearches(req, true).then(caseSearches => {
       const caseSearchLogs = new CaseSearchLogs(caseSearches.searchLog);
       const filename = `caseSearches ${csvDate()}.csv`;
-      jsonToCsv(caseSearchLogs).then(csv => {
-        res.status(200).json({filename, csv});
-      });
+      res.status(200).json({filename, csvJson: csvJson(caseSearchLogs)});
     });
   }
 

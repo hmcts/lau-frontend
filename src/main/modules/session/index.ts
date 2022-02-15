@@ -16,6 +16,7 @@ export class SessionStorage {
   public enableFor(app: Application): void {
     app.use(cookieParser());
 
+    const sessionStore = this.getStore();
     app.use(
       session({
         name: 'lau-session',
@@ -27,9 +28,11 @@ export class SessionStorage {
           maxAge: this.cookieMaxAge,
         },
         rolling: true, // Renew the cookie for another 30 minutes on each request
-        store: this.getStore(),
+        store: sessionStore,
       }),
     );
+
+    app.locals.sessionStore = sessionStore;
   }
 
   public getStore(): ConnectRedis.RedisStore {
