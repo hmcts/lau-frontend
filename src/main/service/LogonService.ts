@@ -13,8 +13,7 @@ export class LogonService extends BaseService<LogonSearchRequest> {
     const searchParameters = req.session.logonFormState || {};
     if (csv) {
       searchParameters.page = 1;
-      const totalRecords = req.session.logons?.totalNumberOfRecords || 0;
-      searchParameters.size = totalRecords > this.maxCsvRecords ? this.maxCsvRecords : totalRecords;
+      searchParameters.size = req.session.logons?.totalNumberOfRecords || 0;
     }
     this.logger.info('getLogons: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
     return this.get(req.session, endpoint, this.getQueryString(searchParameters)) as Promise<LogonAudit>;

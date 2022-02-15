@@ -14,8 +14,6 @@ export abstract class BaseService<RequestType> {
   private authService: AuthService;
   private s2sEnabled: string = config.get('services.idam.s2sEnabled');
 
-  public maxCsvRecords = Number(config.get('csv.maxRecords'));
-
   constructor(authService?: AuthService) {
     // Allow for Inversion of Control
     this.authService = authService || new AuthService();
