@@ -9,7 +9,7 @@ const {Logger} = require('@hmcts/nodejs-logging');
 export abstract class BaseService<RequestType> {
   abstract baseApiUrl: string;
 
-  private logger: LoggerInstance = Logger.getLogger(this.constructor.name);
+  logger: LoggerInstance = Logger.getLogger(this.constructor.name);
 
   private authService: AuthService;
   private s2sEnabled: string = config.get('services.s2s.enabled');
