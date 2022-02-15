@@ -56,7 +56,15 @@ for (const form of forms) {
 
             const {fields, data} = json.csvJson;
             const header = fields.map((field: {label: string, value: string}) => field.label);
-            const replacer = (key: string, value: string) => value === null ? '' : value; // specify how to handle null values
+            const replacer = (key: string, value: string | []) => {
+              if (value === null) {
+                return '';
+              } else if (Array.isArray(value)) {
+                return value.toString();
+              } else {
+                return value;
+              }
+            };
             const csv = [
               header.join(','), // header row first
               // @ts-ignore
