@@ -9,7 +9,7 @@ appInsights:
   instrumentationKey: false
 pagination:
   maxPerPage: 100
-  maxTotal: 100000
+  maxTotal: 10000
 redis:
   host: 'localhost'
   port: 6379
