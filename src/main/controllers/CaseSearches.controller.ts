@@ -9,6 +9,7 @@ import {csvDate, requestDateToFormDate} from '../util/Date';
 import {CaseSearchLog, CaseSearchLogs} from '../models/case/CaseSearchLogs';
 import {Response} from 'express';
 import {csvJson} from '../util/CsvHandler';
+import {CaseSearchRequest} from '../models/case/CaseSearchRequest';
 
 /**
  * Case Searches Controller class to handle case searches tab functionality
@@ -21,20 +22,29 @@ export class CaseSearchesController {
 
   public async getLogData(req: AppRequest): Promise<LogData> {
     this.logger.info('getLogData called');
-    return this.service.getCaseSearches(req).then(caseSearches => {
-      this.logger.info('Case searches retrieved');
-      const recordsPerPage = Number(config.get('pagination.maxRecords'));
-      return {
-        hasData: caseSearches.searchLog.length > 0,
-        rows: this.convertDataToTableRows(caseSearches.searchLog),
-        noOfRows: caseSearches.searchLog.length,
-        totalNumberOfRecords: caseSearches.totalNumberOfRecords,
-        startRecordNumber: caseSearches.startRecordNumber,
-        moreRecords: caseSearches.moreRecords,
-        currentPage: req.session.caseFormState.page,
-        lastPage: caseSearches.totalNumberOfRecords > 0 ? Math.ceil(caseSearches.totalNumberOfRecords / recordsPerPage) : 1,
-      };
-    });
+
+    if (CaseSearchesController.hasUserIdOrCaseRef(req.session.caseFormState || {})) {
+      return this.service.getCaseSearches(req).then(caseSearches => {
+        this.logger.info('Case searches retrieved');
+        const recordsPerPage = Number(config.get('pagination.maxRecords'));
+        return {
+          hasData: caseSearches.searchLog.length > 0,
+          rows: this.convertDataToTableRows(caseSearches.searchLog),
+          noOfRows: caseSearches.searchLog.length,
+          totalNumberOfRecords: caseSearches.totalNumberOfRecords,
+          startRecordNumber: caseSearches.startRecordNumber,
+          moreRecords: caseSearches.moreRecords,
+          currentPage: req.session.caseFormState.page,
+          lastPage: caseSearches.totalNumberOfRecords > 0 ? Math.ceil(caseSearches.totalNumberOfRecords / recordsPerPage) : 1,
+        };
+      });
+    } else {
+      return Promise.resolve(null);
+    }
+  }
+
+  private static hasUserIdOrCaseRef(searchParams: Partial<CaseSearchRequest>): boolean {
+    return Boolean(searchParams.userId || searchParams.caseRef);
   }
 
   /**

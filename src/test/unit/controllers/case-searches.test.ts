@@ -176,6 +176,26 @@ describe('Case Searches Controller', () => {
         nock.cleanAll();
       });
     });
+
+    it('returns null if neither user id or case ref are provided', () => {
+      const searchRequest: Partial<CaseSearchRequest> = {
+        caseJurisdictionId: 'probate',
+        startTimestamp: '2021-12-12T12:00:00',
+        endTimestamp: '2021-12-12T12:00:01',
+        page: 1,
+      };
+
+      const req = {
+        session: {
+          caseFormState: searchRequest,
+          user: {idToken: ''},
+        },
+      };
+
+      return caseSearchesController.getLogData(req as AppRequest).then((caseSearches: LogData) => {
+        expect(caseSearches).toStrictEqual(null);
+      });
+    });
   });
 
   describe('getPage', () => {
