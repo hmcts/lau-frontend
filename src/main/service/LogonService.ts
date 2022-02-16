@@ -10,7 +10,8 @@ export class LogonService extends BaseService<LogonSearchRequest> {
 
   public getLogons(req: AppRequest, csv = false): Promise<LogonAudit> {
     const endpoint: string = config.get('services.lau-idam-backend.endpoints.logon');
-    const searchParameters = req.session.logonFormState || {};
+    // Shallow clone state to prevent modifications to search params for csv case do not persist in session
+    const searchParameters = Object.assign({}, req.session.logonFormState) || {};
     if (csv) {
       searchParameters.page = 1;
       searchParameters.size = req.session.logons?.totalNumberOfRecords || 0;
