@@ -6,6 +6,7 @@ RUN yarn install --production \
 
 # ---- Build image ----
 FROM base as build
+COPY --chown=hmcts:hmcts .git .
 RUN yarn install \
     && yarn setup \
     && yarn build:prod
