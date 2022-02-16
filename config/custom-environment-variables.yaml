@@ -8,7 +8,8 @@ redis:
   enabled: USE_REDIS
   secret: REDIS_SECRET
 pagination:
-  maxRecords: MAX_RECORDS
+  maxPerPage: MAX_PER_PAGE
+  maxTotal: MAX_TOTAL
 services:
   lau-case-backend:
     url: LAU_CASE_BACKEND_URL

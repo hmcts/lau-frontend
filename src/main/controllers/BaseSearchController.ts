@@ -27,7 +27,7 @@ export abstract class BaseSearchController<SearchType extends SearchTypeCommon> 
   abstract requiredFields: string[];
 
   logger: LoggerInstance = Logger.getLogger(this.constructor.name);
-  pageSize: number = config.get('pagination.maxRecords');
+  pageSize: number = config.get('pagination.maxPerPage');
 
   private errors: FormError[] = [];
 

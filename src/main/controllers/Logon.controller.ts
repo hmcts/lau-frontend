@@ -22,7 +22,7 @@ export class LogonController {
   public async getLogData(req: AppRequest): Promise<LogData> {
     this.logger.info('getLogData called');
     return this.service.getLogons(req).then(logons => {
-      const recordsPerPage = Number(config.get('pagination.maxRecords'));
+      const recordsPerPage = Number(config.get('pagination.maxPerPage'));
       return {
         hasData: logons.logonLog.length > 0,
         rows: this.convertDataToTableRows(logons.logonLog),

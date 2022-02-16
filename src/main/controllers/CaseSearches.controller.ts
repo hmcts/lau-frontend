@@ -26,7 +26,7 @@ export class CaseSearchesController {
     if (CaseSearchesController.hasUserIdOrCaseRef(req.session.caseFormState || {})) {
       return this.service.getCaseSearches(req).then(caseSearches => {
         this.logger.info('Case searches retrieved');
-        const recordsPerPage = Number(config.get('pagination.maxRecords'));
+        const recordsPerPage = Number(config.get('pagination.maxPerPage'));
         return {
           hasData: caseSearches.searchLog.length > 0,
           rows: this.convertDataToTableRows(caseSearches.searchLog),
