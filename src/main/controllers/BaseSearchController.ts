@@ -52,9 +52,8 @@ export abstract class BaseSearchController<SearchType extends SearchTypeCommon> 
    * @param fields The field(s) being validated
    * @param validator The validator function
    * @param errorType Optional - Override the errorType returned by the validator function
-   * @private
    */
-  private validate(
+  validate(
     id: string,
     fields: Partial<SearchType> | string,
     validator: (f: Partial<SearchType> | string) => string,
@@ -104,7 +103,13 @@ export abstract class BaseSearchController<SearchType extends SearchTypeCommon> 
       endTimestamp: form.endTimestamp,
     }, startDateBeforeEndDate);
 
+    this.additionalValidation(form);
+
     return this.getErrors();
+  }
+
+  additionalValidation(form: Partial<SearchType>): void {
+    // To be overridden if child classes need additional validation
   }
 
   abstract post(req: AppRequest, res: Response): Promise<void>;
