@@ -11,7 +11,8 @@ export class CaseService extends BaseService<CaseSearchRequest> {
 
   public getCaseActivities(req: AppRequest, csv = false): Promise<CaseActivityAudit> {
     const endpoint: string = config.get('services.lau-case-backend.endpoints.caseActivity');
-    const searchParameters = req.session.caseFormState || {};
+    // Shallow clone state to prevent modifications to search params for csv case do not persist in session
+    const searchParameters = Object.assign({}, req.session.caseFormState) || {};
     if (csv) {
       searchParameters.page = 1;
       searchParameters.size = req.session.caseActivities?.totalNumberOfRecords || 0;
@@ -22,7 +23,8 @@ export class CaseService extends BaseService<CaseSearchRequest> {
 
   public getCaseSearches(req: AppRequest, csv = false): Promise<CaseSearchAudit> {
     const endpoint: string = config.get('services.lau-case-backend.endpoints.caseSearch');
-    const searchParameters = req.session.caseFormState || {};
+    // Shallow clone state to prevent modifications to search params for csv case do not persist in session
+    const searchParameters = Object.assign({}, req.session.caseFormState) || {};
     if (csv) {
       searchParameters.page = 1;
       searchParameters.size = req.session.caseSearches?.totalNumberOfRecords || 0;
