@@ -1,21 +1,25 @@
-const execSync = require('child_process').execSync;
+const git = require('git-rev-sync');
 const readFileSync = require('fs').readFileSync;
 const writeFileSync = require('fs').writeFileSync;
 
-function getGitCommitHash() {
+function getCommitHash() {
+  let commitHash = 'unknown';
   try {
-    return execSync('git rev-parse HEAD').toString().trim();
+    commitHash = git.long();
   } catch (e) {
-    return 'unknown';
+    console.log('Failed to retrieve commit hash: ', e);
   }
+  return commitHash;
 }
 
-function getGitCommitDate() {
+function getCommitDate() {
+  let commitDate = 'unknown';
   try {
-    return execSync('git log -1 --format=%cd').toString().trim();
+    commitDate = git.date()?.toUTCString();
   } catch (e) {
-    return 'unknown';
+    console.log('Failed to retrieve commit date: ', e);
   }
+  return commitDate;
 }
 
 function getAppVersion() {
@@ -29,8 +33,8 @@ function createVersionFile() {
   const versionFilePath = `${process.env.NODE_PATH || '.'}/version`;
   const fileData = {
     version: getAppVersion(),
-    commit: getGitCommitHash(),
-    date: getGitCommitDate(),
+    commit: getCommitHash(),
+    date: getCommitDate(),
   };
 
   writeFileSync(versionFilePath, JSON.stringify(fileData));
