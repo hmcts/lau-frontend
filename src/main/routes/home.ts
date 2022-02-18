@@ -37,6 +37,9 @@ async function homeHandler(req: AppRequest, res: Response) {
         invalid: 'Invalid \'Time to\' timestamp.',
         required: '\'Time to\' is required.',
       },
+      caseRef: {
+        invalid: 'Case Reference must be 16 digits.',
+      },
     },
   });
 }

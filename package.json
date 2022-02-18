@@ -23,7 +23,6 @@
     "cichecks": "yarn && yarn build && yarn lint  && yarn test &&  yarn test:a11y",
     "start-local-env": "./bin/start-local-env.sh",
     "yarn-audit-fix": "yarn-audit-fix",
-    "//": "The below scripts are just stubs, don't use them in production",
     "stub:lau-case-backend": "NODE_PATH=. node src/test/service-stubs/lau-case-backend.js",
     "stub:lau-idam-backend": "NODE_PATH=. node src/test/service-stubs/lau-idam-backend.js"
   },
@@ -66,7 +65,7 @@
     "jquery": "^3.5.1",
     "json2csv": "^5.0.6",
     "jwt-decode": "^3.1.2",
-    "launchdarkly-node-server-sdk": "^6.2.2",
+    "launchdarkly-node-server-sdk": "^6.2.3",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "node-fetch": "^2.6.7",
