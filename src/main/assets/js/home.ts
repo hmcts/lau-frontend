@@ -66,11 +66,13 @@ for (const form of forms) {
                 return value;
               }
             };
-            const csv = [
+            let csv = [
               header.join(','), // header row first
               // @ts-ignore
               ...data.map((row: Record<string, unknown>[]) => fields.map(field => JSON.stringify(row[field.value], replacer)).join(',')),
             ].join('\r\n');
+            // Ensure new line characters are encoded so Firefox behaves
+            csv = encodeURI(csv);
 
             // Need to create link element to set the filename
             const link = document.createElement('a');
