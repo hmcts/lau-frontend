@@ -13,11 +13,10 @@ export class AppInsights {
     if (config.get('appInsights.instrumentationKey')) {
       this.logger.info('Starting App Insights');
 
-      appInsights.setup(config.get('appInsights.instrumentationKey'))
-        .setDistributedTracingMode(appInsights.DistributedTracingModes.AI_AND_W3C)
+      appInsights.setup(config.get<string>('appInsights.instrumentationKey'))
         .setSendLiveMetrics(true)
         .setAutoCollectConsole(true, true)
-        .setAutoCollectExceptions(true)
+        .setUseDiskRetryCaching(false)
         .start();
 
       appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = 'lau-frontend';
