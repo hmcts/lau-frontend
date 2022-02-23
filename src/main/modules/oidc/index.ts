@@ -42,7 +42,7 @@ export class OidcMiddleware {
       this.authService.getIdAMToken(IdamGrantType.AUTH_CODE, req.session, req.query.code as string)
         .then(() => {
           const callbackTime = performance.now() - callbackStartTime;
-          console.log('Callback process time: ' + callbackTime + ' milliseconds');
+          this.logger.info('Callback process time: ' + callbackTime + ' milliseconds');
           res.redirect('/');
         })
         .catch(() => res.redirect('/'));
