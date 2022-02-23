@@ -40,12 +40,12 @@ export class OidcMiddleware {
       this.logger.info('OAuth callback called...');
       const callbackStartTime = performance.now();
       this.authService.getIdAMToken(IdamGrantType.AUTH_CODE, req.session, req.query.code as string)
-        .then(() => res.redirect('/'))
-        .catch(() => res.redirect('/'))
-        .finally(() => {
+        .then(() => {
           const callbackTime = performance.now() - callbackStartTime;
           console.log('Callback process time: ' + callbackTime + ' milliseconds');
-        });
+          res.redirect('/');
+        })
+        .catch(() => res.redirect('/'));
     });
 
     server.get('/logout', (req: AppRequest, res) => {
