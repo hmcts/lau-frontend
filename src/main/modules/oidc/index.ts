@@ -43,7 +43,7 @@ export class OidcMiddleware {
         .then(() => {
           const callbackTime = performance.now() - callbackStartTime;
           this.logger.info('Callback process time: ' + callbackTime + ' milliseconds');
-          res.redirect('/');
+          return res.redirect('/');
         })
         .catch(() => res.redirect('/'));
     });
