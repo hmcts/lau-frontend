@@ -51,7 +51,7 @@ export class SessionStorage {
 
       const redisOptions = config.get('redis.useTLS') === 'true' ? tlsOptions : {};
 
-      logger.info(`Redis Connection - Host: ${host}, Port: ${port}, Options: ${JSON.stringify(redisOptions)}`);
+      logger.info(`Redis Connection - Host: ${host}, Port: ${port}`);
 
       const client = new Redis(port, host, redisOptions);
 
