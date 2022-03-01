@@ -1,5 +1,6 @@
 import {LoggerInstance} from 'winston';
 const {Logger} = require('@hmcts/nodejs-logging');
+import { performance } from 'perf_hooks';
 
 import {AuthService, IdamGrantType} from '../../service/AuthService';
 import {Application, NextFunction, Response} from 'express';
