@@ -1,3 +1,6 @@
+import {LoggerInstance} from 'winston';
+const {Logger} = require('@hmcts/nodejs-logging');
+
 import {AuthService, IdamGrantType} from '../../service/AuthService';
 import {Application, NextFunction, Response} from 'express';
 import config from 'config';
@@ -7,6 +10,8 @@ import {AppRequest} from '../../models/appRequest';
  * Adds the oidc middleware to add oauth authentication
  */
 export class OidcMiddleware {
+
+  private logger: LoggerInstance = Logger.getLogger(this.constructor.name);
 
   private nonProtectedUrls = [
     '/health',
@@ -32,9 +37,16 @@ export class OidcMiddleware {
     });
 
     server.get('/oauth2/callback', async (req: AppRequest, res: Response) => {
+      this.logger.info('OAuth callback called...');
+      const callbackStartTime = performance.now();
+
       this.authService.getIdAMToken(IdamGrantType.AUTH_CODE, req.session, req.query.code as string)
         .then(() => res.redirect('/'))
-        .catch(() => res.redirect('/'));
+        .catch(() => {
+          const callbackTime = performance.now() - callbackStartTime;
+          this.logger.info('Callback process time: ' + callbackTime + ' milliseconds');
+          return res.redirect('/');
+        });
     });
 
     server.get('/logout', (req: AppRequest, res) => {
