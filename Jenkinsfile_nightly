@@ -19,7 +19,7 @@ withNightlyPipeline(type, product, component) {
   enableMutationTest();
   enableSlackNotifications('#lau-builds')
   enableFortifyScan()
-  enableSecurityScan()
+  //enableSecurityScan()
 
   after('fortify-scan') {
       steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
