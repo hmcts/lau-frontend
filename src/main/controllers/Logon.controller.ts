@@ -8,7 +8,7 @@ import {LogonService} from '../service/LogonService';
 import {AppRequest, LogData} from '../models/appRequest';
 import {LogonLog, LogonLogs} from '../models/idam/LogonLogs';
 import {csvDate, requestDateToFormDate} from '../util/Date';
-import {jsonToCsv} from '../util/CsvHandler';
+import {csvJson} from '../util/CsvHandler';
 
 /**
  * Logons Controller class to handle logon results tab functionality.
@@ -22,7 +22,7 @@ export class LogonController {
   public async getLogData(req: AppRequest): Promise<LogData> {
     this.logger.info('getLogData called');
     return this.service.getLogons(req).then(logons => {
-      const recordsPerPage = Number(config.get('pagination.maxRecords'));
+      const recordsPerPage = Number(config.get('pagination.maxPerPage'));
       return {
         hasData: logons.logonLog.length > 0,
         rows: this.convertDataToTableRows(logons.logonLog),
@@ -61,9 +61,7 @@ export class LogonController {
     return this.service.getLogons(req, true).then(logons => {
       const logonLogs = new LogonLogs(logons.logonLog);
       const filename = `logon ${csvDate()}.csv`;
-      jsonToCsv(logonLogs).then(csv => {
-        res.status(200).json({filename, csv});
-      });
+      res.status(200).json({filename, csvJson: csvJson(logonLogs)});
     });
   }
 

@@ -8,7 +8,7 @@ import {CaseService} from '../service/CaseService';
 import {AppRequest, LogData} from '../models/appRequest';
 import {CaseActivityLog, CaseActivityLogs} from '../models/case/CaseActivityLogs';
 import {csvDate, requestDateToFormDate} from '../util/Date';
-import {jsonToCsv} from '../util/CsvHandler';
+import {csvJson} from '../util/CsvHandler';
 
 /**
  * Case Activity Controller class to handle case activity tab functionality
@@ -23,7 +23,7 @@ export class CaseActivityController {
     this.logger.info('getLogData called');
     return this.service.getCaseActivities(req).then(caseActivities => {
       this.logger.info('Case activities retrieved');
-      const recordsPerPage = Number(config.get('pagination.maxRecords'));
+      const recordsPerPage = Number(config.get('pagination.maxPerPage'));
       return {
         hasData: caseActivities.actionLog.length > 0,
         rows: this.convertDataToTableRows(caseActivities.actionLog),
@@ -62,9 +62,8 @@ export class CaseActivityController {
     return this.service.getCaseActivities(req, true).then(caseActivities => {
       const caseActivityLogs = new CaseActivityLogs(caseActivities.actionLog);
       const filename = `caseActivity ${csvDate()}.csv`;
-      jsonToCsv(caseActivityLogs).then(csv => {
-        res.status(200).json({filename, csv});
-      });
+
+      res.status(200).json({filename, csvJson: csvJson(caseActivityLogs)});
     });
   }
 

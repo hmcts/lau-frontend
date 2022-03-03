@@ -10,6 +10,7 @@ def branchesToSync = ['demo', 'perftest', 'ithc']
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 withPipeline(type, product, component) {
+  enableAksStagingDeployment()
   disableLegacyDeployment()
   syncBranchesWithMaster(branchesToSync)
 

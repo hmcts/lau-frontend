@@ -7,10 +7,10 @@ import {AppRequest} from '../../../main/models/appRequest';
 
 describe('Logon Service', () => {
   const logonService = new LogonService();
-  const baseApiUrl = config.get('services.idam-backend.url') as string;
+  const baseApiUrl = config.get('services.lau-idam-backend.url') as string;
 
   describe('getLogons', () => {
-    const logonEndpoint = config.get('services.idam-backend.endpoints.logon') as string;
+    const logonEndpoint = config.get('services.lau-idam-backend.endpoints.logon') as string;
 
     it('return logon audit data', async () => {
       const logonAudit: LogonAudit = {

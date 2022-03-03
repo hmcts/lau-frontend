@@ -1,7 +1,7 @@
 import {
   atLeastOneFieldIsFilled,
   fillPartialTimestamp, isFilledIn,
-  startDateBeforeEndDate,
+  startDateBeforeEndDate, validCaseRef,
   validDateInput,
 } from '../../../main/util/validators';
 
@@ -116,6 +116,24 @@ describe('Validator', () => {
     it('ignores invalid dates', async () => {
       const date = fillPartialTimestamp('2021_');
       expect(date).toBe('2021_');
+    });
+  });
+
+  describe('validCaseRef', () => {
+    it('returns error type if case ref is invalid', async () => {
+      expect(validCaseRef('1')).toBe('invalid');
+      expect(validCaseRef('123456789012345')).toBe('invalid');
+      expect(validCaseRef('12345678901234567')).toBe('invalid');
+      expect(validCaseRef('a1234567890123456')).toBe('invalid');
+      expect(validCaseRef('1234567890123456a')).toBe('invalid');
+    });
+
+    it('doesn\'t return an error if case ref is valid', async () => {
+      expect(validCaseRef('1234567890123456')).toBe(undefined);
+    });
+
+    it('doesn\'t return an error if case ref is empty', async () => {
+      expect(validCaseRef(null)).toBe(undefined);
     });
   });
 

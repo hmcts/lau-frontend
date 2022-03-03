@@ -12,3 +12,6 @@
 !src/main/**
 !config/**
 !webpack.config.js
+!.git
+!createVersionFile.js
+!version
