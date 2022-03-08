@@ -102,7 +102,7 @@ export class AuthService {
         );
       } catch (err) {
         this.logger.error(err);
-        reject(new AppError(err, ErrorCode.IDAM_API));
+        return reject(new AppError(err, ErrorCode.IDAM_API));
       }
 
       try {
@@ -110,9 +110,9 @@ export class AuthService {
       } catch (error) {
         this.logger.error(error);
 
-        const errorBody = await error.response.text();
+        const errorBody = error.response ? await error.response.text() : error;
         this.logger.error(`Error body: ${errorBody}`);
-        reject(new AppError(error, ErrorCode.IDAM_API));
+        return reject(new AppError(error, ErrorCode.IDAM_API));
       }
 
       const data: IdamResponseData = await response.json();

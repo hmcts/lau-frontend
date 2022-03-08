@@ -156,5 +156,33 @@ describe('Case Search Controller', () => {
         nock.cleanAll();
       });
     });
+
+    it('redirects to error page with backend error code', async () => {
+      nock('http://localhost:4550')
+        .get('/audit/caseAction?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&size=5')
+        .reply(
+          200,
+          {actionLog: []},
+        );
+      nock('http://localhost:4550')
+        .get('/audit/caseSearch?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&size=5')
+        .reply(500, {});
+
+      const req = {
+        session: {},
+        body: {
+          userId: '123',
+          startTimestamp: '2021-12-12 12:00:00',
+          endTimestamp: '2021-12-12 12:00:01',
+        },
+      };
+
+      // @ts-ignore
+      return searchController.post(req as AppRequest, res as Response).then(() => {
+        expect(res.redirect.calledOnce).toBeTruthy();
+        expect(res.redirect.calledWith('/error?code=LAU02')).toBeTruthy();
+        nock.cleanAll();
+      });
+    });
   });
 });
