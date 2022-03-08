@@ -5,9 +5,11 @@ import {CaseActivityAudit} from '../models/case/CaseActivityAudit';
 import {CaseSearchRequest} from '../models/case/CaseSearchRequest';
 import {CaseSearchAudit} from '../models/case/CaseSearchAudit';
 import {AppRequest} from '../models/appRequest';
+import {ErrorCode} from '../models/AppError';
 
 export class CaseService extends BaseService<CaseSearchRequest> {
   baseApiUrl = String(config.get('services.lau-case-backend.url'));
+  errorCode = ErrorCode.CASE_BACKEND;
 
   public getCaseActivities(req: AppRequest, csv = false): Promise<CaseActivityAudit> {
     const endpoint: string = config.get('services.lau-case-backend.endpoints.caseActivity');

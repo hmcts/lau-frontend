@@ -5,6 +5,7 @@ import {AppRequest} from '../models/appRequest';
 import {Response} from 'express';
 import {LogonSearchRequest} from '../models/idam/LogonSearchRequest';
 import {LogonController} from './Logon.controller';
+import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 
 /**
  * Search Controller class to handle search tab functionality
@@ -40,9 +41,9 @@ export class LogonSearchController extends BaseSearchController<LogonSearchReque
       return this.logonsController.getLogData(req).then(logData => {
         req.session.logons = logData;
         res.redirect('/#logons-tab');
-      }).catch(err => {
-        this.logger.error(err);
-        res.redirect('/error');
+      }).catch((err: AppError) => {
+        this.logger.error(err.message);
+        errorRedirect(res, err.code || ErrorCode.FRONTEND);
       });
     } else {
       res.redirect('/#logon-search-tab');

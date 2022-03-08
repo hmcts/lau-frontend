@@ -78,10 +78,18 @@ describe('Logon Search Controller', () => {
     };
 
     beforeEach(() => {
+      nock.cleanAll();
       res.redirect.resetHistory();
     });
 
     it('formats the search request', async () => {
+      nock('http://localhost:4551')
+        .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5')
+        .reply(
+          200,
+          {logonLog: []},
+        );
+
       const req = {
         session: {},
         body: {
@@ -127,7 +135,6 @@ describe('Logon Search Controller', () => {
       return logonSearchController.post(req as AppRequest, res as Response).then(() => {
         expect(res.redirect.calledOnce).toBeTruthy();
         expect(res.redirect.calledWith('/#logons-tab')).toBeTruthy();
-        nock.cleanAll();
       });
     });
   });

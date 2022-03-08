@@ -10,6 +10,7 @@ import {CaseSearchLog, CaseSearchLogs} from '../models/case/CaseSearchLogs';
 import {Response} from 'express';
 import {csvJson} from '../util/CsvHandler';
 import {CaseSearchRequest} from '../models/case/CaseSearchRequest';
+import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 
 /**
  * Case Searches Controller class to handle case searches tab functionality
@@ -24,19 +25,27 @@ export class CaseSearchesController {
     this.logger.info('getLogData called');
 
     if (CaseSearchesController.hasUserIdOrCaseRef(req.session.caseFormState || {})) {
-      return this.service.getCaseSearches(req).then(caseSearches => {
-        this.logger.info('Case searches retrieved');
-        const recordsPerPage = Number(config.get('pagination.maxPerPage'));
-        return {
-          hasData: caseSearches.searchLog.length > 0,
-          rows: this.convertDataToTableRows(caseSearches.searchLog),
-          noOfRows: caseSearches.searchLog.length,
-          totalNumberOfRecords: caseSearches.totalNumberOfRecords,
-          startRecordNumber: caseSearches.startRecordNumber,
-          moreRecords: caseSearches.moreRecords,
-          currentPage: req.session.caseFormState.page,
-          lastPage: caseSearches.totalNumberOfRecords > 0 ? Math.ceil(caseSearches.totalNumberOfRecords / recordsPerPage) : 1,
-        };
+      return new Promise((resolve, reject) => {
+        this.service.getCaseSearches(req).then(caseSearches => {
+          if (caseSearches.searchLog) {
+            this.logger.info('Case searches retrieved');
+            const recordsPerPage = Number(config.get('pagination.maxPerPage'));
+            resolve({
+              hasData: caseSearches.searchLog.length > 0,
+              rows: this.convertDataToTableRows(caseSearches.searchLog),
+              noOfRows: caseSearches.searchLog.length,
+              totalNumberOfRecords: caseSearches.totalNumberOfRecords,
+              startRecordNumber: caseSearches.startRecordNumber,
+              moreRecords: caseSearches.moreRecords,
+              currentPage: req.session.caseFormState.page,
+              lastPage: caseSearches.totalNumberOfRecords > 0 ? Math.ceil(caseSearches.totalNumberOfRecords / recordsPerPage) : 1,
+            });
+          } else {
+            const errMsg = 'Case Searches data malformed';
+            this.logger.error(errMsg);
+            reject(new AppError(errMsg, ErrorCode.CASE_BACKEND));
+          }
+        });
       });
     } else {
       return Promise.resolve(null);
@@ -62,9 +71,9 @@ export class CaseSearchesController {
     await this.getLogData(req).then(logData => {
       req.session.caseSearches = logData;
       res.redirect('/#case-searches-tab');
-    }).catch((err) => {
-      this.logger.error(err);
-      res.redirect('/error');
+    }).catch((err: AppError) => {
+      this.logger.error(err.message);
+      errorRedirect(res, err.code);
     });
   }
 

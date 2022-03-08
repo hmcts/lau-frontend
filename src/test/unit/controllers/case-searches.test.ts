@@ -208,7 +208,7 @@ describe('Case Searches Controller', () => {
       };
 
       nock('http://localhost:4550')
-        .get('/audit/caseSearch?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+        .get('/audit/caseSearch?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
         .reply(
           200,
           caseSearchAudit,

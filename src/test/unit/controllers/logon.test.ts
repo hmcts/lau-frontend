@@ -188,8 +188,8 @@ describe('Logon Controller', () => {
         totalNumberOfRecords: 0,
       };
 
-      nock('http://localhost:4550')
-        .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+      nock('http://localhost:4551')
+        .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
         .reply(
           200,
           logonAudit,
@@ -215,6 +215,7 @@ describe('Logon Controller', () => {
       return logonController.getPage(appRequest as AppRequest, res as Response).then(() => {
         expect(appRequest.session.logonFormState.page).toBe(2);
         expect(res.redirect.calledOnce).toBeTruthy();
+        nock.cleanAll();
       });
     });
   });
