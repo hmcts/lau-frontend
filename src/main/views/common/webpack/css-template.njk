@@ -1,2 +1,10 @@
 <link href="/<%= htmlWebpackPlugin.files.css[0].substr(htmlWebpackPlugin.files.publicPath.length) %>" rel="stylesheet">
-<link href="assets/css/flatpickr.min.css" rel="stylesheet">
+
+{# Asynchronously load the CSS #}
+<link id="flatpickr-css" rel="preload" href="assets/css/flatpickr.min.css" as="style">
+<noscript><link rel="stylesheet" href="assets/css/flatpickr.min.css"></noscript>
+<script nonce="{{nonce}}">
+  document.getElementById("flatpickr-css").addEventListener("load", function () {
+    this.onload=null; this.rel='stylesheet'
+  });
+</script>
