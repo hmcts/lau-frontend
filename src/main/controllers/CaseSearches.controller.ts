@@ -45,6 +45,9 @@ export class CaseSearchesController {
             this.logger.error(errMsg);
             reject(new AppError(errMsg, ErrorCode.CASE_BACKEND));
           }
+        }).catch((err: AppError) => {
+          this.logger.error(err.message);
+          reject(err);
         });
       });
     } else {

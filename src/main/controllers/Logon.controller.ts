@@ -41,6 +41,9 @@ export class LogonController {
           this.logger.error(errMsg);
           reject(new AppError(errMsg, ErrorCode.IDAM_BACKEND));
         }
+      }).catch((err: AppError) => {
+        this.logger.error(err.message);
+        reject(err);
       });
     });
   }
