@@ -1,0 +1,34 @@
+{
+  "page1_directionOrderType": "STANDARD",
+  
+  "page2_directionList_docs": "DOCUMENTS",
+  "page2_directionList_witness": "EYEWITNESS",
+
+  "page2_docUploadDeadline_day": "05",
+  "page2_docUploadDeadline_month": "05",
+  "page2_docUploadDeadline_year": "2025",
+  "page2_docUploadDeadline_long": "5 May 2025",
+
+  "page2_both": "BOTH",
+  "page2_defendant": "DEFENDANT",
+  "page2_claimant": "CLAIMANT",
+
+
+  "page2_additionalOrder_claimant": "Claimant",
+
+  "page2_grant_expertpermission_Yes": "Yes",
+  "page2_grant_expertpermission_No": "No",
+  "page2_expert_instruction": "EXpert will be provided as requested",
+
+  "page2_extraDirection": "Other direction",
+  "page2_claimantInfo": "Can you provide more clarity",
+
+
+  "page2_hearingCourt": "Basingstoke County Court and Family Court",
+  "page2_hearingDuration": "30 minutes",
+
+
+
+  "addNewExtraDocUploadListButton": "div#extraDocUploadList > div > button[type=\"button\"]",
+  "addNewDirectionButton": "div#otherDirections > div > button[type=\"button\"]"
+}

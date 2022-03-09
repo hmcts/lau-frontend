@@ -1,0 +1,20 @@
+{
+  "page1_addNewDefendantButton": "div#respondents > div > button[type=\"button\"]",
+  "page1_settlementReached_day": "05",
+  "page1_settlementReached_month": "05",
+  "page1_settlementReached_year": "2020",
+  "page1_settlementReached_long": "5 May 2020",
+
+
+  "page2_addNewButton": "div#staffUploadedDocuments > div > button[type=\"button\"]",
+  "page2_docName": "Staff upload doc",
+  "page2_settlementReached_day": "05",
+  "page2_settlementReached_month": "05",
+  "page2_settlementReached_year": "2020",
+  "page2_settlementReached_hour": "00",
+  "page2_settlementReached_minute": "00",
+  "page2_settlementReached_second": "00",
+  "page2_documentType":"Mediation agreement",
+  "page2_staffUploadDocField": "input[id='staffUploadedDocuments_0_documentLink']",
+  "page2_staffUploadFile": "fixtures/data/fileupload.txt"
+}

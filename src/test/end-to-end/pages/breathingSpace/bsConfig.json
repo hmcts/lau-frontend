@@ -1,0 +1,13 @@
+{
+  "enter_online_page_text1" : "Notify us about the debt respite scheme",
+  "enter_online_page_text2" : "Lift the debt respite scheme",
+  "page1_addNewDefendantButton": "div#respondents > div > button[type=\"button\"]",
+  "page1_BS_referenceNo": "1234567890",
+  "page1_BS_day": "01",
+  "page1_BS_month": "02",
+  "page1_BS_year": "2021",
+  "page1_BS_long": "01 Feb 2021"
+}
+
+
+
