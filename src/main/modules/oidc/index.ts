@@ -2,6 +2,7 @@ import {AuthService, IdamGrantType} from '../../service/AuthService';
 import {Application, NextFunction, Response} from 'express';
 import config from 'config';
 import {AppRequest} from '../../models/appRequest';
+import {AppError, errorRedirect} from '../../models/AppError';
 
 /**
  * Adds the oidc middleware to add oauth authentication
@@ -34,7 +35,7 @@ export class OidcMiddleware {
     server.get('/oauth2/callback', async (req: AppRequest, res: Response) => {
       this.authService.getIdAMToken(IdamGrantType.AUTH_CODE, req.session, req.query.code as string)
         .then(() => res.redirect('/'))
-        .catch(() => res.redirect('/'));
+        .catch((error: AppError) => errorRedirect(res, error.code));
     });
 
     server.get('/logout', (req: AppRequest, res) => {

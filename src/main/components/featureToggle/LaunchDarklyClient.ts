@@ -3,6 +3,7 @@ const {Logger} = require('@hmcts/nodejs-logging');
 
 import LaunchDarklySDK from 'launchdarkly-node-server-sdk';
 import config from 'config';
+import {AppError, ErrorCode} from '../../models/AppError';
 
 export class LaunchDarklyClient {
 
@@ -40,7 +41,7 @@ export class LaunchDarklyClient {
 
           if (err) {
             this.logger.error(`ERROR checking feature toggle: ${featureKey}, err: ${err}`);
-            reject(err);
+            reject(new AppError(err, ErrorCode.LAUNCH_DARKLY));
           } else {
             resolve(enabled);
           }

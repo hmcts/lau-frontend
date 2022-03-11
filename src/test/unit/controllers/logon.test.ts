@@ -7,6 +7,7 @@ import {LogonLog} from '../../../main/models/idam/LogonLogs';
 import {LogonAudit} from '../../../main/models/idam/LogonAudit';
 import logonLogs from '../../data/logonLogs.json';
 import {Response} from 'express';
+import {AppError, ErrorCode} from '../../../main/models/AppError';
 
 describe('Logon Controller', () => {
   const logonController = new LogonController();
@@ -177,6 +178,31 @@ describe('Logon Controller', () => {
         nock.cleanAll();
       });
     });
+
+    it('returns app error if no log data is returned', async () => {
+      nock('http://localhost:4551')
+        .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+        .reply(200, {});
+
+      const searchRequest: Partial<LogonSearchRequest> = {
+        userId: '123',
+        startTimestamp: '2021-12-12T12:00:00',
+        endTimestamp: '2021-12-12T12:00:01',
+        page: 1,
+      };
+
+      const req = {
+        session: {
+          logonFormState: searchRequest,
+        },
+      };
+
+      return logonController.getLogData(req as AppRequest).catch((error: AppError) => {
+        expect(error.message).toBe('Logons data malformed');
+        expect(error.code).toBe(ErrorCode.IDAM_BACKEND);
+        nock.cleanAll();
+      });
+    });
   });
 
   describe('getPage', () => {
@@ -188,8 +214,8 @@ describe('Logon Controller', () => {
         totalNumberOfRecords: 0,
       };
 
-      nock('http://localhost:4550')
-        .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+      nock('http://localhost:4551')
+        .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
         .reply(
           200,
           logonAudit,
@@ -215,6 +241,36 @@ describe('Logon Controller', () => {
       return logonController.getPage(appRequest as AppRequest, res as Response).then(() => {
         expect(appRequest.session.logonFormState.page).toBe(2);
         expect(res.redirect.calledOnce).toBeTruthy();
+        nock.cleanAll();
+      });
+    });
+
+    it('redirects to error page with code on fetch failure', async () => {
+      nock('http://localhost:4551')
+        .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
+        .reply(200, {});
+
+      const appRequest = {
+        session: {
+          logonFormState: {
+            userId: '123',
+            startTimestamp: '2021-12-12T12:00:00',
+            endTimestamp: '2021-12-12T12:00:01',
+            page: 1,
+          },
+        },
+        params: {
+          pageNumber: 2,
+        },
+      };
+
+      const res = { redirect: sinon.spy() };
+
+      // @ts-ignore Conversion of res with spy
+      return logonController.getPage(appRequest as AppRequest, res as Response).then(() => {
+        expect(res.redirect.calledOnce).toBeTruthy();
+        expect(res.redirect.calledWith('/error?code=LAU03')).toBeTruthy();
+        nock.cleanAll();
       });
     });
   });
