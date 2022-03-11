@@ -7,6 +7,7 @@ import {Response} from 'express';
 import {CaseSearchesController} from '../../../main/controllers/CaseSearches.controller';
 import {CaseSearchLog} from '../../../main/models/case/CaseSearchLogs';
 import {CaseSearchAudit} from '../../../main/models/case/CaseSearchAudit';
+import {AppError, ErrorCode} from '../../../main/models/AppError';
 
 describe('Case Searches Controller', () => {
   const caseSearchesController = new CaseSearchesController();
@@ -54,7 +55,7 @@ describe('Case Searches Controller', () => {
       const caseSearchLogs: CaseSearchLog[] = [
         {
           'userId': 'U0001',
-          'caseRefs': ['123','456'],
+          'caseRefs': ['123', '456'],
           'timestamp': '2020-07-20 15:00:00',
         },
         {
@@ -196,6 +197,35 @@ describe('Case Searches Controller', () => {
         expect(caseSearches).toStrictEqual(null);
       });
     });
+
+    it('returns app error if no log data is returned', async () => {
+      nock('http://localhost:4550')
+        .get('/audit/caseSearch?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+        .reply(
+          200,
+          {},
+        );
+
+      const searchRequest: Partial<CaseSearchRequest> = {
+        userId: '123',
+        startTimestamp: '2021-12-12T12:00:00',
+        endTimestamp: '2021-12-12T12:00:01',
+        page: 1,
+      };
+
+      const req = {
+        session: {
+          caseFormState: searchRequest,
+          user: {idToken: ''},
+        },
+      };
+
+      return caseSearchesController.getLogData(req as AppRequest).catch((error: AppError) => {
+        expect(error.message).toBe('Case Searches data malformed');
+        expect(error.code).toBe(ErrorCode.CASE_BACKEND);
+        nock.cleanAll();
+      });
+    });
   });
 
   describe('getPage', () => {
@@ -208,7 +238,7 @@ describe('Case Searches Controller', () => {
       };
 
       nock('http://localhost:4550')
-        .get('/audit/caseSearch?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+        .get('/audit/caseSearch?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
         .reply(
           200,
           caseSearchAudit,
@@ -228,12 +258,41 @@ describe('Case Searches Controller', () => {
         },
       };
 
-      const res = { redirect: sinon.spy() };
+      const res = {redirect: sinon.spy()};
 
       // @ts-ignore Conversion of res with spy
       return caseSearchesController.getPage(appRequest as AppRequest, res as Response).then(() => {
         expect(appRequest.session.caseFormState.page).toBe(2);
         expect(res.redirect.calledOnce).toBeTruthy();
+      });
+    });
+
+    it('redirects to error page with code on fetch failure', async () => {
+      nock('http://localhost:4550')
+        .get('/audit/caseSearch?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
+        .reply(200, {});
+
+      const appRequest = {
+        session: {
+          caseFormState: {
+            userId: '123',
+            startTimestamp: '2021-12-12T12:00:00',
+            endTimestamp: '2021-12-12T12:00:01',
+            page: 1,
+          },
+        },
+        params: {
+          pageNumber: 2,
+        },
+      };
+
+      const res = {redirect: sinon.spy()};
+
+      // @ts-ignore Conversion of res with spy
+      return caseSearchesController.getPage(appRequest as AppRequest, res as Response).then(() => {
+        expect(res.redirect.calledOnce).toBeTruthy();
+        expect(res.redirect.calledWith('/error?code=LAU02')).toBeTruthy();
+        nock.cleanAll();
       });
     });
   });
