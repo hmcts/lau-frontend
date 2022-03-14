@@ -108,6 +108,7 @@ export abstract class BaseSearchController<SearchType extends SearchTypeCommon> 
     return this.getErrors();
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   additionalValidation(form: Partial<SearchType>): void {
     // To be overridden if child classes need additional validation
   }
