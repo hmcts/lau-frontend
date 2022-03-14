@@ -49,7 +49,7 @@ class WebDriverHelper extends Helper {
     }, selector);
   }
 
-  async amOnCitizenAppPage(path) {
+  async amOnLauAppPage(path) {
     await this.helpers.WebDriver.amOnPage(`${testConfig.TestFrontEndUrl}${path}`);
   }
 }

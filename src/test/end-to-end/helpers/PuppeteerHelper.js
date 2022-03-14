@@ -54,7 +54,7 @@ class PuppeteerHelper extends Helper {
     runAccessibility(url, page);
   }
 
-  async amOnCitizenAppPage(path) {
+  async amOnLauAppPage(path) {
     await this.helpers[helperName].amOnPage(`${testConfig.TestFrontEndUrl}${path}`);
   }
 }
