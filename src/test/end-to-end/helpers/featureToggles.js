@@ -14,7 +14,7 @@ class FeatureToggle {
     const featureToggleKey = testConfig.featureToggles.flags[key];
     const roles = [];
     const ldUser = {
-      key: 'cmc-ccd-e2e-tests',
+      key: 'lau-e2e-tests',
       custom: {
         roles,
       },

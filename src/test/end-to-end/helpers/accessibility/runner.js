@@ -8,7 +8,7 @@ const result = {
 };
 
 const resultObj = {
-  appName: 'Manage cases',
+  appName: 'Log And Audit',
   passCount: 0,
   failCount: 0,
   tests: [],

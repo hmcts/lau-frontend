@@ -8,7 +8,7 @@ const supportedBrowsers = {
       platformName: LATEST_WINDOWS,
       browserVersion: 'latest',
       'sauce:options': {
-        name: 'LAU E2E Tests - XUI: Edge_Win10',
+        name: 'LAU E2E Tests - : Edge_Win10',
         extendedDebugging: true,
         capturePerformance: true,
       },
@@ -20,7 +20,7 @@ const supportedBrowsers = {
       platformName: 'macOS 10.14',
       browserVersion: 'latest',
       'sauce:options': {
-        name: 'LAU E2E Tests - XUI: MAC_SAFARI',
+        name: 'LAU E2E Tests - : MAC_SAFARI',
         seleniumVersion: '3.141.59',
         screenResolution: '1400x1050',
         extendedDebugging: true,
@@ -34,7 +34,7 @@ const supportedBrowsers = {
       platformName: LATEST_WINDOWS,
       browserVersion: 'latest',
       'sauce:options': {
-        name: 'LAU E2E Tests - XUI: WIN_CHROME_LATEST',
+        name: 'LAU E2E Tests - : WIN_CHROME_LATEST',
         extendedDebugging: true,
         capturePerformance: true,
       },
@@ -44,7 +44,7 @@ const supportedBrowsers = {
       platformName: LATEST_MAC,
       browserVersion: 'latest',
       'sauce:options': {
-        name: 'LAU E2E Tests - XUI: MAC_CHROME_LATEST',
+        name: 'LAU E2E Tests - : MAC_CHROME_LATEST',
         extendedDebugging: true,
         capturePerformance: true,
       },
@@ -56,7 +56,7 @@ const supportedBrowsers = {
       platformName: LATEST_WINDOWS,
       browserVersion: 'latest',
       'sauce:options': {
-        name: 'LAU E2E Tests - XUI: WIN_FIREFOX_LATEST',
+        name: 'LAU E2E Tests - : WIN_FIREFOX_LATEST',
         extendedDebugging: true,
         capturePerformance: true,
       },
@@ -66,7 +66,7 @@ const supportedBrowsers = {
       platformName: LATEST_MAC,
       browserVersion: 'latest',
       'sauce:options': {
-        name: 'LAU E2E Tests - XUI: MAC_FIREFOX_LATEST',
+        name: 'LAU E2E Tests - : MAC_FIREFOX_LATEST',
         extendedDebugging: true,
         capturePerformance: true,
       },
