@@ -9,3 +9,5 @@ coverage/*
 # custom definition files
 /src/main/types/
 jest.*config.js
+/src/test/reporter/*
+functional-output/

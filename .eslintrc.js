@@ -1,7 +1,17 @@
 module.exports = {
   'env': {'browser': true, 'es6': true, 'node': true},
   'extends': ['eslint:recommended'],
-  'globals': {'Atomics': 'readonly', 'SharedArrayBuffer': 'readonly'},
+  'globals': {
+    'Atomics': 'readonly',
+    'SharedArrayBuffer': 'readonly',
+    'actor': true,
+    'Feature': true,
+    'Before': true,
+    'After': true,
+    'Scenario': true,
+    'xScenario': true,
+    'codecept_helper': true,
+  },
   'parser': 'babel-eslint',
   'parserOptions': {
     'ecmaVersion': 2018,
@@ -41,5 +51,4 @@ module.exports = {
       },
     },
   ],
-
 };
