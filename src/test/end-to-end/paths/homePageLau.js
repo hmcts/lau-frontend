@@ -35,7 +35,6 @@ Scenario('Navigate to LAU, perform case audit search and authenticate case activ
   await I.wait(5);
   await I.waitForText('Case Activity Results');
   // Asserting the text after Pagination
-  //Asserting the CSV after hitting download button
   const textBeforePagination = await I.grabTextFromAll('div[class="flex-space-between"] p');
   logger.info({message: 'the text is ', textBeforePagination});
   await I.waitForText('Displaying 1 to 100 of 10,000 records');
@@ -67,11 +66,21 @@ Scenario('Navigate to LAU, perform case audit search and authenticate case searc
   await I.wait(10);
   await lauHelper.selectTab(I, tabs.CASE_SEARCHES);
   await I.waitForText('Case Searches Results');
-  await I.waitForText(' Page 1 / 2 ');
+  // Asserting the text after Pagination
+  const textBeforePaginationOfCaseSearch = await I.grabTextFromAll('div[class="flex-space-between"] p');
+  logger.info({message: 'the text is ', textBeforePaginationOfCaseSearch});
+  await I.waitForText('Displaying 1 to 100 of 132 records');
   await I.click('Next >');
-  await I.wait(20);
-  await I.waitForText('Case Searches Results');
-  await I.waitForText(' Page 2 / 2 ');
+  await I.wait(10);
+  const textAfterPaginationOfCaseSearch = await I.grabTextFromAll('div[class="flex-space-between"] p');
+  logger.info({message: 'the text is ', textAfterPaginationOfCaseSearch});
+  await I.waitForText('Displaying 101 to 132 of 132 records');
+  await I.click('< Previous');
+  await I.wait(10);
+  const textPreviousPageOfCaseSearch = await I.grabTextFromAll('div[class="flex-space-between"] p');
+  logger.info({message: 'the text is ', textPreviousPageOfCaseSearch});
+  await I.waitForText('Displaying 1 to 100 of 132 records');
+
 
 }).retry(testConfig.TestRetryScenarios);
 
@@ -96,4 +105,45 @@ Scenario('Navigate to LAU, perform case audit search and download CSV', async ({
   await I.seeFile(csvPath.filename);
   lauHelper.assertCsvLineCount(csvPath.fullPath, 10000);
 
+}).retry(testConfig.TestRetryScenarios);
+
+Scenario('Navigate to LAU, perform case search and download CSV', async ({I}) => {
+  await I.amOnLauAppPage('');
+  await I.authenticateWithIdam(userType.AUDITOR, true);
+
+  await I.amOnPage('/');
+  await I.waitForText('Log and Audit');
+  await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
+  await I.performCaseSearch();
+  await I.click('//button[@name="case-search-btn"]');
+  await I.wait(10);
+  await lauHelper.selectTab(I, tabs.CASE_SEARCHES);
+  await I.wait(5);
+  await I.waitForText('Case Searches Results');
+  await I.handleDownloads();
+  await I.click('#searchesCsvBtn');
+  await I.wait(10);
+
+  const csvPath = lauHelper.getCsvPath();
+
+  await I.amInPath(csvPath.codeceptPath);
+  await I.seeFile(csvPath.filename);
+  lauHelper.assertCsvLineCount(csvPath.fullPath, 132);
+
+}).retry(testConfig.TestRetryScenarios);
+
+//Negative Scenario for Case audit Search without search data and assert error text
+Scenario('Navigate to LAU, perform case audit search and authenticate error text', async ({I}) => {
+  await I.amOnLauAppPage('');
+  await I.authenticateWithIdam(userType.AUDITOR, true);
+
+  await I.amOnPage('/');
+  await I.waitForText('Log and Audit');
+  await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
+  await I.performCaseAuditSearchWithoutSearchData();
+  await I.click('//button[@name="case-search-btn"]');
+  await I.wait(10);
+  await I.waitForText('Please enter at least one of the following fields: User ID, Case Type ID, Case Ref or Jurisdiction ID.');
+  await I.waitForText('\'Time from\' is required.');
+  await I.waitForText('\'Time to\' is required.');
 }).retry(testConfig.TestRetryScenarios);
