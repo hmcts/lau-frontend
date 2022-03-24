@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Ensure remote is up to date
+git fetch
+
+# Check if the version has changed at all. If so, assume the wanted change has been made.
+diff=$(git diff origin/master package.json | grep -m 1 '"version":')
+
+if [[ -z $diff ]]; then
+  echo "App version unchanged, bumping patch number..."
+
+  # Get the current patch number and increase by 1
+  patch_version=$(grep -m 1 '"version":' package.json | sed -n 's/.*"\([0-9]*\).\([0-9]*\).\([0-9]*\).*/\3/p')
+  bumped_version=$((patch_version+1))
+
+  # Get the line number of the version property - This ensures sed does not modify other lines by accident
+  version_line=$(grep -m 1 -n '"version":' package.json)
+  version_line=${version_line:0:1}
+
+  # Set the new patch number
+  if [[ "$(uname)" == "Darwin" ]]; then
+    # On OSX -i requires an "extension" which will create a backup file. We don't want this so we set it to an empty string.
+    sed -i "" "${version_line}s/.*\"\([0-9]*\).\([0-9]*\).\([0-9]*\).*/  \"version\": \"\1.\2.${bumped_version}\",/" package.json
+  else
+    sed -i "${version_line}s/.*\"\([0-9]*\).\([0-9]*\).\([0-9]*\).*/  \"version\": \"\1.\2.${bumped_version}\",/" package.json
+  fi
+
+  # Print the new app version
+  new_version=$(grep -m 1 '"version":' package.json | sed -n 's/.*"\([0-9]*\).\([0-9]*\).\([0-9]*\).*/\1.\2.\3/p')
+  echo "App version now $new_version"
+
+  # Stage package.json
+  git add package.json
+
+  exit 0
+else
+  remote_version=$(git show origin/master:package.json | grep -m 1 '"version":' | sed -n 's/.*"\([0-9]*\).\([0-9]*\).\([0-9]*\).*/\1.\2.\3/p')
+  this_version=$(grep -m 1 '"version":' package.json | sed -n 's/.*"\([0-9]*\).\([0-9]*\).\([0-9]*\).*/\1.\2.\3/p')
+
+  # Sort the versions, take the lowest one and compare it to remote.
+  if [[ "$this_version" = "$(echo -e "$remote_version\n$this_version" | sort -V | head -n1)" ]]; then
+    # Error and exit
+    echo "---------------- ERROR ----------------"
+    echo "App version is less than remote master!"
+    echo "---------------------------------------"
+    exit 1
+  fi
+
+  # Else, assume version is correct
+  echo "Version is greater than remote master, assuming desired version is set."
+
+  exit 0
+fi

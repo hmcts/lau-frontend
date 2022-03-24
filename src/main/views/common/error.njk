@@ -2,5 +2,8 @@
 
 {% block content %}
   <h1 class="govuk-heading-xl">Sorry, we&rsquo;re having technical problems</h1>
+  {% if code %}
+    <p class="govuk-body">Error code: {{ code }}</p>
+  {% endif %}
   <p class="govuk-body">Please try again in a few minutes.</p>
 {% endblock %}

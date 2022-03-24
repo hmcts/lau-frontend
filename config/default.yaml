@@ -8,7 +8,8 @@ security:
 appInsights:
   instrumentationKey: false
 pagination:
-  maxRecords: 100
+  maxPerPage: 100
+  maxTotal: 10000
 redis:
   host: 'localhost'
   port: 6379
@@ -25,29 +26,32 @@ redis:
     httpOnly: true
     sameSite: 'lax'
 services:
-  case-backend:
+  lau-case-backend:
     enabled: true
     url: 'http://localhost:4550'
     port: 4550
     endpoints:
       caseActivity: '/audit/caseAction'
       caseSearch: '/audit/caseSearch'
-  idam-backend:
+  lau-idam-backend:
     enabled: true
     url: 'http://localhost:4551'
     port: 4551
     endpoints:
       logon: '/audit/logon'
-  idam:
+  idam-api:
     enabled: true
-    s2sEnabled: true
     authorizationURL: 'https://idam-web-public.aat.platform.hmcts.net/login'
-    tokenURL: 'https://idam-api.aat.platform.hmcts.net/o/token'
-    s2sURL: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal'
-    s2sSecretLAU: 'AAAAAAAAAAAAAAAA'
+    url: 'https://idam-api.aat.platform.hmcts.net'
+    endpoints:
+      token: '/o/token'
     clientID: 'lau'
     clientSecret: 'SECRET'
     callbackURL: 'https://localhost:4000/oauth2/callback'
+  s2s:
+    enabled: true
+    url: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal'
+    lauSecret: 'AAAAAAAAAAAAAAAA'
 featureToggles:
   enabled: true
   ldKey: 'LD_SDK_KEY'

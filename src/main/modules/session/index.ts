@@ -16,6 +16,7 @@ export class SessionStorage {
   public enableFor(app: Application): void {
     app.use(cookieParser());
 
+    const sessionStore = this.getStore();
     app.use(
       session({
         name: 'lau-session',
@@ -28,9 +29,11 @@ export class SessionStorage {
           secure: true,
         },
         rolling: true, // Renew the cookie for another 30 minutes on each request
-        store: this.getStore(),
+        store: sessionStore,
       }),
     );
+
+    app.locals.sessionStore = sessionStore;
   }
 
   public getStore(): ConnectRedis.RedisStore {
@@ -49,7 +52,7 @@ export class SessionStorage {
 
       const redisOptions = config.get('redis.useTLS') === 'true' ? tlsOptions : {};
 
-      logger.info(`Redis Connection - Host: ${host}, Port: ${port}, Options: ${JSON.stringify(redisOptions)}`);
+      logger.info(`Redis Connection - Host: ${host}, Port: ${port}`);
 
       const client = new Redis(port, host, redisOptions);
 

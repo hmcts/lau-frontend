@@ -5,6 +5,8 @@ import {CaseSearchRequest} from '../models/case/CaseSearchRequest';
 import {CaseActivityController} from './CaseActivity.controller';
 import {CaseSearchesController} from './CaseSearches.controller';
 import {BaseSearchController} from './BaseSearchController';
+import {validCaseRef} from '../util/validators';
+import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 
 /**
  * Search Controller class to handle search tab functionality
@@ -18,6 +20,10 @@ export class CaseSearchController extends BaseSearchController<CaseSearchRequest
   requiredFields = [
     'caseTypeId', 'caseJurisdictionId', 'caseRef', 'userId',
   ];
+
+  override additionalValidation(form: Partial<CaseSearchRequest>): void {
+    this.validate('caseRef', form.caseRef, validCaseRef);
+  }
 
   /**
    * POST function for Search Controller
@@ -46,9 +52,9 @@ export class CaseSearchController extends BaseSearchController<CaseSearchRequest
         req.session.caseActivities = value[0];
         req.session.caseSearches = value[1];
         res.redirect('/#case-activity-tab');
-      }).catch(err => {
-        this.logger.error(err);
-        res.redirect('/error');
+      }).catch((err: AppError) => {
+        this.logger.error(err.message);
+        errorRedirect(res, err.code || ErrorCode.FRONTEND);
       });
     } else {
       res.redirect('/');

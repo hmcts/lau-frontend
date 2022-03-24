@@ -34,7 +34,12 @@
   </div>
 
   <div class="flex-space-between">
-    <p class="govuk-body">Displaying <b>{{ caseActivities.startRecordNumber }} to {{ caseActivities.startRecordNumber + (caseActivities.noOfRows - 1) }}</b> of {{ caseActivities.totalNumberOfRecords }} records</p>
+    <div>
+      <p class="govuk-body">Displaying <b>{{ caseActivities.startRecordNumber | numComma }} to {{ (caseActivities.startRecordNumber + (caseActivities.noOfRows - 1)) | numComma }}</b> of {{ caseActivities.totalNumberOfRecords | numComma }} records</p>
+      {% if caseActivities.totalNumberOfRecords == common.maxRecords %}
+        <p class="govuk-body-s"><b>Note:</b> Results returned have been capped at {{ common.maxRecords | numComma }}.</p>
+      {% endif %}
+    </div>
     <div>
       {% if (caseActivities.currentPage > 2) %}
         <a id="case-activity-previous-btn" class="govuk-link" href="/case-activity/page/1">&lt;&lt; First</a>
@@ -43,7 +48,7 @@
         <a id="case-activity-previous-btn" class="govuk-link" href="/case-activity/page/{{ caseActivities.currentPage | int - 1 }}">&lt; Previous</a>
       {% endif %}
 
-      <span class="govuk-body-s">&emsp;Page {{ caseActivities.currentPage }} / {{ caseActivities.lastPage}}&emsp;</span>
+      <span class="govuk-body-s">&emsp;Page {{ caseActivities.currentPage | numComma }} / {{ caseActivities.lastPage | numComma }}&emsp;</span>
 
       {% if (caseActivities.lastPage - caseActivities.currentPage) > 0 %}
         <a id="case-activity-next-btn" class="govuk-link" href="/case-activity/page/{{ caseActivities.currentPage | int + 1 }}">Next &gt;</a>

@@ -2,6 +2,7 @@ import {AuthService, IdamGrantType} from '../../service/AuthService';
 import {Application, NextFunction, Response} from 'express';
 import config from 'config';
 import {AppRequest} from '../../models/appRequest';
+import {AppError, errorRedirect} from '../../models/AppError';
 
 /**
  * Adds the oidc middleware to add oauth authentication
@@ -9,6 +10,9 @@ import {AppRequest} from '../../models/appRequest';
 export class OidcMiddleware {
 
   private nonProtectedUrls = [
+    '/health',
+    '/health/readiness',
+    '/health/liveness',
     '/unauthorized',
     '/main-dev.js',
     '/main-dev.css',
@@ -20,9 +24,9 @@ export class OidcMiddleware {
   private authService = new AuthService();
 
   public enableFor(server: Application): void {
-    const loginUrl: string = config.get('services.idam.authorizationURL');
-    const clientId: string = config.get('services.idam.clientID');
-    const redirectUri: string = config.get('services.idam.callbackURL');
+    const loginUrl: string = config.get('services.idam-api.authorizationURL');
+    const clientId: string = config.get('services.idam-api.clientID');
+    const redirectUri: string = config.get('services.idam-api.callbackURL');
 
     server.get('/login', (req: AppRequest, res) => {
       res.redirect(loginUrl + '?client_id=' + clientId + '&response_type=code&redirect_uri=' + encodeURI(redirectUri));
@@ -31,7 +35,7 @@ export class OidcMiddleware {
     server.get('/oauth2/callback', async (req: AppRequest, res: Response) => {
       this.authService.getIdAMToken(IdamGrantType.AUTH_CODE, req.session, req.query.code as string)
         .then(() => res.redirect('/'))
-        .catch(() => res.redirect('/'));
+        .catch((error: AppError) => errorRedirect(res, error.code));
     });
 
     server.get('/logout', (req: AppRequest, res) => {
@@ -40,7 +44,7 @@ export class OidcMiddleware {
     });
 
     server.use((req: AppRequest, res: Response, next: NextFunction) => {
-      if (this.nonProtectedUrls.includes(req.path) || OidcMiddleware.isMainFile(req.path) || !config.get('services.idam.enabled')) return next();
+      if (this.nonProtectedUrls.includes(req.path) || OidcMiddleware.isMainFile(req.path) || !config.get('services.idam-api.enabled')) return next();
 
       if (req.session.user) {
         // Verify the user has the cft-audit-investigator role

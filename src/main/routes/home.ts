@@ -1,5 +1,6 @@
 import {Application, Response} from 'express';
 import {AppRequest} from '../models/appRequest';
+import config from 'config';
 
 async function homeHandler(req: AppRequest, res: Response) {
   const caseFormState = req.session?.caseFormState || {};
@@ -9,8 +10,10 @@ async function homeHandler(req: AppRequest, res: Response) {
   const caseSearches = req.session?.caseSearches;
   const logons = req.session?.logons;
 
-
   res.render('home/template', {
+    common: {
+      maxRecords: Number(config.get('pagination.maxTotal')),
+    },
     caseForm: caseFormState,
     logonForm: logonFormState,
     caseActivities,
@@ -33,6 +36,9 @@ async function homeHandler(req: AppRequest, res: Response) {
       endTimestamp: {
         invalid: 'Invalid \'Time to\' timestamp.',
         required: '\'Time to\' is required.',
+      },
+      caseRef: {
+        invalid: 'Case Reference must be 16 digits.',
       },
     },
   });

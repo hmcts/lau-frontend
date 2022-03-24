@@ -8,7 +8,8 @@ import {CaseService} from '../service/CaseService';
 import {AppRequest, LogData} from '../models/appRequest';
 import {CaseActivityLog, CaseActivityLogs} from '../models/case/CaseActivityLogs';
 import {csvDate, requestDateToFormDate} from '../util/Date';
-import {jsonToCsv} from '../util/CsvHandler';
+import {csvJson} from '../util/CsvHandler';
+import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 
 /**
  * Case Activity Controller class to handle case activity tab functionality
@@ -21,19 +22,31 @@ export class CaseActivityController {
 
   public async getLogData(req: AppRequest): Promise<LogData> {
     this.logger.info('getLogData called');
-    return this.service.getCaseActivities(req).then(caseActivities => {
-      this.logger.info('Case activities retrieved');
-      const recordsPerPage = Number(config.get('pagination.maxRecords'));
-      return {
-        hasData: caseActivities.actionLog.length > 0,
-        rows: this.convertDataToTableRows(caseActivities.actionLog),
-        noOfRows: caseActivities.actionLog.length,
-        totalNumberOfRecords: caseActivities.totalNumberOfRecords,
-        startRecordNumber: caseActivities.startRecordNumber,
-        moreRecords: caseActivities.moreRecords,
-        currentPage: req.session.caseFormState.page,
-        lastPage: caseActivities.totalNumberOfRecords > 0 ? Math.ceil(caseActivities.totalNumberOfRecords / recordsPerPage) : 1,
-      };
+
+    return new Promise((resolve, reject) => {
+      this.service.getCaseActivities(req).then(caseActivities => {
+        if (caseActivities.actionLog) {
+          this.logger.info('Case activities retrieved');
+          const recordsPerPage = Number(config.get('pagination.maxPerPage'));
+          resolve({
+            hasData: caseActivities.actionLog.length > 0,
+            rows: this.convertDataToTableRows(caseActivities.actionLog),
+            noOfRows: caseActivities.actionLog.length,
+            totalNumberOfRecords: caseActivities.totalNumberOfRecords,
+            startRecordNumber: caseActivities.startRecordNumber,
+            moreRecords: caseActivities.moreRecords,
+            currentPage: req.session.caseFormState.page,
+            lastPage: caseActivities.totalNumberOfRecords > 0 ? Math.ceil(caseActivities.totalNumberOfRecords / recordsPerPage) : 1,
+          });
+        } else {
+          const errMsg = 'Case Activities data malformed';
+          this.logger.error(errMsg);
+          reject(new AppError(errMsg, ErrorCode.CASE_BACKEND));
+        }
+      }).catch((err: AppError) => {
+        this.logger.error(err.message);
+        reject(err);
+      });
     });
   }
 
@@ -52,9 +65,9 @@ export class CaseActivityController {
     await this.getLogData(req).then(logData => {
       req.session.caseActivities = logData;
       res.redirect('/#case-activity-tab');
-    }).catch((err) => {
-      this.logger.error(err);
-      res.redirect('/error');
+    }).catch((err: AppError) => {
+      this.logger.error(err.message);
+      errorRedirect(res, err.code);
     });
   }
 
@@ -62,9 +75,8 @@ export class CaseActivityController {
     return this.service.getCaseActivities(req, true).then(caseActivities => {
       const caseActivityLogs = new CaseActivityLogs(caseActivities.actionLog);
       const filename = `caseActivity ${csvDate()}.csv`;
-      jsonToCsv(caseActivityLogs).then(csv => {
-        res.status(200).json({filename, csv});
-      });
+
+      res.status(200).json({filename, csvJson: csvJson(caseActivityLogs)});
     });
   }
 
