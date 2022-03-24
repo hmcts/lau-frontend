@@ -15,6 +15,7 @@ export class SessionStorage {
 
   public enableFor(app: Application): void {
     app.use(cookieParser());
+    app.set('trust proxy', 1);
 
     const sessionStore = this.getStore();
     app.use(
