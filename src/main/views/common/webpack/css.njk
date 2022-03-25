@@ -1,19 +1,8 @@
 <link href="/main-dev.css" rel="stylesheet">
 
 {% if flatpickrPreload %}
-  <b>Flatpickr loaded async</b>
-
   {# Asynchronously load the CSS #}
-  <link id="flatpickr-css" rel="preload" href="assets/css/flatpickr.min.css" as="style">
-  <noscript><link rel="stylesheet" href="assets/css/flatpickr.min.css"></noscript>
-  <script nonce="{{nonce}}">
-    document.getElementById("flatpickr-css").addEventListener("load", function () {
-      this.onload=null; this.rel='stylesheet'
-    });
-  </script>
-
+  <link rel="preload" href="assets/css/flatpickr.min.css" as="style">
 {% else %}
-
   <link href="assets/css/flatpickr.min.css" rel="stylesheet">
-
 {% endif %}
