@@ -112,4 +112,7 @@
 {% block bodyEnd %}
   {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
   {% include "common/webpack/js.njk" %}
+
+  {# Load Flatpickr at end of body as this is non-critical #}
+  <link rel="stylesheet" href="assets/css/flatpickr.min.css">
 {% endblock %}
