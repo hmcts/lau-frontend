@@ -10,6 +10,6 @@ module.exports = function () {
     performCaseSearch: steps.lauHomePage.caseSearch,
     performLogonAuditSearch: steps.lauHomePage.logonAuditSearch,
     performCaseAuditSearchWithoutSearchData: steps.lauHomePage.caseAuditSearchWithoutSearchData,
-    performLogonAuditSearchWithoutSearchData: steps.lauHomePage.logonAuditSearch,
+    performLogonAuditSearchWithoutSearchData: steps.lauHomePage.logonAuditSearchWithoutSearchData,
   });
 };
