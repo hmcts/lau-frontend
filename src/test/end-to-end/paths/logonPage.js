@@ -17,7 +17,7 @@ Scenario('Navigate to LAU, perform logon audit search and authenticate logon sea
   await lauHelper.selectTab(I, tabs.LOGON_SEARCH);
   await I.waitForText('Logons Audit Search', testConfig.TestTimeToWaitForText);
   await I.performLogonAuditSearch();
-  await I.click('//button[@name="case-search-btn"]');
+  await I.click('button[name="logon-search-btn"]');
   await I.wait(5);
   await I.waitForText('Logons Audit Results');
   // Asserting the text after Pagination
@@ -51,7 +51,7 @@ Scenario('Navigate to LAU, perform logon audit search and download CSV', async (
   await I.wait(10);
   await I.waitForText('Logons Audit Search', testConfig.TestTimeToWaitForText);
   await I.performLogonAuditSearch();
-  await I.click('//button[@name="case-search-btn"]');
+  await I.click('button[name="logon-search-btn"]');
   await I.wait(10);
   await I.waitForText('Logons Audit Results');
   await I.handleDownloads();
@@ -75,7 +75,7 @@ Scenario('Navigate to LAU, perform logon audit search and authenticate logon sea
   await lauHelper.selectTab(I, tabs.LOGON_SEARCH);
   await I.waitForText('Logons Audit Search', testConfig.TestTimeToWaitForText);
   await I.performLogonAuditSearchWithoutSearchData();
-  await I.click('//button[@name="case-search-btn"]');
+  await I.click('button[name="logon-search-btn"]');
   await I.wait(10);
   await I.waitForText('Please enter at least one of the following fields: User ID or Email');
   await I.waitForText('\'Time from\' is required.');
