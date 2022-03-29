@@ -48,6 +48,7 @@ exports.config = {
     'Mochawesome': {
       uniqueScreenshotNames: true,
     },
+    'FileSystem': {},
   },
   'include': {
     'I': './pages/steps.js',
