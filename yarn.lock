@@ -1311,10 +1311,10 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
-"@hmcts/cookie-manager@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@hmcts/cookie-manager/-/cookie-manager-0.0.4.tgz#dc7381fffd03616863d0549ae1c0169d7b0348fd"
-  integrity sha512-OScl6xMFmKyCR8b0ZJyJxYOp7pV8G492LencoTkLrw60Cd0uyKYbkR0ugffx0LyO28Tqo7yRM3aHUV9DjsErug==
+"@hmcts/cookie-manager@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@hmcts/cookie-manager/-/cookie-manager-0.0.5.tgz#551cda51158031fc652a6631103373220d1e33a3"
+  integrity sha512-G43M/NnYk6Oq/5nsXe2sMLkuxvUoei1yfxUN1AQsMOesWsipgturK11OVNFHlZbw6r/B/Ftdo2E+dlVJVNJnjg==
 
 "@hmcts/div-idam-express-middleware@^6.5.0":
   version "6.6.2"
