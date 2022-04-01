@@ -74,4 +74,8 @@ export const content = {
   apmCookiesHeadings: 'Allow cookies that measure website application performance monitoring?',
   useApmCookies: 'Use cookies that measure website application performance monitoring',
   doNotUseApmCookies: 'Do not use cookies that measure website application performance monitoring',
+  cookiesSaved: 'Your cookie settings were saved',
+  additionalCookies:
+    'Government services may set additional cookies and, if so, will have their own cookie policy and banner.',
+  goToHomepage: 'Go to homepage',
 };

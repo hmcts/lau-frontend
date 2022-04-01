@@ -37,15 +37,18 @@ function cookiePreferencesUpdated(cookieStatus) {
 
   if (dtrum !== undefined) {
     if (cookieStatus.apm === 'on') {
+      console.log('Enabling RUM');
       dtrum.enable();
       dtrum.enableSessionReplay();
     } else {
+      console.log('Disabling RUM');
       dtrum.disable();
       dtrum.disableSessionReplay();
     }
   }
 }
 
+console.log('Initialising Cookie Manager...');
 cookieManager.init({
   'user-preference-cookie-name': 'lau-cookie-preferences',
   'user-preference-saved-callback': cookiePreferencesUpdated,
@@ -59,7 +62,6 @@ cookieManager.init({
   'cookie-banner-saved-callback': cookieBannerSaved,
   'cookie-banner-auto-hide': false,
   'cookie-manifest': [
-    // Additional GA cookies will need to be added here
     {
       'category-name': 'essential',
       optional: false,
@@ -68,7 +70,7 @@ cookieManager.init({
     {
       'category-name': 'analytics',
       optional: true,
-      cookies: ['_ga', '_gid'],
+      cookies: ['_ga', '_gid', 'gat'],
     },
     {
       'category-name': 'apm',
