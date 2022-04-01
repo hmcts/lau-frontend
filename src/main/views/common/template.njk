@@ -112,15 +112,4 @@
 {% block bodyEnd %}
   {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
   {% include "common/webpack/js.njk" %}
-
-  <script nonce="{{ nonce }}">
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({"language": "en", "event": "Site language"})
-
-    const lauCookie = document.cookie.match(new RegExp('(^| )' + 'lau-cookie-preferences' + '=([^;]+)'));
-    if(lauCookie) {
-      const cookiePreferences = JSON.parse(decodeURIComponent(lauCookie[2]));
-      dataLayer.push({'event': 'Cookie Preferences', 'cookiePreferences': cookiePreferences});
-    }
-  </script>
 {% endblock %}
