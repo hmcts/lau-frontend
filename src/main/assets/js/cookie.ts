@@ -37,18 +37,15 @@ function cookiePreferencesUpdated(cookieStatus) {
 
   if (dtrum !== undefined) {
     if (cookieStatus.apm === 'on') {
-      console.log('Enabling RUM');
       dtrum.enable();
       dtrum.enableSessionReplay();
     } else {
-      console.log('Disabling RUM');
-      dtrum.disable();
       dtrum.disableSessionReplay();
+      dtrum.disable();
     }
   }
 }
 
-console.log('Initialising Cookie Manager...');
 cookieManager.init({
   'user-preference-cookie-name': 'lau-cookie-preferences',
   'user-preference-saved-callback': cookiePreferencesUpdated,
