@@ -146,6 +146,7 @@
     "json-schema": "^0.4.0",
     "merge": "^2.1.1",
     "minimist": "^1.2.6",
+    "moment": "^2.29.2",
     "serialize-javascript": "^6.0.0"
   }
 }
