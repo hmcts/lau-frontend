@@ -40,8 +40,8 @@ function cookiePreferencesUpdated(cookieStatus) {
       dtrum.enable();
       dtrum.enableSessionReplay();
     } else {
-      dtrum.disable();
       dtrum.disableSessionReplay();
+      dtrum.disable();
     }
   }
 }
@@ -59,7 +59,6 @@ cookieManager.init({
   'cookie-banner-saved-callback': cookieBannerSaved,
   'cookie-banner-auto-hide': false,
   'cookie-manifest': [
-    // Additional GA cookies will need to be added here
     {
       'category-name': 'essential',
       optional: false,
@@ -68,7 +67,7 @@ cookieManager.init({
     {
       'category-name': 'analytics',
       optional: true,
-      cookies: ['_ga', '_gid'],
+      cookies: ['_ga', '_gid', 'gat'],
     },
     {
       'category-name': 'apm',

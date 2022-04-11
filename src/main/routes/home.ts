@@ -1,7 +1,9 @@
 import {Application, Response} from 'express';
 import {AppRequest} from '../models/appRequest';
+import config from 'config';
+import {LaunchDarklyClient} from '../components/featureToggle/LaunchDarklyClient';
 
-function homeHandler(req: AppRequest, res: Response) {
+async function homeHandler(req: AppRequest, res: Response) {
   const caseFormState = req.session?.caseFormState || {};
   const logonFormState = req.session?.logonFormState || {};
   const sessionErrors = req.session?.errors || [];
@@ -9,7 +11,13 @@ function homeHandler(req: AppRequest, res: Response) {
   const caseSearches = req.session?.caseSearches;
   const logons = req.session?.logons;
 
+  const flatpickrPreload = await LaunchDarklyClient.instance.variation('flatpickr-preload');
+
   res.render('home/template', {
+    flatpickrPreload,
+    common: {
+      maxRecords: Number(config.get('pagination.maxTotal')),
+    },
     caseForm: caseFormState,
     logonForm: logonFormState,
     caseActivities,
@@ -32,6 +40,9 @@ function homeHandler(req: AppRequest, res: Response) {
       endTimestamp: {
         invalid: 'Invalid \'Time to\' timestamp.',
         required: '\'Time to\' is required.',
+      },
+      caseRef: {
+        invalid: 'Case Reference must be 16 digits.',
       },
     },
   });

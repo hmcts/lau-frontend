@@ -1,6 +1,7 @@
 import * as path from 'path';
 import * as express from 'express';
 import * as nunjucks from 'nunjucks';
+import {numberWithCommas} from '../../util/Util';
 
 export class Nunjucks {
   constructor(public developmentMode: boolean) {
@@ -18,7 +19,7 @@ export class Nunjucks {
       'node_modules',
       'govuk-frontend',
     );
-    nunjucks.configure(
+    const env = nunjucks.configure(
       [path.join(__dirname, '..', '..', 'views'), govUkFrontendPath],
       {
         autoescape: true,
@@ -26,6 +27,10 @@ export class Nunjucks {
         express: app,
       },
     );
+
+    env.addFilter('numComma', (x) => numberWithCommas(x));
+
+    env.addGlobal('nonce', app.locals.nonce);
 
     app.use((req, res, next) => {
       res.locals.pagePath = req.path;

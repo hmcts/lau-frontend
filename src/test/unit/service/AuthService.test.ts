@@ -2,8 +2,9 @@ import nock from 'nock';
 import config from 'config';
 import jwt_decode from 'jwt-decode';
 import {AuthService, IdamGrantType, IdamResponseData} from '../../../main/service/AuthService';
-import {BearerToken, ServiceAuthToken} from '../../../main/idam/ServiceAuthToken';
+import {BearerToken, ServiceAuthToken} from '../../../main/components/idam/ServiceAuthToken';
 import {AppSession, UserDetails} from '../../../main/models/appRequest';
+import {AppError, ErrorCode} from '../../../main/models/AppError';
 
 describe('AuthService', () => {
 
@@ -35,6 +36,17 @@ describe('AuthService', () => {
       expect(returnedToken.expired).toBeTruthy();
     });
 
+    it('returns app error code on lease fetch failure', async () => {
+      nock('http://localhost:4552')
+        .post('/lease')
+        .replyWithError('test error');
+
+      return authService.retrieveServiceToken().catch((err: AppError) => {
+        expect(err.message).toContain('test error');
+        expect(err.code).toBe(ErrorCode.S2S);
+      });
+    });
+
   });
 
   describe('getIdAMToken', () => {
@@ -56,8 +68,8 @@ describe('AuthService', () => {
         expires_in: 123,
       };
 
-      nock(config.get('services.idam.tokenURL'))
-        .post('')
+      nock(config.get('services.idam-api.url'))
+        .post(config.get('services.idam-api.endpoints.token'))
         .reply(
           200,
           idamResponse,
@@ -94,8 +106,8 @@ describe('AuthService', () => {
         expires_in: 123,
       };
 
-      nock(config.get('services.idam.tokenURL'))
-        .post('')
+      nock(config.get('services.idam-api.url'))
+        .post(config.get('services.idam-api.endpoints.token'))
         .reply(
           200,
           idamResponse,
@@ -123,6 +135,36 @@ describe('AuthService', () => {
       // Potential for race condition with expiry time, allowing for a tolerance of 3 seconds.
       const expectedExpire = 123 + Math.round(Date.now() / 1000);
       expect((expectedExpire - 3) < userDetails.expiresAt && userDetails.expiresAt < (expectedExpire + 3)).toBeTruthy();
+    });
+
+    it('returns app error code on fetch failure', async () => {
+      nock(config.get('services.idam-api.url'))
+        .post(config.get('services.idam-api.endpoints.token'))
+        .replyWithError('test error');
+
+      const session = {
+        save: (callback: () => void) => callback(),
+      };
+
+      return authService.getIdAMToken(IdamGrantType.AUTH_CODE, session as AppSession).catch((err: AppError) => {
+        expect(err.message).toContain('test error');
+        expect(err.code).toBe(ErrorCode.IDAM_API);
+      });
+    });
+
+    it('returns error on fetch status failure', async () => {
+      nock(config.get('services.idam-api.url'))
+        .post(config.get('services.idam-api.endpoints.token'))
+        .reply(500, {});
+
+      const session = {
+        save: (callback: () => void) => callback(),
+      };
+
+      return authService.getIdAMToken(IdamGrantType.AUTH_CODE, session as AppSession).catch((err: AppError) => {
+        expect(err.message).toContain('HTTP Error Response');
+        expect(err.code).toBe(ErrorCode.IDAM_API);
+      });
     });
 
   });

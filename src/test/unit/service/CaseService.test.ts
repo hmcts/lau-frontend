@@ -10,10 +10,10 @@ import {AuthService} from '../../../main/service/AuthService';
 
 describe('Case Service', () => {
   const caseService = new CaseService();
-  const baseApiUrl = config.get('services.case-backend.url') as string;
+  const baseApiUrl = config.get('services.lau-case-backend.url') as string;
 
   describe('getCaseActivities', () => {
-    const caseActivitiesEndpoint = config.get('services.case-backend.endpoints.caseActivity') as string;
+    const caseActivitiesEndpoint = config.get('services.lau-case-backend.endpoints.caseActivity') as string;
 
     it('return case activity audit data', async () => {
       const caseActivityAudit: CaseActivityAudit = {
@@ -90,7 +90,7 @@ describe('Case Service', () => {
   });
 
   describe('getCaseSearches', () => {
-    const caseSearchesEndpoint = config.get('services.case-backend.endpoints.caseSearch') as string;
+    const caseSearchesEndpoint = config.get('services.lau-case-backend.endpoints.caseSearch') as string;
 
     it('return case searches audit data', async () => {
       const caseSearchAudit: CaseSearchAudit = {

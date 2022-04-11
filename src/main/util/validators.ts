@@ -54,3 +54,10 @@ export const fillPartialTimestamp = (date: string): string => {
 
   return date;
 };
+
+export const validCaseRef = (caseRef: string): string => {
+  const regex = /^\d{16}$/gm;
+  if (caseRef && !regex.test(caseRef)) {
+    return 'invalid';
+  }
+};

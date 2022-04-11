@@ -1,13 +1,14 @@
 import {LoggerInstance} from 'winston';
-const {Logger} = require('@hmcts/nodejs-logging');
-
 import config from 'config';
 import totp from 'totp-generator';
-import {ServiceAuthToken} from '../idam/ServiceAuthToken';
+import {ServiceAuthToken} from '../components/idam/ServiceAuthToken';
 import fetch, {Response as FetchResponse} from 'node-fetch';
 import jwt_decode from 'jwt-decode';
 import {AppSession, UserDetails} from '../models/appRequest';
 import {HttpResponseError} from '../util/HttpResponseError';
+import {AppError, ErrorCode} from '../models/AppError';
+
+const {Logger} = require('@hmcts/nodejs-logging');
 
 export interface IdTokenJwtPayload {
   uid: string;
@@ -31,13 +32,13 @@ export enum IdamGrantType {AUTH_CODE = 'authorization_code', REFRESH = 'refresh_
 export class AuthService {
   private logger: LoggerInstance = Logger.getLogger('AuthService');
 
-  private clientId: string = config.get('services.idam.clientID');
-  private clientSecret: string = config.get('services.idam.clientSecret');
-  private redirectUri: string = config.get('services.idam.callbackURL');
-  private tokenUrl: string = config.get('services.idam.tokenURL');
+  private clientId: string = config.get('services.idam-api.clientID');
+  private clientSecret: string = config.get('services.idam-api.clientSecret');
+  private redirectUri: string = config.get('services.idam-api.callbackURL');
+  private tokenUrl: string = String(config.get('services.idam-api.url')) + String(config.get('services.idam-api.endpoints.token'));
   private microserviceName = 'lau_frontend';
-  private s2sUrl: string = config.get('services.idam.s2sURL');
-  private totpSecret: string = config.get('services.idam.s2sSecretLAU');
+  private s2sUrl: string = config.get('services.s2s.url');
+  private totpSecret: string = config.get('services.s2s.lauSecret');
 
   retrieveServiceToken(): Promise<ServiceAuthToken> {
     const params = {
@@ -63,7 +64,7 @@ export class AuthService {
         })
         .catch(err => {
           this.logger.error(err);
-          reject(new Error(err));
+          reject(new AppError(err, ErrorCode.S2S));
         });
     });
   }
@@ -99,9 +100,9 @@ export class AuthService {
             body: params.toString(),
           },
         );
-      } catch (e) {
-        this.logger.error(e);
-        reject();
+      } catch (err) {
+        this.logger.error(err);
+        return reject(new AppError(err, ErrorCode.IDAM_API));
       }
 
       try {
@@ -109,9 +110,9 @@ export class AuthService {
       } catch (error) {
         this.logger.error(error);
 
-        const errorBody = await error.response.text();
+        const errorBody = error.response ? await error.response.text() : error;
         this.logger.error(`Error body: ${errorBody}`);
-        reject();
+        return reject(new AppError(error, ErrorCode.IDAM_API));
       }
 
       const data: IdamResponseData = await response.json();

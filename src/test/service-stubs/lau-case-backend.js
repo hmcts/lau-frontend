@@ -6,16 +6,16 @@ const config = require('config');
 const express = require('express');
 const app = express();
 const router = express.Router();
-const BACKEND_PORT = config.get('services.case-backend.port');
-const CASE_ACTIVITY_ENDPOINT = config.get('services.case-backend.endpoints.caseActivity');
-const CASE_SEARCH_ENDPOINT = config.get('services.case-backend.endpoints.caseSearch');
+const BACKEND_PORT = config.get('services.lau-case-backend.port');
+const CASE_ACTIVITY_ENDPOINT = config.get('services.lau-case-backend.endpoints.caseActivity');
+const CASE_SEARCH_ENDPOINT = config.get('services.lau-case-backend.endpoints.caseSearch');
 
 const caseActivityLogs = require('../data/caseActivityLogs.json');
 const caseSearchLogs = require('../data/caseSearchLogs.json');
 
 app.use(express.json());
 
-router.get('/health/readiness', (req, res) => {
+router.get('/health', (req, res) => {
   res.contentType('application/json');
   res.status(200);
   res.send({status: 'UP'});

@@ -31,7 +31,12 @@
   </div>
 
   <div class="flex-space-between">
-    <p class="govuk-body">Displaying <b>{{ logons.startRecordNumber }} to {{ logons.startRecordNumber + (logons.noOfRows - 1) }}</b> of {{ logons.totalNumberOfRecords }} records</p>
+    <div>
+      <p class="govuk-body">Displaying <b>{{ logons.startRecordNumber | numComma }} to {{ (logons.startRecordNumber + (logons.noOfRows - 1)) | numComma }}</b> of {{ logons.totalNumberOfRecords | numComma }} records</p>
+      {% if logons.totalNumberOfRecords == common.maxRecords %}
+        <p class="govuk-body-s"><b>Note:</b> Results returned have been capped at {{ common.maxRecords | numComma }}.</p>
+      {% endif %}
+    </div>
     <div>
       {% if (logons.currentPage > 2) %}
         <a id="logons-previous-btn" class="govuk-link" href="/logons/page/1">&lt;&lt; First</a>
@@ -40,7 +45,7 @@
         <a id="logons-previous-btn" class="govuk-link" href="/logons/page/{{ logons.currentPage | int - 1 }}">&lt; Previous</a>
       {% endif %}
 
-      <span class="govuk-body-s">&emsp;Page {{ logons.currentPage }} / {{ logons.lastPage}}&emsp;</span>
+      <span class="govuk-body-s">&emsp;Page {{ logons.currentPage | numComma }} / {{ logons.lastPage | numComma}}&emsp;</span>
 
       {% if (logons.lastPage - logons.currentPage) > 0 %}
         <a id="logons-next-btn" class="govuk-link" href="/logons/page/{{ logons.currentPage | int + 1 }}">Next &gt;</a>
