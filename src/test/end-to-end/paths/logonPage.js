@@ -67,7 +67,7 @@ Scenario('Navigate to LAU, perform logon audit search and download CSV', async (
 }).retry(testConfig.TestRetryScenarios);
 
 //Negative Scenario for Logons audit Search without search data and assert error text
-Scenario('Navigate to LAU, perform logon audit search and authenticate logon search results', async ({I}) => {
+Scenario('Navigate to LAU, perform logon audit search without search parameters', async ({I}) => {
   await I.amOnLauAppPage('');
   await I.authenticateWithIdam(userType.AUDITOR, true);
   await I.amOnPage('/');

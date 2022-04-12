@@ -1,6 +1,6 @@
 {
   "name": "lau-frontend",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": true,
   "engines": {
     "node": ">=14.16.0"
@@ -146,6 +146,7 @@
     "json-schema": "^0.4.0",
     "merge": "^2.1.1",
     "minimist": "^1.2.6",
+    "moment": "^2.29.2",
     "serialize-javascript": "^6.0.0"
   }
 }
