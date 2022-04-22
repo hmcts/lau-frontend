@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import {CaseSearchRequest} from '../../../main/models/case/CaseSearchRequest';
 import {CaseActivityController} from '../../../main/controllers/CaseActivity.controller';
 import {AppRequest, LogData} from '../../../main/models/appRequest';
-import {CaseActions, CaseActivityLog} from '../../../main/models/case/CaseActivityLogs';
+import {CaseActivityLog} from '../../../main/models/case/CaseActivityLogs';
 import {CaseActivityAudit} from '../../../main/models/case/CaseActivityAudit';
 import caseActivityLogs from '../../data/caseActivityLogs.json';
 import {Response} from 'express';
@@ -54,7 +54,7 @@ describe('Case Activity Controller', () => {
       const caseActivityLogs: CaseActivityLog[] = [
         {
           'userId': 'U0001',
-          'caseAction': CaseActions.VIEW,
+          'caseAction': 'VIEW',
           'caseRef': 'C0001',
           'caseJurisdictionId': 'DIVORCE',
           'caseTypeId': 'FinancialRemedyMVP2',
@@ -62,7 +62,7 @@ describe('Case Activity Controller', () => {
         },
         {
           'userId': 'U0002',
-          'caseAction': CaseActions.VIEW,
+          'caseAction': 'VIEW',
           'caseRef': 'C0001',
           'caseJurisdictionId': 'DIVORCE',
           'caseTypeId': 'FinancialRemedyMVP2',
