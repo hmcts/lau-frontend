@@ -1,6 +1,6 @@
 {
   "name": "lau-frontend",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "private": true,
   "engines": {
     "node": ">=14.16.0"
@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@hmcts/cookie-manager": "^0.0.5",
+    "@hmcts/cookie-manager-v1": "npm:@hmcts/cookie-manager@^1.0.0",
     "@hmcts/info-provider": "^1.0.0",
     "@hmcts/nodejs-healthcheck": "^1.7.0",
     "@hmcts/nodejs-logging": "^3.0.4",
@@ -142,6 +143,7 @@
   },
   "resolutions": {
     "ansi-regex": "^5.0.1",
+    "async": "^3.2.2",
     "jsonpointer": "^5.0.0",
     "json-schema": "^0.4.0",
     "merge": "^2.1.1",
