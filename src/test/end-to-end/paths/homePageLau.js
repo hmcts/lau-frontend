@@ -97,7 +97,7 @@ Scenario('Navigate to LAU, perform case audit search and download CSV', async ({
   await I.waitForText('Case Activity Results');
   await I.handleDownloads();
   await I.click('#activityCsvBtn');
-  await I.wait(10);
+  await I.wait(30);
 
   const csvPath = lauHelper.getCsvPath();
 
