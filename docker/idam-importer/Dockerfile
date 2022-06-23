@@ -1,4 +1,4 @@
-FROM hmctspublic.azurecr.io/hmcts/idam/utils
+FROM hmctspublic.azurecr.io/hmcts/idam/utils:latest
 
 COPY scripts /scripts
 
