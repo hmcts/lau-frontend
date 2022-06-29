@@ -14,29 +14,42 @@
   <p>You can <a class="govuk-link" href="/cookies">change your cookie settings</a> at any time.</p>
 {% endset %}
 
+{% set cookieAcceptHtml %}
+  <p class="govuk-body">You’ve accepted additional cookies. You can <a class="govuk-link" href="/cookies">change your cookie settings</a> at any time.</p>
+{% endset %}
+
+{% set cookieRejectHtml %}
+  <p class="govuk-body">You’ve rejected additional cookies. You can <a class="govuk-link" href="/cookies">change your cookie settings</a> at any time.</p>
+{% endset %}
+
+{% set cookieHtml %}
+  <p class="govuk-body">We use some essential cookies to make this service work.</p>
+  <p class="govuk-body">We'd also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
+{% endset %}
+
 {% block bodyStart %}
   <div class="loading-overlay">
     <div class='spinner'></div>
   </div>
-
-  <div class="global-cookie-message" id="cm-cookie-banner">
-    {{ govukCookieBanner({
-      ariaLabel: "Cookies on Log and Audit",
-      messages: [
-        {
-          headingText: "Cookies on Log and Audit",
-          html: "<p>We use some essential cookies to make this service work.</p>
-                 <p>We'd also like to use analytics cookies so we can understand how you use the service and make improvements.</p>",
-          classes: "govuk-cookie-banner__decision",
-          actions: [
+  {% if not useCookieManagerV1 %}
+    <div class="global-cookie-message" id="cm-cookie-banner">
+      {{ govukCookieBanner({
+        ariaLabel: "Cookies on Log and Audit",
+        messages: [
+          {
+            headingText: "Cookies on Log and Audit",
+            html: "<p>We use some essential cookies to make this service work.</p>
+                   <p>We'd also like to use analytics cookies so we can understand how you use the service and make improvements.</p>",
+            classes: "govuk-cookie-banner__decision",
+            actions: [
             {
               text: "Accept analytics cookies",
               type: "button",
               name: "cookies",
               value: "accept",
               attributes: {
-                'data-cm-action': 'accept'
-              }
+              'data-cm-action': 'accept'
+            }
             },
             {
               text: "Reject analytics cookies",
@@ -44,36 +57,92 @@
               name: "cookies",
               value: "reject",
               attributes: {
-                'data-cm-action': 'reject'
-              }
+              'data-cm-action': 'reject'
+            }
             },
             {
               text: "View cookies",
-              href: "#"
+              href: "/cookies"
             }
           ]
+          },
+          {
+            html: cookieConfirmationHTML,
+            role: "alert",
+            classes: "govuk-cookie-banner__confirmation",
+            hidden: true,
+            actions: [
+            {
+              text: "Hide this message",
+              type: "button",
+              attributes: {
+              'data-cm-action': 'hide'
+            }
+            }
+          ]
+          }
+        ]
+      }) }}
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block header %}
+  {% if useCookieManagerV1 %}
+    {{ govukCookieBanner({
+      classes: 'cookie-banner',
+      ariaLabel: 'Cookies on Log and Audit',
+      hidden: true,
+      messages: [
+        {
+          classes: 'cookie-banner-message',
+          headingText: 'Cookies on Log and Audit',
+          html: cookieHtml,
+          actions: [
+          {
+            classes: 'cookie-banner-accept-button',
+            text: 'Accept analytics cookies',
+            type: "button"
+          },
+          {
+            classes: 'cookie-banner-reject-button',
+            text: 'Reject analytics cookies',
+            type: "button"
+          },
+          {
+            text: 'View cookies',
+            href: "/cookies"
+          }
+        ]
         },
         {
-          html: cookieConfirmationHTML,
+          classes: 'cookie-banner-accept-message',
+          html: cookieAcceptHtml,
           role: "alert",
-          classes: "govuk-cookie-banner__confirmation",
           hidden: true,
           actions: [
           {
-            text: "Hide this message",
-            type: "button",
-            attributes: {
-              'data-cm-action': 'hide'
-            }
+            classes: 'cookie-banner-hide-button',
+            text: 'Hide this message'
+          }
+        ]
+        },
+        {
+          classes: 'cookie-banner-reject-message',
+          html: cookieRejectHtml,
+          role: "alert",
+          hidden: true,
+          actions: [
+          {
+            classes: 'cookie-banner-hide-button',
+            text: 'Hide this message'
           }
         ]
         }
       ]
     }) }}
-  </div>
-{% endblock %}
+  {% endif %}
 
-{% block header %}
   {{ govukHeader({
     homepageUrl: "/",
     serviceName: "Log and Audit",
@@ -112,4 +181,9 @@
 {% block bodyEnd %}
   {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
   {% include "common/webpack/js.njk" %}
+
+  {# Load Flatpickr at end of body as this is non-critical #}
+  <link rel="stylesheet" href="assets/css/flatpickr.min.css">
+
+  <div id="use-cookie-manager-v1">{{ useCookieManagerV1 }}</div>
 {% endblock %}
