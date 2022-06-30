@@ -9,6 +9,7 @@ import {AppRequest, LogData} from '../models/appRequest';
 import {LogonLog, LogonLogs} from '../models/idam/LogonLogs';
 import {csvDate, requestDateToFormDate} from '../util/Date';
 import {csvJson} from '../util/CsvHandler';
+import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 
 /**
  * Logons Controller class to handle logon results tab functionality.
@@ -21,18 +22,29 @@ export class LogonController {
 
   public async getLogData(req: AppRequest): Promise<LogData> {
     this.logger.info('getLogData called');
-    return this.service.getLogons(req).then(logons => {
-      const recordsPerPage = Number(config.get('pagination.maxPerPage'));
-      return {
-        hasData: logons.logonLog.length > 0,
-        rows: this.convertDataToTableRows(logons.logonLog),
-        noOfRows: logons.logonLog.length,
-        totalNumberOfRecords: logons.totalNumberOfRecords,
-        startRecordNumber: logons.startRecordNumber,
-        moreRecords: logons.moreRecords,
-        currentPage: req.session.logonFormState.page,
-        lastPage: logons.totalNumberOfRecords > 0 ? Math.ceil(logons.totalNumberOfRecords / recordsPerPage) : 1,
-      };
+    return new Promise((resolve, reject) => {
+      this.service.getLogons(req).then(logons => {
+        if (logons.logonLog) {
+          const recordsPerPage = Number(config.get('pagination.maxPerPage'));
+          resolve({
+            hasData: logons.logonLog.length > 0,
+            rows: this.convertDataToTableRows(logons.logonLog),
+            noOfRows: logons.logonLog.length,
+            totalNumberOfRecords: logons.totalNumberOfRecords,
+            startRecordNumber: logons.startRecordNumber,
+            moreRecords: logons.moreRecords,
+            currentPage: req.session.logonFormState.page,
+            lastPage: logons.totalNumberOfRecords > 0 ? Math.ceil(logons.totalNumberOfRecords / recordsPerPage) : 1,
+          });
+        } else {
+          const errMsg = 'Logons data malformed';
+          this.logger.error(errMsg);
+          reject(new AppError(errMsg, ErrorCode.IDAM_BACKEND));
+        }
+      }).catch((err: AppError) => {
+        this.logger.error(err.message);
+        reject(err);
+      });
     });
   }
 
@@ -51,9 +63,9 @@ export class LogonController {
     await this.getLogData(req).then(logData => {
       req.session.logons = logData;
       res.redirect('/#logons-tab');
-    }).catch((err) => {
-      this.logger.error(err);
-      res.redirect('/error');
+    }).catch((err: AppError) => {
+      this.logger.error(err.message);
+      errorRedirect(res, err.code);
     });
   }
 

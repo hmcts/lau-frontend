@@ -15,6 +15,7 @@ export class SessionStorage {
 
   public enableFor(app: Application): void {
     app.use(cookieParser());
+    app.set('trust proxy', 1);
 
     const sessionStore = this.getStore();
     app.use(
@@ -26,6 +27,8 @@ export class SessionStorage {
         cookie: {
           httpOnly: true,
           maxAge: this.cookieMaxAge,
+          sameSite: 'lax', // required for the oauth2 redirect
+          secure: true,
         },
         rolling: true, // Renew the cookie for another 30 minutes on each request
         store: sessionStore,
@@ -51,7 +54,7 @@ export class SessionStorage {
 
       const redisOptions = config.get('redis.useTLS') === 'true' ? tlsOptions : {};
 
-      logger.info(`Redis Connection - Host: ${host}, Port: ${port}, Options: ${JSON.stringify(redisOptions)}`);
+      logger.info(`Redis Connection - Host: ${host}, Port: ${port}`);
 
       const client = new Redis(port, host, redisOptions);
 

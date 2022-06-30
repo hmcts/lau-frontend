@@ -59,3 +59,18 @@ $color-white: #fff;
     transform: scale(5);
   }
 }
+
+.success-message {
+  border: 5px solid;
+  margin-bottom: 50px;
+  margin-top: 16px;
+  padding: 20px;
+}
+
+.cookie-preference-success {
+  display: none;
+}
+
+#use-cookie-manager-v1 {
+  display: none;
+}

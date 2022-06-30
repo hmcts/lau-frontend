@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as express from 'express';
 import * as nunjucks from 'nunjucks';
 import {numberWithCommas} from '../../util/Util';
+import {LaunchDarklyClient} from '../../components/featureToggle/LaunchDarklyClient';
 
 export class Nunjucks {
   constructor(public developmentMode: boolean) {
@@ -19,7 +20,7 @@ export class Nunjucks {
       'node_modules',
       'govuk-frontend',
     );
-    const env =nunjucks.configure(
+    const env = nunjucks.configure(
       [path.join(__dirname, '..', '..', 'views'), govUkFrontendPath],
       {
         autoescape: true,
@@ -30,7 +31,12 @@ export class Nunjucks {
 
     env.addFilter('numComma', (x) => numberWithCommas(x));
 
-    app.use((req, res, next) => {
+    env.addGlobal('nonce', app.locals.nonce);
+
+    app.use(async (req, res, next) => {
+      const useCookieManagerV1 = await LaunchDarklyClient.instance.variation('cookie-manager-v-1');
+      env.addGlobal('useCookieManagerV1', useCookieManagerV1);
+
       res.locals.pagePath = req.path;
       next();
     });

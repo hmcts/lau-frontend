@@ -7,6 +7,7 @@ import {CaseActions, CaseActivityLog} from '../../../main/models/case/CaseActivi
 import {CaseActivityAudit} from '../../../main/models/case/CaseActivityAudit';
 import caseActivityLogs from '../../data/caseActivityLogs.json';
 import {Response} from 'express';
+import {AppError, ErrorCode} from '../../../main/models/AppError';
 
 describe('Case Activity Controller', () => {
   const caseActivityController = new CaseActivityController();
@@ -179,6 +180,31 @@ describe('Case Activity Controller', () => {
         nock.cleanAll();
       });
     });
+
+    it('returns app error if no log data is returned', async () => {
+      nock('http://localhost:4550')
+        .get('/audit/caseAction?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+        .reply(200, {});
+
+      const searchRequest: Partial<CaseSearchRequest> = {
+        userId: '123',
+        startTimestamp: '2021-12-12T12:00:00',
+        endTimestamp: '2021-12-12T12:00:01',
+        page: 1,
+      };
+
+      const req = {
+        session: {
+          caseFormState: searchRequest,
+        },
+      };
+
+      return caseActivityController.getLogData(req as AppRequest).catch((error: AppError) => {
+        expect(error.message).toBe('Case Activities data malformed');
+        expect(error.code).toBe(ErrorCode.CASE_BACKEND);
+        nock.cleanAll();
+      });
+    });
   });
 
   describe('getPage', () => {
@@ -191,7 +217,7 @@ describe('Case Activity Controller', () => {
       };
 
       nock('http://localhost:4550')
-        .get('/audit/caseAction?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+        .get('/audit/caseAction?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
         .reply(
           200,
           caseActivityAudit,
@@ -211,12 +237,44 @@ describe('Case Activity Controller', () => {
         },
       };
 
-      const res = { redirect: sinon.spy() };
+      const res = {redirect: sinon.spy()};
 
       // @ts-ignore Conversion of res with spy
       return caseActivityController.getPage(appRequest as AppRequest, res as Response).then(() => {
         expect(appRequest.session.caseFormState.page).toBe(2);
         expect(res.redirect.calledOnce).toBeTruthy();
+      });
+    });
+
+    it('redirects to error page with code on fetch failure', async () => {
+      nock('http://localhost:4550')
+        .get('/audit/caseAction?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
+        .reply(
+          200,
+          {},
+        );
+
+      const appRequest = {
+        session: {
+          caseFormState: {
+            userId: '123',
+            startTimestamp: '2021-12-12T12:00:00',
+            endTimestamp: '2021-12-12T12:00:01',
+            page: 1,
+          },
+        },
+        params: {
+          pageNumber: 2,
+        },
+      };
+
+      const res = {redirect: sinon.spy()};
+
+      // @ts-ignore Conversion of res with spy
+      return caseActivityController.getPage(appRequest as AppRequest, res as Response).then(() => {
+        expect(res.redirect.calledOnce).toBeTruthy();
+        expect(res.redirect.calledWith('/error?code=LAU02')).toBeTruthy();
+        nock.cleanAll();
       });
     });
   });

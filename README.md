@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This is the frontend for the Log and Audit service.
+This is the frontend application for the Log and Audit service.
 This service will allow an investigator to see a report detailing all case interactions and system logons for a given user for up to 2 years.
 
 ## Getting Started
