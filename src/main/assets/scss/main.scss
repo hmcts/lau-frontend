@@ -44,7 +44,7 @@ $color-white: #fff;
 .loading-overlay {
   align-items: center;
   background-color: $color-white;
-  display: none;
+  display: flex;
   height: 100%;
   justify-content: center;
   left: 0;
