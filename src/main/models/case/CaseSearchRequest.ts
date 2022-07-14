@@ -3,6 +3,7 @@ export interface CaseSearchRequest {
   caseRef: string;
   caseTypeId: string;
   caseJurisdictionId: string;
+  activity: string;
   startTimestamp: string;
   endTimestamp: string;
   size: number;

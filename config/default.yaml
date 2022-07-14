@@ -33,6 +33,7 @@ services:
     endpoints:
       caseActivity: '/audit/caseAction'
       caseSearch: '/audit/caseSearch'
+      caseDeletions: '/audit/caseDeletions'
   lau-idam-backend:
     enabled: true
     url: 'http://localhost:4551'

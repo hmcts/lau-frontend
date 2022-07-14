@@ -41,6 +41,11 @@ $color-white: #fff;
   margin-left: 50px;
 }
 
+// Case deletions search tab
+.home-tabs ul li:nth-child(6) {
+  margin-left: 50px;
+}
+
 .loading-overlay {
   align-items: center;
   background-color: $color-white;

@@ -1,115 +1,101 @@
 {
-  "actionLog": [
+  "deletionLog": [
     {
-      "userId": "U0001",
-      "caseAction": "VIEW",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
+      "deletionMode": "DELETE",
       "timestamp": "2020-07-20T15:00:00"
     },
     {
-      "userId": "U0002",
-      "caseAction": "VIEW",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
+      "deletionMode": "SIMULATE",
       "timestamp": "2020-07-20T15:00:00"
     },
     {
-      "userId": "U0003",
-      "caseAction": "VIEW",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
+      "deletionMode": "SIMULATE",
       "timestamp": "2020-07-20T15:00:00"
     },
     {
-      "userId": "U0004",
-      "caseAction": "Create",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
+      "deletionMode": "DELETE",
       "timestamp": "2020-07-20T15:00:00"
     },
     {
-      "userId": "U0005",
-      "caseAction": "VIEW",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
+      "deletionMode": "DELETE",
       "timestamp": "2020-07-20T15:00:00"
     },
     {
-      "userId": "U0006",
-      "caseAction": "VIEW",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
+      "deletionMode": "SIMULATE",
       "timestamp": "2020-07-20T15:00:00"
     },
     {
-      "userId": "U0007",
-      "caseAction": "Update",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
+      "deletionMode": "SIMULATE",
       "timestamp": "2020-07-20T15:00:00"
     },
     {
-      "userId": "U0008",
-      "caseAction": "VIEW",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
+      "deletionMode": "SIMULATE",
       "timestamp": "2020-07-20T15:00:00"
     },
     {
-      "userId": "U0009",
-      "caseAction": "VIEW",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
+      "deletionMode": "DELETE",
       "timestamp": "2020-07-20T15:00:00"
     },
     {
-      "userId": "U0010",
-      "caseAction": "DELETE",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
+      "deletionMode": "DELETE",
       "timestamp": "2020-07-20T15:00:00"
     },
     {
-      "userId": "U0011",
-      "caseAction": "VIEW",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
+      "deletionMode": "DELETE",
       "timestamp": "2020-07-20T15:00:00"
     },
     {
-      "userId": "U0012",
-      "caseAction": "VIEW",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
+      "deletionMode": "DELETE",
       "timestamp": "2020-07-20T15:00:00"
     },
     {
-      "userId": "U0013",
-      "caseAction": "VIEW",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
+      "deletionMode": "SIMULATE",
       "timestamp": "2020-07-20T15:00:00"
     },
     {
-      "userId": "U0014",
-      "caseAction": "VIEW",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
+      "deletionMode": "DELETE",
       "timestamp": "2020-07-20T15:00:00"
     }
   ],

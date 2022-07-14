@@ -1,0 +1,111 @@
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set calendarIcon %}
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+  </svg>
+{% endset %}
+
+<form id="case-deletions-search-form" class="form search-form" method="post" action="/case-deletions-search">
+  <div class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">Case Deletions Search</h1>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+
+      {{ govukInput({
+        label: {
+          text: "Jurisdiction ID"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "jurisdictionId",
+        name: "jurisdictionId",
+        value: caseDeletionsForm.jurisdictionId
+      }) }}
+
+      {{ govukSelect({
+        id: "deletionMode",
+        name: "deletionMode",
+        label: {
+          text: "Deletion Mode"
+        },
+        classes: "govuk-!-width-three-quarters",
+        value: caseDeletionsForm.deletionMode,
+        items: [
+          {
+            value: "ALL",
+            text: "All",
+            selected: true
+          },
+          {
+            value: "DELETE",
+            text: "DELETE"
+          },
+          {
+            value: "SIMULATE",
+            text: "SIMULATE"
+          }
+        ]
+      }) }}
+
+    </div>
+    <div class="govuk-grid-column-one-half">
+
+      {{ govukInput({
+        label: {
+          text: "Time from (UTC)"
+        },
+        classes: "govuk-!-width-three-quarters",
+        suffix: {
+          html: calendarIcon,
+          classes: "case-deletions-start-timestamp-suffix"
+        },
+        id: "caseDeletionsStartTimestamp",
+        name: "startTimestamp",
+        value: caseDeletionsForm.startTimestamp
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Time to (UTC)"
+        },
+        classes: "govuk-!-width-three-quarters",
+        suffix: {
+          html: calendarIcon,
+          classes: "case-deletions-end-timestamp-suffix"
+        },
+        id: "caseDeletionsEndTimestamp",
+        name: "endTimestamp",
+        value: caseDeletionsForm.endTimestamp
+      }) }}
+
+      <input type="hidden" id="page" name="page" value="1">
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      {{ govukButton({
+        name: "case-deletions-search-btn",
+        text: "Search",
+        type: "submit",
+        classes: "govuk-!-width-three-quarters govuk-!-margin-top-7",
+        preventDoubleClick: true,
+        value: "search"
+      }) }}
+    </div>
+
+    <div class="govuk-grid-column-one-half">
+      <p class="govuk-body govuk-body govuk-!-font-size-16">
+        <b>Note:</b> Please include time parameters in your search using the 'Time from' and 'Time to' fields, and
+        enter at least one other parameter to obtain search results.
+      </p>
+      <p class="govuk-body govuk-body govuk-!-font-size-16">Search results are limited to {{ common.maxRecords | numComma }}.</p>
+    </div>
+  </div>
+</form>

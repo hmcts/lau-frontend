@@ -9,9 +9,11 @@ const router = express.Router();
 const BACKEND_PORT = config.get('services.lau-case-backend.port');
 const CASE_ACTIVITY_ENDPOINT = config.get('services.lau-case-backend.endpoints.caseActivity');
 const CASE_SEARCH_ENDPOINT = config.get('services.lau-case-backend.endpoints.caseSearch');
+const CASE_DELETIONS_ENDPOINT = config.get('services.lau-case-backend.endpoints.caseDeletions');
 
 const caseActivityLogs = require('../data/caseActivityLogs.json');
 const caseSearchLogs = require('../data/caseSearchLogs.json');
+const caseDeletionsLogs = require('../data/caseDeletionsLogs.json');
 
 app.use(express.json());
 
@@ -31,6 +33,12 @@ router.get(CASE_SEARCH_ENDPOINT, (req, res) => {
   res.contentType('application/json');
   res.status(200);
   res.json(caseSearchLogs);
+});
+
+router.get(CASE_DELETIONS_ENDPOINT, (req, res) => {
+  res.contentType('application/json');
+  res.status(200);
+  res.json(caseDeletionsLogs);
 });
 
 app.use(router);

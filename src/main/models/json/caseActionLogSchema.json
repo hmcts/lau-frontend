@@ -17,6 +17,12 @@
       "title": "IdAM user identifier",
       "maxLength": 64
     },
+    "caseAction": {
+      "id": "#caseAction",
+      "type": "string",
+      "title": "Case action event",
+      "enum": ["UPDATE", "CREATE", "VIEW", "DELETE"]
+    },
     "caseRef": {
       "id": "#caseRef",
       "type": "string",
@@ -34,6 +40,12 @@
       "type": "string",
       "title": "Case type name from CCD",
       "maxLength": 70
+    },
+    "mode": {
+      "id": "#mode",
+      "type": "string",
+      "title": "Deletion mode. Only visible in case deletion results page.",
+      "enum": ["DELETE", "SIMULATE"]
     },
     "timestamp": {
       "id": "#timestamp",
