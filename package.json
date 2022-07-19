@@ -1,6 +1,6 @@
 {
   "name": "lau-frontend",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "private": true,
   "engines": {
     "node": ">=14.16.0"
@@ -144,6 +144,7 @@
   "resolutions": {
     "ansi-regex": "^5.0.1",
     "async": "^3.2.2",
+    "glob-parent": "^6.0.2",
     "jsonpointer": "^5.0.0",
     "json-schema": "^0.4.0",
     "merge": "^2.1.1",
