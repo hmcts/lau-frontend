@@ -3,7 +3,7 @@ import config from 'config';
 import {AppRequest} from '../../../main/models/appRequest';
 import {CaseDeletionsService} from '../../../main/service/CaseDeletionsService';
 import {CaseDeletions} from '../../../main/models/deletions/CaseDeletions';
-import {CaseDeletionsSearchRequest, DeletionModes} from '../../../main/models/deletions/CaseDeletionsSearchRequest';
+import {CaseDeletionsSearchRequest} from '../../../main/models/deletions/CaseDeletionsSearchRequest';
 
 describe('Case Deletions Service', () => {
   const caseDeletionsService = new CaseDeletionsService();
@@ -21,15 +21,16 @@ describe('Case Deletions Service', () => {
       };
 
       nock(baseApiUrl)
-        .get(`${caseDeletionsEndpoint}?caseJurisdictionId=123&deletionMode=ALL&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01`)
+        .get(`${caseDeletionsEndpoint}?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01`)
         .reply(
           200,
           expectedCaseDeletions,
         );
 
       const searchParameters: Partial<CaseDeletionsSearchRequest> = {
+        caseRef: '123',
+        caseTypeId: '123',
         caseJurisdictionId: '123',
-        deletionMode: DeletionModes.ALL,
         startTimestamp: '2021-12-12T12:00:00',
         endTimestamp: '2021-12-12T12:00:01',
       };

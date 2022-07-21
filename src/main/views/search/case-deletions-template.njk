@@ -20,37 +20,32 @@
 
       {{ govukInput({
         label: {
+          text: "Case Ref"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "caseRef",
+        name: "caseRef",
+        value: caseDeletionsForm.caseRef
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Case Type ID"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "caseTypeId",
+        name: "caseTypeId",
+        value: caseDeletionsForm.caseTypeId
+      }) }}
+
+      {{ govukInput({
+        label: {
           text: "Jurisdiction ID"
         },
         classes: "govuk-!-width-three-quarters",
         id: "jurisdictionId",
         name: "jurisdictionId",
         value: caseDeletionsForm.jurisdictionId
-      }) }}
-
-      {{ govukSelect({
-        id: "deletionMode",
-        name: "deletionMode",
-        label: {
-          text: "Deletion Mode"
-        },
-        classes: "govuk-!-width-three-quarters",
-        value: caseDeletionsForm.deletionMode,
-        items: [
-          {
-            value: "ALL",
-            text: "All",
-            selected: true
-          },
-          {
-            value: "DELETE",
-            text: "DELETE"
-          },
-          {
-            value: "SIMULATE",
-            text: "SIMULATE"
-          }
-        ]
       }) }}
 
     </div>
@@ -84,6 +79,14 @@
         value: caseDeletionsForm.endTimestamp
       }) }}
 
+      <div>
+        <p class="govuk-body govuk-body govuk-!-font-size-16">
+          <b>Note:</b> Please include time parameters in your search using the 'Time from' and 'Time to' fields, and
+          enter at least one other parameter to obtain search results.
+        </p>
+        <p class="govuk-body govuk-body govuk-!-font-size-16">Search results are limited to {{ common.maxRecords | numComma }}.</p>
+      </div>
+
       <input type="hidden" id="page" name="page" value="1">
     </div>
   </div>
@@ -98,14 +101,6 @@
         preventDoubleClick: true,
         value: "search"
       }) }}
-    </div>
-
-    <div class="govuk-grid-column-one-half">
-      <p class="govuk-body govuk-body govuk-!-font-size-16">
-        <b>Note:</b> Please include time parameters in your search using the 'Time from' and 'Time to' fields, and
-        enter at least one other parameter to obtain search results.
-      </p>
-      <p class="govuk-body govuk-body govuk-!-font-size-16">Search results are limited to {{ common.maxRecords | numComma }}.</p>
     </div>
   </div>
 </form>

@@ -1,6 +1,6 @@
 import {Logs} from '../Logs';
 
-export enum CaseActions {'UPDATE' = 'UPDATE', 'CREATE' = 'CREATE', 'VIEW' = 'VIEW', 'DELETE' = 'DELETE', 'SIMULATE' = 'SIMULATE'}
+export enum CaseActions {'UPDATE' = 'UPDATE', 'CREATE' = 'CREATE', 'VIEW' = 'VIEW', 'DELETE' = 'DELETE'}
 
 export interface CaseActivityLog {
   userId: string;

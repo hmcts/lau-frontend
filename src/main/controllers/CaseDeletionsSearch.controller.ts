@@ -16,7 +16,7 @@ export class CaseDeletionsSearchController extends BaseSearchController<CaseDele
 
   formId = 'caseDeletionsSearchForm';
   requiredFields = [
-    'caseJurisdictionId', 'deletionMode',
+    'caseRef', 'caseTypeId', 'caseJurisdictionId',
   ];
 
   /**

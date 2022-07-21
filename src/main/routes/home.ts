@@ -38,7 +38,7 @@ async function homeHandler(req: AppRequest, res: Response) {
         startDateBeforeEndDate: '\'Time from\' must be before \'Time to\'',
       },
       caseDeletionsSearchForm: {
-        stringFieldRequired: 'Please enter at least one of the following fields: Jurisdiction ID or Deletion Mode.',
+        stringFieldRequired: 'Please enter at least one of the following fields: Case Type ID, Case Ref or Jurisdiction ID.',
         startDateBeforeEndDate: '\'Time from\' must be before \'Time to\'',
       },
       startTimestamp: {

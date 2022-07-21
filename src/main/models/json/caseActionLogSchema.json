@@ -41,12 +41,6 @@
       "title": "Case type name from CCD",
       "maxLength": 70
     },
-    "mode": {
-      "id": "#mode",
-      "type": "string",
-      "title": "Deletion mode. Only visible in case deletion results page.",
-      "enum": ["DELETE", "SIMULATE"]
-    },
     "timestamp": {
       "id": "#timestamp",
       "type": "string",

@@ -2,7 +2,6 @@ import nock from 'nock';
 import sinon from 'sinon';
 import {AppRequest} from '../../../main/models/appRequest';
 import {CaseDeletionsSearchController} from '../../../main/controllers/CaseDeletionsSearch.controller';
-import {DeletionModes} from '../../../main/models/deletions/CaseDeletionsSearchRequest';
 
 describe('Case Deletions Search Controller', () => {
   describe('Search form validation', () => {
@@ -10,9 +9,9 @@ describe('Case Deletions Search Controller', () => {
 
     it('requires at least one of the string inputs', async () => {
       const errors = caseDeletionsSearchController.validateSearchForm({
+        caseRef: '',
+        caseTypeId: '',
         caseJurisdictionId: '',
-        // @ts-ignore
-        deletionMode: '',
         startTimestamp: '2021-01-01 00:00:00',
         endTimestamp: '2021-01-01 00:00:01',
         page: 1,
@@ -86,7 +85,7 @@ describe('Case Deletions Search Controller', () => {
 
     it('formats the search request', async () => {
       nock('http://localhost:4551')
-        .get('/audit/caseDeletions?caseJurisdictionId=test&deletionMode=ALL=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5')
+        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5')
         .reply(
           200,
           {deletionsLog: []},
@@ -95,8 +94,9 @@ describe('Case Deletions Search Controller', () => {
       const req = {
         session: {},
         body: {
-          caseJurisdictionId: 'test',
-          deletionMode: DeletionModes.ALL,
+          caseRef: '123',
+          caseTypeId: '123',
+          caseJurisdictionId: '123',
           startTimestamp: '2021-12-12 12:00:00',
           endTimestamp: '2021-12-12 12:00:01',
           page: 1,
@@ -106,8 +106,9 @@ describe('Case Deletions Search Controller', () => {
       // @ts-ignore
       return caseDeletionsSearchController.post(req as AppRequest, res as Response).then(() => {
         expect(req.body).toStrictEqual({
-          caseJurisdictionId: 'test',
-          deletionMode: 'ALL',
+          caseRef: '123',
+          caseTypeId: '123',
+          caseJurisdictionId: '123',
           startTimestamp: '2021-12-12T12:00:00',
           endTimestamp: '2021-12-12T12:00:01',
           page: 1,
@@ -118,7 +119,7 @@ describe('Case Deletions Search Controller', () => {
 
     it('redirects to the case deletions results tab', async () => {
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?deletionMode=ALL&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&size=5')
+        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&size=5')
         .reply(
           200,
           {deletionsLog: []},
@@ -127,7 +128,9 @@ describe('Case Deletions Search Controller', () => {
       const req = {
         session: {},
         body: {
-          deletionMode: 'ALL',
+          caseRef: '123',
+          caseTypeId: '123',
+          caseJurisdictionId: '123',
           startTimestamp: '2021-12-12 12:00:00',
           endTimestamp: '2021-12-12 12:00:01',
         },
@@ -142,13 +145,15 @@ describe('Case Deletions Search Controller', () => {
 
     it('redirects to error page with backend error code', async () => {
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?deletionMode=ALL&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&size=5')
+        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&size=5')
         .reply(500, {});
 
       const req = {
         session: {},
         body: {
-          deletionMode: 'ALL',
+          caseRef: '123',
+          caseTypeId: '123',
+          caseJurisdictionId: '123',
           startTimestamp: '2021-12-12 12:00:00',
           endTimestamp: '2021-12-12 12:00:01',
         },

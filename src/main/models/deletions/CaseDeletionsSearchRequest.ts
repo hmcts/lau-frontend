@@ -1,8 +1,7 @@
-export enum DeletionModes {'ALL' = 'ALL', 'DELETE' = 'DELETE', 'SIMULATE' = 'SIMULATE'}
-
 export interface CaseDeletionsSearchRequest {
+  caseRef: string;
+  caseTypeId: string;
   caseJurisdictionId: string;
-  deletionMode: DeletionModes;
   startTimestamp: string;
   endTimestamp: string;
   size: number;

@@ -5,7 +5,7 @@ import caseDeletionsLogs from '../../data/caseDeletionsLogs.json';
 import {Response} from 'express';
 import {AppError, ErrorCode} from '../../../main/models/AppError';
 import {CaseDeletionsController} from '../../../main/controllers/CaseDeletions.controller';
-import {CaseDeletionsSearchRequest, DeletionModes} from '../../../main/models/deletions/CaseDeletionsSearchRequest';
+import {CaseDeletionsSearchRequest} from '../../../main/models/deletions/CaseDeletionsSearchRequest';
 import {CaseDeletionsLog} from '../../../main/models/deletions/CaseDeletionsLogs';
 import {CaseDeletions} from '../../../main/models/deletions/CaseDeletions';
 
@@ -15,14 +15,16 @@ describe('Case Deletions Controller', () => {
   describe('getLogData', () => {
     it('returns valid log data - no deletions', async () => {
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?deletionMode=ALL&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
         .reply(
           200,
           {deletionsLog: [], totalNumberOfRecords: 0, startRecordNumber: 1, moreRecords: false},
         );
 
       const searchRequest: Partial<CaseDeletionsSearchRequest> = {
-        deletionMode: DeletionModes.ALL,
+        caseRef: '123',
+        caseTypeId: '123',
+        caseJurisdictionId: '123',
         startTimestamp: '2021-12-12T12:00:00',
         endTimestamp: '2021-12-12T12:00:01',
         page: 1,
@@ -56,14 +58,12 @@ describe('Case Deletions Controller', () => {
           'caseRef': '1615817621013640',
           'caseJurisdictionId': 'Probate',
           'caseTypeId': 'Caveats',
-          'deletionMode': DeletionModes.DELETE,
           'timestamp': '2021-06-23T22:20:05.293Z',
         },
         {
           'caseRef': '1615817621013640',
           'caseJurisdictionId': 'Probate',
           'caseTypeId': 'Caveats',
-          'deletionMode': DeletionModes.SIMULATE,
           'timestamp': '2020-02-02T08:16:27.234Z',
         },
       ];
@@ -76,14 +76,16 @@ describe('Case Deletions Controller', () => {
       };
 
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?deletionMode=ALL&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
         .reply(
           200,
           caseDeletions,
         );
 
       const searchRequest: Partial<CaseDeletionsSearchRequest> = {
-        deletionMode: DeletionModes.ALL,
+        caseRef: '123',
+        caseTypeId: '123',
+        caseJurisdictionId: '123',
         startTimestamp: '2021-12-12T12:00:00',
         endTimestamp: '2021-12-12T12:00:01',
         page: 1,
@@ -100,8 +102,8 @@ describe('Case Deletions Controller', () => {
           hasData: true,
           moreRecords: false,
           rows: [
-            [{text: '1615817621013640'}, {text: 'Probate'}, {text: 'Caveats'}, {text: 'DELETE'}, {text: '2021-06-23 22:20:05'}],
-            [{text: '1615817621013640'}, {text: 'Probate'}, {text: 'Caveats'}, {text: 'SIMULATE'}, {text: '2020-02-02 08:16:27'}],
+            [{text: '1615817621013640'}, {text: 'Probate'}, {text: 'Caveats'}, {text: '2021-06-23 22:20:05'}],
+            [{text: '1615817621013640'}, {text: 'Probate'}, {text: 'Caveats'}, {text: '2020-02-02 08:16:27'}],
           ],
           startRecordNumber: 1,
           noOfRows: 2,
@@ -126,14 +128,16 @@ describe('Case Deletions Controller', () => {
       };
 
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?deletionMode=ALL&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
         .reply(
           200,
           caseDeletions,
         );
 
       const searchRequest: Partial<CaseDeletionsSearchRequest> = {
-        deletionMode: DeletionModes.ALL,
+        caseRef: '123',
+        caseTypeId: '123',
+        caseJurisdictionId: '123',
         startTimestamp: '2021-12-12T12:00:00',
         endTimestamp: '2021-12-12T12:00:01',
         page: 1,
@@ -150,20 +154,20 @@ describe('Case Deletions Controller', () => {
           hasData: true,
           moreRecords: false,
           rows: [
-            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'DELETE'},{'text':'2020-07-20 15:00:00'}],
-            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'SIMULATE'},{'text':'2020-07-20 15:00:00'}],
-            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'SIMULATE'},{'text':'2020-07-20 15:00:00'}],
-            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'DELETE'},{'text':'2020-07-20 15:00:00'}],
-            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'DELETE'},{'text':'2020-07-20 15:00:00'}],
-            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'SIMULATE'},{'text':'2020-07-20 15:00:00'}],
-            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'SIMULATE'},{'text':'2020-07-20 15:00:00'}],
-            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'SIMULATE'},{'text':'2020-07-20 15:00:00'}],
-            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'DELETE'},{'text':'2020-07-20 15:00:00'}],
-            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'DELETE'},{'text':'2020-07-20 15:00:00'}],
-            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'DELETE'},{'text':'2020-07-20 15:00:00'}],
-            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'DELETE'},{'text':'2020-07-20 15:00:00'}],
-            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'SIMULATE'},{'text':'2020-07-20 15:00:00'}],
-            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'DELETE'},{'text':'2020-07-20 15:00:00'}],
+            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'2020-07-20 15:00:00'}],
+            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'2020-07-20 15:00:00'}],
+            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'2020-07-20 15:00:00'}],
+            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'2020-07-20 15:00:00'}],
+            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'2020-07-20 15:00:00'}],
+            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'2020-07-20 15:00:00'}],
+            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'2020-07-20 15:00:00'}],
+            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'2020-07-20 15:00:00'}],
+            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'2020-07-20 15:00:00'}],
+            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'2020-07-20 15:00:00'}],
+            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'2020-07-20 15:00:00'}],
+            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'2020-07-20 15:00:00'}],
+            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'2020-07-20 15:00:00'}],
+            [{'text':'C0001'},{'text':'DIVORCE'},{'text':'FinancialRemedyMVP2'},{'text':'2020-07-20 15:00:00'}],
           ],
           startRecordNumber: 1,
           noOfRows: 14,
@@ -181,11 +185,13 @@ describe('Case Deletions Controller', () => {
 
     it('returns app error if no log data is returned', async () => {
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?deletionMode=ALL&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
         .reply(200, {});
 
       const searchRequest: Partial<CaseDeletionsSearchRequest> = {
-        deletionMode: DeletionModes.ALL,
+        caseRef: '123',
+        caseTypeId: '123',
+        caseJurisdictionId: '123',
         startTimestamp: '2021-12-12T12:00:00',
         endTimestamp: '2021-12-12T12:00:01',
         page: 1,
@@ -215,7 +221,7 @@ describe('Case Deletions Controller', () => {
       };
 
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?deletionMode=ALL&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
+        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
         .reply(
           200,
           caseDeletions,
@@ -224,7 +230,9 @@ describe('Case Deletions Controller', () => {
       const appRequest = {
         session: {
           caseDeletionsFormState: {
-            deletionMode: 'ALL',
+            caseRef: '123',
+            caseTypeId: '123',
+            caseJurisdictionId: '123',
             startTimestamp: '2021-12-12T12:00:00',
             endTimestamp: '2021-12-12T12:00:01',
             page: 1,
@@ -247,13 +255,15 @@ describe('Case Deletions Controller', () => {
 
     it('redirects to error page with code on fetch failure', async () => {
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?deletionMode=ALL&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
+        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
         .reply(200, {});
 
       const appRequest = {
         session: {
           caseDeletionsFormState: {
-            deletionMode: 'ALL',
+            caseRef: '123',
+            caseTypeId: '123',
+            caseJurisdictionId: '123',
             startTimestamp: '2021-12-12T12:00:00',
             endTimestamp: '2021-12-12T12:00:01',
             page: 1,

@@ -4,14 +4,12 @@
       "caseRef": "1615817621013640",
       "caseJurisdictionId": "Probate",
       "caseTypeId": "Caveats",
-      "deletionMode": "DELETE",
       "timestamp": "2021-06-23T22:20:05.293Z"
     },
     {
       "caseRef": "1615817621013640",
       "caseJurisdictionId": "Probate",
       "caseTypeId": "Caveats",
-      "deletionMode": "SIMULATE",
       "timestamp": "2020-02-02T08:16:27.234Z"
     }
   ],
