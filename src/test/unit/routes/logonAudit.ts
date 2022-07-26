@@ -1,11 +1,8 @@
 import nock from 'nock';
 import request from 'supertest';
 import {app} from '../../../main/app';
-import {LogonController} from '../../../main/controllers/Logon.controller';
 
 describe('Logon Audit Route', () => {
-  app.use('/logons/csv', (new LogonController()).getCsv);
-
   it('responds with a CSV file', async () => {
     nock('http://localhost:4551')
       .get('/audit/logon?page=1&size=0')

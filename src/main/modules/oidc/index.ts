@@ -9,6 +9,11 @@ import {AppError, errorRedirect} from '../../models/AppError';
  */
 export class OidcMiddleware {
 
+  private approvedRoles = [
+    'cft-audit-investigator',
+    'cft-service-logs',
+  ];
+
   private nonProtectedUrls = [
     '/health',
     '/health/readiness',
@@ -47,10 +52,12 @@ export class OidcMiddleware {
       if (this.nonProtectedUrls.includes(req.path) || OidcMiddleware.isMainFile(req.path) || !config.get('services.idam-api.enabled')) return next();
 
       if (req.session.user) {
-        // Verify the user has the cft-audit-investigator role
+        // Verify the user has one fo the approved roles
         const roles = req.session.user?.roles;
-        if (roles && roles.includes('cft-audit-investigator')) {
+        if (roles && roles.some(role => this.approvedRoles.includes(role))) {
           res.locals.isLoggedIn = true;
+          res.locals.userRoles = roles;
+
           return next();
         }
 

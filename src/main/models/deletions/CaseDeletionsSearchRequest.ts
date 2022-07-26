@@ -1,9 +1,7 @@
-export interface CaseSearchRequest {
-  userId: string;
+export interface CaseDeletionsSearchRequest {
   caseRef: string;
   caseTypeId: string;
   caseJurisdictionId: string;
-  activity: string;
   startTimestamp: string;
   endTimestamp: string;
   size: number;

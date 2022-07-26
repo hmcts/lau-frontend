@@ -3,6 +3,7 @@ import { Session } from 'express-session';
 import type { LoggerInstance } from 'winston';
 import {CaseSearchRequest} from './case/CaseSearchRequest';
 import {LogonSearchRequest} from './idam/LogonSearchRequest';
+import {CaseDeletionsSearchRequest} from './deletions/CaseDeletionsSearchRequest';
 
 export type FormError = {
   propertyName: string;
@@ -23,8 +24,10 @@ export interface AppSession extends Session {
   caseActivities?: LogData;
   caseSearches?: LogData;
   logons?: LogData;
+  caseDeletions?: LogData;
   caseFormState?: Partial<CaseSearchRequest>;
   logonFormState?: Partial<LogonSearchRequest>;
+  caseDeletionsFormState?: Partial<CaseDeletionsSearchRequest>;
   errors?: FormError[];
 }
 

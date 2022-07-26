@@ -18,6 +18,7 @@ import {HealthCheck} from './modules/health';
 import {LaunchDarklyClient} from './components/featureToggle/LaunchDarklyClient';
 
 const { setupDev } = require('./development');
+const { setupTest } = require('./test');
 
 const env = process.env.NODE_ENV || 'development';
 const developmentMode = env === 'development';
@@ -32,10 +33,13 @@ new PropertiesVolume().enableFor(app);
 LaunchDarklyClient.initialise();
 new AppInsights().enable();
 new Helmet(config.get('security')).enableFor(app);
-new Nunjucks(developmentMode).enableFor(app);
 new SessionStorage().enableFor(app);
+new Nunjucks(developmentMode).enableFor(app);
 new OidcMiddleware().enableFor(app);
 new HealthCheck().enableFor(app);
+
+setupDev(app,developmentMode);
+setupTest(app);
 
 app.use(compression());
 app.use(favicon(path.join(__dirname, '/public/assets/images/favicon.ico')));
@@ -54,7 +58,6 @@ glob.sync(__dirname + '/routes/**/*.+(ts|js)')
   .map(filename => require(filename))
   .forEach(route => route.default(app));
 
-setupDev(app,developmentMode);
 // returning "not found" page for requests with paths not resolved by the router
 app.use((req, res) => {
   res.status(404);

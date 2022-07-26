@@ -161,7 +161,7 @@ describe('Case Activity Controller', () => {
             [{'text': 'U0007'}, {'text': 'Update'}, {'text': 'C0001'}, {'text': 'DIVORCE'}, {'text': 'FinancialRemedyMVP2'}, {'text': '2020-07-20 15:00:00'}],
             [{'text': 'U0008'}, {'text': 'VIEW'}, {'text': 'C0001'}, {'text': 'DIVORCE'}, {'text': 'FinancialRemedyMVP2'}, {'text': '2020-07-20 15:00:00'}],
             [{'text': 'U0009'}, {'text': 'VIEW'}, {'text': 'C0001'}, {'text': 'DIVORCE'}, {'text': 'FinancialRemedyMVP2'}, {'text': '2020-07-20 15:00:00'}],
-            [{'text': 'U0010'}, {'text': 'VIEW'}, {'text': 'C0001'}, {'text': 'DIVORCE'}, {'text': 'FinancialRemedyMVP2'}, {'text': '2020-07-20 15:00:00'}],
+            [{'text': 'U0010'}, {'text': 'DELETE'}, {'text': 'C0001'}, {'text': 'DIVORCE'}, {'text': 'FinancialRemedyMVP2'}, {'text': '2020-07-20 15:00:00'}],
             [{'text': 'U0011'}, {'text': 'VIEW'}, {'text': 'C0001'}, {'text': 'DIVORCE'}, {'text': 'FinancialRemedyMVP2'}, {'text': '2020-07-20 15:00:00'}],
             [{'text': 'U0012'}, {'text': 'VIEW'}, {'text': 'C0001'}, {'text': 'DIVORCE'}, {'text': 'FinancialRemedyMVP2'}, {'text': '2020-07-20 15:00:00'}],
             [{'text': 'U0013'}, {'text': 'VIEW'}, {'text': 'C0001'}, {'text': 'DIVORCE'}, {'text': 'FinancialRemedyMVP2'}, {'text': '2020-07-20 15:00:00'}],
