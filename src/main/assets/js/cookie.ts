@@ -1,6 +1,4 @@
-// @ts-ignore HMTCS Cookie Manager is not typed.
-import * as cookieManager from '@hmcts/cookie-manager';
-import {qs} from './selectors';
+import cookieManager from '@hmcts/cookie-manager';
 
 declare global {
   interface Window {
@@ -16,81 +14,54 @@ interface DtrumApi {
   disableSessionReplay(): void;
 }
 
-export function initCookieManager(): void {
-  console.log('Initializing Cookie Manager V0.5');
+console.log('Initializing Cookie Manager');
 
-  const cookieBanner = qs('#cm-cookie-banner');
-  const cookieBannerDecision: HTMLInputElement = cookieBanner?.querySelector('.govuk-cookie-banner__decision');
-  const cookieBannerConfirmation: HTMLInputElement = cookieBanner?.querySelector('.govuk-cookie-banner__confirmation');
+cookieManager.on('UserPreferencesLoaded', (preferences: unknown) => {
+  const dataLayer = window.dataLayer || [];
+  dataLayer.push({'event': 'Cookie Preferences', 'cookiePreferences': preferences});
+});
 
-  function cookieBannerAccept() {
-    const confirmationMessage = cookieBannerConfirmation?.querySelector('p') as HTMLInputElement;
-    confirmationMessage.innerHTML = 'You’ve accepted additional cookies. ' + confirmationMessage.innerHTML;
-  }
+cookieManager.on('UserPreferencesSaved', (preferences: {apm: string}) => {
+  const dataLayer = window.dataLayer || [];
+  const dtrum = window.dtrum;
 
-  function cookieBannerReject() {
-    const confirmationMessage = cookieBannerConfirmation?.querySelector('p') as HTMLInputElement;
-    confirmationMessage.innerHTML = 'You’ve rejected additional cookies. ' + confirmationMessage.innerHTML;
-  }
+  dataLayer.push({'event': 'Cookie Preferences', 'cookiePreferences': preferences});
 
-  function cookieBannerSaved() {
-    cookieBannerDecision.hidden = true;
-    cookieBannerConfirmation.hidden = false;
-  }
-
-  function preferenceFormSaved() {
-    const message = qs('.cookie-preference-success') as HTMLInputElement;
-    message.style.display = 'block';
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-  }
-
-  // @ts-ignore
-  function cookiePreferencesUpdated(cookieStatus) {
-    const dataLayer = window.dataLayer || [];
-    const dtrum = window.dtrum;
-
-    dataLayer.push({event: 'Cookie Preferences', cookiePreferences: cookieStatus});
-
-    if (dtrum !== undefined) {
-      if (cookieStatus.apm === 'on') {
-        dtrum.enable();
-        dtrum.enableSessionReplay();
-      } else {
-        dtrum.disableSessionReplay();
-        dtrum.disable();
-      }
+  if(dtrum !== undefined) {
+    if(preferences.apm === 'on') {
+      dtrum.enable();
+      dtrum.enableSessionReplay();
+    } else {
+      dtrum.disableSessionReplay();
+      dtrum.disable();
     }
   }
+});
 
-  cookieManager.init({
-    'user-preference-cookie-name': 'lau-cookie-preferences',
-    'user-preference-saved-callback': cookiePreferencesUpdated,
-    'preference-form-id': 'cm-preference-form',
-    'preference-form-saved-callback': preferenceFormSaved,
-    'set-checkboxes-in-preference-form': true,
-    'cookie-banner-id': 'cm-cookie-banner',
-    'cookie-banner-visible-on-page-with-preference-form': false,
-    'cookie-banner-reject-callback': cookieBannerReject,
-    'cookie-banner-accept-callback': cookieBannerAccept,
-    'cookie-banner-saved-callback': cookieBannerSaved,
-    'cookie-banner-auto-hide': false,
-    'cookie-manifest': [
-      {
-        'category-name': 'essential',
-        optional: false,
-        cookies: ['lau-cookie-preferences', 'lau-session', 'Idam.Session', 'seen_cookie_message', '_oauth2_proxy'],
-      },
-      {
-        'category-name': 'analytics',
-        optional: true,
-        cookies: ['_ga', '_gid', 'gat'],
-      },
-      {
-        'category-name': 'apm',
-        optional: true,
-        cookies: ['dtCookie', 'dtLatC', 'dtPC', 'dtSa', 'rxVisitor', 'rxvt'],
-      },
-    ],
-  });
-}
+cookieManager.on('PreferenceFormSubmitted', () => {
+  const message: HTMLInputElement = document.querySelector('.cookie-preference-success');
+  message.style.display = 'block';
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+});
+
+cookieManager.init({
+  userPreferences: {
+    cookieName: 'lau-cookie-preferences',
+  },
+  cookieManifest: [
+    {
+      categoryName: 'essential',
+      optional: false,
+      cookies: ['lau-cookie-preferences', 'lau-session', 'Idam.Session', 'seen_cookie_message', '_oauth2_proxy'],
+    },
+    {
+      categoryName: 'analytics',
+      cookies: ['_ga', '_gid', '_gat_UA-'],
+    },
+    {
+      categoryName: 'apm',
+      cookies: ['dtCookie', 'dtLatC', 'dtPC', 'dtSa', 'rxVisitor', 'rxvt'],
+    },
+  ],
+});

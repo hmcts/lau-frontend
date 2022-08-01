@@ -136,11 +136,7 @@
   </section>
   <section>
     <h2 class="govuk-heading-m">{{ changeCookiesHeading }}</h2>
-    {% if useCookieManagerV1 %}
-      <form class="cookie-preferences-form js-show">
-    {% else %}
-      <form id="cm-preference-form" class="js-show">
-    {% endif %}
+    <form class="cookie-preferences-form js-show">
       {{ govukRadios({
         classes: 'govuk-radios',
         idPrefix: 'analytics',

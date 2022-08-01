@@ -41,5 +41,11 @@
   "40035_Hidden File Found_https://lau.aat.platform.hmcts.net/._darcs_GET": "ignore",
   "40035_Hidden File Found_https://lau.aat.platform.hmcts.net/.bzr_GET": "ignore",
   "40035_Hidden File Found_https://lau.aat.platform.hmcts.net/.hg_GET": "ignore",
-  "40035_Hidden File Found_https://lau.aat.platform.hmcts.net/BitKeeper_GET": "ignore"
+  "40035_Hidden File Found_https://lau.aat.platform.hmcts.net/BitKeeper_GET": "ignore",
+  "10035_Strict-Transport-Security Header Not Set_https://lau.aat.platform.hmcts.net/_GET": "ignore",
+  "10035_Strict-Transport-Security Header Not Set_https://lau.aat.platform.hmcts.net/login_GET": "ignore",
+  "10035_Strict-Transport-Security Header Not Set_https://lau.aat.platform.hmcts.net/robots.txt_GET": "ignore",
+  "10019_Content-Type Header Missing_https://lau.aat.platform.hmcts.net/_GET": "ignore",
+  "10019_Content-Type Header Missing_https://lau.aat.platform.hmcts.net/login_GET": "ignore",
+  "10019_Content-Type Header Missing_https://lau.aat.platform.hmcts.net/robots.txt_GET": "ignore"
 }
