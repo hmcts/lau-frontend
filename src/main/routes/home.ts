@@ -1,7 +1,6 @@
 import {Application, Response} from 'express';
 import {AppRequest} from '../models/appRequest';
 import config from 'config';
-import {LaunchDarklyClient} from '../components/featureToggle/LaunchDarklyClient';
 
 async function homeHandler(req: AppRequest, res: Response) {
   const caseFormState = req.session?.caseFormState || {};
@@ -13,10 +12,7 @@ async function homeHandler(req: AppRequest, res: Response) {
   const logons = req.session?.logons;
   const caseDeletions = req.session?.caseDeletions;
 
-  const flatpickrPreload = await LaunchDarklyClient.instance.variation('flatpickr-preload');
-
   res.render('home/template', {
-    flatpickrPreload,
     common: {
       maxRecords: Number(config.get('pagination.maxTotal')),
     },

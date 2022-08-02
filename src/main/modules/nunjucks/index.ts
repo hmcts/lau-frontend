@@ -2,7 +2,6 @@ import * as path from 'path';
 import * as express from 'express';
 import * as nunjucks from 'nunjucks';
 import {numberWithCommas} from '../../util/Util';
-import {LaunchDarklyClient} from '../../components/featureToggle/LaunchDarklyClient';
 import {AppRequest} from '../../models/appRequest';
 import config from 'config';
 
@@ -41,9 +40,6 @@ export class Nunjucks {
     }
 
     app.use(async (req: AppRequest, res, next) => {
-      const useCookieManagerV1 = await LaunchDarklyClient.instance.variation('cookie-manager-v-1');
-      env.addGlobal('useCookieManagerV1', useCookieManagerV1);
-
       res.locals.pagePath = req.path;
       next();
     });
