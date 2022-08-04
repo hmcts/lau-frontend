@@ -121,7 +121,7 @@ describe('Case Deletions Controller', () => {
 
     it('returns valid log data - with deletions > 12', async () => {
       const caseDeletions: CaseDeletions = {
-        deletionsLog: caseDeletionsLogs.deletionLog as CaseDeletionsLog[],
+        deletionsLog: caseDeletionsLogs.deletionsLog as CaseDeletionsLog[],
         moreRecords: false,
         startRecordNumber: 1,
         totalNumberOfRecords: 14,
@@ -214,7 +214,7 @@ describe('Case Deletions Controller', () => {
   describe('getPage', () => {
     it('repeats the search using same criteria with new page number', async () => {
       const caseDeletions: CaseDeletions = {
-        deletionsLog: caseDeletionsLogs.deletionLog as CaseDeletionsLog[],
+        deletionsLog: caseDeletionsLogs.deletionsLog as CaseDeletionsLog[],
         moreRecords: false,
         startRecordNumber: 1,
         totalNumberOfRecords: 0,
