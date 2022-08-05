@@ -5,7 +5,7 @@ const assert = require('assert');
 
 async function selectTab(I, tab) {
   logger.info('Selecting tab: ' + tab);
-  await I.seeElement(`#${tab}`);
+  await I.waitForElement(`#${tab}`, 10);
   await I.click(`#${tab}`);
 }
 
