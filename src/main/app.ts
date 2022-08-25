@@ -8,7 +8,7 @@ import compression from 'compression';
 import { Helmet } from './modules/helmet';
 import * as path from 'path';
 import favicon from 'serve-favicon';
-import { HTTPError } from 'HttpError';
+import { HTTPError } from './HttpError';
 import { Nunjucks } from './modules/nunjucks';
 import { PropertiesVolume } from './modules/properties-volume';
 import { AppInsights } from './modules/appinsights';
