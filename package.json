@@ -119,7 +119,7 @@
     "html_codesniffer": "^2.5.1",
     "jest": "^27.0.6",
     "mini-css-extract-plugin": "^2.2.0",
-    "mocha": "^10.0.0",
+    "mocha": "^9.2.2",
     "mocha-multi": "^1.1.6",
     "mochawesome": "^7.1.2",
     "nock": "^13.0.4",
