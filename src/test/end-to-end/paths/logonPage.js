@@ -53,7 +53,7 @@ Scenario('Navigate to LAU, perform logon audit search and download CSV', async (
   await I.performLogonAuditSearch();
   await I.click('button[name="logon-search-btn"]');
   await I.wait(10);
-  await I.waitForText('Logons Audit Results', testConfig.TestTimeToWaitForText);
+  await I.waitForText('Logons Audit Results', 30);
   await I.handleDownloads();
   await I.click('#logonsCsvBtn');
   await I.wait(10);

@@ -33,7 +33,7 @@ Scenario('Navigate to LAU, perform case audit search and authenticate case activ
   await I.performCaseAuditSearch();
   await I.click('//button[@name="case-search-btn"]');
   await I.wait(5);
-  await I.waitForText('Case Activity Results', testConfig.TestTimeToWaitForText);
+  await I.waitForText('Case Activity Results', 30);
   // Asserting the text after Pagination
   const textBeforePagination = await I.grabTextFromAll('div[class="flex-space-between"] p');
   logger.info({message: 'the text is ', textBeforePagination});
@@ -94,7 +94,7 @@ Scenario('Navigate to LAU, perform case audit search and download CSV', async ({
   await I.performCaseAuditSearch();
   await I.click('//button[@name="case-search-btn"]');
   await I.wait(5);
-  await I.waitForText('Case Activity Results', testConfig.TestTimeToWaitForText);
+  await I.waitForText('Case Activity Results', 30);
   await I.handleDownloads();
   await I.click('#activityCsvBtn');
   await I.wait(30);
