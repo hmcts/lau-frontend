@@ -19,7 +19,7 @@ Scenario('Navigate to LAU, perform logon audit search and authenticate logon sea
   await I.performLogonAuditSearch();
   await I.click('button[name="logon-search-btn"]');
   await I.wait(5);
-  await I.waitForText('Logons Audit Results', testConfig.TestTimeToWaitForText);
+  await I.waitForText('Logons Audit Results', 30);
   // Asserting the text after Pagination
   const textBeforePagination = await I.grabTextFromAll('div[class="flex-space-between"] p');
   logger.info({message: 'the text is ', textBeforePagination});
