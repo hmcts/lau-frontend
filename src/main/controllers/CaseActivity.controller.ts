@@ -25,7 +25,6 @@ export class CaseActivityController {
 
     return new Promise((resolve, reject) => {
       this.service.getCaseActivities(req).then(caseActivities => {
-        console.log(caseActivities);
         if (caseActivities.actionLog) {
           this.logger.info('Case activities retrieved');
           const recordsPerPage = Number(config.get('pagination.maxPerPage'));
