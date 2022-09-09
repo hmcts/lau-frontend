@@ -8,8 +8,9 @@ import {AppRequest, LogData} from '../models/appRequest';
 import {csvDate, requestDateToFormDate} from '../util/Date';
 import {csvJson} from '../util/CsvHandler';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
-import {CaseDeletionsService} from '../service/CaseDeletionsService';
 import {CaseDeletionsLog, CaseDeletionsLogs} from '../models/deletions/CaseDeletionsLogs';
+import {CaseService} from '../service/CaseService';
+import {CaseDeletions} from '../models/deletions/CaseDeletions';
 
 /**
  * Case Deletions Controller class to handle case deletions results tab functionality.
@@ -18,18 +19,18 @@ import {CaseDeletionsLog, CaseDeletionsLogs} from '../models/deletions/CaseDelet
 export class CaseDeletionsController {
   private logger: LoggerInstance = Logger.getLogger('CaseDeletionsController');
 
-  private service = new CaseDeletionsService();
+  private service = new CaseService();
 
   public async getLogData(req: AppRequest): Promise<LogData> {
     this.logger.info('getLogData called');
     return new Promise((resolve, reject) => {
-      this.service.getCaseDeletions(req).then(caseDeletions => {
-        if (caseDeletions.deletionsLog) {
+      this.service.getCaseDeletions(req).then((caseDeletions: CaseDeletions) => {
+        if (caseDeletions.actionLog) {
           const recordsPerPage = Number(config.get('pagination.maxPerPage'));
           resolve({
-            hasData: caseDeletions.deletionsLog.length > 0,
-            rows: this.convertDataToTableRows(caseDeletions.deletionsLog),
-            noOfRows: caseDeletions.deletionsLog.length,
+            hasData: caseDeletions.actionLog.length > 0,
+            rows: this.convertDataToTableRows(caseDeletions.actionLog),
+            noOfRows: caseDeletions.actionLog.length,
             totalNumberOfRecords: caseDeletions.totalNumberOfRecords,
             startRecordNumber: caseDeletions.startRecordNumber,
             moreRecords: caseDeletions.moreRecords,
@@ -71,7 +72,7 @@ export class CaseDeletionsController {
 
   public async getCsv(req: AppRequest, res: Response): Promise<void> {
     return this.service.getCaseDeletions(req, true).then(caseDeletions => {
-      const caseDeletionLogs = new CaseDeletionsLogs(caseDeletions.deletionsLog);
+      const caseDeletionLogs = new CaseDeletionsLogs(caseDeletions.actionLog);
       const filename = `caseDeletions ${csvDate()}.csv`;
       res.status(200).json({filename, csvJson: csvJson(caseDeletionLogs)});
     });

@@ -6,6 +6,7 @@ import {Response} from 'express';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 import {CaseDeletionsSearchRequest} from '../models/deletions/CaseDeletionsSearchRequest';
 import {CaseDeletionsController} from './CaseDeletions.controller';
+import {CaseActions} from '../models/case/CaseActivityLogs';
 
 /**
  * Search Controller class to handle search tab functionality
@@ -27,6 +28,7 @@ export class CaseDeletionsSearchController extends BaseSearchController<CaseDele
    */
   public async post(req: AppRequest, res: Response): Promise<void> {
     const searchRequest: Partial<CaseDeletionsSearchRequest> = req.body;
+    searchRequest.caseAction = CaseActions.DELETE;
     req.session.caseDeletionsFormState = searchRequest;
     req.session.errors = this.validateSearchForm(searchRequest);
 

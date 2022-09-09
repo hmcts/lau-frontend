@@ -33,6 +33,9 @@ export class CaseSearchController extends BaseSearchController<CaseSearchRequest
    */
   public async post(req: AppRequest, res: Response): Promise<void> {
     const searchRequest: Partial<CaseSearchRequest> = req.body;
+    if (searchRequest.caseAction === 'ALL') {
+      delete searchRequest.caseAction;
+    }
     req.session.caseFormState = searchRequest;
     req.session.errors = this.validateSearchForm(searchRequest);
 

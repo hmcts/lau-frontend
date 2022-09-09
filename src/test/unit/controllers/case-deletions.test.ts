@@ -8,6 +8,7 @@ import {CaseDeletionsController} from '../../../main/controllers/CaseDeletions.c
 import {CaseDeletionsSearchRequest} from '../../../main/models/deletions/CaseDeletionsSearchRequest';
 import {CaseDeletionsLog} from '../../../main/models/deletions/CaseDeletionsLogs';
 import {CaseDeletions} from '../../../main/models/deletions/CaseDeletions';
+import {CaseActions} from '../../../main/models/case/CaseActivityLogs';
 
 describe('Case Deletions Controller', () => {
   const caseDeletionsController = new CaseDeletionsController();
@@ -15,10 +16,10 @@ describe('Case Deletions Controller', () => {
   describe('getLogData', () => {
     it('returns valid log data - no deletions', async () => {
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+        .get('/audit/caseAction?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&caseAction=DELETE&page=1')
         .reply(
           200,
-          {deletionsLog: [], totalNumberOfRecords: 0, startRecordNumber: 1, moreRecords: false},
+          {actionLog: [], totalNumberOfRecords: 0, startRecordNumber: 1, moreRecords: false},
         );
 
       const searchRequest: Partial<CaseDeletionsSearchRequest> = {
@@ -27,6 +28,7 @@ describe('Case Deletions Controller', () => {
         caseJurisdictionId: '123',
         startTimestamp: '2021-12-12T12:00:00',
         endTimestamp: '2021-12-12T12:00:01',
+        caseAction: CaseActions.DELETE,
         page: 1,
       };
 
@@ -69,14 +71,14 @@ describe('Case Deletions Controller', () => {
       ];
 
       const caseDeletions: CaseDeletions = {
-        deletionsLog: caseDeletionsLogs,
+        actionLog: caseDeletionsLogs,
         moreRecords: false,
         startRecordNumber: 1,
         totalNumberOfRecords: 2,
       };
 
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+        .get('/audit/caseAction?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&caseAction=DELETE&page=1')
         .reply(
           200,
           caseDeletions,
@@ -88,6 +90,7 @@ describe('Case Deletions Controller', () => {
         caseJurisdictionId: '123',
         startTimestamp: '2021-12-12T12:00:00',
         endTimestamp: '2021-12-12T12:00:01',
+        caseAction: CaseActions.DELETE,
         page: 1,
       };
 
@@ -121,14 +124,14 @@ describe('Case Deletions Controller', () => {
 
     it('returns valid log data - with deletions > 12', async () => {
       const caseDeletions: CaseDeletions = {
-        deletionsLog: caseDeletionsLogs.deletionsLog as CaseDeletionsLog[],
+        actionLog: caseDeletionsLogs.actionLog as CaseDeletionsLog[],
         moreRecords: false,
         startRecordNumber: 1,
         totalNumberOfRecords: 14,
       };
 
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+        .get('/audit/caseAction?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&caseAction=DELETE&page=1')
         .reply(
           200,
           caseDeletions,
@@ -140,6 +143,7 @@ describe('Case Deletions Controller', () => {
         caseJurisdictionId: '123',
         startTimestamp: '2021-12-12T12:00:00',
         endTimestamp: '2021-12-12T12:00:01',
+        caseAction: CaseActions.DELETE,
         page: 1,
       };
 
@@ -185,7 +189,7 @@ describe('Case Deletions Controller', () => {
 
     it('returns app error if no log data is returned', async () => {
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
+        .get('/audit/caseAction?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&caseAction=DELETE&page=1')
         .reply(200, {});
 
       const searchRequest: Partial<CaseDeletionsSearchRequest> = {
@@ -194,6 +198,7 @@ describe('Case Deletions Controller', () => {
         caseJurisdictionId: '123',
         startTimestamp: '2021-12-12T12:00:00',
         endTimestamp: '2021-12-12T12:00:01',
+        caseAction: CaseActions.DELETE,
         page: 1,
       };
 
@@ -214,14 +219,14 @@ describe('Case Deletions Controller', () => {
   describe('getPage', () => {
     it('repeats the search using same criteria with new page number', async () => {
       const caseDeletions: CaseDeletions = {
-        deletionsLog: caseDeletionsLogs.deletionsLog as CaseDeletionsLog[],
+        actionLog: caseDeletionsLogs.actionLog as CaseDeletionsLog[],
         moreRecords: false,
         startRecordNumber: 1,
         totalNumberOfRecords: 0,
       };
 
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
+        .get('/audit/caseAction?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&caseAction=DELETE&page=2')
         .reply(
           200,
           caseDeletions,
@@ -255,7 +260,7 @@ describe('Case Deletions Controller', () => {
 
     it('redirects to error page with code on fetch failure', async () => {
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
+        .get('/audit/caseAction?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&caseAction=DELETE&page=2')
         .reply(200, {});
 
       const appRequest = {

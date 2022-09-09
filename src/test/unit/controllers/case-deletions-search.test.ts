@@ -84,11 +84,11 @@ describe('Case Deletions Search Controller', () => {
     });
 
     it('formats the search request', async () => {
-      nock('http://localhost:4551')
-        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5')
+      nock('http://localhost:4550')
+        .get('/audit/caseAction?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&caseAction=DELETE&size=5')
         .reply(
           200,
-          {deletionsLog: []},
+          {actionLog: []},
         );
 
       const req = {
@@ -106,6 +106,7 @@ describe('Case Deletions Search Controller', () => {
       // @ts-ignore
       return caseDeletionsSearchController.post(req as AppRequest, res as Response).then(() => {
         expect(req.body).toStrictEqual({
+          caseAction: 'DELETE',
           caseRef: '123',
           caseTypeId: '123',
           caseJurisdictionId: '123',
@@ -119,10 +120,10 @@ describe('Case Deletions Search Controller', () => {
 
     it('redirects to the case deletions results tab', async () => {
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&size=5')
+        .get('/audit/caseAction?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&caseAction=DELETE&size=5')
         .reply(
           200,
-          {deletionsLog: []},
+          {actionLog: []},
         );
 
       const req = {
@@ -145,7 +146,7 @@ describe('Case Deletions Search Controller', () => {
 
     it('redirects to error page with backend error code', async () => {
       nock('http://localhost:4550')
-        .get('/audit/caseDeletions?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&size=5')
+        .get('/audit/caseAction?caseRef=123&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&caseAction=DELETE&size=5')
         .reply(500, {});
 
       const req = {

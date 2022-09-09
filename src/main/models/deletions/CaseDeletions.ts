@@ -1,7 +1,7 @@
 import {CaseDeletionsLog} from './CaseDeletionsLogs';
 
 export interface CaseDeletions {
-  deletionsLog: CaseDeletionsLog[];
+  actionLog: CaseDeletionsLog[];
   startRecordNumber: number;
   moreRecords: boolean;
   totalNumberOfRecords: number;

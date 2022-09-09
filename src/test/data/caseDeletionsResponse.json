@@ -1,12 +1,16 @@
 {
-  "deletionsLog": [
+  "actionLog": [
     {
+      "userId": "3748238",
+      "caseAction": "DELETE",
       "caseRef": "1615817621013640",
       "caseJurisdictionId": "Probate",
       "caseTypeId": "Caveats",
       "timestamp": "2021-06-23T22:20:05.293Z"
     },
     {
+      "userId": "3748239",
+      "caseAction": "DELETE",
       "caseRef": "1615817621013640",
       "caseJurisdictionId": "Probate",
       "caseTypeId": "Caveats",
