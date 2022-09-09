@@ -22,8 +22,6 @@ export class CaseService extends BaseService<CaseSearchRequest | CaseDeletionsSe
       searchParameters.size = req.session.caseActivities?.totalNumberOfRecords || 0;
     }
 
-    console.log(this.getQueryString(searchParameters));
-
     this.logger.info('getCaseActivities: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
     return this.get(req.session, endpoint, this.getQueryString(searchParameters)) as Promise<CaseActivityAudit>;
   }
