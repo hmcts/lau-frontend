@@ -5,10 +5,12 @@ import config from 'config';
 async function homeHandler(req: AppRequest, res: Response) {
   const caseFormState = req.session?.caseFormState || {};
   const logonFormState = req.session?.logonFormState || {};
+  const caseDeletionsFormState = req.session?.caseDeletionsFormState || {};
   const sessionErrors = req.session?.errors || [];
   const caseActivities = req.session?.caseActivities;
   const caseSearches = req.session?.caseSearches;
   const logons = req.session?.logons;
+  const caseDeletions = req.session?.caseDeletions;
 
   res.render('home/template', {
     common: {
@@ -16,9 +18,11 @@ async function homeHandler(req: AppRequest, res: Response) {
     },
     caseForm: caseFormState,
     logonForm: logonFormState,
+    caseDeletionsForm: caseDeletionsFormState,
     caseActivities,
     caseSearches,
     logons,
+    caseDeletions,
     sessionErrors,
     errors: {
       caseSearchForm: {
@@ -27,6 +31,10 @@ async function homeHandler(req: AppRequest, res: Response) {
       },
       logonSearchForm: {
         stringFieldRequired: 'Please enter at least one of the following fields: User ID or Email',
+        startDateBeforeEndDate: '\'Time from\' must be before \'Time to\'',
+      },
+      caseDeletionsSearchForm: {
+        stringFieldRequired: 'Please enter at least one of the following fields: Case Type ID, Case Ref or Jurisdiction ID.',
         startDateBeforeEndDate: '\'Time from\' must be before \'Time to\'',
       },
       startTimestamp: {

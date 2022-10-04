@@ -2,6 +2,8 @@ import * as path from 'path';
 import * as express from 'express';
 import * as nunjucks from 'nunjucks';
 import {numberWithCommas} from '../../util/Util';
+import {AppRequest} from '../../models/appRequest';
+import config from 'config';
 
 export class Nunjucks {
   constructor(public developmentMode: boolean) {
@@ -31,8 +33,13 @@ export class Nunjucks {
     env.addFilter('numComma', (x) => numberWithCommas(x));
 
     env.addGlobal('nonce', app.locals.nonce);
+    env.addGlobal('env', app.locals.ENV);
 
-    app.use(async (req, res, next) => {
+    if (app.locals.ENV === 'development') {
+      env.addGlobal('idamEnabled', config.get('services.idam-api.enabled'));
+    }
+
+    app.use(async (req: AppRequest, res, next) => {
       res.locals.pagePath = req.path;
       next();
     });
