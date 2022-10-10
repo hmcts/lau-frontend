@@ -41,7 +41,6 @@ export abstract class BaseService<RequestType> {
           },
         })
         .then(response => {
-          console.log(response);
           resolve(response.json());
         })
         .catch(err => {
