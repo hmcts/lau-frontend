@@ -33,7 +33,7 @@
     </div>
     <div>
       {% if (caseSearches.currentPage > 2) %}
-        <a id="case-searches-previous-btn" class="govuk-link" href="/case-searches/page/1">&lt;&lt; First</a>
+        <a id="case-searches-first-btn" class="govuk-link" href="/case-searches/page/1">&lt;&lt; First</a>
       {% endif %}
       {% if (caseSearches.currentPage > 1) %}
         <a id="case-searches-previous-btn" class="govuk-link" href="/case-searches/page/{{ caseSearches.currentPage | int - 1 }}">&lt; Previous</a>
@@ -45,7 +45,7 @@
         <a id="case-searches-next-btn" class="govuk-link" href="/case-searches/page/{{ caseSearches.currentPage | int + 1 }}">Next &gt;</a>
       {% endif %}
       {% if (caseSearches.lastPage - caseSearches.currentPage) > 1 %}
-        <a id="case-searches-next-btn" class="govuk-link" href="/case-searches/page/{{ caseSearches.lastPage }}">Last &gt;&gt;</a>
+        <a id="case-searches-last-btn" class="govuk-link" href="/case-searches/page/{{ caseSearches.lastPage }}">Last &gt;&gt;</a>
       {% endif %}
     </div>
   </div>
