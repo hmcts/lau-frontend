@@ -10,23 +10,13 @@
   </svg>
 {% endset %}
 
-<form id="case-search-form" class="form search-form" method="post" action="/case-search" novalidate>
+<form id="case-deletions-search-form" class="form search-form" method="post" action="/case-deletions-search">
   <div class="govuk-fieldset__legend govuk-fieldset__legend--l">
-    <h1 class="govuk-fieldset__heading">Case Audit Search</h1>
+    <h1 class="govuk-fieldset__heading">Case Deletions Search</h1>
   </div>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-half">
-
-      {{ govukInput({
-        label: {
-          text: "User ID"
-        },
-        classes: "govuk-!-width-three-quarters",
-        id: "caseUserId",
-        name: "userId",
-        value: caseForm.userId
-      }) }}
 
       {{ govukInput({
         label: {
@@ -35,7 +25,7 @@
         classes: "govuk-!-width-three-quarters",
         id: "caseRef",
         name: "caseRef",
-        value: caseForm.caseRef
+        value: caseDeletionsForm.caseRef
       }) }}
 
       {{ govukInput({
@@ -45,7 +35,7 @@
         classes: "govuk-!-width-three-quarters",
         id: "caseTypeId",
         name: "caseTypeId",
-        value: caseForm.caseTypeId
+        value: caseDeletionsForm.caseTypeId
       }) }}
 
       {{ govukInput({
@@ -53,55 +43,13 @@
           text: "Jurisdiction ID"
         },
         classes: "govuk-!-width-three-quarters",
-        id: "caseJurisdictionId",
-        name: "caseJurisdictionId",
-        value: caseForm.caseJurisdictionId
+        id: "jurisdictionId",
+        name: "jurisdictionId",
+        value: caseDeletionsForm.jurisdictionId
       }) }}
-
-      <div>
-        {{ govukButton({
-          name: "case-search-btn",
-          text: "Search",
-          classes: "govuk-!-width-three-quarters govuk-!-margin-top-7",
-          preventDoubleClick: true
-        }) }}
-      </div>
 
     </div>
     <div class="govuk-grid-column-one-half">
-
-      {{ govukSelect({
-        id: "activity",
-        name: "caseAction",
-        label: {
-          text: "Activity"
-        },
-        classes: "govuk-!-width-three-quarters",
-        value: caseForm.caseAction,
-        items: [
-          {
-            value: "ALL",
-            text: "All",
-            selected: true
-          },
-          {
-            value: "CREATE",
-            text: "CREATE"
-          },
-          {
-            value: "UPDATE",
-            text: "UPDATE"
-          },
-          {
-            value: "VIEW",
-            text: "VIEW"
-          },
-          {
-            value: "DELETE",
-            text: "DELETE"
-          }
-        ]
-      }) }}
 
       {{ govukInput({
         label: {
@@ -110,11 +58,11 @@
         classes: "govuk-!-width-three-quarters",
         suffix: {
           html: calendarIcon,
-          classes: "case-start-timestamp-suffix"
+          classes: "case-deletions-start-timestamp-suffix"
         },
-        id: "caseStartTimestamp",
+        id: "caseDeletionsStartTimestamp",
         name: "startTimestamp",
-        value: caseForm.startTimestamp
+        value: caseDeletionsForm.startTimestamp
       }) }}
 
       {{ govukInput({
@@ -124,11 +72,11 @@
         classes: "govuk-!-width-three-quarters",
         suffix: {
           html: calendarIcon,
-          classes: "case-end-timestamp-suffix"
+          classes: "case-deletions-end-timestamp-suffix"
         },
-        id: "caseEndTimestamp",
+        id: "caseDeletionsEndTimestamp",
         name: "endTimestamp",
-        value: caseForm.endTimestamp
+        value: caseDeletionsForm.endTimestamp
       }) }}
 
       <div>
@@ -136,14 +84,23 @@
           <b>Note:</b> Please include time parameters in your search using the 'Time from' and 'Time to' fields, and
           enter at least one other parameter to obtain search results.
         </p>
-        <p class="govuk-body govuk-body govuk-!-font-size-16">'Case Type ID' and 'Jurisdiction ID' are only available in
-          Case Activity results.</p>
-        <p class="govuk-body govuk-body govuk-!-font-size-16">Search results are limited
-          to {{ common.maxRecords | numComma }}.</p>
+        <p class="govuk-body govuk-body govuk-!-font-size-16">Search results are limited to {{ common.maxRecords | numComma }}.</p>
       </div>
 
-      <input type="hidden" name="page" value="1">
+      <input type="hidden" id="page" name="page" value="1">
     </div>
   </div>
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      {{ govukButton({
+        name: "case-deletions-search-btn",
+        text: "Search",
+        type: "submit",
+        classes: "govuk-!-width-three-quarters govuk-!-margin-top-7",
+        preventDoubleClick: true,
+        value: "search"
+      }) }}
+    </div>
+  </div>
 </form>

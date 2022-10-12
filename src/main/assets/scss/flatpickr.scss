@@ -8,7 +8,9 @@ $pressed-colour: #ded;
 .case-start-timestamp-suffix,
 .case-end-timestamp-suffix,
 .logon-start-timestamp-suffix,
-.logon-end-timestamp-suffix {
+.logon-end-timestamp-suffix,
+.case-deletions-start-timestamp-suffix,
+.case-deletions-end-timestamp-suffix {
   cursor: pointer;
 
   &:hover {

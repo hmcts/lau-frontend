@@ -17,6 +17,12 @@
       "title": "IdAM user identifier",
       "maxLength": 64
     },
+    "caseAction": {
+      "id": "#caseAction",
+      "type": "string",
+      "title": "Case action event",
+      "enum": ["UPDATE", "CREATE", "VIEW", "DELETE"]
+    },
     "caseRef": {
       "id": "#caseRef",
       "type": "string",
