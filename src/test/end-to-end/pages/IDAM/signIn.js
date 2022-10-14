@@ -10,7 +10,7 @@ module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
     await I.amOnLoadedPage('/');
   }
 
-  await I.waitForText('Sign in');
+  await I.waitForText('Sign in', testConfig.TestTimeToWaitForText);
 
   await I.fillField('#username', user.email);
   await I.fillField('#password', user.password);

@@ -40,7 +40,10 @@ export abstract class BaseService<RequestType> {
             'Authorization': 'Bearer ' + session.user?.accessToken || '',
           },
         })
-        .then(response => resolve(response.json()))
+        .then(response => {
+          console.log(response);
+          resolve(response.json());
+        })
         .catch(err => {
           this.logger.error(err);
           reject(new AppError(err, ErrorCode.CASE_BACKEND));

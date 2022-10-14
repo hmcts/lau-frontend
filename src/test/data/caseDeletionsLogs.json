@@ -2,7 +2,7 @@
   "actionLog": [
     {
       "userId": "U0001",
-      "caseAction": "VIEW",
+      "caseAction": "DELETE",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
@@ -10,7 +10,7 @@
     },
     {
       "userId": "U0002",
-      "caseAction": "VIEW",
+      "caseAction": "DELETE",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
@@ -18,7 +18,7 @@
     },
     {
       "userId": "U0003",
-      "caseAction": "VIEW",
+      "caseAction": "DELETE",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
@@ -26,7 +26,7 @@
     },
     {
       "userId": "U0004",
-      "caseAction": "Create",
+      "caseAction": "DELETE",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
@@ -34,7 +34,7 @@
     },
     {
       "userId": "U0005",
-      "caseAction": "VIEW",
+      "caseAction": "DELETE",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
@@ -42,7 +42,7 @@
     },
     {
       "userId": "U0006",
-      "caseAction": "VIEW",
+      "caseAction": "DELETE",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
@@ -50,7 +50,7 @@
     },
     {
       "userId": "U0007",
-      "caseAction": "Update",
+      "caseAction": "DELETE",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
@@ -58,7 +58,7 @@
     },
     {
       "userId": "U0008",
-      "caseAction": "VIEW",
+      "caseAction": "DELETE",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
@@ -66,7 +66,7 @@
     },
     {
       "userId": "U0009",
-      "caseAction": "VIEW",
+      "caseAction": "DELETE",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
@@ -82,7 +82,7 @@
     },
     {
       "userId": "U0011",
-      "caseAction": "VIEW",
+      "caseAction": "DELETE",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
@@ -90,7 +90,7 @@
     },
     {
       "userId": "U0012",
-      "caseAction": "VIEW",
+      "caseAction": "DELETE",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
@@ -98,7 +98,7 @@
     },
     {
       "userId": "U0013",
-      "caseAction": "VIEW",
+      "caseAction": "DELETE",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
@@ -106,7 +106,7 @@
     },
     {
       "userId": "U0014",
-      "caseAction": "VIEW",
+      "caseAction": "DELETE",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",
