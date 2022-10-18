@@ -21,7 +21,7 @@ export class HealthCheck {
     const readinessChecks: MetadataObj = {};
 
     const services = [
-      // 'lau-case-backend',
+      'lau-case-backend',
       'lau-idam-backend',
       'idam-api',
       's2s',
