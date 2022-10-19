@@ -62,6 +62,7 @@ Scenario('Navigate to LAU, perform case audit search and authenticate case searc
   await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
   await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
   await I.performCaseSearch();
+  await I.wait(5);
   await I.click('button[name="case-search-btn"]');
   await I.wait(30);
   await lauHelper.selectTab(I, tabs.CASE_SEARCHES);
@@ -118,7 +119,6 @@ Scenario('Navigate to LAU, perform case search and download CSV', async ({I}) =>
   await I.click('button[name="case-search-btn"]');
   await I.wait(30);
   await lauHelper.selectTab(I, tabs.CASE_SEARCHES);
-  await I.wait(5);
   await I.waitForText('Case Search Results', testConfig.TestTimeToWaitForText);
   await I.handleDownloads();
   await I.click('#searchesCsvBtn');
