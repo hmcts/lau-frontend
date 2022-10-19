@@ -122,7 +122,7 @@ Scenario('Navigate to LAU, perform case search and download CSV', async ({I}) =>
   await I.waitForText('Case Search Results', testConfig.TestTimeToWaitForText);
   await I.handleDownloads();
   await I.click('#searchesCsvBtn');
-  await I.wait(20);
+  await I.wait(30);
 
   const csvPath = lauHelper.getCsvPath();
 
