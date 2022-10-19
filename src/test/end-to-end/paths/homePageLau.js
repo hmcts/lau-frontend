@@ -62,11 +62,10 @@ Scenario('Navigate to LAU, perform case audit search and authenticate case searc
   await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
   await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
   await I.performCaseSearch();
-  await I.wait(5);
   await I.click('button[name="case-search-btn"]');
   await I.wait(30);
   await lauHelper.selectTab(I, tabs.CASE_SEARCHES);
-  await I.waitForText('Case Search Results', testConfig.TestTimeToWaitForText);
+  // await I.waitForText('Case Search Results', testConfig.TestTimeToWaitForText);
   // Asserting the text after Pagination
   const textBeforePaginationOfCaseSearch = await I.grabTextFromAll('div[class="flex-space-between"] p');
   logger.info({message: 'the text is ', textBeforePaginationOfCaseSearch});
