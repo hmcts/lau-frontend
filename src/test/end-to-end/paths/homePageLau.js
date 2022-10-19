@@ -31,7 +31,7 @@ Scenario('Navigate to LAU, perform case audit search and authenticate case activ
   await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
   await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
   await I.performCaseAuditSearch();
-  await I.click('//button[@name="case-search-btn"]');
+  await I.click('button[@name="case-search-btn"]');
   await I.wait(30);
   await I.waitForText('Case Activity Results', testConfig.TestTimeToWaitForText);
   // Asserting the text after Pagination
@@ -62,7 +62,7 @@ Scenario('Navigate to LAU, perform case audit search and authenticate case searc
   await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
   await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
   await I.performCaseSearch();
-  await I.click('//button[@name="case-search-btn"]');
+  await I.click('button[@name="case-search-btn"]');
   await I.wait(30);
   await lauHelper.selectTab(I, tabs.CASE_SEARCHES);
   await I.waitForText('Case Search Results', testConfig.TestTimeToWaitForText);
@@ -92,7 +92,7 @@ Scenario('Navigate to LAU, perform case audit search and download CSV', async ({
   await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
   await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
   await I.performCaseAuditSearch();
-  await I.click('//button[@name="case-search-btn"]');
+  await I.click('button[@name="case-search-btn"]');
   await I.wait(30);
   await I.waitForText('Case Activity Results', testConfig.TestTimeToWaitForText);
   await I.handleDownloads();
@@ -115,7 +115,7 @@ Scenario('Navigate to LAU, perform case search and download CSV', async ({I}) =>
   await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
   await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
   await I.performCaseSearch();
-  await I.click('//button[@name="case-search-btn"]');
+  await I.click('button[@name="case-search-btn"]');
   await I.wait(30);
   await lauHelper.selectTab(I, tabs.CASE_SEARCHES);
   await I.wait(5);
@@ -141,7 +141,7 @@ Scenario('Navigate to LAU, perform case audit search and authenticate error text
   await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
   await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
   await I.performCaseAuditSearchWithoutSearchData();
-  await I.click('//button[@name="case-search-btn"]');
+  await I.click('button[@name="case-search-btn"]');
   await I.wait(30);
   await I.waitForText('Please enter at least one of the following fields: User ID, Case Type ID, Case Ref or Jurisdiction ID.', testConfig.TestTimeToWaitForText);
   await I.waitForText('\'Time from\' is required.', testConfig.TestTimeToWaitForText);
