@@ -2,7 +2,7 @@
 
 {% if logons and logons.hasData %}
   <div class="flex-space-between">
-    <h2 class="govuk-heading-m">Logons Audit Results</h2>
+    <h1 class="govuk-heading-l">Logons Audit Results</h1>
     <button id="logonsCsvBtn" class="govuk-button">Download all records to CSV</button>
   </div>
 
@@ -39,7 +39,7 @@
     </div>
     <div>
       {% if (logons.currentPage > 2) %}
-        <a id="logons-previous-btn" class="govuk-link" href="/logons/page/1">&lt;&lt; First</a>
+        <a id="logons-first-btn" class="govuk-link" href="/logons/page/1">&lt;&lt; First</a>
       {% endif %}
       {% if (logons.currentPage > 1) %}
         <a id="logons-previous-btn" class="govuk-link" href="/logons/page/{{ logons.currentPage | int - 1 }}">&lt; Previous</a>
@@ -51,14 +51,14 @@
         <a id="logons-next-btn" class="govuk-link" href="/logons/page/{{ logons.currentPage | int + 1 }}">Next &gt;</a>
       {% endif %}
       {% if (logons.lastPage - logons.currentPage) > 1 %}
-        <a id="logons-next-btn" class="govuk-link" href="/logons/page/{{ logons.lastPage }}">Last &gt;&gt;</a>
+        <a id="logons-last-btn" class="govuk-link" href="/logons/page/{{ logons.lastPage }}">Last &gt;&gt;</a>
       {% endif %}
     </div>
   </div>
 
 {% elseif logons %}
 
-  <h2 class="govuk-heading-m">System Logon Results</h2>
+  <h1 class="govuk-heading-l">System Logon Results</h1>
   <p class="govuk-body">No results found</p>
 
 {% else %}

@@ -2,7 +2,7 @@
 
 {% if caseActivities and caseActivities.hasData %}
   <div class="flex-space-between">
-    <h2 class="govuk-heading-m">Case Activity Results</h2>
+    <h1 class="govuk-heading-l">Case Activity Results</h1>
     <button id="activityCsvBtn" class="govuk-button">Download all records to CSV</button>
   </div>
 
@@ -42,7 +42,7 @@
     </div>
     <div>
       {% if (caseActivities.currentPage > 2) %}
-        <a id="case-activity-previous-btn" class="govuk-link" href="/case-activity/page/1">&lt;&lt; First</a>
+        <a id="case-activity-first-btn" class="govuk-link" href="/case-activity/page/1">&lt;&lt; First</a>
       {% endif %}
       {% if (caseActivities.currentPage > 1) %}
         <a id="case-activity-previous-btn" class="govuk-link" href="/case-activity/page/{{ caseActivities.currentPage | int - 1 }}">&lt; Previous</a>
@@ -54,14 +54,14 @@
         <a id="case-activity-next-btn" class="govuk-link" href="/case-activity/page/{{ caseActivities.currentPage | int + 1 }}">Next &gt;</a>
       {% endif %}
       {% if (caseActivities.lastPage - caseActivities.currentPage) > 1 %}
-        <a id="case-activity-next-btn" class="govuk-link" href="/case-activity/page/{{ caseActivities.lastPage }}">Last &gt;&gt;</a>
+        <a id="case-activity-last-btn" class="govuk-link" href="/case-activity/page/{{ caseActivities.lastPage }}">Last &gt;&gt;</a>
       {% endif %}
     </div>
   </div>
 
 {% elseif caseActivities %}
 
-  <h2 class="govuk-heading-m">Case Activity Results</h2>
+  <h1 class="govuk-heading-l">Case Activity Results</h1>
   <p class="govuk-body">No results found</p>
 
 {% else %}

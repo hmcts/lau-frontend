@@ -1,6 +1,6 @@
 {
   "name": "lau-frontend",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "private": true,
   "engines": {
     "node": ">=14.16.0"
@@ -53,7 +53,7 @@
     "@types/require-directory": "^2.1.1",
     "@types/serve-favicon": "^2.5.1",
     "@types/totp-generator": "^0.0.2",
-    "applicationinsights": "^2.2.1",
+    "applicationinsights": "^2.3.5",
     "autobind-decorator": "^2.4.0",
     "compression": "^1.7.4",
     "config": "^3.3.2",
