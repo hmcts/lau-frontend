@@ -25,7 +25,7 @@ describe('Home Route', () => {
     expect(res.text).toContain('Case Activity');
     expect(res.text).toContain('Case Search');
     expect(res.text).toContain('Logons Audit Search');
-    expect(res.text).toContain('Logons Results');
+    expect(res.text).toContain('Logons Audit Results');
     expect(res.text).toContain('Case Deletions Search');
     expect(res.text).toContain('Case Deletions Results');
   });
@@ -52,7 +52,7 @@ describe('Home Route', () => {
     expect(res.text).toContain('Case Activity');
     expect(res.text).toContain('Case Search');
     expect(res.text).toContain('Logons Audit Search');
-    expect(res.text).toContain('Logons Results');
+    expect(res.text).toContain('Logons Audit Results');
     expect(res.text).not.toContain('Case Deletions Search');
     expect(res.text).not.toContain('Case Deletions Results');
   });
@@ -79,7 +79,7 @@ describe('Home Route', () => {
     expect(res.text).not.toContain('Case Activity');
     expect(res.text).not.toContain('Case Search');
     expect(res.text).not.toContain('Logons Audit Search');
-    expect(res.text).not.toContain('Logons Results');
+    expect(res.text).not.toContain('Logons Audit Results');
     expect(res.text).toContain('Case Deletions Search');
     expect(res.text).toContain('Case Deletions Results');
   });

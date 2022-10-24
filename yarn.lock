@@ -2158,6 +2158,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@microsoft/applicationinsights-web-snippet@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@microsoft/applicationinsights-web-snippet@npm:1.0.1"
+  checksum: e4e723031ce8fd9b21e0b52467ddc13f8f30e0ce3ec54b9f9f0946f9e2826050b97803f60322be3676218e77fff7234679cc488ee122e689f487bb2073cd95b4
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -3841,11 +3848,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"applicationinsights@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "applicationinsights@npm:2.2.1"
+"applicationinsights@npm:^2.3.5":
+  version: 2.3.5
+  resolution: "applicationinsights@npm:2.3.5"
   dependencies:
     "@azure/core-http": ^2.2.3
+    "@microsoft/applicationinsights-web-snippet": ^1.0.1
     "@opentelemetry/api": ^1.0.4
     "@opentelemetry/core": ^1.0.1
     "@opentelemetry/sdk-trace-base": ^1.0.1
@@ -3853,13 +3861,13 @@ __metadata:
     cls-hooked: ^4.2.2
     continuation-local-storage: ^3.2.1
     diagnostic-channel: 1.1.0
-    diagnostic-channel-publishers: 1.0.4
+    diagnostic-channel-publishers: 1.0.5
   peerDependencies:
     applicationinsights-native-metrics: "*"
   peerDependenciesMeta:
     applicationinsights-native-metrics:
       optional: true
-  checksum: af0a8286b812aaf994966b4ae7b42b0925c24bf0cb9b0f87640d4fff760b4e91ef4bb89ced5d1a04fd4d88a925592212b751d5d0ce21f5ed405eff46864c96b8
+  checksum: 48ab24d11dca9122c5e1ecaf0ff3619aa0d2fed813bc7b7f49c7bdaa21e852c2e5e9fc7808901f7b044a623dd790e2c148d4ed9e66bf41ef9e37e6c5fff7237c
   languageName: node
   linkType: hard
 
@@ -6104,12 +6112,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"diagnostic-channel-publishers@npm:1.0.4":
-  version: 1.0.4
-  resolution: "diagnostic-channel-publishers@npm:1.0.4"
+"diagnostic-channel-publishers@npm:1.0.5":
+  version: 1.0.5
+  resolution: "diagnostic-channel-publishers@npm:1.0.5"
   peerDependencies:
     diagnostic-channel: "*"
-  checksum: ec79a5868328c273d0de383f7e519a2822a023a85618f4ff5f51c402d7cf187f15849cdac40b9ff7bd986fb1accf4ca630845d56d05331ef9c294e4b5ced596e
+  checksum: dd8c80b6826f11aa9c4db0b092d6eb72693e527b88f4c7f8f5d6a7f52e0b2e1ed2f635f640cf87ca6f6f9edb9126f908dc553725d85445143fdae1f73eb9ab53
   languageName: node
   linkType: hard
 
@@ -9957,7 +9965,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^4.29.2
     "@typescript-eslint/eslint-plugin-tslint": ^4.29.2
     "@typescript-eslint/parser": ^4.29.2
-    applicationinsights: ^2.2.1
+    applicationinsights: ^2.3.5
     autobind-decorator: ^2.4.0
     babel-eslint: ^10.1.0
     babel-loader: ^8.0.6
