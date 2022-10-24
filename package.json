@@ -65,7 +65,7 @@
     "express-session": "^1.17.2",
     "flatpickr": "^4.6.13",
     "git-rev-sync": "^3.0.2",
-    "glob": "^7.1.6",
+    "glob": "^7.2.3",
     "govuk-frontend": "^4.3.1",
     "helmet": "^4.2.0",
     "ioredis": "^4.28.3",
@@ -156,6 +156,7 @@
     "merge": "^2.1.1",
     "minimist": "^1.2.6",
     "moment": "^2.29.4",
-    "serialize-javascript": "^6.0.0"
+    "serialize-javascript": "^6.0.0",
+    "missmatch": "^3.0.8"
   }
 }
