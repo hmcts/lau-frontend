@@ -157,6 +157,6 @@
     "minimist": "^1.2.6",
     "moment": "^2.29.4",
     "serialize-javascript": "^6.0.0",
-    "missmatch": "^3.0.8"
+    "missmatch": "^3.0.8",
   }
 }
