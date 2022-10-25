@@ -9999,6 +9999,7 @@ __metadata:
     ioredis: ^4.28.3
     jest: ^27.0.6
     jquery: ^3.5.1
+    js-yaml: ^4.1.0
     json2csv: ^5.0.6
     jwt-decode: ^3.1.2
     launchdarkly-node-server-sdk: ^6.2.3
