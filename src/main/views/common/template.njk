@@ -8,6 +8,7 @@
 
 {% block head %}
   {% include "common/webpack/css.njk" %}
+  {% include "common/webpack/js.njk" %}
 {% endblock %}
 
 {% set cookieConfirmationHTML %}
@@ -154,9 +155,7 @@
 {% endblock %}
 
 {% block bodyEnd %}
-  {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
-  {% include "common/webpack/js.njk" %}
-
   {# Load Flatpickr at end of body as this is non-critical #}
+  <script id="flatpickr-script" src="assets/js/flatpickr.min.js" defer></script>
   <link rel="stylesheet" href="assets/css/flatpickr.min.css">
 {% endblock %}
