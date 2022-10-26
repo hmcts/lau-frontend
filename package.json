@@ -1,6 +1,6 @@
 {
   "name": "lau-frontend",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "private": true,
   "engines": {
     "node": ">=14.16.0"
@@ -70,6 +70,7 @@
     "helmet": "^4.2.0",
     "ioredis": "^4.28.3",
     "jquery": "^3.5.1",
+    "js-yaml": "^4.1.0",
     "json2csv": "^5.0.6",
     "jwt-decode": "^3.1.2",
     "launchdarkly-node-server-sdk": "^6.2.3",

@@ -42,7 +42,8 @@ else
     # Error and exit
     echo "---------------- ERROR ----------------"
     echo "App version is less than remote master!"
-    echo "Remote master: $remote_version"
+    echo "Current: $this_version"
+    echo "Remote: $remote_version"
     echo "---------------------------------------"
     exit 1
   fi
