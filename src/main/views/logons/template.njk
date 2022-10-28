@@ -39,19 +39,19 @@
     </div>
     <div>
       {% if (logons.currentPage > 2) %}
-        <a id="logons-first-btn" class="govuk-link" href="/logons/page/1">&lt;&lt; First</a>
+        <a id="logons-first-btn" class="govuk-link pagination-link" href="/logons/page/1">&lt;&lt; First</a>
       {% endif %}
       {% if (logons.currentPage > 1) %}
-        <a id="logons-previous-btn" class="govuk-link" href="/logons/page/{{ logons.currentPage | int - 1 }}">&lt; Previous</a>
+        <a id="logons-previous-btn" class="govuk-link pagination-link" href="/logons/page/{{ logons.currentPage | int - 1 }}">&lt; Previous</a>
       {% endif %}
 
       <span class="govuk-body-s">&emsp;Page {{ logons.currentPage | numComma }} / {{ logons.lastPage | numComma}}&emsp;</span>
 
       {% if (logons.lastPage - logons.currentPage) > 0 %}
-        <a id="logons-next-btn" class="govuk-link" href="/logons/page/{{ logons.currentPage | int + 1 }}">Next &gt;</a>
+        <a id="logons-next-btn" class="govuk-link pagination-link" href="/logons/page/{{ logons.currentPage | int + 1 }}">Next &gt;</a>
       {% endif %}
       {% if (logons.lastPage - logons.currentPage) > 1 %}
-        <a id="logons-last-btn" class="govuk-link" href="/logons/page/{{ logons.lastPage }}">Last &gt;&gt;</a>
+        <a id="logons-last-btn" class="govuk-link pagination-link" href="/logons/page/{{ logons.lastPage }}">Last &gt;&gt;</a>
       {% endif %}
     </div>
   </div>
