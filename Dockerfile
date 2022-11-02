@@ -9,10 +9,6 @@ RUN yarn install --production \
 FROM base as build
 COPY --chown=hmcts:hmcts . ./
 
-USER root
-RUN apk add git
-USER hmcts
-
 RUN yarn install \
     && yarn setup \
     && yarn build:prod
