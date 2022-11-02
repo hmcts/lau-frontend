@@ -1,4 +1,4 @@
-<link href="/<%= htmlWebpackPlugin.files.css[0].substr(htmlWebpackPlugin.files.publicPath.length) %>" rel="stylesheet">
-
-{# Preload flatpickr to ensure it's ready on rendering #}
+<link rel="preload" href="/<%= htmlWebpackPlugin.files.css[0].substr(htmlWebpackPlugin.files.publicPath.length) %>" as="style">
 <link rel="preload" href="assets/css/flatpickr.min.css" as="style">
+
+<link href="/<%= htmlWebpackPlugin.files.css[0].substr(htmlWebpackPlugin.files.publicPath.length) %>" rel="stylesheet">
