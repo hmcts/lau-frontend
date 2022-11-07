@@ -9,64 +9,121 @@
 
   {% set caseSearchTabHtml %}
     {% include '../search/case-template.njk' %}
-  {% endset -%}
+  {% endset %}
 
   {% set caseActivityTabHtml %}
     {%  include '../case-activity/template.njk' %}
-  {% endset -%}
+  {% endset %}
 
   {% set caseSearchesTabHtml %}
     {% include '../case-searches/template.njk' %}
-  {% endset -%}
+  {% endset %}
 
   {% set logonSearchTabHtml %}
     {% include '../search/logon-template.njk' %}
-  {% endset -%}
+  {% endset %}
 
   {% set logonsTabHtml %}
     {%  include '../logons/template.njk' %}
-  {% endset -%}
+  {% endset %}
 
-  {{ govukTabs({
-    classes: 'home-tabs',
-    items: [
-      {
-        label: "Case Audit Search",
-        id: "case-search-tab",
-        panel: {
-          html: caseSearchTabHtml
-        }
-      },
-      {
-        label: "Case Activity",
-        id: "case-activity-tab",
-        panel: {
-          html: caseActivityTabHtml
-        }
-      },
-      {
-        label: "Case Searches",
-        id: "case-searches-tab",
-        panel: {
-          html: caseSearchesTabHtml
-        }
-      },
+  {% set caseDeletionsSearchTabHtml %}
+    {% include '../search/case-deletions-template.njk' %}
+  {% endset %}
 
-      {
-        label: "Logons Audit Search",
-        id: "logon-search-tab",
-        panel: {
-          html: logonSearchTabHtml
-        }
-      },
-      {
-        label: "Logons Results",
-        id: "logons-tab",
-          panel: {
-          html: logonsTabHtml
-        }
+  {% set caseDeletionsTabHtml %}
+    {%  include '../case-deletions/template.njk' %}
+  {% endset %}
+
+  {# ------------ Audit Investgator Tabs ------------ #}
+  {% if userRoles and 'cft-audit-investigator' in userRoles %}
+
+    {% set caseAuditSearchTab = {
+      label: "Case Audit Search",
+      id: "case-search-tab",
+      panel: {
+        html: caseSearchTabHtml
       }
-    ]
-  }) }}
+    } %}
+
+    {% set caseActivityTab = {
+      label: "Case Activity Results",
+      id: "case-activity-tab",
+      panel: {
+        html: caseActivityTabHtml
+      }
+    } %}
+
+    {%  set caseSearchesTab = {
+      label: "Case Search Results",
+      id: "case-searches-tab",
+      panel: {
+        html: caseSearchesTabHtml
+      }
+    } %}
+
+
+    {% set logonsAuditSearchTab = {
+      label: "Logons Audit Search",
+      id: "logon-search-tab",
+      panel: {
+        html: logonSearchTabHtml
+      }
+    } %}
+
+    {%  set logonsResultsTab = {
+      label: "Logons Audit Results",
+      id: "logons-tab",
+      panel: {
+        html: logonsTabHtml
+      }
+    } %}
+
+  {% endif %}
+
+  {# ------------ Service Logs Tabs ------------ #}
+  {% if userRoles and 'cft-service-logs' in userRoles %}
+
+    {% set caseDeletionsSearchTab = {
+      label: "Case Deletions Search",
+      id: "case-deletions-search-tab",
+      panel: {
+        html: caseDeletionsSearchTabHtml
+      }
+    } %}
+
+    {% set caseDeletionsResultsTab = {
+      label: "Case Deletions Results",
+      id: "case-deletions-tab",
+      panel: {
+        html: caseDeletionsTabHtml
+      }
+    } %}
+
+  {% endif %}
+  {# ------------------------------------------- #}
+
+  {% if userRoles.length > 0 %}
+    {{ govukTabs({
+      classes: 'home-tabs',
+      items: [
+        caseAuditSearchTab,
+        caseActivityTab,
+        caseSearchesTab,
+
+        logonsAuditSearchTab,
+        logonsResultsTab,
+
+        caseDeletionsSearchTab,
+        caseDeletionsResultsTab
+      ]
+    }) }}
+  {% endif %}
+
+  {% if env === 'development' and not idamEnabled and userRoles.length === 0 %}
+
+    <h1 class="govuk-heading-l">User roles have not been set!</h1>
+
+  {% endif %}
 
 {% endblock %}

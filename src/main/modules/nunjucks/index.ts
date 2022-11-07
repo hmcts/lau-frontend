@@ -2,7 +2,8 @@ import * as path from 'path';
 import * as express from 'express';
 import * as nunjucks from 'nunjucks';
 import {numberWithCommas} from '../../util/Util';
-import {LaunchDarklyClient} from '../../components/featureToggle/LaunchDarklyClient';
+import {AppRequest} from '../../models/appRequest';
+import config from 'config';
 
 export class Nunjucks {
   constructor(public developmentMode: boolean) {
@@ -11,15 +12,7 @@ export class Nunjucks {
 
   enableFor(app: express.Express): void {
     app.set('view engine', 'njk');
-    const govUkFrontendPath = path.join(
-      __dirname,
-      '..',
-      '..',
-      '..',
-      '..',
-      'node_modules',
-      'govuk-frontend',
-    );
+    const govUkFrontendPath = path.resolve(require.resolve('govuk-frontend'), '../../');
     const env = nunjucks.configure(
       [path.join(__dirname, '..', '..', 'views'), govUkFrontendPath],
       {
@@ -32,11 +25,13 @@ export class Nunjucks {
     env.addFilter('numComma', (x) => numberWithCommas(x));
 
     env.addGlobal('nonce', app.locals.nonce);
+    env.addGlobal('env', app.locals.ENV);
 
-    app.use(async (req, res, next) => {
-      const useCookieManagerV1 = await LaunchDarklyClient.instance.variation('cookie-manager-v-1');
-      env.addGlobal('useCookieManagerV1', useCookieManagerV1);
+    if (app.locals.ENV === 'development') {
+      env.addGlobal('idamEnabled', config.get('services.idam-api.enabled'));
+    }
 
+    app.use(async (req: AppRequest, res, next) => {
       res.locals.pagePath = req.path;
       next();
     });

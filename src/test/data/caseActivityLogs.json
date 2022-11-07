@@ -74,7 +74,7 @@
     },
     {
       "userId": "U0010",
-      "caseAction": "VIEW",
+      "caseAction": "DELETE",
       "caseRef": "C0001",
       "caseJurisdictionId": "DIVORCE",
       "caseTypeId": "FinancialRemedyMVP2",

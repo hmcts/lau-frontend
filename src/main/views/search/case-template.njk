@@ -1,5 +1,6 @@
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
@@ -39,23 +40,6 @@
 
       {{ govukInput({
         label: {
-          text: "Time from (UTC)"
-        },
-        classes: "govuk-!-width-three-quarters",
-        suffix: {
-          html: calendarIcon,
-          classes: "case-start-timestamp-suffix"
-        },
-        id: "caseStartTimestamp",
-        name: "startTimestamp",
-        value: caseForm.startTimestamp
-      }) }}
-
-    </div>
-    <div class="govuk-grid-column-one-half">
-
-      {{ govukInput({
-        label: {
           text: "Case Type ID"
         },
         classes: "govuk-!-width-three-quarters",
@@ -74,6 +58,65 @@
         value: caseForm.caseJurisdictionId
       }) }}
 
+      <div>
+        {{ govukButton({
+          name: "case-search-btn",
+          text: "Search",
+          classes: "govuk-!-width-three-quarters govuk-!-margin-top-7",
+          preventDoubleClick: true
+        }) }}
+      </div>
+
+    </div>
+    <div class="govuk-grid-column-one-half">
+
+      {{ govukSelect({
+        id: "activity",
+        name: "caseAction",
+        label: {
+          text: "Activity"
+        },
+        classes: "govuk-!-width-three-quarters",
+        value: caseForm.caseAction,
+        items: [
+          {
+            value: "ALL",
+            text: "All",
+            selected: true
+          },
+          {
+            value: "CREATE",
+            text: "CREATE"
+          },
+          {
+            value: "UPDATE",
+            text: "UPDATE"
+          },
+          {
+            value: "VIEW",
+            text: "VIEW"
+          },
+          {
+            value: "DELETE",
+            text: "DELETE"
+          }
+        ]
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Time from (UTC)"
+        },
+        classes: "govuk-!-width-three-quarters",
+        suffix: {
+          html: calendarIcon,
+          classes: "case-start-timestamp-suffix"
+        },
+        id: "caseStartTimestamp",
+        name: "startTimestamp",
+        value: caseForm.startTimestamp
+      }) }}
+
       {{ govukInput({
         label: {
           text: "Time to (UTC)"
@@ -88,28 +131,19 @@
         value: caseForm.endTimestamp
       }) }}
 
+      <div>
+        <p class="govuk-body govuk-body govuk-!-font-size-16">
+          <b>Note:</b> Please include time parameters in your search using the 'Time from' and 'Time to' fields, and
+          enter at least one other parameter to obtain search results.
+        </p>
+        <p class="govuk-body govuk-body govuk-!-font-size-16">'Case Type ID' and 'Jurisdiction ID' are only available in
+          Case Activity results.</p>
+        <p class="govuk-body govuk-body govuk-!-font-size-16">Search results are limited
+          to {{ common.maxRecords | numComma }}.</p>
+      </div>
+
       <input type="hidden" name="page" value="1">
     </div>
   </div>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-half">
-      {{ govukButton({
-        name: "case-search-btn",
-        text: "Search",
-        classes: "govuk-!-width-three-quarters govuk-!-margin-top-7",
-        preventDoubleClick: true
-      }) }}
-    </div>
-
-    <div class="govuk-grid-column-one-half">
-      <p class="govuk-body govuk-body govuk-!-font-size-16">
-        <b>Note:</b> Please include time parameters in your search using the 'Time from' and 'Time to' fields, and
-        enter at least one other parameter to obtain search results.
-      </p>
-      <p class="govuk-body govuk-body govuk-!-font-size-16">'Case Type ID' and 'Jurisdiction ID' are only available in
-        Case Activity results.</p>
-      <p class="govuk-body govuk-body govuk-!-font-size-16">Search results are limited to {{ common.maxRecords | numComma }}.</p>
-    </div>
-  </div>
 </form>

@@ -1,11 +1,13 @@
 # ---- Base image ----
-FROM hmctspublic.azurecr.io/base/node:14-alpine as base
+FROM hmctspublic.azurecr.io/base/node:16-alpine as base
 COPY --chown=hmcts:hmcts . .
+RUN yarn config set proxy "$http_proxy" && yarn config set https-proxy "$https_proxy"
 RUN yarn install --production \
   && yarn cache clean
 
 # ---- Build image ----
 FROM base as build
+COPY --chown=hmcts:hmcts . ./
 
 RUN yarn install \
     && yarn setup \

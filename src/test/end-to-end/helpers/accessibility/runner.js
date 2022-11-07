@@ -17,7 +17,7 @@ const resultObj = {
 async function runAccessibility(url, page) {
   //Add HMTL code sniffer script
   await page.addScriptTag({
-    path: 'node_modules/html_codesniffer/build/HTMLCS.js',
+    path: require.resolve('html_codesniffer/build/HTMLCS'),
   });
 
   const screenshotPath = testConfig.TestOutputDir + '/assets';

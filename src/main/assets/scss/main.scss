@@ -1,4 +1,4 @@
-@import "~govuk-frontend";
+@import "govuk-frontend";
 @import "./loading-spinner";
 @import "./flatpickr";
 
@@ -41,10 +41,15 @@ $color-white: #fff;
   margin-left: 50px;
 }
 
+// Case deletions search tab
+.home-tabs ul li:nth-child(6) {
+  margin-left: 50px;
+}
+
 .loading-overlay {
   align-items: center;
   background-color: $color-white;
-  display: none;
+  display: flex;
   height: 100%;
   justify-content: center;
   left: 0;
@@ -68,9 +73,5 @@ $color-white: #fff;
 }
 
 .cookie-preference-success {
-  display: none;
-}
-
-#use-cookie-manager-v1 {
   display: none;
 }
