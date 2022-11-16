@@ -18,7 +18,8 @@ export abstract class Logs<LogType> {
   }
 
   get csvData(): LogType[] {
-    return this._data.map((d: LogType) => {
+    return this._data.map(d => {
+      // @ts-ignore
       if ('timestamp' in d) {
         // @ts-ignore
         d.timestamp = requestDateToFormDate(d.timestamp);
