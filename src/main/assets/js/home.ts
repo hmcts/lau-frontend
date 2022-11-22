@@ -122,3 +122,7 @@ if (paginationLinks && paginationLinks.length > 0) {
     };
   }
 }
+
+window.onload = function() {
+  loadingOverlay.style.display = 'none';
+};
