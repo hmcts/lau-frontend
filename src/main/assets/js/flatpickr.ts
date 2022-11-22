@@ -28,16 +28,6 @@ const getOptions = (suffixEl: HTMLElement): Options => {
     enableSeconds: true,
     clickOpens: false,
     closeOnSelect: true,
-    ignoredFocusElements: [
-      caseStartTimestampSuffix,
-      caseEndTimestampSuffix,
-
-      logonStartTimestampSuffix,
-      logonEndTimestampSuffix,
-
-      caseDeletionsStartTimestampSuffix,
-      caseDeletionsEndTimestampSuffix,
-    ],
     formatDate: (date: Date) => {
       return formatDate(date);
     },

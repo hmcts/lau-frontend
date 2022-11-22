@@ -21,7 +21,7 @@ export class HealthCheck {
     const readinessChecks: MetadataObj = {};
 
     const services = [
-      // 'lau-case-backend',
+      'lau-case-backend',
       'lau-idam-backend',
       'idam-api',
       's2s',
@@ -69,7 +69,7 @@ export class HealthCheck {
 
   private redisHealthCheck(app: Application) {
     const sessionStore = app.locals.sessionStore;
-    const redisClient: Redis.Redis = sessionStore.client;
+    const redisClient: Redis = sessionStore.client;
 
     return healthcheck.raw(async () => {
       const healthy = await this.getRedisHealth(redisClient);
@@ -80,7 +80,7 @@ export class HealthCheck {
     });
   }
 
-  private getRedisHealth(redisClient: Redis.Redis, timeout = 5000): Promise<boolean> {
+  private getRedisHealth(redisClient: Redis, timeout = 5000): Promise<boolean> {
     // If the ping response is not returned within the specified timeout, false is return.
     return Promise.race([
       redisClient.ping().then(value => value === 'PONG'),

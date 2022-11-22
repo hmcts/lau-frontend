@@ -1,4 +1,5 @@
 const git = require('git-rev-sync');
+const yaml = require('js-yaml');
 const readFileSync = require('fs').readFileSync;
 const writeFileSync = require('fs').writeFileSync;
 
@@ -37,7 +38,7 @@ function createVersionFile() {
     date: getCommitDate(),
   };
 
-  writeFileSync(versionFilePath, JSON.stringify(fileData));
+  writeFileSync(versionFilePath, yaml.dump(fileData, {}));
 }
 
 createVersionFile();
