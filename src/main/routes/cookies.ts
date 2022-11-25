@@ -1,8 +1,8 @@
 import {Application, Request, Response} from 'express';
-import {content} from '../views/cookies/content';
+import {content} from '../views/footer/cookies/content';
 
 function cookiesHandler(req: Request, res: Response) {
-  res.render('cookies/template', content);
+  res.render('footer/cookies/template', content);
 }
 
 export default function (app: Application): void {

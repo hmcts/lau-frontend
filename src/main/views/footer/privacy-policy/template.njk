@@ -1,0 +1,65 @@
+{% extends "../../common/template.njk" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ heading1 }}</h1>
+      <p class="govuk-body">{{ paragraph1 }}</p>
+
+      <h2 class="govuk-heading-m">{{ whoManagesThisServiceHeading }}</h2>
+      <p class="govuk-body">{{ whoManagesThisServiceParagraph1 }}</p>
+      <p class="govuk-body">{{ whoManagesThisServiceParagraph2 | safe }}</p>
+      <p class="govuk-body">{{ whoManagesThisServiceParagraph3 }}</p>
+      <p class="govuk-body">{{ whoManagesThisServiceParagraph4 | safe }}</p>
+
+      <h2 class="govuk-heading-m">{{ whyWeCollectDataHeading }}</h2>
+      <p class="govuk-body">{{ whyWeCollectDataParagraph1 }}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ whyWeCollectDataItem1 }}</li>
+        <li>{{ whyWeCollectDataItem2 }}</li>
+        <li>{{ whyWeCollectDataItem3 }}</li>
+      </ul>
+      <p class="govuk-body">{{ whyWeCollectDataParagraph2 }}</p>
+
+      <h2 class="govuk-heading-m">{{ usingYourDataHeading }}</h2>
+      <p class="govuk-body">{{ usingYourDataParagraph3 | safe }}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ usingYourDataItem1 | safe }}</li>
+        <li>{{ usingYourDataItem2 }}</li>
+        <li>{{ usingYourDataItem3 }}</li>
+      </ul>
+
+      <h2 class="govuk-heading-m">{{ yourRightsHeading }}</h2>
+      <p class="govuk-body">{{ yourRightsParagraph1 }}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ yourRightsItem1 }}</li>
+        <li>{{ yourRightsItem2 }}</li>
+        <li>{{ yourRightsItem3 }}</li>
+        <li>{{ yourRightsItem4 }}</li>
+      </ul>
+      <p class="govuk-body">{{ yourRightsParagraph2 }}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ yourRightsItem5 | safe }}</li>
+        <li>{{ yourRightsItem6 }}</li>
+      </ul>
+      <p class="govuk-body">{{ yourRightsParagraph3 }}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ yourRightsItem7 }}</li>
+        <li>{{ yourRightsItem8 }}</li>
+        <li>{{ yourRightsItem9 }}</li>
+        <li>{{ yourRightsItem10 }}</li>
+      </ul>
+      <p class="govuk-body">{{ yourRightsParagraph4 }}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ yourRightsItem11 }}</li>
+        <li>{{ yourRightsItem12 | safe }}</li>
+      </ul>
+
+      <h2 class="govuk-heading-m">{{ howToComplainHeading }}</h2>
+      <p class="govuk-body">{{ howToComplainParagraph1 | safe }}</p>
+      <p class="govuk-body">{{ howToComplainParagraph2 }}</p>
+      <p class="govuk-body">{{ howToComplainParagraph3 | safe }}</p>
+      <p class="govuk-body">{{ howToComplainParagraph4 | safe }}</p>
+    </div>
+  </div>
+{% endblock %}
