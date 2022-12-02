@@ -60,9 +60,4 @@ export const content = {
   disclaimerItem20: 'death or personal injury arising from our negligence',
   disclaimerItem21: 'fraudulent misrepresentation',
   disclaimerItem22: 'any other liability which cannot be excluded or limited under applicable law',
-
-  contactHeading: 'Contact us',
-  contactParagraph1: 'Phone: 0300 303 0648',
-  contactParagraph2: 'Monday to Friday, 8:30am to 5:00pm.',
-  contactParagraph3: '<a href="https://www.gov.uk/call-charges" class="govuk-link" target="_blank" rel="external noopener noreferrer" aria-label="Find out about call charges">Find out about call charges</a>',
 };

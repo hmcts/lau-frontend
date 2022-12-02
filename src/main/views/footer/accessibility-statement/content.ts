@@ -16,9 +16,6 @@ export const content = {
   heading3: 'Feedback and contact information',
   paragraph6: 'If you need information on this website in a different format like accessible PDF, large print, easy read or braille:',
   paragraph7: 'Email: <a href="mailto:HMCTSforms@justice.gov.uk" class="govuk-link">HMCTSforms@justice.gov.uk</a>',
-  contactParagraph1: 'Phone: 0300 303 0648',
-  contactParagraph2: 'Monday to Friday, 8:30am to 5:00pm.',
-  contactParagraph3: '<a href="https://www.gov.uk/call-charges" class="govuk-link" target="_blank" rel="external noopener noreferrer" aria-label="Find out about call charges">Find out about call charges</a>',
 
   heading4: 'Reporting accessibility problems with this website',
   paragraph11: 'We&rsquo;re always looking to improve the accessibility of this website. If you find any problems that are not listed on this page or think we&rsquo;re not meeting accessibility requirements, please contact using the information above.',
