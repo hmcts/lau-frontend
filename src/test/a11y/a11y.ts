@@ -2,6 +2,7 @@ import { app } from '../../main/app';
 
 import * as supertest from 'supertest';
 import pa11y from 'pa11y';
+import { Server } from 'http';
 
 interface Results {
   documentTitle: string;
@@ -50,7 +51,7 @@ function testAccessibility(url: string): void {
   describe(`Page ${url}`, () => {
     test('should have no accessibility errors', async () => {
       await ensurePageCallWillSucceed(url);
-      const result = await runPally(agent.get(url).url);
+      const result = await runPally('http://127.0.0.1:8888');
       expect(result.issues).toEqual(expect.any(Array));
       expectNoErrors(result.issues);
     });
@@ -58,6 +59,20 @@ function testAccessibility(url: string): void {
 }
 
 describe('Accessibility', () => {
+
+  let server: Server = null;
+  beforeAll(async () => {
+    await new Promise(resolve => {
+      server = app.listen(8888, () => {
+        resolve(true);
+      });
+    });
+  });
+
+  afterAll(() => {
+    server ? server.close() : null;
+  });
+
   testAccessibility('/');
   testAccessibility('/cookies');
 });
