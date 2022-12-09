@@ -69,8 +69,8 @@ describe('Accessibility', () => {
     });
   });
 
-  afterAll(() => {
-    server ? server.close() : null;
+  afterAll(async () => {
+    server ? await server.close() : null;
   });
 
   testAccessibility('/');
