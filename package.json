@@ -16,7 +16,7 @@
     "build:prod": "NODE_ENV=production yarn webpack --mode production --config webpack.config.js",
     "test": "NODE_ENV=test jest",
     "test:coverage": "NODE_ENV=test jest --coverage",
-    "test:a11y": "NODE_ENV=test jest -c jest.a11y.config.js --maxWorkers 15 --detectOpenHandles",
+    "test:a11y": "NODE_ENV=test jest -c jest.a11y.config.js --maxWorkers 15",
     "sonar-scan": "sonar-scanner",
     "fortifyScan": "./src/test/java/gradlew -p src/test/java fortifyScan",
     "test:smoke": "./bin/run-smoke-tests.sh",
