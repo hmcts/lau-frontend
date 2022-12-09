@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "@hmcts/cookie-manager": "^1.0.0",
-    "@hmcts/info-provider": "^1.0.0",
     "@hmcts/nodejs-healthcheck": "^1.7.3",
     "@hmcts/nodejs-logging": "^3.0.4",
     "@hmcts/properties-volume": "^0.0.13",
@@ -152,7 +151,6 @@
   "resolutions": {
     "ansi-regex": "^5.0.1",
     "async": "^3.2.2",
-    "express": "^4.18.2",
     "glob-parent": "^6.0.2",
     "jsonpointer": "^5.0.0",
     "json-schema": "^0.4.0",
