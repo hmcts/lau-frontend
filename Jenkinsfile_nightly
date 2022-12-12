@@ -22,7 +22,7 @@ withNightlyPipeline(type, product, component) {
   enableFortifyScan()
   enableSecurityScan()
 
-  after('fortify-scan') {
+  afterAlways('fortify-scan') {
       steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
   }
 
