@@ -1,18 +1,16 @@
-import { fail } from 'assert';
-
-const pa11y = require('pa11y');
-import * as supertest from 'supertest';
 import { app } from '../../main/app';
 
-const agent = supertest.agent(app);
+import * as supertest from 'supertest';
+import pa11y from 'pa11y';
+import { Server } from 'http';
 
-class Pa11yResult {
+interface Results {
   documentTitle: string;
   pageUrl: string;
-  issues: PallyIssue[];
+  issues: ResultIssue[];
 }
 
-class PallyIssue {
+interface ResultIssue {
   code: string;
   context: string;
   message: string;
@@ -21,16 +19,12 @@ class PallyIssue {
   typeCode: number;
 }
 
-beforeAll((done /* call it or remove it*/) => {
-  done(); // calling it
-});
+const agent = supertest.agent(app);
 
 function ensurePageCallWillSucceed(url: string): Promise<void> {
   return agent.get(url).then((res: supertest.Response) => {
     if (res.redirect) {
-      throw new Error(
-        `Call to ${url} resulted in a redirect to ${res.get('Location')}`,
-      );
+      throw new Error(`Call to ${url} resulted in a redirect to ${res.get('Location')}`);
     }
     if (res.serverError) {
       throw new Error(`Call to ${url} resulted in internal server error`);
@@ -38,38 +32,47 @@ function ensurePageCallWillSucceed(url: string): Promise<void> {
   });
 }
 
-function runPally(url: string): Pa11yResult {
+function runPally(url: string): Promise<Results> {
   return pa11y(url, {
     hideElements: '.govuk-footer__licence-logo, .govuk-header__logotype-crown',
   });
 }
 
-function expectNoErrors(messages: PallyIssue[]): void {
+function expectNoErrors(messages: ResultIssue[]): void {
   const errors = messages.filter(m => m.type === 'error');
 
   if (errors.length > 0) {
     const errorsAsJson = `${JSON.stringify(errors, null, 2)}`;
-    fail(`There are accessibility issues: \n${errorsAsJson}\n`);
+    throw new Error(`There are accessibility issues: \n${errorsAsJson}\n`);
   }
 }
 
 function testAccessibility(url: string): void {
   describe(`Page ${url}`, () => {
-    test('should have no accessibility errors', done => {
-      ensurePageCallWillSucceed(url)
-        .then(() => runPally(agent.get(url).url))
-        .then((result: Pa11yResult) => {
-          expectNoErrors(result.issues);
-          done();
-        })
-        .catch((err: Error) => done(err));
+    test('should have no accessibility errors', async () => {
+      await ensurePageCallWillSucceed(url);
+      const result = await runPally('http://127.0.0.1:8888');
+      expect(result.issues).toEqual(expect.any(Array));
+      expectNoErrors(result.issues);
     });
   });
 }
 
 describe('Accessibility', () => {
-  // testing accessibility of the home page
-  testAccessibility('/');
 
-  // TODO: include each path of your application in accessibility checks
+  let server: Server = null;
+  beforeAll(async () => {
+    await new Promise(resolve => {
+      server = app.listen(8888, () => {
+        resolve(true);
+      });
+    });
+  });
+
+  afterAll(async () => {
+    server ? await server.close() : null;
+  });
+
+  testAccessibility('/');
+  testAccessibility('/cookies');
 });
