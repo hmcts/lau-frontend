@@ -1,0 +1,47 @@
+{% extends "../../common/template.njk" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ heading1 }}</h1>
+      <p class="govuk-body">{{ paragraph2 }}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ list1Item1 }}</li>
+        <li>{{ list1Item2 }}</li>
+        <li>{{ list1Item3 }}</li>
+        <li>{{ list1Item4 }}</li>
+        <li>{{ list1Item5 }}</li>
+      </ul>
+      <p class="govuk-body">{{ paragraph3 | safe }}</p>
+      <p class="govuk-body">{{ paragraph4 | safe }}</p>
+
+      <h2 class="govuk-heading-m">{{ heading2 }}</h2>
+      <p class="govuk-body">{{ paragraph5 | safe }}</p>
+
+      <h2 class="govuk-heading-m">{{ heading3 }}</h2>
+      <p class="govuk-body">{{ paragraph6 }}</p>
+      <p class="govuk-body">{{ paragraph7 | safe }}</p>
+
+      <h2 class="govuk-heading-m">{{ heading4 }}</h2>
+      <p class="govuk-body">{{ paragraph11 | safe }}</p>
+
+      <h2 class="govuk-heading-m">{{ heading5 }}</h2>
+      <p class="govuk-body">{{ paragraph12 | safe }}</p>
+
+      <h2 class="govuk-heading-m">{{ heading6 }}</h2>
+      <p class="govuk-body">{{ paragraph13 }}</p>
+
+      <h2 class="govuk-heading-m">{{ heading7 | safe }}</h2>
+      <p class="govuk-body">{{ paragraph14 }}</p>
+      <p class="govuk-body">{{ paragraph15 | safe }}</p>
+
+      <h2 class="govuk-heading-m">{{ heading8 }}</h2>
+      <p class="govuk-body">{{ paragraph16 | safe }}</p>
+      <p class="govuk-body">{{ paragraph17 | safe }}</p>
+      <p class="govuk-body">{{ paragraph18 }}</p>
+
+      <h2 class="govuk-heading-m">{{ heading9 | safe }}</h2>
+      <p class="govuk-body">{{ paragraph19 }}</p>
+    </div>
+  </div>
+{% endblock %}
