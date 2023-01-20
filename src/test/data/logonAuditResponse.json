@@ -4,6 +4,7 @@
       "userId": "3748238",
       "emailAddress": "Mark.Taylor@company.com",
       "service": "idam-web-admin",
+      "loginState" : "AUTHORIZE",
       "ipAddress": "192.158.1.38",
       "timestamp": "2021-06-23T22:20:05.293Z"
     },
@@ -11,6 +12,7 @@
       "userId": "3748239",
       "emailAddress": "Dan.Morgan@company.com",
       "service": "idam-web-admin",
+      "loginState" : "AUTHENTICATE",
       "ipAddress": "192.151.1.28",
       "timestamp": "2020-02-02T08:16:27.234Z"
     }
