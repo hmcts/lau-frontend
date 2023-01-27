@@ -5,6 +5,7 @@
       "emailAddress": "Mark.Taylor@company.com",
       "service": "idam-web-admin",
       "ipAddress": "192.158.1.38",
+      "loginState" : "AUTHORIZE",
       "timestamp": "2021-06-23T22:20:05.293Z"
     },
     {
@@ -12,6 +13,7 @@
       "emailAddress": "Dan.Morgan@company.com",
       "service": "idam-web-admin",
       "ipAddress": "192.151.1.28",
+      "loginState" : "AUTHENTICATE",
       "timestamp": "2020-02-02T08:16:27.234Z"
     }
   ],

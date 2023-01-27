@@ -6,7 +6,7 @@ import config from 'config';
 import {Response} from 'express';
 import {LogonService} from '../service/LogonService';
 import {AppRequest, LogData} from '../models/appRequest';
-import {LogonLog, LogonLogs} from '../models/idam/LogonLogs';
+import {LogonLog, LogonLogs, logonLogsOrder} from '../models/idam/LogonLogs';
 import {csvDate, requestDateToFormDate} from '../util/Date';
 import {csvJson} from '../util/CsvHandler';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
@@ -81,9 +81,10 @@ export class LogonController {
     const rows: {text: string, classes: string}[][] = [];
     logs.forEach((log) => {
       const row: {text: string, classes: string}[] = [];
-      const keys = Object.keys(log);
-      keys.forEach((key: keyof LogonLog) => {
-        const text = key === 'timestamp' ? requestDateToFormDate(log[key]) : log[key];
+
+      logonLogsOrder.forEach((fieldName: string) => {
+        // @ts-ignore
+        const text = fieldName === 'timestamp' ? requestDateToFormDate(log[fieldName]) : log[fieldName];
         row.push({ text, classes: 'overflow-wrap' });
       });
 
