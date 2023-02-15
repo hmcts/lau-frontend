@@ -24,11 +24,15 @@ export class CaseActivityController {
     this.logger.info('getLogData called');
 
     return new Promise((resolve, reject) => {
+      const xStart = performance.now();
       this.service.getCaseActivities(req).then(caseActivities => {
+        const xEnd = performance.now();
+        this.logger.info(`Time to get case activities: ${xEnd - xStart}ms`);
         if (caseActivities.actionLog) {
           this.logger.info('Case activities retrieved');
           const recordsPerPage = Number(config.get('pagination.maxPerPage'));
-          resolve({
+          const yStart = performance.now();
+          const logData = {
             hasData: caseActivities.actionLog.length > 0,
             rows: this.convertDataToTableRows(caseActivities.actionLog),
             noOfRows: caseActivities.actionLog.length,
@@ -37,7 +41,10 @@ export class CaseActivityController {
             moreRecords: caseActivities.moreRecords,
             currentPage: req.session.caseFormState.page,
             lastPage: caseActivities.totalNumberOfRecords > 0 ? Math.ceil(caseActivities.totalNumberOfRecords / recordsPerPage) : 1,
-          });
+          };
+          const yEnd = performance.now();
+          this.logger.info(`Time to create case searches log data: ${yEnd - yStart}ms`);
+          resolve(logData);
         } else {
           const errMsg = 'Case Activities data malformed';
           this.logger.error(errMsg);

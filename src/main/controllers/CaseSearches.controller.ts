@@ -26,11 +26,15 @@ export class CaseSearchesController {
 
     if (CaseSearchesController.hasUserIdOrCaseRef(req.session.caseFormState || {})) {
       return new Promise((resolve, reject) => {
+        const xStart = performance.now();
         this.service.getCaseSearches(req).then(caseSearches => {
+          const xEnd = performance.now();
+          this.logger.info(`Time to get case searches: ${xEnd - xStart}ms`);
           if (caseSearches.searchLog) {
             this.logger.info('Case searches retrieved');
             const recordsPerPage = Number(config.get('pagination.maxPerPage'));
-            resolve({
+            const yStart = performance.now();
+            const logData = {
               hasData: caseSearches.searchLog.length > 0,
               rows: this.convertDataToTableRows(caseSearches.searchLog),
               noOfRows: caseSearches.searchLog.length,
@@ -39,7 +43,10 @@ export class CaseSearchesController {
               moreRecords: caseSearches.moreRecords,
               currentPage: req.session.caseFormState.page,
               lastPage: caseSearches.totalNumberOfRecords > 0 ? Math.ceil(caseSearches.totalNumberOfRecords / recordsPerPage) : 1,
-            });
+            };
+            const yEnd = performance.now();
+            this.logger.info(`Time to create case searches log data: ${yEnd - yStart}ms`);
+            resolve(logData);
           } else {
             const errMsg = 'Case Searches data malformed';
             this.logger.error(errMsg);
