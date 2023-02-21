@@ -3,6 +3,9 @@ import {AppRequest} from '../models/appRequest';
 import config from 'config';
 
 async function homeHandler(req: AppRequest, res: Response) {
+  this.logger.info('Home handler called:');
+  this.logger.info(Date.now().toString());
+
   const caseFormState = req.session?.caseFormState || {};
   const logonFormState = req.session?.logonFormState || {};
   const caseDeletionsFormState = req.session?.caseDeletionsFormState || {};
