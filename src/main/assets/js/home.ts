@@ -27,6 +27,11 @@ const forms = [
   },
 ];
 
+document.onload = function () {
+  console.log('Document onLoad called:');
+  console.log(performance.now());
+};
+
 for (const form of forms) {
   const formEl = getById(form.id) as HTMLFormElement | null;
   if (formEl) {
@@ -35,6 +40,10 @@ for (const form of forms) {
     const searchButton: HTMLButtonElement | null = document.getElementsByName(form.searchButtonName)[0] as HTMLButtonElement;
     if (searchButton) {
       searchButton.onclick = function() {
+
+        console.log('Search Button clicked:');
+        console.log(performance.now());
+
         searchButton.textContent = 'Searching...';
         searchButton.disabled = true;
 

@@ -32,6 +32,9 @@ export class CaseSearchController extends BaseSearchController<CaseSearchRequest
    * @param res Express Response
    */
   public async post(req: AppRequest, res: Response): Promise<void> {
+    this.logger.info('CaseSearch controller post call:');
+    this.logger.info(performance.now().toString());
+
     const searchRequest: Partial<CaseSearchRequest> = req.body;
     if (searchRequest.caseAction === 'ALL') {
       delete searchRequest.caseAction;
@@ -54,6 +57,11 @@ export class CaseSearchController extends BaseSearchController<CaseSearchRequest
         this.logger.info('Case search promise complete... updating session and redirecting...');
         req.session.caseActivities = value[0];
         req.session.caseSearches = value[1];
+
+
+        this.logger.info('CaseSearch controller post call complete:');
+        this.logger.info(performance.now().toString());
+        this.logger.info('Redirecting...');
         res.redirect('/#case-activity-tab');
       }).catch((err: AppError) => {
         this.logger.error(err.message);

@@ -43,7 +43,7 @@ export class CaseActivityController {
             lastPage: caseActivities.totalNumberOfRecords > 0 ? Math.ceil(caseActivities.totalNumberOfRecords / recordsPerPage) : 1,
           };
           const yEnd = performance.now();
-          this.logger.info(`Time to create case searches log data: ${yEnd - yStart}ms`);
+          this.logger.info(`Time to create case activity log data: ${yEnd - yStart}ms`);
           resolve(logData);
         } else {
           const errMsg = 'Case Activities data malformed';
