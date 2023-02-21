@@ -27,7 +27,7 @@ const forms = [
   },
 ];
 
-document.onload = function () {
+window.onload = function () {
   console.log('Document onLoad called:');
   console.log(performance.now());
 };
