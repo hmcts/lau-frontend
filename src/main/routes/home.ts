@@ -57,11 +57,11 @@ async function homeHandler(req: AppRequest, res: Response) {
     },
   };
 
-  // logger.info('Setting 35s timeout for testing:');
-  // setTimeout(() => {
-  logger.info('Calling render:');
-  res.render('home/template', renderOptions);
-  // }, 35000);
+  logger.info('Setting 25s timeout for testing:');
+  setTimeout(() => {
+    logger.info('Calling render:');
+    res.render('home/template', renderOptions);
+  }, 25000);
 }
 
 export default function (app: Application): void {
