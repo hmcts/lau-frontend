@@ -33,7 +33,7 @@ export class CaseSearchController extends BaseSearchController<CaseSearchRequest
    */
   public async post(req: AppRequest, res: Response): Promise<void> {
     this.logger.info('CaseSearch controller post call:');
-    this.logger.info(performance.now().toString());
+    this.logger.info(Date.now().toString());
 
     const searchRequest: Partial<CaseSearchRequest> = req.body;
     if (searchRequest.caseAction === 'ALL') {
@@ -50,6 +50,9 @@ export class CaseSearchController extends BaseSearchController<CaseSearchRequest
 
       this.formatSearchRequest(searchRequest);
 
+      this.logger.info('Calling Case Search promise all:');
+      this.logger.info(Date.now().toString());
+
       await Promise.all([
         this.caseActivityController.getLogData(req),
         this.caseSearchesController.getLogData(req),
@@ -60,7 +63,7 @@ export class CaseSearchController extends BaseSearchController<CaseSearchRequest
 
 
         this.logger.info('CaseSearch controller post call complete:');
-        this.logger.info(performance.now().toString());
+        this.logger.info(Date.now().toString());
         this.logger.info('Redirecting...');
         res.redirect('/#case-activity-tab');
       }).catch((err: AppError) => {

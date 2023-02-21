@@ -27,10 +27,8 @@ const forms = [
   },
 ];
 
-window.onload = function () {
-  console.log('Document onLoad called:');
-  console.log(performance.now());
-};
+console.log('Document loaded:');
+console.log(Date.now());
 
 for (const form of forms) {
   const formEl = getById(form.id) as HTMLFormElement | null;
@@ -42,7 +40,7 @@ for (const form of forms) {
       searchButton.onclick = function() {
 
         console.log('Search Button clicked:');
-        console.log(performance.now());
+        console.log(Date.now());
 
         searchButton.textContent = 'Searching...';
         searchButton.disabled = true;
