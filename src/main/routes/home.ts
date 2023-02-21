@@ -1,10 +1,13 @@
 import {Application, Response} from 'express';
 import {AppRequest} from '../models/appRequest';
 import config from 'config';
+import {LoggerInstance} from 'winston';
+const {Logger} = require('@hmcts/nodejs-logging');
+const logger: LoggerInstance = Logger.getLogger('routes/home.ts');
 
 async function homeHandler(req: AppRequest, res: Response) {
-  this.logger.info('Home handler called:');
-  this.logger.info(Date.now().toString());
+  logger.info('Home handler called:');
+  logger.info(Date.now().toString());
 
   const caseFormState = req.session?.caseFormState || {};
   const logonFormState = req.session?.logonFormState || {};
@@ -15,7 +18,7 @@ async function homeHandler(req: AppRequest, res: Response) {
   const logons = req.session?.logons;
   const caseDeletions = req.session?.caseDeletions;
 
-  res.render('home/template', {
+  const renderOptions = {
     common: {
       maxRecords: Number(config.get('pagination.maxTotal')),
     },
@@ -52,7 +55,13 @@ async function homeHandler(req: AppRequest, res: Response) {
         invalid: 'Case Reference must be 16 digits.',
       },
     },
-  });
+  };
+
+  // logger.info('Setting 35s timeout for testing:');
+  // setTimeout(() => {
+  logger.info('Calling render:');
+  res.render('home/template', renderOptions);
+  // }, 35000);
 }
 
 export default function (app: Application): void {
