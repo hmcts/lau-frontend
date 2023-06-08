@@ -41,3 +41,11 @@ version
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Terraform
+.terraform.lock.hcl
+.terraform
+terraform.tfstate*
+tfplan
+.terraform.lock.hcl
+.terraform.tfstate.lock.info
