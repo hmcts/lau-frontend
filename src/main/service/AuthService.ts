@@ -57,12 +57,12 @@ export class AuthService {
           body: JSON.stringify(params),
         },
       )
-        .then(res => res.text())
-        .then(token => {
+        .then((res: FetchResponse) => res.text())
+        .then((token: string) => {
           this.logger.info('Token: ', token);
           resolve(new ServiceAuthToken(token));
         })
-        .catch(err => {
+        .catch((err: string) => {
           this.logger.error(err);
           reject(new AppError(err, ErrorCode.S2S));
         });
