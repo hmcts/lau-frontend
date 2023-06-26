@@ -7,7 +7,7 @@ nodejs:
     REFORM_TEAM: lau
     REFORM_SERVICE_NAME: lau-frontend
     REFORM_ENVIRONMENT: '{{ .Values.global.environment }}'
-    USE_REDIS: true
+    USE_REDIS: false
     REDIS_USE_TLS: true
     REDIS_PORT: 6380
     REDIS_HOST: lau-frontend-session-storage-{{ .Values.global.environment }}.redis.cache.windows.net
