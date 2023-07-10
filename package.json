@@ -66,7 +66,7 @@
     "flatpickr": "^4.6.13",
     "git-rev-sync": "^3.0.2",
     "glob": "^7.2.3",
-    "govuk-frontend": "^4.3.1",
+    "govuk-frontend": "^4.7.0",
     "helmet": "^4.2.0",
     "ioredis": "^5.2.3",
     "jquery": "^3.5.1",
