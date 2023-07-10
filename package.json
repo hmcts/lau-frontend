@@ -66,7 +66,7 @@
     "flatpickr": "^4.6.13",
     "git-rev-sync": "^3.0.2",
     "glob": "^7.2.3",
-    "govuk-frontend": "^4.3.1",
+    "govuk-frontend": "^4.7.0",
     "helmet": "^4.2.0",
     "ioredis": "^5.2.3",
     "jquery": "^3.5.1",
@@ -134,7 +134,7 @@
     "sinon-chai": "^3.4.0",
     "sonar-scanner": "^3.1.0",
     "style-loader": "^3.2.1",
-    "stylelint": "^14.9.1",
+    "stylelint": "^15.10.1",
     "stylelint-config-standard-scss": "^5.0.0",
     "supertest": "^6.3.3",
     "ts-jest": "^29.0.3",
@@ -158,6 +158,7 @@
     "minimist": "^1.2.6",
     "moment": "^2.29.4",
     "serialize-javascript": "^6.0.0",
-    "minimatch": "^3.0.8"
+    "minimatch": "^3.0.8",
+    "semver": "^7.5.2"
   }
 }
