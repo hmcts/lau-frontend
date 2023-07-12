@@ -2771,15 +2771,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/connect-redis@npm:^0.0.17":
-  version: 0.0.17
-  resolution: "@types/connect-redis@npm:0.0.17"
+"@types/connect-redis@npm:^4.6.7":
+  version: 4.6.7
+  resolution: "@types/connect-redis@npm:4.6.7"
   dependencies:
     "@types/express": "*"
     "@types/express-session": "*"
     "@types/ioredis": "*"
     "@types/redis": "*"
-  checksum: ad8d02d49755ccb2a0efe098f4b7ad836798531bea20ee92d8b8ec839f71c25ab2b7cd859aacd2a7d58b49ba5fecda3ac2d1b6359c8ea3914c7b33e18de723b0
+  checksum: fb493fae8910a2d61e3babd579c6344c56d7d31d67669d9941465ef00eb54ef9c1a35ccfa761136d36fa38d1f82ebe48c2b10888f292d55b4aadb8ecf1fddf34
   languageName: node
   linkType: hard
 
@@ -5616,10 +5616,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"connect-redis@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "connect-redis@npm:6.0.0"
-  checksum: 3ee09943274cc877287b253a68e0a4f516ac21f6508e14cadf021d58b5c98feca351eea451a800757b2c8835e12a39166cb36a50eb683bb4604f40f48713f3cc
+"connect-redis@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "connect-redis@npm:7.1.0"
+  peerDependencies:
+    express-session: ">=1"
+  checksum: fb493fae8910a2d61e3babd579c6344c56d7d31d67669d9941465ef00eb54ef9c1a35ccfa761136d36fa38d1f82ebe48c2b10888f292d55b4aadb8ecf1fddf34
   languageName: node
   linkType: hard
 
@@ -10105,7 +10107,7 @@ __metadata:
     "@types/chai-as-promised": ^7.1.1
     "@types/compression": ^1.7.2
     "@types/config": ^0.0.39
-    "@types/connect-redis": ^0.0.17
+    "@types/connect-redis": ^4.6.7
     "@types/cookie-parser": ^1.4.2
     "@types/copy-webpack-plugin": ^8.0.1
     "@types/csurf": ^1.9.36
@@ -10139,7 +10141,7 @@ __metadata:
     codeceptjs: ^3.1.1
     compression: ^1.7.4
     config: ^3.3.2
-    connect-redis: ^6.0.0
+    connect-redis: ^7.1.0
     cookie-parser: ^1.4.5
     copy-webpack-plugin: ^9.0.1
     css-loader: ^6.2.0

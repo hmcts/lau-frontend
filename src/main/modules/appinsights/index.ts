@@ -24,10 +24,6 @@ export class AppInsights {
         .setAutoCollectExceptions(true)
         .start();
 
-      appInsights.defaultClient.addTelemetryProcessor(
-        (env: any, ctx: any) =>
-          ctx['http.ServerResponse']?.req.url !== '/csrf-token-error' && ctx['http.ServerResponse']?.statusCode !== 404,
-      );
       appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = 'lau-frontend';
       appInsights.defaultClient.trackTrace({message: 'App insights activated'});
     }
