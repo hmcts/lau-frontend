@@ -141,7 +141,7 @@ Scenario('Navigate to LAU, perform case audit search and authenticate error text
   await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
   await I.performCaseAuditSearchWithoutSearchData();
   await I.click('button[name="case-search-btn"]');
-  await I.wait(30);
+  await I.wait(10);
   await I.waitForText('Please enter at least one of the following fields: User ID, Case Type ID, Case Ref or Jurisdiction ID.', testConfig.TestTimeToWaitForText);
   await I.waitForText('\'Time from\' is required.', testConfig.TestTimeToWaitForText);
   await I.waitForText('\'Time to\' is required.', testConfig.TestTimeToWaitForText);
