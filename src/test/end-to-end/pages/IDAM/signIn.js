@@ -16,4 +16,4 @@ module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
   await I.fillField('#password', user.password);
 
   await I.waitForNavigationToComplete('input[type="submit"]');
-}.retry(3);
+};

@@ -56,7 +56,7 @@ Scenario('Navigate to LAU, perform logon audit search and download CSV', async (
   await I.waitForText('Logons Audit Results', testConfig.TestTimeToWaitForText);
   await I.handleDownloads();
   await I.click('#logonsCsvBtn');
-  await I.wait(30);
+  await I.wait(10);
 
   const csvPath = lauHelper.getCsvPath();
 
