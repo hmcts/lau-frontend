@@ -10,9 +10,3 @@ nodejs:
 
 redis:
   enabled: true
-
-idam-pr:
-  enabled: true
-  redirect_uris:
-    Log and Audit:
-      - https://${SERVICE_FQDN}/oauth2/callback
