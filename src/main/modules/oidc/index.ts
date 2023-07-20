@@ -45,7 +45,14 @@ export class OidcMiddleware {
 
     server.get('/logout', (req: AppRequest, res) => {
       req.session.user = undefined;
-      req.session.save(() => res.redirect('/'));
+
+      req.session.destroy((err) => {
+        if (err) {
+          console.log('Error clearing session:', err);
+        }
+        // Redirect the user to the login page
+        res.redirect('/');
+      });
     });
 
     server.use((req: AppRequest, res: Response, next: NextFunction) => {
