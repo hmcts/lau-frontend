@@ -1925,7 +1925,7 @@ __metadata:
   version: 6.6.2
   resolution: "@hmcts/div-idam-express-middleware@npm:6.6.2"
   dependencies:
-    "@hmcts/nodejs-logging": ^3.0.0
+    "@hmcts/nodejs-logging": ^4.0.4
     diff: ^3.5.0
     jwt-decode: ^2.2.0
     mem: ^4.0.0
@@ -1960,17 +1960,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hmcts/nodejs-logging@npm:^3.0.0":
-  version: 3.0.4
-  resolution: "@hmcts/nodejs-logging@npm:3.0.4"
-  dependencies:
-    moment: ^2.19.3
-    on-finished: ^2.3.0
-    winston: ^2.4.5
-  checksum: d690f06f3cc99c8c2d03c1da1d305dcbc7ddd2f2e374d347659e869aa0795d75de9e75b2a336a0b94e34e20ad3da5b27f8d89405acc474316ef3fb6ca545dcf2
-  languageName: node
-  linkType: hard
-
 "@hmcts/nodejs-logging@npm:^4.0.4":
   version: 4.0.4
   resolution: "@hmcts/nodejs-logging@npm:4.0.4"
@@ -1986,7 +1975,7 @@ __metadata:
   version: 0.0.13
   resolution: "@hmcts/properties-volume@npm:0.0.13"
   dependencies:
-    "@hmcts/nodejs-logging": ^3.0.0
+    "@hmcts/nodejs-logging": ^4.0.4
     lodash: ^4.17.11
     path: ^0.12.7
   checksum: 7046728d3b3f3ba2290d933bc8c7cf3eec84cd03f8bf8b66d380caf328f436e32ea8774331c9910110e9318c3129c22ec8dc9c785169430462fd20cccfe742cd
