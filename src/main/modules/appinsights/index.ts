@@ -1,5 +1,4 @@
-import {LoggerInstance} from 'winston';
-const {Logger} = require('@hmcts/nodejs-logging');
+const appInsights = require('applicationinsights');
 
 import config from 'config';
 import Sender from 'applicationinsights/out/Library/Sender';
@@ -7,7 +6,8 @@ import * as os from 'os';
 import path from 'path';
 import fs from 'fs';
 
-const appInsights = require('applicationinsights');
+import { LoggerInstance } from 'winston';
+const { Logger } = require('@hmcts/nodejs-logging');
 
 export class AppInsights {
 
