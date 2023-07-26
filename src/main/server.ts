@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// AppInsights needs to be imported / required before winston logger to transport logs to AppInsights 
+import { AppInsights } from './modules/appinsights';
+new AppInsights().enable();
 
 const sslConfig = require('ssl-config')('modern');
 const { Logger } = require('@hmcts/nodejs-logging');

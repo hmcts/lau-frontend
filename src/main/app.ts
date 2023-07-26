@@ -1,7 +1,4 @@
 import { glob } from 'glob';
-
-const { Logger } = require('@hmcts/nodejs-logging');
-
 import config = require('config');
 import express from 'express';
 import compression from 'compression';
@@ -11,7 +8,6 @@ import favicon from 'serve-favicon';
 import { HTTPError } from './HttpError';
 import { Nunjucks } from './modules/nunjucks';
 import { PropertiesVolume } from './modules/properties-volume';
-import { AppInsights } from './modules/appinsights';
 import {SessionStorage} from './modules/session';
 import {OidcMiddleware} from './modules/oidc';
 import {HealthCheck} from './modules/health';
@@ -26,17 +22,18 @@ const developmentMode = env === 'development';
 export const app = express();
 app.locals.ENV = env;
 
-const logger = Logger.getLogger('app');
-logger.info('Environment: ' + env);
 
 new PropertiesVolume().enableFor(app);
 LaunchDarklyClient.initialise();
-new AppInsights().enable();
 new Helmet(config.get('security')).enableFor(app);
 new SessionStorage().enableFor(app);
 new Nunjucks(developmentMode).enableFor(app);
 new OidcMiddleware().enableFor(app);
 new HealthCheck().enableFor(app);
+
+const { Logger } = require('@hmcts/nodejs-logging');
+const logger = Logger.getLogger('app');
+logger.info('Environment: ' + env);
 
 setupDev(app,developmentMode);
 setupTest(app);
