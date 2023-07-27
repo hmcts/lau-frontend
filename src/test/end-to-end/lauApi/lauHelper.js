@@ -3,9 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
 
-async function selectTab(I, tab) {
+function selectTab(I, tab) {
   logger.info('Selecting tab: ' + tab);
-  await I.click(`#${tab}`);
+  I.click(`#${tab}`);
 }
 
 /**

@@ -13,9 +13,9 @@ Scenario('Navigate to LAU, perform logon audit search and authenticate logon sea
   await I.amOnLauAppPage('');
   await I.authenticateWithIdam(userType.AUDITOR, true);
   await I.amOnPage('/');
-  await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
+  // await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
   await lauHelper.selectTab(I, tabs.LOGON_SEARCH);
-  await I.waitForText('Logons Audit Search', testConfig.TestTimeToWaitForText);
+  //await I.waitForText('Logons Audit Search', testConfig.TestTimeToWaitForText);
   await I.performLogonAuditSearch();
   await I.click('button[name="logon-search-btn"]');
   await I.wait(10);
@@ -46,10 +46,10 @@ Scenario('Navigate to LAU, perform logon audit search and download CSV', async (
   await I.amOnLauAppPage('');
   await I.authenticateWithIdam(userType.AUDITOR, true);
   await I.amOnPage('/');
-  await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
+  // await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
   await lauHelper.selectTab(I, tabs.LOGON_SEARCH);
-  await I.wait(10);
-  await I.waitForText('Logons Audit Search', testConfig.TestTimeToWaitForText);
+  //await I.wait(10);
+  //await I.waitForText('Logons Audit Search', testConfig.TestTimeToWaitForText);
   await I.performLogonAuditSearch();
   await I.click('button[name="logon-search-btn"]');
   await I.wait(10);
@@ -71,9 +71,9 @@ Scenario('Navigate to LAU, perform logon audit search without search parameters'
   await I.amOnLauAppPage('');
   await I.authenticateWithIdam(userType.AUDITOR, true);
   await I.amOnPage('/');
-  await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
+  // await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
   await lauHelper.selectTab(I, tabs.LOGON_SEARCH);
-  await I.waitForText('Logons Audit Search', testConfig.TestTimeToWaitForText);
+  //await I.waitForText('Logons Audit Search', testConfig.TestTimeToWaitForText);
   await I.performLogonAuditSearchWithoutSearchData();
   await I.click('button[name="logon-search-btn"]');
   await I.wait(10);

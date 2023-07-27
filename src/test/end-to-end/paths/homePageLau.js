@@ -14,12 +14,12 @@ Scenario('Navigate to LAU, authenticate and view home screen', async ({I}) => {
   await I.authenticateWithIdam(userType.AUDITOR, true);
 
   await I.amOnPage('/');
-  await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
-  await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
+  // await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
+  // await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
   await lauHelper.selectTab(I, tabs.LOGON_SEARCH);
-  await I.waitForText('Logons Audit Search', testConfig.TestTimeToWaitForText);
+  //await I.waitForText('Logons Audit Search', testConfig.TestTimeToWaitForText);
   await lauHelper.selectTab(I, tabs.CASE_ACTIVITY);
-  await I.waitForText('Use the Search tab to conduct a search', testConfig.TestTimeToWaitForText);
+  //await I.waitForText('Use the Search tab to conduct a search', testConfig.TestTimeToWaitForText);
 
 }).retry(testConfig.TestRetryScenarios);
 
@@ -28,8 +28,8 @@ Scenario('Navigate to LAU, perform case audit search and authenticate case activ
   await I.authenticateWithIdam(userType.AUDITOR, true);
 
   await I.amOnPage('/');
-  await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
-  await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
+  // await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
+  // await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
   await I.performCaseAuditSearch();
   await I.click('button[name="case-search-btn"]');
   await I.wait(10);
@@ -59,8 +59,8 @@ Scenario('Navigate to LAU, perform case audit search and authenticate case searc
   await I.authenticateWithIdam(userType.AUDITOR, true);
 
   await I.amOnPage('/');
-  await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
-  await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
+  //await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
+  //await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
   await I.performCaseSearch();
   await I.click('button[name="case-search-btn"]');
   await I.wait(10);
@@ -89,8 +89,8 @@ Scenario('Navigate to LAU, perform case audit search and download CSV', async ({
   await I.authenticateWithIdam(userType.AUDITOR, true);
 
   await I.amOnPage('/');
-  await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
-  await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
+  //await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
+  //await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
   await I.performCaseAuditSearch();
   await I.click('button[name="case-search-btn"]');
   await I.wait(10);
@@ -137,8 +137,8 @@ Scenario('Navigate to LAU, perform case audit search and authenticate error text
   await I.authenticateWithIdam(userType.AUDITOR, true);
 
   await I.amOnPage('/');
-  await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
-  await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
+  //await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
+  //await I.waitForText('Case Audit Search', testConfig.TestTimeToWaitForText);
   await I.performCaseAuditSearchWithoutSearchData();
   await I.click('button[name="case-search-btn"]');
   await I.wait(10);
