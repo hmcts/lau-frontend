@@ -1,7 +1,7 @@
 import { glob } from 'glob';
 import config = require('config');
 import express from 'express';
-// import compression from 'compression';
+import compression from 'compression';
 import { Helmet } from './modules/helmet';
 import * as path from 'path';
 import favicon from 'serve-favicon';
@@ -38,7 +38,7 @@ logger.info('Environment: ' + env);
 setupDev(app,developmentMode);
 setupTest(app);
 
-// app.use(compression());
+app.use(compression());
 app.use(favicon(path.join(__dirname, '/public/assets/images/favicon.ico')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
