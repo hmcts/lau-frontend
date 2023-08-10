@@ -1,6 +1,6 @@
 import { glob } from 'glob';
 import config = require('config');
-import express, { Response } from 'express';
+import express from 'express';
 import compression from 'compression';
 import { Helmet } from './modules/helmet';
 import * as path from 'path';
@@ -13,6 +13,7 @@ import {OidcMiddleware} from './modules/oidc';
 import {HealthCheck} from './modules/health';
 import {LaunchDarklyClient} from './components/featureToggle/LaunchDarklyClient';
 
+const serveStatic = require('serve-static');
 const { setupDev } = require('./development');
 const { setupTest } = require('./test');
 
@@ -38,20 +39,18 @@ logger.info('Environment: ' + env);
 setupDev(app,developmentMode);
 setupTest(app);
 
-const options = {
-  cacheControl: true,
-  setHeaders: (res: Response) => res.setHeader(
-    'Cache-Control',
-    'no-cache, max-age=0, must-revalidate, no-store',
-  ),
-  acceptRanges: false,
-};
-
 app.use(compression());
 app.use(favicon(path.join(__dirname, '/public/assets/images/favicon.ico')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public'), options));
+app.use(serveStatic(path.join(__dirname, 'public'), {acceptRanges: false}));
+app.use((req, res, next) => {
+  res.setHeader(
+    'Cache-Control',
+    'no-cache, max-age=0, must-revalidate, no-store',
+  );
+  next();
+});
 
 glob.sync(__dirname + '/routes/**/*.+(ts|js)')
   .map(filename => require(filename))
