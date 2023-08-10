@@ -160,6 +160,6 @@
     "serialize-javascript": "^6.0.0",
     "minimatch": "^3.0.8",
     "semver": "^7.5.2",
-    "import-in-the-middle": "^1.4.2"
+    "@opentelemetry/instrumentation": "^0.41.2"
   }
 }
