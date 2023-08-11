@@ -40,7 +40,10 @@ setupTest(app);
 
 const options = {
   cacheControl: true,
-  setHeaders: (res: Response) => res.setHeader('Cache-Control', 'max-age=604800'),
+  setHeaders: (res: Response) => res.setHeader(
+    'Cache-Control',
+    'no-cache, max-age=0, must-revalidate, no-store',
+  ),
   acceptRanges: false,
 };
 
