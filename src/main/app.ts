@@ -43,7 +43,7 @@ app.use(compression());
 app.use(favicon(path.join(__dirname, '/public/assets/images/favicon.ico')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(serveStatic(path.join(__dirname, 'public'), {acceptRanges: false}));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
   res.setHeader(
     'Cache-Control',
