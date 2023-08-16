@@ -13,7 +13,6 @@ import {OidcMiddleware} from './modules/oidc';
 import {HealthCheck} from './modules/health';
 import {LaunchDarklyClient} from './components/featureToggle/LaunchDarklyClient';
 
-const serveStatic = require('serve-static');
 const { setupDev } = require('./development');
 const { setupTest } = require('./test');
 
