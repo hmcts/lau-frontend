@@ -48,6 +48,10 @@ app.use((req, res, next) => {
     'Cache-Control',
     'no-cache, max-age=0, must-revalidate, no-store',
   );
+  res.setHeader(
+    'Accept-Ranges',
+    'none',
+  );
   next();
 });
 
