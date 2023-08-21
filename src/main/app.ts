@@ -38,11 +38,16 @@ logger.info('Environment: ' + env);
 setupDev(app,developmentMode);
 setupTest(app);
 
+const options = {
+  cacheControl: true,
+  acceptRanges: false,
+};
+
 app.use(compression());
 app.use(favicon(path.join(__dirname, '/public/assets/images/favicon.ico')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), options));
 app.use((req, res, next) => {
   res.setHeader(
     'Cache-Control',
