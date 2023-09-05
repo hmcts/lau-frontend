@@ -25,9 +25,11 @@ export interface AppSession extends Session {
   caseSearches?: LogData;
   logons?: LogData;
   caseDeletions?: LogData;
+  userDeletions?: LogData;
   caseFormState?: Partial<CaseSearchRequest>;
   logonFormState?: Partial<LogonSearchRequest>;
   caseDeletionsFormState?: Partial<CaseDeletionsSearchRequest>;
+  deletedUsersFormState?: Partial<LogonSearchRequest>;
   errors?: FormError[];
 }
 

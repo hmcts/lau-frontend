@@ -37,6 +37,10 @@ async function homeHandler(req: AppRequest, res: Response) {
         stringFieldRequired: 'Please enter at least one of the following fields: Case Type ID, Case Ref or Jurisdiction ID.',
         startDateBeforeEndDate: '\'Time from\' must be before \'Time to\'',
       },
+      deletedUsersSearchForm: {
+        stringFieldRequired: 'Please enter at least one of the following fields: User ID , Email, First Name or Last Name',
+        startDateBeforeEndDate: '\'Time from\' must be before \'Time to\'',
+      },
       startTimestamp: {
         invalid: 'Invalid \'Time from\' timestamp.',
         required: '\'Time from\' is required.',
