@@ -1,0 +1,115 @@
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set calendarIcon %}
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+  </svg>
+{% endset %}
+
+<form id="user-deletions-search-form" class="form search-form" method="post" action="/deleted-users-search">
+  <div class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">Deleted Users Search</h1>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+
+      {{ govukInput({
+        label: {
+          text: "User ID"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "userId",
+        name: "userId",
+        value: userDeletionsForm.userId
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Email Address"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "emailAddress",
+        name: "emailAddress",
+        value: userDeletionsForm.emailAddress
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "First Name"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "firstName",
+        name: "firstName",
+        value: userDeletionsForm.firstName
+      }) }}
+
+       {{ govukInput({
+            label: {
+              text: "Last Name"
+            },
+            classes: "govuk-!-width-three-quarters",
+            id: "lastName",
+            name: "lastName",
+            value: userDeletionsForm.lastName
+          }) }}
+    </div>
+    <div class="govuk-grid-column-one-half">
+
+      {{ govukInput({
+        label: {
+          text: "Time from (UTC)"
+        },
+        classes: "govuk-!-width-three-quarters",
+        suffix: {
+          html: calendarIcon,
+          classes: "deleted-users-start-timestamp-suffix"
+        },
+        id: "userDeletionsStartTimestamp",
+        name: "startTimestamp",
+        value: userDeletionsForm.startTimestamp
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Time to (UTC)"
+        },
+        classes: "govuk-!-width-three-quarters",
+        suffix: {
+          html: calendarIcon,
+          classes: "deleted-users-end-timestamp-suffix"
+        },
+        id: "userDeletionsEndTimestamp",
+        name: "endTimestamp",
+        value: userDeletionsForm.endTimestamp
+      }) }}
+
+      <div>
+        <p class="govuk-body govuk-body govuk-!-font-size-16">
+          <b>Note:</b> Please include time parameters in your search using the 'Time from' and 'Time to' fields, and
+          enter at least one other parameter to obtain search results.
+        </p>
+        <p class="govuk-body govuk-body govuk-!-font-size-16">Search results are limited to {{ common.maxRecords | numComma }}.</p>
+      </div>
+
+      <input type="hidden" id="page" name="page" value="1">
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      {{ govukButton({
+        name: "user-deletions-search-btn",
+        text: "Search",
+        type: "submit",
+        classes: "govuk-!-width-three-quarters govuk-!-margin-top-7",
+        preventDoubleClick: true,
+        value: "search"
+      }) }}
+    </div>
+  </div>
+</form>
