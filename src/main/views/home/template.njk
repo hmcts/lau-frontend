@@ -35,6 +35,10 @@
     {%  include '../case-deletions/template.njk' %}
   {% endset %}
 
+  {% set deletedUsersSearchTabHtml %}
+    {%  include '../search/deleted-users-template.njk' %}
+  {% endset %}
+
   {# ------------ Audit Investgator Tabs ------------ #}
   {% if userRoles and 'cft-audit-investigator' in userRoles %}
 
@@ -79,6 +83,14 @@
       }
     } %}
 
+    {% set userDeletionsSearchTab = {
+      label: "Deleted Users Search",
+      id: "deleted-users-search-tab",
+      panel: {
+        html: deletedUsersSearchTabHtml
+      }
+    } %}
+
   {% endif %}
 
   {# ------------ Service Logs Tabs ------------ #}
@@ -115,7 +127,9 @@
         logonsResultsTab,
 
         caseDeletionsSearchTab,
-        caseDeletionsResultsTab
+        caseDeletionsResultsTab,
+
+        userDeletionsSearchTab
       ]
     }) }}
   {% endif %}

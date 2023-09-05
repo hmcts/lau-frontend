@@ -20,6 +20,9 @@ const logonEndTimestampSuffix = document.getElementsByClassName('logon-end-times
 const caseDeletionsStartTimestampSuffix = document.getElementsByClassName('case-deletions-start-timestamp-suffix')[0] as HTMLElement;
 const caseDeletionsEndTimestampSuffix = document.getElementsByClassName('case-deletions-end-timestamp-suffix')[0] as HTMLElement;
 
+const deletedUsersStartTimestampSuffix = document.getElementsByClassName('deleted-users-start-timestamp-suffix')[0] as HTMLElement;
+const deletedUsersEndTimestampSuffix = document.getElementsByClassName('deleted-users-end-timestamp-suffix')[0] as HTMLElement;
+
 const getOptions = (suffixEl: HTMLElement): Options => {
   return {
     allowInvalidPreload: true,
@@ -64,6 +67,20 @@ if (logonForm && getById('logonStartTimestamp') && getById('logonEndTimestamp'))
 
   const endCal: flatpickr.Instance = flatpickr('#logonEndTimestamp', getOptions(logonEndTimestampSuffix)) as flatpickr.Instance;
   logonEndTimestampSuffix.addEventListener('click', () => {
+    endCal.isOpen ? endCal.close() : endCal.open();
+  });
+}
+
+// ------------------------ User Deletions Search Datepicker ------------------------
+const userDeletionsForm = getById('user-deletions-search-form') as HTMLFormElement | null;
+if (userDeletionsForm && getById('userDeletionsStartTimestamp') && getById('userDeletionsEndTimestamp')) {
+  const startCal: flatpickr.Instance = flatpickr('#userDeletionsStartTimestamp', getOptions(deletedUsersStartTimestampSuffix)) as flatpickr.Instance;
+  deletedUsersStartTimestampSuffix.addEventListener('click', () => {
+    startCal.isOpen ? startCal.close() : startCal.open();
+  });
+
+  const endCal: flatpickr.Instance = flatpickr('#userDeletionsEndTimestamp', getOptions(deletedUsersEndTimestampSuffix)) as flatpickr.Instance;
+  deletedUsersEndTimestampSuffix.addEventListener('click', () => {
     endCal.isOpen ? endCal.close() : endCal.open();
   });
 }

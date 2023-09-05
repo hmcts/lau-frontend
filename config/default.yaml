@@ -39,6 +39,7 @@ services:
     port: 4551
     endpoints:
       logon: '/audit/logon'
+      deletedUsers: '/audit/deletedAccounts'
   idam-api:
     enabled: true
     authorizationURL: 'https://idam-web-public.aat.platform.hmcts.net/login'

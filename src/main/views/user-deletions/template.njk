@@ -1,0 +1,69 @@
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% if userDeletions and userDeletions.hasData %}
+  <div class="flex-space-between">
+    <h1 class="govuk-heading-l">Deleted Users Results</h1>
+    <button id="searchesCsvBtn" class="govuk-button">Download all records to CSV</button>
+  </div>
+
+  <div>
+    {{ govukTable({
+      firstCellIsHeader: true,
+      head: [
+        {
+          text: "User ID"
+        },
+        {
+          text: "Email Address"
+        },
+        {
+          text: "First Name"
+        },
+         {
+          text: "Last Name"
+        },
+        {
+          text: "Timestamp (UTC)"
+        }
+      ],
+      rows: userDeletions.rows
+    }) }}
+  </div>
+
+  <div class="flex-space-between">
+    <div>
+      <p class="govuk-body">Displaying <b>{{ userDeletions.startRecordNumber | numComma }} to {{ (userDeletions.startRecordNumber + (userDeletions.noOfRows - 1)) | numComma }}</b> of {{ userDeletions.totalNumberOfRecords | numComma }} records</p>
+      {% if userDeletions.totalNumberOfRecords == common.maxRecords %}
+        <p class="govuk-body-s"><b>Note:</b> Results returned have been capped at {{ common.maxRecords | numComma }}.</p>
+      {% endif %}
+    </div>
+    <div>
+      {% if (userDeletions.currentPage > 2) %}
+        <a id="case-searches-first-btn" class="govuk-link pagination-link" href="/case-searches/page/1">&lt;&lt; First</a>
+      {% endif %}
+      {% if (userDeletions.currentPage > 1) %}
+        <a id="case-searches-previous-btn" class="govuk-link pagination-link" href="/case-searches/page/{{ userDeletions.currentPage | int - 1 }}">&lt; Previous</a>
+      {% endif %}
+
+      <span class="govuk-body-s">&emsp;Page {{ userDeletions.currentPage | numComma }} / {{ userDeletions.lastPage | numComma}}&emsp;</span>
+
+      {% if (userDeletions.lastPage - userDeletions.currentPage) > 0 %}
+        <a id="case-searches-next-btn" class="govuk-link pagination-link" href="/case-searches/page/{{ userDeletions.currentPage | int + 1 }}">Next &gt;</a>
+      {% endif %}
+      {% if (userDeletions.lastPage - userDeletions.currentPage) > 1 %}
+        <a id="case-searches-last-btn" class="govuk-link pagination-link" href="/case-searches/page/{{ userDeletions.lastPage }}">Last &gt;&gt;</a>
+      {% endif %}
+    </div>
+  </div>
+
+{% elseif userDeletions %}
+
+  <h1 class="govuk-heading-l">Deleted Users Results</h1>
+  <p class="govuk-body">No results found</p>
+
+{% else %}
+
+  <h2 class="govuk-heading-m">Use the Search tab to conduct a search</h2>
+  <p class="govuk-body">User ID or Case Ref must be included in search criteria.</p>
+
+{% endif %}

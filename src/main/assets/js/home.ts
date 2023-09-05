@@ -25,6 +25,13 @@ const forms = [
       {id: 'deletionsCsvBtn', uri: '/case-deletions/csv'},
     ],
   },
+  {
+    id: 'user-deletions-search-form',
+    searchButtonName: 'user-deletions-search-btn',
+    csvButtons: [
+      {id: 'deletedUsersCsvBtn', uri: '/deleted-users/csv'},
+    ],
+  },
 ];
 
 for (const form of forms) {
