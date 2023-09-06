@@ -1,6 +1,7 @@
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
 {% if userDeletions and userDeletions.hasData %}
+
   <div class="flex-space-between">
     <h1 class="govuk-heading-l">Deleted Users Results</h1>
     <button id="searchesCsvBtn" class="govuk-button">Download all records to CSV</button>
@@ -64,6 +65,6 @@
 {% else %}
 
   <h2 class="govuk-heading-m">Use the Search tab to conduct a search</h2>
-  <p class="govuk-body">User ID or Case Ref must be included in search criteria.</p>
+  <p class="govuk-body">One of User ID, Email Address, First Name or Last Name must be included in search criteria.</p>
 
 {% endif %}

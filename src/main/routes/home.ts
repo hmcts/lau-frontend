@@ -6,11 +6,13 @@ async function homeHandler(req: AppRequest, res: Response) {
   const caseFormState = req.session?.caseFormState || {};
   const logonFormState = req.session?.logonFormState || {};
   const caseDeletionsFormState = req.session?.caseDeletionsFormState || {};
+  const deletedUsersFormState = req.session?.deletedUsersFormState || {};
   const sessionErrors = req.session?.errors || [];
   const caseActivities = req.session?.caseActivities;
   const caseSearches = req.session?.caseSearches;
   const logons = req.session?.logons;
   const caseDeletions = req.session?.caseDeletions;
+  const userDeletions = req.session?.userDeletions;
 
   res.render('home/template', {
     common: {
@@ -19,10 +21,13 @@ async function homeHandler(req: AppRequest, res: Response) {
     caseForm: caseFormState,
     logonForm: logonFormState,
     caseDeletionsForm: caseDeletionsFormState,
+    deletedUsersForm: deletedUsersFormState,
+
     caseActivities,
     caseSearches,
     logons,
     caseDeletions,
+    userDeletions,
     sessionErrors,
     errors: {
       caseSearchForm: {

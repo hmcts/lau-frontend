@@ -25,7 +25,7 @@
         classes: "govuk-!-width-three-quarters",
         id: "userId",
         name: "userId",
-        value: userDeletionsForm.userId
+        value: deletedUsersForm.userId
       }) }}
 
       {{ govukInput({
@@ -35,7 +35,7 @@
         classes: "govuk-!-width-three-quarters",
         id: "emailAddress",
         name: "emailAddress",
-        value: userDeletionsForm.emailAddress
+        value: deletedUsersForm.emailAddress
       }) }}
 
       {{ govukInput({
@@ -45,7 +45,7 @@
         classes: "govuk-!-width-three-quarters",
         id: "firstName",
         name: "firstName",
-        value: userDeletionsForm.firstName
+        value: deletedUsersForm.firstName
       }) }}
 
        {{ govukInput({
@@ -55,7 +55,7 @@
             classes: "govuk-!-width-three-quarters",
             id: "lastName",
             name: "lastName",
-            value: userDeletionsForm.lastName
+            value: deletedUsersForm.lastName
           }) }}
     </div>
     <div class="govuk-grid-column-one-half">
@@ -71,7 +71,7 @@
         },
         id: "userDeletionsStartTimestamp",
         name: "startTimestamp",
-        value: userDeletionsForm.startTimestamp
+        value: deletedUsersForm.startTimestamp
       }) }}
 
       {{ govukInput({
@@ -85,7 +85,7 @@
         },
         id: "userDeletionsEndTimestamp",
         name: "endTimestamp",
-        value: userDeletionsForm.endTimestamp
+        value: deletedUsersForm.endTimestamp
       }) }}
 
       <div>
