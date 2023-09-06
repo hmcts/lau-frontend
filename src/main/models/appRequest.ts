@@ -4,6 +4,7 @@ import type { LoggerInstance } from 'winston';
 import {CaseSearchRequest} from './case/CaseSearchRequest';
 import {LogonSearchRequest} from './idam/LogonSearchRequest';
 import {CaseDeletionsSearchRequest} from './deletions/CaseDeletionsSearchRequest';
+import { DeletedUsersSearchRequest } from './user-deletions/DeletedUsersSearchRequest';
 
 export type FormError = {
   propertyName: string;
@@ -29,7 +30,7 @@ export interface AppSession extends Session {
   caseFormState?: Partial<CaseSearchRequest>;
   logonFormState?: Partial<LogonSearchRequest>;
   caseDeletionsFormState?: Partial<CaseDeletionsSearchRequest>;
-  deletedUsersFormState?: Partial<LogonSearchRequest>;
+  deletedUsersFormState?: Partial<DeletedUsersSearchRequest>;
   errors?: FormError[];
 }
 

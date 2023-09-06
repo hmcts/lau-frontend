@@ -5,14 +5,14 @@ import {AppRequest} from '../models/appRequest';
 import {Response} from 'express';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 import {DeletedUsersSearchRequest} from '../models/user-deletions/DeletedUsersSearchRequest';
-import {DeletedUsers} from './DeletedUsers.controller';
+import {DeletedUsersController} from './DeletedUsers.controller';
 
 /**
  * Search Controller class to handle search tab functionality
  */
 @autobind
 export class DeletedUsersSearchController extends BaseSearchController<DeletedUsersSearchRequest> {
-  private deletedUsers = new DeletedUsers();
+  private deletedUsersController = new DeletedUsersController();
 
   formId = 'deletedUsersSearchForm';
   requiredFields = [
@@ -38,8 +38,8 @@ export class DeletedUsersSearchController extends BaseSearchController<DeletedUs
 
       this.formatSearchRequest(searchRequest);
 
-      return this.deletedUsers.getDeletedUsersData(req).then(logData => {
-        req.session.logons = logData;
+      return this.deletedUsersController.getDeletedUsersData(req).then(logData => {
+        req.session.userDeletions = logData;
         res.redirect('/#deleted-users-tab');
       }).catch((err: AppError) => {
         this.logger.error(err.message);

@@ -1,9 +1,10 @@
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
 {% if userDeletions and userDeletions.hasData %}
+
   <div class="flex-space-between">
     <h1 class="govuk-heading-l">Deleted Users Results</h1>
-    <button id="searchesCsvBtn" class="govuk-button">Download all records to CSV</button>
+    <button id="deletedUsersCsvBtn" class="govuk-button">Download all records to CSV</button>
   </div>
 
   <div>
@@ -39,19 +40,19 @@
     </div>
     <div>
       {% if (userDeletions.currentPage > 2) %}
-        <a id="case-searches-first-btn" class="govuk-link pagination-link" href="/case-searches/page/1">&lt;&lt; First</a>
+        <a id="deleted-users-first-btn" class="govuk-link pagination-link" href="/deleted-users/page/1">&lt;&lt; First</a>
       {% endif %}
       {% if (userDeletions.currentPage > 1) %}
-        <a id="case-searches-previous-btn" class="govuk-link pagination-link" href="/case-searches/page/{{ userDeletions.currentPage | int - 1 }}">&lt; Previous</a>
+        <a id="deleted-users-previous-btn" class="govuk-link pagination-link" href="/deleted-users/page/{{ userDeletions.currentPage | int - 1 }}">&lt; Previous</a>
       {% endif %}
 
       <span class="govuk-body-s">&emsp;Page {{ userDeletions.currentPage | numComma }} / {{ userDeletions.lastPage | numComma}}&emsp;</span>
 
       {% if (userDeletions.lastPage - userDeletions.currentPage) > 0 %}
-        <a id="case-searches-next-btn" class="govuk-link pagination-link" href="/case-searches/page/{{ userDeletions.currentPage | int + 1 }}">Next &gt;</a>
+        <a id="deleted-users-next-btn" class="govuk-link pagination-link" href="/deleted-users/page/{{ userDeletions.currentPage | int + 1 }}">Next &gt;</a>
       {% endif %}
       {% if (userDeletions.lastPage - userDeletions.currentPage) > 1 %}
-        <a id="case-searches-last-btn" class="govuk-link pagination-link" href="/case-searches/page/{{ userDeletions.lastPage }}">Last &gt;&gt;</a>
+        <a id="deleted-users-last-btn" class="govuk-link pagination-link" href="/deleted-users/page/{{ userDeletions.lastPage }}">Last &gt;&gt;</a>
       {% endif %}
     </div>
   </div>
@@ -64,6 +65,6 @@
 {% else %}
 
   <h2 class="govuk-heading-m">Use the Search tab to conduct a search</h2>
-  <p class="govuk-body">User ID or Case Ref must be included in search criteria.</p>
+  <p class="govuk-body">One of User ID, Email Address, First Name or Last Name must be included in search criteria.</p>
 
 {% endif %}
