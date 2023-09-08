@@ -12,7 +12,7 @@ module.exports = {
     'xScenario': true,
     'codecept_helper': true,
   },
-  'parser': 'babel-eslint',
+  'parser': '@babel/eslint-parser',
   'parserOptions': {
     'ecmaVersion': 2018,
     'sourceType': 'module',
