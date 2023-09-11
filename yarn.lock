@@ -2783,15 +2783,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/connect-redis@npm:^0.0.17":
-  version: 0.0.17
-  resolution: "@types/connect-redis@npm:0.0.17"
+"@types/connect-redis@npm:^0.0.21":
+  version: 0.0.21
+  resolution: "@types/connect-redis@npm:0.0.21"
   dependencies:
     "@types/express": "*"
     "@types/express-session": "*"
-    "@types/ioredis": "*"
-    "@types/redis": "*"
-  checksum: ad8d02d49755ccb2a0efe098f4b7ad836798531bea20ee92d8b8ec839f71c25ab2b7cd859aacd2a7d58b49ba5fecda3ac2d1b6359c8ea3914c7b33e18de723b0
+    "@types/redis": ^2.8.0
+    ioredis: ^5.3.0
+  checksum: edd9158f37b2e6aed30946b6e166a311cb7c4bd12dcdd3b41b9a9e1176bf48a59d601be980d11c0e04aab817dd71172a57a49b0d3a95cd0f1cdbdd474c2eabb1
   languageName: node
   linkType: hard
 
@@ -2990,15 +2990,6 @@ __metadata:
   version: 4.0.1
   resolution: "@types/http-cache-semantics@npm:4.0.1"
   checksum: 1048aacf627829f0d5f00184e16548205cd9f964bf0841c29b36bc504509230c40bc57c39778703a1c965a6f5b416ae2cbf4c1d4589c889d2838dd9dbfccf6e9
-  languageName: node
-  linkType: hard
-
-"@types/ioredis@npm:*":
-  version: 4.27.8
-  resolution: "@types/ioredis@npm:4.27.8"
-  dependencies:
-    "@types/node": "*"
-  checksum: c718933d6e082e40598ab767fe95e837e2bff9c0e6e526091e777402d7dd482592f16aaf35bc6d8e5a276aab6fcb93c667512156416c35398a8b1cdfdf601482
   languageName: node
   linkType: hard
 
@@ -3210,7 +3201,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/redis@npm:*":
+"@types/redis@npm:^2.8.0":
   version: 2.8.32
   resolution: "@types/redis@npm:2.8.32"
   dependencies:
@@ -6231,7 +6222,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"denque@npm:^2.0.1":
+"denque@npm:^2.0.1, denque@npm:^2.1.0":
   version: 2.1.0
   resolution: "denque@npm:2.1.0"
   checksum: 1d4ae1d05e59ac3a3481e7b478293f4b4c813819342273f3d5b826c7ffa9753c520919ba264f377e09108d24ec6cf0ec0ac729a5686cbb8f32d797126c5dae74
@@ -8773,6 +8764,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ioredis@npm:^5.3.0":
+  version: 5.3.2
+  resolution: "ioredis@npm:5.3.2"
+  dependencies:
+    "@ioredis/commands": ^1.1.1
+    cluster-key-slot: ^1.1.0
+    debug: ^4.3.4
+    denque: ^2.1.0
+    lodash.defaults: ^4.2.0
+    lodash.isarguments: ^3.1.0
+    redis-errors: ^1.2.0
+    redis-parser: ^3.0.0
+    standard-as-callback: ^2.1.0
+  checksum: 9a23559133e862a768778301efb68ae8c2af3c33562174b54a4c2d6574b976e85c75a4c34857991af733e35c48faf4c356e7daa8fb0a3543d85ff1768c8754bc
+  languageName: node
+  linkType: hard
+
 "ip-address@npm:~6.1.0":
   version: 6.1.0
   resolution: "ip-address@npm:6.1.0"
@@ -10130,7 +10138,7 @@ __metadata:
     "@types/chai-as-promised": ^7.1.1
     "@types/compression": ^1.7.2
     "@types/config": ^0.0.41
-    "@types/connect-redis": ^0.0.17
+    "@types/connect-redis": ^0.0.21
     "@types/cookie-parser": ^1.4.2
     "@types/copy-webpack-plugin": ^8.0.1
     "@types/csurf": ^1.9.36
