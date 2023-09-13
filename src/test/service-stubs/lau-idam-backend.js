@@ -8,7 +8,7 @@ const app = express();
 const router = express.Router();
 const BACKEND_PORT = config.get('services.lau-idam-backend.port');
 const LOGON_ENDPOINT = config.get('services.lau-idam-backend.endpoints.logon');
-const DELETED_USERS_ENDPOINT = config.get('services.lau-idam-backend.endpoints.deletedUsers')
+const DELETED_USERS_ENDPOINT = config.get('services.lau-idam-backend.endpoints.deletedUsers');
 
 const logonLogs = require('../data/logonLogs.json');
 const deletedUsersLogs = require('../data/deletedUsersLogs.json');
