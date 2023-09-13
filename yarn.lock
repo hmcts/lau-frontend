@@ -2841,9 +2841,9 @@ __metadata:
   linkType: hard
 
 "@types/es6-promisify@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "@types/es6-promisify@npm:6.0.0"
-  checksum: 3e2e9b394307d7dc2a034a1376ca01460d2eaeaaec483121853288a259ae385e8c85c1786d2c97490f0869e250b251db447952a8fd22cd0c4890eba25ef900d5
+  version: 6.0.1
+  resolution: "@types/es6-promisify@npm:6.0.1"
+  checksum: a717113805ed9d35f02f3fdf9a4c00b0589ca32e8a66bd22b950418e21900fda060a5578fa9ad37bd7c62f17ed327bd7570cea5dac522254d720cc1a861ecf12
   languageName: node
   linkType: hard
 
