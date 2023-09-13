@@ -8,7 +8,7 @@ export interface DeletedUsersLog {
     deletionTimestamp: string;
 }
 
-export class DeletedUsersLog extends Logs<DeletedUsersLog> {
+export class DeletedUsersLogs extends Logs<DeletedUsersLog> {
     public _fields: string[] = ['userId', 'emailAddress', 'firstName', 'lastName', 'deletionTimestamp'];
 }
 

@@ -9,7 +9,7 @@ describe('Deleted Users Service', () => {
   const deletedUsersService = new DeletedUsersService();
   const baseApiUrl = config.get('services.lau-idam-backend.url') as string;
 
-  describe('getLogons', () => {
+  describe('getDeletedUsers', () => {
     const deletedUsersEndpoint = config.get('services.lau-idam-backend.endpoints.deletedUsers') as string;
 
     it('return deleted users audit data', async () => {

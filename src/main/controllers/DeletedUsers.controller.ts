@@ -7,7 +7,7 @@ import {csvDate, requestDateToFormDate} from '../util/Date';
 import {csvJson} from '../util/CsvHandler';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 import {DeletedUsersService} from '../service/DeletedUsersService';
-import {DeletedUsersLog, deletedUsersLogsOrder} from '../models/user-deletions/DeletedUsersLog';
+import {DeletedUsersLog, DeletedUsersLogs, deletedUsersLogsOrder} from '../models/user-deletions/DeletedUsersLog';
 
 const {Logger} = require('@hmcts/nodejs-logging');
 
@@ -61,7 +61,6 @@ export class DeletedUsersController {
       this.logger.info('Deleted users search for page ', req.params.pageNumber);
 
       await this.getDeletedUsersData(req).then(deletedUsersData => {
-        this.logger.info(JSON.stringify(deletedUsersData));
         req.session.userDeletions = deletedUsersData;
         res.redirect('/#deleted-users-search-tab');
       }).catch((err: AppError) => {
@@ -72,7 +71,7 @@ export class DeletedUsersController {
 
     public async getCsv(req: AppRequest, res: Response): Promise<void> {
       return this.service.getDeletedUsers(req, true).then(logons => {
-        const deletedUsersLog = new DeletedUsersLog(logons.deletionLogs);
+        const deletedUsersLog = new DeletedUsersLogs(logons.deletionLogs);
         const filename = `deleted_users-${csvDate()}.csv`;
         res.status(200).json({filename, csvJson: csvJson(deletedUsersLog)});
       });

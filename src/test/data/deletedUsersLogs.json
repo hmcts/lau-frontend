@@ -1,0 +1,102 @@
+{
+  "deletedUsersLog": [
+    {
+      "userId":  "U0001",
+      "firstName": "John01",
+      "lastName": "Smith01",
+      "emailAddress": "john01.smith01@example.org",
+      "deletionTimestamp": "2023-08-20 14:15:30"
+    },
+    {
+      "userId":  "U0002",
+      "firstName": "John02",
+      "lastName": "Smith02",
+      "emailAddress": "john02.smith02@example.org",
+      "deletionTimestamp": "2023-08-21 17:30:45"
+    },
+    {
+      "userId":  "U0003",
+      "firstName": "John03",
+      "lastName": "Smith03",
+      "emailAddress": "john03.smith03@example.org",
+      "deletionTimestamp": "2023-08-22 14:15:30"
+    },
+    {
+      "userId":  "U0004",
+      "firstName": "John04",
+      "lastName": "Smith04",
+      "emailAddress": "john04.smith04@example.org",
+      "deletionTimestamp": "2023-08-23 17:30:45"
+    },
+    {
+      "userId":  "U0005",
+      "firstName": "John05",
+      "lastName": "Smith05",
+      "emailAddress": "john05.smith05@example.org",
+      "deletionTimestamp": "2023-08-24 14:15:30"
+    },
+    {
+      "userId":  "U0006",
+      "firstName": "John06",
+      "lastName": "Smith06",
+      "emailAddress": "john06.smith06@example.org",
+      "deletionTimestamp": "2023-08-25 17:30:45"
+    },
+    {
+      "userId":  "U0007",
+      "firstName": "John07",
+      "lastName": "Smith07",
+      "emailAddress": "john07.smith07@example.org",
+      "deletionTimestamp": "2023-08-26 14:15:30"
+    },
+    {
+      "userId":  "U0008",
+      "firstName": "John08",
+      "lastName": "Smith08",
+      "emailAddress": "john08.smith08@example.org",
+      "deletionTimestamp": "2023-08-27 17:30:45"
+    },
+    {
+      "userId":  "U0009",
+      "firstName": "John09",
+      "lastName": "Smith09",
+      "emailAddress": "john09.smith09@example.org",
+      "deletionTimestamp": "2023-08-28 14:15:30"
+    },
+    {
+      "userId":  "U0010",
+      "firstName": "John10",
+      "lastName": "Smith10",
+      "emailAddress": "john10.smith10@example.org",
+      "deletionTimestamp": "2023-08-29 17:30:45"
+    },
+    {
+      "userId":  "U0011",
+      "firstName": "John11",
+      "lastName": "Smith11",
+      "emailAddress": "john11.smith11@example.org",
+      "deletionTimestamp": "2023-08-30 14:15:30"
+    },
+    {
+      "userId":  "U0012",
+      "firstName": "John12",
+      "lastName": "Smith12",
+      "emailAddress": "john12.smith12@example.org",
+      "deletionTimestamp": "2023-08-31 17:30:45"
+    },
+    {
+      "userId":  "U0013",
+      "firstName": "John13",
+      "lastName": "Smith13",
+      "emailAddress": "john13.smith13@example.org",
+      "deletionTimestamp": "2023-09-01 14:15:30"
+    },
+    {
+      "userId":  "U0014",
+      "firstName": "John14",
+      "lastName": "Smith14",
+      "emailAddress": "john14.smith14@example.org",
+      "deletionTimestamp": "2023-08-02 17:30:45"
+    }
+  ]
+}
