@@ -3,12 +3,12 @@ appVersion: "1.0"
 description: A Helm chart for Log and Audit Frontend App
 name: lau-frontend
 home: https://github.com/hmcts/lau-frontend
-version: 0.0.40
+version: 0.0.41
 dependencies:
   - name: nodejs
     version: 2.4.18
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
   - name: redis
-    version: 18.0.2
+    version: 18.0.4
     repository: 'https://charts.bitnami.com/bitnami'
     condition: redis.enabled
