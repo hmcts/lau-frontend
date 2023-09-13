@@ -3149,9 +3149,9 @@ __metadata:
   linkType: hard
 
 "@types/nunjucks@npm:^3.1.3":
-  version: 3.2.0
-  resolution: "@types/nunjucks@npm:3.2.0"
-  checksum: 34b6d06b4f2fce57514d64945f008be892ae5682382aea6970fd9e13ce6f6a07474268ddbd1e7950c5a39750c10d26473baf47c72db7184e07ea7e411a77e412
+  version: 3.2.3
+  resolution: "@types/nunjucks@npm:3.2.3"
+  checksum: f4263a39f0bafb701fe75a088cf2100f0fe717ab29c53d13eb60fea77e945f8cfdabfb84bd6ce85fd11586f90aa36539cf5bd489166edcf56a189a0407d481a2
   languageName: node
   linkType: hard
 
