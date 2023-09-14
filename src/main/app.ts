@@ -1,7 +1,7 @@
 import { glob } from 'glob';
 const asyncify = require('express-asyncify');
 import config = require('config');
-import express from 'express';
+import express, {NextFunction, Request, Response} from 'express';
 import compression from 'compression';
 import { Helmet } from './modules/helmet';
 import * as path from 'path';
@@ -49,7 +49,7 @@ app.use(favicon(path.join(__dirname, '/public/assets/images/favicon.ico')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public'), options));
-app.use((req, res, next) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
   res.setHeader(
     'Cache-Control',
     'no-cache, max-age=0, must-revalidate, no-store',
