@@ -62,13 +62,13 @@ glob.sync(__dirname + '/routes/**/*.+(ts|js)')
   .forEach(route => route.default(app));
 
 // returning "not found" page for requests with paths not resolved by the router
-app.use((req, res) => {
+app.use((req: Request, res: Response) => {
   res.status(404);
   res.render('common/not-found');
 });
 
 // error handler
-app.use((err: HTTPError, req: express.Request, res: express.Response) => {
+app.use((err: HTTPError, req: Request, res: Response) => {
   logger.error(`${err.stack || err}`);
 
   // set locals, only providing error in development
