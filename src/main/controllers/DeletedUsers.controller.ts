@@ -62,7 +62,7 @@ export class DeletedUsersController {
 
       await this.getDeletedUsersData(req).then(deletedUsersData => {
         req.session.userDeletions = deletedUsersData;
-        res.redirect('/#deleted-users-search-tab');
+        res.redirect('/#deleted-users-tab');
       }).catch((err: AppError) => {
         this.logger.error(err.message);
         errorRedirect(res, err.code);
