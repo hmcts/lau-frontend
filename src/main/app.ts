@@ -1,7 +1,6 @@
 import { glob } from 'glob';
-import asyncify from 'express-asyncify';
 import config = require('config');
-import express, {NextFunction, Request, Response} from 'express';
+import express from 'express';
 import compression from 'compression';
 import { Helmet } from './modules/helmet';
 import * as path from 'path';
@@ -20,7 +19,7 @@ const { setupTest } = require('./test');
 const env = process.env.NODE_ENV || 'development';
 const developmentMode = env === 'development';
 
-export const app = asyncify(express());
+export const app = express();
 app.locals.ENV = env;
 
 
@@ -49,7 +48,7 @@ app.use(favicon(path.join(__dirname, '/public/assets/images/favicon.ico')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public'), options));
-app.use((req: Request, res: Response, next: NextFunction) => {
+app.use((req, res, next) => {
   res.setHeader(
     'Cache-Control',
     'no-cache, max-age=0, must-revalidate, no-store',
@@ -62,13 +61,13 @@ glob.sync(__dirname + '/routes/**/*.+(ts|js)')
   .forEach(route => route.default(app));
 
 // returning "not found" page for requests with paths not resolved by the router
-app.use((req: Request, res: Response) => {
+app.use((req, res) => {
   res.status(404);
   res.render('common/not-found');
 });
 
 // error handler
-app.use((err: HTTPError, req: Request, res: Response) => {
+app.use((err: HTTPError, req: express.Request, res: express.Response) => {
   logger.error(`${err.stack || err}`);
 
   // set locals, only providing error in development
