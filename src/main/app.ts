@@ -1,5 +1,5 @@
 import { glob } from 'glob';
-const asyncify = require('express-asyncify');
+import asyncify from 'express-asyncify';
 import config = require('config');
 import express, {NextFunction, Request, Response} from 'express';
 import compression from 'compression';
