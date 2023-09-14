@@ -2498,7 +2498,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sinonjs/fake-timers@npm:^7.0.4, @sinonjs/fake-timers@npm:^7.1.0, @sinonjs/fake-timers@npm:^7.1.2":
+"@sinonjs/fake-timers@npm:^7.0.4, @sinonjs/fake-timers@npm:^7.1.2":
   version: 7.1.2
   resolution: "@sinonjs/fake-timers@npm:7.1.2"
   dependencies:
@@ -3265,11 +3265,18 @@ __metadata:
   linkType: hard
 
 "@types/sinon@npm:^10.0.2":
-  version: 10.0.6
-  resolution: "@types/sinon@npm:10.0.6"
+  version: 10.0.16
+  resolution: "@types/sinon@npm:10.0.16"
   dependencies:
-    "@sinonjs/fake-timers": ^7.1.0
-  checksum: 1c2ae7daa822014a558d513c1ae341aed676bfe678b9e48cf13a0ccc0eabc429f211371e8f10495d5eb156c0aedfeb3ad5253ebfe026fc14a5b77c461a6cea2a
+    "@types/sinonjs__fake-timers": "*"
+  checksum: 1216aac584500d6bf845ca76f57e82f8459cf9de4ed80a55e50aa4438360fc418789a42181e211c5d279e97f86a3a994e3c81e43971d540737caca0193242bbf
+  languageName: node
+  linkType: hard
+
+"@types/sinonjs__fake-timers@npm:*":
+  version: 8.1.2
+  resolution: "@types/sinonjs__fake-timers@npm:8.1.2"
+  checksum: bbc73a5ab6c0ec974929392f3d6e1e8db4ebad97ec506d785301e1c3d8a4f98a35b1aa95b97035daef02886fd8efd7788a2fa3ced2ec7105988bfd8dce61eedd
   languageName: node
   linkType: hard
 
