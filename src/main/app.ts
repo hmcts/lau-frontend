@@ -1,4 +1,5 @@
 import { glob } from 'glob';
+const asyncify = require('express-asyncify');
 import config = require('config');
 import express from 'express';
 import compression from 'compression';
@@ -19,7 +20,7 @@ const { setupTest } = require('./test');
 const env = process.env.NODE_ENV || 'development';
 const developmentMode = env === 'development';
 
-export const app = express();
+export const app = asyncify(express());
 app.locals.ENV = env;
 
 

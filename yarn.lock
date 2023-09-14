@@ -7081,6 +7081,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"express-asyncify@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "express-asyncify@npm:2.1.2"
+  peerDependencies:
+    express: ^4.18.2
+  checksum: 986203c6e5b3c7a1302a83174637fde5fe34547b72ff67a95929acc1ddec544bce3ed74bcc975420ff3e25e91f41c1fbc5305aabb941e58eb428f0679ba178f9
+  languageName: node
+  linkType: hard
+
 "express-nunjucks@npm:^2.2.5":
   version: 2.2.5
   resolution: "express-nunjucks@npm:2.2.5"
@@ -10162,6 +10171,7 @@ __metadata:
     debug: ^4.1.1
     eslint: ^7.32.0
     express: ^4.18.2
+    express-asyncify: ^2.1.2
     express-nunjucks: ^2.2.5
     express-session: ^1.17.3
     flatpickr: ^4.6.13
