@@ -14,8 +14,8 @@ Scenario('Navigate to LAU, perform deleted user search and authenticate deleted 
   await I.authenticateWithIdam(userType.AUDITOR, true);
   await I.amOnPage('/');
   await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
-  await I.waitForText('Deleted Users Search', testConfig.TestTimeToWaitForText);
   await lauHelper.selectTab(I, tabs.DELETED_USERS_SEARCH);
+  await I.waitForText('Deleted Users Search', testConfig.TestTimeToWaitForText);
   await I.performDeletedUsersSearch();
   await I.click('button[name="user-deletions-search-btn"]');
   await I.wait(10);
@@ -42,7 +42,6 @@ Scenario('Navigate to LAU, perform deleted user search and authenticate deleted 
 Scenario('Navigate to LAU, perform deleted user search and download CSV', async ({I}) => {
   await I.amOnLauAppPage('');
   await I.authenticateWithIdam(userType.AUDITOR, true);
-
   await I.amOnPage('/');
   await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
   await lauHelper.selectTab(I, tabs.DELETED_USERS_SEARCH);
@@ -50,7 +49,7 @@ Scenario('Navigate to LAU, perform deleted user search and download CSV', async 
   await I.performDeletedUsersSearch();
   await I.click('button[name="user-deletions-search-btn"]');
   await I.wait(10);
-  await lauHelper.selectTab(I, tabs.DELETED_USERS_RESULT);
+  //await lauHelper.selectTab(I, tabs.DELETED_USERS_RESULT);
   await I.waitForText('Deleted Users Results', testConfig.TestTimeToWaitForText);
   await I.handleDownloads();
   await I.click('#deletedUsersCsvBtn');
@@ -68,9 +67,9 @@ Scenario('Navigate to LAU, perform deleted user search and download CSV', async 
 Scenario('Navigate to LAU, perform Deleted User search and authenticate error text', async ({I}) => {
   await I.amOnLauAppPage('');
   await I.authenticateWithIdam(userType.AUDITOR, true);
-
   await I.amOnPage('/');
   await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
+  await lauHelper.selectTab(I, tabs.DELETED_USERS_SEARCH);
   await I.waitForText('Deleted Users Search', testConfig.TestTimeToWaitForText);
   await I.performDeletedUsersSearchWithoutSearchData();
   await I.click('button[name="user-deletions-search-btn"]');
