@@ -4,10 +4,10 @@ const testConfig = require('../../config');
 const {userType, tabs} = require('../common/Constants');
 const lauHelper = require('../lauApi/lauHelper');
 
-Feature('Home Screen Sanity Check)');
+Feature('Deleted Users Check)');
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
-logger.info('Running \'Deleted User Page testing\' feature');
+logger.info('Running \'Deleted Users Page testing\' feature');
 
 Scenario('Navigate to LAU, perform deleted user search and authenticate deleted user results', async ({I}) => {
   await I.amOnLauAppPage('');
