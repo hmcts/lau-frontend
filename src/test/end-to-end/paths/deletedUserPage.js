@@ -35,7 +35,7 @@ Scenario('Navigate to LAU, perform deleted user search and authenticate deleted 
   await I.wait(10);
   const textLastPagination = await I.grabTextFromAll('div[class="flex-space-between"] p');
   logger.info({message: 'the text is ', textLastPagination});
-  await I.waitForText('Displaying 1 to 100 of 250 records', testConfig.TestTimeToWaitForText);
+  await I.waitForText('Displaying 1 to 100 of 200 records', testConfig.TestTimeToWaitForText);
   //await I.waitForText('Note: Results returned have been capped at 10,000.', testConfig.TestTimeToWaitForText);
 }).retry(testConfig.TestRetryScenarios);
 
