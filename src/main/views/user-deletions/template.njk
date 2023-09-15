@@ -40,19 +40,19 @@
     </div>
     <div>
       {% if (userDeletions.currentPage > 2) %}
-        <a id="case-searches-first-btn" class="govuk-link pagination-link" href="/case-searches/page/1">&lt;&lt; First</a>
+        <a id="deleted-users-first-btn" class="govuk-link pagination-link" href="/deleted-users/page/1">&lt;&lt; First</a>
       {% endif %}
       {% if (userDeletions.currentPage > 1) %}
-        <a id="case-searches-previous-btn" class="govuk-link pagination-link" href="/case-searches/page/{{ userDeletions.currentPage | int - 1 }}">&lt; Previous</a>
+        <a id="deleted-users-previous-btn" class="govuk-link pagination-link" href="/deleted-users/page/{{ userDeletions.currentPage | int - 1 }}">&lt; Previous</a>
       {% endif %}
 
       <span class="govuk-body-s">&emsp;Page {{ userDeletions.currentPage | numComma }} / {{ userDeletions.lastPage | numComma}}&emsp;</span>
 
       {% if (userDeletions.lastPage - userDeletions.currentPage) > 0 %}
-        <a id="case-searches-next-btn" class="govuk-link pagination-link" href="/case-searches/page/{{ userDeletions.currentPage | int + 1 }}">Next &gt;</a>
+        <a id="deleted-users-next-btn" class="govuk-link pagination-link" href="/deleted-users/page/{{ userDeletions.currentPage | int + 1 }}">Next &gt;</a>
       {% endif %}
       {% if (userDeletions.lastPage - userDeletions.currentPage) > 1 %}
-        <a id="case-searches-last-btn" class="govuk-link pagination-link" href="/case-searches/page/{{ userDeletions.lastPage }}">Last &gt;&gt;</a>
+        <a id="deleted-users-last-btn" class="govuk-link pagination-link" href="/deleted-users/page/{{ userDeletions.lastPage }}">Last &gt;&gt;</a>
       {% endif %}
     </div>
   </div>
