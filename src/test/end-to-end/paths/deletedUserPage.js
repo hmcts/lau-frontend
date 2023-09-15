@@ -59,7 +59,7 @@ Scenario('Navigate to LAU, perform deleted user search and download CSV', async 
 
   await I.amInPath(csvPath.codeceptPath);
   await I.seeFile(csvPath.filename);
-  lauHelper.assertCsvLineCount(csvPath.fullPath, 132);
+  lauHelper.assertCsvLineCount(csvPath.fullPath, 200);
 
 }).retry(testConfig.TestRetryScenarios);
 
