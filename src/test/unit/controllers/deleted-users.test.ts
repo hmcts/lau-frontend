@@ -1,3 +1,4 @@
+import config from 'config';
 import nock from 'nock';
 import sinon from 'sinon';
 import {DeletedUsersController} from '../../../main/controllers/DeletedUsers.controller';
@@ -9,11 +10,9 @@ import deletedUsersLogs from '../../data/deletedUsersLogs.json';
 import {Response} from 'express';
 import {AppError, ErrorCode} from '../../../main/models/AppError';
 
-
-
 describe('Deleted Users Controller', () => {
   const deletedUsersController = new DeletedUsersController();
-  const basePath = 'http://localhost:4551';
+  const basePath: string = config.get('services.lau-idam-backend.url');
   const uri = '/audit/deletedAccounts';
   const params = 'userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01';
 
