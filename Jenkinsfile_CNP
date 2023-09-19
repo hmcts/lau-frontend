@@ -1,5 +1,4 @@
 #!groovy
-import uk.gov.hmcts.contino.GithubAPI
 
 @Library("Infrastructure")
 
@@ -11,12 +10,6 @@ def branchesToSync = ['demo', 'perftest', 'ithc']
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 withPipeline(type, product, component) {
-  onPR {
-    def githubApi = new GithubAPI(this)
-    if (!githubApi.getLabelsbyPattern(env.BRANCH_NAME, "keep-helm")) {
-        enableCleanupOfHelmReleaseOnSuccess()
-    }
-  }
 
   enableAksStagingDeployment()
   disableLegacyDeployment()
