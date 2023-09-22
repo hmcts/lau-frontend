@@ -1,6 +1,7 @@
 import {Application, Response} from 'express';
 import {AppRequest} from '../models/appRequest';
 import config from 'config';
+import {FeatureToggleService} from '../../main/service/FeatureToggleService';
 
 async function homeHandler(req: AppRequest, res: Response) {
   const caseFormState = req.session?.caseFormState || {};
@@ -13,7 +14,8 @@ async function homeHandler(req: AppRequest, res: Response) {
   const logons = req.session?.logons;
   const caseDeletions = req.session?.caseDeletions;
   const userDeletions = req.session?.userDeletions;
-
+  const featureToggleService = new FeatureToggleService();
+  const deletedUsersFtValue = await featureToggleService.getDeletedUsersFeatureToggle();
   res.render('home/template', {
     common: {
       maxRecords: Number(config.get('pagination.maxTotal')),
@@ -29,6 +31,7 @@ async function homeHandler(req: AppRequest, res: Response) {
     caseDeletions,
     userDeletions,
     sessionErrors,
+    deletedUsersFtValue,
     errors: {
       caseSearchForm: {
         stringFieldRequired: 'Please enter at least one of the following fields: User ID, Case Type ID, Case Ref or Jurisdiction ID.',

@@ -29,6 +29,7 @@ nodejs:
         - idam-client-secret
         - s2s-secret
         - launchdarkly-sdk-key
+        - lau-deleted-users-ft
 
 redis:
   architecture: standalone
