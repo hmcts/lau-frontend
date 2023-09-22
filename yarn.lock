@@ -3295,10 +3295,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/totp-generator@npm:^0.0.2":
-  version: 0.0.2
-  resolution: "@types/totp-generator@npm:0.0.2"
-  checksum: 5bb3445add4d44220e8825048cc40961e0b6333df4cb6c5026b03559562a9f7f00f6304a51537ff8720f325f74e761749641ac4cd55444d9332cd9e3a5f96f6e
+"@types/totp-generator@npm:^0.0.6":
+  version: 0.0.6
+  resolution: "@types/totp-generator@npm:0.0.6"
+  checksum: c9257c7fb89a2b7d3c3d65772ed21aa55f84a06aa4d3af09f95a5f45966fe30ae8199e151bf1227cd55fa6568457e0d9dcc62b9b391169a9ffd3659f1e5a886c
   languageName: node
   linkType: hard
 
@@ -9880,7 +9880,7 @@ __metadata:
     "@types/serve-favicon": ^2.5.1
     "@types/sinon": ^10.0.2
     "@types/supertest": ^2.0.8
-    "@types/totp-generator": ^0.0.2
+    "@types/totp-generator": ^0.0.6
     "@types/webpack-dev-middleware": ^5.0.2
     "@typescript-eslint/eslint-plugin": ^4.29.2
     "@typescript-eslint/eslint-plugin-tslint": ^4.29.2
@@ -9943,7 +9943,7 @@ __metadata:
     stylelint: ^15.10.1
     stylelint-config-standard-scss: ^5.0.0
     supertest: ^6.3.3
-    totp-generator: ^0.0.12
+    totp-generator: ^0.0.14
     ts-jest: ^29.0.3
     ts-loader: ^9.4.1
     ts-node: ^10.2.0
@@ -14396,12 +14396,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"totp-generator@npm:^0.0.12":
-  version: 0.0.12
-  resolution: "totp-generator@npm:0.0.12"
+"totp-generator@npm:^0.0.14":
+  version: 0.0.14
+  resolution: "totp-generator@npm:0.0.14"
   dependencies:
     jssha: ^3.1.2
-  checksum: 1390dd488f66873458dd8aa41df06f6c1bc946f46459e00749b61bbf30a931b1bff6316a1478e89a2c894798928b51ef3258e9241bb5422158e8a8915a0c8050
+  checksum: e68c57849ca259a49a6470900e92a89f372de559c3c528f92e0e631655b17e8477a341ec1d870924235d59c249b7614bb01847f2e29118d52e241629cd230026
   languageName: node
   linkType: hard
 
