@@ -56,3 +56,4 @@ services:
 featureToggles:
   enabled: true
   ldKey: 'LD_SDK_KEY'
+  ft_deletedUsers: 'LAU_DELETED_USERS'

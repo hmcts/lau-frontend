@@ -128,7 +128,7 @@
   {% endif %}
   {# ------------------------------------------- #}
 
-  {% if userRoles.length > 0 %}
+  {% if userRoles.length > 0 and deletedUsersFtValue %}
     {{ govukTabs({
       classes: 'home-tabs',
       items: [
@@ -144,6 +144,24 @@
 
         userDeletionsSearchTab,
         userDeletionsResultsTab
+
+      ]
+    }) }}
+
+  {% elseif userRoles.length > 0 %}
+    {{ govukTabs({
+      classes: 'home-tabs',
+      items: [
+        caseAuditSearchTab,
+        caseActivityTab,
+        caseSearchesTab,
+
+        logonsAuditSearchTab,
+        logonsResultsTab,
+
+        caseDeletionsSearchTab,
+        caseDeletionsResultsTab
+
       ]
     }) }}
   {% endif %}
