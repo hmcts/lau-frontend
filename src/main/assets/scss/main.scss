@@ -38,12 +38,17 @@ $color-white: #fff;
 
 // Logon search tab
 .home-tabs ul li:nth-child(4) {
-  margin-left: 50px;
+  margin-left: 15px;
 }
 
 // Case deletions search tab
 .home-tabs ul li:nth-child(6) {
-  margin-left: 50px;
+  margin-left: 15px;
+}
+
+.js-enabled .govuk-tabs__list-item {/* stylelint-disable-line selector-class-pattern */
+  padding-right: govuk-spacing(1);
+  padding-left: govuk-spacing(1);
 }
 
 .loading-overlay {

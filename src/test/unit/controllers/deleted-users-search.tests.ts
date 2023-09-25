@@ -89,7 +89,7 @@ describe('Deleted Users Search Controller', () => {
         .get('/audit/deletedAccounts?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5')
         .reply(
           200,
-          {logonLog: []},
+          {deletionLogs: []},
         );
 
       const req = {
@@ -115,31 +115,32 @@ describe('Deleted Users Search Controller', () => {
       });
     });
 
-    //TODO: Please complete this test once results tab is ready
-    // it('redirects to the logon results tab', async () => {
-    //   nock('http://localhost:4551')
-    //     .get('/audit/deletedAccounts?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&size=5')
-    //     .reply(
-    //       200,
-    //       {logonLog: []},
-    //     );
-    //
-    //   const req = {
-    //     session: {},
-    //     body: {
-    //       userId: '123',
-    //       emailAddress: '',
-    //       startTimestamp: '2021-12-12 12:00:00',
-    //       endTimestamp: '2021-12-12 12:00:01',
-    //     },
-    //   };
-    //
-    //   // @ts-ignore
-    //   return deletedUsersSearchController.post(req as AppRequest, res as Response).then(() => {
-    //     expect(res.redirect.calledOnce).toBeTruthy();
-    //     expect(res.redirect.calledWith('/#deleted-users-tab')).toBeTruthy();
-    //   });
-    // });
+    it('redirects to the deleted users results tab', async () => {
+      nock('http://localhost:4551')
+        .get('/audit/deletedAccounts?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&size=5')
+        .reply(
+          200,
+          {deletionLogs: []},
+        );
+
+      const req = {
+        session: {},
+        body: {
+          userId: '123',
+          emailAddress: '',
+          firstName:'',
+          lastName: '',
+          startTimestamp: '2021-12-12 12:00:00',
+          endTimestamp: '2021-12-12 12:00:01',
+        },
+      };
+
+      // @ts-ignore
+      return deletedUsersSearchController.post(req as AppRequest, res as Response).then(() => {
+        expect(res.redirect.calledOnce).toBeTruthy();
+        expect(res.redirect.calledWith('/#deleted-users-tab')).toBeTruthy();
+      });
+    });
 
     it('redirects to error page with backend error code', async () => {
       nock('http://localhost:4551')
