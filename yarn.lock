@@ -15410,31 +15410,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"winston@npm:^2.4.5":
-  version: 2.4.5
-  resolution: "winston@npm:2.4.5"
+"winston@npm:^2.4.5, winston@npm:^2.4.6":
+  version: 2.4.7
+  resolution: "winston@npm:2.4.7"
   dependencies:
-    async: ~1.0.0
+    async: ^2.6.4
     colors: 1.0.x
     cycle: 1.0.x
     eyes: 0.1.x
     isstream: 0.1.x
     stack-trace: 0.0.x
-  checksum: aba54cae4c97df6f01c6ad98b5ecbf79eaa79326b5f99c379063e91a9bd6dd961b2958768d850546b7a54ef159ecc67bcaf08a6fec4029592be7436d955460f0
-  languageName: node
-  linkType: hard
-
-"winston@npm:^2.4.6":
-  version: 2.4.6
-  resolution: "winston@npm:2.4.6"
-  dependencies:
-    async: ^3.2.3
-    colors: 1.0.x
-    cycle: 1.0.x
-    eyes: 0.1.x
-    isstream: 0.1.x
-    stack-trace: 0.0.x
-  checksum: 507ebfde315a8a0bc78ed73f41cc4c499291c23c25c58deab200baf192614af9481d637b463f9853c86a586811c1c5ffe980c33f8a37279f07f8d2409e9eb77b
+  checksum: 0843f39e7d5298b0bffbdea51bc0662715b3c49414fd2b245ebf9b9a4aca452683f35f03ae60e93542b7b16e1eeee34eb3c62bb7ec644201587a4067e8d64dda
   languageName: node
   linkType: hard
 
