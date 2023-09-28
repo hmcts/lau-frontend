@@ -28,15 +28,15 @@ redis:
 services:
   lau-case-backend:
     enabled: true
-    url: 'http://localhost:4551'
-    port: 4551
+    url: 'http://localhost:4550'
+    port: 4550
     endpoints:
       caseActivity: '/audit/caseAction'
       caseSearch: '/audit/caseSearch'
   lau-idam-backend:
     enabled: true
-    url: 'http://localhost:4550'
-    port: 4550
+    url: 'http://localhost:4551'
+    port: 4551
     endpoints:
       logon: '/audit/logon'
       deletedUsers: '/audit/deletedAccounts'
@@ -47,12 +47,13 @@ services:
     endpoints:
       token: '/o/token'
     clientID: 'lau'
-    clientSecret: 'gQ4pHYQ8TTYdQp8d'
+    clientSecret: 'SECRET'
     callbackURL: 'https://localhost:4000/oauth2/callback'
   s2s:
     enabled: true
     url: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal'
-    lauSecret: 'S3UFTWQ5722WSEHE'
+    lauSecret: 'AAAAAAAAAAAAAAAA'
 featureToggles:
   enabled: true
   ldKey: 'LD_SDK_KEY'
+  ft_deletedUsers: 'LAU_DELETED_USERS'

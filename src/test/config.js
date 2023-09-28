@@ -1,6 +1,6 @@
 module.exports = {
-  TestEndToEndUrl: process.env.TEST_E2E_URL || 'https://lau-frontend-pr-227.preview.platform.hmcts.net/',
-  TestFrontEndUrl: process.env.TEST_FRONT_END_URL || 'https://lau-frontend-pr-227.preview.platform.hmcts.net/',
+  TestEndToEndUrl: process.env.TEST_E2E_URL || 'https://lau.aat.platform.hmcts.net/',
+  TestFrontEndUrl: process.env.TEST_FRONT_END_URL || 'https://lau.aat.platform.hmcts.net/',
   TestShowBrowserWindow: process.env.SHOW_BROWSER_WINDOW || false,
   TestRetryFeatures: process.env.RETRY_FEATURES || 0,
   TestRetryScenarios: process.env.RETRY_SCENARIOS || 3,
@@ -20,7 +20,7 @@ module.exports = {
   },
   s2s: {
     microservice: process.env.S2S_MICROSERVICE_KEY_CMC,
-    secret: 'S3UFTWQ5722WSEHE',
+    secret: process.env.S2S_MICROSERVICE_KEY_PWD,
   },
   featureToggles: {
     enabled: process.env.LD_ENABLED || false,
