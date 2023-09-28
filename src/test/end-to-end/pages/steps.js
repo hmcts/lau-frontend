@@ -11,5 +11,7 @@ module.exports = function () {
     performLogonAuditSearch: steps.lauHomePage.logonAuditSearch,
     performCaseAuditSearchWithoutSearchData: steps.lauHomePage.caseAuditSearchWithoutSearchData,
     performLogonAuditSearchWithoutSearchData: steps.lauHomePage.logonAuditSearchWithoutSearchData,
+    performDeletedUsersSearch: steps.lauHomePage.deletedUsersSearch,
+    performDeletedUsersSearchWithoutSearchData: steps.lauHomePage.deletedUsersSearchWithoutSearchData
   });
 };
