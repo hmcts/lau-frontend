@@ -10042,27 +10042,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"launchdarkly-eventsource@npm:1.4.2":
-  version: 1.4.2
-  resolution: "launchdarkly-eventsource@npm:1.4.2"
-  dependencies:
-    original: ^1.0.2
-  checksum: 9abd4058d17489c8529ff2f82ea25d6671390f6fc0e4ea7c846e62f72f7f18184d40cad0e09d98d722263c83615a7b31967f00005190cf6257b6ec2c9830de66
+"launchdarkly-eventsource@npm:1.4.4":
+  version: 1.4.4
+  resolution: "launchdarkly-eventsource@npm:1.4.4"
+  checksum: 7d153b1523b27236057d8155c50a785b7838637c4283b4d984fdf3a7f7a6bb7afc384a0e84275d2ae50bcf38a180731e86c74455ba3ed110ffcbfade0c8a7f33
   languageName: node
   linkType: hard
 
 "launchdarkly-node-server-sdk@npm:^6.2.3":
-  version: 6.2.3
-  resolution: "launchdarkly-node-server-sdk@npm:6.2.3"
+  version: 6.4.3
+  resolution: "launchdarkly-node-server-sdk@npm:6.4.3"
   dependencies:
     async: ^3.1.0
-    launchdarkly-eventsource: 1.4.2
+    launchdarkly-eventsource: 1.4.4
     lru-cache: ^6.0.0
     node-cache: ^5.1.0
     semver: ^7.3.0
     tunnel: 0.0.6
     uuid: ^8.3.2
-  checksum: 1d76380f7862e0398332d70e8782ed04cc23ea45b2f4c2feb64afbedcaf12f469211bb650f6abe3fb7f020dd5a67993ee4ad395681744e51479c31c135c10b6c
+  checksum: 6c6c1dd075530cd503cda3c26cc99baca95b3dbe2c2ab97adf870283f897bfd879ce98f62979d00dbc51c0948357e30c8f5efe4666506cea438fab32fbdbc0d7
   languageName: node
   linkType: hard
 
@@ -11639,15 +11637,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"original@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "original@npm:1.0.2"
-  dependencies:
-    url-parse: ^1.4.3
-  checksum: 8dca9311dab50c8953366127cb86b7c07bf547d6aa6dc6873a75964b7563825351440557e5724d9c652c5e99043b8295624f106af077f84bccf19592e421beb9
-  languageName: node
-  linkType: hard
-
 "os-tmpdir@npm:~1.0.2":
   version: 1.0.2
   resolution: "os-tmpdir@npm:1.0.2"
@@ -12466,13 +12455,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"querystringify@npm:^2.1.1":
-  version: 2.2.0
-  resolution: "querystringify@npm:2.2.0"
-  checksum: 5641ea231bad7ef6d64d9998faca95611ed4b11c2591a8cae741e178a974f6a8e0ebde008475259abe1621cb15e692404e6b6626e927f7b849d5c09392604b15
-  languageName: node
-  linkType: hard
-
 "queue-microtask@npm:^1.2.2":
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
@@ -12839,13 +12821,6 @@ __metadata:
     module-details-from-path: ^1.0.3
     resolve: ^1.22.1
   checksum: 5ed219d12aec4d0f098029827f9e929d8e0ca4f2fe01f23a9b02169e57c5157cced9e7acaef6a871d3f56646f2cb807b08f2f23d66912ee53eca16cb88eff743
-  languageName: node
-  linkType: hard
-
-"requires-port@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "requires-port@npm:1.0.0"
-  checksum: eee0e303adffb69be55d1a214e415cf42b7441ae858c76dfc5353148644f6fd6e698926fc4643f510d5c126d12a705e7c8ed7e38061113bdf37547ab356797ff
   languageName: node
   linkType: hard
 
@@ -14940,16 +14915,6 @@ __metadata:
   dependencies:
     punycode: ^2.1.0
   checksum: 7167432de6817fe8e9e0c9684f1d2de2bb688c94388f7569f7dbdb1587c9f4ca2a77962f134ec90be0cc4d004c939ff0d05acc9f34a0db39a3c797dada262633
-  languageName: node
-  linkType: hard
-
-"url-parse@npm:^1.4.3":
-  version: 1.5.10
-  resolution: "url-parse@npm:1.5.10"
-  dependencies:
-    querystringify: ^2.1.1
-    requires-port: ^1.0.0
-  checksum: fbdba6b1d83336aca2216bbdc38ba658d9cfb8fc7f665eb8b17852de638ff7d1a162c198a8e4ed66001ddbf6c9888d41e4798912c62b4fd777a31657989f7bdf
   languageName: node
   linkType: hard
 
