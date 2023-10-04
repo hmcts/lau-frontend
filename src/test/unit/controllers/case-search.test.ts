@@ -1,5 +1,6 @@
 import nock from 'nock';
 import sinon from 'sinon';
+import { expect } from '@jest/globals';
 import {CaseSearchController} from '../../../main/controllers/CaseSearch.controller';
 import {AppRequest} from '../../../main/models/appRequest';
 
