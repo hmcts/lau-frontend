@@ -5908,9 +5908,9 @@ __metadata:
   linkType: hard
 
 "connect-redis@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "connect-redis@npm:6.0.0"
-  checksum: 3ee09943274cc877287b253a68e0a4f516ac21f6508e14cadf021d58b5c98feca351eea451a800757b2c8835e12a39166cb36a50eb683bb4604f40f48713f3cc
+  version: 6.1.3
+  resolution: "connect-redis@npm:6.1.3"
+  checksum: 1f61616e2ae7ad097b6553e45d683eeb309ac2e601ac49d721c6c0069fd96fbcfb46ee1c0e210b264b720dcd385201d30ff55ccf5deb11ee1529810890561b58
   languageName: node
   linkType: hard
 
