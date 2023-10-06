@@ -73,7 +73,7 @@
     "js-yaml": "^4.1.0",
     "json2csv": "^5.0.6",
     "jwt-decode": "^3.1.2",
-    "launchdarkly-node-server-sdk": "^6.2.3",
+    "launchdarkly-node-server-sdk": "^7.0.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "node-fetch": "^2.6.7",
