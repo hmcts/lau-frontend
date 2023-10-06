@@ -113,7 +113,7 @@
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.2.0",
     "debug": "^4.3.4",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.0",
     "html-webpack-plugin": "^5.3.2",
     "html_codesniffer": "^2.5.1",
     "jest": "^29.3.1",
