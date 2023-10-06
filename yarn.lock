@@ -8244,10 +8244,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"helmet@npm:*, helmet@npm:^4.2.0":
+"helmet@npm:*":
   version: 4.6.0
   resolution: "helmet@npm:4.6.0"
   checksum: 139ad678d1cab207b043c206f50f6744eff2ef1f463e4626d36718b45b337485c77d10260ef9d89d292fa678da5153d86b08172b3b365cc8e680241015ed3a49
+  languageName: node
+  linkType: hard
+
+"helmet@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "helmet@npm:7.0.0"
+  checksum: 3622b8b68b7ac4736369fe7717adb5b87ddcdcda7c11c13277d79fb5670acab032e8c971835565b1d2144d234f3e0dbcd327a44249b9e61f0f64c0c753faf1bc
   languageName: node
   linkType: hard
 
@@ -9952,7 +9959,7 @@ __metadata:
     git-rev-sync: ^3.0.2
     glob: ^7.2.3
     govuk-frontend: ^4.7.0
-    helmet: ^4.2.0
+    helmet: ^7.0.0
     html-webpack-plugin: ^5.3.2
     html_codesniffer: ^2.5.1
     ioredis: ^5.3.0
