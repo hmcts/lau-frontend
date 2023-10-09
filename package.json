@@ -146,7 +146,6 @@
     "yarn-audit-fix": "^9.3.9"
   },
   "resolutions": {
-    "ansi-regex": "^6.0.0",
     "async": "^3.2.2",
     "glob-parent": "^6.0.2",
     "jsonpointer": "^5.0.0",
@@ -155,7 +154,6 @@
     "minimist": "^1.2.6",
     "moment": "^2.29.4",
     "serialize-javascript": "^6.0.0",
-    "minimatch": "^8.0.0",
     "semver": "^7.5.2",
     "@opentelemetry/instrumentation": "^0.43.0"
   }
