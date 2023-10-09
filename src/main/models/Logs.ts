@@ -1,6 +1,12 @@
 import {requestDateToFormDate} from '../util/Date';
 
-export abstract class Logs<LogType> {
+
+interface GenericLogType {
+  timestamp?: string;
+  deletionTimestamp?: string;
+}
+
+export abstract class Logs<LogType extends GenericLogType> {
   public _fields: string[];
 
   private readonly _data: LogType[];
@@ -20,8 +26,10 @@ export abstract class Logs<LogType> {
   get csvData(): LogType[] {
     return this._data.map(d => {
       if ('timestamp' in d) {
-        // @ts-ignore
         d.timestamp = requestDateToFormDate(d.timestamp);
+        return d;
+      } else if ('deletionTimestamp' in d) {
+        d.deletionTimestamp = requestDateToFormDate(d.deletionTimestamp);
         return d;
       } else {
         return d;

@@ -86,7 +86,7 @@
     "totp-generator": "^0.0.14",
     "ts-node": "^10.2.0",
     "tsconfig-paths": "^4.0.0",
-    "typescript": "~5.2.0",
+    "typescript": "^5.2.0",
     "winston": "^2.4.6",
     "ws": "^8.1.0"
   },
