@@ -3103,14 +3103,14 @@ __metadata:
   linkType: hard
 
 "@types/express@npm:*, @types/express@npm:^4.17.14":
-  version: 4.17.18
-  resolution: "@types/express@npm:4.17.18"
+  version: 4.17.19
+  resolution: "@types/express@npm:4.17.19"
   dependencies:
     "@types/body-parser": "*"
     "@types/express-serve-static-core": ^4.17.33
     "@types/qs": "*"
     "@types/serve-static": "*"
-  checksum: 8c178da4f0edff1f006d871fbdc3f849620986ff10bad252f3dfd45b57554e26aaa28c602285df028930d5216e257a06fbaf795070f8bb42f7d87e3b689cba50
+  checksum: 3d39d0655eb0825d96fec100985a38737767ddd6da2dbda1e330a3adf36c98a9b7cd8d9539db32876d1fbb47a09343cad7b38c30c8dd7c291271fcb9b85cb21b
   languageName: node
   linkType: hard
 
@@ -13522,15 +13522,15 @@ __metadata:
   linkType: hard
 
 "sass@npm:^1.63.4":
-  version: 1.69.1
-  resolution: "sass@npm:1.69.1"
+  version: 1.69.2
+  resolution: "sass@npm:1.69.2"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: e3f0754fc8e1ffc239919cba8d1cc8d89908d596161992c562d0679a6aa1e1c57b0a11846726f9222f96622495a5bfc00461b3f31182e71a54ad91a86dd10a8f
+  checksum: 25c6aaf993a40ce33e66c6c3a25690ce573a3c890024ba3dea5416a17c7db6ec39542d4b4e62c2c429005737630d6b48ab841f99fd534ac1b441f37d2c34e0c4
   languageName: node
   linkType: hard
 
