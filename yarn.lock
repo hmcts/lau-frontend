@@ -1965,9 +1965,9 @@ __metadata:
   linkType: hard
 
 "@faker-js/faker@npm:^8.1.0":
-  version: 8.1.0
-  resolution: "@faker-js/faker@npm:8.1.0"
-  checksum: 76036cbad2f0735fe2a2834bb3e16233e7c1aa4998cf90dbd097631465f3fcd4e7022c901f80b6de1c25b47154880f06916609a81dacb039a25f9cb000a3ab4e
+  version: 8.2.0
+  resolution: "@faker-js/faker@npm:8.2.0"
+  checksum: febc17018acfb841a348591bfe415e815ea981bf7fa0a12670ac2b449479ad7e9e7b130c42878ec30210da964c13a620a3303dc00d63cb13ded00c6fc701e2be
   languageName: node
   linkType: hard
 
@@ -2765,28 +2765,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stryker-mutator/api@npm:7.2.0":
-  version: 7.2.0
-  resolution: "@stryker-mutator/api@npm:7.2.0"
+"@stryker-mutator/api@npm:7.3.0":
+  version: 7.3.0
+  resolution: "@stryker-mutator/api@npm:7.3.0"
   dependencies:
     mutation-testing-metrics: 2.0.3
     mutation-testing-report-schema: 2.0.3
     tslib: ~2.6.0
     typed-inject: ~4.0.0
-  checksum: a5bbc9c4319767cfc1a52f6c1f74ed2325fdc1dc8e57435369bcd2a63cbfa92f33e8776e050acd730aafd3df8dd38a2009156ca3c616af26a7dfcb0578aac838
+  checksum: 7d1dadb0d91039bd0c1d8b6f7b54365c561aacd50ae4bd694924c7a097568ac88dc5524a6dc89df928faa494b987f344cbbc252cda5293f0676901ef5eb4c160
   languageName: node
   linkType: hard
 
 "@stryker-mutator/core@npm:^7.2.0":
-  version: 7.2.0
-  resolution: "@stryker-mutator/core@npm:7.2.0"
+  version: 7.3.0
+  resolution: "@stryker-mutator/core@npm:7.3.0"
   dependencies:
-    "@stryker-mutator/api": 7.2.0
-    "@stryker-mutator/instrumenter": 7.2.0
-    "@stryker-mutator/util": 7.2.0
+    "@stryker-mutator/api": 7.3.0
+    "@stryker-mutator/instrumenter": 7.3.0
+    "@stryker-mutator/util": 7.3.0
     ajv: ~8.12.0
     chalk: ~5.3.0
-    commander: ~11.0.0
+    commander: ~11.1.0
     diff-match-patch: 1.0.5
     emoji-regex: ~10.2.1
     execa: ~8.0.0
@@ -2794,7 +2794,6 @@ __metadata:
     get-port: ~7.0.0
     glob: ~10.3.0
     inquirer: ~9.2.0
-    lodash.flatmap: ~4.5.0
     lodash.groupby: ~4.6.0
     log4js: ~6.9.0
     minimatch: ~9.0.1
@@ -2812,47 +2811,45 @@ __metadata:
     typed-rest-client: ~1.8.0
   bin:
     stryker: bin/stryker.js
-  checksum: af0822539581d0085e031d73c64fd65d1b1ad8b3835d67487d093b8083bb044db6a2f186db1605fee1eeaf8d104e135ae44a10b11c889548a75705bb1f3c2791
+  checksum: d0c2ae970774ab21b486bea2f3fa84a98a41c99f466b8fc2647de0847cc18f079f05f6685a7764f489cf6785162e72035cd9659a8d105580210a44d57234c0ae
   languageName: node
   linkType: hard
 
-"@stryker-mutator/instrumenter@npm:7.2.0":
-  version: 7.2.0
-  resolution: "@stryker-mutator/instrumenter@npm:7.2.0"
+"@stryker-mutator/instrumenter@npm:7.3.0":
+  version: 7.3.0
+  resolution: "@stryker-mutator/instrumenter@npm:7.3.0"
   dependencies:
     "@babel/core": ~7.23.0
     "@babel/generator": ~7.23.0
     "@babel/parser": ~7.23.0
     "@babel/plugin-proposal-decorators": ~7.23.0
     "@babel/preset-typescript": ~7.23.0
-    "@stryker-mutator/api": 7.2.0
-    "@stryker-mutator/util": 7.2.0
+    "@stryker-mutator/api": 7.3.0
+    "@stryker-mutator/util": 7.3.0
     angular-html-parser: ~4.0.0
     weapon-regex: ~1.1.0
-  checksum: 71fa5cce4c1075d9f2c89e7614b4335790a4d63b67d4dc8dee2fa719ca8f8d5bfa0eda1cf12e8a0bb1e2fc4c80061d782a8349932df59b54ef33a77c4e549271
+  checksum: 4f1884161ba0074dacf0c7261a9d981325ff9562aebf9afbfab0cdb37101c86ea2a5dbebb2876708cabe9ae20c4a31825a12fe62afb62d7ecd09ffbbbd22520e
   languageName: node
   linkType: hard
 
 "@stryker-mutator/jest-runner@npm:^7.2.0":
-  version: 7.2.0
-  resolution: "@stryker-mutator/jest-runner@npm:7.2.0"
+  version: 7.3.0
+  resolution: "@stryker-mutator/jest-runner@npm:7.3.0"
   dependencies:
-    "@stryker-mutator/api": 7.2.0
-    "@stryker-mutator/util": 7.2.0
+    "@stryker-mutator/api": 7.3.0
+    "@stryker-mutator/util": 7.3.0
     semver: ~7.5.0
     tslib: ~2.6.0
   peerDependencies:
-    "@stryker-mutator/core": ~7.2.0
-  checksum: 0af3434024206554823059be64d57b3c0e7fe560bc54865999fe56c37bfdf0de55b1f31dc433e1130be535bad17ed52119579a7c5245a5956586f03459e7b0ce
+    "@stryker-mutator/core": ~7.3.0
+  checksum: 9bbb1e2fa34f2e009c2db64b2bd5f7285f4675b64a347686fc960b67bd6d02829bcab89db1476bf20fa100f33b74ef25e29fd7fa3dd25b2d2fe07d80893fd5cf
   languageName: node
   linkType: hard
 
-"@stryker-mutator/util@npm:7.2.0":
-  version: 7.2.0
-  resolution: "@stryker-mutator/util@npm:7.2.0"
-  dependencies:
-    lodash.flatmap: ~4.5.0
-  checksum: 662f74738c59f524b8ac27f5b882ed83d02c6ce815ddd54f3c077818dda42ca3f2d2ca89423fc3ffbfd06c97a19bcde97eeca1d1ebaa1d606a8e2deb4876301a
+"@stryker-mutator/util@npm:7.3.0":
+  version: 7.3.0
+  resolution: "@stryker-mutator/util@npm:7.3.0"
+  checksum: fa2e01636c19d00175eb307fbde262475565af38c810a0dcf33e4a7a3fc5294b5a1276d4d338a359f432cbd56bbc610aa7983c10bc2faaee3268d71b59cffb2d
   languageName: node
   linkType: hard
 
@@ -5637,7 +5634,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:11.0.0, commander@npm:~11.0.0":
+"commander@npm:11.0.0":
   version: 11.0.0
   resolution: "commander@npm:11.0.0"
   checksum: 6621954e1e1d078b4991c1f5bbd9439ad37aa7768d6ab4842de1dbd4d222c8a27e1b8e62108b3a92988614af45031d5bb2a2aaa92951f4d0c934d1a1ac564bb4
@@ -5690,6 +5687,13 @@ __metadata:
   version: 9.5.0
   resolution: "commander@npm:9.5.0"
   checksum: c7a3e27aa59e913b54a1bafd366b88650bc41d6651f0cbe258d4ff09d43d6a7394232a4dadd0bf518b3e696fdf595db1028a0d82c785b88bd61f8a440cecfade
+  languageName: node
+  linkType: hard
+
+"commander@npm:~11.1.0":
+  version: 11.1.0
+  resolution: "commander@npm:11.1.0"
+  checksum: fd1a8557c6b5b622c89ecdfde703242ab7db3b628ea5d1755784c79b8e7cb0d74d65b4a262289b533359cd58e1bfc0bf50245dfbcd2954682a6f367c828b79ef
   languageName: node
   linkType: hard
 
@@ -10392,13 +10396,6 @@ __metadata:
   version: 4.2.0
   resolution: "lodash.defaults@npm:4.2.0"
   checksum: 84923258235592c8886e29de5491946ff8c2ae5c82a7ac5cddd2e3cb697e6fbdfbbb6efcca015795c86eec2bb953a5a2ee4016e3735a3f02720428a40efbb8f1
-  languageName: node
-  linkType: hard
-
-"lodash.flatmap@npm:~4.5.0":
-  version: 4.5.0
-  resolution: "lodash.flatmap@npm:4.5.0"
-  checksum: c01a47d32e99f8fce75409f0a4a9bd12fbb2d3a46519a0dde14deedb1e527b5ddccc2bf997705c67bdecb915f47749e8a9ffefa7a91c41f0c448e06348ec81c7
   languageName: node
   linkType: hard
 
@@ -15762,8 +15759,8 @@ __metadata:
   linkType: hard
 
 "webpack@npm:^5.76.0":
-  version: 5.88.2
-  resolution: "webpack@npm:5.88.2"
+  version: 5.89.0
+  resolution: "webpack@npm:5.89.0"
   dependencies:
     "@types/eslint-scope": ^3.7.3
     "@types/estree": ^1.0.0
@@ -15794,7 +15791,7 @@ __metadata:
       optional: true
   bin:
     webpack: bin/webpack.js
-  checksum: 79476a782da31a21f6dd38fbbd06b68da93baf6a62f0d08ca99222367f3b8668f5a1f2086b7bb78e23172e31fa6df6fa7ab09b25e827866c4fc4dc2b30443ce2
+  checksum: 43fe0dbc30e168a685ef5a86759d5016a705f6563b39a240aa00826a80637d4a3deeb8062e709d6a4b05c63e796278244c84b04174704dc4a37bedb0f565c5ed
   languageName: node
   linkType: hard
 
