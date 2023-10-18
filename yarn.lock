@@ -2956,11 +2956,11 @@ __metadata:
   linkType: hard
 
 "@types/chai-as-promised@npm:^7.1.1":
-  version: 7.1.6
-  resolution: "@types/chai-as-promised@npm:7.1.6"
+  version: 7.1.7
+  resolution: "@types/chai-as-promised@npm:7.1.7"
   dependencies:
     "@types/chai": "*"
-  checksum: f765dd249ae9384540f8e6402bd3a9f5e87b97f9078ef58f4b5ec15f7c3673e1f10f0089f819eceb20e00b3df40b7aae1bd44d2b8f4edbbedfcb33ce296f6791
+  checksum: 59199afbd91289588648e263d7f32f7d72fa9c0075f3c17b1e760e10fdc1a310c2170a392b0d17d96cfff2c51daca72839eed6d80142f9230c9784b8e08ba676
   languageName: node
   linkType: hard
 
@@ -2972,11 +2972,11 @@ __metadata:
   linkType: hard
 
 "@types/compression@npm:^1.7.2":
-  version: 1.7.3
-  resolution: "@types/compression@npm:1.7.3"
+  version: 1.7.4
+  resolution: "@types/compression@npm:1.7.4"
   dependencies:
     "@types/express": "*"
-  checksum: 9a65519e8cc894246466fc8828a82045d0d3db97a3d7367381855c8fd10080d752ac10c2274de4668985225c72f3124bf5aeee75656b992837a21c64f8eb1789
+  checksum: 0994e68158ae991d1839f950c553141cf95606a2660bcedf11d68eeb7609caf21b03f256aed1ea4243e89cf8adf358d0a2920513316ea2ec6a2d3e2eacfa02c7
   languageName: node
   linkType: hard
 
@@ -3009,11 +3009,11 @@ __metadata:
   linkType: hard
 
 "@types/cookie-parser@npm:^1.4.2":
-  version: 1.4.4
-  resolution: "@types/cookie-parser@npm:1.4.4"
+  version: 1.4.5
+  resolution: "@types/cookie-parser@npm:1.4.5"
   dependencies:
     "@types/express": "*"
-  checksum: 5c81ac4b7d90a567e0c7a904ecbc09c82c43e30c6b5b507aee5147bc06bc8c6418e6719d63fcf68e6a83c71870485ab3fc579a30891b56a0be05d64753e3f74a
+  checksum: 45855721706d6a57bb0441db11fb59db407414ea83a0000a0df80d19230447cc3bcc43c436397bfb8998ec78db222265fa8083456b00c5b5054a0c03d06f0086
   languageName: node
   linkType: hard
 
@@ -3025,18 +3025,18 @@ __metadata:
   linkType: hard
 
 "@types/csurf@npm:^1.9.36":
-  version: 1.11.3
-  resolution: "@types/csurf@npm:1.11.3"
+  version: 1.11.4
+  resolution: "@types/csurf@npm:1.11.4"
   dependencies:
     "@types/express-serve-static-core": "*"
-  checksum: 5db4b4f4adabc592846d2efe7c1c95de541adf6b536a7d6f523f1583e480a381418d3841ae2f159d81a863cc1c047559c311a0853e915e301cc717c7d0ff08f7
+  checksum: 6f80b6e7d5f7e54386ef23b400aeaec1e36fb72eb2a02617fed229c997bd34dad0dca4351a52d53c95b3e3b24ed6c9a8537293662cb9a10e897be2526f1f6c1c
   languageName: node
   linkType: hard
 
 "@types/es6-promisify@npm:^6.0.0":
-  version: 6.0.2
-  resolution: "@types/es6-promisify@npm:6.0.2"
-  checksum: c75e0e642da4c69376c4003322bf89aaabd7ba0921c9bb04a918838e2aca639ab4fa5377fc231764d8fef52925ba19c6a4116e8e6202ae8018e95af9ff21bf92
+  version: 6.0.3
+  resolution: "@types/es6-promisify@npm:6.0.3"
+  checksum: 9d3f04e882de892f3864ca8af51d777ef5c18d665123dda948128df3a323d237dc87e53e469424e27a1c6c53ce0ea6c04d266de18c26ea4e32cfd28ad7a554c9
   languageName: node
   linkType: hard
 
@@ -3107,14 +3107,14 @@ __metadata:
   linkType: hard
 
 "@types/express@npm:*, @types/express@npm:^4.17.14":
-  version: 4.17.19
-  resolution: "@types/express@npm:4.17.19"
+  version: 4.17.20
+  resolution: "@types/express@npm:4.17.20"
   dependencies:
     "@types/body-parser": "*"
     "@types/express-serve-static-core": ^4.17.33
     "@types/qs": "*"
     "@types/serve-static": "*"
-  checksum: 3d39d0655eb0825d96fec100985a38737767ddd6da2dbda1e330a3adf36c98a9b7cd8d9539db32876d1fbb47a09343cad7b38c30c8dd7c291271fcb9b85cb21b
+  checksum: bf8a97d283128e5129f9ccabbeef728ff3f0484465e0ae74a304bd0588fa6cb715ae68845650caba9a641944b7791ba125d02ddbd47a7e62aaefdd036570c6c5
   languageName: node
   linkType: hard
 
@@ -13560,15 +13560,15 @@ __metadata:
   linkType: hard
 
 "sass@npm:^1.63.4":
-  version: 1.69.3
-  resolution: "sass@npm:1.69.3"
+  version: 1.69.4
+  resolution: "sass@npm:1.69.4"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: b89a3370c7ede462b344e2136bf1407bf375855c1ec54f73b6257b18fe59dae5377eb9f7b25f21ae4a25d8f0bc41a165d8d7e5f693d8285b1aa51ac6056c4d19
+  checksum: ed5558445b59dfa711e094f804e4a360544dd916c069ee211e1c687446146721d91d4304f33fe5df3966a10de96eba43369beb2e14f0881c285424e5e44cf360
   languageName: node
   linkType: hard
 
