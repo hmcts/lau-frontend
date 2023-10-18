@@ -2987,15 +2987,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/connect-redis@npm:^0.0.21":
-  version: 0.0.21
-  resolution: "@types/connect-redis@npm:0.0.21"
+"@types/connect-redis@npm:^0.0.22":
+  version: 0.0.22
+  resolution: "@types/connect-redis@npm:0.0.22"
   dependencies:
     "@types/express": "*"
     "@types/express-session": "*"
+    "@types/node": "*"
     "@types/redis": ^2.8.0
     ioredis: ^5.3.0
-  checksum: edd9158f37b2e6aed30946b6e166a311cb7c4bd12dcdd3b41b9a9e1176bf48a59d601be980d11c0e04aab817dd71172a57a49b0d3a95cd0f1cdbdd474c2eabb1
+  checksum: 605be511ce56b97b1c73ccd6e6cd179d10b21912c70b43263e8ecb39c7e2dce14719d5b3f8532e6fe3244a0cfacb8c4a43c35e859bc166dab014afff39f00345
   languageName: node
   linkType: hard
 
@@ -3203,12 +3204,12 @@ __metadata:
   linkType: hard
 
 "@types/jest@npm:^29.5.5":
-  version: 29.5.5
-  resolution: "@types/jest@npm:29.5.5"
+  version: 29.5.6
+  resolution: "@types/jest@npm:29.5.6"
   dependencies:
     expect: ^29.0.0
     pretty-format: ^29.0.0
-  checksum: 56e55cde9949bcc0ee2fa34ce5b7c32c2bfb20e53424aa4ff3a210859eeaaa3fdf6f42f81a3f655238039cdaaaf108b054b7a8602f394e6c52b903659338d8c6
+  checksum: fa13a27bd1c8efd0381a419478769d0d6d3a8e93e1952d7ac3a16274e8440af6f73ed6f96ac1ff00761198badf2ee226b5ab5583a5d87a78d609ea78da5c5a24
   languageName: node
   linkType: hard
 
@@ -3227,11 +3228,11 @@ __metadata:
   linkType: hard
 
 "@types/json2csv@npm:^5.0.3":
-  version: 5.0.4
-  resolution: "@types/json2csv@npm:5.0.4"
+  version: 5.0.5
+  resolution: "@types/json2csv@npm:5.0.5"
   dependencies:
     "@types/node": "*"
-  checksum: 1840c9a2441c9f812d567bdee30fdc549f33a9b144b3e429612e2a4adb176240cc11e2ba729915a6e1cce8eb4decfba6a7116d33e98d84cf45dada9f0715f241
+  checksum: fe5ef91b3c02aabb15504288b14f0ea8938d5e04d35ca2c9669a074ce28f5756ad4a6cefecd5b628275d4d165d3319d3a721e1c5a5a56a52bf5af9a907685576
   languageName: node
   linkType: hard
 
@@ -10173,7 +10174,7 @@ __metadata:
     "@types/chai-as-promised": ^7.1.1
     "@types/compression": ^1.7.2
     "@types/config": ^3.0.0
-    "@types/connect-redis": ^0.0.21
+    "@types/connect-redis": ^0.0.22
     "@types/cookie-parser": ^1.4.2
     "@types/csurf": ^1.9.36
     "@types/es6-promisify": ^6.0.0
