@@ -2981,9 +2981,9 @@ __metadata:
   linkType: hard
 
 "@types/config@npm:^3.0.0":
-  version: 3.3.1
-  resolution: "@types/config@npm:3.3.1"
-  checksum: dc6604a6bb90179ea7fbe5a3de23301999dd5b115f9999f9e48db412b7c86224919bd9af8915e7ed8734bd5f729fcbcc0eb5adf37fe2422bccd98deae1063530
+  version: 3.3.2
+  resolution: "@types/config@npm:3.3.2"
+  checksum: 5e4096f389d2761438e8293a9a26f037c5044b5fb1cd12ca555ce8b6bcb6466e9b76a735739118157bd04e79b78ed897459d57ba67affd62a5e286be72872c7f
   languageName: node
   linkType: hard
 
@@ -3364,11 +3364,11 @@ __metadata:
   linkType: hard
 
 "@types/require-directory@npm:^2.1.1":
-  version: 2.1.3
-  resolution: "@types/require-directory@npm:2.1.3"
+  version: 2.1.4
+  resolution: "@types/require-directory@npm:2.1.4"
   dependencies:
     "@types/node": "*"
-  checksum: 409842c47940ba56c0cda6937ab36e7696458476b10967fed0af984b18ab12ac983e4161a6e279dbb28f5eca825505058af28f99827c93df9ef22781b685b849
+  checksum: d9ec01096b132d1dde4692a94a1acd343917d458ff952453a490893e21d4a9025b6eb4bc3f477704b26fe1395646333754d881f7f6d058fbe52c24c3b678de53
   languageName: node
   linkType: hard
 
@@ -3390,11 +3390,11 @@ __metadata:
   linkType: hard
 
 "@types/serve-favicon@npm:^2.5.1":
-  version: 2.5.5
-  resolution: "@types/serve-favicon@npm:2.5.5"
+  version: 2.5.6
+  resolution: "@types/serve-favicon@npm:2.5.6"
   dependencies:
     "@types/express": "*"
-  checksum: 7e0b85c1a7f19b1b724d5346cc8eee6d5af33801b67b8c8c824fdf387e89564f9a52c9802d1c4704af4d347e3a26c854c0e467effc44743c627c1786840c810b
+  checksum: de0f439ae83559a01aa51abe1f2205bc94703775d598cccc8ccacacf53125195f514ee4279ae9a01b63b74e4d434e2b49deedb73bd6b95d55aab4fec72f8e2df
   languageName: node
   linkType: hard
 
@@ -3416,11 +3416,11 @@ __metadata:
   linkType: hard
 
 "@types/sinon@npm:^10.0.19":
-  version: 10.0.19
-  resolution: "@types/sinon@npm:10.0.19"
+  version: 10.0.20
+  resolution: "@types/sinon@npm:10.0.20"
   dependencies:
     "@types/sinonjs__fake-timers": "*"
-  checksum: 79cab4cfc618a37a11e519795a297aa641b30eb05e2d2c7a9b03f40845b54ef631af80bddbef3e57dcd4be6c67bd78dce5210ea9860617d870f1d365c78468b6
+  checksum: 7322771345c202b90057f8112e0d34b7339e5ae1827fb1bfe385fc9e38ed6a2f18b4c66e88d27d98c775f7f74fb1167c0c14f61ca64155786534541e6c6eb05f
   languageName: node
   linkType: hard
 
@@ -3449,18 +3449,18 @@ __metadata:
   linkType: hard
 
 "@types/supertest@npm:^2.0.14":
-  version: 2.0.14
-  resolution: "@types/supertest@npm:2.0.14"
+  version: 2.0.15
+  resolution: "@types/supertest@npm:2.0.15"
   dependencies:
     "@types/superagent": "*"
-  checksum: 9f6850a22b8f0fd4c26a6dfd9b64771a66476b1a4f841a3b84a9da843ce69463efbf37594fe107297dd14a225d199b802464d48d70e9413238c637903d392137
+  checksum: 89c1983662f0ab20969b3a6c44344397fd222d0f78b282619aabbe817f7c88a64210fd2b8b8f075ea22a27084e30ebc287bc5105619cbbf9af7f008e77f6eb93
   languageName: node
   linkType: hard
 
-"@types/totp-generator@npm:^0.0.6":
-  version: 0.0.6
-  resolution: "@types/totp-generator@npm:0.0.6"
-  checksum: c9257c7fb89a2b7d3c3d65772ed21aa55f84a06aa4d3af09f95a5f45966fe30ae8199e151bf1227cd55fa6568457e0d9dcc62b9b391169a9ffd3659f1e5a886c
+"@types/totp-generator@npm:^0.0.7":
+  version: 0.0.7
+  resolution: "@types/totp-generator@npm:0.0.7"
+  checksum: e7b1bf66b9fcfd0e0211b5dc62eb8588642384b6c44690c7eeeb0bbcd498e8150c2a95bf9b885f049bdf6c4c966c357ff8e95aee92126d6cfa77299963638f80
   languageName: node
   linkType: hard
 
@@ -10192,7 +10192,7 @@ __metadata:
     "@types/serve-favicon": ^2.5.1
     "@types/sinon": ^10.0.19
     "@types/supertest": ^2.0.14
-    "@types/totp-generator": ^0.0.6
+    "@types/totp-generator": ^0.0.7
     "@typescript-eslint/eslint-plugin": ^6.7.4
     "@typescript-eslint/eslint-plugin-tslint": ^6.7.4
     "@typescript-eslint/parser": ^6.7.4
@@ -13841,8 +13841,8 @@ __metadata:
   linkType: hard
 
 "sinon@npm:^16.0.0":
-  version: 16.1.0
-  resolution: "sinon@npm:16.1.0"
+  version: 16.1.3
+  resolution: "sinon@npm:16.1.3"
   dependencies:
     "@sinonjs/commons": ^3.0.0
     "@sinonjs/fake-timers": ^10.3.0
@@ -13850,7 +13850,7 @@ __metadata:
     diff: ^5.1.0
     nise: ^5.1.4
     supports-color: ^7.2.0
-  checksum: b3f910e9b3d28f1241b28ac9d384f45c673b64ecfabf7ca2b94c964036118bd4166a2315f2ec2379a85745a7d4840384514aca416bbf189508a9d7fb55b9d5a8
+  checksum: 83e5ccd724efdb5d1471e41b2cfaf4a46d9fe2cc76c15a23dedfbd741f7d448e6aec3d34a8253a79bdf8ddcc5bd889c5277ae71879e4709c621cb41094fbcdab
   languageName: node
   linkType: hard
 
