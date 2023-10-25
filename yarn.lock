@@ -3706,10 +3706,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wdio/protocols@npm:8.20.3":
-  version: 8.20.3
-  resolution: "@wdio/protocols@npm:8.20.3"
-  checksum: 90f4dca2d6ebdbed48280c6e73c1680e0306a0870d9281e211b810d9be76dd5c9784daa4f9377014018d00e1b612bd8ab5da103dae45050e39e93d2b5231162e
+"@wdio/protocols@npm:8.20.4":
+  version: 8.20.4
+  resolution: "@wdio/protocols@npm:8.20.4"
+  checksum: 5d7a2774f8fd1765515c99af7ae27ecedca72d865ac4204e274bb27e1af1eb4ed5505d6fa490cf6cb06ae95480f0101f07c76cd699b7abba932d81741d8bb238
   languageName: node
   linkType: hard
 
@@ -15670,33 +15670,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webdriver@npm:8.20.3":
-  version: 8.20.3
-  resolution: "webdriver@npm:8.20.3"
+"webdriver@npm:8.20.4":
+  version: 8.20.4
+  resolution: "webdriver@npm:8.20.4"
   dependencies:
     "@types/node": ^20.1.0
     "@types/ws": ^8.5.3
     "@wdio/config": 8.20.3
     "@wdio/logger": 8.16.17
-    "@wdio/protocols": 8.20.3
+    "@wdio/protocols": 8.20.4
     "@wdio/types": 8.20.0
     "@wdio/utils": 8.20.3
     deepmerge-ts: ^5.1.0
     got: ^ 12.6.1
     ky: ^0.33.0
     ws: ^8.8.0
-  checksum: 0d578ce1bbbf984254a944a5803783163dfb4a73b2dae4177058d801595df0286e1dc610a429196d5ee0369600e83256a8c9694787225a890f14cd85b5d61c72
+  checksum: 4401c12f9288d814e04ba7a0091c61a54df4420a04ff45bb28dcd1fe14670ee4e928700bd72d67a1aeca26074a58021ad0b5b769b7e86f964fa1ec603af4eaa4
   languageName: node
   linkType: hard
 
 "webdriverio@npm:^8.0.0":
-  version: 8.20.3
-  resolution: "webdriverio@npm:8.20.3"
+  version: 8.20.4
+  resolution: "webdriverio@npm:8.20.4"
   dependencies:
     "@types/node": ^20.1.0
     "@wdio/config": 8.20.3
     "@wdio/logger": 8.16.17
-    "@wdio/protocols": 8.20.3
+    "@wdio/protocols": 8.20.4
     "@wdio/repl": 8.10.1
     "@wdio/types": 8.20.0
     "@wdio/utils": 8.20.3
@@ -15716,13 +15716,13 @@ __metadata:
     resq: ^1.9.1
     rgb2hex: 0.2.5
     serialize-error: ^11.0.1
-    webdriver: 8.20.3
+    webdriver: 8.20.4
   peerDependencies:
     devtools: ^8.14.0
   peerDependenciesMeta:
     devtools:
       optional: true
-  checksum: 5c10596d025ea5e8e5a6faac7010fd719536ba51a03b47dab44ab57f193b3a7fbf8861b22ec6015531953c188bb87f21ad1ffec6d4d5a53bd2128bd4987495c9
+  checksum: 58979f93ee6cf7df2b07759cf94d3db43e6694ee8cd6aeb5e723eb90ed9753caf5d3cbad222b3ad79873a1036be953bbbb4fbb3dcb61b1f086f1bd77482a2f7d
   languageName: node
   linkType: hard
 
