@@ -3,7 +3,7 @@ import config from 'config';
 import totp from 'totp-generator';
 import {ServiceAuthToken} from '../components/idam/ServiceAuthToken';
 import fetch, {Response as FetchResponse} from 'node-fetch';
-import jwt_decode from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import {AppSession, UserDetails} from '../models/appRequest';
 import {HttpResponseError} from '../util/HttpResponseError';
 import {AppError, ErrorCode} from '../models/AppError';
@@ -118,7 +118,7 @@ export class AuthService {
       const data: IdamResponseData = await response.json();
       const expiresAt: number = requestTimeInSeconds + Number(data.expires_in);
 
-      const jwt: IdTokenJwtPayload = jwt_decode(data.id_token);
+      const jwt: IdTokenJwtPayload = jwtDecode(data.id_token);
 
       session.user = {
         accessToken: data.access_token,

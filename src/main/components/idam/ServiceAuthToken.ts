@@ -1,5 +1,5 @@
 import moment from 'moment';
-import jwt_decode from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 
 export interface BearerToken {
   sub: string,
@@ -15,7 +15,7 @@ export class ServiceAuthToken {
   }
 
   private static hasExpired(token: string): boolean {
-    const { exp } = jwt_decode(token) as BearerToken;
+    const { exp } = jwtDecode(token) as BearerToken;
     return moment().unix() >= exp;
   }
 }
