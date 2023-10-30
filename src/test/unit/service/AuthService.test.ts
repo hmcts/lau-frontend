@@ -1,6 +1,6 @@
 import nock from 'nock';
 import config from 'config';
-import jwt_decode from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import {AuthService, IdamGrantType, IdamResponseData} from '../../../main/service/AuthService';
 import {BearerToken, ServiceAuthToken} from '../../../main/components/idam/ServiceAuthToken';
 import {AppSession, UserDetails} from '../../../main/models/appRequest';
@@ -30,7 +30,7 @@ describe('AuthService', () => {
       const returnedToken: ServiceAuthToken = await authService.retrieveServiceToken();
 
       expect(returnedToken.bearerToken).toBe(serviceToken);
-      const bearerToken: BearerToken = jwt_decode(returnedToken.bearerToken);
+      const bearerToken: BearerToken = jwtDecode(returnedToken.bearerToken);
       expect(bearerToken.sub).toBe('lau_frontend');
       expect(bearerToken.exp).toBe(1634657845);
       expect(returnedToken.expired).toBeTruthy();
