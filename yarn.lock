@@ -3473,18 +3473,18 @@ __metadata:
   linkType: hard
 
 "@types/supertest@npm:^2.0.14":
-  version: 2.0.15
-  resolution: "@types/supertest@npm:2.0.15"
+  version: 2.0.16
+  resolution: "@types/supertest@npm:2.0.16"
   dependencies:
     "@types/superagent": "*"
-  checksum: 89c1983662f0ab20969b3a6c44344397fd222d0f78b282619aabbe817f7c88a64210fd2b8b8f075ea22a27084e30ebc287bc5105619cbbf9af7f008e77f6eb93
+  checksum: 2fc998ea698e0467cdbe3bea0ebce2027ea3a45a13e51a6cecb0435f44b486faecf99c34d8702d2d7fe033e6e09fdd2b374af52ecc8d0c69a1deec66b8c0dd52
   languageName: node
   linkType: hard
 
-"@types/totp-generator@npm:^0.0.7":
-  version: 0.0.7
-  resolution: "@types/totp-generator@npm:0.0.7"
-  checksum: e7b1bf66b9fcfd0e0211b5dc62eb8588642384b6c44690c7eeeb0bbcd498e8150c2a95bf9b885f049bdf6c4c966c357ff8e95aee92126d6cfa77299963638f80
+"@types/totp-generator@npm:^0.0.8":
+  version: 0.0.8
+  resolution: "@types/totp-generator@npm:0.0.8"
+  checksum: 70f0378e2c56b2a00dbe452c406cfe1834bd11b12e3228774c1a9664218f06bf89515b4864fc91a9ff015e34e08cf1b51b3a1b0082cd6c7d504a8ae720ba845d
   languageName: node
   linkType: hard
 
@@ -10301,7 +10301,7 @@ __metadata:
     "@types/serve-favicon": ^2.5.1
     "@types/sinon": ^17.0.0
     "@types/supertest": ^2.0.14
-    "@types/totp-generator": ^0.0.7
+    "@types/totp-generator": ^0.0.8
     "@typescript-eslint/eslint-plugin": ^6.7.4
     "@typescript-eslint/eslint-plugin-tslint": ^6.7.4
     "@typescript-eslint/parser": ^6.7.4
