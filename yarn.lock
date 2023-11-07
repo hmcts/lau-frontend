@@ -2980,11 +2980,11 @@ __metadata:
   linkType: hard
 
 "@types/chai-as-promised@npm:^7.1.1":
-  version: 7.1.7
-  resolution: "@types/chai-as-promised@npm:7.1.7"
+  version: 7.1.8
+  resolution: "@types/chai-as-promised@npm:7.1.8"
   dependencies:
     "@types/chai": "*"
-  checksum: 59199afbd91289588648e263d7f32f7d72fa9c0075f3c17b1e760e10fdc1a310c2170a392b0d17d96cfff2c51daca72839eed6d80142f9230c9784b8e08ba676
+  checksum: f0e5eab451b91bc1e289ed89519faf6591932e8a28d2ec9bbe95826eb73d28fe43713633e0c18706f3baa560a7d97e7c7c20dc53ce639e5d75bac46b2a50bf21
   languageName: node
   linkType: hard
 
@@ -2996,31 +2996,31 @@ __metadata:
   linkType: hard
 
 "@types/compression@npm:^1.7.2":
-  version: 1.7.4
-  resolution: "@types/compression@npm:1.7.4"
+  version: 1.7.5
+  resolution: "@types/compression@npm:1.7.5"
   dependencies:
     "@types/express": "*"
-  checksum: 0994e68158ae991d1839f950c553141cf95606a2660bcedf11d68eeb7609caf21b03f256aed1ea4243e89cf8adf358d0a2920513316ea2ec6a2d3e2eacfa02c7
+  checksum: 2fc6e4376027d44a4dde304d3b7763ba3d6e229b9417f4a92738e07ae9e5f06708268db5226f5fc7de46c3b9c0c4e3576701c550432b04148778f0de0dcc15f9
   languageName: node
   linkType: hard
 
 "@types/config@npm:^3.0.0":
-  version: 3.3.2
-  resolution: "@types/config@npm:3.3.2"
-  checksum: 5e4096f389d2761438e8293a9a26f037c5044b5fb1cd12ca555ce8b6bcb6466e9b76a735739118157bd04e79b78ed897459d57ba67affd62a5e286be72872c7f
+  version: 3.3.3
+  resolution: "@types/config@npm:3.3.3"
+  checksum: 738c616fc385fa93e61b2236b43fbcfd93b1b53fc222fa14f2ebaef17ec7eaf03bf3d768fa8cb00df1b5173574893c020dc73eab11ddd6ea769dbf9ea113e8da
   languageName: node
   linkType: hard
 
-"@types/connect-redis@npm:^0.0.22":
-  version: 0.0.22
-  resolution: "@types/connect-redis@npm:0.0.22"
+"@types/connect-redis@npm:^0.0.23":
+  version: 0.0.23
+  resolution: "@types/connect-redis@npm:0.0.23"
   dependencies:
     "@types/express": "*"
     "@types/express-session": "*"
     "@types/node": "*"
     "@types/redis": ^2.8.0
     ioredis: ^5.3.0
-  checksum: 605be511ce56b97b1c73ccd6e6cd179d10b21912c70b43263e8ecb39c7e2dce14719d5b3f8532e6fe3244a0cfacb8c4a43c35e859bc166dab014afff39f00345
+  checksum: 56ae04700217e579e47b14711f3d7ffd21c54ced77ab0ebf3feb8d8903a0c854c6a63bb2f7d27f0eaec3224a7b725b14e52ebfbecd529e38c05b6e6e5947c1dd
   languageName: node
   linkType: hard
 
@@ -3034,11 +3034,11 @@ __metadata:
   linkType: hard
 
 "@types/cookie-parser@npm:^1.4.2":
-  version: 1.4.5
-  resolution: "@types/cookie-parser@npm:1.4.5"
+  version: 1.4.6
+  resolution: "@types/cookie-parser@npm:1.4.6"
   dependencies:
     "@types/express": "*"
-  checksum: 45855721706d6a57bb0441db11fb59db407414ea83a0000a0df80d19230447cc3bcc43c436397bfb8998ec78db222265fa8083456b00c5b5054a0c03d06f0086
+  checksum: b1bbb17bc4189c0e953d4996b3b58bfa20161c27db21f98353e237032e7559aec733735d8902c283300e0a4cded20e62b1a5086af608608ef30a45387e080360
   languageName: node
   linkType: hard
 
@@ -3050,18 +3050,18 @@ __metadata:
   linkType: hard
 
 "@types/csurf@npm:^1.9.36":
-  version: 1.11.4
-  resolution: "@types/csurf@npm:1.11.4"
+  version: 1.11.5
+  resolution: "@types/csurf@npm:1.11.5"
   dependencies:
     "@types/express-serve-static-core": "*"
-  checksum: 6f80b6e7d5f7e54386ef23b400aeaec1e36fb72eb2a02617fed229c997bd34dad0dca4351a52d53c95b3e3b24ed6c9a8537293662cb9a10e897be2526f1f6c1c
+  checksum: a51b0f3276a8c88eb986709790c227c5cc4b7d663136ee360edd17ac88df1dab5d8ccf9feed737ee46530243bff11f66ead725c585e417c1ca710d0b0245ded3
   languageName: node
   linkType: hard
 
 "@types/es6-promisify@npm:^6.0.0":
-  version: 6.0.3
-  resolution: "@types/es6-promisify@npm:6.0.3"
-  checksum: 9d3f04e882de892f3864ca8af51d777ef5c18d665123dda948128df3a323d237dc87e53e469424e27a1c6c53ce0ea6c04d266de18c26ea4e32cfd28ad7a554c9
+  version: 6.0.4
+  resolution: "@types/es6-promisify@npm:6.0.4"
+  checksum: 1df492c95d43eee2f16f5f196d56869c5c44229a35488dced5f47a518cb17532d05407b5046b964fc51fffb94761c9d5206f320a3f816e9a5276ec2edb36dc0e
   languageName: node
   linkType: hard
 
@@ -3132,14 +3132,14 @@ __metadata:
   linkType: hard
 
 "@types/express@npm:*, @types/express@npm:^4.17.14":
-  version: 4.17.20
-  resolution: "@types/express@npm:4.17.20"
+  version: 4.17.21
+  resolution: "@types/express@npm:4.17.21"
   dependencies:
     "@types/body-parser": "*"
     "@types/express-serve-static-core": ^4.17.33
     "@types/qs": "*"
     "@types/serve-static": "*"
-  checksum: bf8a97d283128e5129f9ccabbeef728ff3f0484465e0ae74a304bd0588fa6cb715ae68845650caba9a641944b7791ba125d02ddbd47a7e62aaefdd036570c6c5
+  checksum: fb238298630370a7392c7abdc80f495ae6c716723e114705d7e3fb67e3850b3859bbfd29391463a3fb8c0b32051847935933d99e719c0478710f8098ee7091c5
   languageName: node
   linkType: hard
 
@@ -10213,7 +10213,7 @@ __metadata:
     "@types/chai-as-promised": ^7.1.1
     "@types/compression": ^1.7.2
     "@types/config": ^3.0.0
-    "@types/connect-redis": ^0.0.22
+    "@types/connect-redis": ^0.0.23
     "@types/cookie-parser": ^1.4.2
     "@types/csurf": ^1.9.36
     "@types/es6-promisify": ^6.0.0
