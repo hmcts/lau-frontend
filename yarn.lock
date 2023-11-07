@@ -3388,11 +3388,11 @@ __metadata:
   linkType: hard
 
 "@types/require-directory@npm:^2.1.1":
-  version: 2.1.4
-  resolution: "@types/require-directory@npm:2.1.4"
+  version: 2.1.5
+  resolution: "@types/require-directory@npm:2.1.5"
   dependencies:
     "@types/node": "*"
-  checksum: d9ec01096b132d1dde4692a94a1acd343917d458ff952453a490893e21d4a9025b6eb4bc3f477704b26fe1395646333754d881f7f6d058fbe52c24c3b678de53
+  checksum: 0c2741c6bdbe18157733243ca17ae5ad1c808cf36ab01a1841c600f9223919ac094a495be39a69c00393be28853f46ae194841bfbdf5732580b97a8eef951efd
   languageName: node
   linkType: hard
 
@@ -3414,11 +3414,11 @@ __metadata:
   linkType: hard
 
 "@types/serve-favicon@npm:^2.5.1":
-  version: 2.5.6
-  resolution: "@types/serve-favicon@npm:2.5.6"
+  version: 2.5.7
+  resolution: "@types/serve-favicon@npm:2.5.7"
   dependencies:
     "@types/express": "*"
-  checksum: de0f439ae83559a01aa51abe1f2205bc94703775d598cccc8ccacacf53125195f514ee4279ae9a01b63b74e4d434e2b49deedb73bd6b95d55aab4fec72f8e2df
+  checksum: 1ae98ff01c977307ab989d2c31ea7ffa51977ad2aa2e5877e4e6829a647b0c01301483a8c53585b3655dda394867e83852ea13e02728b6d65ba7121a66141d62
   languageName: node
   linkType: hard
 
@@ -3440,11 +3440,11 @@ __metadata:
   linkType: hard
 
 "@types/sinon@npm:^17.0.0":
-  version: 17.0.0
-  resolution: "@types/sinon@npm:17.0.0"
+  version: 17.0.1
+  resolution: "@types/sinon@npm:17.0.1"
   dependencies:
     "@types/sinonjs__fake-timers": "*"
-  checksum: 19850ffb787bea148e6429fd0d6207de2f38aa22e6ac5e856f304b4f2eb7d612aa04f315bc715b38a8605a8ff12dc40bd633096bb996472b1dff925a0e25e872
+  checksum: 5975ada3729c6153cd474ac519ee021e8213861851db837ed40e04a99d729f61f914a6782563b09a24ff80508c7b695fe66c95a325914da3c06b83104a7bb007
   languageName: node
   linkType: hard
 
