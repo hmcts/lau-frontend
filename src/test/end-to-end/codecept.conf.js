@@ -16,6 +16,7 @@ exports.config = {
   'helpers': {
     'Puppeteer': {
       'url': testConfig.TestEndToEndUrl,
+      'headless': true,
       'waitForTimeout': 90000,
       'getPageTimeout': 90000,
       // 'waitForAction': 1,
