@@ -5674,8 +5674,8 @@ __metadata:
   linkType: hard
 
 "codeceptjs@npm:^3.5.5":
-  version: 3.5.7
-  resolution: "codeceptjs@npm:3.5.7"
+  version: 3.5.8
+  resolution: "codeceptjs@npm:3.5.8"
   dependencies:
     "@codeceptjs/configure": 0.10.0
     "@codeceptjs/helper": 2.0.1
@@ -5722,7 +5722,7 @@ __metadata:
     uuid: 9.0
   bin:
     codeceptjs: bin/codecept.js
-  checksum: 19009d442fc1ebb450dacbbee78f4628afb7f8284b3c33afd74240481af42dbf0ee666cf417c4fb6b5ba3643679ec746d7815da73831568ef2754db8335a5841
+  checksum: d15dab6f427521d12d3831267fbaf90275bf704cf101efaa4925cdc24e3a73e10a9cd2929951143187c5f9582bccb82f394cee60e97b8a8e0b67976019378211
   languageName: node
   linkType: hard
 
@@ -7799,6 +7799,17 @@ __metadata:
     locate-path: ^7.1.0
     path-exists: ^5.0.0
   checksum: 9a21b7f9244a420e54c6df95b4f6fc3941efd3c3e5476f8274eb452f6a85706e7a6a90de71353ee4f091fcb4593271a6f92810a324ec542650398f928783c280
+  languageName: node
+  linkType: hard
+
+"find-up@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "find-up@npm:7.0.0"
+  dependencies:
+    locate-path: ^7.2.0
+    path-exists: ^5.0.0
+    unicorn-magic: ^0.1.0
+  checksum: e1c63860f9c04355ab2aa19f4be51c1a6e14a7d8cfbd8090e2be6da2a36a76995907cb45337a4b582b19b164388f71d6ab118869dc7bffb2093f2c089ecb95ee
   languageName: node
   linkType: hard
 
@@ -10556,7 +10567,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"locate-path@npm:^7.1.0":
+"locate-path@npm:^7.1.0, locate-path@npm:^7.2.0":
   version: 7.2.0
   resolution: "locate-path@npm:7.2.0"
   dependencies:
@@ -15504,6 +15515,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"unicorn-magic@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "unicorn-magic@npm:0.1.0"
+  checksum: 48c5882ca3378f380318c0b4eb1d73b7e3c5b728859b060276e0a490051d4180966beeb48962d850fd0c6816543bcdfc28629dcd030bb62a286a2ae2acb5acb6
+  languageName: node
+  linkType: hard
+
 "unique-filename@npm:^1.1.1":
   version: 1.1.1
   resolution: "unique-filename@npm:1.1.1"
@@ -16331,8 +16349,8 @@ __metadata:
   linkType: hard
 
 "yarn-audit-fix@npm:^10.0.0":
-  version: 10.0.4
-  resolution: "yarn-audit-fix@npm:10.0.4"
+  version: 10.0.5
+  resolution: "yarn-audit-fix@npm:10.0.5"
   dependencies:
     "@types/find-cache-dir": ^3.2.1
     "@types/fs-extra": ^11.0.1
@@ -16344,7 +16362,7 @@ __metadata:
     commander: ^10.0.1
     fast-glob: ^3.3.1
     find-cache-dir: ^5.0.0
-    find-up: ^6.3.0
+    find-up: ^7.0.0
     fs-extra: ^11.1.1
     js-yaml: ^4.1.0
     lodash-es: ^4.17.21
@@ -16353,7 +16371,7 @@ __metadata:
     synp: ^1.9.10
   bin:
     yarn-audit-fix: target/esm/cli.mjs
-  checksum: dabfa1029177e8e9487e32a682cee67d30d3ec580480eb24601d22e9c814d91c24b077de04e1d989cc38f2c510271b57c597b24c6c24c91c89dbf3a1f2a51331
+  checksum: ed47d1708f754ab890eee05f58a0c251fad09ae5ca5558f9887886127f1b90aa47265230cb85b9a9947ffddd6a587091deff290af16ac94f7087c550aa562fd5
   languageName: node
   linkType: hard
 
