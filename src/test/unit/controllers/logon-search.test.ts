@@ -2,6 +2,7 @@ import nock from 'nock';
 import sinon from 'sinon';
 import {LogonSearchController} from '../../../main/controllers/LogonSearch.controller';
 import {AppRequest} from '../../../main/models/appRequest';
+import config from 'config';
 
 describe('Logon Search Controller', () => {
   describe('Search form validation', () => {
@@ -72,6 +73,7 @@ describe('Logon Search Controller', () => {
 
   describe('Post call', () => {
     const logonSearchController: LogonSearchController = new LogonSearchController();
+    const basePath: string = config.get('services.lau-idam-backend.url');
 
     const res = {
       redirect: sinon.spy(),
@@ -83,7 +85,7 @@ describe('Logon Search Controller', () => {
     });
 
     it('formats the search request', async () => {
-      nock('http://localhost:4551')
+      nock(basePath)
         .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5')
         .reply(
           200,
@@ -114,7 +116,7 @@ describe('Logon Search Controller', () => {
     });
 
     it('redirects to the logon results tab', async () => {
-      nock('http://localhost:4551')
+      nock(basePath)
         .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&size=5')
         .reply(
           200,
@@ -139,7 +141,7 @@ describe('Logon Search Controller', () => {
     });
 
     it('redirects to error page with backend error code', async () => {
-      nock('http://localhost:4551')
+      nock(basePath)
         .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&size=5')
         .reply(500, {});
 

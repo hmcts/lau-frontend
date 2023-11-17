@@ -11,7 +11,8 @@ export class SessionStorage {
   private RedisStore = ConnectRedis(session);
   private MemoryStore = require('express-session').MemoryStore;
 
-  private cookieMaxAge = 30 * (60 * 1000); // 30 minutes
+  private minuteInMs = 60 * 1000;
+  private cookieMaxAgeInMs: number = (config.get('session.cookieMaxAge') as number) * this.minuteInMs;
 
   public enableFor(app: Application): void {
     app.use(cookieParser());
@@ -26,7 +27,7 @@ export class SessionStorage {
         secret: config.get('redis.password'),
         cookie: {
           httpOnly: true,
-          maxAge: this.cookieMaxAge,
+          maxAge: this.cookieMaxAgeInMs,
           sameSite: 'lax', // required for the oauth2 redirect
           secure: app.locals.ENV !== 'test',
         },

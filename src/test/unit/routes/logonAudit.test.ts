@@ -1,10 +1,12 @@
 import nock from 'nock';
 import request from 'supertest';
 import {app} from '../../../main/app';
+import config from 'config';
 
 describe('Logon Audit Route', () => {
+  const basePath: string = config.get('services.lau-idam-backend.url');
   it('responds with a CSV file', async () => {
-    nock('http://localhost:4551')
+    nock(basePath)
       .get('/audit/logon?page=1&size=0')
       .reply(
         200,
