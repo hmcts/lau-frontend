@@ -1,7 +1,7 @@
 import {Application, Response} from 'express';
 import {AppRequest} from '../models/appRequest';
 import config from 'config';
-import {FeatureToggleService} from '../../main/service/FeatureToggleService';
+import {FeatureToggleService} from '../service/FeatureToggleService';
 
 async function homeHandler(req: AppRequest, res: Response) {
   const caseFormState = req.session?.caseFormState || {};

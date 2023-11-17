@@ -20,7 +20,7 @@ redis:
   proxy: true
   resave: false
   saveUninitialized: false
-  ttl: 28800 # ms (8 hours)
+  ttl: 28800 # s (8 hours)
   cookie:
     secure: false
     httpOnly: true
@@ -57,3 +57,5 @@ featureToggles:
   enabled: true
   ldKey: 'LD_SDK_KEY'
   ft_deletedUsers: 'LAU_DELETED_USERS'
+session:
+  cookieMaxAge: 30 # minutes

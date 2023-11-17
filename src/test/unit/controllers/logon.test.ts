@@ -8,13 +8,16 @@ import {LogonAudit} from '../../../main/models/idam/LogonAudit';
 import logonLogs from '../../data/logonLogs.json';
 import {Response} from 'express';
 import {AppError, ErrorCode} from '../../../main/models/AppError';
+import config from 'config';
 
 describe('Logon Controller', () => {
   const logonController = new LogonController();
+  const basePath: string = config.get('services.lau-idam-backend.url');
 
   describe('getLogData', () => {
+
     it('returns valid log data - no logons', async () => {
-      nock('http://localhost:4551')
+      nock(basePath)
         .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
         .reply(
           200,
@@ -77,7 +80,7 @@ describe('Logon Controller', () => {
         totalNumberOfRecords: 2,
       };
 
-      nock('http://localhost:4551')
+      nock(basePath)
         .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
         .reply(
           200,
@@ -127,7 +130,7 @@ describe('Logon Controller', () => {
         totalNumberOfRecords: 14,
       };
 
-      nock('http://localhost:4551')
+      nock(basePath)
         .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
         .reply(
           200,
@@ -182,7 +185,7 @@ describe('Logon Controller', () => {
     });
 
     it('returns app error if no log data is returned', async () => {
-      nock('http://localhost:4551')
+      nock(basePath)
         .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1')
         .reply(200, {});
 
@@ -216,7 +219,7 @@ describe('Logon Controller', () => {
         totalNumberOfRecords: 0,
       };
 
-      nock('http://localhost:4551')
+      nock(basePath)
         .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
         .reply(
           200,
@@ -248,7 +251,7 @@ describe('Logon Controller', () => {
     });
 
     it('redirects to error page with code on fetch failure', async () => {
-      nock('http://localhost:4551')
+      nock(basePath)
         .get('/audit/logon?userId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=2')
         .reply(200, {});
 

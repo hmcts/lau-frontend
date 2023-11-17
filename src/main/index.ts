@@ -5,5 +5,6 @@ import './assets/scss/main.scss';
 import './assets/js/cookie';
 import './assets/js/flatpickr';
 import './assets/js/home';
+import './assets/js/session-timeout';
 
 initAll();
