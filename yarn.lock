@@ -3213,13 +3213,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/find-cache-dir@npm:^3.2.1":
-  version: 3.2.1
-  resolution: "@types/find-cache-dir@npm:3.2.1"
-  checksum: bf5c4e96da40247cd9e6327f54dfccda961a0fb2d70e3c71bd05def94de4c2e6fb310fe8ecb0f04ecf5dbc52214e184b55a2337b0f87250d4ae1e2e7d58321e4
-  languageName: node
-  linkType: hard
-
 "@types/fs-extra@npm:^11.0.1":
   version: 11.0.2
   resolution: "@types/fs-extra@npm:11.0.2"
@@ -7680,23 +7673,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"find-cache-dir@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "find-cache-dir@npm:5.0.0"
-  dependencies:
-    common-path-prefix: ^3.0.0
-    pkg-dir: ^7.0.0
-  checksum: 1be046a2d6d98698d181352139bdd2f3e45cad4a0b3c9f06a611124ca52d823b0b327f5a629d7c5268b7fad54a202104765e572f8415b89ac35f76818fb3b75e
-  languageName: node
-  linkType: hard
-
-"find-up-simple@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "find-up-simple@npm:1.0.0"
-  checksum: 91c3d51c1111b5eb4e6e6d71d21438f6571a37a69dc288d4222b98996756e2f472fa5393a4dddb5e1a84929405d87e86f4bdce798ba84ee513b79854960ec140
-  languageName: node
-  linkType: hard
-
 "find-up@npm:5.0.0, find-up@npm:^5.0.0":
   version: 5.0.0
   resolution: "find-up@npm:5.0.0"
@@ -7733,17 +7709,6 @@ __metadata:
     locate-path: ^7.1.0
     path-exists: ^5.0.0
   checksum: 9a21b7f9244a420e54c6df95b4f6fc3941efd3c3e5476f8274eb452f6a85706e7a6a90de71353ee4f091fcb4593271a6f92810a324ec542650398f928783c280
-  languageName: node
-  linkType: hard
-
-"find-up@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "find-up@npm:7.0.0"
-  dependencies:
-    locate-path: ^7.2.0
-    path-exists: ^5.0.0
-    unicorn-magic: ^0.1.0
-  checksum: e1c63860f9c04355ab2aa19f4be51c1a6e14a7d8cfbd8090e2be6da2a36a76995907cb45337a4b582b19b164388f71d6ab118869dc7bffb2093f2c089ecb95ee
   languageName: node
   linkType: hard
 
@@ -10464,7 +10429,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"locate-path@npm:^7.1.0, locate-path@npm:^7.2.0":
+"locate-path@npm:^7.1.0":
   version: 7.2.0
   resolution: "locate-path@npm:7.2.0"
   dependencies:
@@ -12440,15 +12405,6 @@ __metadata:
   dependencies:
     find-up: ^6.3.0
   checksum: 94298b20a446bfbbd66604474de8a0cdd3b8d251225170970f15d9646f633e056c80520dd5b4c1d1050c9fed8f6a9e5054b141c93806439452efe72e57562c03
-  languageName: node
-  linkType: hard
-
-"pkg-dir@npm:^8.0.0":
-  version: 8.0.0
-  resolution: "pkg-dir@npm:8.0.0"
-  dependencies:
-    find-up-simple: ^1.0.0
-  checksum: e589abebd1b76cbc3669a45df64f63cc1b041fd3a6588b45d4c692207df126f2a67478a804e5beeb729e75efea06cd405fb84445c879e7af346ba46a4a30b1ff
   languageName: node
   linkType: hard
 
@@ -15377,13 +15333,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unicorn-magic@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "unicorn-magic@npm:0.1.0"
-  checksum: 48c5882ca3378f380318c0b4eb1d73b7e3c5b728859b060276e0a490051d4180966beeb48962d850fd0c6816543bcdfc28629dcd030bb62a286a2ae2acb5acb6
-  languageName: node
-  linkType: hard
-
 "unique-filename@npm:^1.1.1":
   version: 1.1.1
   resolution: "unique-filename@npm:1.1.1"
@@ -16211,10 +16160,9 @@ __metadata:
   linkType: hard
 
 "yarn-audit-fix@npm:^10.0.0":
-  version: 10.0.5
-  resolution: "yarn-audit-fix@npm:10.0.5"
+  version: 10.0.6
+  resolution: "yarn-audit-fix@npm:10.0.6"
   dependencies:
-    "@types/find-cache-dir": ^3.2.1
     "@types/fs-extra": ^11.0.1
     "@types/lodash-es": ^4.17.8
     "@types/semver": ^7.5.0
@@ -16223,17 +16171,14 @@ __metadata:
     chalk: ^5.3.0
     commander: ^10.0.1
     fast-glob: ^3.3.1
-    find-cache-dir: ^5.0.0
-    find-up: ^7.0.0
     fs-extra: ^11.1.1
     js-yaml: ^4.1.0
     lodash-es: ^4.17.21
-    pkg-dir: ^8.0.0
     semver: ^7.5.4
     synp: ^1.9.10
   bin:
     yarn-audit-fix: target/esm/cli.mjs
-  checksum: ed47d1708f754ab890eee05f58a0c251fad09ae5ca5558f9887886127f1b90aa47265230cb85b9a9947ffddd6a587091deff290af16ac94f7087c550aa562fd5
+  checksum: 65580681ffb8b733df17f6bba6ff2776cef6f4a018f8041a157a131d37b3e4492a74c656607d086b9ddfb3c75810499d259315341fac354093102c2ef2110959
   languageName: node
   linkType: hard
 
