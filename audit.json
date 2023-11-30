@@ -53,5 +53,8 @@
   "10049_Non-Storable Content_https://lau.aat.platform.hmcts.net_GET": "ignore",
   "10049_Non-Storable Content_https://lau.aat.platform.hmcts.net/_GET": "ignore",
   "10049_Non-Storable Content_https://lau.aat.platform.hmcts.net/robots.txt_GET": "ignore",
-  "10049_Non-Storable Content_https://lau.aat.platform.hmcts.net/sitemap.xml_GET": "ignore"
+  "10049_Non-Storable Content_https://lau.aat.platform.hmcts.net/sitemap.xml_GET": "ignore",
+  "100000_A Client Error response code was returned by the server_http://lau-idam-backend-aat.service.core-compute-aat.internal/audit/getAllDeletedAccounts?requestParams=_GET": "ignore",
+  "10049_Non-Storable Content_http://lau-idam-backend-aat.service.core-compute-aat.internal/audit/getAllDeletedAccounts?requestParams=_GET": "ignore",
+  "10112_Session Management Response Identified_http://lau-idam-backend-aat.service.core-compute-aat.internal/audit/getAllDeletedAccounts?requestParams=_GET": "ignore"
 }
