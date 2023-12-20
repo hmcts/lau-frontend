@@ -6,36 +6,39 @@ import * as os from 'os';
 import path from 'path';
 import fs from 'fs';
 
-import { LoggerInstance } from 'winston';
-const { Logger } = require('@hmcts/nodejs-logging');
-
 export class AppInsights {
 
-  private logger: LoggerInstance = Logger.getLogger(this.constructor.name);
-
   enable(): void {
-    if (config.get('appInsights.instrumentationKey')) {
+    if (config.get('appInsights.connectionString')) {
       this.createTempDir();
 
-      this.logger.info('Starting App Insights');
-
-      appInsights.setup(config.get<string>('appInsights.instrumentationKey'))
+      appInsights.setup(config.get<string>('appInsights.connectionString'))
         .setSendLiveMetrics(true)
         .setAutoCollectConsole(true, true)
+        .setAutoCollectExceptions(true)
         .start();
 
+      appInsights.defaultClient.config.samplingPercentage = config.get('appInsights.samplingPercentage');
       appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = 'lau-frontend';
       appInsights.defaultClient.trackTrace({message: 'App insights activated'});
     }
   }
 
   private createTempDir(): void {
-    const tempDir = path.join(os.tmpdir(), Sender.TEMPDIR_PREFIX + config.get('appInsights.instrumentationKey'));
+    // pre-creating app insights tmp work directory. This should be done by app insights, but
+    // for some reason in lau and pcq only, this is not happening and container crashes with
+    // missing directory message.
+    const instrumentationKey = this.extractInstrumentationKey(config.get('appInsights.connectionString'));
+    const tempDir = path.join(os.tmpdir(), Sender.TEMPDIR_PREFIX + instrumentationKey);
 
     if (!fs.existsSync(tempDir)) {
-      this.logger.info('Creating App Insights temp dir');
       fs.mkdirSync(tempDir);
     }
   }
 
+  private extractInstrumentationKey(connectionString: string): string {
+    const keyValuePairs: string[][] = connectionString.split(';').map(item => item.split('='));
+    const result = Object.fromEntries(keyValuePairs);
+    return result['InstrumentationKey'];
+  }
 }
