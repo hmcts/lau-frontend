@@ -6,7 +6,8 @@ useCSRFProtection: true
 security:
   referrerPolicy: origin
 appInsights:
-  instrumentationKey: false
+  connectionString: false
+  samplingPercentage: 33 # 33% of all telemetry will be sent to Application Insights
 pagination:
   maxPerPage: 100
   maxTotal: 10000

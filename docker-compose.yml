@@ -66,7 +66,7 @@ services:
       - IDAM_SPI_FORGEROCK_IDM_USERNAME=openidm-admin
       - IDAM_SPI_FORGEROCK_IDM_PASSWORD=openidm-admin
       - IDAM_SPI_FORGEROCK_IDM_PIN_DEFAULTPASSWORD=BlaBlaBlackSh33p
-      - APPINSIGHTS_INSTRUMENTATIONKEY=fake-key
+      - APPLICATIONINSIGHTS_CONNECTION_STRING=fake-connection-string
     ports:
       - "5000:5000"
     depends_on:
