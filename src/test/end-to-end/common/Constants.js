@@ -9,7 +9,7 @@ const tabs = {
   LOGON_SEARCH: 'tab_logon-search-tab',
   LOGON_RESULTS: 'tab_logons-tab',
   DELETED_USERS_SEARCH: 'tab_deleted-users-search-tab',
-  DELETED_USERS_RESULT: 'tab_deleted-users-tab'
+  DELETED_USERS_RESULT: 'tab_deleted-users-tab',
 };
 
 module.exports = {
