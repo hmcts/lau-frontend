@@ -15793,8 +15793,8 @@ __metadata:
   linkType: hard
 
 "webdriverio@npm:^8.0.0":
-  version: 8.28.0
-  resolution: "webdriverio@npm:8.28.0"
+  version: 8.28.4
+  resolution: "webdriverio@npm:8.28.4"
   dependencies:
     "@types/node": ^20.1.0
     "@wdio/config": 8.28.0
@@ -15825,7 +15825,7 @@ __metadata:
   peerDependenciesMeta:
     devtools:
       optional: true
-  checksum: 0e9424d558c132f2898925657eecbba4f99f92271d94cd94a5cd50c5f0c45f58bd6519a57ed706011cd0fb37b4952bd4d014caf0cfae9bdf32fac8bc8ec9eb40
+  checksum: 8cc71b1a5811ce44bef336941bc9553b7be37c89995a60d788be578b8a20fbf70c14ab561c607c53817bbccc3b651242c16d1a58e7ca60d08123558e3da625c8
   languageName: node
   linkType: hard
 
