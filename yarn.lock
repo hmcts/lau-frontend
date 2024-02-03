@@ -10509,10 +10509,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jssha@npm:^3.1.2":
-  version: 3.2.0
-  resolution: "jssha@npm:3.2.0"
-  checksum: 2adb8a9a57a79360379e843c0548e240d072c2ef12aef39ef6a784315686bd6f65501e9353fdd2f3a604f64af07e7eab04a0ed92b221cdfea97d671d7b8e14f4
+"jssha@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "jssha@npm:3.3.1"
+  checksum: 4f2b636305710d5275d5e48a323ceaed80b6400fd545321fccdb4e904392a7b808fa79cdf355073766a290d731756eb5bd5ceb2341cc53e57b686c7bb3a18488
   languageName: node
   linkType: hard
 
@@ -10718,7 +10718,7 @@ __metadata:
     stylelint-config-standard-scss: ^13.0.0
     supertest: ^6.3.3
     terser-webpack-plugin: ^5.3.10
-    totp-generator: ^0.0.14
+    totp-generator: ^1.0.0
     ts-jest: ^29.0.3
     ts-loader: ^9.5.0
     ts-node: ^10.2.0
@@ -15271,12 +15271,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"totp-generator@npm:^0.0.14":
-  version: 0.0.14
-  resolution: "totp-generator@npm:0.0.14"
+"totp-generator@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "totp-generator@npm:1.0.0"
   dependencies:
-    jssha: ^3.1.2
-  checksum: e68c57849ca259a49a6470900e92a89f372de559c3c528f92e0e631655b17e8477a341ec1d870924235d59c249b7614bb01847f2e29118d52e241629cd230026
+    jssha: ^3.3.1
+  checksum: 5d8865c4683ddadb8934b4b871cc3090972f8b782fc9c0c017bef3932336846d51d6359bed4b1afe1600149c26f123f9aa257738387a877e2ca828b3c64e7b60
   languageName: node
   linkType: hard
 
