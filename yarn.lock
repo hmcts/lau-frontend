@@ -3017,25 +3017,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stryker-mutator/api@npm:8.2.2":
-  version: 8.2.2
-  resolution: "@stryker-mutator/api@npm:8.2.2"
+"@stryker-mutator/api@npm:8.2.3":
+  version: 8.2.3
+  resolution: "@stryker-mutator/api@npm:8.2.3"
   dependencies:
     mutation-testing-metrics: 3.0.2
     mutation-testing-report-schema: 3.0.2
     tslib: ~2.6.2
     typed-inject: ~4.0.0
-  checksum: 7823f1b46fec3c967798b1fd2bc9af682dbcd7063929ca06ee4d9c52cd8dcc30e8da58763efb40d9ac47d8803592c6b25ae0a21c2d615c04f2cd830494b7505c
+  checksum: e07e042c98153a8c0074cea6308923f8ab40e4e282df04b40139a5590eef510b2f58ce84f525f5fc457835316a4b37504043fe453b7e453984ae30f5817a20dc
   languageName: node
   linkType: hard
 
 "@stryker-mutator/core@npm:^8.0.0":
-  version: 8.2.2
-  resolution: "@stryker-mutator/core@npm:8.2.2"
+  version: 8.2.3
+  resolution: "@stryker-mutator/core@npm:8.2.3"
   dependencies:
-    "@stryker-mutator/api": 8.2.2
-    "@stryker-mutator/instrumenter": 8.2.2
-    "@stryker-mutator/util": 8.2.2
+    "@stryker-mutator/api": 8.2.3
+    "@stryker-mutator/instrumenter": 8.2.3
+    "@stryker-mutator/util": 8.2.3
     ajv: ~8.12.0
     chalk: ~5.3.0
     commander: ~11.1.0
@@ -3063,46 +3063,46 @@ __metadata:
     typed-rest-client: ~1.8.11
   bin:
     stryker: bin/stryker.js
-  checksum: c53c44bf678d58296f07d9d2fa1d463b7a1c87b45c524838a85713566a956c0ba754b20b6b0f7c06fde1d8787fa39daa7dde4416a2ed93d46a0f42c3d8bf4e2f
+  checksum: 00b83a3b63747ef506bd0cbcb5c46d005011b16aa9878c8888dd9202aea8afcd21885c1d7dda8f7589a1f59d2ebf556bf7fdfe8ddd9befc36fc89e48b895a393
   languageName: node
   linkType: hard
 
-"@stryker-mutator/instrumenter@npm:8.2.2":
-  version: 8.2.2
-  resolution: "@stryker-mutator/instrumenter@npm:8.2.2"
+"@stryker-mutator/instrumenter@npm:8.2.3":
+  version: 8.2.3
+  resolution: "@stryker-mutator/instrumenter@npm:8.2.3"
   dependencies:
     "@babel/core": ~7.23.9
     "@babel/generator": ~7.23.6
     "@babel/parser": ~7.23.9
     "@babel/plugin-proposal-decorators": ~7.23.9
     "@babel/preset-typescript": ~7.23.3
-    "@stryker-mutator/api": 8.2.2
-    "@stryker-mutator/util": 8.2.2
+    "@stryker-mutator/api": 8.2.3
+    "@stryker-mutator/util": 8.2.3
     angular-html-parser: ~5.2.0
     semver: ~7.5.4
     weapon-regex: ~1.3.0
-  checksum: 8fa504d6af90d8f48f7c8c8b5515812a40fb9e02c86710c220370f6e58494187adb908fba7cef343d7d455321ee5bbdcd75ccffcb8ca30d789a68fb61709650f
+  checksum: c589b37fc0dda2dd8db4412de02ddc4a2130347632db9801fd55707f74d8b054f1c713a98c75e4092294e81cf59a33f7b036a5b90b86a44ff85e93a4f35202ef
   languageName: node
   linkType: hard
 
 "@stryker-mutator/jest-runner@npm:^8.0.0":
-  version: 8.2.2
-  resolution: "@stryker-mutator/jest-runner@npm:8.2.2"
+  version: 8.2.3
+  resolution: "@stryker-mutator/jest-runner@npm:8.2.3"
   dependencies:
-    "@stryker-mutator/api": 8.2.2
-    "@stryker-mutator/util": 8.2.2
+    "@stryker-mutator/api": 8.2.3
+    "@stryker-mutator/util": 8.2.3
     semver: ~7.5.4
     tslib: ~2.6.2
   peerDependencies:
     "@stryker-mutator/core": ~8.2.0
-  checksum: e60ea2ffbf74c0295bc8de8c95d53b09245f53a940faf3ff229589b5d645ed2d3e5a852c3f50782b2e96c71248d24813e69a7aa3328413dac16db4e4ee1131ba
+  checksum: dbf46dc461345cb1b01d98baf9050a75a5cfdbeb25ecb812cd9dc849d2ee8ba603d03c2dc31d1b2efadd3f8a1c85c3784ab647fa5c31a306a02f4abde072eb98
   languageName: node
   linkType: hard
 
-"@stryker-mutator/util@npm:8.2.2":
-  version: 8.2.2
-  resolution: "@stryker-mutator/util@npm:8.2.2"
-  checksum: 1b9364d8efde91616c05f5aa630ad9bf021c12da2998015a1cbdde9d00fa5d448ec61f6565e52a2ec043177ef39347b3e66a13cb5607cfe5f166e09ccc39f7a3
+"@stryker-mutator/util@npm:8.2.3":
+  version: 8.2.3
+  resolution: "@stryker-mutator/util@npm:8.2.3"
+  checksum: 38418308a71108fa8f04beb61b7d0f221a6ac10030fb9064eb9cd01cf56d8fb8579b1c82f40c66a4a1761e751b22f31d36763088b3ecef4a2bbf7cfac6f75f7e
   languageName: node
   linkType: hard
 
