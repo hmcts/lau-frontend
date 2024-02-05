@@ -1,6 +1,6 @@
 import {LoggerInstance} from 'winston';
 import config from 'config';
-import totp from 'totp-generator';
+import { TOTP } from 'totp-generator';
 import {ServiceAuthToken} from '../components/idam/ServiceAuthToken';
 import fetch, {Response as FetchResponse} from 'node-fetch';
 import {jwtDecode} from 'jwt-decode';
@@ -41,9 +41,10 @@ export class AuthService {
   private totpSecret: string = config.get('services.s2s.lauSecret');
 
   retrieveServiceToken(): Promise<ServiceAuthToken> {
+    const { otp } = TOTP.generate(this.totpSecret);
     const params = {
       microservice: this.microserviceName,
-      oneTimePassword: totp(this.totpSecret),
+      oneTimePassword: otp,
     };
 
     return new Promise((resolve, reject) => {
