@@ -17,8 +17,8 @@ class PuppeteerHelper extends Helper {
     if (locator) {
       promises.push(page.click(locator));
     }
+    promises.push(r => setTimeout(r, 3000));
     await Promise.all(promises);
-    await page.waitForTimeout(3000);
   }
 
   async clickTab(tabTitle) {
