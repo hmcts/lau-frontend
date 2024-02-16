@@ -4548,8 +4548,8 @@ __metadata:
   linkType: hard
 
 "applicationinsights@npm:^2.9.1":
-  version: 2.9.2
-  resolution: "applicationinsights@npm:2.9.2"
+  version: 2.9.3
+  resolution: "applicationinsights@npm:2.9.3"
   dependencies:
     "@azure/core-auth": ^1.5.0
     "@azure/core-rest-pipeline": 1.10.1
@@ -4569,7 +4569,7 @@ __metadata:
   peerDependenciesMeta:
     applicationinsights-native-metrics:
       optional: true
-  checksum: d6e52080cb69d32bb8509bc04f774db94b0f25b34661c30d975e78639248fba684a615413bf2ad8ef34578947371660b3b3226effb656fc0d3e66fa8aa4fe38b
+  checksum: 2d67ffbdbce1b1ac366eb251b9a4cc291b46ce0cfc37f318f198bcb1f39b2326c7e67388d90bc05248b64e6b67fca8e26170ad4e50488befc8c31140e2a531c4
   languageName: node
   linkType: hard
 
@@ -6872,10 +6872,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"devtools-protocol@npm:^0.0.1260275":
-  version: 0.0.1260275
-  resolution: "devtools-protocol@npm:0.0.1260275"
-  checksum: 5e7f45c7bd3c0e8c8fc6e7cb17aa6b4ae71c7666d4338d829452792bc6398ea082d676949eca271e547e804140fada4181d09242343939d7ea3d666fcad4b702
+"devtools-protocol@npm:^0.0.1260888":
+  version: 0.0.1260888
+  resolution: "devtools-protocol@npm:0.0.1260888"
+  checksum: 2db7fae775b74f94f5a93978304acf2f477fb15ef98b3367fd5af40259898c76272ebf20375ab9b234da1109c922bb713fbb89ae7b1a16b6391b357fc01a2504
   languageName: node
   linkType: hard
 
@@ -14026,15 +14026,15 @@ __metadata:
   linkType: hard
 
 "sass@npm:^1.63.4":
-  version: 1.70.0
-  resolution: "sass@npm:1.70.0"
+  version: 1.71.0
+  resolution: "sass@npm:1.71.0"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: fd1b622cf9b7fa699a03ec634611997552ece45eb98ac365fef22f42bdcb8ed63b326b64173379c966830c8551ae801e44e4a00d2de16fdadda2dc8f35400bbb
+  checksum: 5ba6b4b994c7ae94286919d8be8a3692038c27175b4ad3a3ac43f51a91188590d3ddd3a0ef1022135503b9d70d0732efdbedfd56f3ee1a4651549f5b13f8942f
   languageName: node
   linkType: hard
 
@@ -16050,8 +16050,8 @@ __metadata:
   linkType: hard
 
 "webdriverio@npm:^8.0.0":
-  version: 8.32.0
-  resolution: "webdriverio@npm:8.32.0"
+  version: 8.32.1
+  resolution: "webdriverio@npm:8.32.1"
   dependencies:
     "@types/node": ^20.1.0
     "@wdio/config": 8.31.1
@@ -16064,7 +16064,7 @@ __metadata:
     aria-query: ^5.0.0
     css-shorthand-properties: ^1.1.1
     css-value: ^0.0.1
-    devtools-protocol: ^0.0.1260275
+    devtools-protocol: ^0.0.1260888
     grapheme-splitter: ^1.0.2
     import-meta-resolve: ^4.0.0
     is-plain-obj: ^4.1.0
@@ -16082,7 +16082,7 @@ __metadata:
   peerDependenciesMeta:
     devtools:
       optional: true
-  checksum: dea05e471f6c8a5f64d087815c729fd704ab06c1773bfcc833390ef1d438f9265f1e1b8f77add3c55f3145e4f10450ed7d31e8b114e696f6cfae1bfecdd7f5d2
+  checksum: 38fb9033e32c6cd40fcf3fb10535997149cc4226e103fc415c13ece5fc4d19f557b3dc13155e748563e2fe3d570b6252563650b4119e446e1841fd6be90de763
   languageName: node
   linkType: hard
 
