@@ -149,6 +149,7 @@
     "merge": "^2.1.1",
     "minimist": "^1.2.6",
     "moment": "^2.29.4",
+    "puppeteer": "^22.0.0",
     "serialize-javascript": "^6.0.0",
     "semver": "^7.5.2",
     "@opentelemetry/instrumentation": "^0.49.0"

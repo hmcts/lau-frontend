@@ -6609,18 +6609,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cosmiconfig@npm:8.2.0":
-  version: 8.2.0
-  resolution: "cosmiconfig@npm:8.2.0"
-  dependencies:
-    import-fresh: ^3.2.1
-    js-yaml: ^4.1.0
-    parse-json: ^5.0.0
-    path-type: ^4.0.0
-  checksum: 836d5d8efa750f3fb17b03d6ca74cd3154ed025dffd045304b3ef59637f662bde1e5dc88f8830080d180ec60841719cf4ea2ce73fb21ec694b16865c478ff297
-  languageName: node
-  linkType: hard
-
 "cosmiconfig@npm:9.0.0, cosmiconfig@npm:^9.0.0":
   version: 9.0.0
   resolution: "cosmiconfig@npm:9.0.0"
@@ -13002,7 +12990,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse-json@npm:^5.0.0, parse-json@npm:^5.2.0":
+"parse-json@npm:^5.2.0":
   version: 5.2.0
   resolution: "parse-json@npm:5.2.0"
   dependencies:
@@ -13647,7 +13635,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"puppeteer-core@npm:20.9.0, puppeteer-core@npm:^20.9.0":
+"puppeteer-core@npm:22.4.1":
+  version: 22.4.1
+  resolution: "puppeteer-core@npm:22.4.1"
+  dependencies:
+    "@puppeteer/browsers": 2.1.0
+    chromium-bidi: 0.5.12
+    cross-fetch: 4.0.0
+    debug: 4.3.4
+    devtools-protocol: 0.0.1249869
+    ws: 8.16.0
+  checksum: 01c28c4f0f66a4ed6c7fee14871920fd25c60ae3507c1b8aed37968b240021f8d0cdd37cb863cebb88fde792ae9fea453e3b943931ae075c99f8e90303d2625f
+  languageName: node
+  linkType: hard
+
+"puppeteer-core@npm:^20.9.0":
   version: 20.9.0
   resolution: "puppeteer-core@npm:20.9.0"
   dependencies:
@@ -13663,31 +13665,6 @@ __metadata:
     typescript:
       optional: true
   checksum: d298598445b0f2032c02d0ed7d1d18a8d2d2fcaf6fc31fc96e93e2669a7fc6fbee0338bd9b8c8f8822887f18a8fb680b77bb56e96fe1928baadb52292bbd93b4
-  languageName: node
-  linkType: hard
-
-"puppeteer-core@npm:22.4.1":
-  version: 22.4.1
-  resolution: "puppeteer-core@npm:22.4.1"
-  dependencies:
-    "@puppeteer/browsers": 2.1.0
-    chromium-bidi: 0.5.12
-    cross-fetch: 4.0.0
-    debug: 4.3.4
-    devtools-protocol: 0.0.1249869
-    ws: 8.16.0
-  checksum: 01c28c4f0f66a4ed6c7fee14871920fd25c60ae3507c1b8aed37968b240021f8d0cdd37cb863cebb88fde792ae9fea453e3b943931ae075c99f8e90303d2625f
-  languageName: node
-  linkType: hard
-
-"puppeteer@npm:^20.9.0":
-  version: 20.9.0
-  resolution: "puppeteer@npm:20.9.0"
-  dependencies:
-    "@puppeteer/browsers": 1.4.6
-    cosmiconfig: 8.2.0
-    puppeteer-core: 20.9.0
-  checksum: c328eca0a649d5e5d68ee2874c25254b8498ab8bbfa1731b444c2dd69380c2f6df1741b3ad427d448fb8e5bcdd259cc9c1ed749dddfc634a64a6a607403fe53c
   languageName: node
   linkType: hard
 
