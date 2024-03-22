@@ -3,6 +3,8 @@ nodejs:
   aadIdentityName: lau
   ingressHost: lau.{{ .Values.global.environment }}.platform.hmcts.net
   image: 'hmctspublic.azurecr.io/lau/frontend:latest'
+  spotInstances:
+    enabled: true
   environment:
     REFORM_TEAM: lau
     REFORM_SERVICE_NAME: lau-frontend
