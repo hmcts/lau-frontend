@@ -7,7 +7,7 @@ security:
   referrerPolicy: origin
 appInsights:
   connectionString: false
-  samplingPercentage: 33 # 33% of all telemetry will be sent to Application Insights
+  samplingPercentage: 100 # 100% of all telemetry will be sent to Application Insights
 pagination:
   maxPerPage: 100
   maxTotal: 10000
