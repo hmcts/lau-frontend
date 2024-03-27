@@ -6036,10 +6036,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:~4.8.2":
-  version: 4.8.3
-  resolution: "axe-core@npm:4.8.3"
-  checksum: f546c74d1f3a7bff81752457fe9e5573693a8ecce11d3c265db501a82105efe0cd29964a491dd98e5979f6f3d85db6776e5e46626c2b09ab579a3729108964fd
+"axe-core@npm:~4.8.4":
+  version: 4.8.4
+  resolution: "axe-core@npm:4.8.4"
+  checksum: 644da2fec17bcf6f834edaab1baa5a75a9a3ee370c323215c73da6d7e45fac11d01470d92d0a3d5f26695e15c1d9b781733dfbe1fe09d505076c58f09ed74e02
   languageName: node
   linkType: hard
 
@@ -7559,7 +7559,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:11.1.0, commander@npm:^11.0.0, commander@npm:~11.1.0":
+"commander@npm:11.1.0, commander@npm:^11.0.0":
   version: 11.1.0
   resolution: "commander@npm:11.1.0"
   checksum: fd1a8557c6b5b622c89ecdfde703242ab7db3b628ea5d1755784c79b8e7cb0d74d65b4a262289b533359cd58e1bfc0bf50245dfbcd2954682a6f367c828b79ef
@@ -8897,7 +8897,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"envinfo@npm:7.11.0, envinfo@npm:~7.11.0":
+"envinfo@npm:7.11.0":
   version: 7.11.0
   resolution: "envinfo@npm:7.11.0"
   bin:
@@ -8906,7 +8906,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"envinfo@npm:^7.10.0":
+"envinfo@npm:^7.10.0, envinfo@npm:~7.11.1":
   version: 7.11.1
   resolution: "envinfo@npm:7.11.1"
   bin:
@@ -12641,7 +12641,7 @@ __metadata:
     node-fetch: ^2.6.7
     nodemon: ^3.0.0
     nunjucks: ^3.2.4
-    pa11y: ^7.0.0
+    pa11y: ^8.0.0
     postcss: ^8.4.14
     puppeteer: ^22.0.0
     require-directory: ^2.1.1
@@ -14891,13 +14891,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p-timeout@npm:~4.1.0":
-  version: 4.1.0
-  resolution: "p-timeout@npm:4.1.0"
-  checksum: 321fec524c23a754e3f1487f2b0a5516fd32aba960d5610490eac56f8a0114b549a93f9919ffc05aa68956dc52e8330e0519f3ddf951d208d19c845f9cd778de
-  languageName: node
-  linkType: hard
-
 "p-try@npm:^2.0.0":
   version: 2.2.0
   resolution: "p-try@npm:2.2.0"
@@ -14905,24 +14898,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pa11y@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "pa11y@npm:7.0.0"
+"pa11y@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "pa11y@npm:8.0.0"
   dependencies:
-    axe-core: ~4.8.2
+    axe-core: ~4.8.4
     bfj: ~8.0.0
-    commander: ~11.1.0
-    envinfo: ~7.11.0
+    commander: ~12.0.0
+    envinfo: ~7.11.1
     html_codesniffer: ~2.5.1
     kleur: ~4.1.5
     mustache: ~4.2.0
     node.extend: ~2.0.3
-    p-timeout: ~4.1.0
-    puppeteer: ^20.9.0
-    semver: ~7.5.4
+    puppeteer: ^22.3.0
+    semver: ~7.6.0
   bin:
     pa11y: bin/pa11y.js
-  checksum: c96f0bd390902cda58d79407e0413d96df5bb718fcfdcb0898b994aec50a58adce757acc8a127e350d3963998e09e57fcd0918bd1b31c102755fee30af69fc8d
+  checksum: 8554b013b5210f3899779e507f0f4f990b18d52d5ec5848b35c58fd8272ebb40a31a8474aced782260962bd93caa0d9c170ba4a9dc28e5fb1a1535160ce67806
   languageName: node
   linkType: hard
 
