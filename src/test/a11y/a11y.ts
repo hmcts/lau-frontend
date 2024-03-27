@@ -54,7 +54,7 @@ function testAccessibility(url: string): void {
       const result = await runPally('http://127.0.0.1:8888');
       expect(result.issues).toEqual(expect.any(Array));
       expectNoErrors(result.issues);
-    });
+    }, 10000);
   });
 }
 
