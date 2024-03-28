@@ -24,6 +24,7 @@ export class OidcMiddleware {
     '/assets/css/flatpickr.min.css',
     '/assets/js/flatpickr.min.js',
     '/assets/images/favicon.ico',
+    '/assets/manifest.json',
   ];
 
   private authService = new AuthService();
