@@ -25,7 +25,7 @@ export class Helmet {
 
   private setContentSecurityPolicy(app: Express): void {
     app.locals.nonce = crypto.randomBytes(16).toString('base64');
-    const scriptSrc = [self, googleAnalyticsDomain, "'sha256-+6WnXIl4mbFTCARd8N3COQmT3bJJmo32N8q8ZSQAIcU='", `'nonce-${app.locals.nonce}'`];
+    const scriptSrc = [self, googleAnalyticsDomain, "'sha256-GUQ5ad8JK5KmEWmROf3LZd9ge94daqNvd8xy9YS1iDw='", `'nonce-${app.locals.nonce}'`];
 
     if (app.locals.ENV === 'development') {
       scriptSrc.push("'unsafe-eval'");
@@ -41,6 +41,7 @@ export class Helmet {
           objectSrc: [self],
           scriptSrc,
           styleSrc: [self],
+          manifestSrc: [self],
         },
       }) as RequestHandler,
     );
