@@ -7271,16 +7271,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromium-bidi@npm:0.5.16":
-  version: 0.5.16
-  resolution: "chromium-bidi@npm:0.5.16"
+"chromium-bidi@npm:0.5.17":
+  version: 0.5.17
+  resolution: "chromium-bidi@npm:0.5.17"
   dependencies:
     mitt: 3.0.1
     urlpattern-polyfill: 10.0.0
     zod: 3.22.4
   peerDependencies:
     devtools-protocol: "*"
-  checksum: 5206876e240549daadfa390ae6475e8c891a0557006e0dea13590e2f5ed26b560fa9cbf5c654dde0a95a2c13d606e527de745b52c25273b6c200d9cbca4e6522
+  checksum: 522da996ed5abfb47707583cc24785f9aa05d87bd968dbd520f245cf8972fa3ec102f8d1d72fa07558daa70495d8c6f2bf364d8599eb60b77504e528601d8a30
   languageName: node
   linkType: hard
 
@@ -15754,16 +15754,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"puppeteer-core@npm:22.6.3":
-  version: 22.6.3
-  resolution: "puppeteer-core@npm:22.6.3"
+"puppeteer-core@npm:22.6.4":
+  version: 22.6.4
+  resolution: "puppeteer-core@npm:22.6.4"
   dependencies:
     "@puppeteer/browsers": 2.2.1
-    chromium-bidi: 0.5.16
+    chromium-bidi: 0.5.17
     debug: 4.3.4
     devtools-protocol: 0.0.1262051
     ws: 8.16.0
-  checksum: e81cc64cf5849d51ccecb9d450b88fb1046b360307655b8dac4ed062af3a52c8c64de778ddc6a6e0666374f6f3ee5862d958aa666979c8a193efae41e376e598
+  checksum: 76d4328e7d2a788a7a2dc3a8b19571f8eda842ff990da2fe773c3e5c01236a03856b67d9a2a6ae976f8fa74ab38813e2c7e7c4b15b9715965b2156e9ca1f9a78
   languageName: node
   linkType: hard
 
@@ -15787,16 +15787,16 @@ __metadata:
   linkType: hard
 
 "puppeteer@npm:^22.0.0":
-  version: 22.6.3
-  resolution: "puppeteer@npm:22.6.3"
+  version: 22.6.4
+  resolution: "puppeteer@npm:22.6.4"
   dependencies:
     "@puppeteer/browsers": 2.2.1
     cosmiconfig: 9.0.0
     devtools-protocol: 0.0.1262051
-    puppeteer-core: 22.6.3
+    puppeteer-core: 22.6.4
   bin:
     puppeteer: lib/esm/puppeteer/node/cli.js
-  checksum: 9f88ead64c1422031a01ab9416e41073fefa3e27e566a43ea84025e4cb1b0794970d661ca287a00c3582a26fac2ce2147124992b8f0fc852895e465f515f12b4
+  checksum: 7dcbda7fc3b999f3ee7808d1c67da41be0aeabd66b0831711a46a897a2681d117f044263e57aeb7d0a096c420bb9f5871c5c2b21c38e40d323fa675e1de322c9
   languageName: node
   linkType: hard
 
@@ -16684,8 +16684,8 @@ __metadata:
   linkType: hard
 
 "sass-loader@npm:^14.0.0":
-  version: 14.1.1
-  resolution: "sass-loader@npm:14.1.1"
+  version: 14.2.0
+  resolution: "sass-loader@npm:14.2.0"
   dependencies:
     neo-async: ^2.6.2
   peerDependencies:
@@ -16705,7 +16705,7 @@ __metadata:
       optional: true
     webpack:
       optional: true
-  checksum: 56b2d1018d33c91d1c62b195ba62e31a2c03e1e304403ac69e3434413f601400a009e238e3d2d2b705949bd559cd537ba3d165c9ab338950f6e8d83dd92d3d60
+  checksum: ef64aa02cb014164c082cfee14a6f572b3b822f18690fd362f3dcbea7f6cda25df92a396abf6b90a51b2483611d2f4689fd009dfd4a19859c8668cd9aeae7753
   languageName: node
   linkType: hard
 
