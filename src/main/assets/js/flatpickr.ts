@@ -11,17 +11,8 @@ const formatDate = (date: Date): string => {
     + ` ${zeroPad(date.getHours())}:${zeroPad(date.getMinutes())}:${zeroPad(date.getSeconds())}`;
 };
 
-const caseStartTimestampSuffix = document.getElementsByClassName('case-start-timestamp-suffix')[0] as HTMLElement;
-const caseEndTimestampSuffix = document.getElementsByClassName('case-end-timestamp-suffix')[0] as HTMLElement;
-
-const logonStartTimestampSuffix = document.getElementsByClassName('logon-start-timestamp-suffix')[0] as HTMLElement;
-const logonEndTimestampSuffix = document.getElementsByClassName('logon-end-timestamp-suffix')[0] as HTMLElement;
-
-const caseDeletionsStartTimestampSuffix = document.getElementsByClassName('case-deletions-start-timestamp-suffix')[0] as HTMLElement;
-const caseDeletionsEndTimestampSuffix = document.getElementsByClassName('case-deletions-end-timestamp-suffix')[0] as HTMLElement;
-
-const deletedUsersStartTimestampSuffix = document.getElementsByClassName('deleted-users-start-timestamp-suffix')[0] as HTMLElement;
-const deletedUsersEndTimestampSuffix = document.getElementsByClassName('deleted-users-end-timestamp-suffix')[0] as HTMLElement;
+const startTimestampSuffix = document.getElementsByClassName('lau-start-timestamp-suffix')[0] as HTMLElement;
+const endTimestampSuffix = document.getElementsByClassName('lau-end-timestamp-suffix')[0] as HTMLElement;
 
 const getOptions = (suffixEl: HTMLElement): Options => {
   return {
@@ -43,58 +34,22 @@ const getOptions = (suffixEl: HTMLElement): Options => {
   };
 };
 
-// ------------------------ Case Search Datepicker ------------------------
+
 const caseForm = getById('case-search-form') as HTMLFormElement | null;
-if (caseForm && getById('caseStartTimestamp') && getById('caseEndTimestamp')) {
-  const startCal: flatpickr.Instance = flatpickr('#caseStartTimestamp', getOptions(caseStartTimestampSuffix)) as flatpickr.Instance;
-  caseStartTimestampSuffix.addEventListener('click', () => {
-    startCal.isOpen ? startCal.close() : startCal.open();
-  });
-
-  const endCal: flatpickr.Instance = flatpickr('#caseEndTimestamp', getOptions(caseEndTimestampSuffix)) as flatpickr.Instance;
-  caseEndTimestampSuffix.addEventListener('click', () => {
-    endCal.isOpen ? endCal.close() : endCal.open();
-  });
-}
-
-// ------------------------ Logon Search Datepicker ------------------------
 const logonForm = getById('logon-search-form') as HTMLFormElement | null;
-if (logonForm && getById('logonStartTimestamp') && getById('logonEndTimestamp')) {
-  const startCal: flatpickr.Instance = flatpickr('#logonStartTimestamp', getOptions(logonStartTimestampSuffix)) as flatpickr.Instance;
-  logonStartTimestampSuffix.addEventListener('click', () => {
-    startCal.isOpen ? startCal.close() : startCal.open();
-  });
-
-  const endCal: flatpickr.Instance = flatpickr('#logonEndTimestamp', getOptions(logonEndTimestampSuffix)) as flatpickr.Instance;
-  logonEndTimestampSuffix.addEventListener('click', () => {
-    endCal.isOpen ? endCal.close() : endCal.open();
-  });
-}
-
-// ------------------------ User Deletions Search Datepicker ------------------------
 const userDeletionsForm = getById('user-deletions-search-form') as HTMLFormElement | null;
-if (userDeletionsForm && getById('userDeletionsStartTimestamp') && getById('userDeletionsEndTimestamp')) {
-  const startCal: flatpickr.Instance = flatpickr('#userDeletionsStartTimestamp', getOptions(deletedUsersStartTimestampSuffix)) as flatpickr.Instance;
-  deletedUsersStartTimestampSuffix.addEventListener('click', () => {
-    startCal.isOpen ? startCal.close() : startCal.open();
-  });
-
-  const endCal: flatpickr.Instance = flatpickr('#userDeletionsEndTimestamp', getOptions(deletedUsersEndTimestampSuffix)) as flatpickr.Instance;
-  deletedUsersEndTimestampSuffix.addEventListener('click', () => {
-    endCal.isOpen ? endCal.close() : endCal.open();
-  });
-}
-
-// ------------------------ Case Deletions Search Datepicker ------------------------
 const caseDeletionsForm = getById('case-deletions-search-form') as HTMLFormElement | null;
-if (caseDeletionsForm && getById('caseDeletionsStartTimestamp') && getById('caseDeletionsEndTimestamp')) {
-  const startCal: flatpickr.Instance = flatpickr('#caseDeletionsStartTimestamp', getOptions(caseDeletionsStartTimestampSuffix)) as flatpickr.Instance;
-  caseDeletionsStartTimestampSuffix.addEventListener('click', () => {
+
+const formPresent = caseForm || logonForm || userDeletionsForm || caseDeletionsForm;
+
+if (formPresent && getById('startTimestamp') && getById('endTimestamp')) {
+  const startCal: flatpickr.Instance = flatpickr('#startTimestamp', getOptions(startTimestampSuffix)) as flatpickr.Instance;
+  startTimestampSuffix.addEventListener('click', () => {
     startCal.isOpen ? startCal.close() : startCal.open();
   });
 
-  const endCal: flatpickr.Instance = flatpickr('#caseDeletionsEndTimestamp', getOptions(caseDeletionsEndTimestampSuffix)) as flatpickr.Instance;
-  caseDeletionsEndTimestampSuffix.addEventListener('click', () => {
+  const endCal: flatpickr.Instance = flatpickr('#endTimestamp', getOptions(endTimestampSuffix)) as flatpickr.Instance;
+  endTimestampSuffix.addEventListener('click', () => {
     endCal.isOpen ? endCal.close() : endCal.open();
   });
 }

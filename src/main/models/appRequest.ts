@@ -31,6 +31,7 @@ export interface AppSession extends Session {
   logonFormState?: Partial<LogonSearchRequest>;
   caseDeletionsFormState?: Partial<CaseDeletionsSearchRequest>;
   deletedUsersFormState?: Partial<DeletedUsersSearchRequest>;
+  fromPost: boolean;
   errors?: FormError[];
 }
 

@@ -34,7 +34,7 @@ export class CaseDeletionsController {
             totalNumberOfRecords: caseDeletions.totalNumberOfRecords,
             startRecordNumber: caseDeletions.startRecordNumber,
             moreRecords: caseDeletions.moreRecords,
-            currentPage: req.session.caseDeletionsFormState.page,
+            currentPage: req.session.caseDeletionsFormState.page ? req.session.caseDeletionsFormState.page : 1,
             lastPage: caseDeletions.totalNumberOfRecords > 0 ? Math.ceil(caseDeletions.totalNumberOfRecords / recordsPerPage) : 1,
           });
         } else {
@@ -63,7 +63,7 @@ export class CaseDeletionsController {
 
     await this.getLogData(req).then(logData => {
       req.session.caseDeletions = logData;
-      res.redirect('/#case-deletions-tab');
+      res.redirect('/case-deletion-audit#results-section');
     }).catch((err: AppError) => {
       this.logger.error(err.message);
       errorRedirect(res, err.code);

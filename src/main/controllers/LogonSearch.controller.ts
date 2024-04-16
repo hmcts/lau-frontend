@@ -29,6 +29,7 @@ export class LogonSearchController extends BaseSearchController<LogonSearchReque
     const searchRequest: Partial<LogonSearchRequest> = req.body;
     req.session.logonFormState = searchRequest;
     req.session.errors = this.validateSearchForm(searchRequest);
+    req.session.fromPost = true;
 
     if (this.getErrors().length === 0) {
       searchRequest.size = this.pageSize;
@@ -40,13 +41,13 @@ export class LogonSearchController extends BaseSearchController<LogonSearchReque
 
       return this.logonsController.getLogData(req).then(logData => {
         req.session.logons = logData;
-        res.redirect('/#logons-tab');
+        res.redirect('/logon-audit#results-section');
       }).catch((err: AppError) => {
         this.logger.error(err.message);
         errorRedirect(res, err.code || ErrorCode.FRONTEND);
       });
     } else {
-      res.redirect('/#logon-search-tab');
+      res.redirect('/logon-audit');
     }
   }
 }

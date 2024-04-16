@@ -29,6 +29,7 @@ export class DeletedUsersSearchController extends BaseSearchController<DeletedUs
     const searchRequest: Partial<DeletedUsersSearchRequest> = req.body;
     req.session.deletedUsersFormState = searchRequest;
     req.session.errors = this.validateSearchForm(searchRequest);
+    req.session.fromPost = true;
 
     if (this.getErrors().length === 0) {
       searchRequest.size = this.pageSize;
@@ -40,13 +41,13 @@ export class DeletedUsersSearchController extends BaseSearchController<DeletedUs
 
       return this.deletedUsersController.getDeletedUsersData(req).then(logData => {
         req.session.userDeletions = logData;
-        res.redirect('/#deleted-users-tab');
+        res.redirect('/user-deletion-audit#results-section');
       }).catch((err: AppError) => {
         this.logger.error(err.message);
         errorRedirect(res, err.code || ErrorCode.FRONTEND);
       });
     } else {
-      res.redirect('/#deleted-users-search-tab');
+      res.redirect('/user-deletion-audit');
     }
   }
 }

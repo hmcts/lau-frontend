@@ -140,7 +140,7 @@ describe('Deleted Users Search Controller', () => {
       // @ts-ignore
       return deletedUsersSearchController.post(req as AppRequest, res as Response).then(() => {
         expect(res.redirect.calledOnce).toBeTruthy();
-        expect(res.redirect.calledWith('/#deleted-users-tab')).toBeTruthy();
+        expect(res.redirect.calledWith('/user-deletion-audit#results-section')).toBeTruthy();
       });
     });
 

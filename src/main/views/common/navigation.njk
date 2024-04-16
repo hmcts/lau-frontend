@@ -1,0 +1,26 @@
+<div class="moj-primary-navigation">
+  <div class="moj-primary-navigation__container">
+    <div class="moj-primary-navigation__nav">
+      <nav class="moj-primary-navigation" aria-label="Primary navigation">
+        <ul class="moj-primary-navigation__list">
+          {% if userRoles and 'cft-audit-investigator' in userRoles %}
+          <li class="moj-primary-navigation__item">
+            <a class="moj-primary-navigation__link" href="/case-audit" {% if caseSearchPage %}aria-current="page" {% endif %}>Case audit</a>
+          </li>
+          <li class="moj-primary-navigation__item">
+            <a class="moj-primary-navigation__link" href="/logon-audit" {% if logonSearchPage %}aria-current="page" {% endif %}>Log ons audit</a>
+          </li>
+          <li class="moj-primary-navigation__item">
+            <a class="moj-primary-navigation__link" href="/user-deletion-audit" {% if userDeletionSearchPage %}aria-current="page" {% endif %}>Deleted users</a>
+          </li>
+          {% endif %}
+          {% if userRoles and 'cft-service-logs' in userRoles %}
+          <li class="moj-primary-navigation__item">
+            <a class="moj-primary-navigation__link" href="/case-deletion-audit" {% if caseDeletionSearchPage %}aria-current="page" {% endif %}>Case deletions</a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

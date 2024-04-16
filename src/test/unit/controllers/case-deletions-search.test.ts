@@ -140,7 +140,7 @@ describe('Case Deletions Search Controller', () => {
       // @ts-ignore
       return caseDeletionsSearchController.post(req as AppRequest, res as Response).then(() => {
         expect(res.redirect.calledOnce).toBeTruthy();
-        expect(res.redirect.calledWith('/#case-deletions-tab')).toBeTruthy();
+        expect(res.redirect.calledWith('/case-deletion-audit#results-section')).toBeTruthy();
       });
     });
 

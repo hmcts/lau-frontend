@@ -35,7 +35,7 @@ export class CaseActivityController {
             totalNumberOfRecords: caseActivities.totalNumberOfRecords,
             startRecordNumber: caseActivities.startRecordNumber,
             moreRecords: caseActivities.moreRecords,
-            currentPage: req.session.caseFormState.page,
+            currentPage: req.session.caseFormState.page ? req.session.caseFormState.page : 1,
             lastPage: caseActivities.totalNumberOfRecords > 0 ? Math.ceil(caseActivities.totalNumberOfRecords / recordsPerPage) : 1,
           });
         } else {
@@ -64,7 +64,7 @@ export class CaseActivityController {
 
     await this.getLogData(req).then(logData => {
       req.session.caseActivities = logData;
-      res.redirect('/#case-activity-tab');
+      res.redirect('/case-audit#case-activity');
     }).catch((err: AppError) => {
       this.logger.error(err.message);
       errorRedirect(res, err.code);

@@ -37,7 +37,7 @@ export class CaseSearchesController {
               totalNumberOfRecords: caseSearches.totalNumberOfRecords,
               startRecordNumber: caseSearches.startRecordNumber,
               moreRecords: caseSearches.moreRecords,
-              currentPage: req.session.caseFormState.page,
+              currentPage: req.session.caseFormState.page ? req.session.caseFormState.page : 1,
               lastPage: caseSearches.totalNumberOfRecords > 0 ? Math.ceil(caseSearches.totalNumberOfRecords / recordsPerPage) : 1,
             });
           } else {
@@ -73,7 +73,7 @@ export class CaseSearchesController {
 
     await this.getLogData(req).then(logData => {
       req.session.caseSearches = logData;
-      res.redirect('/#case-searches-tab');
+      res.redirect('/case-audit#case-search');
     }).catch((err: AppError) => {
       this.logger.error(err.message);
       errorRedirect(res, err.code);

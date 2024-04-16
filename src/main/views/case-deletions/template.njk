@@ -1,65 +1,127 @@
+{% extends "../home/template.njk" %}
+{% from 'common/macros/paging.njk' import lauPaging %}
+{% from "common/macros/lauDateTimeInput.njk" import lauDateTimeInput %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
-{% if caseDeletions and caseDeletions.hasData %}
-  <div class="flex-space-between">
-    <h1 class="govuk-heading-l">Case Deletions Results</h1>
-    <button id="deletionsCsvBtn" class="govuk-button">Download all records to CSV</button>
-  </div>
+{% block auditSearch %}
+{% if userRoles and 'cft-service-logs' in userRoles %}
 
-  <div>
+<h1 class="govuk-heading-xl">Deleted case search</h1>
+
+<form id="case-deletions-search-form" class="search-form" method="post" action="/case-deletions-search" novalidate>
+  <div class="govuk-grid-row govuk-!-padding-left-3 govuk-!-padding-right-6">
+    <h2 class="govuk-heading-l">Search</h2>
+
+    <p class="govuk-body">Include time parameters in your search using the 'Time from' and
+      'Time to' fields and enter at least one other parameter to obtain search results.
+    </p>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      {{ govukInput({
+        label: {
+          text: "Case Ref"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "caseRef",
+        name: "caseRef",
+        value: caseDeletionsForm.caseRef
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Case Type ID"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "caseTypeId",
+        name: "caseTypeId",
+        value: caseDeletionsForm.caseTypeId
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Jurisdiction ID"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "jurisdictionId",
+        name: "jurisdictionId",
+        value: caseDeletionsForm.jurisdictionId
+      }) }}
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      {{
+        lauDateTimeInput(
+          text="Time from (UTC)",
+          id="startTimestamp",
+          name="startTimestamp",
+          value=caseDeletionsForm.startTimestamp,
+          sessionErrors=sessionErrors,
+          errorMessages=errors
+        )
+      }}
+
+      {{
+        lauDateTimeInput(
+          text="Time to (UTC)",
+          id="endTimestamp",
+          name="endTimestamp",
+          value=caseDeletionsForm.endTimestamp,
+          sessionErrors=sessionErrors,
+          errorMessages=errors
+        )
+      }}
+    </div>
+
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {{ govukButton({
+        name: "case-deletions-search-btn",
+        text: "Search",
+        type: "submit",
+        preventDoubleClick: true,
+        value: "search"
+      }) }}
+    </div>
+  </div>
+</form>
+
+{% if caseDeletions and caseDeletions.hasData %}
+<div class="govuk-grid-row govuk-!-margin-top-5" id="results-section">
+  <div class="govuk-grid-column-full">
+
+    <h2 class="govuk-heading-l">
+      Results
+    </h2>
+
+    <p class="govuk-body">Search results are limited to 10,000.</p>
+
+    <button class="govuk-button" data-module="govuk-button" id="deletionsCsvBtn">
+      Download all records to CSV
+    </button>
+
     {{ govukTable({
       firstCellIsHeader: true,
       head: [
-        {
-          text: "Case Ref"
-        },
-        {
-          text: "Jurisdiction ID"
-        },
-        {
-          text: "Case Type ID"
-        },
-        {
-          text: "Timestamp (UTC)"
-        }
+        { text: "Case Ref" },
+        { text: "Jurisdiction ID" },
+        { text: "Case Type ID" },
+        { text: "Timestamp (UTC)" }
       ],
       rows: caseDeletions.rows
     }) }}
   </div>
+</div>
 
-  <div class="flex-space-between">
-    <div>
-      <p class="govuk-body">Displaying <b>{{ caseDeletions.startRecordNumber | numComma }} to {{ (caseDeletions.startRecordNumber + (caseDeletions.noOfRows - 1)) | numComma }}</b> of {{ caseDeletions.totalNumberOfRecords | numComma }} records</p>
-      {% if caseDeletions.totalNumberOfRecords == common.maxRecords %}
-        <p class="govuk-body-s"><b>Note:</b> Results returned have been capped at {{ common.maxRecords | numComma }}.</p>
-      {% endif %}
-    </div>
-    <div>
-      {% if (caseDeletions.currentPage > 2) %}
-        <a id="case-deletions-first-btn" class="govuk-link pagination-link" href="/case-deletions/page/1">&lt;&lt; First</a>
-      {% endif %}
-      {% if (caseDeletions.currentPage > 1) %}
-        <a id="case-deletions-previous-btn" class="govuk-link pagination-link" href="/case-deletions/page/{{ caseDeletions.currentPage | int - 1 }}">&lt; Previous</a>
-      {% endif %}
-
-      <span class="govuk-body-s">&emsp;Page {{ caseDeletions.currentPage | numComma }} / {{ caseDeletions.lastPage | numComma}}&emsp;</span>
-
-      {% if (caseDeletions.lastPage - caseDeletions.currentPage) > 0 %}
-        <a id="case-deletions-next-btn" class="govuk-link pagination-link" href="/case-deletions/page/{{ caseDeletions.currentPage | int + 1 }}">Next &gt;</a>
-      {% endif %}
-      {% if (caseDeletions.lastPage - caseDeletions.currentPage) > 1 %}
-        <a id="case-deletions-last-btn" class="govuk-link pagination-link" href="/case-deletions/page/{{ caseDeletions.lastPage }}">Last &gt;&gt;</a>
-      {% endif %}
-    </div>
-  </div>
+{{ lauPaging(caseDeletions, '/case-deletions/page', 'case-deletions') }}
 
 {% elseif caseDeletions %}
-
-  <h1 class="govuk-heading-l">Case Deletions Results</h1>
+  <h2 class="govuk-heading-l">Results</h2>
   <p class="govuk-body">No results found</p>
-
-{% else %}
-
-  <h2 class="govuk-heading-m">Use the Search tab to conduct a search</h2>
-
 {% endif %}
+{% endif %}
+{% endblock auditSearch %}
+
