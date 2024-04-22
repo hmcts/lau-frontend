@@ -11,3 +11,4 @@ coverage/*
 jest.*config.js
 /src/test/reporter/*
 functional-output/
+jest.setup.js
