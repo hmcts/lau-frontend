@@ -8,7 +8,6 @@ const retry = (fn, remainingRetries = 3, retryTimeout = 5000, err = null) => {
     retryTimeout = MAX_RETRY_TIMEOUT;
   }
   return fn().catch(async error => {
-    // eslint-disable-next-line no-console
     console.log(`${error.message}, retrying in ${retryTimeout / 1000} seconds (Retries left: ${remainingRetries})`);
     await sleep(retryTimeout);
     return retry(fn, remainingRetries - 1, retryTimeout, error);
