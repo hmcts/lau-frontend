@@ -1,6 +1,5 @@
 // in this file you can append custom step methods to 'I' object
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export = function () {
   return actor({
 
