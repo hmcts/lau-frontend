@@ -96,6 +96,7 @@ export default [
       'src/test/reporter/',
       'functional-output/',
       '.yarn/',
+      'jest.setup.js',
     ],
   },
 ];
