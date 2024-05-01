@@ -20,6 +20,7 @@ module.exports = {
     '!src/main/**',
     '!src/test/**',
     '!jest.config.js',
+    '!jest.setup.js',
   ],
   testRunner: 'jest',
   jest: {
