@@ -136,7 +136,7 @@ describe('Logon Search Controller', () => {
       // @ts-ignore
       return logonSearchController.post(req as AppRequest, res as Response).then(() => {
         expect(res.redirect.calledOnce).toBeTruthy();
-        expect(res.redirect.calledWith('/#logons-tab')).toBeTruthy();
+        expect(res.redirect.calledWith('/logon-audit#results-section')).toBeTruthy();
       });
     });
 

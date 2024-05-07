@@ -31,6 +31,7 @@ export class CaseDeletionsSearchController extends BaseSearchController<CaseDele
     searchRequest.caseAction = CaseActions.DELETE;
     req.session.caseDeletionsFormState = searchRequest;
     req.session.errors = this.validateSearchForm(searchRequest);
+    req.session.fromPost = true;
 
     if (this.getErrors().length === 0) {
       searchRequest.size = this.pageSize;
@@ -42,13 +43,13 @@ export class CaseDeletionsSearchController extends BaseSearchController<CaseDele
 
       return this.caseDeletionsController.getLogData(req).then(logData => {
         req.session.caseDeletions = logData;
-        res.redirect('/#case-deletions-tab');
+        res.redirect('/case-deletion-audit#results-section');
       }).catch((err: AppError) => {
         this.logger.error(err.message);
         errorRedirect(res, err.code || ErrorCode.FRONTEND);
       });
     } else {
-      res.redirect('/#case-deletions-search-tab');
+      res.redirect('/case-deletion-audit');
     }
   }
 }

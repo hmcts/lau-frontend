@@ -33,7 +33,7 @@ export class DeletedUsersController {
             totalNumberOfRecords: deletedUsers.totalNumberOfRecords,
             startRecordNumber: deletedUsers.startRecordNumber,
             moreRecords: deletedUsers.moreRecords,
-            currentPage: req.session.deletedUsersFormState.page,
+            currentPage: req.session.deletedUsersFormState.page ? req.session.deletedUsersFormState.page : 1,
             lastPage: deletedUsers.totalNumberOfRecords > 0 ? Math.ceil(deletedUsers.totalNumberOfRecords / recordsPerPage) : 1,
           });
         } else {
@@ -62,7 +62,7 @@ export class DeletedUsersController {
 
     await this.getDeletedUsersData(req).then(deletedUsersData => {
       req.session.userDeletions = deletedUsersData;
-      res.redirect('/#deleted-users-tab');
+      res.redirect('/user-deletion-audit#results-section');
     }).catch((err: AppError) => {
       this.logger.error(err.message);
       errorRedirect(res, err.code);

@@ -1,0 +1,234 @@
+{% extends "../home/template.njk" %}
+{% from "common/macros/paging.njk" import lauPaging %}
+{% from "common/macros/lauDateTimeInput.njk" import lauDateTimeInput %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% block auditSearch %}
+{% if userRoles and 'cft-audit-investigator' in userRoles %}
+
+<h1 class="govuk-heading-xl">Case audit search</h1>
+
+<form id="case-search-form" class="search-form" method="post" action="/case-search" novalidate>
+  <div class="govuk-grid-row govuk-!-padding-left-3 govuk-!-padding-right-6">
+    <h2 class="govuk-heading-l">Search</h2>
+
+    <p class="govuk-body">Include time parameters in your search using the 'Time from' and
+      'Time to' fields and enter at least one other parameter to obtain search results.
+      <br/>
+      'Case Type ID' and
+      'Jurisdiction ID' are only available in Case Activity results.
+    </p>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      {{ govukInput({
+        label: {
+          text: "User ID"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "caseUserId",
+        name: "userId",
+        value: caseForm.userId
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Case reference"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "caseRef",
+        name: "caseRef",
+        value: caseForm.caseRef
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Case type ID"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "caseTypeId",
+        name: "caseTypeId",
+        value: caseForm.caseTypeId
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Jurisdiction ID"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "caseJurisdictionId",
+        name: "caseJurisdictionId",
+        value: caseForm.caseJurisdictionId
+      }) }}
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      {{
+        lauDateTimeInput(
+          text="Time from (UTC)",
+          id="startTimestamp",
+          name="startTimestamp",
+          value=caseForm.startTimestamp,
+          sessionErrors=sessionErrors,
+          errorMessages=errors
+        )
+      }}
+
+      {{
+        lauDateTimeInput(
+          text="Time to (UTC)",
+          id="endTimestamp",
+          name="endTimestamp",
+          value=caseForm.endTimestamp,
+          sessionErrors=sessionErrors,
+          errorMessages=errors
+        )
+      }}
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {{ govukSelect({
+        id: "activity",
+        name: "caseAction",
+        label: {
+          text: "Activity"
+        },
+        classes: "govuk-!-width-three-quarters",
+        value: caseForm.caseAction,
+        items: [
+          {
+            value: "ALL",
+            text: "All",
+            selected: true
+          },
+          {
+            value: "CREATE",
+            text: "CREATE"
+          },
+          {
+            value: "UPDATE",
+            text: "UPDATE"
+          },
+          {
+            value: "VIEW",
+            text: "VIEW"
+          },
+          {
+            value: "DELETE",
+            text: "DELETE"
+          }
+        ]
+      }) }}
+
+    </div>
+
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {{ govukButton({
+        name: "case-search-btn",
+        text: "Search",
+        type: "submit",
+        preventDoubleClick: true
+      }) }}
+    </div>
+  </div>
+</form>
+
+{% if (caseActivities and caseActivities.hasData) or (caseSearch and caseSearch.hasData) %}
+<div class="govuk-grid-row govuk-!-margin-top-5" id="results-section">
+  <div class="govuk-grid-column-full">
+
+    <h2 class="govuk-heading-l">
+      Results
+    </h2>
+    <p class="govuk-body">Search results are limited to 10,000.</p>
+
+
+    <div class="govuk-tabs" data-module="govuk-tabs">
+      <h2 class="govuk-tabs__title">
+        Contents
+      </h2>
+      <ul class="govuk-tabs__list" role="tablist">
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected" role="presentation">
+          <a class="govuk-tabs__tab" href="#case-activity" id="tab_case-activity" role="tab" aria-controls="case-activity" aria-selected="true" tabindex="0">
+            Case activity results
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item" role="presentation">
+          <a class="govuk-tabs__tab" href="#case-search" id="tab_case-search" role="tab" aria-controls="case-search" aria-selected="false" tabindex="-1">
+            Case search results
+          </a>
+        </li>
+      </ul>
+
+
+      <div class="govuk-tabs__panel" id="case-activity" role="tabpanel" aria-labelledby="tab_case-activity">
+        <h2 class="govuk-heading-l">Case activity</h2>
+        <!-- case activity tab contents -->
+        <div class="results">
+          <button class="govuk-button" data-module="govuk-button" id="activityCsvBtn">
+            Download all records to CSV
+          </button>
+
+          {{ govukTable({
+            firstCellIsHeader: true,
+            head: [
+              { text: "User ID" },
+              { text: "Activity" },
+              { text: "Case Ref" },
+              { text: "Jurisdiction ID" },
+              { text: "Case Type ID" },
+              { text: "Timestamp (UTC)" }
+            ],
+            rows: caseActivities.rows
+          }) }}
+
+          {{ lauPaging(caseActivities, '/case-activity/page', 'case-activity') }}
+
+        </div>
+      </div>
+
+
+      <div class="govuk-tabs__panel" id="case-search" role="tabpanel" aria-labelledby="tab_case-search">
+        {% if caseSearches and caseSearches.hasData %}
+        <h2 class="govuk-heading-l">Case search</h2>
+        <div class="results">
+          <button class="govuk-button" data-module="govuk-button" id="searchesCsvBtn">
+            Download all records to CSV
+          </button>
+
+          {{ govukTable({
+            firstCellIsHeader: true,
+            head: [
+              { text: "User ID" },
+              { text: "Case Refs" },
+              { text: "Timestamp (UTC)" }
+            ],
+            rows: caseSearches.rows
+          }) }}
+
+          {{ lauPaging(caseSearches, '/case-searches/page', 'case-searches') }}
+
+        </div>
+        {% elseif caseSearches %}
+        <h2 class="govuk-heading-l">Case Search Results</h2>
+        <p class="govuk-body">No results found</p>
+        {% else %}
+        <p class="govuk-body">User ID or Case Ref must be included in search criteria.</p>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+{% elseif caseActivities %}
+  <h1 class="govuk-heading-l">Case Activity Results</h1>
+  <p class="govuk-body">No results found</p>
+{% endif %}
+
+{% endif %}
+{% endblock auditSearch %}
+

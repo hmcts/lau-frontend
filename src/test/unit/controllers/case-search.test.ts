@@ -152,7 +152,7 @@ describe('Case Search Controller', () => {
       // @ts-ignore
       return searchController.post(req as AppRequest, res as Response).then(() => {
         expect(res.redirect.calledOnce).toBeTruthy();
-        expect(res.redirect.calledWith('/#case-activity-tab')).toBeTruthy();
+        expect(res.redirect.calledWith('/case-audit#case-activity')).toBeTruthy();
         nock.cleanAll();
       });
     });

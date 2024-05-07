@@ -73,6 +73,9 @@ describe('Accessibility', () => {
     server ? await server.close() : null;
   });
 
-  testAccessibility('/');
+  testAccessibility('/case-audit');
+  testAccessibility('/logon-audit');
+  testAccessibility('/user-deletion-audit');
+  testAccessibility('/case-deletion-audit');
   testAccessibility('/cookies');
 });

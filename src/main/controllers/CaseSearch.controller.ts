@@ -38,6 +38,7 @@ export class CaseSearchController extends BaseSearchController<CaseSearchRequest
     }
     req.session.caseFormState = searchRequest;
     req.session.errors = this.validateSearchForm(searchRequest);
+    req.session.fromPost = true;
 
     if (this.getErrors().length === 0) {
       searchRequest.size = this.pageSize;
@@ -54,13 +55,14 @@ export class CaseSearchController extends BaseSearchController<CaseSearchRequest
         this.logger.info('Case search promise complete... updating session and redirecting...');
         req.session.caseActivities = value[0];
         req.session.caseSearches = value[1];
-        res.redirect('/#case-activity-tab');
+        res.redirect('/case-audit#case-activity');
       }).catch((err: AppError) => {
         this.logger.error(err.message);
         errorRedirect(res, err.code || ErrorCode.FRONTEND);
       });
     } else {
-      res.redirect('/');
+
+      res.redirect('/case-audit');
     }
   }
 

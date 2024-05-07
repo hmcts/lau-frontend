@@ -1,0 +1,27 @@
+{% macro lauPaging(data, pagedRequestUrl, idPrefix) %}
+<div class="flex-space-between">
+  <div>
+    <p class="govuk-body">Displaying <b>{{ data.startRecordNumber | numComma }} to {{ (data.startRecordNumber + (data.noOfRows - 1)) | numComma }}</b> of {{ data.totalNumberOfRecords | numComma }} records</p>
+    {% if data.totalNumberOfRecords == common.maxRecords %}
+    <p class="govuk-body-s"><b>Note:</b> Results returned have been capped at {{ common.maxRecords | numComma }}.</p>
+    {% endif %}
+  </div>
+  <div>
+    {% if (data.currentPage > 2) %}
+    <a id="{{ idPrefix }}-first-btn" class="govuk-link pagination-link" href="{{ pagedRequestUrl }}/1">&lt;&lt; First</a>
+    {% endif %}
+    {% if (data.currentPage > 1) %}
+    <a id="{{ idPrefix }}-previous-btn" class="govuk-link pagination-link" href="{{pagedRequestUrl}}/{{ data.currentPage | int - 1 }}">&lt; Previous</a>
+    {% endif %}
+
+    <span class="govuk-body-s">&emsp;Page {{ data.currentPage | numComma }} / {{ data.lastPage | numComma }}&emsp;</span>
+
+    {% if (data.lastPage - data.currentPage) > 0 %}
+    <a id="{{ idPrefix }}-next-btn" class="govuk-link pagination-link" href="{{ pagedRequestUrl }}/{{ data.currentPage | int + 1 }}">Next &gt;</a>
+    {% endif %}
+    {% if (data.lastPage - data.currentPage) > 1 %}
+    <a id="{{ idPrefix }}-last-btn" class="govuk-link pagination-link" href="{{ pagedRequestUrl }}/{{ data.lastPage }}">Last &gt;&gt;</a>
+    {% endif %}
+  </div>
+</div>
+{% endmacro %}

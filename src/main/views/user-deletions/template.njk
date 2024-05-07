@@ -1,70 +1,141 @@
+{% extends "../home/template.njk" %}
+{% from 'common/macros/paging.njk' import lauPaging %}
+{% from "common/macros/lauDateTimeInput.njk" import lauDateTimeInput %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
-{% if userDeletions and userDeletions.hasData %}
+{% block auditSearch %}
+{% if userRoles and 'cft-audit-investigator' in userRoles %}
 
-  <div class="flex-space-between">
-    <h1 class="govuk-heading-l">Deleted Users Results</h1>
-    <button id="deletedUsersCsvBtn" class="govuk-button">Download all records to CSV</button>
+<h1 class="govuk-heading-xl">Deleted user search</h1>
+
+<form id="user-deletions-search-form" class="search-form" method="post" action="/deleted-users-search">
+  <div class="govuk-grid-row govuk-!-padding-left-3 govuk-!-padding-right-6">
+    <h2 class="govuk-heading-l">Search</h2>
+
+    <p class="govuk-body">
+      Include time parameters in your search using the 'Time from' and 'Time to' fields and enter at least one other parameter to obtain search results.
+    </p>
   </div>
 
-  <div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      {{ govukInput({
+        label: {
+          text: "User ID"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "userId",
+        name: "userId",
+        value: deletedUsersForm.userId
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Email address"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "emailAddress",
+        name: "emailAddress",
+        value: deletedUsersForm.emailAddress
+        }) }}
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {{ govukInput({
+        label: {
+          text: "First name"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "firstName",
+        name: "firstName",
+        value: deletedUsersForm.firstName
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Last name"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "lastName",
+        name: "lastName",
+        value: deletedUsersForm.lastName
+        }) }}
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {{
+        lauDateTimeInput(
+          text="Time from (UTC)",
+          id="startTimestamp",
+          name="startTimestamp",
+          value=deletedUsersForm.startTimestamp,
+          sessionErrors=sessionErrors,
+          errorMessages=errors
+        )
+      }}
+
+      {{
+        lauDateTimeInput(
+          text="Time to (UTC)",
+          id="endTimestamp",
+          name="endTimestamp",
+          value=deletedUsersForm.endTimestamp,
+          sessionErrors=sessionErrors,
+          errorMessages=errors
+        )
+      }}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {{ govukButton({
+        name: "user-deletions-search-btn",
+        text: "Search",
+        type: "submit",
+        preventDoubleClick: true
+      }) }}
+    </div>
+  </div>
+
+</form>
+
+{% if userDeletions and userDeletions.hasData %}
+<div class="govuk-grid-row govuk-!-margin-top-5" id="results-section">
+  <div class="govuk-grid-column-full">
+
+    <h2 class="govuk-heading-l">
+      Results
+    </h2>
+    <p class="govuk-body">Search results are limited to 10,000.</p>
+
+    <button class="govuk-button" data-module="govuk-button" id="deletedUsersCsvBtn">
+      Download all records to CSV
+    </button>
+
     {{ govukTable({
       firstCellIsHeader: true,
       head: [
-        {
-          text: "User ID"
-        },
-        {
-          text: "Email Address"
-        },
-        {
-          text: "First Name"
-        },
-         {
-          text: "Last Name"
-        },
-        {
-          text: "Timestamp (UTC)"
-        }
+        { text: "User ID" },
+        { text: "Email Address" },
+        { text: "First Name" },
+        { text: "Last Name" },
+        { text: "Timestamp (UTC)" }
       ],
       rows: userDeletions.rows
     }) }}
   </div>
+</div>
 
-  <div class="flex-space-between">
-    <div>
-      <p class="govuk-body">Displaying <b>{{ userDeletions.startRecordNumber | numComma }} to {{ (userDeletions.startRecordNumber + (userDeletions.noOfRows - 1)) | numComma }}</b> of {{ userDeletions.totalNumberOfRecords | numComma }} records</p>
-      {% if userDeletions.totalNumberOfRecords == common.maxRecords %}
-        <p class="govuk-body-s"><b>Note:</b> Results returned have been capped at {{ common.maxRecords | numComma }}.</p>
-      {% endif %}
-    </div>
-    <div>
-      {% if (userDeletions.currentPage > 2) %}
-        <a id="deleted-users-first-btn" class="govuk-link pagination-link" href="/deleted-users/page/1">&lt;&lt; First</a>
-      {% endif %}
-      {% if (userDeletions.currentPage > 1) %}
-        <a id="deleted-users-previous-btn" class="govuk-link pagination-link" href="/deleted-users/page/{{ userDeletions.currentPage | int - 1 }}">&lt; Previous</a>
-      {% endif %}
-
-      <span class="govuk-body-s">&emsp;Page {{ userDeletions.currentPage | numComma }} / {{ userDeletions.lastPage | numComma}}&emsp;</span>
-
-      {% if (userDeletions.lastPage - userDeletions.currentPage) > 0 %}
-        <a id="deleted-users-next-btn" class="govuk-link pagination-link" href="/deleted-users/page/{{ userDeletions.currentPage | int + 1 }}">Next &gt;</a>
-      {% endif %}
-      {% if (userDeletions.lastPage - userDeletions.currentPage) > 1 %}
-        <a id="deleted-users-last-btn" class="govuk-link pagination-link" href="/deleted-users/page/{{ userDeletions.lastPage }}">Last &gt;&gt;</a>
-      {% endif %}
-    </div>
-  </div>
+{{ lauPaging(userDeletions, '/deleted-users/page', 'deleted-users') }}
 
 {% elseif userDeletions %}
-
-  <h1 class="govuk-heading-l">Deleted Users Results</h1>
-  <p class="govuk-body">No results found</p>
-
-{% else %}
-
-  <h2 class="govuk-heading-m">Use the Search tab to conduct a search</h2>
-  <p class="govuk-body">One of User ID, Email Address, First Name or Last Name must be included in search criteria.</p>
+<h2 class="govuk-heading-l">Results</h2>
+<p class="govuk-body">No results found</p>
+{% endif %}
 
 {% endif %}
+{% endblock %}
+

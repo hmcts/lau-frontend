@@ -4,8 +4,6 @@
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "govuk/components/footer/macro.njk" import govukFooter %}
 
-{% set bodyClasses = "govuk-frontend-supported" %}
-
 {% block pageTitle %}GOV.UK - Log and Audit{% endblock %}
 
 {% block head %}
@@ -135,16 +133,14 @@
 {% endblock %}
 
 {% block beforeContent %}
-  {{ govukPhaseBanner({
-    tag: {
-      text: "alpha"
-    },
-    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
-  }) }}
   {% block modal %}
     {% include "./timeout-dialog.njk" %}
   {% endblock %}
+
+{% include "./navigation.njk" %}
+
 {% endblock %}
+
 
 {% block footer %}
   {{ govukFooter({

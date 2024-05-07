@@ -1,71 +1,119 @@
+{% extends "../home/template.njk" %}
+{% from "common/macros/paging.njk" import lauPaging %}
+{% from "common/macros/lauDateTimeInput.njk" import lauDateTimeInput %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
-{% if logons and logons.hasData %}
-  <div class="flex-space-between">
-    <h1 class="govuk-heading-l">Logons Audit Results</h1>
-    <button id="logonsCsvBtn" class="govuk-button">Download all records to CSV</button>
+{% block auditSearch %}
+{% if userRoles and 'cft-audit-investigator' in userRoles %}
+<h1 class="govuk-heading-xl">Log ons audit search</h1>
+
+<form id="logon-search-form" class="search-form" method="post" action="/logon-search">
+  <div class="govuk-grid-row govuk-!-padding-left-3 govuk-!-padding-right-6">
+    <h2 class="govuk-heading-l">Search</h2>
+
+    <p class="govuk-body">
+      Include time parameters in your search using the 'Time from' and 'Time to' fields and enter at least one other parameter to obtain search results.
+    </p>
   </div>
 
-  <div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      {{ govukInput({
+        label: {
+          text: "User ID"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "logonUserId",
+        name: "userId",
+        value: logonForm.userId
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Email address"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "emailAddress",
+        name: "emailAddress",
+        value: logonForm.emailAddress
+      }) }}
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {{
+        lauDateTimeInput(
+          text="Time from (UTC)",
+          id="startTimestamp",
+          name="startTimestamp",
+          value=logonForm.startTimestamp,
+          sessionErrors=sessionErrors,
+          errorMessages=errors
+        )
+      }}
+
+      {{
+        lauDateTimeInput(
+          text="Time to (UTC)",
+          id="endTimestamp",
+          name="endTimestamp",
+          value=logonForm.endTimestamp,
+          sessionErrors=sessionErrors,
+          errorMessages=errors
+        )
+      }}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {{ govukButton({
+      name: "logon-search-btn",
+      text: "Search",
+      type: "submit",
+      preventDoubleClick: true
+      }) }}
+    </div>
+  </div>
+</form>
+
+{% if logons and logons.hasData %}
+<div class="govuk-grid-row govuk-!-margin-top-5" id="results-section">
+  <div class="govuk-grid-column-full">
+
+    <h2 class="govuk-heading-l">
+      Results
+    </h2>
+
+    <p class="govuk-body">Search results are limited to 10,000.</p>
+
+    <button class="govuk-button" data-module="govuk-button" id="logonsCsvBtn">
+      Download all records to CSV
+    </button>
+
     {{ govukTable({
       firstCellIsHeader: true,
       head: [
-        {
-          text: "User ID"
-        },
-        {
-          text: "Email Address"
-        },
-        {
-          text: "Login State"
-        },
-        {
-          text: "Service"
-        },
-        {
-          text: "IP Address"
-        },
-        {
-          text: "Timestamp (UTC)"
-        }
+      { text: "User ID" },
+      { text: "Email Address" },
+      { text: "Login State" },
+      { text: "Service" },
+      { text: "IP Address" },
+      { text: "Timestamp (UTC)" }
       ],
       rows: logons.rows
     }) }}
   </div>
+</div>
 
-  <div class="flex-space-between">
-    <div>
-      <p class="govuk-body">Displaying <b>{{ logons.startRecordNumber | numComma }} to {{ (logons.startRecordNumber + (logons.noOfRows - 1)) | numComma }}</b> of {{ logons.totalNumberOfRecords | numComma }} records</p>
-      {% if logons.totalNumberOfRecords == common.maxRecords %}
-        <p class="govuk-body-s"><b>Note:</b> Results returned have been capped at {{ common.maxRecords | numComma }}.</p>
-      {% endif %}
-    </div>
-    <div>
-      {% if (logons.currentPage > 2) %}
-        <a id="logons-first-btn" class="govuk-link pagination-link" href="/logons/page/1">&lt;&lt; First</a>
-      {% endif %}
-      {% if (logons.currentPage > 1) %}
-        <a id="logons-previous-btn" class="govuk-link pagination-link" href="/logons/page/{{ logons.currentPage | int - 1 }}">&lt; Previous</a>
-      {% endif %}
-
-      <span class="govuk-body-s">&emsp;Page {{ logons.currentPage | numComma }} / {{ logons.lastPage | numComma}}&emsp;</span>
-
-      {% if (logons.lastPage - logons.currentPage) > 0 %}
-        <a id="logons-next-btn" class="govuk-link pagination-link" href="/logons/page/{{ logons.currentPage | int + 1 }}">Next &gt;</a>
-      {% endif %}
-      {% if (logons.lastPage - logons.currentPage) > 1 %}
-        <a id="logons-last-btn" class="govuk-link pagination-link" href="/logons/page/{{ logons.lastPage }}">Last &gt;&gt;</a>
-      {% endif %}
-    </div>
-  </div>
+{{ lauPaging(logons, '/logons/page', 'logons') }}
 
 {% elseif logons %}
-
-  <h1 class="govuk-heading-l">System Logon Results</h1>
+  <h2 class="govuk-heading-l">Results</h2>
   <p class="govuk-body">No results found</p>
-
-{% else %}
-
-  <h2 class="govuk-heading-m">Use the Search tab to conduct a search</h2>
+{% endif %}
 
 {% endif %}
+{% endblock %}
+

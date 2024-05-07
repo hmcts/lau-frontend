@@ -33,7 +33,7 @@ export class LogonController {
             totalNumberOfRecords: logons.totalNumberOfRecords,
             startRecordNumber: logons.startRecordNumber,
             moreRecords: logons.moreRecords,
-            currentPage: req.session.logonFormState.page,
+            currentPage: req.session.logonFormState.page ? req.session.logonFormState.page : 1,
             lastPage: logons.totalNumberOfRecords > 0 ? Math.ceil(logons.totalNumberOfRecords / recordsPerPage) : 1,
           });
         } else {
@@ -62,7 +62,7 @@ export class LogonController {
 
     await this.getLogData(req).then(logData => {
       req.session.logons = logData;
-      res.redirect('/#logons-tab');
+      res.redirect('/logon-audit#results-section');
     }).catch((err: AppError) => {
       this.logger.error(err.message);
       errorRedirect(res, err.code);

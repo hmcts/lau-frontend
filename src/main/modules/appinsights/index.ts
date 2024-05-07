@@ -1,5 +1,4 @@
 
-import { Envelope } from 'applicationinsights/out/Declarations/Contracts';
 import { Contracts } from 'applicationinsights';
 const appInsights = require('applicationinsights');
 
@@ -23,7 +22,7 @@ export class AppInsights {
 
       appInsights.defaultClient.config.samplingPercentage = config.get('appInsights.samplingPercentage');
       appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = 'lau-frontend';
-      appInsights.defaultClient.addTelemetryProcessor((envelope: Envelope) => {
+      appInsights.defaultClient.addTelemetryProcessor((envelope: Contracts.Envelope) => {
         const data = envelope.data as Contracts.Data<Contracts.RequestData>;
         return !data.baseData.url?.includes('/health/');
       });
