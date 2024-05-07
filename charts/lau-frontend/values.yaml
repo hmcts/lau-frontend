@@ -4,7 +4,7 @@ nodejs:
   ingressHost: lau.{{ .Values.global.environment }}.platform.hmcts.net
   image: 'hmctspublic.azurecr.io/lau/frontend:latest'
   spotInstances:
-    enabled: true
+    enabled: false
   environment:
     REFORM_TEAM: lau
     REFORM_SERVICE_NAME: lau-frontend
