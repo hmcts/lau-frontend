@@ -68,8 +68,8 @@ exports.config = {
   },
   'multiple': {
     'parallel': {
-      // Splits tests into 2 chunks
-      'chunks': 2,
+      // Don't split tests into chunks, causes race conditions for downloads
+      'chunks': 1,
     },
   },
   'mocha': {

@@ -4,6 +4,6 @@ module.exports = async function () {
   await I.fillField('caseJurisdictionId', '');
   await I.fillField('startTimestamp', '');
   await I.fillField('endTimestamp', '');
-  await I.fillField('User ID', '');
-  await I.fillField('Case Ref', '');
+  await I.fillField('userId', '');
+  await I.fillField('caseRef', '');
 };

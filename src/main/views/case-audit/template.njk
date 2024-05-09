@@ -137,7 +137,7 @@
   </div>
 </form>
 
-{% if (caseActivities and caseActivities.hasData) or (caseSearch and caseSearch.hasData) %}
+{% if (caseActivities and caseActivities.hasData) or (caseSearches and caseSearches.hasData) %}
 <div class="govuk-grid-row govuk-!-margin-top-5" id="results-section">
   <div class="govuk-grid-column-full">
 
@@ -145,7 +145,6 @@
       Results
     </h2>
     <p class="govuk-body">Search results are limited to 10,000.</p>
-
 
     <div class="govuk-tabs" data-module="govuk-tabs">
       <h2 class="govuk-tabs__title">
@@ -164,9 +163,9 @@
         </li>
       </ul>
 
-
       <div class="govuk-tabs__panel" id="case-activity" role="tabpanel" aria-labelledby="tab_case-activity">
         <h2 class="govuk-heading-l">Case activity</h2>
+        {% if caseActivities.hasData %}
         <!-- case activity tab contents -->
         <div class="results">
           <button class="govuk-button" data-module="govuk-button" id="activityCsvBtn">
@@ -189,12 +188,15 @@
           {{ lauPaging(caseActivities, '/case-activity/page', 'case-activity') }}
 
         </div>
+        {% else %}
+        <p class="govuk-body">No results found</p>
+        {% endif %}
+
       </div>
 
-
       <div class="govuk-tabs__panel" id="case-search" role="tabpanel" aria-labelledby="tab_case-search">
-        {% if caseSearches and caseSearches.hasData %}
         <h2 class="govuk-heading-l">Case search</h2>
+        {% if caseSearches and caseSearches.hasData %}
         <div class="results">
           <button class="govuk-button" data-module="govuk-button" id="searchesCsvBtn">
             Download all records to CSV
@@ -214,7 +216,6 @@
 
         </div>
         {% elseif caseSearches %}
-        <h2 class="govuk-heading-l">Case Search Results</h2>
         <p class="govuk-body">No results found</p>
         {% else %}
         <p class="govuk-body">User ID or Case Ref must be included in search criteria.</p>
