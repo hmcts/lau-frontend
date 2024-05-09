@@ -3,13 +3,9 @@ const userType = {
 };
 
 const tabs = {
-  CASE_SEARCH: 'tab_case-search-tab',
-  CASE_ACTIVITY: 'tab_case-activity-tab',
-  CASE_SEARCHES: 'tab_case-searches-tab',
-  LOGON_SEARCH: 'tab_logon-search-tab',
-  LOGON_RESULTS: 'tab_logons-tab',
-  DELETED_USERS_SEARCH: 'tab_deleted-users-search-tab',
-  DELETED_USERS_RESULT: 'tab_deleted-users-tab',
+  CASE_SEARCH: '/case-audit',
+  LOGON_SEARCH: '/logon-audit',
+  DELETED_USERS_SEARCH: '/user-deletion-audit',
 };
 
 module.exports = {

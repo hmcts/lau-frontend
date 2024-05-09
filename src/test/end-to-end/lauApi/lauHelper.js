@@ -3,9 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
 
-async function selectTab(I, tab) {
-  logger.info('Selecting tab: ' + tab);
-  await I.click(`#${tab}`);
+async function clickNavigationLink(I, linkHref) {
+  logger.info('Clicking on navigation link: ' + linkHref);
+  await I.click({css: `a[href="${linkHref}"`});
 }
 
 /**
@@ -66,7 +66,7 @@ function assertCsvLineCount(csvPath, lines) {
 }
 
 module.exports = {
-  selectTab,
+  clickNavigationLink,
   getCsvPath,
   assertCsvLineCount,
 };
