@@ -20,10 +20,17 @@ withNightlyPipeline(type, product, component) {
   enableMutationTest();
   enableSlackNotifications('#lau-builds')
   enableFortifyScan()
-  enableSecurityScan()
+
 
   afterAlways('fortify-scan') {
-      steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
+
+    // executing Groovy commands in Jenkins is not allowed therefore a workaround
+    // to run security scan on 16th day of every month
+    currentDay = sh(returnStdout: true, script: 'date "+%d"').trim()
+    if (currentDay == '16') {
+      enableSecurityScan()
+    }
   }
 
 
