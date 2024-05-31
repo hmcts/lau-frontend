@@ -8485,7 +8485,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:4.3.4, debug@npm:^4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.3, debug@npm:^4.3.4":
+"debug@npm:4, debug@npm:^4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.3, debug@npm:^4.3.4":
+  version: 4.3.5
+  resolution: "debug@npm:4.3.5"
+  dependencies:
+    ms: 2.1.2
+  peerDependenciesMeta:
+    supports-color:
+      optional: true
+  checksum: 7c002b51e256257f936dda09eb37167df952758c57badf6bf44bdc40b89a4bcb8e5a0a2e4c7b53f97c69e2970dd5272d33a757378a12c8f8e64ea7bf99e8e86e
+  languageName: node
+  linkType: hard
+
+"debug@npm:4.3.4":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
   dependencies:
@@ -17010,15 +17022,15 @@ __metadata:
   linkType: hard
 
 "sass@npm:^1.63.4":
-  version: 1.77.3
-  resolution: "sass@npm:1.77.3"
+  version: 1.77.4
+  resolution: "sass@npm:1.77.4"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 5f2169ff8c2262f21c21409909827e1c841bff47e60392905156ab2d51188d86c54c6893cad86383fe815285367f91407faec2c7b721bb4ffdf83b80bdc97673
+  checksum: 415d76960e35d78310ffc33bc61fdb2b35a54bb2823dfc4eff50eee960096dacc210d7ef7ae6695120e1a4f005f269719c34d58c77c54ff7787516bda6a89e55
   languageName: node
   linkType: hard
 
