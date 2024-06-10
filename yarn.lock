@@ -2850,13 +2850,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codeceptjs/detox-helper@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@codeceptjs/detox-helper@npm:1.0.5"
+"@codeceptjs/detox-helper@npm:1.0.7":
+  version: 1.0.7
+  resolution: "@codeceptjs/detox-helper@npm:1.0.7"
   dependencies:
     detox: 20.18.1
     react-native: ^0.73.4
-  checksum: 86672bca57c20d7cbd2948f7ce66bed5dee96d380bd492570d5c85459a5af3e1755e693435d5d55043540da161df23d85ace8f06a6e7bf832965e8f59fb6bb10
+  checksum: df5a7cc9c39adb002a8458ef4e638366deb27c717ec5ce8cd9f3b0a23d5f45d5fa25727bbd33a0becdb1168792ce8147a2cced453a3e0ea73c9ebd2a11ffecba
   languageName: node
   linkType: hard
 
@@ -5356,21 +5356,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wdio/config@npm:8.33.1":
-  version: 8.33.1
-  resolution: "@wdio/config@npm:8.33.1"
-  dependencies:
-    "@wdio/logger": 8.28.0
-    "@wdio/types": 8.32.4
-    "@wdio/utils": 8.33.1
-    decamelize: ^6.0.0
-    deepmerge-ts: ^5.0.0
-    glob: ^10.2.2
-    import-meta-resolve: ^4.0.0
-  checksum: 0f8f3485c72c9ee0dcfb1f05d0c12058b3229dc7413b4c2181ec62080e82b8403fcc6482e475f9334decb73d01f2d9c50cf53127b02cde07c58cf4925d419ac2
-  languageName: node
-  linkType: hard
-
 "@wdio/config@npm:8.38.2":
   version: 8.38.2
   resolution: "@wdio/config@npm:8.38.2"
@@ -5386,18 +5371,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wdio/logger@npm:8.28.0, @wdio/logger@npm:^8.24.12":
-  version: 8.28.0
-  resolution: "@wdio/logger@npm:8.28.0"
-  dependencies:
-    chalk: ^5.1.2
-    loglevel: ^1.6.0
-    loglevel-plugin-prefix: ^0.8.4
-    strip-ansi: ^7.1.0
-  checksum: d7fe9d1d0b58fa73f1d34b2d1ab54993cfc535564a108e6488df30882bdf9c03602cf3010f2790c162352cea0771c1b44051d01d468dc1cd5c3e6b77afa4e76f
-  languageName: node
-  linkType: hard
-
 "@wdio/logger@npm:8.38.0, @wdio/logger@npm:^8.28.0":
   version: 8.38.0
   resolution: "@wdio/logger@npm:8.38.0"
@@ -5410,22 +5383,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wdio/logger@npm:^8.11.0":
-  version: 8.16.17
-  resolution: "@wdio/logger@npm:8.16.17"
+"@wdio/logger@npm:^8.24.12":
+  version: 8.28.0
+  resolution: "@wdio/logger@npm:8.28.0"
   dependencies:
     chalk: ^5.1.2
     loglevel: ^1.6.0
     loglevel-plugin-prefix: ^0.8.4
     strip-ansi: ^7.1.0
-  checksum: 162da3205eaf636adca8a2e1a74438a3d87b797c0a62fdcc1decd9d0a818dda195532f728c7f78b80857dd1eac3be6d58fe8079b028872055c428b5d59e96386
-  languageName: node
-  linkType: hard
-
-"@wdio/protocols@npm:8.32.0":
-  version: 8.32.0
-  resolution: "@wdio/protocols@npm:8.32.0"
-  checksum: 19481090b7de1428f0c1c048ee72ad6136cf136ee7ecbe1bebdedd4362998e184f1dcb26d5dd51880ffbe1f216c5d57a2d5338f81b343c1cd9a1bb15ce48f2da
+  checksum: d7fe9d1d0b58fa73f1d34b2d1ab54993cfc535564a108e6488df30882bdf9c03602cf3010f2790c162352cea0771c1b44051d01d468dc1cd5c3e6b77afa4e76f
   languageName: node
   linkType: hard
 
@@ -5445,42 +5411,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wdio/types@npm:8.32.4":
-  version: 8.32.4
-  resolution: "@wdio/types@npm:8.32.4"
-  dependencies:
-    "@types/node": ^20.1.0
-  checksum: c7f051f3e48dffb3f3963d71dcf16fa600b53333cf5ef66a501211e6f747389a6763b311dba6f81d60e8819498604dd4fbc341f5745e9a5a20e727ec746bb8d9
-  languageName: node
-  linkType: hard
-
 "@wdio/types@npm:8.38.2":
   version: 8.38.2
   resolution: "@wdio/types@npm:8.38.2"
   dependencies:
     "@types/node": ^20.1.0
   checksum: 935cd0e4a3246549336ed8af8ddba25d8b463d1f96e2634da966886a491299bce6b9cc4c66f6d3944e803bbd33722a786063c7fe37cb23682d5d0ac94edd4a1d
-  languageName: node
-  linkType: hard
-
-"@wdio/utils@npm:8.33.1":
-  version: 8.33.1
-  resolution: "@wdio/utils@npm:8.33.1"
-  dependencies:
-    "@puppeteer/browsers": ^1.6.0
-    "@wdio/logger": 8.28.0
-    "@wdio/types": 8.32.4
-    decamelize: ^6.0.0
-    deepmerge-ts: ^5.1.0
-    edgedriver: ^5.3.5
-    geckodriver: ^4.3.1
-    get-port: ^7.0.0
-    import-meta-resolve: ^4.0.0
-    locate-app: ^2.1.0
-    safaridriver: ^0.1.0
-    split2: ^4.2.0
-    wait-port: ^1.0.4
-  checksum: 81c2582ee7ea8e57752329554144ab79c9342daea102468f5cfa0f21dd0ef6b1e2693e6415036268b068f2af4caf0b385fd72e1b135ab31eeda0ae2ed31ac727
   languageName: node
   linkType: hard
 
@@ -6358,14 +6294,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:1.6.7":
-  version: 1.6.7
-  resolution: "axios@npm:1.6.7"
+"axios@npm:1.7.2":
+  version: 1.7.2
+  resolution: "axios@npm:1.7.2"
   dependencies:
-    follow-redirects: ^1.15.4
+    follow-redirects: ^1.15.6
     form-data: ^4.0.0
     proxy-from-env: ^1.1.0
-  checksum: 87d4d429927d09942771f3b3a6c13580c183e31d7be0ee12f09be6d5655304996bb033d85e54be81606f4e89684df43be7bf52d14becb73a12727bf33298a082
+  checksum: e457e2b0ab748504621f6fa6609074ac08c824bf0881592209dfa15098ece7e88495300e02cd22ba50b3468fd712fe687e629dcb03d6a3f6a51989727405aedf
   languageName: node
   linkType: hard
 
@@ -7268,16 +7204,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chai@npm:5.1.0":
-  version: 5.1.0
-  resolution: "chai@npm:5.1.0"
+"chai@npm:5.1.1":
+  version: 5.1.1
+  resolution: "chai@npm:5.1.1"
   dependencies:
     assertion-error: ^2.0.1
-    check-error: ^2.0.0
+    check-error: ^2.1.1
     deep-eql: ^5.0.1
     loupe: ^3.1.0
     pathval: ^2.0.0
-  checksum: f45c8c6ca8b35933efa533eba26a3ecf78378c86acf1d5d0ca82ae0be94a8d25f574f098e3f7e0294a3774e43931eb2e299c991516f22ac24c9042dce8a23ce0
+  checksum: 1e0a5e1b5febdfa8ceb97b9aff608286861ecb86533863119b2f39f07c08fb59f3c1791ab554947f009b9d71d509b9e4e734fb12133cb81f231c2c2ee7c1e738
   languageName: node
   linkType: hard
 
@@ -7363,10 +7299,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"check-error@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "check-error@npm:2.0.0"
-  checksum: 120f252c2e1ad82ef82a616662805345c6c361347bfd6203f8a28c53a158811dd0ea21278f29c8136cc9df12fc7f077d1a07124569d98fb396b3072d08f2f092
+"check-error@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "check-error@npm:2.1.1"
+  checksum: d785ed17b1d4a4796b6e75c765a9a290098cf52ff9728ce0756e8ffd4293d2e419dd30c67200aee34202463b474306913f2fcfaf1890641026d9fc6966fea27a
   languageName: node
   linkType: hard
 
@@ -7717,11 +7653,11 @@ __metadata:
   linkType: hard
 
 "codeceptjs@npm:^3.5.5":
-  version: 3.6.2
-  resolution: "codeceptjs@npm:3.6.2"
+  version: 3.6.3
+  resolution: "codeceptjs@npm:3.6.3"
   dependencies:
     "@codeceptjs/configure": 1.0.1
-    "@codeceptjs/detox-helper": 1.0.5
+    "@codeceptjs/detox-helper": 1.0.7
     "@codeceptjs/helper": 2.0.4
     "@cucumber/cucumber-expressions": 17
     "@cucumber/gherkin": 26
@@ -7729,8 +7665,8 @@ __metadata:
     "@xmldom/xmldom": 0.8.10
     acorn: 8.11.3
     arrify: 2.0.1
-    axios: 1.6.7
-    chai: 5.1.0
+    axios: 1.7.2
+    chai: 5.1.1
     chai-deep-match: 1.2.1
     chai-exclude: 2.1.0
     chai-json-schema: 1.5.1
@@ -7742,7 +7678,7 @@ __metadata:
     cross-spawn: 7.0.3
     css-to-xpath: 0.1.0
     csstoxpath: 1.6.0
-    devtools: 8.33.1
+    devtools: 8.38.2
     envinfo: 7.11.1
     escape-string-regexp: 4.0.0
     figures: 3.2.0
@@ -7757,10 +7693,10 @@ __metadata:
     lodash.merge: 4.6.2
     mkdirp: 1.0.4
     mocha: 10.4.0
-    monocart-coverage-reports: 2.7.4
+    monocart-coverage-reports: 2.8.3
     ms: 2.1.3
     ora-classic: 5.4.2
-    pactum: 3.6.7
+    pactum: 3.6.9
     parse-function: 5.6.10
     parse5: 7.1.2
     promise-retry: 1.1.1
@@ -7772,7 +7708,7 @@ __metadata:
       optional: true
   bin:
     codeceptjs: bin/codecept.js
-  checksum: bd7fcbd7de73612d2de6439f86869a3fb1ae462f080bfd9f54230a9c9f6edc9a4778304edad3a027671948b4de637a942c950c8406b3f0f85fc1498839a0ab59
+  checksum: 77d2463930e9f068aed6ea89aebc317ca286a44355506cf5835e90b323430e53e08a3380cdd90d882e687ce96ccfb72ad7ab118237075b601a0ae7fec14add78
   languageName: node
   linkType: hard
 
@@ -8814,16 +8750,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"devtools@npm:8.33.1":
-  version: 8.33.1
-  resolution: "devtools@npm:8.33.1"
+"devtools@npm:8.38.2":
+  version: 8.38.2
+  resolution: "devtools@npm:8.38.2"
   dependencies:
     "@types/node": ^20.1.0
-    "@wdio/config": 8.33.1
-    "@wdio/logger": 8.28.0
-    "@wdio/protocols": 8.32.0
-    "@wdio/types": 8.32.4
-    "@wdio/utils": 8.33.1
+    "@wdio/config": 8.38.2
+    "@wdio/logger": 8.38.0
+    "@wdio/protocols": 8.38.0
+    "@wdio/types": 8.38.2
+    "@wdio/utils": 8.38.2
     chrome-launcher: ^1.0.0
     edge-paths: ^3.0.5
     import-meta-resolve: ^4.0.0
@@ -8832,7 +8768,7 @@ __metadata:
     ua-parser-js: ^1.0.37
     uuid: ^9.0.0
     which: ^4.0.0
-  checksum: e7305f8062a3e77128f636c64e5b732672f7e32b5567e838acc9965161c37e675e220103b404b0443c0f1b93d3bbbea777d4304a7e2cbef0e046f39276a0fc7e
+  checksum: 3cdd6f1f99f7ef1739f019bf5db12fe6ae3e01133eaef52716f5db05abbeab60639d7798c5aabf8ddd9a3e8cda46887e912172b50f7a05227a12201778f8ad1a
   languageName: node
   linkType: hard
 
@@ -9045,22 +8981,6 @@ __metadata:
     "@types/which": ^2.0.1
     which: ^2.0.2
   checksum: 76ea4380ad2e9c259b76493c33c335cb9043ab450f8fc8b26b8123c0b2d78325e1e824220ffc9380fa50d9ac8d82d9bf25af14a637f627eb2f7d9fd099421069
-  languageName: node
-  linkType: hard
-
-"edgedriver@npm:^5.3.5":
-  version: 5.3.7
-  resolution: "edgedriver@npm:5.3.7"
-  dependencies:
-    "@wdio/logger": ^8.11.0
-    decamelize: ^6.0.0
-    edge-paths: ^3.0.5
-    node-fetch: ^3.3.2
-    unzipper: ^0.10.14
-    which: ^4.0.0
-  bin:
-    edgedriver: bin/edgedriver.js
-  checksum: 57fb6e2fee696ed8a59ee9971143b31528f249be5c1287d6cc679ff7ba515bab6dfd6664aebdca238e3d19314f84f9e2ddec86265395adeebafeb8caa5bdb017
   languageName: node
   linkType: hard
 
@@ -10186,7 +10106,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.15.4, follow-redirects@npm:^1.15.6":
+"follow-redirects@npm:^1.15.6":
   version: 1.15.6
   resolution: "follow-redirects@npm:1.15.6"
   peerDependenciesMeta:
@@ -14431,16 +14351,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"monocart-code-viewer@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "monocart-code-viewer@npm:1.1.2"
-  checksum: 24f76d357b680933ae914db2183b9bc964a96e032f33f5be15408a86ea639396daf3878eea77e104bbe24ff0dbfd0a3c75d794c026cfba897e6b99ed6fcadc28
+"monocart-code-viewer@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "monocart-code-viewer@npm:1.1.3"
+  checksum: 4527f99ea1ad746e457f8d29fafec031663adfbce5d0effdde9c59cb2f78366de0e7f3534356955be9b5855b99462799d96c358c3c2fc4e242ee2677f44a89ef
   languageName: node
   linkType: hard
 
-"monocart-coverage-reports@npm:2.7.4":
-  version: 2.7.4
-  resolution: "monocart-coverage-reports@npm:2.7.4"
+"monocart-coverage-reports@npm:2.8.3":
+  version: 2.8.3
+  resolution: "monocart-coverage-reports@npm:2.8.3"
   dependencies:
     console-grid: ^2.2.2
     eight-colors: ^1.3.0
@@ -14448,19 +14368,27 @@ __metadata:
     istanbul-lib-report: ^3.0.1
     istanbul-reports: ^3.1.7
     lz-utils: ^2.0.2
-    monocart-code-viewer: ^1.1.2
-    monocart-formatter: ^2.3.2
+    monocart-code-viewer: ^1.1.3
+    monocart-formatter: ^3.0.0
+    monocart-locator: ^1.0.0
     turbogrid: ^3.0.13
   bin:
     mcr: lib/cli.js
-  checksum: f4f8027b478b986f69f20f5c4522fdbb68f591dfd1bf70cc621c848f36320051b7db5958ffc50f4481d63dbe9d2bab8e54532357a6122bd4436337e4bb0b57f5
+  checksum: c907e3405736721fa6b4dae6f77c4afdcc9567628aae2f0d4d1e971093d0df79ad2df14f44382bb4f891ab8298a8f8d50612ce0cf0d612a3d3a2ffdaa7b89577
   languageName: node
   linkType: hard
 
-"monocart-formatter@npm:^2.3.2":
-  version: 2.3.2
-  resolution: "monocart-formatter@npm:2.3.2"
-  checksum: 8356dff1fdffdae75b00f139dd065329d1302f787584d48fcf8efbc4ea0938e9f5c08213c12d7dc21a6736d8a503d2d5ffaafe2c4c76769d69081726de08a281
+"monocart-formatter@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "monocart-formatter@npm:3.0.0"
+  checksum: e5c82cfac39fc5150f059b67c999f96bda5d26ff7de35476f88e5ea83a60875f542fdbe00fd0c9816b2e1cbe6ec0edf0328979329111a85325cbd4afd1c51802
+  languageName: node
+  linkType: hard
+
+"monocart-locator@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "monocart-locator@npm:1.0.0"
+  checksum: 0be044ba8a72bf8ad4e184984677263df020502956f2394d1a620b67e89c3ce8469bf55c6005ad330b722be71a2e0b809d83ba34e1fba49d63e8a1cd7bd91748
   languageName: node
   linkType: hard
 
@@ -15324,9 +15252,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pactum@npm:3.6.7":
-  version: 3.6.7
-  resolution: "pactum@npm:3.6.7"
+"pactum@npm:3.6.9":
+  version: 3.6.9
+  resolution: "pactum@npm:3.6.9"
   dependencies:
     "@exodus/schemasafe": ^1.3.0
     deep-override: ^1.0.2
@@ -15339,7 +15267,7 @@ __metadata:
     parse-graphql: ^1.0.0
     phin: ^3.7.0
     polka: ^0.5.2
-  checksum: 89d2f3d744c36aef91cc0a7c64a0a00bfd4be8702954b37407da97989e885792f2220d59ff433ec2e255d24fe1efd3f736b10f7540ef9b49240097cd651d3ca6
+  checksum: 6eb57a96276b933fba1a750696ad2c66ae1aa5afd320fbc2f0e13b33db8746264ab8ecdd57bcdadb3a2c4a68a2a8b379730a1f3ef4f5017aa64ac6168426dd71
   languageName: node
   linkType: hard
 
