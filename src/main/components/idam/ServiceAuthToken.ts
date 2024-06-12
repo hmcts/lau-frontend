@@ -15,7 +15,7 @@ export class ServiceAuthToken {
   }
 
   private static hasExpired(token: string): boolean {
-    const { exp } = jwtDecode(token) as BearerToken;
+    const { exp } = jwtDecode(token);
     return moment().unix() >= exp;
   }
 }

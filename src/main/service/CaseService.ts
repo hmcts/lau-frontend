@@ -16,7 +16,7 @@ export class CaseService extends BaseService<CaseSearchRequest | CaseDeletionsSe
   public getCaseActivities(req: AppRequest, csv = false): Promise<CaseActivityAudit> {
     const endpoint: string = config.get('services.lau-case-backend.endpoints.caseActivity');
     // Shallow clone state to prevent modifications to search params for csv case do not persist in session
-    const searchParameters = Object.assign({}, req.session.caseFormState) || {};
+    const searchParameters = {...req.session.caseFormState};
     if (csv) {
       searchParameters.page = 1;
       searchParameters.size = req.session.caseActivities?.totalNumberOfRecords || 0;
@@ -29,7 +29,7 @@ export class CaseService extends BaseService<CaseSearchRequest | CaseDeletionsSe
   public getCaseSearches(req: AppRequest, csv = false): Promise<CaseSearchAudit> {
     const endpoint: string = config.get('services.lau-case-backend.endpoints.caseSearch');
     // Shallow clone state to prevent modifications to search params for csv case do not persist in session
-    const searchParameters = Object.assign({}, req.session.caseFormState) || {};
+    const searchParameters = {...req.session.caseFormState};
     if (csv) {
       searchParameters.page = 1;
       searchParameters.size = req.session.caseSearches?.totalNumberOfRecords || 0;
@@ -41,7 +41,7 @@ export class CaseService extends BaseService<CaseSearchRequest | CaseDeletionsSe
   public getCaseDeletions(req: AppRequest, csv = false): Promise<CaseDeletions> {
     const endpoint: string = config.get('services.lau-case-backend.endpoints.caseActivity');
     // Shallow clone state to prevent modifications to search params for csv case do not persist in session
-    const searchParameters = Object.assign({}, req.session.caseDeletionsFormState) || {};
+    const searchParameters = {...req.session.caseDeletionsFormState};
     if (csv) {
       searchParameters.page = 1;
       searchParameters.size = req.session.caseDeletions?.totalNumberOfRecords || 0;
