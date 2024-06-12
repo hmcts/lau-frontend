@@ -12,7 +12,7 @@ export class DeletedUsersService extends BaseService<DeletedUsersSearchRequest> 
   public getDeletedUsers(req: AppRequest, csv = false): Promise<DeletedUsersAudit> {
     const endpoint: string = config.get('services.lau-idam-backend.endpoints.deletedUsers');
     // Shallow clone state to prevent modifications to search params for csv case do not persist in session
-    const searchParameters = Object.assign({}, req.session.deletedUsersFormState) || {};
+    const searchParameters = {...req.session.deletedUsersFormState};
     if (csv) {
       searchParameters.page = 1;
       searchParameters.size = req.session.userDeletions?.totalNumberOfRecords || 0;
