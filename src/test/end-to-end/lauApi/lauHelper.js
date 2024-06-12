@@ -5,7 +5,7 @@ const assert = require('assert');
 
 async function clickNavigationLink(I, linkHref) {
   logger.info('Clicking on navigation link: ' + linkHref);
-  await I.click({css: `a[href="${linkHref}"`});
+  await I.click(`a[href="${linkHref}"]`);
 }
 
 /**
