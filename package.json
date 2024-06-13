@@ -146,6 +146,8 @@
     "yarn-audit-fix": "^10.0.0"
   },
   "resolutions": {
-    "formidable": "^3.2.4"
+    "formidable": "^3.2.4",
+    "pac-resolver": "^7.0.1",
+    "socks": "^2.8.3"
   }
 }
