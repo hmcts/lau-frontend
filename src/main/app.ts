@@ -12,6 +12,7 @@ import { HTTPError } from './HttpError';
 import { Nunjucks } from './modules/nunjucks';
 import { PropertiesVolume } from './modules/properties-volume';
 import { AppInsights } from './modules/appinsights';
+import { CSRFToken } from './modules/csrf';
 import {SessionStorage} from './modules/session';
 import {OidcMiddleware} from './modules/oidc';
 import {HealthCheck} from './modules/health';
@@ -27,12 +28,15 @@ const logger = Logger.getLogger('app');
 export const app = express();
 app.locals.ENV = env;
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 new PropertiesVolume().enableFor(app);
 new AppInsights().enable();
 LaunchDarklyClient.initialise();
 new Helmet(config.get('security')).enableFor(app);
 new SessionStorage().enableFor(app);
+new CSRFToken().enableFor(app);
 new Nunjucks(developmentMode).enableFor(app);
 new OidcMiddleware().enableFor(app);
 new HealthCheck().enableFor(app);
@@ -49,8 +53,6 @@ const options = {
 
 app.use(compression());
 app.use(favicon(path.join(__dirname, '/public/assets/images/favicon.ico')));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public'), options));
 app.use((req, res, next) => {
   res.setHeader(

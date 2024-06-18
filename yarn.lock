@@ -8259,6 +8259,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"csrf-sync@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "csrf-sync@npm:4.0.3"
+  dependencies:
+    http-errors: ^2.0.0
+  checksum: 8b8e783df7f639b1bcafa76598bbba764893006baba7002d90478f3b8e2f61c8202be385f419f548be5f207add229a6b7fa26ad58e007e78a517ec557388129a
+  languageName: node
+  linkType: hard
+
 "css-functions-list@npm:^3.2.2":
   version: 3.2.2
   resolution: "css-functions-list@npm:3.2.2"
@@ -11001,7 +11010,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-errors@npm:2.0.0":
+"http-errors@npm:2.0.0, http-errors@npm:^2.0.0":
   version: 2.0.0
   resolution: "http-errors@npm:2.0.0"
   dependencies:
@@ -12897,6 +12906,7 @@ __metadata:
     connect-redis: ^6.0.0
     cookie-parser: ^1.4.5
     copy-webpack-plugin: ^12.0.0
+    csrf-sync: ^4.0.3
     css-loader: ^7.0.0
     debug: ^4.3.4
     eslint: ^9.1.1
