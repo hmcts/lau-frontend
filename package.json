@@ -86,7 +86,7 @@
     "tsconfig-paths": "^4.0.0",
     "typescript": "^5.2.0",
     "winston": "^2.4.6",
-    "ws": "^8.1.0"
+    "ws": "^8.17.1"
   },
   "devDependencies": {
     "@babel/core": "^7.23.0",
