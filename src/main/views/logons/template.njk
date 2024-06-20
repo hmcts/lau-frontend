@@ -12,6 +12,7 @@
 <h1 class="govuk-heading-xl">Log ons audit search</h1>
 
 <form id="logon-search-form" class="search-form" method="post" action="/logon-search">
+  {{ csrfProtection(csrfToken) }}
   <div class="govuk-grid-row govuk-!-padding-left-3 govuk-!-padding-right-6">
     <h2 class="govuk-heading-l">Search</h2>
 
@@ -66,7 +67,6 @@
       }}
     </div>
   </div>
-  {{ csrfProtection(csrfToken) }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
       {{ govukButton({

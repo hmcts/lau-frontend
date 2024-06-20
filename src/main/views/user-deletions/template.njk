@@ -14,6 +14,7 @@
 <h1 class="govuk-heading-xl">Deleted user search</h1>
 
 <form id="user-deletions-search-form" class="search-form" method="post" action="/deleted-users-search">
+  {{ csrfProtection(csrfToken) }}
   <div class="govuk-grid-row govuk-!-padding-left-3 govuk-!-padding-right-6">
     <h2 class="govuk-heading-l">Search</h2>
 
@@ -89,7 +90,6 @@
       }}
     </div>
   </div>
-  {{ csrfProtection(csrfToken) }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
       {{ govukButton({
