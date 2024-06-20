@@ -20,6 +20,11 @@ export class CSRFToken {
 
   public enableFor(app: Express): void {
 
+    app.get('/csrf-token', (req, res) => {
+      const csrfToken = generateToken(req);
+      res.json({ csrfToken });
+    });
+
     app.use((req: Request, res: Response, next: NextFunction) => {
       const csrfToken = generateToken(req);
       res.locals.csrfToken = csrfToken;
