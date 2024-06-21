@@ -51,7 +51,7 @@ function testAccessibility(url: string): void {
   describe(`Page ${url}`, () => {
     test('should have no accessibility errors', async () => {
       await ensurePageCallWillSucceed(url);
-      const result = await runPally('http://127.0.0.1:8888');
+      const result = await runPally('http://127.0.0.1:8888'+url);
       expect(result.issues).toEqual(expect.any(Array));
       expectNoErrors(result.issues);
     }, 10000);
@@ -78,4 +78,13 @@ describe('Accessibility', () => {
   testAccessibility('/user-deletion-audit');
   testAccessibility('/case-deletion-audit');
   testAccessibility('/cookies');
+
+  testAccessibility('/accessibility');
+  testAccessibility('/case-activity/page');
+  testAccessibility('/case-searches/page');
+  testAccessibility('/case-deletions/page');
+
+  testAccessibility('/deleted-users/page');
+  testAccessibility('/privacy');
+  testAccessibility('/terms-and-conditions');
 });
