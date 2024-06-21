@@ -19,7 +19,6 @@ withPipeline(type, product, component) {
   enableAksStagingDeployment()
   disableLegacyDeployment()
   syncBranchesWithMaster(branchesToSync)
-  enableA11yTest()
 
   afterAlways('build') {
     yarnBuilder.yarn('build')
