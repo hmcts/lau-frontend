@@ -1,20 +1,6 @@
 import request from 'supertest';
-import supertest from 'supertest';
 import {app} from '../../../main/app';
-
-async function setRoles(agent: supertest.Agent, roles: string[]) {
-  return agent
-    .post('/set-session-user')
-    .send({
-      id: 'test',
-      idToken: 'idToken',
-      accessToken: 'accessToken',
-      refreshToken: 'refreshToken',
-      expiresAt: Date.now(),
-      roles,
-    });
-
-}
+import { setRoles } from '../../helpers/roles';
 
 describe('Home Route', () => {
 
@@ -46,6 +32,7 @@ describe('Home Route', () => {
 
     it('renders the case-audit with content given user has audit investigator role', async () => {
       await setRoles(agent, ['cft-audit-investigator']);
+
       const res = await agent.get('/case-audit');
 
       expect(res.header['content-type']).toBe('text/html; charset=utf-8');
