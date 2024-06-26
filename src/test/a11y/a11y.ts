@@ -4,6 +4,7 @@ import * as supertest from 'supertest';
 import pa11y from 'pa11y';
 import { Server } from 'http';
 import { setRoles } from './../helpers/roles';
+const config = require('./pa11y-config.json');
 
 interface Results {
   documentTitle: string;
@@ -46,9 +47,13 @@ function runPally(url: string, cookies: string = ''): Promise<Results> {
     wait: 500,
     headers: {
       cookie: cookies,
-    }
+    },
+    ...config,
   });
 }
+
+
+
 
 function expectNoErrors(messages: ResultIssue[]): void {
   const errors = messages.filter(m => m.type === 'error');

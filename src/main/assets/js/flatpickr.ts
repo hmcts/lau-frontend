@@ -31,6 +31,23 @@ const getOptions = (suffixEl: HTMLElement): Options => {
     onClose: () => {
       suffixEl.classList.remove('flatpickr-open');
     },
+    onReady: function(selectedDates, dateStr, instance) {
+      const secondInput = instance.calendarContainer.querySelectorAll('.flatpickr-second');
+
+      secondInput.forEach(input => {
+        if (!input.hasAttribute('aria-label')) {
+            input.setAttribute('aria-label', 'Second');
+        }
+      });
+    },
+    onValueUpdate: function(selectedDates, dateStr, instance) {
+      const secondInput = instance.calendarContainer.querySelectorAll('.flatpickr-second');
+      secondInput.forEach(input => {
+        if (!input.hasAttribute('aria-label')) {
+            input.setAttribute('aria-label', 'Second');
+        }
+      });
+    }
   };
 };
 
