@@ -27,7 +27,7 @@ export class Helmet {
     app.locals.nonce = crypto.randomBytes(16).toString('base64');
     const scriptSrc = [self, googleAnalyticsDomain, "'sha256-GUQ5ad8JK5KmEWmROf3LZd9ge94daqNvd8xy9YS1iDw='", `'nonce-${app.locals.nonce}'`];
 
-    if (app.locals.ENV === 'development') {
+    if (app.locals.ENV === 'development' || app.locals.ENV === 'test') {
       scriptSrc.push("'unsafe-eval'");
     }
 
