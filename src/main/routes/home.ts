@@ -5,6 +5,7 @@ import {CaseSearchRequest} from '../models/case/CaseSearchRequest';
 import {LogonSearchRequest} from '../models/idam/LogonSearchRequest';
 import {DeletedUsersSearchRequest} from '../models/user-deletions/DeletedUsersSearchRequest';
 import {CaseDeletionsSearchRequest} from '../models/deletions/CaseDeletionsSearchRequest';
+import {DataService} from '../service/DataService';
 
 interface Context {
   caseForm?: Partial<CaseSearchRequest>;
@@ -20,6 +21,8 @@ interface Context {
   logons?: LogData;
   userDeletions?: LogData;
   caseDeletions?: LogData;
+  jurisdictions?: {text: string, value: string}[];
+  caseTypes?: {text: string, value: string}[];
 }
 
 async function homeHandler(req: AppRequest, res: Response) {
@@ -77,6 +80,8 @@ async function caseHandler(req: AppRequest, res: Response) {
     caseSearchPage: true,
     caseActivities: req.session?.caseActivities,
     caseSearches: req.session?.caseSearches,
+    jurisdictions: DataService.getInstance().getJurisdictionsData(),
+    caseTypes: DataService.getInstance().getCaseTypesData(),
   };
   auditHandler(req, res, 'case-audit/template.njk', context);
 }
