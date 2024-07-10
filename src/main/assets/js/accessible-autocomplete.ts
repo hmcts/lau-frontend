@@ -1,5 +1,5 @@
 import accessibleAutocomplete from 'accessible-autocomplete';
-import {qs, qsa} from './selectors';
+import {qsa} from './selectors';
 
 const elements = qsa('select.accessible-autocomplete');
 
@@ -21,7 +21,6 @@ elements.forEach((element) => {
   });
 
   setTimeout(() => {
-    const newEl = qs(element.id);
-    newEl.setAttribute('aria-labelledby', element.id);
+    element.setAttribute('aria-label', element.id);
   }, 10);
 });
