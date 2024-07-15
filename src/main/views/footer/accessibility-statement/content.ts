@@ -19,11 +19,11 @@ export const content = {
 
   heading3: 'Feedback and contact information',
   paragraph6: 'If you need information on this website in a different format like accessible PDF, large print, easy read, audio recording or braille:',
-  list1Item10: 'email: <a href="mailto:log-and-audit-accessi-aaaanppt4jmzbpvf5jdarjwk3i@moj.org.slack.com" class="govuk-link">log-and-audit-accessi-aaaanppt4jmzbpvf5jdarjwk3i@moj.org.slack.com</a>',
+  list1Item10: 'email <a href="mailto:log-and-audit-accessi-aaaanppt4jmzbpvf5jdarjwk3i@moj.org.slack.com" class="govuk-link">log-and-audit-accessi-aaaanppt4jmzbpvf5jdarjwk3i@moj.org.slack.com</a>',
 
   heading4: 'Reporting accessibility problems with this website',
   paragraph11: 'We&rsquo;re always looking to improve the accessibility of this website. If you find any problems not listed on this page or think we&rsquo;re not meeting accessibility requirements, contact: ',
-  list1Item11: 'email: <a href="mailto:log-and-audit-accessi-aaaanppt4jmzbpvf5jdarjwk3i@moj.org.slack.com" class="govuk-link">log-and-audit-accessi-aaaanppt4jmzbpvf5jdarjwk3i@moj.org.slack.com</a>',
+  list1Item11: 'email <a href="mailto:log-and-audit-accessi-aaaanppt4jmzbpvf5jdarjwk3i@moj.org.slack.com" class="govuk-link">log-and-audit-accessi-aaaanppt4jmzbpvf5jdarjwk3i@moj.org.slack.com</a>',
 
   heading5: 'Enforcement procedure',
   paragraph13: 'The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the &lsquo;accessibility regulations&rsquo;). If you&rsquo;re not happy with how we respond to your complaint, <a href="https://www.equalityadvisoryservice.com/" target="_blank" rel="external noopener noreferrer" class="govuk-link">contact the Equality Advisory and Support Service (EASS)</a>.',
