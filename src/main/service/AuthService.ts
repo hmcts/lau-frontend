@@ -1,5 +1,5 @@
 import {LoggerInstance} from 'winston';
-import config from 'config';
+import { IConfig } from 'config';
 import {TOTP} from 'totp-generator';
 import {ServiceAuthToken} from '../components/idam/ServiceAuthToken';
 import fetch, {Response as FetchResponse} from 'node-fetch';
@@ -44,18 +44,30 @@ export enum IdamGrantType {
 export class AuthService {
   private logger: LoggerInstance = Logger.getLogger('AuthService');
 
-  private clientId: string = config.get('services.idam-api.clientID');
-  private clientSecret: string = config.get('services.idam-api.clientSecret');
-  private redirectUri: string = config.get('services.idam-api.callbackURL');
-  private tokenUrl: string = String(config.get('services.idam-api.url')) + String(config.get('services.idam-api.endpoints.token'));
-  private microserviceName = 'lau_frontend';
-  private s2sUrl: string = config.get('services.s2s.url');
-  private totpSecret: string = config.get('services.s2s.lauSecret');
+  private clientId: string;
+  private clientSecret: string;
+  private redirectUri: string;
+  private tokenUrl: string;
+  private microserviceName: string;
+  private s2sUrl: string;
+  private totpSecret: string;
+
+  constructor(
+    private config: IConfig,
+  ) {
+    this.clientId = this.config.get('services.idam-api.clientID');
+    this.clientSecret = this.config.get('services.idam-api.clientSecret');
+    this.redirectUri = this.config.get('services.idam-api.callbackURL');
+    this.tokenUrl = `${this.config.get('services.idam-api.url')}${this.config.get('services.idam-api.endpoints.token')}`;
+    this.microserviceName = 'lau_frontend';
+    this.s2sUrl = this.config.get('services.s2s.url');
+    this.totpSecret = this.config.get('services.s2s.lauSecret');
+  }
 
   retrieveServiceToken(serviceName?: string): Promise<ServiceAuthToken> {
     const { otp } = TOTP.generate(this.totpSecret);
     const params = {
-      microservice: serviceName ? serviceName: this.microserviceName,
+      microservice: serviceName ?? this.microserviceName,
       oneTimePassword: otp,
     };
 
@@ -72,7 +84,6 @@ export class AuthService {
       )
         .then((res: FetchResponse) => res.text())
         .then((token: string) => {
-          this.logger.info('Token: ', token);
           resolve(new ServiceAuthToken(token));
         })
         .catch((err: string) => {

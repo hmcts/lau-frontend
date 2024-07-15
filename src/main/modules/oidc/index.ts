@@ -25,7 +25,7 @@ export class OidcMiddleware {
     '/assets/manifest.json',
   ];
 
-  private authService = new AuthService();
+  private authService = new AuthService(config);
 
   public enableFor(server: Application): void {
     const loginUrl: string = config.get('services.idam-api.authorizationURL');

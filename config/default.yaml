@@ -60,7 +60,6 @@ featureToggles:
   ft_deletedUsers: 'LAU_DELETED_USERS'
 ccd:
   url: 'http://ccd-definition-store-api-aat.service.core-compute-aat.internal/api/data/jurisdictions'
-  dataFile: 'jurisdictions_case_types.json'
   serviceName: 'ccd_data'
   username: lautest@test.com
   password: password

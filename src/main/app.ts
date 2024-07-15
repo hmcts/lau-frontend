@@ -12,6 +12,7 @@ import {CSRFToken} from './modules/csrf';
 import {SessionStorage} from './modules/session';
 import {OidcMiddleware} from './modules/oidc';
 import {HealthCheck} from './modules/health';
+import {Container} from './modules/awilix';
 import {LaunchDarklyClient} from './components/featureToggle/LaunchDarklyClient';
 
 const { Logger } = require('@hmcts/nodejs-logging');
@@ -40,11 +41,14 @@ new CSRFToken().enableFor(app);
 new Nunjucks(developmentMode).enableFor(app);
 new OidcMiddleware().enableFor(app);
 new HealthCheck().enableFor(app);
+new Container().enableFor(app);
 
 logger.info('Environment: ' + env);
 
-setupDev(app,developmentMode);
+setupDev(app, developmentMode);
 setupTest(app);
+
+app.locals.container.cradle.autoSuggestService.loadData(developmentMode || env === 'test');
 
 const options = {
   cacheControl: true,
