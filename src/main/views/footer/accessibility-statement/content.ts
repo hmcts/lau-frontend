@@ -1,6 +1,6 @@
 export const content = {
-  title: 'Accessibility statement',
-  heading1: 'Accessibility statement for Log and Audit',
+  title: 'Accessibility Statement',
+  heading1: 'Accessibility Statement for Log and Audit',
   paragraph2: 'This website is run by HM Courts and Tribunals. We want as many people as possible to be able to use this website. For example, that means you should be able to:',
   list1Item1: 'Change colours, contrast levels and fonts.',
   list1Item2: 'Zoom in up to 300% without the text spilling off the screen.',
@@ -43,7 +43,7 @@ export const content = {
   list1Item15: 'Error messages are displayed partially across the log and audit application. This fails WCAG 2.2 success criterion 3.3.3: Error Suggestion (Level AA). When an error is detected, suggestions for correcting the issue must be provided unless the suggestion compromises security.',
 
   heading9: 'Preparation of this accessibility statement',
-  paragraph17: 'This statement was prepared on 12<sup>th</sup> July 2024. It was last reviewed on 12<sup>th</sup> July 2024.',
+  paragraph17: 'This statement was prepared on 15<sup>th</sup> July 2024. It was last reviewed on 15<sup>th</sup> July 2024.',
   paragraph18: 'This website was last tested on 22<sup>nd</sup> May 2024 against the WCAG 2.2 AA standard. The test was carried out by Digital Accessibility Centre.',
 
   heading10: 'What we&rsquo;re doing to improve accessibility',
