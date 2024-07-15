@@ -6,7 +6,6 @@ import {AuthService} from '../../service/AuthService';
 
 import config from 'config';
 
-
 export class Container {
   public enableFor(app: Express): void {
     const container = createContainer({
@@ -21,10 +20,7 @@ export class Container {
         .inject(() => {
           return {
             authService: container.resolve('authService'),
-            username: config.get('ccd.username'),
-            password: config.get('ccd.password'),
-            dataUrl: config.get('ccd.url'),
-            serviceName: config.get('ccd.serviceName'),
+            config: config,
           };
         }),
     });

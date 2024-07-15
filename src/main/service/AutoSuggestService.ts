@@ -1,5 +1,7 @@
 import fs from 'node:fs';
+import fetch from 'node-fetch';
 import {AuthService, IdamGrantType, IdamRequestExtraParams, IdamResponseData} from './AuthService';
+import { IConfig } from 'config';
 
 import {Logger} from '@hmcts/nodejs-logging';
 import {AppError, ErrorCode} from '../models/AppError';
@@ -17,25 +19,28 @@ export class AutoSuggestService {
   private dataFile = path.join(resourcesDirectory, 'data/jurisdictions_case_types.json');
   private staticData: JurisdictionsCaseTypes;
   private logger = Logger.getLogger(this.constructor.name);
+  private readonly username: string;
+  private readonly password: string;
+  private readonly dataUrl: string;
+  private readonly serviceName: string;
 
-  constructor(
-    private authService: AuthService,
-    private username: string,
-    private password: string,
-    private dataUrl: string,
-    private serviceName: string,
-  ) {
+  constructor(private authService: AuthService, config: IConfig) {
     this.staticData = {jurisdictions: [], caseTypes: []};
+    this.username = config.get('ccd.username');
+    this.password = config.get('ccd.password');
+    this.dataUrl = config.get('ccd.url');
+    this.serviceName = config.get('ccd.serviceName');
+
   }
 
   public loadData(devMode: boolean): void {
     if (devMode) {
-      fs.readFile(this.dataFile, 'utf8', (err, data) => {
+      fs.readFile(this.dataFile, (err, data) => {
         if (err) {
           this.logger.error(err);
           return;
         }
-        this.staticData = JSON.parse(data);
+        this.staticData = JSON.parse(data.toString('utf8'));
       });
     } else {
       this.fetchData().then((data: JurisdictionsCaseTypes) => {
