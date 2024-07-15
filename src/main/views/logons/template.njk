@@ -7,6 +7,8 @@
 {% from "govuk/components/table/macro.njk" import govukTable %}
 {% from "./../common/macros/csrf.njk" import csrfProtection %}
 
+{% block pageTitle %}Log and Audit - User Logons Search{% endblock %}
+
 {% block auditSearch %}
 {% if userRoles and 'cft-audit-investigator' in userRoles %}
 <h1 class="govuk-heading-xl">Log ons audit search</h1>
