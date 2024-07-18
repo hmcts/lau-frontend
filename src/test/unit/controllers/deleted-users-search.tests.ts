@@ -14,8 +14,8 @@ describe('Deleted Users Search Controller', () => {
         emailAddress: '',
         firstName: '',
         lastName: '',
-        startTimestamp: '2021-01-01 00:00:00',
-        endTimestamp: '2021-01-01 00:00:01',
+        startTimestamp: '2021-01-01T00:00:00',
+        endTimestamp: '2021-01-01T00:00:01',
         page: 1,
       });
       expect(errors.length).toBe(1);
@@ -32,7 +32,7 @@ describe('Deleted Users Search Controller', () => {
       expect(errors[1].errorType).toBe('required');
 
       errors = deletedUsersSearchController.validateSearchForm({
-        startTimestamp: '2021-01-01 00:00:00',
+        startTimestamp: '2021-01-01T00:00:00',
         endTimestamp: '',
       });
       expect(errors.length).toBe(1);
@@ -40,25 +40,16 @@ describe('Deleted Users Search Controller', () => {
 
       errors = deletedUsersSearchController.validateSearchForm({
         startTimestamp: '',
-        endTimestamp: '2021-01-01 00:00:00',
+        endTimestamp: '2021-01-01T00:00:00',
       });
       expect(errors.length).toBe(1);
       expect(errors[0]).toStrictEqual({propertyName: 'startTimestamp', errorType: 'required'});
     });
-
-    it('ensures dates are formatted correctly', async () => {
-      const errors = deletedUsersSearchController.validateSearchForm({
-        startTimestamp: '2021-01-01T00:00:00',
-        endTimestamp: '2021-01-01 00:00:00',
-      });
-      expect(errors.length).toBe(1);
-      expect(errors[0]).toStrictEqual({propertyName: 'startTimestamp', errorType: 'invalid'});
-    });
-
+    
     it('ensures dates are valid', async () => {
       const errors = deletedUsersSearchController.validateSearchForm({
         startTimestamp: '2021-14-01 00:00:00',
-        endTimestamp: '2021-12-01 00:00:00',
+        endTimestamp: '2021-12-01T00:00:00',
       });
       expect(errors.length).toBe(1);
       expect(errors[0]).toStrictEqual({propertyName: 'startTimestamp', errorType: 'invalid'});
@@ -66,8 +57,8 @@ describe('Deleted Users Search Controller', () => {
 
     it('passes valid dates', async () => {
       const errors = deletedUsersSearchController.validateSearchForm({
-        startTimestamp: '2021-01-01 00:00:00',
-        endTimestamp: '2021-01-01 00:00:01',
+        startTimestamp: '2021-01-01T00:00:00',
+        endTimestamp: '2021-01-01T00:00:01',
       });
       expect(errors.length).toBe(0);
     });
@@ -99,8 +90,8 @@ describe('Deleted Users Search Controller', () => {
         body: {
           userId: '123',
           emailAddress: '',
-          startTimestamp: '2021-12-12 12:00:00',
-          endTimestamp: '2021-12-12 12:00:01',
+          startTimestamp: '2021-12-12T12:00:00',
+          endTimestamp: '2021-12-12T12:00:01',
           page: 1,
         },
       };
@@ -132,8 +123,8 @@ describe('Deleted Users Search Controller', () => {
           emailAddress: '',
           firstName:'',
           lastName: '',
-          startTimestamp: '2021-12-12 12:00:00',
-          endTimestamp: '2021-12-12 12:00:01',
+          startTimestamp: '2021-12-12T12:00:00',
+          endTimestamp: '2021-12-12T12:00:01',
         },
       };
 
@@ -154,8 +145,8 @@ describe('Deleted Users Search Controller', () => {
         body: {
           userId: '123',
           emailAddress: '',
-          startTimestamp: '2021-12-12 12:00:00',
-          endTimestamp: '2021-12-12 12:00:01',
+          startTimestamp: '2021-12-12T12:00:00',
+          endTimestamp: '2021-12-12T12:00:01',
         },
       };
 

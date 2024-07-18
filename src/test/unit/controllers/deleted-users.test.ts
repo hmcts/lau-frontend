@@ -64,14 +64,14 @@ describe('Deleted Users Controller', () => {
           'firstName': 'John1',
           'lastName': 'Smith1',
           'emailAddress': 'john1.smith1@example.org',
-          'deletionTimestamp': '2023-08-20 14:15:30',
+          'deletionTimestamp': '2023-08-20T14:15:30',
         },
         {
           'userId': 'U0002',
           'firstName': 'John2',
           'lastName': 'Smith2',
           'emailAddress': 'john2.smith2@example.org',
-          'deletionTimestamp': '2023-08-20 17:30:45',
+          'deletionTimestamp': '2023-08-20T17:30:45',
         },
       ];
 

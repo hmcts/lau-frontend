@@ -61,7 +61,7 @@ describe('Logon Controller', () => {
           'service': 'Test',
           'loginState' : 'AUTHORIZE',
           'ipAddress': '123.456.7.8',
-          'timestamp': '2020-07-20 15:00:00',
+          'timestamp': '2020-07-20T15:00:00',
         },
         {
           'userId': 'U0002',
@@ -69,7 +69,7 @@ describe('Logon Controller', () => {
           'service': 'Test',
           'loginState' : 'AUTHENTICATE',
           'ipAddress': '123.456.7.8',
-          'timestamp': '2020-07-20 15:00:00',
+          'timestamp': '2020-07-20T15:00:00',
         },
       ];
 

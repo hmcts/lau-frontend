@@ -41,7 +41,7 @@ describe('Validator', () => {
     });
 
     it('doesn\'t return an error type if the date is valid', async () => {
-      const errorType = validDateInput('2021-01-01 00:00:00');
+      const errorType = validDateInput('2021-01-01T00:00:00');
       expect(errorType).toBe(undefined);
     });
   });

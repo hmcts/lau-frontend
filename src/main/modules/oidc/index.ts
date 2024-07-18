@@ -21,8 +21,6 @@ export class OidcMiddleware {
     '/unauthorized',
     '/main-dev.js',
     '/main-dev.css',
-    '/assets/css/flatpickr.min.css',
-    '/assets/js/flatpickr.min.js',
     '/assets/images/favicon.ico',
     '/assets/manifest.json',
   ];
