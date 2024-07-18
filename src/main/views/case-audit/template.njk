@@ -27,12 +27,12 @@
     </p>
   </div>
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-third">
+    <div class="govuk-grid-column-one-third govuk-!-margin-top-6">
       {{ govukInput({
         label: {
           text: "User ID"
         },
-        classes: "govuk-!-width-three-quarters",
+        classes: "govuk-!-width-three-quarters govuk-!-margin-top-1",
         id: "caseUserId",
         name: "userId",
         value: caseForm.userId
@@ -45,7 +45,10 @@
         classes: "govuk-!-width-three-quarters",
         id: "caseRef",
         name: "caseRef",
-        value: caseForm.caseRef
+        value: caseForm.caseRef,
+         hint: {
+              text: "For example, 9633170276333018"
+          }
       }) }}
 
       {{ govukInput({
@@ -92,14 +95,14 @@
         )
       }}
     </div>
-    <div class="govuk-grid-column-one-third">
+    <div class="govuk-grid-column-one-third govuk-!-margin-top-6">
       {{ govukSelect({
         id: "activity",
         name: "caseAction",
         label: {
           text: "Activity"
         },
-        classes: "govuk-!-width-three-quarters",
+        classes: "govuk-!-width-three-quarters govuk-!-margin-top-1",
         value: caseForm.caseAction,
         items: [
           {
