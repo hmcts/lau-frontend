@@ -32,7 +32,7 @@
         label: {
           text: "User ID"
         },
-        classes: "govuk-!-width-three-quarters govuk-!-margin-bottom-6 govuk-!-margin-top-1",
+        classes: "govuk-!-width-three-quarters govuk-!-margin-top-1",
         id: "caseUserId",
         name: "userId",
         value: caseForm.userId
@@ -42,10 +42,13 @@
         label: {
           text: "Case reference"
         },
-        classes: "govuk-!-width-three-quarters govuk-!-margin-top-1",
+        classes: "govuk-!-width-three-quarters",
         id: "caseRef",
         name: "caseRef",
-        value: caseForm.caseRef
+        value: caseForm.caseRef,
+         hint: {
+              text: "For example, 9633170276333018"
+          }
       }) }}
 
       {{ govukInput({
