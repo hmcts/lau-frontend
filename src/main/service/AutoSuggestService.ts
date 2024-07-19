@@ -19,18 +19,14 @@ export class AutoSuggestService {
   private dataFile = path.join(resourcesDirectory, 'data/jurisdictions_case_types.json');
   private staticData: JurisdictionsCaseTypes;
   private logger = Logger.getLogger(this.constructor.name);
-  private readonly username: string;
-  private readonly password: string;
   private readonly dataUrl: string;
   private readonly serviceName: string;
+  private readonly dataEndpoint: string;
 
   constructor(private authService: AuthService, config: IConfig) {
     this.staticData = {jurisdictions: [], caseTypes: []};
-    this.username = config.get('ccd.username');
-    this.password = config.get('ccd.password');
-    this.dataUrl = config.get('ccd.url');
-    this.serviceName = config.get('ccd.serviceName');
-
+    this.dataUrl = config.get('services.lau-case-backend.url');
+    this.dataEndpoint = config.get('services.lau-case-backend.endpoints.jurisdictionsCaseTypes');
   }
 
   public loadData(devMode: boolean): void {
@@ -43,8 +39,10 @@ export class AutoSuggestService {
         this.staticData = JSON.parse(data.toString('utf8'));
       });
     } else {
+      this.logger.info('Loading type-ahead data...');
       this.fetchData().then((data: JurisdictionsCaseTypes) => {
         this.staticData = data;
+        this.logger.info('Data loaded successfully');
       }).catch((err: Error) => {
         this.logger.error(err);
         throw new AppError(err.message, ErrorCode.DATA);
@@ -53,27 +51,27 @@ export class AutoSuggestService {
   }
 
   private async fetchData(): Promise<JurisdictionsCaseTypes> {
-    const extraParams: IdamRequestExtraParams = {
-      'scope': 'openid profile roles',
-      'username': this.username,
-      'password': this.password,
-    };
-    const [idamResponse, s2sToken] = await Promise.all([
-      this.authService.getIdAMResponse(IdamGrantType.PASSWORD, extraParams),
-      this.authService.retrieveServiceToken(this.serviceName),
-    ]);
-    const idamData: IdamResponseData = await idamResponse.json();
+    // const extraParams: IdamRequestExtraParams = {
+    //   'scope': 'openid profile roles',
+    //   'username': this.username,
+    //   'password': this.password,
+    // };
+    // const [idamResponse, s2sToken] = await Promise.all([
+    //   this.authService.getIdAMResponse(IdamGrantType.PASSWORD, extraParams),
+    //   this.authService.retrieveServiceToken(this.serviceName),
+    // ]);
+    // const idamData: IdamResponseData = await idamResponse.json();
 
-    const response = await fetch(this.dataUrl, {
+    const response = await fetch(`${this.dataUrl}${ this.dataEndpoint}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'ServiceAuthorization': s2sToken.bearerToken,
-        'Authorization': `Bearer ${idamData.access_token}`,
+        'ServiceAuthorization': 's2sToken.bearerToken',
+        'Authorization': 'Bearer ${idamData.access_token}',
       },
     });
     const data = await response.json();
-    return this.parseCcdDataDefinitionsResponse(data);
+    return this.parseLauCaseData(data);
   }
 
   public getJurisdictionsData(): {text: string, value: string}[] {
@@ -90,18 +88,10 @@ export class AutoSuggestService {
     ];
   }
 
-  private parseCcdDataDefinitionsResponse(data: { id: string; case_types: { id: string }[] }[]): JurisdictionsCaseTypes {
-    const jurisdictions = new Set<string>();
-    const caseTypes = new Set<string>();
-    data.forEach((item: { id: string; case_types: { id: string }[] }) => {
-      jurisdictions.add(item.id);
-      item['case_types'].forEach(caseType => {
-        caseTypes.add(caseType.id);
-      });
-    });
+  private parseLauCaseData(data: {jurisdictions: string[], caseTypes: string[]}):JurisdictionsCaseTypes {
     return {
-      'jurisdictions': this.convertSetToArray(jurisdictions),
-      'caseTypes': this.convertSetToArray(caseTypes),
+      'jurisdictions': data.jurisdictions.map(jurisdiction => ({'text': jurisdiction, 'value': jurisdiction})),
+      'caseTypes': data.caseTypes.map(caseType => ({'text': caseType, 'value': caseType})),
     };
   }
 
