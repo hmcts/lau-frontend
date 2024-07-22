@@ -19,7 +19,6 @@ export class Container {
         .singleton()
         .inject(() => {
           return {
-            authService: container.resolve('authService'),
             config: config,
           };
         }),

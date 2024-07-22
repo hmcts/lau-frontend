@@ -6539,6 +6539,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"awilix@npm:^10.0.2":
+  version: 10.0.2
+  resolution: "awilix@npm:10.0.2"
+  dependencies:
+    camel-case: ^4.1.2
+    fast-glob: ^3.3.2
+  checksum: cf7641c2e6dffc641feef77dc171a28a9259edca946ab548e81085a408365cc1e63435809922fc1e3dd71fb388bb3d6d147809c8d6bea2197dbd1933949bd786
+  languageName: node
+  linkType: hard
+
 "aws-sign2@npm:~0.7.0":
   version: 0.7.0
   resolution: "aws-sign2@npm:0.7.0"
@@ -13251,6 +13261,7 @@ __metadata:
     accessible-autocomplete: ^3.0.0
     applicationinsights: ^2.9.1
     autobind-decorator: ^2.4.0
+    awilix: ^10.0.2
     babel-loader: ^9.0.0
     chai: ^4.2.0
     chai-as-promised: ^8.0.0
