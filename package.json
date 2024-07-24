@@ -62,7 +62,6 @@
     "express": "^4.18.2",
     "express-nunjucks": "^3.0.0",
     "express-session": "^1.17.3",
-    "flatpickr": "^4.6.13",
     "git-rev-sync": "^3.0.2",
     "glob": "^11.0.0",
     "govuk-frontend": "^5.0.0",

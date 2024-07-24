@@ -58,7 +58,7 @@ describe('Case Activity Controller', () => {
           'caseRef': 'C0001',
           'caseJurisdictionId': 'DIVORCE',
           'caseTypeId': 'FinancialRemedyMVP2',
-          'timestamp': '2020-07-20 15:00:00',
+          'timestamp': '2020-07-20T15:00:00',
         },
         {
           'userId': 'U0002',
@@ -66,7 +66,7 @@ describe('Case Activity Controller', () => {
           'caseRef': 'C0001',
           'caseJurisdictionId': 'DIVORCE',
           'caseTypeId': 'FinancialRemedyMVP2',
-          'timestamp': '2020-07-20 15:00:00',
+          'timestamp': '2020-07-20T15:00:00',
         },
       ];
 

@@ -8,12 +8,6 @@
 
 {% from "govuk/components/input/macro.njk" import govukInput %}
 
-{% if name === 'startTimestamp' %}
-{% set cssClass='lau-start-timestamp-suffix' %}
-{% else %}
-{% set cssClass='lau-end-timestamp-suffix' %}
-{% endif %}
-
 {% if sessionErrors and sessionErrors.length > 0 %}
   {% set errorMessage = null %}
   {% for item in sessionErrors %}
@@ -24,21 +18,21 @@
 {% endif %}
 
 {{ govukInput({
-  label: {
-    text: text
-  },
-  classes: "govuk-!-width-three-quarters",
-  suffix: {
-    html: calendarIcon,
-    classes: cssClass
-  },
-  id: id,
-  name: name,
-  value: value,
-  errorMessage: errorMessage,
-  hint: {
-      text: "For example, 2024-07-12 12:00:00"
-  }
-}) }}
+    label: {
+      text: text
+    },
+    classes: "govuk-!-width-three-quarters",
+    id: id,
+    name: name,
+    value: value,
+    type: 'datetime-local', 
+    attributes: {
+      step: '1' 
+    },
+    errorMessage: errorMessage,
+    hint: {
+        text: "For example, 2024-07-12 12:00:00"
+    }
+  }) }}
 
 {% endmacro %}

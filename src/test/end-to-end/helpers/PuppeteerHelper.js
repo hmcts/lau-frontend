@@ -57,6 +57,16 @@ class PuppeteerHelper extends Helper {
   async amOnLauAppPage(path) {
     await this.helpers[helperName].amOnPage(`${testConfig.TestFrontEndUrl}${path}`);
   }
+
+  async fillStartTime(timestamp) {
+    const {page} = await this.helpers[helperName];
+    await page.$eval('#startTimestamp', (el, value) => el.value = value, timestamp);
+  }
+
+  async fillEndTime(timestamp) {
+    const {page} = await this.helpers[helperName];
+    await page.$eval('#endTimestamp', (el, value) => el.value = value, timestamp);
+  }
 }
 
 module.exports = PuppeteerHelper;
