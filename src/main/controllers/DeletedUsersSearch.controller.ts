@@ -6,6 +6,7 @@ import {Response} from 'express';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 import {DeletedUsersSearchRequest} from '../models/user-deletions/DeletedUsersSearchRequest';
 import {DeletedUsersController} from './DeletedUsers.controller';
+import {validEmail} from '../util/validators';
 
 /**
  * Search Controller class to handle search tab functionality
@@ -18,6 +19,10 @@ export class DeletedUsersSearchController extends BaseSearchController<DeletedUs
   requiredFields = [
     'userId', 'emailAddress', 'firstName', 'lastName',
   ];
+
+  override additionalValidation(form: Partial<DeletedUsersSearchRequest>): void {
+    this.validate('emailAddress', form.emailAddress, validEmail);
+  }
 
   /**
    * POST function for Search Controller
