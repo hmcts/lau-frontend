@@ -1,14 +1,14 @@
 import config from 'config';
-import {AutoSuggestService} from '../../../main/service/AutoSuggestService';
+import {CaseTypeJurisdictionAutoSuggest} from '../../../main/service/CaseTypeJurisdictionAutoSuggest';
 import fs from 'fs';
 
 describe('AutoSuggestService', () => {
 
-  let service = new AutoSuggestService(config);
+  let service = new CaseTypeJurisdictionAutoSuggest(config);
 
   describe('loadData', () => {
     beforeEach(() => {
-      service = new AutoSuggestService(config);
+      service = new CaseTypeJurisdictionAutoSuggest(config);
     });
 
     it('loads data in dev mode', () => {
@@ -44,8 +44,8 @@ describe('AutoSuggestService', () => {
         });
       service.loadData();
       expect(spy).toHaveBeenCalled();
-      expect(service.getJurisdictionsData()).toEqual([{text: '', value: ''},]);
-      expect(service.getCaseTypesData()).toEqual([{text: '', value: ''},]);
+      expect(service.getJurisdictionsData()).toEqual([{text: '', value: ''}]);
+      expect(service.getCaseTypesData()).toEqual([{text: '', value: ''}]);
     });
 
   });

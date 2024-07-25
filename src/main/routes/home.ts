@@ -5,7 +5,6 @@ import {CaseSearchRequest} from '../models/case/CaseSearchRequest';
 import {LogonSearchRequest} from '../models/idam/LogonSearchRequest';
 import {DeletedUsersSearchRequest} from '../models/user-deletions/DeletedUsersSearchRequest';
 import {CaseDeletionsSearchRequest} from '../models/deletions/CaseDeletionsSearchRequest';
-import { app } from '../app';
 
 interface Context {
   caseForm?: Partial<CaseSearchRequest>;
@@ -80,8 +79,6 @@ async function caseHandler(req: AppRequest, res: Response) {
     caseSearchPage: true,
     caseActivities: req.session?.caseActivities,
     caseSearches: req.session?.caseSearches,
-    jurisdictions: app.locals.container.cradle.autoSuggestService.getJurisdictionsData(),
-    caseTypes: app.locals.container.cradle.autoSuggestService.getCaseTypesData(),
   };
   auditHandler(req, res, 'case-audit/template.njk', context);
 }

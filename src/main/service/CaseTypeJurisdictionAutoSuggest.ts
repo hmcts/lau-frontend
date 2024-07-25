@@ -3,6 +3,8 @@ import {IConfig} from 'config';
 
 import {Logger} from '@hmcts/nodejs-logging';
 import path from 'path';
+import {AutoSuggestService} from '../modules/autosuggest/AutoSuggestService';
+import autobind from 'autobind-decorator';
 
 interface JurisdictionsCaseTypes {
   jurisdictions: {text: string, value: string}[];
@@ -16,7 +18,8 @@ interface JurisdictionCaseTypePair {
 
 const resourcesDirectory = path.join(__dirname, '../resources');
 
-export class AutoSuggestService {
+@autobind
+export class CaseTypeJurisdictionAutoSuggest implements AutoSuggestService {
 
   private readonly dataFile: string;
   private staticData: JurisdictionsCaseTypes;

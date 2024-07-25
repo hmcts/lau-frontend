@@ -18,6 +18,7 @@ import {LaunchDarklyClient} from './components/featureToggle/LaunchDarklyClient'
 const { Logger } = require('@hmcts/nodejs-logging');
 
 import config from 'config';
+import {AutoSuggest} from './modules/autosuggest/AutoSuggest';
 
 const { setupDev } = require('./development');
 const { setupTest } = require('./test');
@@ -48,7 +49,7 @@ logger.info('Environment: ' + env);
 setupDev(app, developmentMode);
 setupTest(app);
 
-app.locals.container.cradle.autoSuggestService.loadData(developmentMode || env === 'test');
+new AutoSuggest(app.locals.container.cradle.autoSuggestService).enableFor(app);
 
 const options = {
   cacheControl: true,

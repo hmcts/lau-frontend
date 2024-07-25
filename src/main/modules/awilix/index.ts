@@ -1,7 +1,7 @@
 import {Express} from 'express';
 import {createContainer, asClass, InjectionMode} from 'awilix';
 
-import {AutoSuggestService} from '../../service/AutoSuggestService';
+import {CaseTypeJurisdictionAutoSuggest} from '../../service/CaseTypeJurisdictionAutoSuggest';
 import {AuthService} from '../../service/AuthService';
 
 import config from 'config';
@@ -15,7 +15,7 @@ export class Container {
       authService: asClass(AuthService)
         .singleton()
         .inject(() => { return {config: config}; }),
-      autoSuggestService: asClass(AutoSuggestService)
+      autoSuggestService: asClass(CaseTypeJurisdictionAutoSuggest)
         .singleton()
         .inject(() => {
           return {
