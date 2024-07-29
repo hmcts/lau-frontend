@@ -1,5 +1,6 @@
 import moment, {Moment} from 'moment';
-import {isDateValid, partialDateRegex} from './Date';
+import {REQUEST_DATE_FORMAT,isDateValid, partialDateRegex} from './Date';
+import * as EmailValidator from 'email-validator';
 
 export const atLeastOneFieldIsFilled = (fields: { [s: string]: unknown; }): string => {
   if (!fields || (Object.keys(fields).length === 0) || !Object.values(fields).some(field => field !== '')) {
@@ -13,7 +14,7 @@ export const isFilledIn = (field: string): string => {
   }
 };
 
-// Date should be of the format: 2020-18-03 12:03:04
+// Date should be of the format: 2020-18-03T12:03:04
 export const validDateInput = (date: string): string => {
   if (date && !isDateValid(date)) {
     return 'invalid';
@@ -22,8 +23,8 @@ export const validDateInput = (date: string): string => {
 
 export const startDateBeforeEndDate = (fields: { [s: string]: unknown; }): string => {
   if (fields.startTimestamp && fields.endTimestamp) {
-    const startDate: Moment = moment.utc(fields.startTimestamp, 'yyyy-MM-DD HH:mm:ss');
-    const endDate: Moment = moment.utc(fields.endTimestamp, 'yyyy-MM-DD HH:mm:ss');
+    const startDate: Moment = moment.utc(fields.startTimestamp, REQUEST_DATE_FORMAT);
+    const endDate: Moment = moment.utc(fields.endTimestamp, REQUEST_DATE_FORMAT);
 
     if ((startDate.isValid() && endDate.isValid()) && startDate.isAfter(endDate) || fields.startTimestamp === fields.endTimestamp) {
       return 'startDateBeforeEndDate';
@@ -58,6 +59,13 @@ export const fillPartialTimestamp = (date: string): string => {
 export const validCaseRef = (caseRef: string): string => {
   const regex = /^\d{16}$/gm;
   if (caseRef && !regex.test(caseRef)) {
+    return 'invalid';
+  }
+};
+
+
+export const validEmail = (emailAddress: string): string => {
+  if(emailAddress && !EmailValidator.validate(emailAddress)){
     return 'invalid';
   }
 };
