@@ -44,7 +44,12 @@
         classes: "govuk-!-width-three-quarters govuk-!-margin-top-1",
         id: "emailAddress",
         name: "emailAddress",
-        value: deletedUsersForm.emailAddress
+        value: deletedUsersForm.emailAddress,
+        type: "email",
+        spellcheck: false,
+        hint: {
+          text: "We’ll use this to search the users"
+        }
         }) }}
     </div>
     <div class="govuk-grid-column-one-third govuk-!-margin-top-6">

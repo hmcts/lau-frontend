@@ -6,6 +6,7 @@ import {Response} from 'express';
 import {LogonSearchRequest} from '../models/idam/LogonSearchRequest';
 import {LogonController} from './Logon.controller';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
+import {validEmail} from '../util/validators';
 
 /**
  * Search Controller class to handle search tab functionality
@@ -18,6 +19,10 @@ export class LogonSearchController extends BaseSearchController<LogonSearchReque
   requiredFields = [
     'userId', 'emailAddress',
   ];
+
+  override additionalValidation(form: Partial<LogonSearchRequest>): void {
+    this.validate('emailAddress', form.emailAddress, validEmail);
+  }
 
   /**
    * POST function for Search Controller
