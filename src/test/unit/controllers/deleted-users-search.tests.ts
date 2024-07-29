@@ -62,6 +62,35 @@ describe('Deleted Users Search Controller', () => {
       });
       expect(errors.length).toBe(0);
     });
+
+    it('ensures dates are not in  future', async () => {
+      const errors = deletedUsersSearchController.validateSearchForm({
+        startTimestamp: '2025-01-01T00:00:00',
+        endTimestamp: '2025-01-01T00:00:01',
+      });
+      expect(errors.length).toBe(2);
+      expect(errors[0]).toStrictEqual({propertyName: 'startTimestamp', errorType: 'invalid'});
+      expect(errors[1]).toStrictEqual({propertyName: 'endTimestamp', errorType: 'invalid'});
+    });
+
+    it('ensures email are in correct format', async () => {
+      const errors = deletedUsersSearchController.validateSearchForm({
+        emailAddress: 'test)test@test.com',
+        startTimestamp: '2021-01-01T00:00:00',
+        endTimestamp: '2021-01-01T00:00:01',
+      });
+      expect(errors.length).toBe(1);
+      expect(errors[0]).toStrictEqual({propertyName: 'emailAddress', errorType: 'invalid'});
+    });
+
+    it('ensures email is valid', async () => {
+      const errors = deletedUsersSearchController.validateSearchForm({
+        emailAddress: 'test_test@test.com',
+        startTimestamp: '2021-01-01T00:00:00',
+        endTimestamp: '2021-01-01T00:00:01',
+      });
+      expect(errors.length).toBe(0);
+    });
   });
 
   describe('Post call', () => {

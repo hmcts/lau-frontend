@@ -69,6 +69,9 @@ async function auditHandler(req: AppRequest, res: Response, template: string, co
       caseRef: {
         invalid: 'Case Reference must be 16 digits.',
       },
+      emailAddress: {
+        invalid: 'Enter an email address in the correct format, like name@example.com',
+      },
     },
   });
 }
