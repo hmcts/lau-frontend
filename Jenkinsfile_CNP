@@ -16,6 +16,11 @@ withPipeline(type, product, component) {
     env.TEST_FRONT_END_URL = "https://lau-frontend-pr-${CHANGE_ID}.preview.platform.hmcts.net/"
   }
 
+  onNonPR() {
+    env.TEST_E2E_URL = "https://lau-frontend-staging.aat.platform.hmcts.net/"
+    env.TEST_FRONT_END_URL = "https://lau-frontend-staging.aat.platform.hmcts.net/"
+  }
+
   enableAksStagingDeployment()
   disableLegacyDeployment()
   syncBranchesWithMaster(branchesToSync)
