@@ -62,3 +62,4 @@ featureToggles:
   ft_deletedUsers: 'LAU_DELETED_USERS'
 session:
   cookieMaxAge: 30 # minutes
+is_dev: true
