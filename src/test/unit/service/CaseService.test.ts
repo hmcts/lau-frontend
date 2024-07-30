@@ -48,7 +48,7 @@ describe('Case Service', () => {
     });
 
     it('refreshes IdAM session if expired', async () => {
-      const authService = new AuthService();
+      const authService = new AuthService(config);
       const sinonSpy = sinon.spy();
       const spy = jest.spyOn(authService, 'getIdAMToken').mockImplementation(sinonSpy);
       const spyCaseService = new CaseService(authService);

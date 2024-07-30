@@ -8,7 +8,7 @@ import {AppError, ErrorCode} from '../../../main/models/AppError';
 
 describe('AuthService', () => {
 
-  const authService = new AuthService();
+  const authService = new AuthService(config);
 
   describe('retrieveServiceToken', () => {
 
@@ -34,6 +34,22 @@ describe('AuthService', () => {
       expect(bearerToken.sub).toBe('lau_frontend');
       expect(bearerToken.exp).toBe(1634657845);
       expect(returnedToken.expired).toBeTruthy();
+    });
+
+    it('calls api with given service name', async () => {
+      let parsedBody = {microservice: ''};
+      nock('http://localhost:4552')
+        .post('/lease', function(body) {
+          parsedBody = body;
+          return body;
+        })
+        .reply(
+          200,
+          serviceToken,
+        );
+
+      await authService.retrieveServiceToken('ccd_data');
+      expect(parsedBody.microservice).toBe('ccd_data');
     });
 
     it('returns app error code on lease fetch failure', async () => {

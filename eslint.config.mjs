@@ -12,7 +12,7 @@ const jsconfig = {
     parserOptions: {
       requireConfigFile: false,
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 2022,
     sourceType: 'module',
     globals: {
       ...globals.browser,
@@ -46,7 +46,7 @@ const tsconfig = {
     parserOptions: {
       project: './tsconfig.json',
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 2022,
     sourceType: 'module',
     globals: {
       ...globals.browser,

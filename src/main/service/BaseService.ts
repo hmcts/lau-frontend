@@ -18,7 +18,7 @@ export abstract class BaseService<RequestType> {
 
   constructor(authService?: AuthService) {
     // Allow for Inversion of Control
-    this.authService = authService || new AuthService();
+    this.authService = authService || new AuthService(config);
   }
 
   async get(session: AppSession, endpoint: string, qs?: string): Promise<unknown> {

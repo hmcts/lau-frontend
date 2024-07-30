@@ -8,6 +8,7 @@ export enum ErrorCode {
   IDAM_API      = 'LAU05',
   REDIS         = 'LAU06',
   LAUNCH_DARKLY = 'LAU07',
+  DATA          = 'LAU08',
 }
 
 export class AppError extends Error {

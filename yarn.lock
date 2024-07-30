@@ -6115,6 +6115,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"accessible-autocomplete@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "accessible-autocomplete@npm:3.0.0"
+  peerDependencies:
+    preact: ^8.0.0
+  peerDependenciesMeta:
+    preact:
+      optional: true
+  checksum: 4f1c27ec66ee8376335a2dc2672ef070366d4d2e1a8ba6e0c4f81695cb1c1db0f05912503c63d055534df6d7c5c3ceae564ef466bf95e4316f6e0e0ef8eba1de
+  languageName: node
+  linkType: hard
+
 "acorn-import-assertions@npm:^1.9.0":
   version: 1.9.0
   resolution: "acorn-import-assertions@npm:1.9.0"
@@ -6710,6 +6722,16 @@ __metadata:
   version: 2.4.0
   resolution: "autobind-decorator@npm:2.4.0"
   checksum: 6fcc922580d3585a3aeef1a480f935c0827b1a4505b9e39ff9bcad9039958bd47b27a4e35152f566e01befb2924701dbc9f744ec29eeb880c99eef8e39fce4a3
+  languageName: node
+  linkType: hard
+
+"awilix@npm:^10.0.2":
+  version: 10.0.2
+  resolution: "awilix@npm:10.0.2"
+  dependencies:
+    camel-case: ^4.1.2
+    fast-glob: ^3.3.2
+  checksum: cf7641c2e6dffc641feef77dc171a28a9259edca946ab548e81085a408365cc1e63435809922fc1e3dd71fb388bb3d6d147809c8d6bea2197dbd1933949bd786
   languageName: node
   linkType: hard
 
@@ -13429,8 +13451,10 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^7.0.0
     "@typescript-eslint/eslint-plugin-tslint": ^7.0.0
     "@typescript-eslint/parser": ^7.0.0
+    accessible-autocomplete: ^3.0.0
     applicationinsights: ^2.9.1
     autobind-decorator: ^2.4.0
+    awilix: ^10.0.2
     babel-loader: ^9.0.0
     chai: ^4.2.0
     chai-as-promised: ^8.0.0
