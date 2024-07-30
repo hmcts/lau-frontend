@@ -28,3 +28,4 @@ services:
 featureToggles:
   ldKey: LD_SDK_KEY
   ft_deletedUsers: 'LAU_DELETED_USERS'
+is_dev: IS_DEV
