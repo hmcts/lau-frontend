@@ -1,3 +1,4 @@
 ---
 redis:
   enabled: true
+is_dev: false

@@ -20,6 +20,8 @@ interface Context {
   logons?: LogData;
   userDeletions?: LogData;
   caseDeletions?: LogData;
+  jurisdictions?: {text: string, value: string}[];
+  caseTypes?: {text: string, value: string}[];
 }
 
 async function homeHandler(req: AppRequest, res: Response) {

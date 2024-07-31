@@ -54,9 +54,12 @@ services:
     enabled: true
     url: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal'
     lauSecret: 'AAAAAAAAAAAAAAAA'
+  auto-suggest:
+    data-file: 'data/auto-suggest-data-prod.json'
 featureToggles:
   enabled: true
   ldKey: 'LD_SDK_KEY'
   ft_deletedUsers: 'LAU_DELETED_USERS'
 session:
   cookieMaxAge: 30 # minutes
+is_dev: true

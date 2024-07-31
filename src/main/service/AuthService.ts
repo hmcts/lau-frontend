@@ -1,6 +1,6 @@
 import {LoggerInstance} from 'winston';
-import config from 'config';
-import { TOTP } from 'totp-generator';
+import { IConfig } from 'config';
+import {TOTP} from 'totp-generator';
 import {ServiceAuthToken} from '../components/idam/ServiceAuthToken';
 import fetch, {Response as FetchResponse} from 'node-fetch';
 import {jwtDecode} from 'jwt-decode';
@@ -27,23 +27,47 @@ export interface IdamResponseData {
   expires_in: number;
 }
 
-export enum IdamGrantType {AUTH_CODE = 'authorization_code', REFRESH = 'refresh_token'}
+export interface IdamRequestExtraParams {
+  code?: string;
+  refresh_token?: string;
+  scope?: string;
+  username?: string;
+  password?: string;
+}
+
+export enum IdamGrantType {
+  AUTH_CODE = 'authorization_code',
+  REFRESH = 'refresh_token',
+  PASSWORD = 'password',
+}
 
 export class AuthService {
   private logger: LoggerInstance = Logger.getLogger('AuthService');
 
-  private clientId: string = config.get('services.idam-api.clientID');
-  private clientSecret: string = config.get('services.idam-api.clientSecret');
-  private redirectUri: string = config.get('services.idam-api.callbackURL');
-  private tokenUrl: string = String(config.get('services.idam-api.url')) + String(config.get('services.idam-api.endpoints.token'));
-  private microserviceName = 'lau_frontend';
-  private s2sUrl: string = config.get('services.s2s.url');
-  private totpSecret: string = config.get('services.s2s.lauSecret');
+  private clientId: string;
+  private clientSecret: string;
+  private redirectUri: string;
+  private tokenUrl: string;
+  private microserviceName: string;
+  private s2sUrl: string;
+  private totpSecret: string;
 
-  retrieveServiceToken(): Promise<ServiceAuthToken> {
+  constructor(
+    private config: IConfig,
+  ) {
+    this.clientId = this.config.get('services.idam-api.clientID');
+    this.clientSecret = this.config.get('services.idam-api.clientSecret');
+    this.redirectUri = this.config.get('services.idam-api.callbackURL');
+    this.tokenUrl = `${this.config.get('services.idam-api.url')}${this.config.get('services.idam-api.endpoints.token')}`;
+    this.microserviceName = 'lau_frontend';
+    this.s2sUrl = this.config.get('services.s2s.url');
+    this.totpSecret = this.config.get('services.s2s.lauSecret');
+  }
+
+  retrieveServiceToken(serviceName?: string): Promise<ServiceAuthToken> {
     const { otp } = TOTP.generate(this.totpSecret);
     const params = {
-      microservice: this.microserviceName,
+      microservice: serviceName ?? this.microserviceName,
       oneTimePassword: otp,
     };
 
@@ -60,7 +84,6 @@ export class AuthService {
       )
         .then((res: FetchResponse) => res.text())
         .then((token: string) => {
-          this.logger.info('Token: ', token);
           resolve(new ServiceAuthToken(token));
         })
         .catch((err: string) => {
@@ -70,67 +93,72 @@ export class AuthService {
     });
   }
 
-  async getIdAMToken(grantType: IdamGrantType, session: AppSession, authCode?: string): Promise<UserDetails> {
-    // eslint-disable-next-line no-async-promise-executor
-    return new Promise(async (resolve, reject) => {
-      const requestTimeInSeconds = Math.round(Date.now() / 1000);
+  async getIdAMResponse(grantType: IdamGrantType, extraParams: IdamRequestExtraParams) {
 
-      const params = new URLSearchParams({
-        client_id: this.clientId,
-        client_secret: this.clientSecret,
-        grant_type: grantType,
-        redirect_uri: this.redirectUri,
-      });
-
-      if (grantType === IdamGrantType.AUTH_CODE) {
-        params.set('code', authCode);
-      } else {
-        params.set('refresh_token', session.user.refreshToken);
-      }
-
-      let response: FetchResponse;
-      try {
-        response = await fetch(
-          this.tokenUrl,
-          {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: params.toString(),
-          },
-        );
-      } catch (err) {
-        this.logger.error(err);
-        return reject(new AppError(err, ErrorCode.IDAM_API));
-      }
-
-      try {
-        AuthService.checkStatus(response);
-      } catch (error) {
-        this.logger.error(error);
-
-        const errorBody = error.response ? await error.response.text() : error;
-        this.logger.error(`Error body: ${errorBody}`);
-        return reject(new AppError(error, ErrorCode.IDAM_API));
-      }
-
-      const data: IdamResponseData = await response.json();
-      const expiresAt: number = requestTimeInSeconds + Number(data.expires_in);
-
-      const jwt: IdTokenJwtPayload = jwtDecode(data.id_token);
-
-      session.user = {
-        accessToken: data.access_token,
-        expiresAt,
-        refreshToken: data.refresh_token,
-        idToken: data.id_token,
-        id: jwt.uid,
-        roles: jwt.roles,
-      };
-      session.save(() => resolve(session.user));
+    const params = new URLSearchParams({
+      client_id: this.clientId,
+      client_secret: this.clientSecret,
+      grant_type: grantType,
+      redirect_uri: this.redirectUri,
+      ...extraParams,
     });
+
+    let response: FetchResponse;
+
+    try {
+      response = await fetch(
+        this.tokenUrl,
+        {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: params.toString(),
+        },
+      );
+    } catch (err) {
+      this.logger.error(err);
+      throw new AppError(err, ErrorCode.IDAM_API);
+    }
+
+    try {
+      AuthService.checkStatus(response);
+    } catch (err) {
+      this.logger.error(err);
+      const errorBody = err.response ? await err.response.text() : err;
+      this.logger.error(`Error body: ${errorBody}`);
+      throw new AppError(err, ErrorCode.IDAM_API);
+    }
+    return response;
+  }
+
+  async getIdAMToken(grantType: IdamGrantType, session: AppSession, authCode?: string): Promise<UserDetails> {
+    const requestTimeInSeconds = Math.round(Date.now() / 1000);
+    const extraParams: IdamRequestExtraParams = {};
+    if (grantType === IdamGrantType.AUTH_CODE) {
+      extraParams['code'] = authCode;
+    } else {
+      extraParams['refresh_token'] = session.user.refreshToken;
+    }
+
+    const response: FetchResponse = await this.getIdAMResponse(grantType, extraParams);
+
+    const data: IdamResponseData = await response.json();
+    const expiresAt: number = requestTimeInSeconds + Number(data.expires_in);
+
+    const jwt: IdTokenJwtPayload = jwtDecode(data.id_token);
+
+    session.user = {
+      accessToken: data.access_token,
+      expiresAt,
+      refreshToken: data.refresh_token,
+      idToken: data.id_token,
+      id: jwt.uid,
+      roles: jwt.roles,
+    };
+    session.save(() => session.user);
+    return session.user;
   }
 
   private static checkStatus(response: FetchResponse): FetchResponse {

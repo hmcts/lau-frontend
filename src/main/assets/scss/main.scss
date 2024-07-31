@@ -2,6 +2,7 @@
 @import "govuk-frontend";
 @import "./loading-spinner";
 @import "./timeout-modal";
+@import "accessible-autocomplete";
 
 $color-grey: #808080;
 $color-white: #fff;
@@ -187,8 +188,22 @@ select.govuk-select {
   min-width: auto;
 }
 
+input.autocomplete {
+  &__input {
+    background-color: white;
+  }
+}
+
+ul.autocomplete {
+  &__menu {
+    box-sizing: border-box;
+  }
+}
+
 div.govuk-grid-column-full, div.govuk-grid-column-one-third {
   @media (max-width: $tablet-breakpoint) {
     padding-right: 30px;
   }
 }
+
+

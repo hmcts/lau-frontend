@@ -51,25 +51,28 @@
           }
       }) }}
 
-      {{ govukInput({
+      {{ govukSelect({
         label: {
           text: "Case type ID"
         },
-        classes: "govuk-!-width-three-quarters",
+        classes: "govuk-!-width-three-quarters accessible-autocomplete",
         id: "caseTypeId",
         name: "caseTypeId",
-        value: caseForm.caseTypeId
+        value: caseForm.caseTypeId,
+        items: caseTypes
       }) }}
 
-      {{ govukInput({
+      {{ govukSelect({
+        id: "caseJurisdictionId",
+        name: "caseJurisdictionId",
         label: {
           text: "Jurisdiction ID"
         },
-        classes: "govuk-!-width-three-quarters",
-        id: "caseJurisdictionId",
-        name: "caseJurisdictionId",
-        value: caseForm.caseJurisdictionId
+        classes: "govuk-!-width-three-quarters accessible-autocomplete",
+        value: caseForm.caseJurisdictionId,
+        items: jurisdictions
       }) }}
+
     </div>
 
     <div class="govuk-grid-column-one-third">

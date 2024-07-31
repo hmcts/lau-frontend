@@ -1,22 +1,24 @@
-import { glob } from 'glob';
-
-const { Logger } = require('@hmcts/nodejs-logging');
-
-import config = require('config');
+import {glob} from 'glob';
 import express from 'express';
 import compression from 'compression';
-import { Helmet } from './modules/helmet';
+import {Helmet} from './modules/helmet';
 import * as path from 'path';
 import favicon from 'serve-favicon';
-import { HTTPError } from './HttpError';
-import { Nunjucks } from './modules/nunjucks';
-import { PropertiesVolume } from './modules/properties-volume';
-import { AppInsights } from './modules/appinsights';
-import { CSRFToken } from './modules/csrf';
+import {HTTPError} from './HttpError';
+import {Nunjucks} from './modules/nunjucks';
+import {PropertiesVolume} from './modules/properties-volume';
+import {AppInsights} from './modules/appinsights';
+import {CSRFToken} from './modules/csrf';
 import {SessionStorage} from './modules/session';
 import {OidcMiddleware} from './modules/oidc';
 import {HealthCheck} from './modules/health';
+import {Container} from './modules/awilix';
 import {LaunchDarklyClient} from './components/featureToggle/LaunchDarklyClient';
+
+const { Logger } = require('@hmcts/nodejs-logging');
+
+import config from 'config';
+import {AutoSuggest} from './modules/autosuggest/AutoSuggest';
 
 const { setupDev } = require('./development');
 const { setupTest } = require('./test');
@@ -40,11 +42,14 @@ new CSRFToken().enableFor(app);
 new Nunjucks(developmentMode).enableFor(app);
 new OidcMiddleware().enableFor(app);
 new HealthCheck().enableFor(app);
+new Container().enableFor(app);
 
 logger.info('Environment: ' + env);
 
-setupDev(app,developmentMode);
+setupDev(app, developmentMode);
 setupTest(app);
+
+new AutoSuggest(app.locals.container.cradle.autoSuggestService).enableFor(app);
 
 const options = {
   cacheControl: true,

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 const { Logger } = require('@hmcts/nodejs-logging');
 import { app } from './app';
 
