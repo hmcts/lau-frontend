@@ -27,7 +27,9 @@ export class CaseTypeJurisdictionAutoSuggest implements AutoSuggestService {
 
   constructor(config: IConfig) {
     this.staticData = {jurisdictions: [], caseTypes: []};
-    this.dataFile = config.get('is_dev') ? 'data/auto-suggest-data-dev.json': 'data/auto-suggest-data-prod.json';
+    this.dataFile = config.get('is_dev') === true ? 'data/auto-suggest-data-dev.json': 'data/auto-suggest-data-prod.json';
+    this.logger.info('is_dev: ' + config.get('is_dev'));
+    this.logger.info('CaseType Jurisdiction Data file loaded: ' + this.dataFile);
   }
 
   public loadData(): void {
