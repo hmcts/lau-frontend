@@ -3,7 +3,7 @@ appVersion: "1.0"
 description: A Helm chart for Log and Audit Frontend App
 name: lau-frontend
 home: https://github.com/hmcts/lau-frontend
-version: 0.1.8
+version: 0.1.9
 dependencies:
   - name: nodejs
     version: 3.1.1
