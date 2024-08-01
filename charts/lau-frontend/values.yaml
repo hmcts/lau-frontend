@@ -21,7 +21,7 @@ nodejs:
     OAUTH_CLIENT_REDIRECT: https://lau.{{ .Values.global.environment }}.platform.hmcts.net/oauth2/callback
     ALLOW_CONFIG_MUTATIONS: true
     DUMMY_RESTART_VAR: 1
-    IS_DEV: false
+    IS_DEV: true
 
   keyVaults:
     lau:
