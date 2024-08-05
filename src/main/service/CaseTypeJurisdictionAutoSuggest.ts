@@ -22,13 +22,15 @@ const resourcesDirectory = path.join(__dirname, '../resources');
 export class CaseTypeJurisdictionAutoSuggest implements AutoSuggestService {
 
   private readonly dataFile: string;
+  private is_development: boolean;
   private staticData: JurisdictionsCaseTypes;
   private logger = Logger.getLogger(this.constructor.name);
 
   constructor(config: IConfig) {
     this.staticData = {jurisdictions: [], caseTypes: []};
-    this.dataFile = config.get('is_dev') === true ? 'data/auto-suggest-data-dev.json': 'data/auto-suggest-data-prod.json';
-    this.logger.info('is_dev: ' + config.get('is_dev'));
+    this.is_development = JSON.parse(config.get('is_dev'));
+    this.dataFile = this.is_development ? 'data/auto-suggest-data-dev.json' : 'data/auto-suggest-data-prod.json';
+    this.logger.info('is_dev: ' + this.is_development);
     this.logger.info('CaseType Jurisdiction Data file loaded: ' + this.dataFile);
   }
 

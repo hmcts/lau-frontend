@@ -32,18 +32,10 @@ export const content = {
   paragraph14: 'HMCTS is committed to making its websites accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.',
 
   heading7: 'Compliance status',
-  paragraph15: 'This website is partially compliant with the <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="external noopener noreferrer" class="govuk-link">Web Content Accessibility Guidelines version 2.2</a> AA standard, due to the non-compliances listed below.',
-
-  heading8: 'Non-accessible content',
-  paragraph16: 'The content listed below is non-accessible for the following reasons:',
-  subheading1: 'Non-compliance with the accessibility regulations.',
-  list1Item12: 'You cannot tab into the date/time selection box using just a keyboard and make a selection. This fails WCAG 2.2 success criterion 2.1.1: Keyboard (Level A). It must be possible for someone using only a keyboard (or a device that emulates keyboard commands) to complete all tasks in a service.',
-  list1Item13: 'Page titles in the log and audit application are not exclusive to each page. This fails WCAG 2.2 success criterion 2.4.2: Page Titled (Level A). Each page must have a unique title that indicates its topic or purpose.',
-  list1Item14: 'You can enter input fields in any format without warning. This fails WCAG 2.2 success criterion 3.3.2: Labels or Instructions (Level A). When data must be entered in a specific format or in a particular way, clear instructions must be associated with the form field.',
-  list1Item15: 'Error messages are displayed partially across the log and audit application. This fails WCAG 2.2 success criterion 3.3.3: Error Suggestion (Level AA). When an error is detected, suggestions for correcting the issue must be provided unless the suggestion compromises security.',
+  paragraph15: 'This website is fully compliant with the <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="external noopener noreferrer" class="govuk-link">Web Content Accessibility Guidelines version 2.2</a> AA standard.',
 
   heading9: 'Preparation of this accessibility statement',
-  paragraph17: 'This statement was prepared on 15<sup>th</sup> July 2024. It was last reviewed on 15<sup>th</sup> July 2024.',
+  paragraph17: 'This statement was prepared on 5<sup>th</sup> August 2024. It was last reviewed on 5<sup>th</sup> August 2024.',
   paragraph18: 'This website was last tested on 22<sup>nd</sup> May 2024 against the WCAG 2.2 AA standard. The test was carried out by Digital Accessibility Centre.',
 
   heading10: 'What we&rsquo;re doing to improve accessibility',
