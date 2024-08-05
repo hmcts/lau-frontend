@@ -5,7 +5,7 @@
   "engines": {
     "node": ">=18.16.0"
   },
-  "packageManager": "yarn@4.3.1",
+  "packageManager": "yarn@4.4.0",
   "scripts": {
     "preinstall": "./bin/preinstalls.sh || true",
     "setup": "NODE_PATH=. node createVersionFile.js",
