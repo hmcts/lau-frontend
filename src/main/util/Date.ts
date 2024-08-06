@@ -16,8 +16,8 @@ const SECONDS = ':00';
 
 export const isDateValid = (date: string): boolean => {
   date = addSeconds(date);
-  var currentDate = new Date().toUTCString();
-  var comingDate = new Date(date).toUTCString();
+  let currentDate = new Date().toUTCString();
+  let comingDate = new Date(date).toUTCString();
   return date?.match(DATE_REGEX) && moment.utc(date, REQUEST_DATE_FORMAT).isValid() && moment(comingDate).isSameOrBefore(moment(currentDate));
 };
 
