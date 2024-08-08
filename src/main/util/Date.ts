@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { LogonService } from 'service/LogonService';
 const { Logger } = require('@hmcts/nodejs-logging');
 
 const logger = Logger.getLogger('date');
