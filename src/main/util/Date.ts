@@ -20,7 +20,7 @@ const SECONDS = ':00';
 export const isDateValid = (date: string): boolean => {
   date = addSeconds(date);
   const currentDate = moment().utc().format(REQUEST_DATE_FORMAT);
-  const comingDate = moment(date).utc().format(REQUEST_DATE_FORMAT);
+  const comingDate = moment.utc(date).format(REQUEST_DATE_FORMAT);
   logger.info(`Current Date : ${currentDate}`);
   logger.info(`Coming Date : ${comingDate}`);
   return date?.match(DATE_REGEX) && moment.utc(date, REQUEST_DATE_FORMAT).isValid() && moment(comingDate).isSameOrBefore(currentDate);
