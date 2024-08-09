@@ -19,15 +19,15 @@ const SECONDS = ':00';
 
 export const isDateValid = (date: string): boolean => {
   date = addSeconds(date);
-  let comingRequestDate = moment(date).utc();
-  let comingDate = new Date(comingRequestDate.year(), comingRequestDate.month(), comingRequestDate.date(), comingRequestDate.hour(), 
-              comingRequestDate.minute(), comingRequestDate.second(), comingRequestDate.millisecond());
-  let utc = moment().utc();
-  let currentDate = new Date(utc.year(), utc.month(), utc.date(), utc.hour(), utc.minute(), utc.second(), utc.millisecond());
-  
-  logger.info(`Current Date : ${currentDate}`);
-  logger.info(`Coming Date : ${comingDate}`);
-  return date?.match(DATE_REGEX) && moment.utc(date, REQUEST_DATE_FORMAT).isValid() && comingDate<= currentDate;
+  let comingRequestDate = date +'Z';
+  let comingDate =new Date(comingRequestDate).toString();
+  let utcComingDate = new Date(comingRequestDate).toUTCString();
+  let currentUTCDate = new Date().toUTCString();
+
+  logger.info(`Current UTC Date : ${currentUTCDate}`);
+  logger.info(`Coming  Date : ${comingDate}`);
+  logger.info(`Coming UTC Date : ${utcComingDate}`);
+  return date?.match(DATE_REGEX) && moment.utc(date, REQUEST_DATE_FORMAT).isValid() && utcComingDate<= currentUTCDate;
 };
 
 export const formDateToRequestDate = (date: string): string => {
