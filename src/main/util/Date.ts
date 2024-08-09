@@ -22,7 +22,7 @@ export const isDateValid = (date: string): boolean => {
   let comingDate= new Date(date);
   var comingUTCseconds = (comingDate.getTime() + comingDate.getTimezoneOffset()*60*1000)/1000;
   let currentDate = new Date();
-  var currentUTCseconds = (currentDate.getTime()+currentDate.getTimezoneOffset()*60*1000)/1000;
+  let currentUTCseconds = (currentDate.getTime()+currentDate.getTimezoneOffset()*60*1000)/1000;
   //const comingDate = new Date(date).toUTCString();
   logger.info(`Current Date : ${currentUTCseconds}`);
   logger.info(`Coming Date : ${comingUTCseconds}`);
