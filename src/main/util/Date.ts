@@ -19,12 +19,14 @@ const SECONDS = ':00';
 
 export const isDateValid = (date: string): boolean => {
   date = addSeconds(date);
- 
-  const currentDate = new Date().toUTCString();
-  const comingDate = new Date(date).toUTCString();
-  logger.info(`Current Date : ${currentDate}`);
-  logger.info(`Coming Date : ${comingDate}`);
-  return date?.match(DATE_REGEX) && moment.utc(date, REQUEST_DATE_FORMAT).isValid() && moment(comingDate).isSameOrBefore(currentDate);
+  let comingDate= new Date(date);
+  var comingUTCseconds = (comingDate.getTime() + comingDate.getTimezoneOffset()*60*1000)/1000;
+  let currentDate = new Date();
+  var currentUTCseconds = (currentDate.getTime()+currentDate.getTimezoneOffset()*60*1000)/1000;
+  //const comingDate = new Date(date).toUTCString();
+  logger.info(`Current Date : ${currentUTCseconds}`);
+  logger.info(`Coming Date : ${comingUTCseconds}`);
+  return date?.match(DATE_REGEX) && moment.utc(date, REQUEST_DATE_FORMAT).isValid() && comingUTCseconds<= currentUTCseconds;
 };
 
 export const formDateToRequestDate = (date: string): string => {
