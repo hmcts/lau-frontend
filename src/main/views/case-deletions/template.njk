@@ -97,11 +97,7 @@
 <div class="govuk-grid-row govuk-!-margin-top-5" id="results-section">
   <div class="govuk-grid-column-full">
 
-    <h2 class="govuk-heading-l">
-      Results
-    </h2>
-
-    <p class="govuk-body">Search results are limited to 10,000.</p>
+    {% include "common/result-header.njk" %}
 
     <button class="govuk-button" data-module="govuk-button" id="deletionsCsvBtn">
       Download all records to CSV

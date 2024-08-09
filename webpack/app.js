@@ -1,15 +1,15 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const root = path.resolve(__dirname, './../../');
-const sass = path.resolve(root, './main/assets/scss');
-const images = path.resolve(root, './main/assets/images');
+const root = path.resolve(__dirname, './../');
+const assets = path.resolve(root, './src/main/assets');
 
 const copyLookAndFeelAssets = new CopyWebpackPlugin({
-  patterns: [{ from: images, to: 'images' }],
+  patterns: [
+    { from: `${assets}/pdfs/Excel import - How-To.pdf`, to: 'assets/pdfs/Excel import - How-To.pdf' },
+  ],
 });
 
 module.exports = {
-  paths: { root, sass },
   plugins: [ copyLookAndFeelAssets ],
 };
