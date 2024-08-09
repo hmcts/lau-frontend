@@ -19,8 +19,11 @@ const SECONDS = ':00';
 
 export const isDateValid = (date: string): boolean => {
   date = addSeconds(date);
-  let comingDate = new Date(date).toISOString();
-  let currentDate = new Date().toISOString();
+  let comingRequestDate = moment(date).utc();
+  let comingDate = new Date(comingRequestDate.year(), comingRequestDate.month(), comingRequestDate.date(), comingRequestDate.hour(), 
+              comingRequestDate.minute(), comingRequestDate.second(), comingRequestDate.millisecond());
+  let utc = moment().utc();
+  let currentDate = new Date(utc.year(), utc.month(), utc.date(), utc.hour(), utc.minute(), utc.second(), utc.millisecond());
   
   logger.info(`Current Date : ${currentDate}`);
   logger.info(`Coming Date : ${comingDate}`);
