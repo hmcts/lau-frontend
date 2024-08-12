@@ -3425,10 +3425,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.8.0, @eslint/js@npm:^9.1.1":
-  version: 9.8.0
-  resolution: "@eslint/js@npm:9.8.0"
-  checksum: 10/1c6ddbcc9f45f0165d9e218c085543536c03b4b650449a6f38f4e2b65b1d6bcd5f24f7feae72fca14d3697073cbdb413f270baef0f744cb0fb9e11ce9c84dbcc
+"@eslint/js@npm:9.9.0, @eslint/js@npm:^9.1.1":
+  version: 9.9.0
+  resolution: "@eslint/js@npm:9.9.0"
+  checksum: 10/9d6e94d0334aecaa7e5c78e654297d9b11679f56c8ec1b64db122cbecf64b5a04138617e901d0c79727d03abce8a898cce4288259435bde78460ebdab202998f
   languageName: node
   linkType: hard
 
@@ -4950,26 +4950,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stryker-mutator/api@npm:8.4.0":
-  version: 8.4.0
-  resolution: "@stryker-mutator/api@npm:8.4.0"
+"@stryker-mutator/api@npm:8.5.0":
+  version: 8.5.0
+  resolution: "@stryker-mutator/api@npm:8.5.0"
   dependencies:
-    mutation-testing-metrics: "npm:3.1.1"
+    mutation-testing-metrics: "npm:3.2.0"
     mutation-testing-report-schema: "npm:3.1.1"
     tslib: "npm:~2.6.3"
     typed-inject: "npm:~4.0.0"
-  checksum: 10/4917626b08ff17dbecdea76190197e261806203ca8de3189e09c34ca970e2c1dc9bd12d13174a3de7d0059573748d4ccc0fa256f159a96139f7f996a9e59752b
+  checksum: 10/c9cc18fd0411a67cf0d7538f53e777b46f48acd9c4f6f7c885b54e3a954b1f697cd34647f7228f7e3e850545823956b591d0bfad3c6687e96d901cc705be3808
   languageName: node
   linkType: hard
 
 "@stryker-mutator/core@npm:^8.0.0":
-  version: 8.4.0
-  resolution: "@stryker-mutator/core@npm:8.4.0"
+  version: 8.5.0
+  resolution: "@stryker-mutator/core@npm:8.5.0"
   dependencies:
     "@inquirer/prompts": "npm:^5.3.6"
-    "@stryker-mutator/api": "npm:8.4.0"
-    "@stryker-mutator/instrumenter": "npm:8.4.0"
-    "@stryker-mutator/util": "npm:8.4.0"
+    "@stryker-mutator/api": "npm:8.5.0"
+    "@stryker-mutator/instrumenter": "npm:8.5.0"
+    "@stryker-mutator/util": "npm:8.5.0"
     ajv: "npm:~8.17.1"
     chalk: "npm:~5.3.0"
     commander: "npm:~12.1.0"
@@ -4981,8 +4981,8 @@ __metadata:
     lodash.groupby: "npm:~4.6.0"
     log4js: "npm:~6.9.1"
     minimatch: "npm:~9.0.5"
-    mutation-testing-elements: "npm:3.1.1"
-    mutation-testing-metrics: "npm:3.1.1"
+    mutation-testing-elements: "npm:3.2.0"
+    mutation-testing-metrics: "npm:3.2.0"
     mutation-testing-report-schema: "npm:3.1.1"
     npm-run-path: "npm:~5.3.0"
     progress: "npm:~2.0.3"
@@ -4995,13 +4995,13 @@ __metadata:
     typed-rest-client: "npm:~2.0.2"
   bin:
     stryker: ./bin/stryker.js
-  checksum: 10/33cbe9d5dd84c88369b70a0d900ca656a4e994d618c0538e588e9f3c192d8d809360717e7f8f276fcb873b16b207a0e5297e4e40c9bb87e8043aea1e3155ae9f
+  checksum: 10/30d594cfd6e7bc48ac25a10563ea4cc3fe4c8ad0573cd60ed097debd2b63e12cb534207cf0ad06a2749bdbd78a63ebc0f63ee69ef4548ee102860939bf2d56ae
   languageName: node
   linkType: hard
 
-"@stryker-mutator/instrumenter@npm:8.4.0":
-  version: 8.4.0
-  resolution: "@stryker-mutator/instrumenter@npm:8.4.0"
+"@stryker-mutator/instrumenter@npm:8.5.0":
+  version: 8.5.0
+  resolution: "@stryker-mutator/instrumenter@npm:8.5.0"
   dependencies:
     "@babel/core": "npm:~7.25.2"
     "@babel/generator": "npm:~7.25.0"
@@ -5009,33 +5009,33 @@ __metadata:
     "@babel/plugin-proposal-decorators": "npm:~7.24.7"
     "@babel/plugin-proposal-explicit-resource-management": "npm:^7.24.7"
     "@babel/preset-typescript": "npm:~7.24.7"
-    "@stryker-mutator/api": "npm:8.4.0"
-    "@stryker-mutator/util": "npm:8.4.0"
+    "@stryker-mutator/api": "npm:8.5.0"
+    "@stryker-mutator/util": "npm:8.5.0"
     angular-html-parser: "npm:~6.0.2"
     semver: "npm:~7.6.3"
     weapon-regex: "npm:~1.3.2"
-  checksum: 10/e066f6c65eecdb65e2421555d96db1a099bb09147f303488ec1cbdedc07dbac427d09a428c901e124ed205a0d9142ccae10d7f0b38294847e62a3f673ef2063a
+  checksum: 10/42497d924ed5ce36878e0f5cbc5e80a1bb0b1a8543ebe56db3d86b14f789b38f6e069f00ea9a3dcd8cb1e54fe78be0a545b55b126ba0cceb95b8936fcf02d466
   languageName: node
   linkType: hard
 
 "@stryker-mutator/jest-runner@npm:^8.0.0":
-  version: 8.4.0
-  resolution: "@stryker-mutator/jest-runner@npm:8.4.0"
+  version: 8.5.0
+  resolution: "@stryker-mutator/jest-runner@npm:8.5.0"
   dependencies:
-    "@stryker-mutator/api": "npm:8.4.0"
-    "@stryker-mutator/util": "npm:8.4.0"
+    "@stryker-mutator/api": "npm:8.5.0"
+    "@stryker-mutator/util": "npm:8.5.0"
     semver: "npm:~7.6.3"
     tslib: "npm:~2.6.3"
   peerDependencies:
-    "@stryker-mutator/core": ~8.4.0
-  checksum: 10/4a98b1d41751be07a8735a9095afa51f59962310260281ba884969ef572c7140f795060c2201e455c47a39902cc2102c5873b9ea58c7fe93491195f00b316ae5
+    "@stryker-mutator/core": ~8.5.0
+  checksum: 10/41d2f89d4264de934e5ff263c455d59ede01a10b525010f0f80eda1458b368878d0a19083f8a255a49d90b4762114d1f1e78fb39c5bba8c4efdcff51ff3d3a4e
   languageName: node
   linkType: hard
 
-"@stryker-mutator/util@npm:8.4.0":
-  version: 8.4.0
-  resolution: "@stryker-mutator/util@npm:8.4.0"
-  checksum: 10/761a9f5e9700c0e013c75db7c1b34274b3a87bed5efc7c279d22af88109d1ee1c03c3c95a64217970174d6cf43f7517481427fcbdc17b44e9070afc5ba399171
+"@stryker-mutator/util@npm:8.5.0":
+  version: 8.5.0
+  resolution: "@stryker-mutator/util@npm:8.5.0"
+  checksum: 10/c7e433ef7331c1218cc7cc5ca94df75ae4523604cd5942b5943148446351a333487143f3404ba8ac809c5bb89ae94fbd9e75c62d1f9f66a02dc5b45b9707900a
   languageName: node
   linkType: hard
 
@@ -5452,20 +5452,20 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:^22.0.0":
-  version: 22.1.0
-  resolution: "@types/node@npm:22.1.0"
+  version: 22.2.0
+  resolution: "@types/node@npm:22.2.0"
   dependencies:
     undici-types: "npm:~6.13.0"
-  checksum: 10/c2ac1340509646b6c673b27fae2a46e501a97e540e7221be4dd2e0be7a0f61efefb5bf3be8bedf2dbce245fa49cfc49bba77bce73fa3c4296d0d19521ced3222
+  checksum: 10/2957c5c81f1a07a1210f28382adae65c11070c301e395fa819448516f1a2a710054b29e0ec7d8e28624afbcd90dae810403a497109545dea835b554fc76edf6c
   languageName: node
   linkType: hard
 
 "@types/node@npm:^20.1.0, @types/node@npm:^20.8.3":
-  version: 20.14.14
-  resolution: "@types/node@npm:20.14.14"
+  version: 20.14.15
+  resolution: "@types/node@npm:20.14.15"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10/035bc347e3de04888d537801e23eb4b4f99522975ca002dbfef978edd853710031b7cd43bf022670d6aba4ed5d4ac75ea1b5ff77ff8f80998bffd943b7bcef48
+  checksum: 10/87a4a4313e886c1db1c8042004956095477e040f67df993fd16a2d50488c750bda81e85bf702c2e629e964605034e8dfe0cb91b65ce22b6b8eec37ece61c6b6c
   languageName: node
   linkType: hard
 
@@ -10156,14 +10156,14 @@ __metadata:
   linkType: hard
 
 "eslint@npm:^9.1.1":
-  version: 9.8.0
-  resolution: "eslint@npm:9.8.0"
+  version: 9.9.0
+  resolution: "eslint@npm:9.9.0"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.2.0"
     "@eslint-community/regexpp": "npm:^4.11.0"
     "@eslint/config-array": "npm:^0.17.1"
     "@eslint/eslintrc": "npm:^3.1.0"
-    "@eslint/js": "npm:9.8.0"
+    "@eslint/js": "npm:9.9.0"
     "@humanwhocodes/module-importer": "npm:^1.0.1"
     "@humanwhocodes/retry": "npm:^0.3.0"
     "@nodelib/fs.walk": "npm:^1.2.8"
@@ -10193,9 +10193,14 @@ __metadata:
     optionator: "npm:^0.9.3"
     strip-ansi: "npm:^6.0.1"
     text-table: "npm:^0.2.0"
+  peerDependencies:
+    jiti: "*"
+  peerDependenciesMeta:
+    jiti:
+      optional: true
   bin:
     eslint: bin/eslint.js
-  checksum: 10/b1dd864170ca359249c92d1d8e09a628497efcf8a4293b571308460125fb0367a15612b2b0f135ff21b92453bf324ce75843fcaac3e01734f4bee2ff79919cc3
+  checksum: 10/88616421c9cb873d8f116d1ef6aa665cc898d35361351739c8041f11c30fe004bcfa641a2b6074655393eac7e7e5f9a661675dd1c01a24cf1e65cc6b556e06b3
   languageName: node
   linkType: hard
 
@@ -15325,19 +15330,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mutation-testing-elements@npm:3.1.1":
-  version: 3.1.1
-  resolution: "mutation-testing-elements@npm:3.1.1"
-  checksum: 10/b6c56120ca443e7a45bdb89f62ccfd7828541fadbfe94de7a89e96569686cf3a9504098c78a8c323656b1619ad338b4ad4ab2927d5c8f0c445c8612c67e2b9b5
+"mutation-testing-elements@npm:3.2.0":
+  version: 3.2.0
+  resolution: "mutation-testing-elements@npm:3.2.0"
+  checksum: 10/30d676d0fda87d9831ea72a59bbdb9c760199a967d1c6f3a964792f2a525af7f87dcf8f58429d6fb1fa2c59b9440a67da1b4da7e79704097f6a0758f0691bb64
   languageName: node
   linkType: hard
 
-"mutation-testing-metrics@npm:3.1.1":
-  version: 3.1.1
-  resolution: "mutation-testing-metrics@npm:3.1.1"
+"mutation-testing-metrics@npm:3.2.0":
+  version: 3.2.0
+  resolution: "mutation-testing-metrics@npm:3.2.0"
   dependencies:
     mutation-testing-report-schema: "npm:3.1.1"
-  checksum: 10/dde50fee76e3e4bff345e3973c228d1854cef02882cae0acf5cfe8aa351ab07bbf60d43c5949b947975198c6d2cbb4e21935248c0bfcc5a21102e7f6c9b4a2ff
+  checksum: 10/8674769794c11ebc5a7a55dbd1e98ac194273d88da79323ec695e7a30f556184d1b20287ee61561e3c78acabada2b0ce0e22d0af69fd61fcfc7957d985de6c55
   languageName: node
   linkType: hard
 
