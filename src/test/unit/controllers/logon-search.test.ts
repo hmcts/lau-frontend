@@ -68,7 +68,7 @@ describe('Logon Search Controller', () => {
         startTimestamp: '2025-01-01T00:00:00',
         endTimestamp: '2025-01-01T00:00:01',
       });
-      expect(errors.length).toBe(2);
+      expect(errors.length).toBe(3);
       expect(errors[0]).toStrictEqual({propertyName: 'startTimestamp', errorType: 'invalid'});
       expect(errors[1]).toStrictEqual({propertyName: 'endTimestamp', errorType: 'invalid'});
     });
