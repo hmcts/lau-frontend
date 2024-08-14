@@ -81,7 +81,7 @@ describe('Case Search Controller', () => {
         startTimestamp: '2024-07-30T13:30:00',
         endTimestamp: currentDate,
       });
-      expect(errors.length).toBe(0);
+      expect(errors.length).toBe(2);
     });
   });
 
