@@ -24,7 +24,7 @@ export const isDateValid = (date: string): boolean => {
 
   logger.info(`Current Date : ${currentDate}`);
   logger.info(`Coming Date : ${comingDate}`);
-  return date?.match(DATE_REGEX) && moment.utc(date, REQUEST_DATE_FORMAT).isValid() && moment(comingDate).isSameOrBefore(currentDate);
+  return date?.match(DATE_REGEX) && moment.utc(date, REQUEST_DATE_FORMAT).isValid();
 };
 
 export const formDateToRequestDate = (date: string): string => {
