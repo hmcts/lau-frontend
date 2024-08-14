@@ -61,10 +61,12 @@ async function auditHandler(req: AppRequest, res: Response, template: string, co
       startTimestamp: {
         invalid: 'Invalid \'Time from\' timestamp.',
         required: '\'Time from\' is required.',
+        utcDateAndTime: '\'Time from\' should be in UTC',
       },
       endTimestamp: {
         invalid: 'Invalid \'Time to\' timestamp.',
         required: '\'Time to\' is required.',
+        utcDateAndTime: '\'Time to\' should be in UTC',
       },
       caseRef: {
         invalid: 'Case Reference must be 16 digits.',

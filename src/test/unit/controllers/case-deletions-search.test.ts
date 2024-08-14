@@ -49,8 +49,9 @@ describe('Case Deletions Search Controller', () => {
         startTimestamp: '2021-14-01 00:00:00',
         endTimestamp: '2021-12-01T00:00:00',
       });
-      expect(errors.length).toBe(1);
+      expect(errors.length).toBe(2);
       expect(errors[0]).toStrictEqual({propertyName: 'startTimestamp', errorType: 'invalid'});
+      expect(errors[1]).toStrictEqual({propertyName: 'startTimestamp', errorType: 'utcDateAndTime'});
     });
 
     it('passes valid dates', async () => {

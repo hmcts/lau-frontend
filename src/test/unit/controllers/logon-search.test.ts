@@ -51,8 +51,9 @@ describe('Logon Search Controller', () => {
         startTimestamp: '2021-14-01 00:00:00',
         endTimestamp: '2021-12-01T00:00:00',
       });
-      expect(errors.length).toBe(1);
+      expect(errors.length).toBe(2);
       expect(errors[0]).toStrictEqual({propertyName: 'startTimestamp', errorType: 'invalid'});
+      expect(errors[1]).toStrictEqual({propertyName: 'startTimestamp', errorType: 'utcDateAndTime'});
     });
 
     it('passes valid dates', async () => {
@@ -68,13 +69,13 @@ describe('Logon Search Controller', () => {
         startTimestamp: '2025-01-01T00:00:00',
         endTimestamp: '2025-01-01T00:00:01',
       });
-      expect(errors.length).toBe(3);
-      expect(errors[0]).toStrictEqual({propertyName: 'startTimestamp', errorType: 'invalid'});
-      expect(errors[1]).toStrictEqual({propertyName: 'endTimestamp', errorType: 'invalid'});
+      expect(errors.length).toBe(2);
+      expect(errors[0]).toStrictEqual({propertyName: 'startTimestamp', errorType: 'utcDateAndTime'});
+      expect(errors[1]).toStrictEqual({propertyName: 'endTimestamp', errorType: 'utcDateAndTime'});
     });
 
     it('ensures dates are same or before as current Date', async () => {
-      var currentDate = moment().format(REQUEST_DATE_FORMAT);
+      var currentDate = moment().utc().format(REQUEST_DATE_FORMAT);
       const errors = logonSearchController.validateSearchForm({
         emailAddress: 'test_test@test.com',
         startTimestamp: '2024-07-30T13:30:00',

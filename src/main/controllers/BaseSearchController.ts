@@ -10,6 +10,7 @@ import {
   isFilledIn,
   startDateBeforeEndDate,
   validDateInput,
+  validUtcDateAndTime
 } from '../util/validators';
 import {formDateToRequestDate} from '../util/Date';
 
@@ -91,10 +92,17 @@ export abstract class BaseSearchController<SearchType extends SearchTypeCommon> 
     this.validate('startTimestamp', form.startTimestamp, isFilledIn);
     this.validate('startTimestamp', form.startTimestamp, validDateInput);
 
+    // startTimestamp is in utc
+    this.validate('startTimestamp', form.startTimestamp,validUtcDateAndTime);
+    
+
     // endTimestamp is filled in and correctly formatted
     form.endTimestamp = fillPartialTimestamp(form.endTimestamp);
     this.validate('endTimestamp', form.endTimestamp, isFilledIn);
     this.validate('endTimestamp', form.endTimestamp, validDateInput);
+
+    // endTimestamp is in utc
+    this.validate('endTimestamp', form.endTimestamp,validUtcDateAndTime);
 
     // Start date is before end date
     // @ts-ignore

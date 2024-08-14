@@ -1,5 +1,5 @@
 import moment, {Moment} from 'moment';
-import {REQUEST_DATE_FORMAT,isDateValid, partialDateRegex} from './Date';
+import {REQUEST_DATE_FORMAT,isDateValid, partialDateRegex, isValidUtcDateAndTime} from './Date';
 import * as EmailValidator from 'email-validator';
 
 export const atLeastOneFieldIsFilled = (fields: { [s: string]: unknown; }): string => {
@@ -67,5 +67,11 @@ export const validCaseRef = (caseRef: string): string => {
 export const validEmail = (emailAddress: string): string => {
   if(emailAddress && !EmailValidator.validate(emailAddress)){
     return 'invalid';
+  }
+};
+
+export const validUtcDateAndTime = (date: string): string => {
+  if (date && !isValidUtcDateAndTime(date)) {
+    return 'utcDateAndTime';
   }
 };
