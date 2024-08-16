@@ -1,7 +1,4 @@
 import moment from 'moment';
-const { Logger } = require('@hmcts/nodejs-logging');
-
-const logger = Logger.getLogger('Date');
 
 export const DATE_REGEX = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})$/gm;
 export const DATE_REGEX_WITHOUT_SECONDS = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/gm;
@@ -19,7 +16,6 @@ const SECONDS = ':00';
 
 export const isDateValid = (date: string): boolean => {
   date = addSeconds(date);
-  logger.info('Coming date' + `${date}`);
   return date?.match(DATE_REGEX) && moment.utc(date, REQUEST_DATE_FORMAT).isValid();
 };
 
