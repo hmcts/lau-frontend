@@ -34,6 +34,7 @@ services:
     endpoints:
       caseActivity: '/audit/caseAction'
       caseSearch: '/audit/caseSearch'
+      caseAccess: '/audit/accessRequest'
   lau-idam-backend:
     enabled: true
     url: 'http://localhost:4551'
@@ -60,6 +61,7 @@ featureToggles:
   enabled: true
   ldKey: 'LD_SDK_KEY'
   ft_deletedUsers: 'LAU_DELETED_USERS'
+  ft_challengeAccess: 'lau-challenged-access'
 session:
   cookieMaxAge: 30 # minutes
 is_dev: true

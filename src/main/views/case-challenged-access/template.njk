@@ -1,0 +1,142 @@
+{% extends "../home/template.njk" %}
+{% from "common/macros/paging.njk" import lauPaging %}
+{% from "common/macros/lauDateTimeInput.njk" import lauDateTimeInput %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "./../common/macros/csrf.njk" import csrfProtection %}
+
+{% block pageTitle %}Log and Audit - Challenged & access{% endblock %}
+
+{% block auditSearch %}
+{% if userRoles and 'cft-audit-investigator' in userRoles %}
+
+<h1 class="govuk-heading-xl">Challenged & access search</h1>
+
+<form id="challenged-audit-form" class="search-form" method="post" action="/challenge-access-search" novalidate>
+  {{ csrfProtection(csrfToken) }}
+  <div class="govuk-grid-row govuk-!-padding-left-3 govuk-!-padding-right-6">
+    <h2 class="govuk-heading-l">Search</h2>
+
+    <p class="govuk-body">Include time parameters in your search using the 'Time from' and
+      'Time to' fields and enter at least one other parameter to obtain search results.
+      <br/>
+    </p>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third govuk-!-margin-top-6">
+      {{ govukInput({
+        label: {
+          text: "User ID"
+        },
+        classes: "govuk-!-width-three-quarters govuk-!-margin-top-1",
+        id: "caseUserId",
+        name: "userId",
+        value: caseChallengedAccessForm.userId
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Case reference"
+        },
+        classes: "govuk-!-width-three-quarters",
+        id: "caseRef",
+        name: "caseRef",
+        value: caseChallengedAccessForm.caseRef,
+         hint: {
+              text: "For example, 9633170276333018"
+          }
+      }) }}
+
+      {{ govukSelect({
+        id: "requesttype",
+        name: "requestType",
+        label: {
+          text: "Request Type"
+        },
+        classes: "govuk-!-width-three-quarters govuk-!-margin-top-1",
+        value: caseChallengedAccessForm.requestType,
+        items: [
+          {
+            value: "ALL",
+            text: "All",
+            selected: true
+          },
+          {
+            value: "CHALLENGED",
+            text: "Challenged"
+          },
+          {
+            value: "SPECIFIC",
+            text: "Specific"
+          }
+        ]
+      }) }}
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      {{
+        lauDateTimeInput(
+          text="Time from (UTC)",
+          id="startTimestamp",
+          name="startTimestamp",
+          value=caseChallengedAccessForm.startTimestamp,
+          sessionErrors=sessionErrors,
+          errorMessages=errors
+        )
+      }}
+
+      {{
+        lauDateTimeInput(
+          text="Time to (UTC)",
+          id="endTimestamp",
+          name="endTimestamp",
+          value=caseChallengedAccessForm.endTimestamp,
+          sessionErrors=sessionErrors,
+          errorMessages=errors
+        )
+      }}
+    </div>
+
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {{ govukButton({
+        name: "challenged-access-search-btn",
+        text: "Search",
+        type: "submit",
+        preventDoubleClick: true
+      }) }}
+    </div>
+  </div>
+</form>
+
+{% if challengedAccessData and challengedAccessData.hasData %}
+<div class="govuk-grid-row govuk-!-margin-top-5" id="results-section">
+  <div class="govuk-grid-column-full">
+
+    {% include "common/result-header.njk" %}
+
+    <button class="govuk-button" data-module="govuk-button" id="challendedCsvBtn">
+      Download all records to CSV
+    </button>
+
+    {{ govukTable({
+      firstCellIsHeader: true,
+      head: caseChallengedAccessLogOrder,
+      rows: challengedAccessData.rows
+    }) }}
+  </div>
+</div>
+
+{{ lauPaging(challengedAccessData, '/challenged-specific-access/page', 'challenged-specific-access') }}
+
+{% elseif challengedAccessData %}
+  <h2 class="govuk-heading-l">Results</h2>
+  <p class="govuk-body">No results found</p>
+{% endif %}
+
+{% endif %}
+{% endblock auditSearch %}

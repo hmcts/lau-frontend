@@ -213,8 +213,8 @@ describe('Deleted Users Controller', () => {
         .reply(200, {});
 
       const res = { 
-        redirect: jest.fn()
-       };
+        redirect: jest.fn(),
+      };
 
       // @ts-ignore Conversion of res with spy
       return deletedUsersController.getPage(appRequest as AppRequest, res as Response).then(() => {

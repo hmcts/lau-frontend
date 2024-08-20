@@ -32,6 +32,13 @@ const forms = [
       {id: 'deletedUsersCsvBtn', uri: '/deleted-users/csv'},
     ],
   },
+  {
+    id: 'challenged-audit-form',
+    searchButtonName: 'challenged-access-search-btn',
+    csvButtons: [
+      {id: 'challendedCsvBtn', uri: '/challenged-specific-access/csv'},
+    ],
+  },
 ];
 
 for (const form of forms) {
