@@ -5,13 +5,17 @@ import {CaseSearchRequest} from '../models/case/CaseSearchRequest';
 import {LogonSearchRequest} from '../models/idam/LogonSearchRequest';
 import {DeletedUsersSearchRequest} from '../models/user-deletions/DeletedUsersSearchRequest';
 import {CaseDeletionsSearchRequest} from '../models/deletions/CaseDeletionsSearchRequest';
+import {CaseChallengedAccessRequest} from '../models/challenged-access/CaseChallengedAccessRequest';
+import {getCaseChallengedAccessLogOrder} from './../models/challenged-access/CaseChallengedAccessLogs';
 
 interface Context {
   caseForm?: Partial<CaseSearchRequest>;
   logonForm?: Partial<LogonSearchRequest>;
   deletedUsersForm?: Partial<DeletedUsersSearchRequest>;
   caseDeletionsForm?: Partial<CaseDeletionsSearchRequest>;
+  caseChallengedAccessForm?: Partial<CaseChallengedAccessRequest>;
   caseSearchPage?: boolean;
+  challengedSpecificAccessPage?: boolean;
   logonSearchPage?: boolean;
   userDeletionSearchPage?: boolean;
   caseDeletionSearchPage?: boolean;
@@ -20,6 +24,7 @@ interface Context {
   logons?: LogData;
   userDeletions?: LogData;
   caseDeletions?: LogData;
+  challengedAccessData?: LogData;
   jurisdictions?: {text: string, value: string}[];
   caseTypes?: {text: string, value: string}[];
 }
@@ -58,6 +63,10 @@ async function auditHandler(req: AppRequest, res: Response, template: string, co
         stringFieldRequired: 'Please enter at least one of the following fields: Case Type ID, Case Ref or Jurisdiction ID.',
         startDateBeforeEndDate: '\'Time from\' must be before \'Time to\'',
       },
+      caseChallengedAccessSearchForm: {
+        stringFieldRequired: 'Please enter at least one of the following fields: Case Ref or User ID.',
+        startDateBeforeEndDate: '\'Time from\' must be before \'Time to\'',
+      },
       startTimestamp: {
         invalid: 'Invalid \'Time from\' timestamp.',
         required: '\'Time from\' is required.',
@@ -73,6 +82,7 @@ async function auditHandler(req: AppRequest, res: Response, template: string, co
         invalid: 'Enter an email address in the correct format, like name@example.com',
       },
     },
+    caseChallengedAccessLogOrder: getCaseChallengedAccessLogOrder(),
   });
 }
 
@@ -113,10 +123,23 @@ async function caseDeletionHandler(req: AppRequest, res: Response) {
   auditHandler(req, res, 'case-deletions/template.njk', context);
 }
 
+export async function challengedSpecificAccessHandler(req: AppRequest, res: Response) {
+  if(!res.locals.challengedAccessEnabled){
+    res.redirect('/');
+  }
+  const context: Context = {
+    caseChallengedAccessForm: req.session?.caseChallengedAccessFormState || {},
+    challengedSpecificAccessPage: true,
+    challengedAccessData: req.session?.challengedAccessData,
+  };
+  auditHandler(req, res, 'case-challenged-access/template.njk', context);
+}
+
 export default function (app: Application): void {
   app.get('/', homeHandler);
   app.get('/case-audit', caseHandler);
   app.get('/logon-audit', logonHandler);
   app.get('/user-deletion-audit', userDeletionHandler);
   app.get('/case-deletion-audit', caseDeletionHandler);
+  app.get('/challenged-specific-access', challengedSpecificAccessHandler);
 }

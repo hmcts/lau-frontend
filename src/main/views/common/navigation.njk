@@ -7,6 +7,11 @@
           <li class="moj-primary-navigation__item">
             <a class="moj-primary-navigation__link" href="/case-audit" {% if caseSearchPage %}aria-current="page" {% endif %}>Case audit</a>
           </li>
+          {% if challengedAccessEnabled %}
+            <li class="moj-primary-navigation__item">
+              <a class="moj-primary-navigation__link" href="/challenged-specific-access" {% if challengedSpecificAccessPage %}aria-current="page" {% endif %}>Challenged & Specific Access</a>
+            </li>
+          {% endif %}
           <li class="moj-primary-navigation__item">
             <a class="moj-primary-navigation__link" href="/logon-audit" {% if logonSearchPage %}aria-current="page" {% endif %}>Log ons audit</a>
           </li>
