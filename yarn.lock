@@ -5461,20 +5461,20 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:^22.0.0, @types/node@npm:^22.2.0":
-  version: 22.4.0
-  resolution: "@types/node@npm:22.4.0"
+  version: 22.5.0
+  resolution: "@types/node@npm:22.5.0"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10/0b6ccc86856b8473f4d536491edc2ba21386d194219ee84024ef2b2ab054296f0b37a4f52719af797227132853cff065977992e353754a195cd86aea2e128cc7
+  checksum: 10/89af3bd217b1559b645a9ed16d4ae3add75749814cbd8eefddd1b96003d1973afb1c8a2b23d69f3a8cc6c532e3aa185eaf5cc29a6e7c42c311a2aad4c99430ae
   languageName: node
   linkType: hard
 
 "@types/node@npm:^20.1.0, @types/node@npm:^20.8.3":
-  version: 20.15.0
-  resolution: "@types/node@npm:20.15.0"
+  version: 20.16.1
+  resolution: "@types/node@npm:20.16.1"
   dependencies:
-    undici-types: "npm:~6.13.0"
-  checksum: 10/bec475ee6c54dc575ec4d322753df484af2b96e3afdd3f6f8e594353b3918ca5f420e7c30845225661a14a7522fa421d15294fbf68ed7ae16f4ae7942ca809bd
+    undici-types: "npm:~6.19.2"
+  checksum: 10/9bae1dffd2094694147a91ebec51dc89a60a607d16d47a0d770320f1a75d3ba58663708fd93c37954a63acb701a4e0fd64245139c57ae810d3ad524e75481d4e
   languageName: node
   linkType: hard
 
@@ -14894,14 +14894,14 @@ __metadata:
   linkType: hard
 
 "mini-css-extract-plugin@npm:^2.2.0":
-  version: 2.9.0
-  resolution: "mini-css-extract-plugin@npm:2.9.0"
+  version: 2.9.1
+  resolution: "mini-css-extract-plugin@npm:2.9.1"
   dependencies:
     schema-utils: "npm:^4.0.0"
     tapable: "npm:^2.2.1"
   peerDependencies:
     webpack: ^5.0.0
-  checksum: 10/4c9ee9c0c6160a64a4884d5a92a1a5c0b68d556cd00f975cf6c8a79b51ac90e6130a37b3832b17d377d0cb1b31c0313c8c023458d4f69e95fe3424a8b43d834f
+  checksum: 10/a4a0c73a054254784b9d39a3a4f117691600355125242dfc46ced0912b4937050823478bdbf403b5392c21e2fb2203902b41677d67c7d668f77b985b594e94c6
   languageName: node
   linkType: hard
 
@@ -15523,13 +15523,13 @@ __metadata:
   linkType: hard
 
 "nock@npm:^13.0.4":
-  version: 13.5.4
-  resolution: "nock@npm:13.5.4"
+  version: 13.5.5
+  resolution: "nock@npm:13.5.5"
   dependencies:
     debug: "npm:^4.1.0"
     json-stringify-safe: "npm:^5.0.1"
     propagate: "npm:^2.0.0"
-  checksum: 10/75bad391bae4efb81b742734af5f2d87309cd93d3ca6b78372fd37946d78ccb254d79104676619866915e6734abfc1b00fee2aa42073a4843ca3c746aad35a4d
+  checksum: 10/c19d7bf9654db056357a22b00127bb5606c1bbdff188a5b6c469825e580e31cd0cb0701bce8dd8b4876dbbd36a145fdb681fd69fd59308d6db4923ce8ab2439e
   languageName: node
   linkType: hard
 
@@ -19832,13 +19832,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.13.0":
-  version: 6.13.0
-  resolution: "undici-types@npm:6.13.0"
-  checksum: 10/da52e37cbc6da3a75da86fa08dd795ca8924430deb91005eb884b840e46e19013ccd4c1c289f70018e8cf0c338add24a500e7c3acfcd49b1ffb27ff9f91e38b9
-  languageName: node
-  linkType: hard
-
 "undici-types@npm:~6.19.2":
   version: 6.19.6
   resolution: "undici-types@npm:6.19.6"
@@ -20280,8 +20273,8 @@ __metadata:
   linkType: hard
 
 "webpack-dev-middleware@npm:^7.0.0":
-  version: 7.3.0
-  resolution: "webpack-dev-middleware@npm:7.3.0"
+  version: 7.4.2
+  resolution: "webpack-dev-middleware@npm:7.4.2"
   dependencies:
     colorette: "npm:^2.0.10"
     memfs: "npm:^4.6.0"
@@ -20294,7 +20287,7 @@ __metadata:
   peerDependenciesMeta:
     webpack:
       optional: true
-  checksum: 10/813327ff3814569d43a6608c64503dc9c2b9f993f1ef57cb304afc9e2473c35115306e1e6b9d4f85798531441d11dea3695965bbb5d2782bfcf4a33c3212855f
+  checksum: 10/608d101b82081a5bc6c0237f9945e14a8eefce1664c10877f3feb0042710f6c8b4288b07986505f791302d81b3c51180f679b97c91c3cdabd3fd0687a464ca1c
   languageName: node
   linkType: hard
 
