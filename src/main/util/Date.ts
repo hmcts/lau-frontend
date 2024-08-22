@@ -13,9 +13,13 @@ export const FORM_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
 export const REQUEST_DATE_FORMAT = 'YYYY-MM-DDTHH:mm:ss';
 export const CSV_DATE_FORMAT = 'YYYY-MM-DD';
 const SECONDS = ':00';
+const { Logger } = require('@hmcts/nodejs-logging');
+
+const logger = Logger.getLogger('Date');
 
 export const isDateValid = (date: string): boolean => {
   date = addSeconds(date);
+  logger.info("timezone :" + Intl.DateTimeFormat().resolvedOptions().timeZone);
   var currentDate = moment().utc().format(REQUEST_DATE_FORMAT);
   return date?.match(DATE_REGEX) && moment.utc(date, REQUEST_DATE_FORMAT).isValid() && moment.utc(date, REQUEST_DATE_FORMAT).isSameOrBefore(currentDate);
 };
