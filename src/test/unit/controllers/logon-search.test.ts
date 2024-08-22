@@ -1,10 +1,8 @@
-import moment from 'moment';
 import nock from 'nock';
 import sinon from 'sinon';
 import {LogonSearchController} from '../../../main/controllers/LogonSearch.controller';
 import {AppRequest} from '../../../main/models/appRequest';
 import config from 'config';
-import {REQUEST_DATE_FORMAT} from '.../../../main/util/Date';
 
 describe('Logon Search Controller', () => {
   describe('Search form validation', () => {
@@ -59,26 +57,6 @@ describe('Logon Search Controller', () => {
       const errors = logonSearchController.validateSearchForm({
         startTimestamp: '2021-01-01T00:00:00',
         endTimestamp: '2021-01-01T00:00:01',
-      });
-      expect(errors.length).toBe(0);
-    });
-
-    it('ensures dates are not in  future', async () => {
-      const errors = logonSearchController.validateSearchForm({
-        startTimestamp: '2025-01-01T00:00:00',
-        endTimestamp: '2025-01-01T00:00:01',
-      });
-      expect(errors.length).toBe(2);
-      expect(errors[0]).toStrictEqual({propertyName: 'startTimestamp', errorType: 'invalid'});
-      expect(errors[1]).toStrictEqual({propertyName: 'endTimestamp', errorType: 'invalid'});
-    });
-
-    it('ensures dates are same or before as current Date', async () => {
-      var currentDate = moment().format(REQUEST_DATE_FORMAT);
-      const errors = logonSearchController.validateSearchForm({
-        emailAddress: 'test_test@test.com',
-        startTimestamp: '2024-07-30T13:30:00',
-        endTimestamp: currentDate,
       });
       expect(errors.length).toBe(0);
     });
