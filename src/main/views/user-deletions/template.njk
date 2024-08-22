@@ -23,11 +23,7 @@
     <p class="govuk-body">
       Include time parameters in your search using the 'Time from' and 'Time to' fields and enter at least one other parameter to obtain search results.
       <br/>
-      {% if timeZone and 'Europe/London' == timeZone%}
-        Please be aware that the current timezone is BST. This is 1 hour ahead of the UTC timezone used when searching on this site.
-      {% else %}
-        The current timezone is GMT. This is equal to the UTC timezone used when searching on this site. You do not currently need to shift the desired time ahead or behind when searching.
-      {% endif %}
+      UTC is the time zone used on this site. Please be aware that between the last Sunday of March and the last Sunday of October, the time zone is "BST"; "UTC+1".  Otherwise it is "GMT"; "UTC".
     </p>
   </div>
 

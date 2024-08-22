@@ -63,7 +63,6 @@ export class OidcMiddleware {
         if (roles && roles.some(role => this.approvedRoles.includes(role))) {
           res.locals.isLoggedIn = true;
           res.locals.userRoles = roles;
-          res.locals.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
           return next();
         }
 

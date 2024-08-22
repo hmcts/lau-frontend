@@ -34,7 +34,6 @@ const setUserRoleEndpoints = (app: express.Express): void => {
       req.session.user = devUser;
     }
     res.locals.userRoles = req.session.user.roles;
-    res.locals.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     next();
   });
 
