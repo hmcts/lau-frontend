@@ -63,6 +63,7 @@ export class OidcMiddleware {
         if (roles && roles.some(role => this.approvedRoles.includes(role))) {
           res.locals.isLoggedIn = true;
           res.locals.userRoles = roles;
+
           return next();
         }
 
