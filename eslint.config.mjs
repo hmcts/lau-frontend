@@ -79,6 +79,7 @@ const tsconfig = {
     'comma-dangle': ['error', 'always-multiline'],
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/ban-ts-comment': 0,
+    '@typescript-eslint/no-require-imports': 1,
   },
 };
 

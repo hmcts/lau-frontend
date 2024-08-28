@@ -66,7 +66,7 @@ function expectNoErrors(messages: ResultIssue[]): void {
 
 function testAccessibility(url: string): void {
   describe(`Page ${url}`, () => {
-    test('should have no accessibility errors', async () => {   
+    test('should have no accessibility errors', async () => {
       const setRoleResponse = await setRoles(agent, ['cft-audit-investigator', 'cft-service-logs']);
       const cookies = setRoleResponse.headers['set-cookie'][0];
       await ensurePageCallWillSucceed(url);
@@ -91,7 +91,9 @@ describe('Accessibility', () => {
   });
 
   afterAll(async () => {
-    server ? await server.close() : null;
+    if (server) {
+      await server.close();
+    }
   });
 
   // requires user session
@@ -99,7 +101,7 @@ describe('Accessibility', () => {
   testAccessibility('/logon-audit');
   testAccessibility('/user-deletion-audit');
   testAccessibility('/case-deletion-audit');
-  
+
   // accessable without user session
   testAccessibility('/accessibility');
   testAccessibility('/cookies');
