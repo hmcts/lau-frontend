@@ -100,7 +100,7 @@
     "@hmcts/div-idam-test-harness": "^1.9.0",
     "@stryker-mutator/core": "^8.0.0",
     "@stryker-mutator/jest-runner": "^8.0.0",
-    "@types/chai-as-promised": "^7.1.1",
+    "@types/chai-as-promised": "^8.0.0",
     "@types/jest": "^29.5.5",
     "@types/pa11y": "^5.3.5",
     "@types/sinon": "^17.0.0",
