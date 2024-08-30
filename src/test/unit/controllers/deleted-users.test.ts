@@ -212,12 +212,13 @@ describe('Deleted Users Controller', () => {
         .get(pathQuery)
         .reply(200, {});
 
-      const res = { redirect: sinon.spy() };
+      const res = { 
+        redirect: jest.fn()
+       };
 
       // @ts-ignore Conversion of res with spy
       return deletedUsersController.getPage(appRequest as AppRequest, res as Response).then(() => {
-        expect(res.redirect.calledOnce).toBeTruthy();
-        expect(res.redirect.calledWith(`/error?code=${ErrorCode.IDAM_BACKEND}`));
+        expect(res.redirect).toHaveBeenCalledWith(`/error?code=${ErrorCode.IDAM_BACKEND}`);
         nock.cleanAll();
       });
     });
