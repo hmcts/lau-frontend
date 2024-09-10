@@ -96,7 +96,6 @@
     "@babel/eslint-parser": "^7.11.0",
     "@babel/preset-env": "^7.22.20",
     "@eslint/js": "^9.1.1",
-    "@faker-js/faker": "^9.0.0",
     "@hmcts/div-idam-test-harness": "^1.9.0",
     "@stryker-mutator/core": "^8.0.0",
     "@stryker-mutator/jest-runner": "^8.0.0",
