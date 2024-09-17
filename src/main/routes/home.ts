@@ -31,7 +31,12 @@ interface Context {
 
 async function homeHandler(req: AppRequest, res: Response) {
   req.session.fromPost = false;
-  res.redirect('/case-audit');
+  const roles = req.session.user?.roles;
+  if (roles && roles.length == 1 && roles.includes('cft-service-logs')) {
+    res.redirect('/case-deletion-audit');
+  } else {
+    res.redirect('/case-audit');
+  }
 }
 
 async function auditHandler(req: AppRequest, res: Response, template: string, context: Context) {
