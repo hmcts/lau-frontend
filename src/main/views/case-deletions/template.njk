@@ -2,6 +2,7 @@
 {% from 'common/macros/paging.njk' import lauPaging %}
 {% from "common/macros/lauDateTimeInput.njk" import lauDateTimeInput %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
 {% from "./../common/macros/csrf.njk" import csrfProtection %}
@@ -34,24 +35,26 @@
         value: caseDeletionsForm.caseRef
       }) }}
 
-      {{ govukInput({
+      {{ govukSelect({
         label: {
           text: "Case Type ID"
         },
-        classes: "govuk-!-width-three-quarters govuk-!-margin-top-1",
+        classes: "govuk-!-width-three-quarters accessible-autocomplete",
         id: "caseTypeId",
         name: "caseTypeId",
-        value: caseDeletionsForm.caseTypeId
+        value: caseDeletionsForm.caseTypeId,
+        items: caseTypes
       }) }}
 
-      {{ govukInput({
+      {{ govukSelect({
         label: {
           text: "Jurisdiction ID"
         },
-        classes: "govuk-!-width-three-quarters govuk-!-margin-top-1",
+        classes: "govuk-!-width-three-quarters accessible-autocomplete",
         id: "jurisdictionId",
         name: "jurisdictionId",
-        value: caseDeletionsForm.jurisdictionId
+        value: caseDeletionsForm.jurisdictionId,
+        items: jurisdictions
       }) }}
     </div>
 
