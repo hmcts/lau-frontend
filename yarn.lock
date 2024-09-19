@@ -13161,8 +13161,8 @@ __metadata:
   linkType: hard
 
 "nodemon@npm:^3.0.0":
-  version: 3.1.5
-  resolution: "nodemon@npm:3.1.5"
+  version: 3.1.6
+  resolution: "nodemon@npm:3.1.6"
   dependencies:
     chokidar: "npm:^3.5.2"
     debug: "npm:^4"
@@ -13176,7 +13176,7 @@ __metadata:
     undefsafe: "npm:^2.0.5"
   bin:
     nodemon: bin/nodemon.js
-  checksum: 10/ce90becc813f2c6f5c5d4857ff52b84b75923e80e44cfa53530a4da593a4c0a9c21ec2b933070f02c33dbdbfb48fce59eb73cab9c75bcb79f0aeac09c55c138f
+  checksum: 10/83a28596531741413f468d32339f054b105f7f960566427ba583a6d37f193af49cedeaa2587ee154d7c20c174129c77f65b515a9ad3d0a26ffb77b94a2c5a177
   languageName: node
   linkType: hard
 
