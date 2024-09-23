@@ -6565,8 +6565,8 @@ __metadata:
   linkType: hard
 
 "codeceptjs@npm:^3.5.5":
-  version: 3.6.6
-  resolution: "codeceptjs@npm:3.6.6"
+  version: 3.6.7
+  resolution: "codeceptjs@npm:3.6.7"
   dependencies:
     "@codeceptjs/configure": "npm:1.0.1"
     "@codeceptjs/detox-helper": "npm:1.1.2"
@@ -6591,7 +6591,7 @@ __metadata:
     css-to-xpath: "npm:0.1.0"
     csstoxpath: "npm:1.6.0"
     devtools: "npm:8.40.2"
-    envinfo: "npm:7.11.1"
+    envinfo: "npm:7.14.0"
     escape-string-regexp: "npm:4.0.0"
     figures: "npm:3.2.0"
     fn-args: "npm:4.0.0"
@@ -6620,7 +6620,7 @@ __metadata:
       optional: true
   bin:
     codeceptjs: bin/codecept.js
-  checksum: 10/4afd43272bd0611bc760ce80c95124f217ee059a9c381a41b8cb0efbe50d38e879fc6d66d4c04f3b4b39eca22eaba71f2d5c9bc9bcc9ec4e9b97c23eed941ad1
+  checksum: 10/0a78715e9d5c0d6d66adf8f925d0a6b3019a172a4a4842017a2dceb39d2afdba1de5d366b84b992f2ea9da1bbd3fe03d7c45631f918c752e04b37e6148271e9f
   languageName: node
   linkType: hard
 
@@ -8052,12 +8052,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"envinfo@npm:7.11.1, envinfo@npm:~7.11.1":
-  version: 7.11.1
-  resolution: "envinfo@npm:7.11.1"
+"envinfo@npm:7.14.0":
+  version: 7.14.0
+  resolution: "envinfo@npm:7.14.0"
   bin:
     envinfo: dist/cli.js
-  checksum: 10/5a18ead05954ac1643350170fefce2436a9cb758dc402e36fe4616553ee46469f766fcb6df72379d1741a2e5b55918949b343ff6174502c31c524a5cf75f05cd
+  checksum: 10/0d9d711f2b6ae02dec89dd768a3390acbcb99ac50d07f20e635a8d2db68447703476db535483592d1ed4656c3d36eee4883032d71a5118c917b4973e2d4fa027
   languageName: node
   linkType: hard
 
@@ -8067,6 +8067,15 @@ __metadata:
   bin:
     envinfo: dist/cli.js
   checksum: 10/450c962053880f46852119cf89f4412cabd6d465ff5b74cf64e74e9da3a27ebd9e901944a5c4b0bf62950ad25025552282cbde6c00a5a9af0980dd001720fcbb
+  languageName: node
+  linkType: hard
+
+"envinfo@npm:~7.11.1":
+  version: 7.11.1
+  resolution: "envinfo@npm:7.11.1"
+  bin:
+    envinfo: dist/cli.js
+  checksum: 10/5a18ead05954ac1643350170fefce2436a9cb758dc402e36fe4616553ee46469f766fcb6df72379d1741a2e5b55918949b343ff6174502c31c524a5cf75f05cd
   languageName: node
   linkType: hard
 
@@ -13161,8 +13170,8 @@ __metadata:
   linkType: hard
 
 "nodemon@npm:^3.0.0":
-  version: 3.1.6
-  resolution: "nodemon@npm:3.1.6"
+  version: 3.1.7
+  resolution: "nodemon@npm:3.1.7"
   dependencies:
     chokidar: "npm:^3.5.2"
     debug: "npm:^4"
@@ -13176,7 +13185,7 @@ __metadata:
     undefsafe: "npm:^2.0.5"
   bin:
     nodemon: bin/nodemon.js
-  checksum: 10/83a28596531741413f468d32339f054b105f7f960566427ba583a6d37f193af49cedeaa2587ee154d7c20c174129c77f65b515a9ad3d0a26ffb77b94a2c5a177
+  checksum: 10/07c6b14e4915bfe11abd0ee95bdfd96087dcdb7a37f9d1a57d9526f5f564268432556aa726a4019abf7e48deeff4628a5b34e88ccba8bf46c310c5910ad4a075
   languageName: node
   linkType: hard
 
@@ -15179,15 +15188,15 @@ __metadata:
   linkType: hard
 
 "sass@npm:^1.63.4":
-  version: 1.79.2
-  resolution: "sass@npm:1.79.2"
+  version: 1.79.3
+  resolution: "sass@npm:1.79.3"
   dependencies:
     chokidar: "npm:^4.0.0"
     immutable: "npm:^4.0.0"
     source-map-js: "npm:>=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 10/aedb94e072e5db6b8b2bdb999c6396a37b27f8e40541ee4b60186c7ba4f6252587bab6040073195d5423ff465c013f026ea5561b24293e9a64472147ee0a38c0
+  checksum: 10/9b83e91c44a4c5d738ded27fcd2c88260f5f407e49c6aab92f75a1f768831182a8f4f89f30e2599b74447451d6536ea6f3a55cac34c5ec00b45983d493732e5d
   languageName: node
   linkType: hard
 
