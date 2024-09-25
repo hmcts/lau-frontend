@@ -40,7 +40,7 @@ describe('LaunchDarklyClient', () => {
     const result = await FeatureToggleService.getChallengedAccessFeatureToggle();
     expect(result).toBeTruthy();
   });
-  it('successfully calls and returns false variation value when enviornment is production', async () => {
+  it('successfully calls and returns false variation value when enviornment is not development', async () => {
     (config.get as jest.Mock).mockImplementation((key: string) => {
       if (key === 'is_dev') return 'false';
       if (key === 'featureToggles.ft_challengeAccess') return 'ft_challengeAccess';
