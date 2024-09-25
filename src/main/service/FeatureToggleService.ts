@@ -9,7 +9,8 @@ export class FeatureToggleService{
   }
 
   public static async getChallengedAccessFeatureToggle(): Promise<void> {
+    const is_development = String(config.get('is_dev'));
     const challengedAccessFt = String(config.get('featureToggles.ft_challengeAccess'));
-    return await LaunchDarklyClient.instance.variation(challengedAccessFt, false);
+    return await LaunchDarklyClient.instance.variation(challengedAccessFt, is_development? true : false);
   }
 }

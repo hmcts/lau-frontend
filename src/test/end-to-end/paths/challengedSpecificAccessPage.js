@@ -7,7 +7,7 @@ const lauHelper = require('../lauApi/lauHelper');
 Feature('Challenged and Specific Access Page Check');
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
-logger.info('Running \'Deleted Users Page testing\' feature');
+logger.info('Running \'Challenged and Specific Access Page testing\' feature');
 
 Scenario('Navigate to LAU, perform challenged/specific access search and check results', async ({I}) => {
   await I.amOnLauAppPage('');
