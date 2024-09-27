@@ -3947,20 +3947,20 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:^22.1.0":
-  version: 22.7.0
-  resolution: "@types/node@npm:22.7.0"
+  version: 22.7.2
+  resolution: "@types/node@npm:22.7.2"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10/6476d94a4c0fbf60df56634063e8aa26da1152e7096daf374f1eb010eab1c7ef4cdb75ab2508480e82c0b56538e0e7bdfc72af47e7a4e4ace37f2035eddfd3c2
+  checksum: 10/78cfa59bfa7a7d287aede017400006059c07e0220c9eed3ab380409972711f5a2d972f8a86d6adaf2343bc66a6e9619a4dfbc71e86a2335f54bb9cd59ff0ce11
   languageName: node
   linkType: hard
 
 "@types/node@npm:^20.1.0, @types/node@npm:^20.11.30, @types/node@npm:^20.8.3":
-  version: 20.16.7
-  resolution: "@types/node@npm:20.16.7"
+  version: 20.16.9
+  resolution: "@types/node@npm:20.16.9"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10/931d6689af8d02b578a1490475df025063ca1f1c7c064ce891f7ac4da38f28bfda949e79569ac49cb5cf492b2caf91d31aecda6a4efc099e4af4be42ae7315e5
+  checksum: 10/cc7e57775ce80348f72a7026910ee0082bf3e0f5af33b3cdc3ce10df64e51bb70b0e8ce4726ecf53cc9c4ba239d340d76831de38ecc7e317e41fb71f793b6e93
   languageName: node
   linkType: hard
 
@@ -17325,9 +17325,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webdriver@npm:9.1.0":
-  version: 9.1.0
-  resolution: "webdriver@npm:9.1.0"
+"webdriver@npm:9.1.1":
+  version: 9.1.1
+  resolution: "webdriver@npm:9.1.1"
   dependencies:
     "@types/node": "npm:^20.1.0"
     "@types/ws": "npm:^8.5.3"
@@ -17338,13 +17338,13 @@ __metadata:
     "@wdio/utils": "npm:9.1.0"
     deepmerge-ts: "npm:^7.0.3"
     ws: "npm:^8.8.0"
-  checksum: 10/2cc439c16d97d711e514906126b521684e6855f8e7835abef024148dd99f039d2523510b69715755a336557b2685f1c542133f41f0145aefc7729258aeeaf0bc
+  checksum: 10/b66d25aac71d5b59bbaa3f366cf65c8a9d5735a1879bf33864365843583b8df2a8a6b0adf06fef8edc851dee2b10983583fbbc32ea0a86d2eeff79095fd61f17
   languageName: node
   linkType: hard
 
 "webdriverio@npm:^9.0.0":
-  version: 9.1.0
-  resolution: "webdriverio@npm:9.1.0"
+  version: 9.1.1
+  resolution: "webdriverio@npm:9.1.1"
   dependencies:
     "@types/node": "npm:^20.11.30"
     "@types/sinonjs__fake-timers": "npm:^8.1.5"
@@ -17372,13 +17372,13 @@ __metadata:
     rgb2hex: "npm:0.2.5"
     serialize-error: "npm:^11.0.3"
     urlpattern-polyfill: "npm:^10.0.0"
-    webdriver: "npm:9.1.0"
+    webdriver: "npm:9.1.1"
   peerDependencies:
     puppeteer-core: ^22.3.0
   peerDependenciesMeta:
     puppeteer-core:
       optional: true
-  checksum: 10/af7706e1dd2acfcb8c3d39f1bea6ea19b30ff402b84f27889835f0d95dcee954561fe9a4c7ddce39a0df663d7a0694f478bd9599f05cbb61ccd29660864857e8
+  checksum: 10/f533980d366db85966af443532d56ca669ab440bc4766f50523ac691fa8c8fcc98fdfee9778470db94c0f15391dfab544419b71490397c382faed90d795f44d8
   languageName: node
   linkType: hard
 
@@ -17466,8 +17466,8 @@ __metadata:
   linkType: hard
 
 "webpack@npm:^5.76.0":
-  version: 5.94.0
-  resolution: "webpack@npm:5.94.0"
+  version: 5.95.0
+  resolution: "webpack@npm:5.95.0"
   dependencies:
     "@types/estree": "npm:^1.0.5"
     "@webassemblyjs/ast": "npm:^1.12.1"
@@ -17497,7 +17497,7 @@ __metadata:
       optional: true
   bin:
     webpack: bin/webpack.js
-  checksum: 10/648449c5fbbb0839814116e3b2b044ac6c75a7ba272435155ddeb1e64dfaa2f8079be3adfbb691f648b69900756ce0f6fb73beab0ced3cf5e0fd46868b4593a6
+  checksum: 10/0377ad3a550b041f26237c96fb55754625b0ce6bae83c1c2447e3262ad056b0b0ad770dcbb92b59f188e9a2bd56155ce910add17dcf023cfbe78bdec774380c1
   languageName: node
   linkType: hard
 
