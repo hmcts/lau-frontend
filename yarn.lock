@@ -4385,9 +4385,9 @@ __metadata:
   linkType: hard
 
 "@types/lodash@npm:*, @types/lodash@npm:^4.14.165":
-  version: 4.17.9
-  resolution: "@types/lodash@npm:4.17.9"
-  checksum: 10/49e35caaf668686be0bad9e9bef88456903a21999d3fd8bf91c302e0d5328398fb59fee793d0afbaf6edeca1b46c3e8109899d85ff3a433075178f1ab693e597
+  version: 4.17.10
+  resolution: "@types/lodash@npm:4.17.10"
+  checksum: 10/10fe24a93adc6048cb23e4135c1ed1d52cc39033682e6513f4f51b74a9af6d7a24fbea92203c22dc4e01e35f1ab3aa0fd0a2b487e8a4a2bbdf1fc05970094066
   languageName: node
   linkType: hard
 
@@ -5845,12 +5845,12 @@ __metadata:
   linkType: hard
 
 "awilix@npm:^11.0.0":
-  version: 11.0.0
-  resolution: "awilix@npm:11.0.0"
+  version: 11.0.4
+  resolution: "awilix@npm:11.0.4"
   dependencies:
     camel-case: "npm:^4.1.2"
     fast-glob: "npm:^3.3.2"
-  checksum: 10/b586df82aa698891eb34189b60d9eee8151b4dac00f0c32fb586ce28cf0c12927742f420d04001d43e78fd575705ee3ab4c891de6489ab39e7dd71cde4e75fb2
+  checksum: 10/27b5e778808afc6da0a79c583cd8b8c62a53afb09f64de13766706fd47dd2c2f53a25bfc708874bb4dcc56490076af5d5beaa0dfe6524305c2af8c95267e8908
   languageName: node
   linkType: hard
 
