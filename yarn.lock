@@ -5872,13 +5872,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"awilix@npm:^11.0.0":
-  version: 11.0.4
-  resolution: "awilix@npm:11.0.4"
+"awilix@npm:^12.0.0":
+  version: 12.0.2
+  resolution: "awilix@npm:12.0.2"
   dependencies:
     camel-case: "npm:^4.1.2"
     fast-glob: "npm:^3.3.2"
-  checksum: 10/27b5e778808afc6da0a79c583cd8b8c62a53afb09f64de13766706fd47dd2c2f53a25bfc708874bb4dcc56490076af5d5beaa0dfe6524305c2af8c95267e8908
+  checksum: 10/e7b08d4cb389ddec33688443015d2e167b0464dbd37161941b1df2e74f1d1460f5821a2eb4f8c4a6dd36ddd4650c7113e058f46e0a8c331797bcce52ac0e03f0
   languageName: node
   linkType: hard
 
@@ -12022,7 +12022,7 @@ __metadata:
     accessible-autocomplete: "npm:^3.0.0"
     applicationinsights: "npm:^2.9.1"
     autobind-decorator: "npm:^2.4.0"
-    awilix: "npm:^11.0.0"
+    awilix: "npm:^12.0.0"
     babel-loader: "npm:^9.0.0"
     chai: "npm:^4.2.0"
     chai-as-promised: "npm:^8.0.0"
