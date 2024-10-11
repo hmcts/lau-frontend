@@ -4,6 +4,7 @@ import {requestDateToFormDate} from '../util/Date';
 interface GenericLogType {
   timestamp?: string;
   deletionTimestamp?: string;
+  requestEndTimestamp?: string;
 }
 
 export abstract class Logs<LogType extends GenericLogType> {
@@ -27,13 +28,16 @@ export abstract class Logs<LogType extends GenericLogType> {
     return this._data.map(d => {
       if ('timestamp' in d) {
         d.timestamp = requestDateToFormDate(d.timestamp);
-        return d;
-      } else if ('deletionTimestamp' in d) {
-        d.deletionTimestamp = requestDateToFormDate(d.deletionTimestamp);
-        return d;
-      } else {
-        return d;
       }
+
+      if ('requestEndTimestamp' in d) {
+        d.requestEndTimestamp = requestDateToFormDate(d.requestEndTimestamp);
+      }
+
+      if ('deletionTimestamp' in d) {
+        d.deletionTimestamp = requestDateToFormDate(d.deletionTimestamp);
+      }
+      return d;
     });
   }
 }

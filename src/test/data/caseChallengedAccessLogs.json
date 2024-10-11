@@ -1,23 +1,21 @@
 {
   "accessLog": [
     {
-        "caseId": 123,
         "caseRef": "123",
         "userId": "456",
         "requestType": "challenged",
-        "timestamp": "2020-07-20T15:00:00",
+        "timestamp": "2020-07-20 15:00:00",
         "action": "Created",
-        "requestEnd": "2020-07-20T15:00:00",
+        "requestEndTimestamp": "2020-07-20 15:00:00",
         "reason": "example reason"
     },
     {
-        "caseId": 123,
         "caseRef": "123",
         "userId": "456",
         "requestType": "specifc",
         "timestamp": "2020-07-20T15:00:00",
         "action": "Created",
-        "requestEnd": "2020-07-20T15:00:00",
+        "requestEndTimestamp": "2020-07-20 15:00:00",
         "reason": "example reason"
     }
    ],
