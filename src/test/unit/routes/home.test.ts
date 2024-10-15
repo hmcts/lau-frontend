@@ -1,6 +1,6 @@
 import request from 'supertest';
 import {app} from '../../../main/app';
-import { setRoles } from '../../helpers/roles';
+import {setRoles} from '../../helpers/roles';
 
 describe('Home Route', () => {
 
@@ -92,4 +92,16 @@ describe('Home Route', () => {
     expect(res.text).toContain('id="case-deletions-search-form"');
     expect(res.text).toContain('Deleted case search');
   });
+
+  it('redirects to /case-deletion-audit if the user has only the cft-service-logs role', async () => {
+    const agent = request.agent(app);
+
+    await setRoles(agent, ['cft-service-logs']);
+
+    const res = await agent.get('/');
+
+    expect(res.statusCode).toBe(302);
+    expect(res.header['location']).toBe('/case-deletion-audit');
+  });
+
 });
