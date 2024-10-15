@@ -1,9 +1,11 @@
 import {csvJson} from '../../../main/util/CsvHandler';
 import {CaseActivityLogs} from '../../../main/models/case/CaseActivityLogs';
 import {CaseSearchLogs} from '../../../main/models/case/CaseSearchLogs';
+import {CaseChallengedAccessLogs} from '../../../main/models/challenged-access/CaseChallengedAccessLogs';
 
 const caseActivityAuditResponse = require('../../data/caseActivityAuditResponse.json');
 const caseSearchAuditResponse = require('../../data/caseSearchAuditResponse.json');
+const caseChallengedAccessResponse = require('../../data/caseChallengedAccessLogs.json');
 
 describe('CsvHandler', () => {
 
@@ -89,6 +91,62 @@ describe('CsvHandler', () => {
           ],
           'timestamp': '2020-02-02 08:16:27',
           'userId': '3748239',
+        },
+      ],
+    });
+  });
+
+  it('Converts Case Challenged Access JSON object to CSV', async () => {
+    const caseChallengedAccessLogs = new CaseChallengedAccessLogs(caseChallengedAccessResponse.accessLog);
+    expect(csvJson(caseChallengedAccessLogs)).toStrictEqual({
+      'fields': [
+        {
+          'label': 'User ID',
+          'value': 'userId',
+        },
+        {
+          'label': 'Case ID',
+          'value': 'caseRef',
+        },
+        {
+          'label': 'Request Type',
+          'value': 'requestType',
+        },
+        {
+          'label': 'Action',
+          'value': 'action',
+        },
+        {
+          'label': 'Action On (UTC)',
+          'value': 'timestamp',
+        },
+        {
+          'label': 'Justification',
+          'value': 'reason',
+        },
+        {
+          'label': 'Time Limit (UTC)',
+          'value': 'requestEndTimestamp',
+        },
+      ],
+      'data': [
+        {
+          'caseRef': '123',
+          'userId': '456',
+          'requestType': 'challenged',
+          'timestamp': '2020-07-20 15:00:00',
+          'action': 'Created',
+          'requestEndTimestamp': '2020-07-20 15:00:00',
+          'reason': 'example reason',
+        },
+        {
+          'caseRef': '123',
+          'userId': '456',
+          'requestType': 'specifc',
+          'timestamp': '2020-07-20 15:00:00',
+          'action': 'Created',
+          'requestEndTimestamp': '2020-07-20 15:00:00',
+          'reason': 'example reason',
         },
       ],
     });

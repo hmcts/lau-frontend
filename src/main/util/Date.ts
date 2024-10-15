@@ -24,7 +24,7 @@ export const formDateToRequestDate = (date: string): string => {
 };
 
 export const requestDateToFormDate = (date: string): string => {
-  return moment(date, REQUEST_DATE_FORMAT).format(FORM_DATE_FORMAT).toString();
+  return date ? moment(date, REQUEST_DATE_FORMAT).format(FORM_DATE_FORMAT).toString() : 'N/A';
 };
 
 export const csvDate = (): string => {

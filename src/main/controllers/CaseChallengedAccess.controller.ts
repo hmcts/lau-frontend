@@ -18,7 +18,7 @@ import {csvJson} from '../util/CsvHandler';
 @autobind
 export class CaseChallengedAccessController {
   private logger: LoggerInstance = Logger.getLogger('CaseChallengedAccessController');
-  
+
   private service = new challengedAccessService();
 
   public async getLogData(req: AppRequest): Promise<LogData> {
@@ -84,7 +84,7 @@ export class CaseChallengedAccessController {
       const row: {text: string, classes: string}[] = [];
       caseChallengedAccessLogOrder.forEach((fieldName: string) => {
         // @ts-ignore
-        const text = (fieldName === 'timestamp') || (fieldName === 'requestStartTimestamp') || (fieldName === 'requestEndTimestamp')  ? requestDateToFormDate(log[fieldName]) : log[fieldName];
+        const text = (fieldName === 'timestamp') || (fieldName === 'requestEndTimestamp') ? requestDateToFormDate(log[fieldName]) : log[fieldName];
         row.push({ text, classes: 'overflow-wrap' });
       });
       rows.push(row);
