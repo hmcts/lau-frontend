@@ -16,7 +16,7 @@ Scenario('Navigate to LAU, perform challenged/specific access search and check r
   await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
 
   await lauHelper.clickNavigationLink(I, tabs.CHALLENGED_SPECIFIC_ACCESS_SEARCH);
-  await I.waitForText('Challenged & access search', testConfig.TestTimeToWaitForText);
+  await I.waitForText('Challenged & specific access search', testConfig.TestTimeToWaitForText);
   await I.performCaseChallengedAccessSearch();
   await I.click('button[name="challenged-access-search-btn"]');
 
@@ -41,7 +41,7 @@ Scenario('Navigate to LAU, perform challenged/specific access search and downloa
   await I.seeInCurrentUrl(tabs.CASE_SEARCH);
   await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
   await lauHelper.clickNavigationLink(I, tabs.CHALLENGED_SPECIFIC_ACCESS_SEARCH);
-  await I.waitForText('Challenged & access search', testConfig.TestTimeToWaitForText);
+  await I.waitForText('Challenged & specific access search', testConfig.TestTimeToWaitForText);
   await I.performCaseChallengedAccessSearch();
   await I.click('button[name="challenged-access-search-btn"]');
   await I.waitForText('Results', testConfig.TestTimeToWaitForText);
@@ -64,7 +64,7 @@ Scenario('Navigate to LAU, perform challenged/specific access search and authent
   await I.seeInCurrentUrl(tabs.CASE_SEARCH);
   await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
   await lauHelper.clickNavigationLink(I, tabs.CHALLENGED_SPECIFIC_ACCESS_SEARCH);
-  await I.waitForText('Challenged & access search', testConfig.TestTimeToWaitForText);
+  await I.waitForText('Challenged & specific access search', testConfig.TestTimeToWaitForText);
   await I.performChallengedAccessSearchWithoutSearchData();
   await I.click('button[name="challenged-access-search-btn"]');
 
