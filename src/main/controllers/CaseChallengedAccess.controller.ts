@@ -83,14 +83,27 @@ export class CaseChallengedAccessController {
     logs.forEach((log) => {
       const row: {text: string, classes: string}[] = [];
       caseChallengedAccessLogOrder.forEach((fieldName: string) => {
-        // @ts-ignore
-        const text = (fieldName === 'timestamp') || (fieldName === 'requestEndTimestamp') ? requestDateToFormDate(log[fieldName]) : log[fieldName];
+        const text = this.getFieldText(fieldName, log);
         row.push({ text, classes: 'overflow-wrap' });
       });
       rows.push(row);
     });
 
     return rows;
+  }
+
+
+  private getFieldText(fieldName: string, log: CaseChallengedAccessLog): string {
+    if (fieldName === 'reason') {
+      return log[fieldName] == null ? 'N/A' : log[fieldName];
+    }
+
+    if (fieldName === 'timestamp' || fieldName === 'requestEndTimestamp') {
+      // @ts-ignore
+      return requestDateToFormDate(log[fieldName]);
+    }
+    // @ts-ignore
+    return log[fieldName];
   }
 
 }
