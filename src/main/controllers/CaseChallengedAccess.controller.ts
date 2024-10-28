@@ -38,7 +38,7 @@ export class CaseChallengedAccessController {
             lastPage: caseChallengedAccesses.totalNumberOfRecords > 0 ? Math.ceil(caseChallengedAccesses.totalNumberOfRecords / recordsPerPage) : 1,
           });
         } else {
-          const errMsg = 'Case deletions data malformed';
+          const errMsg = 'Case access request data malformed';
           this.logger.error(errMsg);
           reject(new AppError(errMsg, ErrorCode.CASE_BACKEND));
         }
