@@ -4440,11 +4440,11 @@ __metadata:
   linkType: hard
 
 "@types/cookie-parser@npm:^1.4.2":
-  version: 1.4.7
-  resolution: "@types/cookie-parser@npm:1.4.7"
-  dependencies:
-    "@types/express": "npm:*"
-  checksum: 10/7b87c59420598e686a57e240be6e0db53967c3c8814be9326bf86609ee2fc39c4b3b9f2263e1deba43526090121d1df88684b64c19f7b494a80a4437caf3d40b
+  version: 1.4.8
+  resolution: "@types/cookie-parser@npm:1.4.8"
+  peerDependencies:
+    "@types/express": "*"
+  checksum: 10/b26ace5560adce1a746c059a75f18227ee3e3614a49c70dd29b8af204696079ced22eaa9d6cb084e3433ec433bff845cb47ffb890ae9af96a4aab2ff85e40da7
   languageName: node
   linkType: hard
 
@@ -4682,20 +4682,20 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:^22.5.5":
-  version: 22.9.3
-  resolution: "@types/node@npm:22.9.3"
+  version: 22.10.0
+  resolution: "@types/node@npm:22.10.0"
   dependencies:
-    undici-types: "npm:~6.19.8"
-  checksum: 10/c32a03ff998b8c6cf7d653216508a92b1e6569dd5031ea6cfc2aaa8c75ebbf4172bf1602f0e1f673086e210787dc96667b99ba4d919bc151f9a1f88aeac42822
+    undici-types: "npm:~6.20.0"
+  checksum: 10/e2561e15eaac6261cf828cd7dcd4882a5ce2e10104db4123566b00418acf30e18518e39c7a906682f44118b420c555cc774ac3e0e6f80e37f55884cfe6cf1f78
   languageName: node
   linkType: hard
 
 "@types/node@npm:^20.1.0, @types/node@npm:^20.11.30, @types/node@npm:^20.8.3":
-  version: 20.17.7
-  resolution: "@types/node@npm:20.17.7"
+  version: 20.17.8
+  resolution: "@types/node@npm:20.17.8"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10/b54a9e6dedb75d86e2cc1ea249d2cff512fea3185d53e5a8b6b8ba93ad06f61347a4785a963323672f73f53a4847dd8ce9bb706ad4ba23650520abc67c7cffba
+  checksum: 10/e3e968b327abc70fd437a223f8950dd4436047e954aa7db09abde5df1f58a5c49f33d6f14524e256d09719e1960d22bf072d62e4bda7375f7895a092c7eb2f9d
   languageName: node
   linkType: hard
 
@@ -17856,10 +17856,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.19.2, undici-types@npm:~6.19.8":
+"undici-types@npm:~6.19.2":
   version: 6.19.8
   resolution: "undici-types@npm:6.19.8"
   checksum: 10/cf0b48ed4fc99baf56584afa91aaffa5010c268b8842f62e02f752df209e3dea138b372a60a963b3b2576ed932f32329ce7ddb9cb5f27a6c83040d8cd74b7a70
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~6.20.0":
+  version: 6.20.0
+  resolution: "undici-types@npm:6.20.0"
+  checksum: 10/583ac7bbf4ff69931d3985f4762cde2690bb607844c16a5e2fbb92ed312fe4fa1b365e953032d469fa28ba8b224e88a595f0b10a449332f83fa77c695e567dbe
   languageName: node
   linkType: hard
 
@@ -17867,6 +17874,13 @@ __metadata:
   version: 6.19.8
   resolution: "undici@npm:6.19.8"
   checksum: 10/19ae4ba38b029a664d99fd330935ef59136cf99edb04ed821042f27b5a9e84777265fb744c8a7abc83f2059afb019446c69a4ebef07bbc0ed6b2de8d67ef4090
+  languageName: node
+  linkType: hard
+
+"undici@npm:^6.20.1":
+  version: 6.21.0
+  resolution: "undici@npm:6.21.0"
+  checksum: 10/c8ff80dcadfcf613e7fe697c37519fca070fcf1cfccc69ffb6a7080a22e225eb79d232e9f70e32b099b3e67ac4216e8fd615e188cfb792e09df9233471ec17e0
   languageName: node
   linkType: hard
 
@@ -18178,9 +18192,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webdriver@npm:9.3.1":
-  version: 9.3.1
-  resolution: "webdriver@npm:9.3.1"
+"webdriver@npm:9.4.0":
+  version: 9.4.0
+  resolution: "webdriver@npm:9.4.0"
   dependencies:
     "@types/node": "npm:^20.1.0"
     "@types/ws": "npm:^8.5.3"
@@ -18190,14 +18204,15 @@ __metadata:
     "@wdio/types": "npm:9.2.2"
     "@wdio/utils": "npm:9.2.8"
     deepmerge-ts: "npm:^7.0.3"
+    undici: "npm:^6.20.1"
     ws: "npm:^8.8.0"
-  checksum: 10/7f8dbfa58760f70d64de696e18386b692686184431d37e4c9f6fc84d9438f4a4e1f102ed57ce0de97eaaf52f8a2d963d9631169af33e1c3fbbbfc91701228b9f
+  checksum: 10/957bc225f22bbcecccd270fefea6ecef37041703652f7484590f260d9533dcac02e245a154eca30bb9fd8125d797739d581d7ad813e149698112d5ff9977e471
   languageName: node
   linkType: hard
 
 "webdriverio@npm:^9.0.0":
-  version: 9.3.1
-  resolution: "webdriverio@npm:9.3.1"
+  version: 9.4.0
+  resolution: "webdriverio@npm:9.4.0"
   dependencies:
     "@types/node": "npm:^20.11.30"
     "@types/sinonjs__fake-timers": "npm:^8.1.5"
@@ -18225,13 +18240,13 @@ __metadata:
     rgb2hex: "npm:0.2.5"
     serialize-error: "npm:^11.0.3"
     urlpattern-polyfill: "npm:^10.0.0"
-    webdriver: "npm:9.3.1"
+    webdriver: "npm:9.4.0"
   peerDependencies:
     puppeteer-core: ^22.3.0
   peerDependenciesMeta:
     puppeteer-core:
       optional: true
-  checksum: 10/039b225719f988843bfc185e9b130c7ed571a0f7cb94067e9ba4af8b2cd4a091c97efd328e7a9af1e2f9bd4a14f8caa6d0a30186cee4378770776c6d6238604d
+  checksum: 10/2afa585b423e1990b45f2671874468811bfda57308651dd6b7cbe9f9a8d31c6e2a83d770b3e431383600f0b760dceac45ca2e50cef2187b9088226c3be70eb9e
   languageName: node
   linkType: hard
 
