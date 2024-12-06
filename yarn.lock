@@ -4210,26 +4210,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stryker-mutator/api@npm:8.6.0":
-  version: 8.6.0
-  resolution: "@stryker-mutator/api@npm:8.6.0"
+"@stryker-mutator/api@npm:8.7.0":
+  version: 8.7.0
+  resolution: "@stryker-mutator/api@npm:8.7.0"
   dependencies:
     mutation-testing-metrics: "npm:3.3.0"
     mutation-testing-report-schema: "npm:3.3.0"
     tslib: "npm:~2.7.0"
     typed-inject: "npm:~4.0.0"
-  checksum: 10/eba141677cc98b8c4383d1c4d826c6c9299f4c0e82c3af75fec7fe5c9f217b6b8130a78123b2207a4e67a9ba4e06cc7f946590d8902632caf14c65c92dc4549a
+  checksum: 10/b1dd85555f4cf7f1747905b1f33961fd595fac3d08cc2d914943d0e0bfe814c911c7044ffa344b874d8320c1705d3f2ad531f2511acd4a60c665702c4624a2bd
   languageName: node
   linkType: hard
 
 "@stryker-mutator/core@npm:^8.0.0":
-  version: 8.6.0
-  resolution: "@stryker-mutator/core@npm:8.6.0"
+  version: 8.7.0
+  resolution: "@stryker-mutator/core@npm:8.7.0"
   dependencies:
     "@inquirer/prompts": "npm:^6.0.0"
-    "@stryker-mutator/api": "npm:8.6.0"
-    "@stryker-mutator/instrumenter": "npm:8.6.0"
-    "@stryker-mutator/util": "npm:8.6.0"
+    "@stryker-mutator/api": "npm:8.7.0"
+    "@stryker-mutator/instrumenter": "npm:8.7.0"
+    "@stryker-mutator/util": "npm:8.7.0"
     ajv: "npm:~8.17.1"
     chalk: "npm:~5.3.0"
     commander: "npm:~12.1.0"
@@ -4237,11 +4237,9 @@ __metadata:
     emoji-regex: "npm:~10.4.0"
     execa: "npm:~9.4.0"
     file-url: "npm:~4.0.0"
-    get-port: "npm:~7.1.0"
     lodash.groupby: "npm:~4.6.0"
-    log4js: "npm:~6.9.1"
     minimatch: "npm:~9.0.5"
-    mutation-testing-elements: "npm:3.3.0"
+    mutation-testing-elements: "npm:3.4.0"
     mutation-testing-metrics: "npm:3.3.0"
     mutation-testing-report-schema: "npm:3.3.0"
     npm-run-path: "npm:~6.0.0"
@@ -4255,13 +4253,13 @@ __metadata:
     typed-rest-client: "npm:~2.1.0"
   bin:
     stryker: ./bin/stryker.js
-  checksum: 10/017f7481ad40fa608b6020c25105d2bc732fc10ecafd81a03764131551b88957b20501c6cf43244089dbdc01b58c126dcbc021420acc55c3bf0bc85799786b4b
+  checksum: 10/a6b870381b6413bb721e9472be06d60c9d48b5ae4e284416eaf29b42f9457128aa751a30e74bccab39a16cbbfe1b87702a62c0f34f07fcb04d57335e538b3b09
   languageName: node
   linkType: hard
 
-"@stryker-mutator/instrumenter@npm:8.6.0":
-  version: 8.6.0
-  resolution: "@stryker-mutator/instrumenter@npm:8.6.0"
+"@stryker-mutator/instrumenter@npm:8.7.0":
+  version: 8.7.0
+  resolution: "@stryker-mutator/instrumenter@npm:8.7.0"
   dependencies:
     "@babel/core": "npm:~7.25.2"
     "@babel/generator": "npm:~7.25.0"
@@ -4269,33 +4267,33 @@ __metadata:
     "@babel/plugin-proposal-decorators": "npm:~7.24.7"
     "@babel/plugin-proposal-explicit-resource-management": "npm:^7.24.7"
     "@babel/preset-typescript": "npm:~7.24.7"
-    "@stryker-mutator/api": "npm:8.6.0"
-    "@stryker-mutator/util": "npm:8.6.0"
+    "@stryker-mutator/api": "npm:8.7.0"
+    "@stryker-mutator/util": "npm:8.7.0"
     angular-html-parser: "npm:~6.0.2"
     semver: "npm:~7.6.3"
     weapon-regex: "npm:~1.3.2"
-  checksum: 10/bd3e03925a3634c616f2260cdc246c9899b45a37e7bb7644d5954991d63604b3302ef1516c486d9856cf28c906e5bf842a24174af0ab07ca651412ee7978cb19
+  checksum: 10/85801666c098f655af6ceabf3dbfdadf7ddf389858abca152ade9186b4b4506dba86c0f2b947fb1124698f0dd9400bfadadc40a036eca44bac580c01746b5b26
   languageName: node
   linkType: hard
 
 "@stryker-mutator/jest-runner@npm:^8.0.0":
-  version: 8.6.0
-  resolution: "@stryker-mutator/jest-runner@npm:8.6.0"
+  version: 8.7.0
+  resolution: "@stryker-mutator/jest-runner@npm:8.7.0"
   dependencies:
-    "@stryker-mutator/api": "npm:8.6.0"
-    "@stryker-mutator/util": "npm:8.6.0"
+    "@stryker-mutator/api": "npm:8.7.0"
+    "@stryker-mutator/util": "npm:8.7.0"
     semver: "npm:~7.6.3"
     tslib: "npm:~2.7.0"
   peerDependencies:
-    "@stryker-mutator/core": ~8.6.0
-  checksum: 10/c67344e6be36165f132a6744ac8c4532a834736cf97d78cd9dd1a7f443e411426ef5e8c720bbef1fc3f466403846baaf769aa9570ecb1beeba74138bd819bc2e
+    "@stryker-mutator/core": ~8.7.0
+  checksum: 10/dcf53f3374840403b761f9cb6114fc0983f2ede967fe2fc74b7b8b63e73f32baf6c0e2f0efd6131c8e6ef1a8541fbf6d5bb54b463f238865d3cddf77f58a5957
   languageName: node
   linkType: hard
 
-"@stryker-mutator/util@npm:8.6.0":
-  version: 8.6.0
-  resolution: "@stryker-mutator/util@npm:8.6.0"
-  checksum: 10/5520a75b3b59af3ec9cca889b2b133eb40da9a2be6362118713f198827fc586b787c7fe3ed4d497bb6f6605ba1b9ef178e72e0182e1101f941d8bb1617663e2c
+"@stryker-mutator/util@npm:8.7.0":
+  version: 8.7.0
+  resolution: "@stryker-mutator/util@npm:8.7.0"
+  checksum: 10/5451f88ac222d1d254c03e51b5e6ec530833c988dcd582caa8abd4ce0d04c903fff5e537b475ab709a7c1e167269baaf92f12579153bca4c45a40eb927f3ba8a
   languageName: node
   linkType: hard
 
@@ -8006,13 +8004,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-format@npm:^4.0.14":
-  version: 4.0.14
-  resolution: "date-format@npm:4.0.14"
-  checksum: 10/6b07fd1df247439c53b71244e3468b93e6dfebb5d409b9328dd7b7e9ed0d2e875018e20fb1a95ae6b677dea708ec06aaa5058a7a5faa1a7f649338aabf04991a
-  languageName: node
-  linkType: hard
-
 "dateformat@npm:^4.5.1":
   version: 4.6.3
   resolution: "dateformat@npm:4.6.3"
@@ -8037,14 +8028,14 @@ __metadata:
   linkType: hard
 
 "debug@npm:4, debug@npm:^4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.4, debug@npm:^4.3.5, debug@npm:^4.3.6, debug@npm:^4.3.7":
-  version: 4.3.7
-  resolution: "debug@npm:4.3.7"
+  version: 4.4.0
+  resolution: "debug@npm:4.4.0"
   dependencies:
     ms: "npm:^2.1.3"
   peerDependenciesMeta:
     supports-color:
       optional: true
-  checksum: 10/71168908b9a78227ab29d5d25fe03c5867750e31ce24bf2c44a86efc5af041758bb56569b0a3d48a9b5344c00a24a777e6f4100ed6dfd9534a42c1dde285125a
+  checksum: 10/1847944c2e3c2c732514b93d11886575625686056cd765336212dc15de2d2b29612b6cd80e1afba767bb8e1803b778caf9973e98169ef1a24a7a7009e1820367
   languageName: node
   linkType: hard
 
@@ -9290,8 +9281,8 @@ __metadata:
   linkType: hard
 
 "express@npm:^4.20.0":
-  version: 4.21.1
-  resolution: "express@npm:4.21.1"
+  version: 4.21.2
+  resolution: "express@npm:4.21.2"
   dependencies:
     accepts: "npm:~1.3.8"
     array-flatten: "npm:1.1.1"
@@ -9312,7 +9303,7 @@ __metadata:
     methods: "npm:~1.1.2"
     on-finished: "npm:2.4.1"
     parseurl: "npm:~1.3.3"
-    path-to-regexp: "npm:0.1.10"
+    path-to-regexp: "npm:0.1.12"
     proxy-addr: "npm:~2.0.7"
     qs: "npm:6.13.0"
     range-parser: "npm:~1.2.1"
@@ -9324,7 +9315,7 @@ __metadata:
     type-is: "npm:~1.6.18"
     utils-merge: "npm:1.0.1"
     vary: "npm:~1.1.2"
-  checksum: 10/5d4a36dd03c1d1cce93172e9b185b5cd13a978d29ee03adc51cd278be7b4a514ae2b63e2fdaec0c00fdc95c6cfb396d9dd1da147917ffd337d6cd0778e08c9bc
+  checksum: 10/34571c442fc8c9f2c4b442d2faa10ea1175cf8559237fc6a278f5ce6254a8ffdbeb9a15d99f77c1a9f2926ab183e3b7ba560e3261f1ad4149799e3412ab66bd1
   languageName: node
   linkType: hard
 
@@ -9697,7 +9688,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flatted@npm:^3.2.7, flatted@npm:^3.2.9, flatted@npm:^3.3.1":
+"flatted@npm:^3.2.9, flatted@npm:^3.3.1":
   version: 3.3.1
   resolution: "flatted@npm:3.3.1"
   checksum: 10/7b8376061d5be6e0d3658bbab8bde587647f68797cf6bfeae9dea0e5137d9f27547ab92aaff3512dd9d1299086a6d61be98e9d48a56d17531b634f77faadbc49
@@ -9983,7 +9974,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-port@npm:^7.0.0, get-port@npm:~7.1.0":
+"get-port@npm:^7.0.0":
   version: 7.1.0
   resolution: "get-port@npm:7.1.0"
   checksum: 10/f4d23b43026124007663a899578cc87ff37bfcf645c5c72651e9810ebafc759857784e409fb8e0ada9b90e5c5db089b0ae2f5f6b49fba1ce2e0aff86094ab17d
@@ -12642,19 +12633,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"log4js@npm:~6.9.1":
-  version: 6.9.1
-  resolution: "log4js@npm:6.9.1"
-  dependencies:
-    date-format: "npm:^4.0.14"
-    debug: "npm:^4.3.4"
-    flatted: "npm:^3.2.7"
-    rfdc: "npm:^1.3.0"
-    streamroller: "npm:^3.1.5"
-  checksum: 10/421fb9c1e5a8859a810a40c9ee01fb8e4dfc2fed838049946e67c0064d197bdf76ca43b8fc45df50c5d709e6fc4f218d314f189a0feb8be0c48bdae80cb0934c
-  languageName: node
-  linkType: hard
-
 "logkitty@npm:^0.7.1":
   version: 0.7.1
   resolution: "logkitty@npm:0.7.1"
@@ -13670,10 +13648,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mutation-testing-elements@npm:3.3.0":
-  version: 3.3.0
-  resolution: "mutation-testing-elements@npm:3.3.0"
-  checksum: 10/d53ebc0de8034d427fd431f21d885db726ad0393349ce608c6a8c9be359a50d73c0b2bafbfbfedb497856faa3b013e9b7ae49150a54553a021d9966f9a153ece
+"mutation-testing-elements@npm:3.4.0":
+  version: 3.4.0
+  resolution: "mutation-testing-elements@npm:3.4.0"
+  checksum: 10/a68843bbff9b2544a6b8029693443cd3ae0bc084db54ca7eff893152bdad14c42e0401bb431120c5305b67a073c0a55eb6a5f099eca034be9420a35e466745a7
   languageName: node
   linkType: hard
 
@@ -14645,10 +14623,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path-to-regexp@npm:0.1.10":
-  version: 0.1.10
-  resolution: "path-to-regexp@npm:0.1.10"
-  checksum: 10/894e31f1b20e592732a87db61fff5b95c892a3fe430f9ab18455ebe69ee88ef86f8eb49912e261f9926fc53da9f93b46521523e33aefd9cb0a7b0d85d7096006
+"path-to-regexp@npm:0.1.12":
+  version: 0.1.12
+  resolution: "path-to-regexp@npm:0.1.12"
+  checksum: 10/2e30f6a0144679c1f95c98e166b96e6acd1e72be9417830fefc8de7ac1992147eb9a4c7acaa59119fb1b3c34eec393b2129ef27e24b2054a3906fc4fb0d1398e
   languageName: node
   linkType: hard
 
@@ -15872,13 +15850,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rfdc@npm:^1.3.0":
-  version: 1.4.1
-  resolution: "rfdc@npm:1.4.1"
-  checksum: 10/2f3d11d3d8929b4bfeefc9acb03aae90f971401de0add5ae6c5e38fec14f0405e6a4aad8fdb76344bfdd20c5193110e3750cbbd28ba86d73729d222b6cf4a729
-  languageName: node
-  linkType: hard
-
 "rgb2hex@npm:0.2.5":
   version: 0.2.5
   resolution: "rgb2hex@npm:0.2.5"
@@ -16689,17 +16660,6 @@ __metadata:
   dependencies:
     stream-chain: "npm:^2.2.5"
   checksum: 10/a1cc448dd71267e1e44bfae4a2b0590690213c97dd6d273cc93e345aa2442b0f959e7a3da6cfa5386a6718e0f8afee0774be5b13126a6e79943499fbc4479f6c
-  languageName: node
-  linkType: hard
-
-"streamroller@npm:^3.1.5":
-  version: 3.1.5
-  resolution: "streamroller@npm:3.1.5"
-  dependencies:
-    date-format: "npm:^4.0.14"
-    debug: "npm:^4.3.4"
-    fs-extra: "npm:^8.1.0"
-  checksum: 10/2e4fe61ab91d24e6a9add67418ca9b8e19bc49f4037e1f8b7ae2e480a1d7750423f470d111d138d921a538ae4777c4eb15b00f9cc2a0d4fd72829687889b0c63
   languageName: node
   linkType: hard
 
