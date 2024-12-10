@@ -151,6 +151,7 @@
   "resolutions": {
     "send": "0.19.1",
     "cookie": "0.7.2",
-    "cross-spawn": "7.0.6"
+    "cross-spawn": "7.0.6",
+    "nanoid": "^3.3.8"
   }
 }
