@@ -3686,9 +3686,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@puppeteer/browsers@npm:2.6.0":
-  version: 2.6.0
-  resolution: "@puppeteer/browsers@npm:2.6.0"
+"@puppeteer/browsers@npm:2.6.1":
+  version: 2.6.1
+  resolution: "@puppeteer/browsers@npm:2.6.1"
   dependencies:
     debug: "npm:^4.4.0"
     extract-zip: "npm:^2.0.1"
@@ -3700,7 +3700,7 @@ __metadata:
     yargs: "npm:^17.7.2"
   bin:
     browsers: lib/cjs/main-cli.js
-  checksum: 10/eb84a07109be80c2a17a34ccd1284258412924ac63e1ce2ec865662fd55ad42922b3eb4707a0445a439b73e1fd9b8b3c8c670df19f64dadcefbaabf0bef66bab
+  checksum: 10/9351e942e00d048a687c5bc5926035774b8c49f0eae593e56f48c6e2fd6be8d8b5e0e5747d8fb94ba4ceb616fd05da2429f5730ad593b6f211493042df01ea94
   languageName: node
   linkType: hard
 
@@ -4172,26 +4172,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stryker-mutator/api@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@stryker-mutator/api@npm:8.7.0"
+"@stryker-mutator/api@npm:8.7.1":
+  version: 8.7.1
+  resolution: "@stryker-mutator/api@npm:8.7.1"
   dependencies:
     mutation-testing-metrics: "npm:3.3.0"
     mutation-testing-report-schema: "npm:3.3.0"
     tslib: "npm:~2.7.0"
     typed-inject: "npm:~4.0.0"
-  checksum: 10/b1dd85555f4cf7f1747905b1f33961fd595fac3d08cc2d914943d0e0bfe814c911c7044ffa344b874d8320c1705d3f2ad531f2511acd4a60c665702c4624a2bd
+  checksum: 10/f04d481a19c1face7b76740b143c6f4bf0e560765fad7fb9d6986babae4172fbc94184101254081ece610bd964472727ee1e8903840b2de5c79724a0e747d6a3
   languageName: node
   linkType: hard
 
 "@stryker-mutator/core@npm:^8.0.0":
-  version: 8.7.0
-  resolution: "@stryker-mutator/core@npm:8.7.0"
+  version: 8.7.1
+  resolution: "@stryker-mutator/core@npm:8.7.1"
   dependencies:
     "@inquirer/prompts": "npm:^6.0.0"
-    "@stryker-mutator/api": "npm:8.7.0"
-    "@stryker-mutator/instrumenter": "npm:8.7.0"
-    "@stryker-mutator/util": "npm:8.7.0"
+    "@stryker-mutator/api": "npm:8.7.1"
+    "@stryker-mutator/instrumenter": "npm:8.7.1"
+    "@stryker-mutator/util": "npm:8.7.1"
     ajv: "npm:~8.17.1"
     chalk: "npm:~5.3.0"
     commander: "npm:~12.1.0"
@@ -4215,13 +4215,13 @@ __metadata:
     typed-rest-client: "npm:~2.1.0"
   bin:
     stryker: ./bin/stryker.js
-  checksum: 10/a6b870381b6413bb721e9472be06d60c9d48b5ae4e284416eaf29b42f9457128aa751a30e74bccab39a16cbbfe1b87702a62c0f34f07fcb04d57335e538b3b09
+  checksum: 10/7b3bd828e1ac0e8e949f8f47ccdb04a7541f6525a3ac2cdddc869b962426616fae4d590b1ddae66dd38e63cbb8f0047af7731a8d403a1dd44878030f3207a8a3
   languageName: node
   linkType: hard
 
-"@stryker-mutator/instrumenter@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@stryker-mutator/instrumenter@npm:8.7.0"
+"@stryker-mutator/instrumenter@npm:8.7.1":
+  version: 8.7.1
+  resolution: "@stryker-mutator/instrumenter@npm:8.7.1"
   dependencies:
     "@babel/core": "npm:~7.25.2"
     "@babel/generator": "npm:~7.25.0"
@@ -4229,33 +4229,33 @@ __metadata:
     "@babel/plugin-proposal-decorators": "npm:~7.24.7"
     "@babel/plugin-proposal-explicit-resource-management": "npm:^7.24.7"
     "@babel/preset-typescript": "npm:~7.24.7"
-    "@stryker-mutator/api": "npm:8.7.0"
-    "@stryker-mutator/util": "npm:8.7.0"
+    "@stryker-mutator/api": "npm:8.7.1"
+    "@stryker-mutator/util": "npm:8.7.1"
     angular-html-parser: "npm:~6.0.2"
     semver: "npm:~7.6.3"
     weapon-regex: "npm:~1.3.2"
-  checksum: 10/85801666c098f655af6ceabf3dbfdadf7ddf389858abca152ade9186b4b4506dba86c0f2b947fb1124698f0dd9400bfadadc40a036eca44bac580c01746b5b26
+  checksum: 10/13b3d18e74a181d18ec5cd74cd0663e801e86032b69ad5c0a9479309b19ecfbd665718327165f769f72e4980947e25f4d16c1c9274076489681ed1226c98922e
   languageName: node
   linkType: hard
 
 "@stryker-mutator/jest-runner@npm:^8.0.0":
-  version: 8.7.0
-  resolution: "@stryker-mutator/jest-runner@npm:8.7.0"
+  version: 8.7.1
+  resolution: "@stryker-mutator/jest-runner@npm:8.7.1"
   dependencies:
-    "@stryker-mutator/api": "npm:8.7.0"
-    "@stryker-mutator/util": "npm:8.7.0"
+    "@stryker-mutator/api": "npm:8.7.1"
+    "@stryker-mutator/util": "npm:8.7.1"
     semver: "npm:~7.6.3"
     tslib: "npm:~2.7.0"
   peerDependencies:
     "@stryker-mutator/core": ~8.7.0
-  checksum: 10/dcf53f3374840403b761f9cb6114fc0983f2ede967fe2fc74b7b8b63e73f32baf6c0e2f0efd6131c8e6ef1a8541fbf6d5bb54b463f238865d3cddf77f58a5957
+  checksum: 10/8c5e601b9aa5c9ed396df99468568f2ed3db52fdeb88e9d9742089c595e33e1bff00d8b78411e481e4668507f7e4bb05a70e9ccfa64ed0cc90bdaf2b53e6a821
   languageName: node
   linkType: hard
 
-"@stryker-mutator/util@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@stryker-mutator/util@npm:8.7.0"
-  checksum: 10/5451f88ac222d1d254c03e51b5e6ec530833c988dcd582caa8abd4ce0d04c903fff5e537b475ab709a7c1e167269baaf92f12579153bca4c45a40eb927f3ba8a
+"@stryker-mutator/util@npm:8.7.1":
+  version: 8.7.1
+  resolution: "@stryker-mutator/util@npm:8.7.1"
+  checksum: 10/e06a61a0bedea99bf44355a2f7859fe8b92eee4f3e693a789443e9b30b9fcf197a277439bedb7ca5f8c3447462cb34d3a422593be2ef2fed14be396ee91c6066
   languageName: node
   linkType: hard
 
@@ -4666,20 +4666,20 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:^22.0.0, @types/node@npm:^22.5.5":
-  version: 22.10.1
-  resolution: "@types/node@npm:22.10.1"
+  version: 22.10.2
+  resolution: "@types/node@npm:22.10.2"
   dependencies:
     undici-types: "npm:~6.20.0"
-  checksum: 10/c802a526da2f3fa3ccefd00a71244e7cb825329951719e79e8fec62b1dbc2855388c830489770611584665ce10be23c05ed585982038b24924e1ba2c2cce03fd
+  checksum: 10/451adfefed4add58b069407173e616220fd4aaa3307cdde1bb701aa053b65b54ced8483db2f870dcedec7a58cb3b06101fbc19d85852716672ec1fd3660947fa
   languageName: node
   linkType: hard
 
 "@types/node@npm:^20.1.0, @types/node@npm:^20.11.30":
-  version: 20.17.9
-  resolution: "@types/node@npm:20.17.9"
+  version: 20.17.10
+  resolution: "@types/node@npm:20.17.10"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10/11604a47adf383892394a59a339136b2746a71addf4a3b13f661d23b6e81e8a4f3b35e69dbcffc94698368e5ab5ec056a43a86c87eff00b1b8ea8cfcbfe641df
+  checksum: 10/9a1bcb2f25ce1ad249497e5f10ed984bf0ec476439fad2e965c3d6cc4642abb23c5e8400f7e48e55ff121d2b80b14bdc1bd4eac7ff6848154033a2be25fffb17
   languageName: node
   linkType: hard
 
@@ -7207,8 +7207,8 @@ __metadata:
   linkType: hard
 
 "codeceptjs@npm:^3.5.5":
-  version: 3.6.9
-  resolution: "codeceptjs@npm:3.6.9"
+  version: 3.6.10
+  resolution: "codeceptjs@npm:3.6.10"
   dependencies:
     "@codeceptjs/configure": "npm:1.0.1"
     "@codeceptjs/detox-helper": "npm:1.1.2"
@@ -7261,7 +7261,7 @@ __metadata:
       optional: true
   bin:
     codeceptjs: bin/codecept.js
-  checksum: 10/7cb0bcbf61ed28d52d02db24e32dd8ed4fd4651d61f0790d622483249d3d3b1ef3323b01cbbc7213e37fd2da7c05ab31fe49f26164f20b5644e46dce03f5b33f
+  checksum: 10/ade36f7148c95777b905d9f29544d522a5881976364b19810763f89889879d03327226c0d88ddd1f0f22324d36eb2cf3fef76764c76576fc6701dfcc900e5628
   languageName: node
   linkType: hard
 
@@ -14843,17 +14843,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"puppeteer-core@npm:23.10.2":
-  version: 23.10.2
-  resolution: "puppeteer-core@npm:23.10.2"
+"puppeteer-core@npm:23.10.3":
+  version: 23.10.3
+  resolution: "puppeteer-core@npm:23.10.3"
   dependencies:
-    "@puppeteer/browsers": "npm:2.6.0"
+    "@puppeteer/browsers": "npm:2.6.1"
     chromium-bidi: "npm:0.8.0"
     debug: "npm:^4.4.0"
     devtools-protocol: "npm:0.0.1367902"
     typed-query-selector: "npm:^2.12.0"
     ws: "npm:^8.18.0"
-  checksum: 10/b99ac2e0abe835cb370160dffaa4e8e36fffc0c5870828a8820180e9c4dcdf3a7fb59442d1c2df6860c6682618363c4ae012b905233ffcf7d0ee11e8843a97d7
+  checksum: 10/1bdb68704fd70bb439f078fe6d753ed58cf65a6b9a8e9055aa91293ec988ffc05dc6f5c837175c4cbc29834ecad61c081da161772c511c1131aef3c425aa67ec
   languageName: node
   linkType: hard
 
@@ -14872,18 +14872,18 @@ __metadata:
   linkType: hard
 
 "puppeteer@npm:^23.0.0":
-  version: 23.10.2
-  resolution: "puppeteer@npm:23.10.2"
+  version: 23.10.3
+  resolution: "puppeteer@npm:23.10.3"
   dependencies:
-    "@puppeteer/browsers": "npm:2.6.0"
+    "@puppeteer/browsers": "npm:2.6.1"
     chromium-bidi: "npm:0.8.0"
     cosmiconfig: "npm:^9.0.0"
     devtools-protocol: "npm:0.0.1367902"
-    puppeteer-core: "npm:23.10.2"
+    puppeteer-core: "npm:23.10.3"
     typed-query-selector: "npm:^2.12.0"
   bin:
     puppeteer: lib/cjs/puppeteer/node/cli.js
-  checksum: 10/2a5444408c4713b6c6dd2d7bb4be6133264e952f74bb0e28ea68033566ca1e780bd65f09572f2cd6bc5a439f6e052db125731f848a6e8adef4a48c09bc3d3efe
+  checksum: 10/e15ef5b6b1e3c995818ec8ce8deb9c4c905f3f09758a487bb964bf16de0edb5b5206f64d47d851eb792d505e994c9e06fcb0b4e5d832063e05935855e83d90c6
   languageName: node
   linkType: hard
 
