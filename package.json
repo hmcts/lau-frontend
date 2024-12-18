@@ -149,7 +149,7 @@
     "yarn-audit-fix": "^10.0.0"
   },
   "resolutions": {
-    "send": "0.19.1",
+    "send": "1.1.0",
     "cookie": "1.0.2",
     "cross-spawn": "7.0.6",
     "nanoid": "^3.3.8"
