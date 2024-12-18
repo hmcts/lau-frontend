@@ -135,7 +135,7 @@
     "sonar-scanner": "^3.1.0",
     "style-loader": "^4.0.0",
     "stylelint": "^16.0.0",
-    "stylelint-config-standard-scss": "^13.0.0",
+    "stylelint-config-standard-scss": "^14.0.0",
     "supertest": "^7.0.0",
     "ts-jest": "^29.0.3",
     "ts-loader": "^9.5.0",
