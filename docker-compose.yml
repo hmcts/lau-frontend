@@ -27,7 +27,7 @@ services:
       - idam-web-public
 
   redis:
-    image: bitnami/redis:7.4.1
+    image: bitnami/redis:7.4.2
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
 

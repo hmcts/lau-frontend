@@ -10057,9 +10057,9 @@ __metadata:
   linkType: hard
 
 "govuk-frontend@npm:^5.0.0":
-  version: 5.7.1
-  resolution: "govuk-frontend@npm:5.7.1"
-  checksum: 10/4d11eeff588888644d734653388bde148ef911b35ebf6f2d192488ac8e5c87f813875f0421bf5b69e06fcc425597521fa495dcf7a10966897eb6477ba5732d82
+  version: 5.8.0
+  resolution: "govuk-frontend@npm:5.8.0"
+  checksum: 10/86fb7a09f8e53a739799b4c4d93f3c2bd2d7efe481660d3c32087982271ddbb90fb8fcf5585babef6fd184295979078248b5ff42505d4826e4c0911951f33ab9
   languageName: node
   linkType: hard
 
@@ -17846,8 +17846,8 @@ __metadata:
   linkType: hard
 
 "webdriverio@npm:^9.0.0":
-  version: 9.5.1
-  resolution: "webdriverio@npm:9.5.1"
+  version: 9.5.2
+  resolution: "webdriverio@npm:9.5.2"
   dependencies:
     "@types/node": "npm:^20.11.30"
     "@types/sinonjs__fake-timers": "npm:^8.1.5"
@@ -17881,7 +17881,7 @@ __metadata:
   peerDependenciesMeta:
     puppeteer-core:
       optional: true
-  checksum: 10/9c9ab96112c3cc6b39780f1bae2d08354656e0f522dd64cd600a02bc58fe9d7a9235a21a9399df1a43aaf48ae31731736ad4da6842c655a6739a41eeb8b5a5dc
+  checksum: 10/119a7a877b063d95a55da2f8c1fe2e0b8d5045144ab5c68dad3767ddbf81a942ca299bf94548b1426404b9b7082bfc676684207544d5da97f8078af67516f663
   languageName: node
   linkType: hard
 
