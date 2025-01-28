@@ -104,6 +104,7 @@ describe('AuthService', () => {
         idToken: serviceToken,
         id: 'lau_id',
         roles: ['cft-audit-investigator'],
+        toggleablePages: {'lau-challenged-access': true},
       };
       expect(userDetails).toStrictEqual(expectedUser);
 
@@ -145,6 +146,7 @@ describe('AuthService', () => {
         idToken: serviceToken,
         id: 'lau_id',
         roles: ['cft-audit-investigator'],
+        toggleablePages: {'lau-challenged-access': true},
       };
       expect(userDetails).toStrictEqual(expectedUser);
 

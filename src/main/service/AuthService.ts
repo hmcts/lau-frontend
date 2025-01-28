@@ -148,6 +148,10 @@ export class AuthService {
     const expiresAt: number = requestTimeInSeconds + Number(data.expires_in);
 
     const jwt: IdTokenJwtPayload = jwtDecode(data.id_token);
+    const challengedToggle: string = this.config.get('featureToggles.ft_challengeAccess');
+    const toggleablePages: {[key: string]: boolean} = {
+      [challengedToggle]: this.config.get('featureToggles.challengedAccessEnabled'),
+    };
 
     session.user = {
       accessToken: data.access_token,
@@ -156,7 +160,9 @@ export class AuthService {
       idToken: data.id_token,
       id: jwt.uid,
       roles: jwt.roles,
+      toggleablePages,
     };
+
     session.save(() => session.user);
     return session.user;
   }

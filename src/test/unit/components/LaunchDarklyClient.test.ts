@@ -14,6 +14,7 @@ describe('LaunchDarklyClient', () => {
   it('initialises the client', async () => {
     expect(LaunchDarklyClient.instance).toBeDefined();
   });
+
   it('successfully calls and returns truthy variation value', async () => {
     // Simulate LDClient variation method returning true
     jest.spyOn(LaunchDarklyClient.instance, 'variation').mockResolvedValue(true);
@@ -21,6 +22,7 @@ describe('LaunchDarklyClient', () => {
     const testFeature = await LaunchDarklyClient.instance.variation('test', true);
     expect(testFeature).toBeTruthy();
   });
+
   it('successfully calls and returns falsy variation value', async () => {
     // Simulate LDClient variation method returning false
     jest.spyOn(LaunchDarklyClient.instance, 'variation').mockResolvedValue(false);
@@ -28,6 +30,7 @@ describe('LaunchDarklyClient', () => {
     const testFeature = await LaunchDarklyClient.instance.variation('test', false);
     expect(testFeature).toBeFalsy();
   });
+
   it('successfully calls and returns true variation value when enviornment is development', async () => {
     (config.get as jest.Mock).mockImplementation((key: string) => {
       if (key === 'is_dev') return 'true';
@@ -40,6 +43,7 @@ describe('LaunchDarklyClient', () => {
     const result = await FeatureToggleService.getChallengedAccessFeatureToggle();
     expect(result).toBeTruthy();
   });
+
   it('successfully calls and returns false variation value when enviornment is not development', async () => {
     (config.get as jest.Mock).mockImplementation((key: string) => {
       if (key === 'is_dev') return 'false';
@@ -51,6 +55,5 @@ describe('LaunchDarklyClient', () => {
 
     const result = await FeatureToggleService.getChallengedAccessFeatureToggle();
     expect(result).toBeFalsy();
-  
   });
 });

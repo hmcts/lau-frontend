@@ -27,5 +27,5 @@ services:
     url: S2S_URL
 featureToggles:
   ldKey: LD_SDK_KEY
-  ft_deletedUsers: 'LAU_DELETED_USERS'
+  challengedAccessEnabled: CHALLENGED_ACCESS_ENABLED
 is_dev: IS_DEV

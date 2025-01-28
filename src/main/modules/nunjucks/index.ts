@@ -4,7 +4,6 @@ import * as nunjucks from 'nunjucks';
 import {numberWithCommas} from '../../util/Util';
 import {AppRequest} from '../../models/appRequest';
 import config from 'config';
-import {FeatureToggleService} from './../../service/FeatureToggleService';
 
 export class Nunjucks {
   constructor(public developmentMode: boolean) {
@@ -33,7 +32,8 @@ export class Nunjucks {
     }
 
     app.use(async (req: AppRequest, res, next) => {
-      res.locals.challengedAccessEnabled = await FeatureToggleService.getChallengedAccessFeatureToggle();
+      const challengedAccessToggle: string = config.get('featureToggles.ft_challengeAccess');
+      res.locals.challengedAccessEnabled = req.session.user?.toggleablePages?.[challengedAccessToggle];
       res.locals.pagePath = req.path;
       next();
     });

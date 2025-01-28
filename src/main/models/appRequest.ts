@@ -56,4 +56,5 @@ export interface UserDetails {
   idToken: string;
   id: string;
   roles: string[];
+  toggleablePages?: {[key: string]: boolean};
 }

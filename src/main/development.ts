@@ -26,6 +26,7 @@ const setUserRoleEndpoints = (app: express.Express): void => {
     refreshToken: 'refreshToken',
     expiresAt: Date.now(),
     roles: [],
+    toggleablePages: {'lau-challenged-access': config.get('featureToggles.challengedAccessEnabled')},
   };
 
   // Ensure dev user and userRoles is set

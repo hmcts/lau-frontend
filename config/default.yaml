@@ -60,8 +60,8 @@ services:
 featureToggles:
   enabled: true
   ldKey: 'LD_SDK_KEY'
-  ft_deletedUsers: 'LAU_DELETED_USERS'
   ft_challengeAccess: 'lau-challenged-access'
+  challengedAccessEnabled: true
 session:
   cookieMaxAge: 30 # minutes
 is_dev: true
