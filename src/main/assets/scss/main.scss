@@ -1,8 +1,8 @@
 @use "sass:map";
-@import "govuk-frontend";
-@import "./loading-spinner";
-@import "./timeout-modal";
-@import "accessible-autocomplete";
+@use "govuk-frontend";
+@use "./loading-spinner";
+@use "./timeout-modal";
+@use "accessible-autocomplete";
 
 $color-grey: #808080;
 $color-white: #fff;
