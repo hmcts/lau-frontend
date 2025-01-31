@@ -7,7 +7,7 @@ const scss = require(path.resolve(__dirname, 'webpack/scss'));
 const HtmlWebpack = require(path.resolve(__dirname, 'webpack/htmlWebpack'));
 
 const devMode = process.env.NODE_ENV !== 'production';
-const fileNameSuffix = devMode ? '-dev' : '.[contenthash]';
+const fileNameSuffix = devMode ? '-dev' : '-prod';
 const filename = `[name]${fileNameSuffix}.js`;
 
 module.exports = {
