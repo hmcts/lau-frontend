@@ -1,5 +1,5 @@
+@use "govuk-frontend" as govuk;
 @use "sass:map";
-@use "govuk-frontend";
 @use "./loading-spinner";
 @use "./timeout-modal";
 @use "accessible-autocomplete";
@@ -8,8 +8,8 @@ $color-grey: #808080;
 $color-white: #fff;
 $lighter-grey: #f3f2f1;
 $blue: #1d70b8;
-$tablet-breakpoint: map.get($govuk-breakpoints, "tablet");
-$desktop-breakpoint: map.get($govuk-breakpoints, "desktop");
+$tablet-breakpoint: map.get(govuk.$govuk-breakpoints, "tablet");
+$desktop-breakpoint: map.get(govuk.$govuk-breakpoints, "desktop");
 
 .flex-row {
   display: flex;
