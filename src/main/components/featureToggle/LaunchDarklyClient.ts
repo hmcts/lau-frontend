@@ -1,13 +1,8 @@
-import {LoggerInstance} from 'winston';
 import LaunchDarklySDK from 'launchdarkly-node-server-sdk';
 import config from 'config';
 import {AppError, ErrorCode} from '../../models/AppError';
 
-const {Logger} = require('@hmcts/nodejs-logging');
-
 export class LaunchDarklyClient {
-
-  private logger: LoggerInstance = Logger.getLogger('LaunchDarklyClient');
 
   private static _instance: LaunchDarklyClient;
   private client: LaunchDarklySDK.LDClient;
@@ -37,8 +32,6 @@ export class LaunchDarklyClient {
 
       const variation = () => {
         this.client.variation(featureKey, {key: 'lau-frontend'}, offlineDefault, (err, enabled) => {
-          this.logger.info(`Checking feature toggle: ${featureKey}, isEnabled: ${enabled}`);
-
           if (err) {
             reject(new AppError(err, ErrorCode.LAUNCH_DARKLY));
           } else {
