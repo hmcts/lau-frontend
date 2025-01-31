@@ -30,6 +30,7 @@ const logger = Logger.getLogger('app');
 export const app = express();
 app.locals.ENV = env;
 
+app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -56,7 +57,7 @@ const options = {
   acceptRanges: false,
 };
 
-app.use(compression());
+
 app.use(favicon(path.join(__dirname, '/public/assets/images/favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public'), options));
 app.use((req, res, next) => {
