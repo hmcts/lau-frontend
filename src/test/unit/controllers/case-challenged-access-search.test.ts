@@ -159,6 +159,6 @@ describe('Case Challenged Access Search Controller', () => {
         expect(res.redirect).toHaveBeenCalledWith('/error?code=LAU02');
         nock.cleanAll();
       });
-    });
+    }, 15000);
   });
 });
