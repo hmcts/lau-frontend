@@ -68,8 +68,7 @@ export class HealthCheck {
   }
 
   private redisHealthCheck(app: Application) {
-    const sessionStore = app.locals.sessionStore;
-    const redisClient: Redis = sessionStore.client;
+    const redisClient: Redis = app.locals.redisClient;
 
     return healthcheck.raw(async () => {
       const healthy = await this.getRedisHealth(redisClient);

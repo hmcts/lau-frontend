@@ -16,8 +16,7 @@ export class SessionStorage {
   public enableFor(app: Application): void {
     app.use(cookieParser());
     app.set('trust proxy', 1);
-
-    const sessionStore = this.getStore();
+    const sessionStore = this.getStore(app);
     app.use(
       session({
         name: 'lau-session',
@@ -38,7 +37,7 @@ export class SessionStorage {
     app.locals.sessionStore = sessionStore;
   }
 
-  public getStore(): RedisStore {
+  public getStore(app: Application): RedisStore {
     const redisEnabled = config.get('redis.enabled');
     if (redisEnabled) {
       const host: string = config.get('redis.host');
@@ -66,6 +65,7 @@ export class SessionStorage {
         }, 60000); // 60s
       });
 
+      app.locals.redisClient = client;
       return new RedisStore({ client, ttl });
     } else if (config.get('environment') === 'prod') {
       throw new Error('Redis disabled in production!');
