@@ -1,5 +1,5 @@
 import config from 'config';
-import ConnectRedis from 'connect-redis';
+import { RedisStore } from 'connect-redis';
 import cookieParser from 'cookie-parser';
 import { Application } from 'express';
 import session from 'express-session';
@@ -8,11 +8,10 @@ import Redis from 'ioredis';
 const logger = (require('@hmcts/nodejs-logging')).Logger.getLogger('SessionStorage');
 
 export class SessionStorage {
-  private RedisStore = ConnectRedis(session);
-  private MemoryStore = require('express-session').MemoryStore;
+  private readonly MemoryStore = require('express-session').MemoryStore;
 
-  private minuteInMs = 60 * 1000;
-  private cookieMaxAgeInMs: number = (config.get('session.cookieMaxAge') as number) * this.minuteInMs;
+  private readonly minuteInMs = 60 * 1000;
+  private readonly cookieMaxAgeInMs: number = (config.get('session.cookieMaxAge') as number) * this.minuteInMs;
 
   public enableFor(app: Application): void {
     app.use(cookieParser());
@@ -39,7 +38,7 @@ export class SessionStorage {
     app.locals.sessionStore = sessionStore;
   }
 
-  public getStore(): ConnectRedis.RedisStore {
+  public getStore(): RedisStore {
     const redisEnabled = config.get('redis.enabled');
     if (redisEnabled) {
       const host: string = config.get('redis.host');
@@ -67,7 +66,7 @@ export class SessionStorage {
         }, 60000); // 60s
       });
 
-      return new this.RedisStore({ client, ttl });
+      return new RedisStore({ client, ttl });
     } else if (config.get('environment') === 'prod') {
       throw new Error('Redis disabled in production!');
     }
