@@ -58,7 +58,7 @@
     "awilix": "^12.0.0",
     "compression": "^1.7.4",
     "config": "^3.3.2",
-    "connect-redis": "^6.0.0",
+    "connect-redis": "^8.0.0",
     "cookie-parser": "^1.4.5",
     "csrf-sync": "^4.0.3",
     "email-validator": "^2.0.4",
