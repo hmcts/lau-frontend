@@ -5,7 +5,7 @@ import { Application } from 'express';
 import session from 'express-session';
 import Redis from 'ioredis';
 
-const logger = (require('@hmcts/nodejs-logging')).Logger.getLogger('SessionStorage');
+import logger from '../../modules/logging';
 
 export class SessionStorage {
   private readonly MemoryStore = require('express-session').MemoryStore;

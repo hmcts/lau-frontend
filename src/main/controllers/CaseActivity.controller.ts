@@ -1,5 +1,4 @@
-import {LoggerInstance} from 'winston';
-const {Logger} = require('@hmcts/nodejs-logging');
+import logger from '../modules/logging';
 
 import autobind from 'autobind-decorator';
 import config from 'config';
@@ -16,17 +15,16 @@ import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
  */
 @autobind
 export class CaseActivityController {
-  private logger: LoggerInstance = Logger.getLogger('CaseActivityController');
 
   private service = new CaseService();
 
   public async getLogData(req: AppRequest): Promise<LogData> {
-    this.logger.info('getLogData called');
+    logger.info('getLogData called');
 
     return new Promise((resolve, reject) => {
       this.service.getCaseActivities(req).then(caseActivities => {
         if (caseActivities.actionLog) {
-          this.logger.info('Case activities retrieved');
+          logger.info('Case activities retrieved');
           const recordsPerPage = Number(config.get('pagination.maxPerPage'));
           resolve({
             hasData: caseActivities.actionLog.length > 0,
@@ -40,11 +38,11 @@ export class CaseActivityController {
           });
         } else {
           const errMsg = 'Case Activities data malformed';
-          this.logger.error(errMsg);
+          logger.error(errMsg);
           reject(new AppError(errMsg, ErrorCode.CASE_BACKEND));
         }
       }).catch((err: AppError) => {
-        this.logger.error(err.message);
+        logger.error(err.message);
         reject(err);
       });
     });
@@ -60,13 +58,13 @@ export class CaseActivityController {
     const searchForm = req.session.caseFormState || {};
     searchForm.page = Number(req.params.pageNumber) || 1;
 
-    this.logger.info('CaseActivity search for page ', req.params.pageNumber);
+    logger.info('CaseActivity search for page ', req.params.pageNumber);
 
     await this.getLogData(req).then(logData => {
       req.session.caseActivities = logData;
       res.redirect('/case-audit#case-activity');
     }).catch((err: AppError) => {
-      this.logger.error(err.message);
+      logger.error(err.message);
       errorRedirect(res, err.code);
     });
   }
