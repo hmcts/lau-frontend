@@ -1,17 +1,14 @@
-import {LoggerInstance} from 'winston';
 import config from 'config';
 import fetch from 'node-fetch';
 import {AuthService, IdamGrantType} from './AuthService';
 import {AppSession} from '../models/appRequest';
 import {AppError, ErrorCode} from '../models/AppError';
 
-const {Logger} = require('@hmcts/nodejs-logging');
+import logger from '../modules/logging';
 
 export abstract class BaseService<RequestType> {
   abstract baseApiUrl: string;
   abstract errorCode: ErrorCode;
-
-  logger: LoggerInstance = Logger.getLogger(this.constructor.name);
 
   private authService: AuthService;
   private s2sEnabled: string = config.get('services.s2s.enabled');
@@ -44,7 +41,7 @@ export abstract class BaseService<RequestType> {
           resolve(response.json());
         })
         .catch(err => {
-          this.logger.error(err);
+          logger.error(err);
           reject(new AppError(err, ErrorCode.CASE_BACKEND));
         });
     });

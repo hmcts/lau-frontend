@@ -4,6 +4,7 @@ import {ErrorCode} from '../models/AppError';
 import {AppRequest} from '../models/appRequest';
 import {DeletedUsersSearchRequest} from '../models/user-deletions/DeletedUsersSearchRequest';
 import {DeletedUsersAudit} from '../models/user-deletions/DeletedUsersAudit';
+import logger from '../modules/logging';
 
 export class DeletedUsersService extends BaseService<DeletedUsersSearchRequest> {
   baseApiUrl = String(config.get('services.lau-idam-backend.url'));
@@ -17,7 +18,7 @@ export class DeletedUsersService extends BaseService<DeletedUsersSearchRequest> 
       searchParameters.page = 1;
       searchParameters.size = req.session.userDeletions?.totalNumberOfRecords || 0;
     }
-    this.logger.info('getDeletedUsers: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
+    logger.info('getDeletedUsers: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
     return this.get(req.session, endpoint, this.getQueryString(searchParameters)) as Promise<DeletedUsersAudit>;
   }
 }

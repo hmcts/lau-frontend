@@ -7,6 +7,7 @@ import {LogonSearchRequest} from '../models/idam/LogonSearchRequest';
 import {LogonController} from './Logon.controller';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 import {validEmail} from '../util/validators';
+import logger from '../modules/logging';
 
 /**
  * Search Controller class to handle search tab functionality
@@ -40,7 +41,7 @@ export class LogonSearchController extends BaseSearchController<LogonSearchReque
       searchRequest.size = this.pageSize;
 
       // To be sent to API GET
-      this.logger.info('API Request Parameters: ', searchRequest);
+      logger.info('API Request Parameters: ', searchRequest);
 
       this.formatSearchRequest(searchRequest);
 
@@ -48,7 +49,7 @@ export class LogonSearchController extends BaseSearchController<LogonSearchReque
         req.session.logons = logData;
         res.redirect('/logon-audit#results-section');
       }).catch((err: AppError) => {
-        this.logger.error(err.message);
+        logger.error(err.message);
         errorRedirect(res, err.code || ErrorCode.FRONTEND);
       });
     } else {
