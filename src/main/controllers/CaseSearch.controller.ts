@@ -7,6 +7,7 @@ import {CaseSearchesController} from './CaseSearches.controller';
 import {BaseSearchController} from './BaseSearchController';
 import {validCaseRef} from '../util/validators';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
+import logger from '../modules/logging';
 
 /**
  * Search Controller class to handle search tab functionality
@@ -44,7 +45,7 @@ export class CaseSearchController extends BaseSearchController<CaseSearchRequest
       searchRequest.size = this.pageSize;
 
       // To be sent to API GET
-      this.logger.info('API Request Parameters: ', searchRequest);
+      logger.info('API Request Parameters: ', searchRequest);
 
       this.formatSearchRequest(searchRequest);
 
@@ -52,12 +53,12 @@ export class CaseSearchController extends BaseSearchController<CaseSearchRequest
         this.caseActivityController.getLogData(req),
         this.caseSearchesController.getLogData(req),
       ]).then(value => {
-        this.logger.info('Case search promise complete... updating session and redirecting...');
+        logger.info('Case search promise complete... updating session and redirecting...');
         req.session.caseActivities = value[0];
         req.session.caseSearches = value[1];
         res.redirect('/case-audit#case-activity');
       }).catch((err: AppError) => {
-        this.logger.error(err.message);
+        logger.error(err.message);
         errorRedirect(res, err.code || ErrorCode.FRONTEND);
       });
     } else {

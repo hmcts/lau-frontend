@@ -6,7 +6,7 @@ const lauHelper = require('../lauApi/lauHelper');
 
 Feature('Deleted Users Check)');
 
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('../logger');
 logger.info('Running \'Deleted Users Page testing\' feature');
 
 Scenario('Navigate to LAU, perform deleted user search and authenticate deleted user results', async ({I}) => {
