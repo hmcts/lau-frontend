@@ -5218,6 +5218,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"abbrev@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "abbrev@npm:3.0.0"
+  checksum: 10/2ceee14efdeda42ef7355178c1069499f183546ff7112b3efe79c1edef09d20ad9c17939752215fb8f7fcf48d10e6a7c0aa00136dc9cf4d293d963718bb1d200
+  languageName: node
+  linkType: hard
+
 "abort-controller@npm:^3.0.0":
   version: 3.0.0
   resolution: "abort-controller@npm:3.0.0"
@@ -6866,8 +6873,8 @@ __metadata:
   linkType: hard
 
 "codeceptjs@npm:^3.5.5":
-  version: 3.7.1
-  resolution: "codeceptjs@npm:3.7.1"
+  version: 3.7.2
+  resolution: "codeceptjs@npm:3.7.2"
   dependencies:
     "@codeceptjs/configure": "npm:1.0.2"
     "@codeceptjs/detox-helper": "npm:1.1.5"
@@ -6896,12 +6903,12 @@ __metadata:
     inquirer: "npm:8.2.6"
     invisi-data: "npm:^1.0.0"
     joi: "npm:17.13.3"
-    js-beautify: "npm:1.15.1"
+    js-beautify: "npm:1.15.2"
     lodash.clonedeep: "npm:4.5.0"
     lodash.merge: "npm:4.6.2"
     mkdirp: "npm:3.0.1"
     mocha: "npm:11.1.0"
-    monocart-coverage-reports: "npm:2.12.0"
+    monocart-coverage-reports: "npm:2.12.1"
     ms: "npm:2.1.3"
     ora-classic: "npm:5.4.2"
     parse-function: "npm:5.6.10"
@@ -6915,7 +6922,7 @@ __metadata:
       optional: true
   bin:
     codeceptjs: bin/codecept.js
-  checksum: 10/d24c3378e88622dad7a2fddbdc9c9c9951894348e81ce19b024ab8d6e7f4b78bef0d10b4da781c96f6c9effb644075423e726a455f9540ad3d96b9393699e180
+  checksum: 10/30fbb356bb73e4814977b75ebc2dd63269bf89392a6d34f7542b463614ed15229932ed69642773f125b1b56bafee6c63e63fcf8aa6d920fac79e9a318e8df46c
   languageName: node
   linkType: hard
 
@@ -7016,7 +7023,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^13.0.0":
+"commander@npm:^13.1.0":
   version: 13.1.0
   resolution: "commander@npm:13.1.0"
   checksum: 10/d3b4b79e6be8471ddadacbb8cd441fe82154d7da7393b50e76165a9e29ccdb74fa911a186437b9a211d0fc071db6051915c94fb8ef16d77511d898e9dbabc6af
@@ -8473,8 +8480,8 @@ __metadata:
   linkType: hard
 
 "eslint@npm:^9.1.1":
-  version: 9.20.0
-  resolution: "eslint@npm:9.20.0"
+  version: 9.20.1
+  resolution: "eslint@npm:9.20.1"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.2.0"
     "@eslint-community/regexpp": "npm:^4.12.1"
@@ -8517,7 +8524,7 @@ __metadata:
       optional: true
   bin:
     eslint: bin/eslint.js
-  checksum: 10/6a7686fbda51a0dfe812ef39c251e2c2b0e828196059732d280be6aa375a1f4b5b0b34fed98de30ee363c3bf1b7e8d2a4eccf20b4112f3ad6709f067404a815c
+  checksum: 10/b1d870135c8ff628685e72c0e9cd161476835e8e69e803d89d87fc4aebe85fc6b51ca422c3c4bc62f0ef7bbd9b10feda76e37e4801706e75931c1791d0e051a8
   languageName: node
   linkType: hard
 
@@ -9523,7 +9530,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^10.0.0, glob@npm:^10.2.2, glob@npm:^10.3.10, glob@npm:^10.3.3, glob@npm:^10.4.5":
+"glob@npm:^10.0.0, glob@npm:^10.2.2, glob@npm:^10.3.10, glob@npm:^10.4.5":
   version: 10.4.5
   resolution: "glob@npm:10.4.5"
   dependencies:
@@ -11135,20 +11142,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-beautify@npm:1.15.1":
-  version: 1.15.1
-  resolution: "js-beautify@npm:1.15.1"
+"js-beautify@npm:1.15.2":
+  version: 1.15.2
+  resolution: "js-beautify@npm:1.15.2"
   dependencies:
     config-chain: "npm:^1.1.13"
     editorconfig: "npm:^1.0.4"
-    glob: "npm:^10.3.3"
+    glob: "npm:^11.0.0"
     js-cookie: "npm:^3.0.5"
-    nopt: "npm:^7.2.0"
+    nopt: "npm:^8.0.0"
   bin:
     css-beautify: js/bin/css-beautify.js
     html-beautify: js/bin/html-beautify.js
     js-beautify: js/bin/js-beautify.js
-  checksum: 10/9fc7111fc30035e8674e778ed2c271b2762084039482252d0a53fd94341e2009daceda99f4d9d0272672f2e136367ec8ce1008a04eb00140bd42c9668c3ed9af
+  checksum: 10/e8c4fdafb794dcaae928531b897e40ac91bf2f3b368aa43ebf1b93ba635abc34e77d8a8c733c3816d1686403132a9993ca367e3a4af1b21c5477b8f0f6d9d2d0
   languageName: node
   linkType: hard
 
@@ -12842,14 +12849,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"monocart-coverage-reports@npm:2.12.0":
-  version: 2.12.0
-  resolution: "monocart-coverage-reports@npm:2.12.0"
+"monocart-coverage-reports@npm:2.12.1":
+  version: 2.12.1
+  resolution: "monocart-coverage-reports@npm:2.12.1"
   dependencies:
     acorn: "npm:^8.14.0"
     acorn-loose: "npm:^8.4.0"
     acorn-walk: "npm:^8.3.4"
-    commander: "npm:^13.0.0"
+    commander: "npm:^13.1.0"
     console-grid: "npm:^2.2.3"
     eight-colors: "npm:^1.3.1"
     foreground-child: "npm:^3.3.0"
@@ -12860,7 +12867,7 @@ __metadata:
     monocart-locator: "npm:^1.0.2"
   bin:
     mcr: lib/cli.js
-  checksum: 10/3280c547e39c7c8ffdda1beb1e87d95c54c7558ef4a7dbb320c5ca8224fae82c5c3d479e7dee2fe164d0263ce9d2d37606600e3149c43f5e01b205cfd5ad7ed3
+  checksum: 10/5d119ef51b216d41ad91fd75a2bcead28502a2676edd0666e9b8ecbeb688db0c20b17f33c17fadd1c78d034f3de023e5531615d635136ec469d6df1ecf9c6d3b
   languageName: node
   linkType: hard
 
@@ -13228,7 +13235,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nopt@npm:^7.0.0, nopt@npm:^7.2.0":
+"nopt@npm:^7.0.0":
   version: 7.2.1
   resolution: "nopt@npm:7.2.1"
   dependencies:
@@ -13236,6 +13243,17 @@ __metadata:
   bin:
     nopt: bin/nopt.js
   checksum: 10/95a1f6dec8a81cd18cdc2fed93e6f0b4e02cf6bdb4501c848752c6e34f9883d9942f036a5e3b21a699047d8a448562d891e67492df68ec9c373e6198133337ae
+  languageName: node
+  linkType: hard
+
+"nopt@npm:^8.0.0":
+  version: 8.1.0
+  resolution: "nopt@npm:8.1.0"
+  dependencies:
+    abbrev: "npm:^3.0.0"
+  bin:
+    nopt: bin/nopt.js
+  checksum: 10/26ab456c51a96f02a9e5aa8d1b80ef3219f2070f3f3528a040e32fb735b1e651e17bdf0f1476988d3a46d498f35c65ed662d122f340d38ce4a7e71dd7b20c4bc
   languageName: node
   linkType: hard
 
