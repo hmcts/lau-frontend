@@ -9,6 +9,7 @@ const logger = winston.createLogger({
   transports: [
     new winston.transports.Console({
       stderrLevels: ['info', 'warn', 'error', 'critical'],
+      consoleWarnLevels: ['info', 'warn', 'error', 'critical'],
     }),
   ],
 });
