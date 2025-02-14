@@ -44,7 +44,6 @@
     "@types/express": "^5.0.0",
     "@types/express-session": "^1.18.1",
     "@types/glob": "^8.1.0",
-    "@types/helmet": "^4.0.0",
     "@types/lodash": "^4.14.165",
     "@types/node": "^22.0.0",
     "@types/node-fetch": "^2.6.6",
@@ -149,9 +148,6 @@
     "yarn-audit-fix": "^10.0.0"
   },
   "resolutions": {
-    "send": "0.19.1",
-    "cookie": "1.0.2",
-    "cross-spawn": "7.0.6",
-    "nanoid": "^3.3.8"
+    "serve-static": "1.16.2"
   }
 }
