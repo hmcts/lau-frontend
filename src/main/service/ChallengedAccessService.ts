@@ -5,6 +5,7 @@ import {AppRequest} from '../models/appRequest';
 
 import {CaseChallengedAccessRequest} from '../models/challenged-access/CaseChallengedAccessRequest';
 import {CaseChallengedAccesses} from '../models/challenged-access/CaseChallengedAccesses';
+import logger from '../modules/logging';
 
 export class challengedAccessService extends BaseService<CaseChallengedAccessRequest> {
   baseApiUrl = String(config.get('services.lau-case-backend.url'));
@@ -18,7 +19,7 @@ export class challengedAccessService extends BaseService<CaseChallengedAccessReq
       searchParameters.page = 1;
       searchParameters.size = req.session.challengedAccessData?.totalNumberOfRecords || 0;
     }
-    this.logger.info('getChallengedAccess: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
+    logger.info('getChallengedAccess: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
     return this.get(req.session, endpoint, this.getQueryString(searchParameters)) as Promise<CaseChallengedAccesses>;
   }
 }

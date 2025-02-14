@@ -1,4 +1,4 @@
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('../logger');
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');

@@ -1,6 +1,5 @@
 import { Request } from 'express';
 import { Session } from 'express-session';
-import type { LoggerInstance } from 'winston';
 import {CaseSearchRequest} from './case/CaseSearchRequest';
 import {LogonSearchRequest} from './idam/LogonSearchRequest';
 import {CaseDeletionsSearchRequest} from './deletions/CaseDeletionsSearchRequest';
@@ -16,7 +15,6 @@ export interface AppRequest<T = Partial<CaseSearchRequest>> extends Request {
   session: AppSession;
   locals: {
     env: string;
-    logger: LoggerInstance;
   };
   body: T;
 }

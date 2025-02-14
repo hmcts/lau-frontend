@@ -8,6 +8,7 @@ import {CaseSearchAudit} from '../models/case/CaseSearchAudit';
 import {AppRequest} from '../models/appRequest';
 import {ErrorCode} from '../models/AppError';
 import {CaseDeletions} from '../models/deletions/CaseDeletions';
+import logger from '../modules/logging';
 
 export class CaseService extends BaseService<CaseSearchRequest | CaseDeletionsSearchRequest> {
   baseApiUrl = String(config.get('services.lau-case-backend.url'));
@@ -22,7 +23,7 @@ export class CaseService extends BaseService<CaseSearchRequest | CaseDeletionsSe
       searchParameters.size = req.session.caseActivities?.totalNumberOfRecords || 0;
     }
 
-    this.logger.info('getCaseActivities: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
+    logger.info('getCaseActivities: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
     return this.get(req.session, endpoint, this.getQueryString(searchParameters)) as Promise<CaseActivityAudit>;
   }
 
@@ -34,7 +35,7 @@ export class CaseService extends BaseService<CaseSearchRequest | CaseDeletionsSe
       searchParameters.page = 1;
       searchParameters.size = req.session.caseSearches?.totalNumberOfRecords || 0;
     }
-    this.logger.info('getCaseSearches: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
+    logger.info('getCaseSearches: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
     return this.get(req.session, endpoint, this.getQueryString(searchParameters)) as Promise<CaseSearchAudit>;
   }
 
@@ -46,7 +47,7 @@ export class CaseService extends BaseService<CaseSearchRequest | CaseDeletionsSe
       searchParameters.page = 1;
       searchParameters.size = req.session.caseDeletions?.totalNumberOfRecords || 0;
     }
-    this.logger.info('getCaseDeletions: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
+    logger.info('getCaseDeletions: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
 
     return this.get(req.session, endpoint, this.getQueryString(searchParameters)).then((caseActivityAudit: CaseActivityAudit) => {
       const actionLog = caseActivityAudit.actionLog ? caseActivityAudit.actionLog.map(log => {

@@ -1,5 +1,4 @@
-import {LoggerInstance} from 'winston';
-const {Logger} = require('@hmcts/nodejs-logging');
+import logger from '../modules/logging';
 
 import autobind from 'autobind-decorator';
 import config from 'config';
@@ -16,12 +15,11 @@ import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
  */
 @autobind
 export class LogonController {
-  private logger: LoggerInstance = Logger.getLogger('LogonsController');
 
   private service = new LogonService();
 
   public async getLogData(req: AppRequest): Promise<LogData> {
-    this.logger.info('getLogData called');
+    logger.info('getLogData called');
     return new Promise((resolve, reject) => {
       this.service.getLogons(req).then(logons => {
         if (logons.logonLog) {
@@ -38,11 +36,11 @@ export class LogonController {
           });
         } else {
           const errMsg = 'Logons data malformed';
-          this.logger.error(errMsg);
+          logger.error(errMsg);
           reject(new AppError(errMsg, ErrorCode.IDAM_BACKEND));
         }
       }).catch((err: AppError) => {
-        this.logger.error(err.message);
+        logger.error(err.message);
         reject(err);
       });
     });
@@ -58,13 +56,13 @@ export class LogonController {
     const searchForm = req.session.logonFormState || {};
     searchForm.page = Number(req.params.pageNumber) || 1;
 
-    this.logger.info('Logon search for page ', req.params.pageNumber);
+    logger.info('Logon search for page ', req.params.pageNumber);
 
     await this.getLogData(req).then(logData => {
       req.session.logons = logData;
       res.redirect('/logon-audit#results-section');
     }).catch((err: AppError) => {
-      this.logger.error(err.message);
+      logger.error(err.message);
       errorRedirect(res, err.code);
     });
   }

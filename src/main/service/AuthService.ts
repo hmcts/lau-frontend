@@ -1,4 +1,3 @@
-import {LoggerInstance} from 'winston';
 import { IConfig } from 'config';
 import {TOTP} from 'totp-generator';
 import {ServiceAuthToken} from '../components/idam/ServiceAuthToken';
@@ -8,7 +7,7 @@ import {AppSession, UserDetails} from '../models/appRequest';
 import {HttpResponseError} from '../util/HttpResponseError';
 import {AppError, ErrorCode} from '../models/AppError';
 
-const {Logger} = require('@hmcts/nodejs-logging');
+import logger from '../modules/logging';
 
 export interface IdTokenJwtPayload {
   uid: string;
@@ -42,7 +41,6 @@ export enum IdamGrantType {
 }
 
 export class AuthService {
-  private logger: LoggerInstance = Logger.getLogger('AuthService');
 
   private clientId: string;
   private clientSecret: string;
@@ -87,7 +85,7 @@ export class AuthService {
           resolve(new ServiceAuthToken(token));
         })
         .catch((err: string) => {
-          this.logger.error(err);
+          logger.error(err);
           reject(new AppError(err, ErrorCode.S2S));
         });
     });
@@ -118,16 +116,16 @@ export class AuthService {
         },
       );
     } catch (err) {
-      this.logger.error(err);
+      logger.error(err);
       throw new AppError(err, ErrorCode.IDAM_API);
     }
 
     try {
       AuthService.checkStatus(response);
     } catch (err) {
-      this.logger.error(err);
+      logger.error(err);
       const errorBody = err.response ? await err.response.text() : err;
-      this.logger.error(`Error body: ${errorBody}`);
+      logger.error(`Error body: ${errorBody}`);
       throw new AppError(err, ErrorCode.IDAM_API);
     }
     return response;

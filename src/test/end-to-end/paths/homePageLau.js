@@ -6,7 +6,7 @@ const lauHelper = require('../lauApi/lauHelper');
 
 Feature('Home Screen Sanity Check)');
 
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('../logger');
 logger.info('Running \'Home Screen Sanity Check\' feature');
 
 Scenario('Navigate to LAU, authenticate and view home screen', async ({I}) => {

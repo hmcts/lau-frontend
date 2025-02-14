@@ -6,7 +6,7 @@ const lauHelper = require('../lauApi/lauHelper');
 
 Feature('Logon Page Testing)');
 
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('../logger');
 logger.info('Running \'Logon Page Testing\' feature');
 
 Scenario('Navigate to LAU, perform logon audit search and authenticate logon search results', async ({I}) => {

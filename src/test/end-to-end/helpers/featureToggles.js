@@ -3,7 +3,7 @@
 const testConfig = require('src/test/config.js');
 const LaunchDarkly = require('./launchDarkly');
 
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+const logger = require('../logger');
 
 class FeatureToggle {
   constructor() {
