@@ -7,7 +7,9 @@ const logger = winston.createLogger({
     winston.format.json(),
   ),
   transports: [
-    new winston.transports.Console(),
+    new winston.transports.Console({
+      stderrLevels: ['info', 'warn', 'error', 'critical'],
+    }),
   ],
 });
 
