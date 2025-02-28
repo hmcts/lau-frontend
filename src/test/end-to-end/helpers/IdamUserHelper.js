@@ -3,11 +3,14 @@
 const testConfig = require('src/test/config.js');
 const idamExpressTestHarness = require('@hmcts/div-idam-test-harness');
 
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const idamArgs = {};
 
+const logger = require('../logger');
+
 module.exports = {
+
   async createAUser(userEmail, userPwd) {
+
     idamArgs.testEmail = userEmail;
     idamArgs.testPassword = userPwd;
     idamArgs.roles = [{code: 'cft-audit-investigator'}];
