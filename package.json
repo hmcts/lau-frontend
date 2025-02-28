@@ -106,7 +106,7 @@
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/eslint-plugin-tslint": "^7.0.0",
     "@typescript-eslint/parser": "^8.0.0",
-    "babel-loader": "^9.0.0",
+    "babel-loader": "^10.0.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^8.0.0",
     "codeceptjs": "^3.5.5",
