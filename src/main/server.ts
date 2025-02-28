@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 
-import {AppInsights} from './modules/appinsights';
-new AppInsights().enable();
-
 import { app } from './app';
+
+import {AppInsights} from './modules/appinsights';
+import {PropertiesVolume} from './modules/properties-volume';
+
+new PropertiesVolume().enableFor(app);
+new AppInsights().enable();
 
 import logger from './modules/logging';
 

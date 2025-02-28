@@ -6,7 +6,6 @@ import * as path from 'path';
 import favicon from 'serve-favicon';
 import {HTTPError} from './HttpError';
 import {Nunjucks} from './modules/nunjucks';
-import {PropertiesVolume} from './modules/properties-volume';
 import {CSRFToken} from './modules/csrf';
 import {SessionStorage} from './modules/session';
 import {OidcMiddleware} from './modules/oidc';
@@ -38,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public'), options));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-new PropertiesVolume().enableFor(app);
+
 
 LaunchDarklyClient.initialise();
 new Helmet(config.get('security')).enableFor(app);

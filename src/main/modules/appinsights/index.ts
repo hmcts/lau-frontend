@@ -6,7 +6,7 @@ export class AppInsights {
 
   enable(): void {
     if (config.get('appInsights.connectionString')) {
-
+      console.log('App insights enabled');
       appInsights.setup(config.get<string>('appInsights.connectionString'))
         .setSendLiveMetrics(true)
         .setAutoCollectConsole(true, true)
