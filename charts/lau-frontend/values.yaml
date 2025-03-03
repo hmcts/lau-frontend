@@ -20,8 +20,6 @@ nodejs:
     S2S_URL: http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
     OAUTH_CLIENT_REDIRECT: https://lau.{{ .Values.global.environment }}.platform.hmcts.net/oauth2/callback
     ALLOW_CONFIG_MUTATIONS: true
-    APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL: INFO
-    LOG_LEVEL: INFO
     DUMMY_RESTART_VAR: 1
     IS_DEV: true
 

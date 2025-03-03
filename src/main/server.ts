@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
-import { app } from './app';
-
 import {AppInsights} from './modules/appinsights';
 import {PropertiesVolume} from './modules/properties-volume';
 
-new PropertiesVolume().enableFor(app);
+const env = process.env.NODE_ENV || 'development';
+
+new PropertiesVolume().enableFor(env);
 new AppInsights().enable();
 
+import { app } from './app';
 import logger from './modules/logging';
 
 const sslConfig = require('ssl-config')('modern');
