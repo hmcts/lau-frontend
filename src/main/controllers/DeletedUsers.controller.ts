@@ -1,4 +1,3 @@
-import {LoggerInstance} from 'winston';
 import autobind from 'autobind-decorator';
 import config from 'config';
 import {Response} from 'express';
@@ -9,19 +8,18 @@ import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 import {DeletedUsersService} from '../service/DeletedUsersService';
 import {DeletedUsersLog, DeletedUsersLogs, deletedUsersLogsOrder} from '../models/user-deletions/DeletedUsersLog';
 
-const {Logger} = require('@hmcts/nodejs-logging');
+import logger from '../modules/logging';
 
 /**
  * Logons Controller class to handle logon results tab functionality.
  */
 @autobind
 export class DeletedUsersController {
-  private logger: LoggerInstance = Logger.getLogger('DeletedUsersController');
 
   private service = new DeletedUsersService();
 
   public async getDeletedUsersData(req: AppRequest): Promise<LogData> {
-    this.logger.info('getDeletedUsersData called');
+    logger.info('getDeletedUsersData called');
     return new Promise((resolve, reject) => {
       this.service.getDeletedUsers(req).then(deletedUsers => {
         if (deletedUsers.deletionLogs) {
@@ -38,11 +36,11 @@ export class DeletedUsersController {
           });
         } else {
           const errMsg = 'Deleted users data malformed';
-          this.logger.error(errMsg);
+          logger.error(errMsg);
           reject(new AppError(errMsg, ErrorCode.IDAM_BACKEND));
         }
       }).catch((err: AppError) => {
-        this.logger.error(err.message);
+        logger.error(err.message);
         reject(err);
       });
     });
@@ -58,13 +56,13 @@ export class DeletedUsersController {
     const searchForm = req.session.deletedUsersFormState || {};
     searchForm.page = Number(req.params.pageNumber) || 1;
 
-    this.logger.info('Deleted users search for page ', req.params.pageNumber);
+    logger.info('Deleted users search for page ', req.params.pageNumber);
 
     await this.getDeletedUsersData(req).then(deletedUsersData => {
       req.session.userDeletions = deletedUsersData;
       res.redirect('/user-deletion-audit#results-section');
     }).catch((err: AppError) => {
-      this.logger.error(err.message);
+      logger.error(err.message);
       errorRedirect(res, err.code);
     });
   }

@@ -5,6 +5,7 @@ import {LogonAudit} from '../models/idam/LogonAudit';
 import {LogonSearchRequest} from '../models/idam/LogonSearchRequest';
 import {AppRequest} from '../models/appRequest';
 import {ErrorCode} from '../models/AppError';
+import logger from '../modules/logging';
 
 export class LogonService extends BaseService<LogonSearchRequest> {
   baseApiUrl = String(config.get('services.lau-idam-backend.url'));
@@ -18,7 +19,7 @@ export class LogonService extends BaseService<LogonSearchRequest> {
       searchParameters.page = 1;
       searchParameters.size = req.session.logons?.totalNumberOfRecords || 0;
     }
-    this.logger.info('getLogons: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
+    logger.info('getLogons: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
     return this.get(req.session, endpoint, this.getQueryString(searchParameters)) as Promise<LogonAudit>;
   }
 }

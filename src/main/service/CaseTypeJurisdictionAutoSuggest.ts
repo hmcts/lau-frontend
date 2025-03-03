@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import {IConfig} from 'config';
 
-import {Logger} from '@hmcts/nodejs-logging';
+import logger from '../modules/logging';
 import path from 'path';
 import {AutoSuggestService} from '../modules/autosuggest/AutoSuggestService';
 import autobind from 'autobind-decorator';
@@ -24,21 +24,20 @@ export class CaseTypeJurisdictionAutoSuggest implements AutoSuggestService {
   private readonly dataFile: string;
   private is_development: boolean;
   private staticData: JurisdictionsCaseTypes;
-  private logger = Logger.getLogger(this.constructor.name);
 
   constructor(config: IConfig) {
     this.staticData = {jurisdictions: [], caseTypes: []};
     this.is_development = JSON.parse(config.get('is_dev'));
     this.dataFile = this.is_development ? 'data/auto-suggest-data-dev.json' : 'data/auto-suggest-data-prod.json';
-    this.logger.info('is_dev: ' + this.is_development);
-    this.logger.info('CaseType Jurisdiction Data file loaded: ' + this.dataFile);
+    logger.info('is_dev: ' + this.is_development);
+    logger.info('CaseType Jurisdiction Data file loaded: ' + this.dataFile);
   }
 
   public loadData(): void {
     const fullDataPath = path.join(resourcesDirectory, this.dataFile);
     fs.readFile(fullDataPath, (err, data) => {
       if (err) {
-        this.logger.error(err);
+        logger.error(err);
         return;
       }
       this.staticData = this.parseDataFile(JSON.parse(data.toString('utf8')));
