@@ -1,7 +1,15 @@
 #!/usr/bin/env node
 
-const { Logger } = require('@hmcts/nodejs-logging');
+import {AppInsights} from './modules/appinsights';
+import {PropertiesVolume} from './modules/properties-volume';
+
+const env = process.env.NODE_ENV || 'development';
+
+new PropertiesVolume().enableFor(env);
+new AppInsights().enable();
+
 import { app } from './app';
+import logger from './modules/logging';
 
 const sslConfig = require('ssl-config')('modern');
 
@@ -9,7 +17,6 @@ import * as fs from 'fs';
 import * as https from 'https';
 import * as path from 'path';
 
-const logger = Logger.getLogger('server');
 const port: number = parseInt(process.env.PORT, 10) || 4000;
 
 if (app.locals.ENV === 'development') {

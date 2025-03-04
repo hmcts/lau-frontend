@@ -1,5 +1,4 @@
-import {LoggerInstance} from 'winston';
-const {Logger} = require('@hmcts/nodejs-logging');
+import logger from '../modules/logging';
 
 import autobind from 'autobind-decorator';
 import config from 'config';
@@ -17,12 +16,11 @@ import {csvJson} from '../util/CsvHandler';
  */
 @autobind
 export class CaseChallengedAccessController {
-  private logger: LoggerInstance = Logger.getLogger('CaseChallengedAccessController');
 
   private service = new challengedAccessService();
 
   public async getLogData(req: AppRequest): Promise<LogData> {
-    this.logger.info('getLogData called');
+    logger.info('getLogData called');
     return new Promise((resolve, reject) => {
       this.service.getChallengedAccess(req).then((caseChallengedAccesses: CaseChallengedAccesses) => {
         if (caseChallengedAccesses.accessLog) {
@@ -39,11 +37,11 @@ export class CaseChallengedAccessController {
           });
         } else {
           const errMsg = 'Case access request data malformed';
-          this.logger.error(errMsg);
+          logger.error(errMsg);
           reject(new AppError(errMsg, ErrorCode.CASE_BACKEND));
         }
       }).catch((err: AppError) => {
-        this.logger.error(err.message);
+        logger.error(err.message);
         reject(err);
       });
     });
@@ -59,13 +57,13 @@ export class CaseChallengedAccessController {
     const searchForm = req.session.caseChallengedAccessFormState || {};
     searchForm.page = Number(req.params.pageNumber) || 1;
 
-    this.logger.info('ChallengedAccess search for page ', req.params.pageNumber);
+    logger.info('ChallengedAccess search for page ', req.params.pageNumber);
 
     await this.getLogData(req).then(logData => {
       req.session.challengedAccessData = logData;
       res.redirect('/challenged-specific-access');
     }).catch((err: AppError) => {
-      this.logger.error(err.message);
+      logger.error(err.message);
       errorRedirect(res, err.code);
     });
   }

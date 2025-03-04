@@ -1,6 +1,3 @@
-import {LoggerInstance} from 'winston';
-const {Logger} = require('@hmcts/nodejs-logging');
-
 import config from 'config';
 import {AppRequest, FormError} from '../models/appRequest';
 import {Response} from 'express';
@@ -26,7 +23,6 @@ export abstract class BaseSearchController<SearchType extends SearchTypeCommon> 
   abstract formId: string;
   abstract requiredFields: string[];
 
-  logger: LoggerInstance = Logger.getLogger(this.constructor.name);
   pageSize: number = config.get('pagination.maxPerPage');
 
   private errors: FormError[] = [];
