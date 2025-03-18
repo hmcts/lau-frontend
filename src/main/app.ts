@@ -1,4 +1,4 @@
-import {glob} from 'glob';
+import {globSync} from 'glob';
 import express from 'express';
 import compression from 'compression';
 import {Helmet} from './modules/helmet';
@@ -64,7 +64,7 @@ app.use((req, res, next) => {
   next();
 });
 
-glob.sync(__dirname + '/routes/**/*.+(ts|js)')
+globSync(__dirname + '/routes/**/*.+(ts|js)')
   .map(filename => require(filename))
   .forEach(route => route.default(app));
 
