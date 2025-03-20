@@ -27,7 +27,6 @@ interface Context {
   challengedAccessData?: LogData;
   jurisdictions?: {text: string, value: string}[];
   caseTypes?: {text: string, value: string}[];
-  env?: string;
 }
 
 async function homeHandler(req: AppRequest, res: Response) {
@@ -89,7 +88,6 @@ async function auditHandler(req: AppRequest, res: Response, template: string, co
       },
     },
     caseChallengedAccessLogOrder: getCaseChallengedAccessLogOrder(),
-    env: res.locals.env,
   });
 }
 
@@ -99,7 +97,6 @@ async function caseHandler(req: AppRequest, res: Response) {
     caseSearchPage: true,
     caseActivities: req.session?.caseActivities,
     caseSearches: req.session?.caseSearches,
-    env: res.locals.env,
   };
   auditHandler(req, res, 'case-audit/template.njk', context);
 }
@@ -109,7 +106,6 @@ async function logonHandler(req: AppRequest, res: Response) {
     logonForm: req.session?.logonFormState || {},
     logonSearchPage: true,
     logons: req.session?.logons,
-    env: res.locals.env,
   };
   auditHandler(req, res, 'logons/template.njk', context);
 }
@@ -119,7 +115,6 @@ async function userDeletionHandler(req: AppRequest, res: Response) {
     deletedUsersForm: req.session?.deletedUsersFormState || {},
     userDeletionSearchPage: true,
     userDeletions: req.session?.userDeletions,
-    env: res.locals.env,
   };
   auditHandler(req, res, 'user-deletions/template.njk', context);
 }
@@ -129,7 +124,6 @@ async function caseDeletionHandler(req: AppRequest, res: Response) {
     caseDeletionsForm: req.session?.caseDeletionsFormState || {},
     caseDeletionSearchPage: true,
     caseDeletions: req.session?.caseDeletions,
-    env: res.locals.env,
   };
   auditHandler(req, res, 'case-deletions/template.njk', context);
 }
@@ -142,7 +136,6 @@ export async function challengedSpecificAccessHandler(req: AppRequest, res: Resp
     caseChallengedAccessForm: req.session?.caseChallengedAccessFormState || {},
     challengedSpecificAccessPage: true,
     challengedAccessData: req.session?.challengedAccessData,
-    env: res.locals.env,
   };
   auditHandler(req, res, 'case-challenged-access/template.njk', context);
 }

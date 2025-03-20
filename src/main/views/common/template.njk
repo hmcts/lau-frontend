@@ -176,10 +176,7 @@
 {% endblock %}
 
 {% block bodyEnd %}
-    <span>{{ env }}</span>
-    <span>{{ settings.env }}</span>
-    <span>{{ process.env.NODE_ENV }}</span>
-    <span>{{ process.env.REFORM_ENVIRONMENT }}</span>
-    <script type="text/javascript" src="https://js-cdn.dynatrace.com/jstag/17177a07246/bf24054dsx/b4ffd3e9c06c2864_complete.js" crossorigin="anonymous"></script>
-  
+    {% if ((settings.env != 'prod') and (settings.env != 'production')) %}
+      <script type="text/javascript" src="https://js-cdn.dynatrace.com/jstag/17177a07246/bf24054dsx/b4ffd3e9c06c2864_complete.js" crossorigin="anonymous"></script>
+    {% endif %}
 {% endblock %}
