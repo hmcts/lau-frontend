@@ -7,7 +7,7 @@ interface HealthResponse {
   body: { status: string; }
 }
 
-const logger = (require('@hmcts/nodejs-logging')).Logger.getLogger('healthcheck');
+import logger from '../../modules/logging';
 const healthcheck = require('@hmcts/nodejs-healthcheck');
 
 const config = require('config');

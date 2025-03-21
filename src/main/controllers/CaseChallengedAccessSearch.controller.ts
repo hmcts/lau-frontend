@@ -6,6 +6,7 @@ import {BaseSearchController} from './BaseSearchController';
 import {validCaseRef} from '../util/validators';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 import {CaseChallengedAccessController} from './CaseChallengedAccess.controller';
+import logger from '../modules/logging';
 
 /**
  * Search Controller class to handle search tab functionality
@@ -42,16 +43,16 @@ export class CaseChallengedAccessSearchController extends BaseSearchController<C
       searchRequest.size = this.pageSize;
 
       // To be sent to API GET
-      this.logger.info('API Request Parameters: ', searchRequest);
+      logger.info('API Request Parameters: ', searchRequest);
 
       this.formatSearchRequest(searchRequest);
 
       return this.caseChallengedAccessController.getLogData(req).then(logData => {
-        this.logger.info('Case search promise complete... updating session and redirecting...');
+        logger.info('Case search promise complete... updating session and redirecting...');
         req.session.challengedAccessData = logData;
         res.redirect('/challenged-specific-access');
       }).catch((err: AppError) => {
-        this.logger.error(err.message);
+        logger.error(err.message);
         errorRedirect(res, err.code || ErrorCode.FRONTEND);
       });
     } else {

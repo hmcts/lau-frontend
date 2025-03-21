@@ -7,6 +7,7 @@ import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 import {DeletedUsersSearchRequest} from '../models/user-deletions/DeletedUsersSearchRequest';
 import {DeletedUsersController} from './DeletedUsers.controller';
 import {validEmail} from '../util/validators';
+import logger from '../modules/logging';
 
 /**
  * Search Controller class to handle search tab functionality
@@ -40,7 +41,7 @@ export class DeletedUsersSearchController extends BaseSearchController<DeletedUs
       searchRequest.size = this.pageSize;
 
       // To be sent to API GET
-      this.logger.info('API Request Parameters: ', searchRequest);
+      logger.info('API Request Parameters: ', searchRequest);
 
       this.formatSearchRequest(searchRequest);
 
@@ -48,7 +49,7 @@ export class DeletedUsersSearchController extends BaseSearchController<DeletedUs
         req.session.userDeletions = logData;
         res.redirect('/user-deletion-audit#results-section');
       }).catch((err: AppError) => {
-        this.logger.error(err.message);
+        logger.error(err.message);
         errorRedirect(res, err.code || ErrorCode.FRONTEND);
       });
     } else {
