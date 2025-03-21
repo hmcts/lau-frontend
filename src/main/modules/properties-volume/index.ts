@@ -1,11 +1,10 @@
 import config from 'config';
 import * as propertiesVolume from '@hmcts/properties-volume';
-import { Application } from 'express';
 import { get, set } from 'lodash';
 
 export class PropertiesVolume {
-  enableFor(server: Application): void {
-    if (server.locals.ENV !== 'development') {
+  enableFor(env: string): void {
+    if (env !== 'development') {
       propertiesVolume.addTo(config);
       PropertiesVolume.setSecret('secrets.lau.AppInsightsConnectionString', 'appInsights.connectionString');
       PropertiesVolume.setSecret('secrets.lau.frontend-redis-access-key', 'redis.password');

@@ -7,6 +7,7 @@ import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 import {CaseDeletionsSearchRequest} from '../models/deletions/CaseDeletionsSearchRequest';
 import {CaseDeletionsController} from './CaseDeletions.controller';
 import {CaseActions} from '../models/case/CaseActivityLogs';
+import logger from '../modules/logging';
 
 /**
  * Search Controller class to handle search tab functionality
@@ -37,7 +38,7 @@ export class CaseDeletionsSearchController extends BaseSearchController<CaseDele
       searchRequest.size = this.pageSize;
 
       // To be sent to API GET
-      this.logger.info('API Request Parameters: ', searchRequest);
+      logger.info('API Request Parameters: ', searchRequest);
 
       this.formatSearchRequest(searchRequest);
 
@@ -45,7 +46,7 @@ export class CaseDeletionsSearchController extends BaseSearchController<CaseDele
         req.session.caseDeletions = logData;
         res.redirect('/case-deletion-audit#results-section');
       }).catch((err: AppError) => {
-        this.logger.error(err.message);
+        logger.error(err.message);
         errorRedirect(res, err.code || ErrorCode.FRONTEND);
       });
     } else {

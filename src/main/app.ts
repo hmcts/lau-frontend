@@ -1,4 +1,4 @@
-import {glob} from 'glob';
+import {globSync} from 'glob';
 import express from 'express';
 import compression from 'compression';
 import {Helmet} from './modules/helmet';
@@ -6,16 +6,12 @@ import * as path from 'path';
 import favicon from 'serve-favicon';
 import {HTTPError} from './HttpError';
 import {Nunjucks} from './modules/nunjucks';
-import {PropertiesVolume} from './modules/properties-volume';
-import {AppInsights} from './modules/appinsights';
 import {CSRFToken} from './modules/csrf';
 import {SessionStorage} from './modules/session';
 import {OidcMiddleware} from './modules/oidc';
 import {HealthCheck} from './modules/health';
 import {Container} from './modules/awilix';
 import {LaunchDarklyClient} from './components/featureToggle/LaunchDarklyClient';
-
-const { Logger } = require('@hmcts/nodejs-logging');
 
 import config from 'config';
 import {AutoSuggest} from './modules/autosuggest/AutoSuggest';
@@ -25,7 +21,6 @@ const { setupTest } = require('./test');
 
 const env = process.env.NODE_ENV || 'development';
 const developmentMode = env === 'development';
-const logger = Logger.getLogger('app');
 
 export const app = express();
 app.locals.ENV = env;
@@ -42,8 +37,8 @@ app.use(express.static(path.join(__dirname, 'public'), options));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-new PropertiesVolume().enableFor(app);
-new AppInsights().enable();
+
+
 LaunchDarklyClient.initialise();
 new Helmet(config.get('security')).enableFor(app);
 new SessionStorage().enableFor(app);
@@ -53,6 +48,7 @@ new OidcMiddleware().enableFor(app);
 new HealthCheck().enableFor(app);
 new Container().enableFor(app);
 
+import logger from './modules/logging';
 logger.info('Environment: ' + env);
 
 setupDev(app, developmentMode);
@@ -68,7 +64,7 @@ app.use((req, res, next) => {
   next();
 });
 
-glob.sync(__dirname + '/routes/**/*.+(ts|js)')
+globSync(__dirname + '/routes/**/*.+(ts|js)')
   .map(filename => require(filename))
   .forEach(route => route.default(app));
 
