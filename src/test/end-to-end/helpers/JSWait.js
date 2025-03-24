@@ -1,5 +1,3 @@
-const testConfig = require('src/test/config.js');
-
 class JSWait extends codecept_helper {
 
   async amOnLoadedPage(url) {
