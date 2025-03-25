@@ -49,6 +49,7 @@ export abstract class BaseService<RequestType> {
 
   getQueryString(params: Partial<RequestType>): string {
     return '?' + Object.keys(params)
+      .filter(key => key !== '_csrf')
       // @ts-ignore
       .map(key => key + '=' + encodeURIComponent(params[key]))
       .join('&');

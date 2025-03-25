@@ -52,7 +52,7 @@ async function runAccessibility(url, page) {
 
   try {
     await page.screenshot({path: screenshotPath + '/' + screenshotName, fullPage: true});
-  } catch (err) {
+  } catch {
     fs.mkdirSync(screenshotPath, {recursive: true});
     await page.screenshot({path: screenshotPath + '/' + screenshotName, fullPage: true});
   }
