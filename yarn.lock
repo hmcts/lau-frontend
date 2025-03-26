@@ -369,8 +369,8 @@ __metadata:
   linkType: hard
 
 "@babel/eslint-parser@npm:^7.11.0":
-  version: 7.26.10
-  resolution: "@babel/eslint-parser@npm:7.26.10"
+  version: 7.27.0
+  resolution: "@babel/eslint-parser@npm:7.27.0"
   dependencies:
     "@nicolo-ribaudo/eslint-scope-5-internals": "npm:5.1.1-v1"
     eslint-visitor-keys: "npm:^2.1.0"
@@ -378,7 +378,7 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.11.0
     eslint: ^7.5.0 || ^8.0.0 || ^9.0.0
-  checksum: 10/27eb60d16b8963ea587a54b4bc8bce9b63f7a294455fd00aa6e8f8a45d10ea9b52f89a9d951ff80c226bddbc09c316a3aa63b531fdfa389cf31d1db8d7080796
+  checksum: 10/c1ca97936b95f01cf0ddf7868812d3b482135a526c1a6c5c594f0f9bcc7b5b09a6e26db09d9f35b5490da3bbf17cea349e731e5bdc29617838fd151f1b23a4e2
   languageName: node
   linkType: hard
 
@@ -15245,8 +15245,8 @@ __metadata:
   linkType: hard
 
 "sinon@npm:^19.0.0":
-  version: 19.0.4
-  resolution: "sinon@npm:19.0.4"
+  version: 19.0.5
+  resolution: "sinon@npm:19.0.5"
   dependencies:
     "@sinonjs/commons": "npm:^3.0.1"
     "@sinonjs/fake-timers": "npm:^13.0.5"
@@ -15254,7 +15254,7 @@ __metadata:
     diff: "npm:^7.0.0"
     nise: "npm:^6.1.1"
     supports-color: "npm:^7.2.0"
-  checksum: 10/c38e4de00b1829f629f331abb4fc77c4f4fdc905126e7500a49a3c46bc85ba7b93a365aa8d7e7f7b8dc8e0f78554a31c6c3c6258130184c9ff88d5a3062e1cee
+  checksum: 10/046b44260d9ebf01d9fb742bbee70d5504d2596c07bf3241f817dc2434df0afb6be4c34ec4f1b9ccc4fb8d85b16035b79f60fa3c289bfc8810231653e2ca06f4
   languageName: node
   linkType: hard
 
