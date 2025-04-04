@@ -1,4 +1,4 @@
-# LAU Frontend
+# LAU Frontend 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=LAU&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=LAU) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=LAU&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=LAU) [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=LAU&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=LAU) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=LAU&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=LAU) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=LAU&metric=coverage)](https://sonarcloud.io/summary/new_code?id=LAU)
 
