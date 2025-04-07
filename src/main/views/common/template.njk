@@ -7,6 +7,7 @@
 {% block pageTitle %}GOV.UK - Log and Audit{% endblock %}
 
 {% block head %}
+  {% include "common/dynatrace/head.njk" %}
   {% include "common/webpack/css.njk" %}
   {% include "common/webpack/js.njk" %}
 {% endblock %}
@@ -176,7 +177,4 @@
 {% endblock %}
 
 {% block bodyEnd %}
-{% if isDev %}
-  <script type="text/javascript" src="https://js-cdn.dynatrace.com/jstag/17177a07246/bf24054dsx/b4ffd3e9c06c2864_complete.js" crossorigin="anonymous"></script>
-{% endif %}
 {% endblock %}

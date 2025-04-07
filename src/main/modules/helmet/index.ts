@@ -7,6 +7,7 @@ export interface HelmetConfig {
 }
 
 const googleAnalyticsDomain = '*.google-analytics.com';
+const dynatraceDomain = '*.dynatrace.com';
 const self = "'self'";
 
 /**
@@ -25,7 +26,7 @@ export class Helmet {
 
   private setContentSecurityPolicy(app: Express): void {
     app.locals.nonce = crypto.randomBytes(16).toString('base64');
-    const scriptSrc = [self, googleAnalyticsDomain, "'sha256-GUQ5ad8JK5KmEWmROf3LZd9ge94daqNvd8xy9YS1iDw='", `'nonce-${app.locals.nonce}'`];
+    const scriptSrc = [self, googleAnalyticsDomain,dynatraceDomain, "'sha256-GUQ5ad8JK5KmEWmROf3LZd9ge94daqNvd8xy9YS1iDw='", `'nonce-${app.locals.nonce}'`];
 
     if (app.locals.ENV === 'development' || app.locals.ENV === 'test') {
       scriptSrc.push("'unsafe-eval'");
