@@ -9,6 +9,7 @@ export interface HelmetConfig {
 const googleAnalyticsDomain = '*.google-analytics.com';
 const dynatraceDomain = '*.dynatrace.com';
 const self = "'self'";
+const hmctsDomain ='*.platform.hmcts.net';
 
 /**
  * Module that enables helmet in the application
@@ -35,7 +36,11 @@ export class Helmet {
     app.use(
       helmet.contentSecurityPolicy({
         directives: {
+<<<<<<< Updated upstream
           connectSrc: [self],
+=======
+          connectSrc: [self, googleAnalyticsDomain, dynatraceDomain,hmctsDomain],
+>>>>>>> Stashed changes
           defaultSrc: ["'none'"],
           fontSrc: [self, 'data:'],
           imgSrc: [self, googleAnalyticsDomain],
