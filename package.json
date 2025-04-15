@@ -144,8 +144,5 @@
     "webpack-dev-middleware": "^7.0.0",
     "webpack-node-externals": "^3.0.0",
     "yarn-audit-fix": "^10.0.0"
-  },
-  "resolutions": {
-    "glob": "^9.0.0"
   }
 }
