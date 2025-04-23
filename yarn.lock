@@ -82,7 +82,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@azure/core-rest-pipeline@npm:^1.1.0, @azure/core-rest-pipeline@npm:^1.17.0, @azure/core-rest-pipeline@npm:^1.19.0, @azure/core-rest-pipeline@npm:^1.8.0, @azure/core-rest-pipeline@npm:^1.9.1, @azure/core-rest-pipeline@npm:^1.9.2":
+"@azure/core-rest-pipeline@npm:^1.17.0, @azure/core-rest-pipeline@npm:^1.18.2, @azure/core-rest-pipeline@npm:^1.19.0, @azure/core-rest-pipeline@npm:^1.8.0, @azure/core-rest-pipeline@npm:^1.9.1, @azure/core-rest-pipeline@npm:^1.9.2":
   version: 1.19.1
   resolution: "@azure/core-rest-pipeline@npm:1.19.1"
   dependencies:
@@ -206,9 +206,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@azure/monitor-opentelemetry-exporter@npm:1.0.0-beta.29, @azure/monitor-opentelemetry-exporter@npm:^1.0.0-beta.29":
-  version: 1.0.0-beta.29
-  resolution: "@azure/monitor-opentelemetry-exporter@npm:1.0.0-beta.29"
+"@azure/monitor-opentelemetry-exporter@npm:1.0.0-beta.31, @azure/monitor-opentelemetry-exporter@npm:^1.0.0-beta.31":
+  version: 1.0.0-beta.31
+  resolution: "@azure/monitor-opentelemetry-exporter@npm:1.0.0-beta.31"
   dependencies:
     "@azure/core-auth": "npm:^1.9.0"
     "@azure/core-client": "npm:^1.9.2"
@@ -222,19 +222,19 @@ __metadata:
     "@opentelemetry/sdk-trace-base": "npm:^1.30.1"
     "@opentelemetry/semantic-conventions": "npm:^1.30.0"
     tslib: "npm:^2.8.1"
-  checksum: 10/1d28c3c0da4a039bc38715264bb8e97420b75674c3abfdaf835532935346d117601fffae5c8cc6128c4c6dad07ce81fe0eca4c2918feea9d844d9783cb739585
+  checksum: 10/0c29d68d8e0b4f54ce1c665046843960c7d540172c1adba88258b1df2f911d2f45902cb63c48dc66bf0340a7ec7eff7f409f86ed91b19e9498bbaee7746e48cb
   languageName: node
   linkType: hard
 
-"@azure/monitor-opentelemetry@npm:^1.9.0":
-  version: 1.9.0
-  resolution: "@azure/monitor-opentelemetry@npm:1.9.0"
+"@azure/monitor-opentelemetry@npm:^1.11.0":
+  version: 1.11.0
+  resolution: "@azure/monitor-opentelemetry@npm:1.11.0"
   dependencies:
-    "@azure/core-auth": "npm:^1.3.0"
-    "@azure/core-client": "npm:^1.0.0"
-    "@azure/core-rest-pipeline": "npm:^1.1.0"
-    "@azure/logger": "npm:^1.0.0"
-    "@azure/monitor-opentelemetry-exporter": "npm:1.0.0-beta.29"
+    "@azure/core-auth": "npm:^1.9.0"
+    "@azure/core-client": "npm:^1.9.2"
+    "@azure/core-rest-pipeline": "npm:^1.18.2"
+    "@azure/logger": "npm:^1.1.4"
+    "@azure/monitor-opentelemetry-exporter": "npm:1.0.0-beta.31"
     "@azure/opentelemetry-instrumentation-azure-sdk": "npm:^1.0.0-beta.7"
     "@microsoft/applicationinsights-web-snippet": "npm:^1.2.1"
     "@opentelemetry/api": "npm:^1.9.0"
@@ -259,7 +259,7 @@ __metadata:
     "@opentelemetry/semantic-conventions": "npm:^1.30.0"
     "@opentelemetry/winston-transport": "npm:^0.10.1"
     tslib: "npm:^2.8.1"
-  checksum: 10/2d4ded23b2576be0c0faf3499e625c0598a3863be0116e80902b7b429381eee314d1d387905660f35a00fe35385eb3706c9324f829b65759cefd8111dc45ad0d
+  checksum: 10/fdc0aa43f8f3f15972c090a41da7943673e63f1f9efea9ebe5db2376a2ef5a471b3dd752f9dccba0ebde911fa7666120c8b8c4e84be4986567cc6232e5997b9f
   languageName: node
   linkType: hard
 
@@ -3658,9 +3658,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@puppeteer/browsers@npm:2.10.1":
-  version: 2.10.1
-  resolution: "@puppeteer/browsers@npm:2.10.1"
+"@puppeteer/browsers@npm:2.10.2":
+  version: 2.10.2
+  resolution: "@puppeteer/browsers@npm:2.10.2"
   dependencies:
     debug: "npm:^4.4.0"
     extract-zip: "npm:^2.0.1"
@@ -3671,7 +3671,7 @@ __metadata:
     yargs: "npm:^17.7.2"
   bin:
     browsers: lib/cjs/main-cli.js
-  checksum: 10/1b92b0a25196e533cd6c34a6ab04b0ae2a9cc85e100801858b2918fce4ce07f6d0eb75e5ffe618985dee0e7885380aa6334da7e91a36cf0a6c8e7ab14342650f
+  checksum: 10/84300aeb291e15422be12540b56a2d8092c9de9412d5ff879c360fc33ee356d49af067ac0e7ca6ed46312606427232e0020042f9d897ca7ad4f21f0f7d17379d
   languageName: node
   linkType: hard
 
@@ -5502,8 +5502,8 @@ __metadata:
   linkType: hard
 
 "applicationinsights@npm:^3.5.0":
-  version: 3.6.0
-  resolution: "applicationinsights@npm:3.6.0"
+  version: 3.7.0
+  resolution: "applicationinsights@npm:3.7.0"
   dependencies:
     "@azure/core-auth": "npm:^1.3.0"
     "@azure/core-client": "npm:^1.0.0"
@@ -5511,8 +5511,8 @@ __metadata:
     "@azure/functions": "npm:^4.6.0"
     "@azure/functions-old": "npm:@azure/functions@3.5.1"
     "@azure/identity": "npm:^4.6.0"
-    "@azure/monitor-opentelemetry": "npm:^1.9.0"
-    "@azure/monitor-opentelemetry-exporter": "npm:^1.0.0-beta.29"
+    "@azure/monitor-opentelemetry": "npm:^1.11.0"
+    "@azure/monitor-opentelemetry-exporter": "npm:^1.0.0-beta.31"
     "@azure/opentelemetry-instrumentation-azure-sdk": "npm:^1.0.0-beta.7"
     "@opentelemetry/api": "npm:^1.9.0"
     "@opentelemetry/api-logs": "npm:^0.57.2"
@@ -5529,7 +5529,7 @@ __metadata:
     "@opentelemetry/semantic-conventions": "npm:^1.30.0"
     diagnostic-channel: "npm:1.1.1"
     diagnostic-channel-publishers: "npm:1.0.8"
-  checksum: 10/f510714afd2847c4655e6cf89dddc74f576d8009fd25ef55a3aef580a1dc21d0541363ac8a87843477a88174acc869dd10fed7462a06535d2026666a364c6e3b
+  checksum: 10/7812be42ffc7c34d9832b210a6d5abc00c2e97ae631253a7747a90204a35c30f4358513e5c4f6193ec76de807b62e48edbe3b6be69ecdd34fa8246baf9982474
   languageName: node
   linkType: hard
 
@@ -8854,12 +8854,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"file-entry-cache@npm:^10.0.7":
-  version: 10.0.7
-  resolution: "file-entry-cache@npm:10.0.7"
+"file-entry-cache@npm:^10.0.8":
+  version: 10.0.8
+  resolution: "file-entry-cache@npm:10.0.8"
   dependencies:
-    flat-cache: "npm:^6.1.7"
-  checksum: 10/4d080a0e683df569bee759f0cedf4d17e023a4e9aeab6b8825364fc4f89e5c92090c91f6c7a800297b3b74c3e9727e42283b89dfd069f50a94b1bea5d107e054
+    flat-cache: "npm:^6.1.8"
+  checksum: 10/1094f55bd39d18de81ba64a3ed998fc8223ae814eef6e65518e2a1491d419febcaa852c8b87df2f4dd67c10b0053906be86b7f04ecdadaa5781821604dc88437
   languageName: node
   linkType: hard
 
@@ -8976,14 +8976,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flat-cache@npm:^6.1.7":
-  version: 6.1.7
-  resolution: "flat-cache@npm:6.1.7"
+"flat-cache@npm:^6.1.8":
+  version: 6.1.8
+  resolution: "flat-cache@npm:6.1.8"
   dependencies:
     cacheable: "npm:^1.8.9"
     flatted: "npm:^3.3.3"
-    hookified: "npm:^1.7.1"
-  checksum: 10/7fafc964e7e6eff9795396fa23b23955d02760b01ebc0e2b4861ef1e3945ef446416b0a07be99097fe20353414ffc8d38edd62351423c22983d7e84f4e20f9d3
+    hookified: "npm:^1.8.1"
+  checksum: 10/0aee09163c06c336c14254c6464736fcd8ad32344337a7645c1d5bda27956f5c1fc389f2c6443e5218b17859e5edb45e7882cbc9a91e2f5ddffd62f1c5dccb1e
   languageName: node
   linkType: hard
 
@@ -9601,6 +9601,13 @@ __metadata:
   version: 1.8.1
   resolution: "hookified@npm:1.8.1"
   checksum: 10/d784864816c98e97b24462e08107041c30fcc585cb87e9bb8ea9961716cc951a917db3950b1a4519bedfb9a2cadc7efa3b205979f323f49c57991767ad2573e8
+  languageName: node
+  linkType: hard
+
+"hookified@npm:^1.8.1":
+  version: 1.8.2
+  resolution: "hookified@npm:1.8.2"
+  checksum: 10/344099d23e4cd2803672ece46c173f61672a938b87ff2f024613f1d2b15164255176df9ce7c7fb4186d2a19007ad142a8a1a9fe2ffb0d3b53152d0d86a098dc7
   languageName: node
   linkType: hard
 
@@ -11276,6 +11283,13 @@ __metadata:
   version: 0.35.0
   resolution: "known-css-properties@npm:0.35.0"
   checksum: 10/a6f3f271a94913c72b29e59bd1e96836b0b5427c5dd9969f4673026cd39f7f441b5e8d0b704b0a830c43d745a5f7ca98d41d99961dc4c008ebf756545bada85c
+  languageName: node
+  linkType: hard
+
+"known-css-properties@npm:^0.36.0":
+  version: 0.36.0
+  resolution: "known-css-properties@npm:0.36.0"
+  checksum: 10/7d82779fe895ffd11851de7244bb23fb4f60f3e8f432843ad1fa78b6901037d2889d7035b789d220fecb3adf5c86e114411b96017ff6e40979affed1fb93429e
   languageName: node
   linkType: hard
 
@@ -12969,8 +12983,8 @@ __metadata:
   linkType: hard
 
 "nodemon@npm:^3.0.0":
-  version: 3.1.9
-  resolution: "nodemon@npm:3.1.9"
+  version: 3.1.10
+  resolution: "nodemon@npm:3.1.10"
   dependencies:
     chokidar: "npm:^3.5.2"
     debug: "npm:^4"
@@ -12984,7 +12998,7 @@ __metadata:
     undefsafe: "npm:^2.0.5"
   bin:
     nodemon: bin/nodemon.js
-  checksum: 10/7c01ddfa30815f4147006f5b7c015a1f75017118cf398ee8c4ba3ac904667f4555b91cca6b7b191e0f6ccf5072727aa20224a1456d5446f3f6053e15132068a2
+  checksum: 10/af5f63d0b4af3ee54f60c136996692232f836815ddd37c0368fd8e50c31dd0180a4db5cdb7f4c2c5a96b31c77f30a77c2253ac34438913839846098af813fd20
   languageName: node
   linkType: hard
 
@@ -14126,17 +14140,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"puppeteer-core@npm:24.7.0":
-  version: 24.7.0
-  resolution: "puppeteer-core@npm:24.7.0"
+"puppeteer-core@npm:24.7.1":
+  version: 24.7.1
+  resolution: "puppeteer-core@npm:24.7.1"
   dependencies:
-    "@puppeteer/browsers": "npm:2.10.1"
+    "@puppeteer/browsers": "npm:2.10.2"
     chromium-bidi: "npm:4.0.1"
     debug: "npm:^4.4.0"
     devtools-protocol: "npm:0.0.1425554"
     typed-query-selector: "npm:^2.12.0"
     ws: "npm:^8.18.1"
-  checksum: 10/7eac4e5b035d9aa1cb6c9a86293b0c53b34b21c4b689a25c2f83c8c0299020418e8b47389571c640c75b70f3925bde388ac4f0644a5f1e1432df22369e0ba23e
+  checksum: 10/cf4680584baca8adbe9fd28e820a84a378e3668b4bc1a727d1e74e0f8d64d6d2d5d4b351e4836a2d0d5ffd71924355eb1c44109572c3ee7b21665a0086f3a77d
   languageName: node
   linkType: hard
 
@@ -14155,18 +14169,18 @@ __metadata:
   linkType: hard
 
 "puppeteer@npm:^24.0.0":
-  version: 24.7.0
-  resolution: "puppeteer@npm:24.7.0"
+  version: 24.7.1
+  resolution: "puppeteer@npm:24.7.1"
   dependencies:
-    "@puppeteer/browsers": "npm:2.10.1"
+    "@puppeteer/browsers": "npm:2.10.2"
     chromium-bidi: "npm:4.0.1"
     cosmiconfig: "npm:^9.0.0"
     devtools-protocol: "npm:0.0.1425554"
-    puppeteer-core: "npm:24.7.0"
+    puppeteer-core: "npm:24.7.1"
     typed-query-selector: "npm:^2.12.0"
   bin:
     puppeteer: lib/cjs/puppeteer/node/cli.js
-  checksum: 10/b61574dbc10091f5d0891b8b54013f5efed92c02549e5131fb8fe084f3db1204f6f6c644c9530181c2864e24e80ddb9135bcee44755b961466ce09423cd6eca4
+  checksum: 10/600ed1340ac3754363cc6bf3a0b789d585163aed6c8d9c3d2c6812e01452ff17625a1841adc1dd9f9e0e988465d09a682005849fe152b3ed73eaf14615f5d09e
   languageName: node
   linkType: hard
 
@@ -15796,8 +15810,8 @@ __metadata:
   linkType: hard
 
 "stylelint@npm:^16.0.0":
-  version: 16.18.0
-  resolution: "stylelint@npm:16.18.0"
+  version: 16.19.0
+  resolution: "stylelint@npm:16.19.0"
   dependencies:
     "@csstools/css-parser-algorithms": "npm:^3.0.4"
     "@csstools/css-tokenizer": "npm:^3.0.3"
@@ -15812,7 +15826,7 @@ __metadata:
     debug: "npm:^4.3.7"
     fast-glob: "npm:^3.3.3"
     fastest-levenshtein: "npm:^1.0.16"
-    file-entry-cache: "npm:^10.0.7"
+    file-entry-cache: "npm:^10.0.8"
     global-modules: "npm:^2.0.0"
     globby: "npm:^11.1.0"
     globjoin: "npm:^0.1.4"
@@ -15820,7 +15834,7 @@ __metadata:
     ignore: "npm:^7.0.3"
     imurmurhash: "npm:^0.1.4"
     is-plain-object: "npm:^5.0.0"
-    known-css-properties: "npm:^0.35.0"
+    known-css-properties: "npm:^0.36.0"
     mathml-tag-names: "npm:^2.1.3"
     meow: "npm:^13.2.0"
     micromatch: "npm:^4.0.8"
@@ -15839,7 +15853,7 @@ __metadata:
     write-file-atomic: "npm:^5.0.1"
   bin:
     stylelint: bin/stylelint.mjs
-  checksum: 10/96b00d96125a033aeb9dfc710fbeacd36b69cc3914a060a09ba56c9f2165ed2296f09b048ab3ac702bdd2a1dd5a1ed7c3d0f315312d7802a5444e7df053e42ba
+  checksum: 10/bc214d084b1cabd8500707b32700d43f99a3ac0e0bddcb2274187c7108b57f4118e5fd1fa0bcf76fb9ae1041a81f70097b6ec56996bc960a1715a3826f7feeb8
   languageName: node
   linkType: hard
 
