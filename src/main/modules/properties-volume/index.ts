@@ -6,7 +6,7 @@ export class PropertiesVolume {
   enableFor(env: string): void {
     if (env !== 'development') {
       propertiesVolume.addTo(config);
-      PropertiesVolume.setSecret('secrets.lau.AppInsightsConnectionString', 'appInsights.connectionString');
+      PropertiesVolume.setSecret('secrets.lau.app-insights-connection-string', 'appInsights.connectionString');
       PropertiesVolume.setSecret('secrets.lau.frontend-redis-access-key', 'redis.password');
       PropertiesVolume.setSecret('secrets.lau.idam-client-secret', 'services.idam-api.clientSecret');
       PropertiesVolume.setSecret('secrets.lau.s2s-secret', 'services.s2s.lauSecret');
