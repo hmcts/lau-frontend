@@ -39,12 +39,12 @@ Scenario('Navigate to LAU, perform case audit search and authenticate case activ
   logger.info({message: 'the text is ', textBeforePagination});
   await I.waitForText('Displaying 1 to 100 of 10,000 records', testConfig.TestTimeToWaitForText);
   await I.waitForText('Search results are limited to 10,000.', testConfig.TestTimeToWaitForText);
-  await I.click('Next >');
+  await I.click('Next page>');
   await I.waitForText('Displaying 101 to 200 of 10,000 records', testConfig.TestTimeToWaitForText);
   await I.waitForText('Search results are limited to 10,000.', testConfig.TestTimeToWaitForText);
   const textAfterPagination = await I.grabTextFromAll('div[class="flex-space-between"] p');
   logger.info({message: 'the text is ', textAfterPagination});
-  await I.click('Last >>');
+  await I.click('Last page>>');
   await I.waitForText('Displaying 9,901 to 10,000 of 10,000 records', testConfig.TestTimeToWaitForText);
   await I.waitForText('Search results are limited to 10,000.', testConfig.TestTimeToWaitForText);
   const textLastPagination = await I.grabTextFromAll('div[class="flex-space-between"] p');
@@ -66,11 +66,11 @@ Scenario('Navigate to LAU, perform case audit search and authenticate case searc
   const textBeforePaginationOfCaseSearch = await I.grabTextFromAll('div[class="flex-space-between"] p');
   logger.info({message: 'the text is ', textBeforePaginationOfCaseSearch});
   await I.waitForText('Displaying 1 to 100 of 132 records', testConfig.TestTimeToWaitForText);
-  await I.click('Next >');
+  await I.click('Next page>');
   await I.waitForText('Displaying 101 to 132 of 132 records', testConfig.TestTimeToWaitForText);
   const textAfterPaginationOfCaseSearch = await I.grabTextFromAll('div[class="flex-space-between"] p');
   logger.info({message: 'the text is ', textAfterPaginationOfCaseSearch});
-  await I.click('< Previous');
+  await I.click('< Previous page');
   await I.waitForText('Displaying 1 to 100 of 132 records', testConfig.TestTimeToWaitForText);
   const textPreviousPageOfCaseSearch = await I.grabTextFromAll('div[class="flex-space-between"] p');
   logger.info({message: 'the text is ', textPreviousPageOfCaseSearch});

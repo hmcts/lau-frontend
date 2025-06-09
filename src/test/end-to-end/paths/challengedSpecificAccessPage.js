@@ -25,11 +25,11 @@ Scenario('Navigate to LAU, perform challenged/specific access search and check r
   await I.waitForText('Displaying 1 to 100 of 200 records', testConfig.TestTimeToWaitForText);
   const textBeforePagination = await I.grabTextFromAll('div[class="flex-space-between"] p');
   logger.info({message: 'the text is ', textBeforePagination});
-  await I.click('Next >');
+  await I.click('Next page>');
   await I.waitForText('Displaying 101 to 200 of 200 records', testConfig.TestTimeToWaitForText);
   const textAfterPagination = await I.grabTextFromAll('div[class="flex-space-between"] p');
   logger.info({message: 'the text is ', textAfterPagination});
-  await I.click('< Previous');
+  await I.click('< Previous page');
   await I.waitForText('Displaying 1 to 100 of 200 records', testConfig.TestTimeToWaitForText);
   const textLastPagination = await I.grabTextFromAll('div[class="flex-space-between"] p');
   logger.info({message: 'the text is ', textLastPagination});

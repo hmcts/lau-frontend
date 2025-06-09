@@ -20,7 +20,7 @@
     <a id="{{ idPrefix }}-next-btn" class="govuk-link pagination-link" href="{{ pagedRequestUrl }}/{{ data.currentPage | int + 1 }}">Next page&gt;</a>
     {% endif %}
     {% if (data.lastPage - data.currentPage) > 1 %}
-    <a id="{{ idPrefix }}-last-btn" class="govuk-link pagination-link" href="{{ pagedRequestUrl }}/{{ data.lastPage }}">Last &gt;&gt;</a>
+    <a id="{{ idPrefix }}-last-btn" class="govuk-link pagination-link" href="{{ pagedRequestUrl }}/{{ data.lastPage }}">Last page&gt;&gt;</a>
     {% endif %}
   </div>
 </div>
