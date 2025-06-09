@@ -8,19 +8,19 @@
   </div>
   <div>
     {% if (data.currentPage > 2) %}
-    <a id="{{ idPrefix }}-first-btn" class="govuk-link pagination-link" href="{{ pagedRequestUrl }}/1">&lt;&lt; First</a>
+    <a id="{{ idPrefix }}-first-btn" class="govuk-link pagination-link" href="{{ pagedRequestUrl }}/1">&lt;&lt; First page</a>
     {% endif %}
     {% if (data.currentPage > 1) %}
-    <a id="{{ idPrefix }}-previous-btn" class="govuk-link pagination-link" href="{{pagedRequestUrl}}/{{ data.currentPage | int - 1 }}">&lt; Previous</a>
+    <a id="{{ idPrefix }}-previous-btn" class="govuk-link pagination-link" href="{{pagedRequestUrl}}/{{ data.currentPage | int - 1 }}">&lt; Previous page</a>
     {% endif %}
 
     <span class="govuk-body-s">&emsp;Page {{ data.currentPage | numComma }} / {{ data.lastPage | numComma }}&emsp;</span>
 
     {% if (data.lastPage - data.currentPage) > 0 %}
-    <a id="{{ idPrefix }}-next-btn" class="govuk-link pagination-link" href="{{ pagedRequestUrl }}/{{ data.currentPage | int + 1 }}">Next &gt;</a>
+    <a id="{{ idPrefix }}-next-btn" class="govuk-link pagination-link" href="{{ pagedRequestUrl }}/{{ data.currentPage | int + 1 }}">Next page&gt;</a>
     {% endif %}
     {% if (data.lastPage - data.currentPage) > 1 %}
-    <a id="{{ idPrefix }}-last-btn" class="govuk-link pagination-link" href="{{ pagedRequestUrl }}/{{ data.lastPage }}">Last &gt;&gt;</a>
+    <a id="{{ idPrefix }}-last-btn" class="govuk-link pagination-link" href="{{ pagedRequestUrl }}/{{ data.lastPage }}">Last page&gt;&gt;</a>
     {% endif %}
   </div>
 </div>
