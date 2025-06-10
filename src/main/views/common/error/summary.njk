@@ -7,6 +7,11 @@
       {% set errorList = (errorList.push({
         text: errorSaving
       }), errorList) %}
+    {% elseif item.errorType === 'stringFieldRequired' %}
+      {% set errorList = (errorList.push({
+        href: '#first-search-field',
+        text: errors[item.propertyName][item.errorType]
+      }), errorList) %}
     {% else %}
       {% set errorList = (errorList.push({
         href: '#' + item.propertyName,
