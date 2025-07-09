@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@hmcts/cookie-manager": "^1.0.0",
-    "@hmcts/nodejs-healthcheck": "^1.7.3",
+    "@hmcts/nodejs-healthcheck": "^1.8.6",
     "@hmcts/properties-volume": "^1.0.0",
     "@types/compression": "^1.7.2",
     "@types/config": "^3.0.0",
@@ -90,9 +90,9 @@
     "ws": "^8.17.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.0",
-    "@babel/eslint-parser": "^7.11.0",
-    "@babel/preset-env": "^7.22.20",
+    "@babel/core": "^7.28.0",
+    "@babel/eslint-parser": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
     "@eslint/js": "^9.1.1",
     "@hmcts/div-idam-test-harness": "^1.9.0",
     "@stryker-mutator/core": "^8.0.0",
