@@ -82,7 +82,7 @@ $desktop-breakpoint: map.get(govuk-frontend.$govuk-breakpoints, "desktop");
   font-family: "GDS Transport", arial, sans-serif;;
 }
 
-div.moj-primary-navigation {
+div.govuk-service-navigation {
   &__container {
     max-width: 99%;
     margin: 0 15px;
@@ -113,7 +113,7 @@ div.moj-primary-navigation {
   }
 }
 
-.moj-primary-navigation {
+.govuk-service-navigation {
   background-color: $lighter-grey;
 
   &__list {
