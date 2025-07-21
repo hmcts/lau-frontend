@@ -1,0 +1,1 @@
+{"value":"on-headers","children":{"ID":1106485,"Issue":"on-headers is vulnerable to http response header manipulation","URL":"https://github.com/advisories/GHSA-76c9-3jph-rj3q","Severity":"low","Vulnerable Versions":"<1.1.0","Tree Versions":["1.0.2"],"Dependents":["express-session@npm:1.18.1"]}}
