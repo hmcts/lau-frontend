@@ -110,16 +110,13 @@ export class AuthService {
       throw new AppError(err instanceof Error ? err.message : String(err), ErrorCode.IDAM_API);
     }
 
-    // @ts-ignore
     try {
       AuthService.checkStatus(response);
-    } catch (err: any) {
+    } catch (err) {
       logger.error(err);
-      if (err.response) {
-        const errorBody = await err.response.text();
-        logger.error(`Error body: ${errorBody}`);
-      }
-      throw new AppError(err instanceof Error ? err.message : String(err), ErrorCode.IDAM_API);
+      const errorBody = err.response ? await err.response.text() : err;
+      logger.error(`Error body: ${errorBody}`);
+      throw new AppError(err, ErrorCode.IDAM_API);
     }
     return response;
   }
