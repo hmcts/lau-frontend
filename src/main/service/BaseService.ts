@@ -1,5 +1,4 @@
 import config from 'config';
-import fetch from 'node-fetch';
 import {AuthService, IdamGrantType} from './AuthService';
 import {AppSession} from '../models/appRequest';
 import {AppError, ErrorCode} from '../models/AppError';
