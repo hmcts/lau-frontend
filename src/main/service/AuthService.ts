@@ -151,6 +151,7 @@ export class AuthService {
 
   private static checkStatus(response: Response): Response {
     if (response.ok) {
+      // response.status >= 200 && response.status < 300
       return response;
     } else {
       throw new HttpResponseError(response);
