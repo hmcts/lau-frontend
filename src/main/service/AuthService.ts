@@ -1,7 +1,6 @@
 import { IConfig } from 'config';
 import {TOTP} from 'totp-generator';
 import {ServiceAuthToken} from '../components/idam/ServiceAuthToken';
-import fetch, {Response as FetchResponse} from 'node-fetch';
 import {jwtDecode} from 'jwt-decode';
 import {AppSession, UserDetails} from '../models/appRequest';
 import {HttpResponseError} from '../util/HttpResponseError';
@@ -62,37 +61,31 @@ export class AuthService {
     this.totpSecret = this.config.get('services.s2s.lauSecret');
   }
 
-  retrieveServiceToken(serviceName?: string): Promise<ServiceAuthToken> {
+  async retrieveServiceToken(serviceName?: string): Promise<ServiceAuthToken> {
     const { otp } = TOTP.generate(this.totpSecret);
     const params = {
       microservice: serviceName ?? this.microserviceName,
       oneTimePassword: otp,
     };
 
-    return new Promise((resolve, reject) => {
-      fetch(
-        this.s2sUrl + '/lease',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(params),
+    try {
+      const response = await fetch(`${this.s2sUrl}/lease`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      )
-        .then((res: FetchResponse) => res.text())
-        .then((token: string) => {
-          resolve(new ServiceAuthToken(token));
-        })
-        .catch((err: string) => {
-          logger.error(err);
-          reject(new AppError(err, ErrorCode.S2S));
-        });
-    });
+        body: JSON.stringify(params),
+      });
+
+      const token = await response.text();
+      return new ServiceAuthToken(token);
+    } catch (err) {
+      logger.error(err);
+      throw new AppError(err instanceof Error ? err.message : String(err), ErrorCode.S2S);
+    }
   }
 
-  async getIdAMResponse(grantType: IdamGrantType, extraParams: IdamRequestExtraParams) {
-
+  async getIdAMResponse(grantType: IdamGrantType, extraParams: IdamRequestExtraParams): Promise<Response> {
     const params = new URLSearchParams({
       client_id: this.clientId,
       client_secret: this.clientSecret,
@@ -101,23 +94,20 @@ export class AuthService {
       ...extraParams,
     });
 
-    let response: FetchResponse;
+    let response: Response;
 
     try {
-      response = await fetch(
-        this.tokenUrl,
-        {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: params.toString(),
+      response = await fetch(this.tokenUrl, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-      );
+        body: params.toString(),
+      });
     } catch (err) {
       logger.error(err);
-      throw new AppError(err, ErrorCode.IDAM_API);
+      throw new AppError(err instanceof Error ? err.message : String(err), ErrorCode.IDAM_API);
     }
 
     try {
@@ -140,8 +130,7 @@ export class AuthService {
       extraParams['refresh_token'] = session.user.refreshToken;
     }
 
-    const response: FetchResponse = await this.getIdAMResponse(grantType, extraParams);
-
+    const response: Response = await this.getIdAMResponse(grantType, extraParams);
     const data: IdamResponseData = await response.json();
     const expiresAt: number = requestTimeInSeconds + Number(data.expires_in);
 
@@ -159,7 +148,8 @@ export class AuthService {
     return session.user;
   }
 
-  private static checkStatus(response: FetchResponse): FetchResponse {
+
+  private static checkStatus(response: Response): Response {
     if (response.ok) {
       // response.status >= 200 && response.status < 300
       return response;

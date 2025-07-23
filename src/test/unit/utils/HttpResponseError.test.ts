@@ -1,5 +1,4 @@
 import {HttpResponseError} from '../../../main/util/HttpResponseError';
-import {Response} from 'node-fetch';
 
 describe('HttpResponseError', function () {
   it('forms the correct error string', () => {
