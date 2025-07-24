@@ -52,9 +52,11 @@ for (const form of forms) {
         searchButton.textContent = 'Searching...';
         searchButton.disabled = true;
 
-        formEl.submit();
-
-        loadingOverlay.style.display = 'flex';
+        // Show loading overlay immediately
+        if (loadingOverlay) {
+          loadingOverlay.style.display = 'flex';
+        }
+        formEl.submit(); 
       };
     }
 
@@ -137,6 +139,46 @@ if (paginationLinks && paginationLinks.length > 0) {
   }
 }
 
-window.onload = function() {
-  loadingOverlay.style.display = 'none';
-};
+window.addEventListener('load', () => {
+  if (loadingOverlay) {
+    loadingOverlay.style.display = 'none';
+  }
+  focusAndAnnounceActivityRegion();
+});
+
+const caseActivityTab = document.getElementById('tab_case-activity');
+caseActivityTab?.addEventListener('click', () => {
+  focusAndAnnounceActivityRegion();
+});
+
+
+function focusAndAnnounceActivityRegion() {
+  const activityRegion = document.getElementById('case-activity-status');
+  if (activityRegion) {
+    activityRegion.setAttribute('tabindex', '-1');
+    activityRegion.focus();
+
+    const message = activityRegion.textContent;
+    activityRegion.textContent = '';
+    setTimeout(() => {
+      activityRegion.textContent = message || '';
+    }, 100);
+  }
+}
+
+const caseSearchTab = document.getElementById('tab_case-search');
+caseSearchTab?.addEventListener('click', () => {
+  const searchRegion = document.getElementById('case-searches-status');
+  if (searchRegion) {
+    searchRegion.setAttribute('tabindex', '-1');
+    searchRegion.focus();
+
+    const msg = searchRegion.textContent;
+    searchRegion.textContent = '';
+    setTimeout(() => {
+      searchRegion.textContent = msg || '';
+    }, 100);
+  }
+});
+
+
