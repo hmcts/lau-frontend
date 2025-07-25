@@ -143,12 +143,22 @@ window.addEventListener('load', () => {
   if (loadingOverlay) {
     loadingOverlay.style.display = 'none';
   }
-  focusAndAnnounceActivityRegion('case-activity-status');
-  focusAndAnnounceActivityRegion('case-searches-status');
-  focusAndAnnounceActivityRegion('logons-status');
-  focusAndAnnounceActivityRegion('challengedAccess-status');
-  focusAndAnnounceActivityRegion('userDeletion-status');
-  focusAndAnnounceActivityRegion('caseDeletion-status');
+
+  const path = window.location.pathname;
+  setTimeout(() => {
+    if (path.includes('/case-audit')) {
+      focusAndAnnounceActivityRegion('case-activity-status');
+    } else if (path.includes('/logon-audit')) {
+      focusAndAnnounceActivityRegion('logons-status');
+    } else if (path.includes('/challenged-specific-access')) {
+      focusAndAnnounceActivityRegion('challengedAccess-status');
+    } else if (path.includes('/user-deletion-audit')) {
+      focusAndAnnounceActivityRegion('userDeletion-status');
+    } else if (path.includes('/case-deletion-audit')) {
+      focusAndAnnounceActivityRegion('caseDeletion-status');
+    }
+   }, 300);
+ 
 });
 
 const caseActivityTab = document.getElementById('tab_case-activity');
@@ -174,8 +184,3 @@ function focusAndAnnounceActivityRegion(regionId: string) {
     }, 100);
   }
 }
-
-
-
-
-
