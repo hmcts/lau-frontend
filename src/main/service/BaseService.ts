@@ -1,8 +1,9 @@
 import config from 'config';
-import fetch from 'node-fetch';
 import {AuthService, IdamGrantType} from './AuthService';
 import {AppSession} from '../models/appRequest';
 import {AppError, ErrorCode} from '../models/AppError';
+import {HttpResponseError} from '../util/HttpResponseError';
+
 
 import logger from '../modules/logging';
 
@@ -26,8 +27,8 @@ export abstract class BaseService<RequestType> {
 
     const s2sToken = this.s2sEnabled ? await this.authService.retrieveServiceToken() : {bearerToken: ''};
 
-    return new Promise((resolve, reject) => {
-      fetch(
+    try {
+      const response = await fetch(
         `${this.baseApiUrl}${endpoint}${qs || ''}`,
         {
           method: 'GET',
@@ -36,15 +37,26 @@ export abstract class BaseService<RequestType> {
             'ServiceAuthorization': 'Bearer ' + s2sToken.bearerToken,
             'Authorization': 'Bearer ' + session.user?.accessToken || '',
           },
-        })
-        .then(response => {
-          resolve(response.json());
-        })
-        .catch(err => {
-          logger.error(err);
-          reject(new AppError(err, ErrorCode.CASE_BACKEND));
         });
-    });
+
+      if (!response.ok) {
+        throw new HttpResponseError(response);
+      }
+
+      const jsonData = await response.json();
+
+      return JSON.parse(JSON.stringify(jsonData));
+    } catch (err) {
+      logger.error(err);
+
+      // If it's already an HttpResponseError, re-throw with appropriate error code
+      if (err instanceof HttpResponseError) {
+        throw new AppError(`HTTP Error: ${err.response.status} ${err.response.statusText}`, this.errorCode);
+      }
+
+      // For other errors (network issues, etc.)
+      throw new AppError(err.message || err, this.errorCode);
+    }
   }
 
   getQueryString(params: Partial<RequestType>): string {
