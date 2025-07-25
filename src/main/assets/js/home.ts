@@ -52,9 +52,11 @@ for (const form of forms) {
         searchButton.textContent = 'Searching...';
         searchButton.disabled = true;
 
-        formEl.submit();
-
-        loadingOverlay.style.display = 'flex';
+        // Show loading overlay immediately
+        if (loadingOverlay) {
+          loadingOverlay.style.display = 'flex';
+        }
+        formEl.submit(); 
       };
     }
 
@@ -137,6 +139,48 @@ if (paginationLinks && paginationLinks.length > 0) {
   }
 }
 
-window.onload = function() {
-  loadingOverlay.style.display = 'none';
-};
+window.addEventListener('load', () => {
+  if (loadingOverlay) {
+    loadingOverlay.style.display = 'none';
+  }
+
+  const path = window.location.pathname;
+  setTimeout(() => {
+    if (path.includes('/case-audit')) {
+      focusAndAnnounceActivityRegion('case-activity-status');
+    } else if (path.includes('/logon-audit')) {
+      focusAndAnnounceActivityRegion('logons-status');
+    } else if (path.includes('/challenged-specific-access')) {
+      focusAndAnnounceActivityRegion('challengedAccess-status');
+    } else if (path.includes('/user-deletion-audit')) {
+      focusAndAnnounceActivityRegion('userDeletion-status');
+    } else if (path.includes('/case-deletion-audit')) {
+      focusAndAnnounceActivityRegion('caseDeletion-status');
+    }
+   }, 500);
+ 
+});
+
+const caseActivityTab = document.getElementById('tab_case-activity');
+caseActivityTab?.addEventListener('click', () => {
+  focusAndAnnounceActivityRegion('case-activity-status');
+});
+
+const caseSearchTab = document.getElementById('tab_case-search');
+caseSearchTab?.addEventListener('click', () => {
+  focusAndAnnounceActivityRegion('case-searches-status');
+});
+
+function focusAndAnnounceActivityRegion(regionId: string) {
+  const activityRegion = document.getElementById(regionId);
+  if (activityRegion) {
+    activityRegion.setAttribute('tabindex', '-1');
+    activityRegion.focus();
+
+    const message = activityRegion.textContent;
+    activityRegion.textContent = '';
+    setTimeout(() => {
+      activityRegion.textContent = message || '';
+    }, 200);
+  }
+}

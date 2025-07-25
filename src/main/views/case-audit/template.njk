@@ -175,6 +175,13 @@
       <div class="govuk-tabs__panel" id="case-activity" role="tabpanel" aria-labelledby="tab_case-activity">
         <h2 class="govuk-heading-l">Case activity</h2>
         {% if caseActivities.hasData %}
+        <div id="case-activity-status"
+          class="govuk-visually-hidden"
+          role="status"
+          aria-atomic="true"
+          tabindex="-1">
+          {{ caseActivities.totalNumberOfRecords }} results found in Case Activity.
+        </div>
         <!-- case activity tab contents -->
         <div class="results">
           <button class="govuk-button" data-module="govuk-button" id="activityCsvBtn">
@@ -206,6 +213,13 @@
       <div class="govuk-tabs__panel" id="case-search" role="tabpanel" aria-labelledby="tab_case-search">
         <h2 class="govuk-heading-l">Case search</h2>
         {% if caseSearches and caseSearches.hasData %}
+        <div id="case-searches-status"
+          class="govuk-visually-hidden"
+          role="status"
+          aria-atomic="true"
+          tabindex="-1">
+          {{ caseSearches.totalNumberOfRecords }} results found in Case Search.
+        </div>
         <div class="results">
           <button class="govuk-button" data-module="govuk-button" id="searchesCsvBtn">
             Download all records to CSV

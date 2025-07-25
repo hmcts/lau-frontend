@@ -113,6 +113,13 @@
 </form>
 
 {% if userDeletions and userDeletions.hasData %}
+<div id="userDeletion-status"
+  class="govuk-visually-hidden"
+  role="status"
+  aria-atomic="true"
+  tabindex="-1">
+  {{ userDeletions.totalNumberOfRecords }} results found in Deleted User.
+</div>
 <div class="govuk-grid-row govuk-!-margin-top-5" id="results-section">
   <div class="govuk-grid-column-full">
 
