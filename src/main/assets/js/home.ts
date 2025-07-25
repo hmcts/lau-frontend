@@ -143,17 +143,26 @@ window.addEventListener('load', () => {
   if (loadingOverlay) {
     loadingOverlay.style.display = 'none';
   }
-  focusAndAnnounceActivityRegion();
+  focusAndAnnounceActivityRegion('case-activity-status');
+  focusAndAnnounceActivityRegion('case-searches-status');
+  focusAndAnnounceActivityRegion('logons-status');
+  focusAndAnnounceActivityRegion('challengedAccess-status');
+  focusAndAnnounceActivityRegion('userDeletion-status');
+  focusAndAnnounceActivityRegion('caseDeletion-status');
 });
 
 const caseActivityTab = document.getElementById('tab_case-activity');
 caseActivityTab?.addEventListener('click', () => {
-  focusAndAnnounceActivityRegion();
+  focusAndAnnounceActivityRegion('case-activity-status');
 });
 
+const caseSearchTab = document.getElementById('tab_case-search');
+caseSearchTab?.addEventListener('click', () => {
+  focusAndAnnounceActivityRegion('case-searches-status');
+});
 
-function focusAndAnnounceActivityRegion() {
-  const activityRegion = document.getElementById('case-activity-status');
+function focusAndAnnounceActivityRegion(regionId: string) {
+  const activityRegion = document.getElementById(regionId);
   if (activityRegion) {
     activityRegion.setAttribute('tabindex', '-1');
     activityRegion.focus();
@@ -166,19 +175,7 @@ function focusAndAnnounceActivityRegion() {
   }
 }
 
-const caseSearchTab = document.getElementById('tab_case-search');
-caseSearchTab?.addEventListener('click', () => {
-  const searchRegion = document.getElementById('case-searches-status');
-  if (searchRegion) {
-    searchRegion.setAttribute('tabindex', '-1');
-    searchRegion.focus();
 
-    const msg = searchRegion.textContent;
-    searchRegion.textContent = '';
-    setTimeout(() => {
-      searchRegion.textContent = msg || '';
-    }, 100);
-  }
-});
+
 
 
