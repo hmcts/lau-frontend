@@ -145,6 +145,6 @@
   "resolutions": {
     "glob": "^9.0.0",
     "formidable": "^3.5.4",
-    "brace-expansion": "^2.0.1"
+    "brace-expansion": "^4.0.0"
   }
 }
