@@ -114,6 +114,13 @@
 </form>
 
 {% if challengedAccessData and challengedAccessData.hasData %}
+<div id="challengedAccess-status"
+  class="govuk-visually-hidden"
+  role="status"
+  aria-atomic="true"
+  tabindex="-1">
+  {{ challengedAccessData.totalNumberOfRecords }} results found in Challenged & Specific Access.
+</div>
 <div class="govuk-grid-row govuk-!-margin-top-5" id="results-section">
   <div class="govuk-grid-column-full">
 

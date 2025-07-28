@@ -89,6 +89,13 @@
 </form>
 
 {% if logons and logons.hasData %}
+<div id="logons-status"
+  class="govuk-visually-hidden"
+  role="status"
+  aria-atomic="true"
+  tabindex="-1">
+  {{ logons.totalNumberOfRecords }} results found in Logons.
+</div>
 <div class="govuk-grid-row govuk-!-margin-top-5" id="results-section">
   <div class="govuk-grid-column-full">
 
