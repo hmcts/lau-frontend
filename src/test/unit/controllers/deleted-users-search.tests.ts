@@ -178,10 +178,8 @@ describe('Deleted Users Search Controller', () => {
     });
 
     it('sanitizes string fields in the deleted users search request', async () => {
-      const dirtyUserId = '4f18-b03b-7d2042209344';
-      const sanitizedUserId = '4f18-b03b-7d2042209344';
       nock(basePath)
-        .get(`/audit/deletedAccounts?userId=${sanitizedUserId}&firstName=John_08&lastName=Smith_8&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5`)
+        .get(`/audit/deletedAccounts?userId=4f18-b03b-7d2042209344&firstName=John_08&lastName=Smith_8&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5`)
         .reply(
           200,
           {deletionLogs: []},
@@ -190,7 +188,7 @@ describe('Deleted Users Search Controller', () => {
       const req = {
         session: {},
         body: {
-          userId: dirtyUserId,
+          userId: '4f18-b03b-7d2042209344',
           emailAddress: '',
           firstName: ' John @08',
           lastName: ' Smith !%8 ',
@@ -202,7 +200,7 @@ describe('Deleted Users Search Controller', () => {
 
       // @ts-ignore
       return deletedUsersSearchController.post(req as AppRequest, res as Response).then(() => {
-        expect(req.body.userId).toBe(sanitizedUserId);
+        expect(req.body.userId).toBe('4f18-b03b-7d2042209344');
       });
     });
   });
