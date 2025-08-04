@@ -119,6 +119,7 @@ export abstract class BaseSearchController<SearchType extends SearchTypeCommon> 
         delete request[typedKey];
       } else if (
         typeof request[typedKey] === 'string' &&
+      key !== 'emailAddress' &&
       key !== 'startTimestamp' &&
       key !== 'endTimestamp'
       ) {
