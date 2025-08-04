@@ -176,7 +176,7 @@ describe('Logon Search Controller', () => {
       const dirtyUserId = ' xyz !@# _456 tuv -345';
       const sanitizedUserId = 'xyz_456tuv-345';
       nock(basePath)
-        .get(`/audit/logon?userId=${sanitizedUserId}&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5`)
+        .get(`/audit/logon?userId=${sanitizedUserId}&emailAddress=firstname.lastname@company.com&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5`)
         .reply(
           200,
           {logonLog: []},
@@ -186,7 +186,7 @@ describe('Logon Search Controller', () => {
         session: {},
         body: {
           userId: dirtyUserId,
-          emailAddress: '',
+          emailAddress: 'firstname.lastname@company.com',
           startTimestamp: '2021-12-12T12:00:00',
           endTimestamp: '2021-12-12T12:00:01',
           page: 1,
