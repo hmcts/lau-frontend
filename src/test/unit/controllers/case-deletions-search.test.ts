@@ -157,5 +157,34 @@ describe('Case Deletions Search Controller', () => {
         expect(res.redirect.calledWith('/error?code=LAU02')).toBeTruthy();
       });
     });
+
+    it('sanitizes string fields in the case deletions search request', async () => {
+      const dirtyCaseRef = ' xyz !@# _456';
+      const sanitizedCaseRef = 'xyz_456';
+
+      nock('http://localhost:4550')
+        .get(`/audit/caseAction?caseRef=${sanitizedCaseRef}&caseTypeId=123&caseJurisdictionId=123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&caseAction=DELETE&size=5`)
+        .reply(
+          200,
+          {actionLog: []},
+        );
+
+      const req = {
+        session: {},
+        body: {
+          caseRef: dirtyCaseRef,
+          caseTypeId: '123',
+          caseJurisdictionId: '123',
+          startTimestamp: '2021-12-12T12:00:00',
+          endTimestamp: '2021-12-12T12:00:01',
+          page: 1,
+        },
+      };
+
+      // @ts-ignore
+      return caseDeletionsSearchController.post(req as AppRequest, res as Response).then(() => {
+        expect(req.body.caseRef).toBe(sanitizedCaseRef);
+      });
+    });
   });
 });

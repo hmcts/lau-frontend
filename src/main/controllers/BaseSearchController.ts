@@ -112,9 +112,20 @@ export abstract class BaseSearchController<SearchType extends SearchTypeCommon> 
   abstract post(req: AppRequest, res: Response): Promise<void>;
 
   formatSearchRequest(request: Partial<SearchType>): void {
-    // Remove any properties with empty strings from the request object
-    // @ts-ignore
-    Object.keys(request).forEach(key => request[key] === '' ? delete request[key] : {});
+  // Remove any properties with empty strings from the request object
+    Object.keys(request).forEach(key => {
+      const typedKey = key as keyof SearchType;
+      if (request[typedKey] === '') {
+        delete request[typedKey];
+      } else if (
+        typeof request[typedKey] === 'string' &&
+      key !== 'startTimestamp' &&
+      key !== 'endTimestamp'
+      ) {
+      // Sanitize all string fields except timestamps
+        request[typedKey] = this.sanitizeInput(request[typedKey] as string) as unknown as SearchType[typeof typedKey];
+      }
+    });
 
     if (request.page) {
       request.page = Number(request.page);
@@ -127,6 +138,11 @@ export abstract class BaseSearchController<SearchType extends SearchTypeCommon> 
     if (request.endTimestamp) {
       request.endTimestamp = formDateToRequestDate(request.endTimestamp);
     }
+  }
+
+  // Removes all non-alphanumeric characters (including spaces)but excepts underscores and hyphens
+  protected sanitizeInput(input: string): string {
+    return input.replace(/[^a-zA-Z0-9_-]/g, '');
   }
 
 }

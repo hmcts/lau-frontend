@@ -176,5 +176,32 @@ describe('Deleted Users Search Controller', () => {
         expect(res.redirect.calledWith('/error?code=LAU03')).toBeTruthy();
       });
     });
+
+    it('sanitizes string fields in the deleted users search request', async () => {
+      const dirtyUserId = ' tuv !@# -789 ';
+      const sanitizedUserId = 'tuv-789';
+      nock(basePath)
+        .get(`/audit/deletedAccounts?userId=${sanitizedUserId}&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5`)
+        .reply(
+          200,
+          {deletionLogs: []},
+        );
+
+      const req = {
+        session: {},
+        body: {
+          userId: dirtyUserId,
+          emailAddress: '',
+          startTimestamp: '2021-12-12T12:00:00',
+          endTimestamp: '2021-12-12T12:00:01',
+          page: 1,
+        },
+      };
+
+      // @ts-ignore
+      return deletedUsersSearchController.post(req as AppRequest, res as Response).then(() => {
+        expect(req.body.userId).toBe(sanitizedUserId);
+      });
+    });
   });
 });
