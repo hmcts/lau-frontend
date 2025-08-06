@@ -176,5 +176,32 @@ describe('Deleted Users Search Controller', () => {
         expect(res.redirect.calledWith('/error?code=LAU03')).toBeTruthy();
       });
     });
+
+    it('sanitizes string fields in the deleted users search request', async () => {
+      nock(basePath)
+        .get(`/audit/deletedAccounts?userId=4f18-b03b-7d2042209344&firstName=John_08&lastName=Smith_8&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5`)
+        .reply(
+          200,
+          {deletionLogs: []},
+        );
+
+      const req = {
+        session: {},
+        body: {
+          userId: '4f18-b03b-7d2042209344',
+          emailAddress: '',
+          firstName: ' John @08',
+          lastName: ' Smith !%8 ',
+          startTimestamp: '2021-12-12T12:00:00',
+          endTimestamp: '2021-12-12T12:00:01',
+          page: 1,
+        },
+      };
+
+      // @ts-ignore
+      return deletedUsersSearchController.post(req as AppRequest, res as Response).then(() => {
+        expect(req.body.userId).toBe('4f18-b03b-7d2042209344');
+      });
+    });
   });
 });

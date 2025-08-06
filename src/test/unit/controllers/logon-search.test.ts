@@ -171,5 +171,33 @@ describe('Logon Search Controller', () => {
         expect(res.redirect.calledWith('/error?code=LAU03')).toBeTruthy();
       });
     });
+
+    it('sanitizes string fields in the logon search request', async () => {
+      const dirtyUserId = ' xyz !@# _456 tuv -345';
+      const sanitizedUserId = 'xyz_456tuv-345';
+      nock(basePath)
+        .get(`/audit/logon?userId=${sanitizedUserId}&emailAddress=firstname.lastname@company.com&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5`)
+        .reply(
+          200,
+          {logonLog: []},
+        );
+
+      const req = {
+        session: {},
+        body: {
+          userId: dirtyUserId,
+          emailAddress: 'firstname.lastname@company.com',
+          startTimestamp: '2021-12-12T12:00:00',
+          endTimestamp: '2021-12-12T12:00:01',
+          page: 1,
+        },
+      };
+
+      // @ts-ignore
+      return logonSearchController.post(req as AppRequest, res as Response).then(() => {
+        expect(req.body.userId).toBe(sanitizedUserId);
+        nock.cleanAll();
+      });
+    });
   });
 });

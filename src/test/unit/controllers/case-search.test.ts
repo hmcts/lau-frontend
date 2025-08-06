@@ -175,5 +175,33 @@ describe('Case Search Controller', () => {
         nock.cleanAll();
       });
     });
+
+    it('sanitizes string fields in the search request', async () => {
+      nock('http://localhost:4550')
+        .get('/audit/caseAction?userId=abc123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5')
+        .reply(200, {actionLog: []});
+      nock('http://localhost:4550')
+        .get('/audit/caseSearch?userId=abc123&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5')
+        .reply(200, {searchLog: []});
+
+      const req = {
+        session: {},
+        body: {
+          userId: 'abc 123!@#',
+          caseRef: '',
+          caseTypeId: '',
+          caseJurisdictionId: '',
+          startTimestamp: '2021-12-12T12:00:00',
+          endTimestamp: '2021-12-12T12:00:01',
+          page: 1,
+        },
+      };
+
+      // @ts-ignore
+      return searchController.post(req as AppRequest, res as Response).then(() => {
+        expect(req.body.userId).toBe('abc123');
+        nock.cleanAll();
+      });
+    });
   });
 });
