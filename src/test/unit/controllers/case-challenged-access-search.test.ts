@@ -160,5 +160,34 @@ describe('Case Challenged Access Search Controller', () => {
         nock.cleanAll();
       });
     });
+
+    it('sanitizes string fields in the challenged access search request', async () => {
+      const dirtyUserId = ' xyz !@# _456 ';
+      const sanitizedUserId = 'xyz_456';
+
+      nock('http://localhost:4550')
+        .get(`/audit/accessRequest?userId=${sanitizedUserId}&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5`)
+        .reply(
+          200,
+          {accessLog: []},
+        );
+
+      const req = {
+        session: {},
+        body: {
+          userId: dirtyUserId,
+          startTimestamp: '2021-12-12T12:00:00',
+          endTimestamp: '2021-12-12T12:00:01',
+          page: 1,
+          size: 5,
+        },
+      };
+
+      // @ts-ignore
+      return searchController.post(req as AppRequest, res as Response).then(() => {
+        expect(req.body.userId).toBe(sanitizedUserId);
+        nock.cleanAll();
+      });
+    });
   });
 });
