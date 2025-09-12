@@ -43,6 +43,6 @@ export const content = {
 
 
   heading11: 'Preparation of this accessibility statement',
-  paragraph20: 'This statement was prepared on 5<sup>th</sup> August 2024. It was last reviewed on 11<sup>th</sup> September 2025.',
+  paragraph20: 'This statement was prepared on 5<sup>th</sup> August 2024. It was last reviewed on 12<sup>th</sup> September 2025.',
   paragraph21: 'This website was last tested on 6<sup>th</sup> May 2025. The audit was carried out by the internal HMCTS accessibility testing team. The team tested against a range of assistive technologies and accessibility testing tools.',
 };
