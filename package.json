@@ -79,7 +79,7 @@
     "src": "link:./src",
     "ssl-config": "^1.0.0",
     "terser-webpack-plugin": "^5.3.10",
-    "totp-generator": "^1.0.0",
+    "totp-generator": "^2.0.0",
     "ts-node": "^10.2.0",
     "tsconfig-paths": "^4.0.0",
     "typescript": "^5.2.0",
