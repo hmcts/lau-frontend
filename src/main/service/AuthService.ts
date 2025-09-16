@@ -62,7 +62,7 @@ export class AuthService {
   }
 
   async retrieveServiceToken(serviceName?: string): Promise<ServiceAuthToken> {
-    const { otp } = TOTP.generate(this.totpSecret);
+    const { otp } = await TOTP.generate(this.totpSecret);
     const params = {
       microservice: serviceName ?? this.microserviceName,
       oneTimePassword: otp,
