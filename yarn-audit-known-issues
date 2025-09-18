@@ -1,1 +1,0 @@
-{"value":"form-data","children":{"ID":1106507,"Issue":"form-data uses unsafe random function in form-data for choosing boundary","URL":"https://github.com/advisories/GHSA-fjxv-7rqg-78g4","Severity":"critical","Vulnerable Versions":">=4.0.0 <4.0.4","Tree Versions":["4.0.2"],"Dependents":["superagent@npm:10.2.2"]}}
