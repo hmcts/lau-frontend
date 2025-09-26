@@ -3602,7 +3602,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/exporter-metrics-otlp-proto@npm:0.204.0":
+"@opentelemetry/exporter-metrics-otlp-proto@npm:0.204.0, @opentelemetry/exporter-metrics-otlp-proto@npm:^0.204.0":
   version: 0.204.0
   resolution: "@opentelemetry/exporter-metrics-otlp-proto@npm:0.204.0"
   dependencies:
@@ -6297,8 +6297,8 @@ __metadata:
   linkType: hard
 
 "applicationinsights@npm:^3.5.0":
-  version: 3.10.0
-  resolution: "applicationinsights@npm:3.10.0"
+  version: 3.11.0
+  resolution: "applicationinsights@npm:3.11.0"
   dependencies:
     "@azure/core-auth": "npm:^1.9.0"
     "@azure/functions": "npm:^4.6.0"
@@ -6312,6 +6312,7 @@ __metadata:
     "@opentelemetry/core": "npm:^2.1.0"
     "@opentelemetry/exporter-logs-otlp-http": "npm:^0.204.0"
     "@opentelemetry/exporter-metrics-otlp-http": "npm:^0.204.0"
+    "@opentelemetry/exporter-metrics-otlp-proto": "npm:^0.204.0"
     "@opentelemetry/exporter-trace-otlp-http": "npm:^0.204.0"
     "@opentelemetry/otlp-exporter-base": "npm:^0.204.0"
     "@opentelemetry/resources": "npm:^2.1.0"
@@ -6322,7 +6323,7 @@ __metadata:
     "@opentelemetry/semantic-conventions": "npm:^1.32.0"
     diagnostic-channel: "npm:1.1.1"
     diagnostic-channel-publishers: "npm:1.0.8"
-  checksum: 10/ce695614d66f01227a303bdb0cc081f52c5af98217fe912cc70c0b9b4656faf538b1219912eb0dd790622f63890605a940f497bafe5e4604c112945e1879757b
+  checksum: 10/f71457f7f46891f09108074378e444f6fd96bc6d0a6d0ddf7470388c3093dac03a345d40478103f67778d555d9cf8a373f731e95ba2c1a2ea553038a8374643a
   languageName: node
   linkType: hard
 
@@ -14315,8 +14316,8 @@ __metadata:
   linkType: hard
 
 "pa11y@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "pa11y@npm:9.0.0"
+  version: 9.0.1
+  resolution: "pa11y@npm:9.0.1"
   dependencies:
     axe-core: "npm:~4.10.3"
     bfj: "npm:~9.1.2"
@@ -14330,7 +14331,7 @@ __metadata:
     semver: "npm:~7.7.1"
   bin:
     pa11y: bin/pa11y.js
-  checksum: 10/177e58e8d2605e743a33e350f3766d2da4abcfddfd61ea3c44cb673b2ce8999f61ca8aa5c90d37f40bda9c0f6884ab2275de8f7fc13ed07fd78165ff546c3f11
+  checksum: 10/9df4ee7da9b6ee4a2a3906a17686d1524116e76cafdeff886d54bd532edecfa5a0dcf34739c67ec25b411ea1337b5da1451bc9dd414a40902ddf495757b49b9a
   languageName: node
   linkType: hard
 
