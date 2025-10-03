@@ -50,6 +50,7 @@ new Container().enableFor(app);
 
 import logger from './modules/logging';
 logger.info('Environment: ' + env);
+logger.info(`User details page enabled? - ${config.get('pages.userDetailsEnabled')}`);
 
 setupDev(app, developmentMode);
 setupTest(app);

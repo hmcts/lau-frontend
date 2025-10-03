@@ -136,5 +136,4 @@ describe('Validator', () => {
       expect(validCaseRef(null)).toBe(undefined);
     });
   });
-
 });

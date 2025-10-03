@@ -3,6 +3,7 @@ import {app} from '../../../main/app';
 import {setRoles} from '../../helpers/roles';
 
 describe('Home Route', () => {
+  const userDetailsTitle = 'User details';
 
   it('redirects to /case-audit on home request', async () => {
     const agent = request.agent(app);
@@ -24,6 +25,7 @@ describe('Home Route', () => {
     expect(res.text).toContain('Deleted users');
     expect(res.text).toContain('Case deletions');
     expect(res.text).toContain('Case audit search');
+    expect(res.text).toContain(userDetailsTitle);
     expect(res.text).toContain('id="case-search-form"');
   });
 
@@ -40,6 +42,7 @@ describe('Home Route', () => {
       expect(res.text).toContain('Case audit');
       expect(res.text).toContain('Log ons audit');
       expect(res.text).toContain('Deleted users');
+      expect(res.text).toContain(userDetailsTitle);
       expect(res.text).toContain('id="case-search-form"');
       expect(res.text).toContain('Case audit search');
       expect(res.text).not.toContain('Case deletions');
@@ -55,6 +58,7 @@ describe('Home Route', () => {
       expect(res.text).toContain('Case audit');
       expect(res.text).toContain('Log ons audit');
       expect(res.text).toContain('Deleted users');
+      expect(res.text).toContain(userDetailsTitle);
       expect(res.text).toContain('id="logon-search-form"');
       expect(res.text).toContain('Log ons audit search');
       expect(res.text).not.toContain('Case deletions');
@@ -70,8 +74,25 @@ describe('Home Route', () => {
       expect(res.text).toContain('Case audit');
       expect(res.text).toContain('Log ons audit');
       expect(res.text).toContain('Deleted users');
+      expect(res.text).toContain(userDetailsTitle);
       expect(res.text).toContain('id="user-deletions-search-form"');
       expect(res.text).toContain('Deleted user search');
+      expect(res.text).not.toContain('Case deletions');
+    });
+
+    it('renders user details template with content given user has audit investigator role', async () => {
+      const res = await agent.get('/user-details-audit');
+
+      await setRoles(agent, ['cft-audit-investigator']);
+
+      expect(res.header['content-type']).toBe('text/html; charset=utf-8');
+      expect(res.statusCode).toBe(200);
+      expect(res.text).toContain('Case audit');
+      expect(res.text).toContain('Log ons audit');
+      expect(res.text).toContain('Deleted users');
+      expect(res.text).toContain(userDetailsTitle);
+      expect(res.text).toContain('id="user-details-search-form"');
+      expect(res.text).toContain('User details search');
       expect(res.text).not.toContain('Case deletions');
     });
   });
@@ -88,6 +109,7 @@ describe('Home Route', () => {
     expect(res.text).not.toContain('Case audit');
     expect(res.text).not.toContain('Log ons audit');
     expect(res.text).not.toContain('Deleted users');
+    expect(res.text).not.toContain(userDetailsTitle);
     expect(res.text).toContain('Case deletions');
     expect(res.text).toContain('id="case-deletions-search-form"');
     expect(res.text).toContain('Deleted case search');

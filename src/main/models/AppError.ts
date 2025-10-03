@@ -9,6 +9,7 @@ export enum ErrorCode {
   REDIS         = 'LAU06',
   LAUNCH_DARKLY = 'LAU07',
   DATA          = 'LAU08',
+  EUD_BACKEND   = 'LAU09',
 }
 
 export class AppError extends Error {

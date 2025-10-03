@@ -28,4 +28,6 @@ services:
 featureToggles:
   ldKey: LD_SDK_KEY
   ft_deletedUsers: 'LAU_DELETED_USERS'
+pages:
+  userDetailsEnabled: USER_DETAILS_PAGE_ENABLED
 is_dev: IS_DEV

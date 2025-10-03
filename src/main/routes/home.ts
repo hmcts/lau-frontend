@@ -7,6 +7,8 @@ import {DeletedUsersSearchRequest} from '../models/user-deletions/DeletedUsersSe
 import {CaseDeletionsSearchRequest} from '../models/deletions/CaseDeletionsSearchRequest';
 import {CaseChallengedAccessRequest} from '../models/challenged-access/CaseChallengedAccessRequest';
 import {getCaseChallengedAccessLogOrder} from './../models/challenged-access/CaseChallengedAccessLogs';
+import {UserDetailsSearchRequest} from '../models/user-details/UserDetailsSearchRequest';
+import {UserDetailsAuditData} from '../models/user-details/UserDetailsAuditData';
 
 interface Context {
   caseForm?: Partial<CaseSearchRequest>;
@@ -14,17 +16,20 @@ interface Context {
   deletedUsersForm?: Partial<DeletedUsersSearchRequest>;
   caseDeletionsForm?: Partial<CaseDeletionsSearchRequest>;
   caseChallengedAccessForm?: Partial<CaseChallengedAccessRequest>;
+  userDetailsForm?: Partial<UserDetailsSearchRequest>;
   caseSearchPage?: boolean;
   challengedSpecificAccessPage?: boolean;
   logonSearchPage?: boolean;
   userDeletionSearchPage?: boolean;
   caseDeletionSearchPage?: boolean;
+  userDetailsPage?: boolean;
   caseActivities?: LogData;
   caseSearches?: LogData;
   logons?: LogData;
   userDeletions?: LogData;
   caseDeletions?: LogData;
   challengedAccessData?: LogData;
+  userDetailsAuditData?: UserDetailsAuditData;
   jurisdictions?: {text: string, value: string}[];
   caseTypes?: {text: string, value: string}[];
 }
@@ -45,7 +50,7 @@ async function auditHandler(req: AppRequest, res: Response, template: string, co
     sessionErrors = req.session?.errors || [];
     req.session.fromPost = false;
   }
-  res.render(template, {
+  return res.render(template, {
     ...context,
     common: {
       maxRecords: Number(config.get('pagination.maxTotal')),
@@ -85,6 +90,10 @@ async function auditHandler(req: AppRequest, res: Response, template: string, co
       },
       emailAddress: {
         invalid: 'Enter an email address in the correct format, like name@example.com',
+      },
+      userIdOrEmail: {
+        required: 'Enter a user ID or email address',
+        invalid: 'Enter valid user ID or email address',
       },
     },
     caseChallengedAccessLogOrder: getCaseChallengedAccessLogOrder(),
@@ -130,14 +139,26 @@ async function caseDeletionHandler(req: AppRequest, res: Response) {
 
 export async function challengedSpecificAccessHandler(req: AppRequest, res: Response) {
   if(!res.locals.challengedAccessEnabled){
-    res.redirect('/');
+    return res.redirect('/');
   }
   const context: Context = {
     caseChallengedAccessForm: req.session?.caseChallengedAccessFormState || {},
     challengedSpecificAccessPage: true,
     challengedAccessData: req.session?.challengedAccessData,
   };
-  auditHandler(req, res, 'case-challenged-access/template.njk', context);
+  await auditHandler(req, res, 'case-challenged-access/template.njk', context);
+}
+
+export async function userDetailsHandler(req: AppRequest, res: Response) {
+  if (!config.get('pages.userDetailsEnabled')) {
+    return res.redirect('/');
+  }
+  const context: Context = {
+    userDetailsForm: req.session?.userDetailsFormState || {},
+    userDetailsPage: true,
+    userDetailsAuditData: req.session?.userDetailsData,
+  };
+  return auditHandler(req, res, 'user-details/template.njk', context);
 }
 
 export default function (app: Application): void {
@@ -147,4 +168,5 @@ export default function (app: Application): void {
   app.get('/user-deletion-audit', userDeletionHandler);
   app.get('/case-deletion-audit', caseDeletionHandler);
   app.get('/challenged-specific-access', challengedSpecificAccessHandler);
+  app.get('/user-details-audit', userDetailsHandler);
 }
