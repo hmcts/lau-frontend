@@ -34,4 +34,13 @@ describe('Search Route', () => {
     });
   });
 
+  describe('User details audit', () => {
+    it('Calls the User details controller post method', async () => {
+      const res = await postRequest('/user-details-search');
+      expect(res.header['content-type']).toBe('text/plain; charset=utf-8');
+      expect(res.statusCode).toBe(302);
+    });
+
+  });
+
 });

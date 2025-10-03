@@ -4,6 +4,7 @@ import {LogonSearchController} from '../controllers/LogonSearch.controller';
 import {CaseDeletionsSearchController} from '../controllers/CaseDeletionsSearch.controller';
 import {DeletedUsersSearchController} from '../controllers/DeletedUsersSearch.controller';
 import {CaseChallengedAccessSearchController} from '../controllers/CaseChallengedAccessSearch.controller';
+import {UserDetailsController} from '../controllers/UserDetails.controller';
 
 
 export default function (app: Application): void {
@@ -12,4 +13,5 @@ export default function (app: Application): void {
   app.post('/case-deletions-search', (new CaseDeletionsSearchController().post));
   app.post('/deleted-users-search', (new DeletedUsersSearchController().post));
   app.post('/challenge-access-search', (new CaseChallengedAccessSearchController().post));
+  app.post('/user-details-search', (new UserDetailsController().post));
 }

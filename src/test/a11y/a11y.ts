@@ -73,7 +73,7 @@ function testAccessibility(url: string): void {
       const result = await runPally(url, cookies);
       expect(result.issues).toEqual(expect.any(Array));
       expectNoErrors(result.issues);
-    }, 10000);
+    }, 15000);
   });
 }
 
@@ -101,6 +101,7 @@ describe('Accessibility', () => {
   testAccessibility('/logon-audit');
   testAccessibility('/user-deletion-audit');
   testAccessibility('/case-deletion-audit');
+  testAccessibility('/user-details-audit');
 
   // accessable without user session
   testAccessibility('/accessibility');

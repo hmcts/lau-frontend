@@ -7,9 +7,9 @@
             <a class="govuk-service-navigation__link" href="/case-audit" {% if caseSearchPage %}aria-current="page" {% endif %}>Case audit</a>
           </li>
           {% if challengedAccessEnabled %}
-            <li class="govuk-service-navigation__item {% if challengedSpecificAccessPage %}govuk-service-navigation__item--active{% endif %}">
-              <a class="govuk-service-navigation__link" href="/challenged-specific-access" {% if challengedSpecificAccessPage %}aria-current="page" {% endif %}>Challenged & specific access</a>
-            </li>
+          <li class="govuk-service-navigation__item {% if challengedSpecificAccessPage %}govuk-service-navigation__item--active{% endif %}">
+            <a class="govuk-service-navigation__link" href="/challenged-specific-access" {% if challengedSpecificAccessPage %}aria-current="page" {% endif %}>Challenged & specific access</a>
+          </li>
           {% endif %}
           <li class="govuk-service-navigation__item {% if logonSearchPage %}govuk-service-navigation__item--active{% endif %}">
             <a class="govuk-service-navigation__link" href="/logon-audit" {% if logonSearchPage %}aria-current="page" {% endif %}>Log ons audit</a>
@@ -17,7 +17,13 @@
           <li class="govuk-service-navigation__item {% if userDeletionSearchPage %}govuk-service-navigation__item--active{% endif %}">
             <a class="govuk-service-navigation__link" href="/user-deletion-audit" {% if userDeletionSearchPage %}aria-current="page" {% endif %}>Deleted users</a>
           </li>
+          {% if userDetailsEnabled %}
+          <li class="govuk-service-navigation__item {% if userDetailsPage %}govuk-service-navigation__item--active{% endif %}">
+            <a class="govuk-service-navigation__link" href="/user-details-audit" {% if userDetailsPage %}aria-current="page" {% endif %}>User details</a>
+          </li>
           {% endif %}
+          {% endif %}
+
           {% if userRoles and 'cft-service-logs' in userRoles %}
           <li class="govuk-service-navigation__item {% if caseDeletionSearchPage %}govuk-service-navigation__item--active{% endif %}">
             <a class="govuk-service-navigation__link" href="/case-deletion-audit" {% if caseDeletionSearchPage %}aria-current="page" {% endif %}>Case deletions</a>

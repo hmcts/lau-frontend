@@ -42,6 +42,11 @@ services:
     endpoints:
       logon: '/audit/logon'
       deletedUsers: '/audit/deletedAccounts'
+  lau-eud-backend:
+    enabled: true
+    url: 'http://localhost:4553'
+    endpoints:
+      userDetails: /audit/userData
   idam-api:
     enabled: true
     authorizationURL: 'https://idam-web-public.aat.platform.hmcts.net/login'
@@ -62,6 +67,8 @@ featureToggles:
   ldKey: 'LD_SDK_KEY'
   ft_deletedUsers: 'LAU_DELETED_USERS'
   ft_challengeAccess: 'lau-challenged-access'
+pages:
+  userDetailsEnabled: true
 session:
   cookieMaxAge: 30 # minutes
 is_dev: true

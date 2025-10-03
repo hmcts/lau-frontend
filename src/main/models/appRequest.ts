@@ -5,6 +5,8 @@ import {LogonSearchRequest} from './idam/LogonSearchRequest';
 import {CaseDeletionsSearchRequest} from './deletions/CaseDeletionsSearchRequest';
 import { DeletedUsersSearchRequest } from './user-deletions/DeletedUsersSearchRequest';
 import { CaseChallengedAccessRequest } from './challenged-access/CaseChallengedAccessRequest';
+import {UserDetailsSearchRequest} from './user-details/UserDetailsSearchRequest';
+import {UserDetailsAuditData} from './user-details/UserDetailsAuditData';
 
 export type FormError = {
   propertyName: string;
@@ -27,11 +29,13 @@ export interface AppSession extends Session {
   caseDeletions?: LogData;
   userDeletions?: LogData;
   challengedAccessData?: LogData;
+  userDetailsData?: UserDetailsAuditData;
   caseFormState?: Partial<CaseSearchRequest>;
   logonFormState?: Partial<LogonSearchRequest>;
   caseDeletionsFormState?: Partial<CaseDeletionsSearchRequest>;
   deletedUsersFormState?: Partial<DeletedUsersSearchRequest>;
   caseChallengedAccessFormState?: Partial<CaseChallengedAccessRequest>;
+  userDetailsFormState?: Partial<UserDetailsSearchRequest>;
   fromPost: boolean;
   errors?: FormError[];
 }

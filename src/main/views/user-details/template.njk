@@ -1,0 +1,128 @@
+{% extends "../home/template.njk" %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "./../common/macros/csrf.njk" import csrfProtection %}
+
+{% block pageTitle %}Log and Audit - User Details Search{% endblock %}
+
+
+{% block auditSearch %}
+{% if userRoles and 'cft-audit-investigator' in userRoles %}
+
+<h1 class="govuk-heading-xl">User details search</h1>
+
+<form id="user-details-search-form" class="search-form" method="post" action="/user-details-search">
+{{ csrfProtection(csrfToken) }}
+  <div class="govuk-grid-row govuk-!-padding-left-3 govuk-!-padding-right-6">
+    <h2 class="govuk-heading-l">Search</h2>
+
+    <p class="govuk-body">
+      The user ID is 32 characters long with hyphens. For example 1234abcd-5678-efab-1234-abcd5678efab.
+    </p>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third govuk-!-margin-top-6">
+
+      {% if sessionErrors and sessionErrors.length > 0 %}
+        {% set errorMessage = null %}
+        {% for item in sessionErrors %}
+          {% set errorMessage = {text: errors[item.propertyName][item.errorType]} %}
+        {% endfor %}
+      {% endif %}
+
+      {{ govukInput({
+        label: {text: "User ID or email address"},
+        classes: "govuk-!-width-three-quarters govuk-!-margin-bottom-6 govuk-!-margin-top-1",
+        id: "userIdOrEmail",
+        name: "userIdOrEmail",
+        value: userDetailsForm.userIdOrEmail,
+        errorMessage: errorMessage
+      }) }}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {{ govukButton({
+        name: "user-details-search-btn",
+        text: "Search",
+        type: "submit",
+        preventDoubleClick: true,
+        value: "search"
+      }) }}
+    </div>
+  </div>
+
+</form>
+
+{% if userDetailsAuditData %}
+<div class="govuk-grid-row govuk-!-margin-top-5" id="results-section">
+  <div class="govuk-grid-column-full">
+
+    <h2 class="govuk-heading-l">
+      Results
+    </h2>
+
+    {{ govukSummaryList({
+      rows: [
+          {
+            key: {
+              text: "User ID"
+            },
+            value: {
+              text: userDetailsAuditData.userId
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: userDetailsAuditData.email
+            }
+          },
+          {
+            key: {
+              text: "Professional address"
+            },
+            value: {
+              html: userDetailsAuditData.formattedAddresses | join('<br>')
+            }
+          },
+          {
+            key: {
+              text: "Account status"
+            },
+            value: {
+              text: userDetailsAuditData.accountStatus
+            }
+          },
+          {
+            key: {
+              text: "Latest activation date"
+            },
+            value: {
+              text: userDetailsAuditData.accountCreationDate
+            }
+          },
+          {
+            key: {
+              text: "Roles"
+            },
+            value: {
+              html: userDetailsAuditData.roles | join('<br>')
+            }
+          }
+
+        ]
+    }) }}
+
+  </div>
+</div>
+
+{% endif %}
+
+{% endif %}
+{% endblock %}
