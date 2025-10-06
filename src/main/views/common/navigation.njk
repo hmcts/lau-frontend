@@ -2,28 +2,16 @@
 {% set hasServiceLogsRole = userRoles and 'cft-service-logs' in userRoles %}
 {% set showChallengedAccess = hasAuditInvestigatorRole and challengedAccessEnabled %}
 
-{% set navigationItemCount = 0 %}
-{% if hasAuditInvestigatorRole %}
-  {% set navigationItemCount = navigationItemCount + 1 %}
-  {% if showChallengedAccess %}
-    {% set navigationItemCount = navigationItemCount + 1 %}
-  {% endif %}
-  {% set navigationItemCount = navigationItemCount + 2 %}
-{% endif %}
-{% if hasServiceLogsRole %}
-  {% set navigationItemCount = navigationItemCount + 1 %}
-{% endif %}
+{% set hasNavigation = hasAuditInvestigatorRole or hasServiceLogsRole %}
 
-{% if navigationItemCount > 0 %}
+{% if hasNavigation %}
 <div class="govuk-service-navigation" data-module="govuk-service-navigation">
   <div class="govuk-width-container">
     <div class="govuk-service-navigation__container">
       <nav aria-label="Service menu" class="govuk-service-navigation__wrapper">
-        {% if navigationItemCount > 1 %}
         <button type="button" class="govuk-service-navigation__toggle govuk-js-service-navigation-toggle" aria-controls="service-navigation" hidden>
           Menu
         </button>
-        {% endif %}
 
         <ul class="govuk-service-navigation__list" id="service-navigation">
           {% if hasAuditInvestigatorRole %}
