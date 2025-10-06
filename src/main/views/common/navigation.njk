@@ -2,9 +2,6 @@
 {% set hasServiceLogsRole = userRoles and 'cft-service-logs' in userRoles %}
 {% set showChallengedAccess = hasAuditInvestigatorRole and challengedAccessEnabled %}
 
-{% set hasNavigation = hasAuditInvestigatorRole or hasServiceLogsRole %}
-
-{% if hasNavigation %}
 <div class="govuk-service-navigation" data-module="govuk-service-navigation">
   <div class="govuk-width-container">
     <div class="govuk-service-navigation__container">
@@ -70,4 +67,3 @@
     </div>
   </div>
 </div>
-{% endif %}
