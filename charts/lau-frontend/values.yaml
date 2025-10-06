@@ -27,8 +27,7 @@ nodejs:
     lau:
       resourceGroup: lau
       secrets:
-        - name: app-insights-connection-string
-          alias: AppInsightsConnectionString
+        - app-insights-connection-string
         - frontend-redis-access-key
         - idam-client-secret
         - s2s-secret
