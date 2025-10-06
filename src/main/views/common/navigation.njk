@@ -14,10 +14,10 @@
   {% set navigationItemCount = navigationItemCount + 1 %}
 {% endif %}
 
+{% if navigationItemCount > 0 %}
 <div class="govuk-service-navigation" data-module="govuk-service-navigation">
   <div class="govuk-width-container">
     <div class="govuk-service-navigation__container">
-      {% if navigationItemCount > 0 %}
       <nav aria-label="Service menu" class="govuk-service-navigation__wrapper">
         {% if navigationItemCount > 1 %}
         <button type="button" class="govuk-service-navigation__toggle govuk-js-service-navigation-toggle" aria-controls="service-navigation" hidden>
@@ -79,7 +79,7 @@
           {% endif %}
         </ul>
       </nav>
-      {% endif %}
     </div>
   </div>
 </div>
+{% endif %}

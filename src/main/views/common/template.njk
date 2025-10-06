@@ -148,8 +148,11 @@
     {% include "./timeout-dialog.njk" %}
   {% endblock %}
 
-{% include "./navigation.njk" %}
+{% endblock %}
 
+{% block main %}
+  {% include "./navigation.njk" %}
+  {{ super() }}
 {% endblock %}
 
 
