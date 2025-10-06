@@ -23,6 +23,14 @@ export class OidcMiddleware {
     '/main-dev.css',
     '/assets/images/favicon.ico',
     '/assets/manifest.json',
+    '/assets/rebrand/images/favicon.ico',
+    '/assets/rebrand/images/favicon.svg',
+    '/assets/rebrand/images/govuk-icon-180.png',
+    '/assets/rebrand/images/govuk-icon-192.png',
+    '/assets/rebrand/images/govuk-icon-512.png',
+    '/assets/rebrand/images/govuk-icon-mask.svg',
+    '/assets/rebrand/images/govuk-opengraph-image.png',
+    '/assets/rebrand/manifest.json',
   ];
 
   private authService = new AuthService(config);

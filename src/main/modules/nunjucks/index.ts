@@ -27,6 +27,7 @@ export class Nunjucks {
 
     env.addGlobal('nonce', app.locals.nonce);
     env.addGlobal('env', app.locals.ENV);
+    env.addGlobal('govukRebrand', true);
 
     if (app.locals.ENV === 'development') {
       env.addGlobal('idamEnabled', config.get('services.idam-api.enabled'));

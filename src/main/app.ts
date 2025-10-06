@@ -31,11 +31,19 @@ const options = {
 };
 
 app.use(compression());
-app.use(favicon(path.join(__dirname, '/public/assets/images/favicon.ico')));
+app.use(favicon(path.join(__dirname, '/public/assets/rebrand/images/favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public'), options));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use((req, res, next) => {
+  const host = req.get('host');
+  if (host) {
+    res.locals.serviceBaseUrl = `${req.protocol}://${host}`;
+  }
+  next();
+});
 
 
 
