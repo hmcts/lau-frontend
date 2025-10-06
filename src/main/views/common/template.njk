@@ -103,10 +103,43 @@
     ]
   }) }}
 
+  {% if env === 'development' and not idamEnabled %}
+
   {{ govukHeader({
     homepageUrl: "/",
-    rebrand: true
+    serviceName: "Log and Audit",
+    serviceUrl: "/",
+    rebrand: true,
+    navigation: [
+      {
+        href: "/unset-role/cft-audit-investigator" if userRoles and 'cft-audit-investigator' in userRoles else "/set-role/cft-audit-investigator",
+        text: "Unset CFT_AUDIT_INVESTIGATOR" if userRoles and 'cft-audit-investigator' in userRoles else "Set CFT_AUDIT_INVESTIGATOR",
+        active: userRoles and 'cft-audit-investigator' in userRoles
+      },
+      {
+        href: "/unset-role/cft-service-logs" if userRoles and 'cft-service-logs' in userRoles else "/set-role/cft-service-logs",
+        text: "Unset CFT_SERVICE_LOGS" if userRoles and 'cft-service-logs' in userRoles else "Set CFT_SERVICE_LOGS",
+        active: userRoles and 'cft-service-logs' in userRoles
+      }
+    ]
   }) }}
+
+  {% else %}
+
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: "Log and Audit",
+    serviceUrl: "/",
+    rebrand: true,
+    navigation: [
+      {
+        href: "/logout" if isLoggedIn else "/login",
+        text: "Logout" if isLoggedIn else "Login"
+      }
+    ]
+  }) }}
+
+  {% endif %}
 
 {% endblock %}
 

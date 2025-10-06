@@ -1,8 +1,6 @@
-{% set serviceName = "Log and Audit" %}
 {% set hasAuditInvestigatorRole = userRoles and 'cft-audit-investigator' in userRoles %}
 {% set hasServiceLogsRole = userRoles and 'cft-service-logs' in userRoles %}
 {% set showChallengedAccess = hasAuditInvestigatorRole and challengedAccessEnabled %}
-{% set showDevRoleToggle = env === 'development' and not idamEnabled %}
 
 {% set navigationItemCount = 0 %}
 {% if hasAuditInvestigatorRole %}
@@ -15,20 +13,10 @@
 {% if hasServiceLogsRole %}
   {% set navigationItemCount = navigationItemCount + 1 %}
 {% endif %}
-{% if showDevRoleToggle %}
-  {% set navigationItemCount = navigationItemCount + 2 %}
-{% endif %}
-{% set navigationItemCount = navigationItemCount + 1 %}
 
 <div class="govuk-service-navigation" data-module="govuk-service-navigation">
   <div class="govuk-width-container">
     <div class="govuk-service-navigation__container">
-      <span class="govuk-service-navigation__service-name">
-        <a href="/" class="govuk-service-navigation__link">
-          {{ serviceName }}
-        </a>
-      </span>
-
       {% if navigationItemCount > 0 %}
       <nav aria-label="Service menu" class="govuk-service-navigation__wrapper">
         {% if navigationItemCount > 1 %}
@@ -89,23 +77,6 @@
             </a>
           </li>
           {% endif %}
-          {% if showDevRoleToggle %}
-          <li class="govuk-service-navigation__item">
-            <a class="govuk-service-navigation__link" href="{{ '/unset-role/cft-audit-investigator' if hasAuditInvestigatorRole else '/set-role/cft-audit-investigator' }}">
-              {{ 'Unset CFT_AUDIT_INVESTIGATOR' if hasAuditInvestigatorRole else 'Set CFT_AUDIT_INVESTIGATOR' }}
-            </a>
-          </li>
-          <li class="govuk-service-navigation__item">
-            <a class="govuk-service-navigation__link" href="{{ '/unset-role/cft-service-logs' if hasServiceLogsRole else '/set-role/cft-service-logs' }}">
-              {{ 'Unset CFT_SERVICE_LOGS' if hasServiceLogsRole else 'Set CFT_SERVICE_LOGS' }}
-            </a>
-          </li>
-          {% endif %}
-          <li class="govuk-service-navigation__item">
-            <a class="govuk-service-navigation__link" href="{{ '/logout' if isLoggedIn else '/login' }}">
-              {{ 'Logout' if isLoggedIn else 'Login' }}
-            </a>
-          </li>
         </ul>
       </nav>
       {% endif %}
