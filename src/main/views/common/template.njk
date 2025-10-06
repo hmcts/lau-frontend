@@ -7,6 +7,14 @@
 {% block pageTitle %}GOV.UK - Log and Audit{% endblock %}
 
 {% block head %}
+  <meta name="theme-color" content="#1d70b8">
+  <link rel="icon" sizes="48x48" href="/assets/rebrand/images/favicon.ico">
+  <link rel="icon" sizes="any" href="/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="/assets/rebrand/images/govuk-icon-mask.svg" color="#1d70b8">
+  <link rel="apple-touch-icon" href="/assets/rebrand/images/govuk-icon-180.png">
+  <link rel="manifest" href="/assets/rebrand/manifest.json">
+  {% set ogImageUrl = (serviceBaseUrl ~ '/assets/rebrand/images/govuk-opengraph-image.png') if serviceBaseUrl else '/assets/rebrand/images/govuk-opengraph-image.png' %}
+  <meta property="og:image" content="{{ ogImageUrl }}">
   {% include "common/dynatrace/head.njk" %}
   {% include "common/webpack/css.njk" %}
   {% include "common/webpack/js.njk" %}
@@ -101,6 +109,7 @@
     homepageUrl: "/",
     serviceName: "Log and Audit",
     serviceUrl: "/",
+    rebrand: true,
     navigation: [
       {
         href: "/unset-role/cft-audit-investigator" if userRoles and 'cft-audit-investigator' in userRoles else "/set-role/cft-audit-investigator",
@@ -121,6 +130,7 @@
     homepageUrl: "/",
     serviceName: "Log and Audit",
     serviceUrl: "/",
+    rebrand: true,
     navigation: [
       {
         href: "/logout" if isLoggedIn else "/login",
@@ -138,13 +148,17 @@
     {% include "./timeout-dialog.njk" %}
   {% endblock %}
 
-{% include "./navigation.njk" %}
+{% endblock %}
 
+{% block main %}
+  {% include "./navigation.njk" %}
+  {{ super() }}
 {% endblock %}
 
 
 {% block footer %}
   {{ govukFooter({
+    rebrand: true,
     meta: {
       items: [
         {

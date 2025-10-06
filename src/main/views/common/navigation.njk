@@ -1,29 +1,69 @@
-<div class="govuk-service-navigation">
-  <div class="govuk-width-container govuk-!-margin-left-4">
-  <div class="govuk-service-navigation__container">
-        <ul class="govuk-service-navigation__list">
-          {% if userRoles and 'cft-audit-investigator' in userRoles %}
-          <li class="govuk-service-navigation__item {% if caseSearchPage %}govuk-service-navigation__item--active{% endif %}">
-            <a class="govuk-service-navigation__link" href="/case-audit" {% if caseSearchPage %}aria-current="page" {% endif %}>Case audit</a>
+{% set hasAuditInvestigatorRole = userRoles and 'cft-audit-investigator' in userRoles %}
+{% set hasServiceLogsRole = userRoles and 'cft-service-logs' in userRoles %}
+{% set showChallengedAccess = hasAuditInvestigatorRole and challengedAccessEnabled %}
+
+<div class="govuk-service-navigation" data-module="govuk-service-navigation">
+  <div class="govuk-width-container">
+    <div class="govuk-service-navigation__container">
+      <nav aria-label="Service menu" class="govuk-service-navigation__wrapper">
+        <button type="button" class="govuk-service-navigation__toggle govuk-js-service-navigation-toggle" aria-controls="service-navigation" hidden>
+          Menu
+        </button>
+
+        <ul class="govuk-service-navigation__list" id="service-navigation">
+          {% if hasAuditInvestigatorRole %}
+          <li class="govuk-service-navigation__item{% if caseSearchPage %} govuk-service-navigation__item--active{% endif %}">
+            <a class="govuk-service-navigation__link" href="/case-audit"{% if caseSearchPage %} aria-current="true"{% endif %}>
+              {% if caseSearchPage %}
+              <strong class="govuk-service-navigation__active-fallback">Case audit</strong>
+              {% else %}
+              Case audit
+              {% endif %}
+            </a>
           </li>
-          {% if challengedAccessEnabled %}
-            <li class="govuk-service-navigation__item {% if challengedSpecificAccessPage %}govuk-service-navigation__item--active{% endif %}">
-              <a class="govuk-service-navigation__link" href="/challenged-specific-access" {% if challengedSpecificAccessPage %}aria-current="page" {% endif %}>Challenged & specific access</a>
-            </li>
+          {% if showChallengedAccess %}
+          <li class="govuk-service-navigation__item{% if challengedSpecificAccessPage %} govuk-service-navigation__item--active{% endif %}">
+            <a class="govuk-service-navigation__link" href="/challenged-specific-access"{% if challengedSpecificAccessPage %} aria-current="true"{% endif %}>
+              {% if challengedSpecificAccessPage %}
+              <strong class="govuk-service-navigation__active-fallback">Challenged &amp; specific access</strong>
+              {% else %}
+              Challenged &amp; specific access
+              {% endif %}
+            </a>
+          </li>
           {% endif %}
-          <li class="govuk-service-navigation__item {% if logonSearchPage %}govuk-service-navigation__item--active{% endif %}">
-            <a class="govuk-service-navigation__link" href="/logon-audit" {% if logonSearchPage %}aria-current="page" {% endif %}>Log ons audit</a>
+          <li class="govuk-service-navigation__item{% if logonSearchPage %} govuk-service-navigation__item--active{% endif %}">
+            <a class="govuk-service-navigation__link" href="/logon-audit"{% if logonSearchPage %} aria-current="true"{% endif %}>
+              {% if logonSearchPage %}
+              <strong class="govuk-service-navigation__active-fallback">Log ons audit</strong>
+              {% else %}
+              Log ons audit
+              {% endif %}
+            </a>
           </li>
-          <li class="govuk-service-navigation__item {% if userDeletionSearchPage %}govuk-service-navigation__item--active{% endif %}">
-            <a class="govuk-service-navigation__link" href="/user-deletion-audit" {% if userDeletionSearchPage %}aria-current="page" {% endif %}>Deleted users</a>
+          <li class="govuk-service-navigation__item{% if userDeletionSearchPage %} govuk-service-navigation__item--active{% endif %}">
+            <a class="govuk-service-navigation__link" href="/user-deletion-audit"{% if userDeletionSearchPage %} aria-current="true"{% endif %}>
+              {% if userDeletionSearchPage %}
+              <strong class="govuk-service-navigation__active-fallback">Deleted users</strong>
+              {% else %}
+              Deleted users
+              {% endif %}
+            </a>
           </li>
           {% endif %}
-          {% if userRoles and 'cft-service-logs' in userRoles %}
-          <li class="govuk-service-navigation__item {% if caseDeletionSearchPage %}govuk-service-navigation__item--active{% endif %}">
-            <a class="govuk-service-navigation__link" href="/case-deletion-audit" {% if caseDeletionSearchPage %}aria-current="page" {% endif %}>Case deletions</a>
+          {% if hasServiceLogsRole %}
+          <li class="govuk-service-navigation__item{% if caseDeletionSearchPage %} govuk-service-navigation__item--active{% endif %}">
+            <a class="govuk-service-navigation__link" href="/case-deletion-audit"{% if caseDeletionSearchPage %} aria-current="true"{% endif %}>
+              {% if caseDeletionSearchPage %}
+              <strong class="govuk-service-navigation__active-fallback">Case deletions</strong>
+              {% else %}
+              Case deletions
+              {% endif %}
+            </a>
           </li>
           {% endif %}
         </ul>
+      </nav>
     </div>
   </div>
 </div>
