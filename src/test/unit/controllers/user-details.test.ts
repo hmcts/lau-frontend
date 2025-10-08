@@ -44,6 +44,7 @@ describe('UserDetailsController.post', () => {
       ],
       userId: 'userId',
       email: 'user@example.com',
+      roles: ['ROLE'],
     };
     const service = { getUserDetails: jest.fn().mockResolvedValue(userDetailsMock) } as unknown as UserDetailsService;
     const controller = new UserDetailsController(service);
@@ -65,7 +66,7 @@ describe('UserDetailsController.post', () => {
   });
 
   it('returns results when input looks like UUID', async () => {
-    const userDetailsMock = { organisationalAddress: [] as Address[], name: 'John Smith' };
+    const userDetailsMock = { organisationalAddress: [] as Address[], name: 'John Smith', roles: ['ROLE'] };
     const service = { getUserDetails: jest.fn().mockResolvedValue(userDetailsMock) } as unknown as UserDetailsService;
     const controller = new UserDetailsController(service);
     const req = makeReq({ userIdOrEmail: '4f18b03b-7d20-4220-9344-1234567890ab' });
