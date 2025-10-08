@@ -9,6 +9,7 @@ import {UserDetailsSearchRequest, formatAddress} from '../models/user-details';
 
 @autobind
 export class UserDetailsController {
+
   constructor(private readonly service = new UserDetailsService()) {};
 
   public async post(req: AppRequest<UserDetailsSearchRequest>, res: Response): Promise<void> {
@@ -26,6 +27,7 @@ export class UserDetailsController {
     try {
       const userDetails = await this.service.getUserDetails(req, this.isEmail(userIdOrEmail));
       req.session.userDetailsData = {
+        roles: [],
         ...userDetails,
         formattedAddresses: (userDetails.organisationalAddress || []).map(addr => formatAddress(addr)),
       };
