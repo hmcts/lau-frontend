@@ -61,6 +61,7 @@ describe('UserDetailsController.post', () => {
         '10 Downing St, England, AA00 1AA',
         '&lt;script&gt;alert(&quot;1&quot;)&lt;/script&gt;1, Victoria str., London',
       ],
+      formattedAccCreationDate: 'N/A',
     });
     expect(res.redirect).toHaveBeenCalledWith('/user-details-audit#results-section');
   });
@@ -80,6 +81,7 @@ describe('UserDetailsController.post', () => {
     expect(req.session.userDetailsData).toEqual({
       ...userDetailsMock,
       formattedAddresses: [],
+      formattedAccCreationDate: 'N/A',
     });
     expect(res.redirect).toHaveBeenCalledWith('/user-details-audit#results-section');
   });

@@ -25,6 +25,7 @@ export interface UserDetailsAuditData {
   accountUpdates?: AccountUpdate[] | null;
   organisationalAddress: Address[];
   formattedAddresses?: string[];
+  formattedAccCreationDate?: string;
 }
 
 
