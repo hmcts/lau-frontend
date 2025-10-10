@@ -6,6 +6,7 @@ import {UserDetailsService} from '../service/UserDetailsService';
 import {AppError, errorRedirect} from '../models/AppError';
 import logger from '../modules/logging';
 import {UserDetailsSearchRequest, formatAddress} from '../models/user-details';
+import {requestDateToFormDate} from '../util/Date';
 
 @autobind
 export class UserDetailsController {
@@ -30,6 +31,7 @@ export class UserDetailsController {
         roles: [],
         ...userDetails,
         formattedAddresses: (userDetails.organisationalAddress || []).map(addr => formatAddress(addr)),
+        formattedAccCreationDate: requestDateToFormDate(userDetails.accountCreationDate),
       };
       res.redirect('/user-details-audit#results-section');
       return;
