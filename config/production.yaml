@@ -2,3 +2,5 @@
 redis:
   enabled: true
 is_dev: false
+pages:
+  userDetailsEnabled: false
