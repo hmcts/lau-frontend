@@ -35,7 +35,7 @@ export class Nunjucks {
     app.use(async (req: AppRequest, res, next) => {
       res.locals.isDev = JSON.parse(config.get('is_dev'));
       res.locals.challengedAccessEnabled = await FeatureToggleService.getChallengedAccessFeatureToggle();
-      res.locals.userDetailsEnabled = config.get('pages.userDetailsEnabled');
+      res.locals.userDetailsEnabled = JSON.parse(config.get('pages.userDetailsEnabled'));
       res.locals.pagePath = req.path;
       next();
     });
