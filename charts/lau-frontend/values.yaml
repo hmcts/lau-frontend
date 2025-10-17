@@ -15,6 +15,7 @@ nodejs:
     REDIS_HOST: lau-frontend-session-storage-{{ .Values.global.environment }}.redis.cache.windows.net
     LAU_CASE_BACKEND_URL: http://lau-case-backend-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
     LAU_IDAM_BACKEND_URL: http://lau-idam-backend-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
+    LAU_EUD_BACKEND_URL: http://lau-eud-backend-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
     IDAM_WEB_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login
     IDAM_API_URL: https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net
     S2S_URL: http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
