@@ -22,7 +22,7 @@ nodejs:
     ALLOW_CONFIG_MUTATIONS: true
     DUMMY_RESTART_VAR: 1
     IS_DEV: true
-    USER_DETAILS_PAGE_ENABLED: false
+    USER_DETAILS_PAGE_ENABLED: true
 
   keyVaults:
     lau:
