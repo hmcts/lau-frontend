@@ -15,6 +15,8 @@ services:
     url: LAU_CASE_BACKEND_URL
   lau-idam-backend:
     url: LAU_IDAM_BACKEND_URL
+  lau-eud-backend:
+    url: LAU_EUD_BACKEND_URL
   idam-api:
     enabled: IDAM_ENABLED
     authorizationURL: IDAM_WEB_URL
