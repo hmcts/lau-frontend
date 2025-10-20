@@ -11,12 +11,12 @@ export class AppInsights {
         .setAutoCollectConsole(true, true)
         .setAutoCollectExceptions(true)
         .setAutoCollectDependencies(false) // Disable dependency tracking
-        .setAutoDependencyCorrelation(false) //  Disable automatic dependency correlation
-        .start();
+        .setAutoDependencyCorrelation(false); //  Disable automatic dependency correlation
 
       appInsights.defaultClient.config.samplingPercentage = config.get('appInsights.samplingPercentage');
       appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = 'lau-frontend';
       appInsights.defaultClient.trackTrace({message: 'App insights activated'});
+      appInsights.start();
     }
   }
 }

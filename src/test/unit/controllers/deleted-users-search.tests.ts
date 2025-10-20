@@ -179,7 +179,7 @@ describe('Deleted Users Search Controller', () => {
 
     it('sanitizes string fields in the deleted users search request', async () => {
       nock(basePath)
-        .get(`/audit/deletedAccounts?userId=4f18-b03b-7d2042209344&firstName=John_08&lastName=Smith_8&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5`)
+        .get('/audit/deletedAccounts?userId=4f18-b03b-7d2042209344&firstName=John_08&lastName=Smith_8&startTimestamp=2021-12-12T12:00:00&endTimestamp=2021-12-12T12:00:01&page=1&size=5')
         .reply(
           200,
           {deletionLogs: []},

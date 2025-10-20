@@ -157,7 +157,7 @@ window.addEventListener('load', () => {
     } else if (path.includes('/case-deletion-audit')) {
       focusAndAnnounceActivityRegion('caseDeletion-status');
     }
-   }, 500);
+  }, 500);
  
 });
 
