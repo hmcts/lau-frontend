@@ -1,4 +1,4 @@
-import {numberWithCommas} from '../../../main/util/Util';
+import {mapOrElse, numberWithCommas} from '../../../main/util/Util';
 
 describe('Util', () => {
   describe('numberWithCommas', () => {
@@ -28,6 +28,19 @@ describe('Util', () => {
 
     it('handles NaN cases gracefully', () => {
       expect(numberWithCommas('abc123')).toBe('');
+    });
+  });
+
+  describe('mapOrElse', () => {
+    it('returns single else value in an array if passed array is falsy', () => {
+      expect(mapOrElse(null, null, ['empty'])).toEqual(['empty']);
+      expect(mapOrElse(undefined, (i:string) => i.toUpperCase(), ['empty'])).toEqual(['empty']);
+      expect(mapOrElse([], null, ['empty'])).toEqual(['empty']);
+    });
+
+    it('returns mapped value if array has items', () => {
+      expect(mapOrElse([1, 2, 3], (i)=> i*i, [])).toEqual([1, 4, 9]);
+      expect(mapOrElse(['a', 'b', 'c'], (i)=> i.toUpperCase(), [])).toEqual(['A', 'B', 'C']);
     });
   });
 });

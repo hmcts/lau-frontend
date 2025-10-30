@@ -12,7 +12,7 @@
 
 <h1 class="govuk-heading-xl">User details search</h1>
 
-<form id="user-details-search-form" class="search-form" method="post" action="/user-details-search">
+<form id="user-details-search-form" class="search-form govuk-!-margin-bottom-5" method="post" action="/user-details-search">
 {{ csrfProtection(csrfToken) }}
   <div class="govuk-grid-row govuk-!-padding-left-3 govuk-!-padding-right-6">
     <h2 class="govuk-heading-l">Search</h2>
@@ -34,10 +34,9 @@
 
       {{ govukInput({
         label: {text: "User ID or email address"},
-        classes: "govuk-!-width-three-quarters",
         id: "userIdOrEmail",
         name: "userIdOrEmail",
-        value: userDetailsForm.userIdOrEmail,
+        value: "e46aebf1-8544-4210-946a-7fbe044a7241",
         errorMessage: errorMessage
       }) }}
     </div>
@@ -58,71 +57,71 @@
 </form>
 
 {% if userDetailsAuditData %}
-<div class="govuk-grid-row govuk-!-margin-top-5" id="results-section">
+<h2 class="govuk-heading-l">Results</h2>
+<div class="govuk-grid-row" id="results-section">
   <div class="govuk-grid-column-full">
 
-    <h2 class="govuk-heading-l">
-      Results
-    </h2>
+  {% if userDetailsAuditData.hasData %}
 
-    {{ govukSummaryList({
-      rows: [
-          {
-            key: {
-              text: "User ID"
-            },
-            value: {
-              text: userDetailsAuditData.userId
-            }
+  {{ govukSummaryList({
+    rows: [
+        {
+          key: {
+            text: "User ID"
           },
-          {
-            key: {
-              text: "Email address"
-            },
-            value: {
-              text: userDetailsAuditData.email
-            }
-          },
-          {
-            key: {
-              text: "Professional address"
-            },
-            value: {
-              html: userDetailsAuditData.formattedAddresses | join('<br>')
-            }
-          },
-          {
-            key: {
-              text: "Account status"
-            },
-            value: {
-              text: userDetailsAuditData.accountStatus
-            }
-          },
-          {
-            key: {
-              text: "Latest activation date"
-            },
-            value: {
-              text: userDetailsAuditData.formattedAccCreationDate
-            }
-          },
-          {
-            key: {
-              text: "Roles"
-            },
-            value: {
-              html: userDetailsAuditData.roles | join('<br>')
-            }
+          value: {
+            text: userDetailsAuditData.userId
           }
+        },
+        {
+          key: {
+            text: "Email address"
+          },
+          value: {
+            text: userDetailsAuditData.email
+          }
+        },
+        {
+          key: {
+            text: "Professional address"
+          },
+          value: {
+            html: userDetailsAuditData.formattedAddresses | join('<br>')
+          }
+        },
+        {
+          key: {
+            text: "Account status"
+          },
+          value: {
+            text: userDetailsAuditData.accountStatus
+          }
+        },
+        {
+          key: {
+            text: "Latest activation date"
+          },
+          value: {
+            text: userDetailsAuditData.formattedAccCreationDate
+          }
+        },
+        {
+          key: {
+            text: "Roles"
+          },
+          value: {
+            html: userDetailsAuditData.roles | join('<br>')
+          }
+        }
 
-        ]
+      ]
     }) }}
 
+    {% else %}
+    <p class="govuk-body">User not found, check the information entered or try a different search</p>
+    {% endif %}
   </div>
 </div>
-
 {% endif %}
-
 {% endif %}
 {% endblock %}

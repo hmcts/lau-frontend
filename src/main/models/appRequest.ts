@@ -1,12 +1,12 @@
-import { Request } from 'express';
-import { Session } from 'express-session';
+import {Request} from 'express';
+import {Session} from 'express-session';
 import {CaseSearchRequest} from './case/CaseSearchRequest';
 import {LogonSearchRequest} from './idam/LogonSearchRequest';
 import {CaseDeletionsSearchRequest} from './deletions/CaseDeletionsSearchRequest';
-import { DeletedUsersSearchRequest } from './user-deletions/DeletedUsersSearchRequest';
-import { CaseChallengedAccessRequest } from './challenged-access/CaseChallengedAccessRequest';
+import {DeletedUsersSearchRequest} from './user-deletions/DeletedUsersSearchRequest';
+import {CaseChallengedAccessRequest} from './challenged-access/CaseChallengedAccessRequest';
 import {UserDetailsSearchRequest} from './user-details/UserDetailsSearchRequest';
-import {UserDetailsAuditData} from './user-details/UserDetailsAuditData';
+import {UserDetailsViewModel} from './user-details/UserDetailsAuditData';
 
 export type FormError = {
   propertyName: string;
@@ -29,7 +29,7 @@ export interface AppSession extends Session {
   caseDeletions?: LogData;
   userDeletions?: LogData;
   challengedAccessData?: LogData;
-  userDetailsData?: UserDetailsAuditData;
+  userDetailsData?: UserDetailsViewModel;
   caseFormState?: Partial<CaseSearchRequest>;
   logonFormState?: Partial<LogonSearchRequest>;
   caseDeletionsFormState?: Partial<CaseDeletionsSearchRequest>;

@@ -3,7 +3,7 @@ import {Response} from 'express';
 import {AppRequest, AppSession} from '../../../main/models/appRequest';
 import {UserDetailsService} from '../../../main/service/UserDetailsService';
 import {UserDetailsController} from '../../../main/controllers/UserDetails.controller';
-import {Address, UserDetailsSearchRequest} from '../../../main/models/user-details';
+import {Address, NOT_AVAILABLE_MSG, UserDetailsSearchRequest} from '../../../main/models/user-details';
 import {AppError, ErrorCode} from '../../../main/models/AppError';
 
 
@@ -61,7 +61,7 @@ describe('UserDetailsController.post', () => {
         '10 Downing St, England, AA00 1AA',
         '&lt;script&gt;alert(&quot;1&quot;)&lt;/script&gt;1, Victoria str., London',
       ],
-      formattedAccCreationDate: 'N/A',
+      formattedAccCreationDate: NOT_AVAILABLE_MSG,
     });
     expect(res.redirect).toHaveBeenCalledWith('/user-details-audit#results-section');
   });
@@ -80,8 +80,8 @@ describe('UserDetailsController.post', () => {
     expect(service.getUserDetails).toHaveBeenCalledTimes(1);
     expect(req.session.userDetailsData).toEqual({
       ...userDetailsMock,
-      formattedAddresses: [],
-      formattedAccCreationDate: 'N/A',
+      formattedAddresses: [NOT_AVAILABLE_MSG],
+      formattedAccCreationDate: NOT_AVAILABLE_MSG,
     });
     expect(res.redirect).toHaveBeenCalledWith('/user-details-audit#results-section');
   });
