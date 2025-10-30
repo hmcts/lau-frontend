@@ -5,8 +5,9 @@ import {validEmail} from '../util/validators';
 import {UserDetailsService} from '../service/UserDetailsService';
 import {AppError, errorRedirect} from '../models/AppError';
 import logger from '../modules/logging';
-import {UserDetailsSearchRequest, formatAddress} from '../models/user-details';
+import {formatAddress, NOT_AVAILABLE_MSG, UserDetailsSearchRequest} from '../models/user-details';
 import {requestDateToFormDate} from '../util/Date';
+import {mapOrElse} from '../util/Util';
 
 @autobind
 export class UserDetailsController {
@@ -28,10 +29,9 @@ export class UserDetailsController {
     try {
       const userDetails = await this.service.getUserDetails(req, this.isEmail(userIdOrEmail));
       req.session.userDetailsData = {
-        roles: [],
         ...userDetails,
-        formattedAddresses: (userDetails.organisationalAddress || []).map(addr => formatAddress(addr)),
-        formattedAccCreationDate: requestDateToFormDate(userDetails.accountCreationDate),
+        formattedAddresses: mapOrElse(userDetails.organisationalAddress, formatAddress, [NOT_AVAILABLE_MSG]),
+        formattedAccCreationDate: requestDateToFormDate(userDetails.accountCreationDate, NOT_AVAILABLE_MSG),
       };
       res.redirect('/user-details-audit#results-section');
       return;
