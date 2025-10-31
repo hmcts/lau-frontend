@@ -23,7 +23,6 @@ export class UserDetailsService extends BaseService<UserDetailsSearchRequest> {
     const path = `${endpoint}?${queryParam}=${userIdOrEmail}`;
     logger.info(`Calling userDetails - ${this.baseApiUrl}${path}`);
     const response = await this.get(req.session, path) as UserDetailsAuditData;// as Promise<UserDetailsAuditData>;
-    logger.info(JSON.stringify(response));
     return this.transformData(response, userIdOrEmail);
   }
 
