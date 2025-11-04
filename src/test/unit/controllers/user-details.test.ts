@@ -3,7 +3,13 @@ import {Response} from 'express';
 import {AppRequest, AppSession} from '../../../main/models/appRequest';
 import {UserDetailsService} from '../../../main/service/UserDetailsService';
 import {UserDetailsController} from '../../../main/controllers/UserDetails.controller';
-import {Address, NOT_AVAILABLE_MSG, UserDetailsSearchRequest} from '../../../main/models/user-details';
+import {
+  AccountRecordType,
+  AccountStatus,
+  Address,
+  NOT_AVAILABLE_MSG,
+  UserDetailsSearchRequest,
+} from '../../../main/models/user-details';
 import {AppError, ErrorCode} from '../../../main/models/AppError';
 
 
@@ -62,6 +68,7 @@ describe('UserDetailsController.post', () => {
         '&lt;script&gt;alert(&quot;1&quot;)&lt;/script&gt;1, Victoria str., London',
       ],
       formattedAccCreationDate: NOT_AVAILABLE_MSG,
+      displayedStatus: NOT_AVAILABLE_MSG,
     });
     expect(res.redirect).toHaveBeenCalledWith('/user-details-audit#results-section');
   });
@@ -82,8 +89,50 @@ describe('UserDetailsController.post', () => {
       ...userDetailsMock,
       formattedAddresses: [NOT_AVAILABLE_MSG],
       formattedAccCreationDate: NOT_AVAILABLE_MSG,
+      displayedStatus: NOT_AVAILABLE_MSG,
     });
     expect(res.redirect).toHaveBeenCalledWith('/user-details-audit#results-section');
+  });
+
+  it('returns formatted data', async () => {
+    const rawUserDetails = {
+      userId: 'some-id',
+      email: 'test@example.com',
+      accountStatus: AccountStatus.SUSPENDED,
+      recordType: AccountRecordType.LIVE,
+      accountCreationDate: '2025-10-15T10:00:00.000Z',
+      roles: ['test-role'],
+      organisationalAddress: [{
+        addressLine1: '123 Main St',
+        townCity: 'Townsville',
+        postCode: 'TS1 1AA',
+      }],
+      meta: {
+        idam: {responseCode: 200},
+        refdata: {responseCode: 200},
+      },
+      sourceStatus: 'ALL_OK',
+    };
+
+    const service = { getUserDetails: jest.fn().mockResolvedValue(rawUserDetails) } as unknown as UserDetailsService;
+    const controller = new UserDetailsController(service);
+    const req = {
+      ...makeReq({ userIdOrEmail: 'email@example.com' }),
+      session: {} as AppSession,
+    };
+    const res = makeRes() as unknown as Response;
+
+    await controller.post(req as AppRequest<UserDetailsSearchRequest>, res);
+
+    expect(req.session.userDetailsFormState.userIdOrEmail).toBe('email@example.com');
+    expect(req.session.fromPost).toBe(true);
+    expect(res.redirect).toHaveBeenCalledWith('/user-details-audit#results-section');
+    expect(req.session.userDetailsData).toEqual({
+      ...rawUserDetails,
+      formattedAddresses: ['123 Main St, Townsville, TS1 1AA'],
+      formattedAccCreationDate: '2025-10-15 10:00:00',
+      displayedStatus: 'Live but suspended',
+    });
   });
 
   it('throws an error when service throws an AppError', async () => {
