@@ -31,6 +31,7 @@ export class UserDetailsService extends BaseService<UserDetailsSearchRequest> {
       userId: data.userId ?? userId,
       email: data.email ?? null,
       accountStatus: data.accountStatus ?? null,
+      recordType: data.recordType ?? null,
       accountCreationDate: data.accountCreationDate ?? null,
       roles: data.roles ?? [],
       organisationalAddress: data.organisationalAddress ?? [],
@@ -42,7 +43,7 @@ export class UserDetailsService extends BaseService<UserDetailsSearchRequest> {
     const byStatus: Record<ServiceStatus, (u: UserDetailsAuditData) => UserDetailsAuditData> = {
       ALL_OK: u => ({...u, hasData: true}),
       IDAM_ONLY: u => ({...u, hasData: true, organisationalAddress: []}),
-      REFDATA_ONLY: u => ({...u, hasData: true, email: msg, accountStatus: msg, roles: [msg]}),
+      REFDATA_ONLY: u => ({...u, hasData: true, email: msg, roles: [msg]}),
       NONE_OK: u => ({...u, hasData: false}),
     };
     return byStatus[base.sourceStatus](base);

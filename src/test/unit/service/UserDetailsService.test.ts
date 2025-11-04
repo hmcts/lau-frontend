@@ -2,6 +2,8 @@ import nock from 'nock';
 import config from 'config';
 import {UserDetailsService} from '../../../main/service/UserDetailsService';
 import {
+  AccountRecordType,
+  AccountStatus,
   NOT_AVAILABLE_MSG,
   ServiceStatus,
   UserDetailsAuditData,
@@ -18,7 +20,8 @@ describe('UserDetailsService', () => {
     const data: UserDetailsAuditData = {
       userId: '7246bbec-29ed-4029-b8a2-ff76c74c1b10',
       email: 'email@example.net',
-      accountStatus: 'ACTIVE',
+      accountStatus: AccountStatus.ACTIVE,
+      recordType: AccountRecordType.LIVE,
       accountCreationDate: '2025-10-01T13:14:15Z',
       roles: [],
       organisationalAddress: [{
@@ -77,7 +80,8 @@ describe('UserDetailsService', () => {
     const data: UserDetailsAuditData = {
       userId: '7246bbec-29ed-4029-b8a2-ff76c74c1b10',
       email: 'email@example.net',
-      accountStatus: 'ACTIVE',
+      accountStatus: AccountStatus.ACTIVE,
+      recordType: AccountRecordType.LIVE,
       accountCreationDate: '2025-10-01T13:14:15Z',
       roles: [],
       organisationalAddress: [],
@@ -112,6 +116,7 @@ describe('UserDetailsService', () => {
       userId: null,
       email: null,
       accountStatus: null,
+      recordType: null,
       accountCreationDate: null,
       roles: [],
       organisationalAddress: [{
@@ -147,7 +152,6 @@ describe('UserDetailsService', () => {
         ...data,
         userId: '1234-5678',
         email: NOT_AVAILABLE_MSG,
-        accountStatus: NOT_AVAILABLE_MSG,
         roles: [NOT_AVAILABLE_MSG],
       });
     });
@@ -158,6 +162,7 @@ describe('UserDetailsService', () => {
       userId: null,
       email: null,
       accountStatus: null,
+      recordType: null,
       accountCreationDate: null,
       roles: [],
       organisationalAddress: [],

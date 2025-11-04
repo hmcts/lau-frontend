@@ -5,7 +5,7 @@ import {validEmail} from '../util/validators';
 import {UserDetailsService} from '../service/UserDetailsService';
 import {AppError, errorRedirect} from '../models/AppError';
 import logger from '../modules/logging';
-import {formatAddress, NOT_AVAILABLE_MSG, UserDetailsSearchRequest} from '../models/user-details';
+import {formatAddress, formatStatus, NOT_AVAILABLE_MSG, UserDetailsSearchRequest} from '../models/user-details';
 import {requestDateToFormDate} from '../util/Date';
 import {mapOrElse} from '../util/Util';
 
@@ -32,6 +32,7 @@ export class UserDetailsController {
         ...userDetails,
         formattedAddresses: mapOrElse(userDetails.organisationalAddress, formatAddress, [NOT_AVAILABLE_MSG]),
         formattedAccCreationDate: requestDateToFormDate(userDetails.accountCreationDate, NOT_AVAILABLE_MSG),
+        displayedStatus: formatStatus(userDetails.accountStatus, userDetails.recordType, NOT_AVAILABLE_MSG),
       };
       res.redirect('/user-details-audit#results-section');
       return;
