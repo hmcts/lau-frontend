@@ -2,6 +2,7 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
 {% from "./../common/macros/csrf.njk" import csrfProtection %}
 
 {% block pageTitle %}Log and Audit - User Details Search{% endblock %}
@@ -115,6 +116,11 @@
         }
 
       ]
+    }) }}
+
+    {{ govukDetails({
+      summaryText: "Understanding user details",
+      html: "Accounts that are locked means the user has attempted the password too many times.<br>Accounts can be suspended manually, which means they cannot be accessed.<br>Accounts are archived if the user has not logged in for 90 days or more."
     }) }}
 
     {% else %}
