@@ -94,6 +94,7 @@ async function auditHandler(req: AppRequest, res: Response, template: string, co
       userIdOrEmail: {
         required: 'Enter a user ID or email address',
         invalid: 'Enter valid user ID or email address',
+        valueTooLong: 'Entered value is too long',
       },
     },
     caseChallengedAccessLogOrder: getCaseChallengedAccessLogOrder(),

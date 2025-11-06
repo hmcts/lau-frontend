@@ -19,7 +19,8 @@ export class UserDetailsController {
     const userIdOrEmail = (searchRequest.userIdOrEmail ?? '').trim();
     req.session.userDetailsFormState = {...req.body, userIdOrEmail};
     req.session.fromPost = true;
-    const errors = this.validateSearchForm(userIdOrEmail);
+    const isEmail = this.isEmail(userIdOrEmail);
+    const errors = this.validateSearchForm(userIdOrEmail, isEmail);
     req.session.errors = errors;
     if (errors.length > 0) {
       res.redirect('/user-details-audit');
@@ -27,7 +28,7 @@ export class UserDetailsController {
     }
 
     try {
-      const userDetails = await this.service.getUserDetails(req, this.isEmail(userIdOrEmail));
+      const userDetails = await this.service.getUserDetails(req, isEmail);
       req.session.userDetailsData = {
         ...userDetails,
         formattedAddresses: mapOrElse(userDetails.organisationalAddress, formatAddress, [NOT_AVAILABLE_MSG]),
@@ -44,11 +45,15 @@ export class UserDetailsController {
     }
   }
 
-  private validateSearchForm(userIdOrEmail: string): FormError[] {
+  private validateSearchForm(userIdOrEmail: string, isEmail: boolean): FormError[] {
     const errors: FormError[] = [];
     if (!userIdOrEmail) {
       errors.push({propertyName: 'userIdOrEmail', errorType: 'required'});
     }
+    if (!isEmail && userIdOrEmail.length > 64) {
+      errors.push({propertyName: 'userIdOrEmail', errorType: 'valueTooLong'});
+    }
+
     return errors;
   }
 
