@@ -23,6 +23,7 @@ nodejs:
     ALLOW_CONFIG_MUTATIONS: true
     DUMMY_RESTART_VAR: 1
     IS_DEV: true
+    OTEL_SERVICE_NAME: lau-frontend
     USER_DETAILS_PAGE_ENABLED: true
 
   keyVaults:
