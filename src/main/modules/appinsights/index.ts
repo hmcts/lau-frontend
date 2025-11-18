@@ -2,9 +2,18 @@ const appInsights = require('applicationinsights');
 
 import config from 'config';
 
+declare global {
+  var __appInsightsEnabled: boolean | undefined;
+}
+
 export class AppInsights {
 
   enable(): void {
+    if (global.__appInsightsEnabled) {
+      return;
+    }
+    global.__appInsightsEnabled = true;
+
     if (config.get('appInsights.connectionString')) {
       appInsights.setup(config.get<string>('appInsights.connectionString'))
         .setSendLiveMetrics(true)
