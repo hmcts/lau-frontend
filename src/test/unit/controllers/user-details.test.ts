@@ -11,6 +11,7 @@ import {
   UserDetailsSearchRequest,
 } from '../../../main/models/user-details';
 import {AppError, ErrorCode} from '../../../main/models/AppError';
+import {UserDetailsViewModel} from '../../../main/models/user-details/UserDetailsAuditData';
 
 
 describe('UserDetailsController.post', () => {
@@ -196,3 +197,118 @@ describe('UserDetailsController.post', () => {
     expect(res.redirect).toHaveBeenCalledWith(`/error?code=${ErrorCode.EUD_BACKEND}`);
   });
 });
+
+describe('UserDetailsController.postPdf', () => {
+  const mockPdfBuffer = Buffer.from('mock-user-details-content');
+
+  const makeReq = (sessionData?: Partial<UserDetailsViewModel> | null): AppRequest<UserDetailsSearchRequest> => ({
+    body: {} as UserDetailsSearchRequest,
+    session: {
+      userDetailsData: sessionData as UserDetailsViewModel,
+    } as AppSession,
+    app: {
+      render: jest.fn((template, data, callback) => {
+        callback(null, '<html>mock rendered html</html>');
+      }),
+    },
+  }) as unknown as AppRequest<UserDetailsSearchRequest>;
+
+  const makeRes = () => ({
+    status: jest.fn().mockReturnThis(),
+    send: jest.fn(),
+    set: jest.fn(),
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+    jest.resetModules();
+  });
+
+  it('should return 400 when no session data exists', async () => {
+    const controller = new UserDetailsController();
+    const req = makeReq(null);
+    const res = makeRes() as unknown as Response;
+
+    await controller.postPdf(req as AppRequest<UserDetailsSearchRequest>, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.send).toHaveBeenCalledWith('No search results available to generate PDF');
+  });
+
+  it('should generate PDF successfully with session data', async () => {
+    const mockSessionData = {
+      userId: 'test-user-id',
+      email: 'test@example.com',
+      formattedAddresses: ['123 Main St, London, SW1A 1AA'],
+      displayedStatus: 'Active',
+      formattedAccCreationDate: '2025-11-01 10:00:00',
+      roles: ['admin', 'user'],
+    };
+
+    jest.doMock('../../../main/service/pdf-service', () => ({
+      renderHtmlToPdfBuffer: jest.fn().mockResolvedValue(mockPdfBuffer),
+    }));
+
+    const controller = new UserDetailsController();
+    const req = makeReq(mockSessionData);
+    const res = makeRes() as unknown as Response;
+
+    await controller.postPdf(req as AppRequest<UserDetailsSearchRequest>, res);
+
+    expect(req.app.render).toHaveBeenCalledWith(
+      'user-details/pdf-template.njk',
+      { userDetailsAuditData: mockSessionData },
+      expect.any(Function),
+    );
+    expect(res.set).toHaveBeenCalledWith({
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': 'attachment; filename="test-user-id.pdf"',
+      'Content-Length': mockPdfBuffer.length,
+    });
+    expect(res.send).toHaveBeenCalledWith(mockPdfBuffer);
+  });
+
+  it('should handle template rendering errors', async () => {
+    const mockSessionData = {
+      userId: 'test-user-id',
+      email: 'test@example.com',
+    };
+
+    const controller = new UserDetailsController();
+    const req = {
+      ...makeReq(mockSessionData),
+      app: {
+        render: jest.fn((template, data, callback) => {
+          callback(new Error('Template rendering failed'), null);
+        }),
+      },
+    } as unknown as AppRequest<UserDetailsSearchRequest>;
+    const res = makeRes() as unknown as Response;
+
+    await controller.postPdf(req as AppRequest<UserDetailsSearchRequest>, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.send).toHaveBeenCalledWith('Failed to generate PDF');
+  });
+
+  it('should handle PDF generation errors', async () => {
+    const mockSessionData = {
+      userId: 'test-user-id',
+      email: 'test@example.com',
+    };
+
+    jest.doMock('../../../main/service/pdf-service', () => ({
+      renderHtmlToPdfBuffer: jest.fn().mockRejectedValue(new Error('PDF generation failed')),
+    }));
+
+    const controller = new UserDetailsController();
+    const req = makeReq(mockSessionData);
+    const res = makeRes() as unknown as Response;
+
+    await controller.postPdf(req as AppRequest<UserDetailsSearchRequest>, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.send).toHaveBeenCalledWith('Failed to generate PDF');
+  });
+});
+

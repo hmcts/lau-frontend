@@ -64,64 +64,17 @@
 
   {% if userDetailsAuditData.hasData %}
 
-  {{ govukSummaryList({
-    rows: [
-        {
-          key: {
-            text: "User ID"
-          },
-          value: {
-            text: userDetailsAuditData.userId
-          }
-        },
-        {
-          key: {
-            text: "Email address"
-          },
-          value: {
-            text: userDetailsAuditData.email
-          }
-        },
-        {
-          key: {
-            text: "Professional address"
-          },
-          value: {
-            html: userDetailsAuditData.formattedAddresses | join('<br>')
-          }
-        },
-        {
-          key: {
-            text: "Account status"
-          },
-          value: {
-            text: userDetailsAuditData.displayedStatus
-          }
-        },
-        {
-          key: {
-            text: "Latest activation date"
-          },
-          value: {
-            text: userDetailsAuditData.formattedAccCreationDate
-          }
-        },
-        {
-          key: {
-            text: "Roles"
-          },
-          value: {
-            html: userDetailsAuditData.roles | join('<br>')
-          }
-        }
+  {% include "user-details/user-details-content.njk" %}
 
-      ]
+  <form method="post" action="/user-details-search/pdf" target="_blank">
+    {{ csrfProtection(csrfToken) }}
+    {{ govukButton({
+      name: "download-pdf-btn",
+      text: "Download PDF",
+      type: "submit",
+      classes: "govuk-!-margin-top-4"
     }) }}
-
-    {{ govukDetails({
-      summaryText: "Understanding user details",
-      html: "Accounts that are locked means the user has attempted the password too many times.<br>Accounts can be suspended manually, which means they cannot be accessed.<br>Accounts are archived if the user has not logged in for 90 days or more."
-    }) }}
+  </form>
 
     {% else %}
     <p class="govuk-body">User not found, check the information entered or try a different search</p>
@@ -129,5 +82,6 @@
   </div>
 </div>
 {% endif %}
+
 {% endif %}
 {% endblock %}

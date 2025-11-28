@@ -24,6 +24,22 @@ RUN yarn install --immutable \
 # ---- Runtime image ----
 FROM base AS runtime
 
+# Install Chromium and dependencies for Puppeteer
+USER root
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont
+
+# Tell Puppeteer to use the installed Chromium
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
+USER hmcts
+
 COPY --from=build $WORKDIR/dist ./dist
 COPY --from=build $WORKDIR/src/main/views ./dist/views
 COPY --from=build $WORKDIR/src/main/public ./dist/public
