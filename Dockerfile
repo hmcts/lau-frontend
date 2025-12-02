@@ -27,12 +27,7 @@ FROM base AS runtime
 # Install Chromium and dependencies for Puppeteer
 USER root
 RUN apk add --no-cache \
-    chromium \
-    nss \
-    freetype=2.13.3-r0 \
-    harfbuzz \
-    ca-certificates \
-    ttf-freefont
+    chromium 
 
 # Tell Puppeteer to use the installed Chromium
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
