@@ -1,6 +1,5 @@
 # ---- Base image ----
 FROM hmctspublic.azurecr.io/base/node:20-alpine AS base
-CMD sh -c 'echo "Alpine version: $(cat /etc/alpine-release)"; node dist/server.js'
 
 USER root
 RUN corepack enable
@@ -28,12 +27,12 @@ FROM base AS runtime
 # Install Chromium and dependencies for Puppeteer
 USER root
 RUN apk add --no-cache \
-    chromium \
-    nss \
-    freetype \
-    harfbuzz \
-    ca-certificates \
-    ttf-freefont
+    chromium=138.0.7204.49-r0 \
+    nss=3.112-r0 \
+    freetype=2.13.3-r0 \
+    harfbuzz=11.2.1-r0 \
+    ca-certificates=20241121-r2 \
+    ttf-freefont=20120503-r4
 
 # Tell Puppeteer to use the installed Chromium
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
