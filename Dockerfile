@@ -27,7 +27,7 @@ FROM base AS runtime
 # Install Chromium and dependencies for Puppeteer
 USER root
 RUN apk add --no-cache \
-    chromium 
+    chromium=138.0.7204.49-r0
 
 # Tell Puppeteer to use the installed Chromium
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
