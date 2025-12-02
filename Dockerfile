@@ -1,6 +1,6 @@
 # ---- Base image ----
 FROM hmctspublic.azurecr.io/base/node:20-alpine AS base
-RUN cat /etc/alpine-release
+RUN echo "=== ALPINE VERSION (FROM base IMAGE) ===" && cat /etc/alpine-release
 
 USER root
 RUN corepack enable
