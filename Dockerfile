@@ -1,6 +1,6 @@
 # ---- Base image ----
 FROM hmctspublic.azurecr.io/base/node:20-alpine AS base
-RUN echo "=== ALPINE VERSION (FROM base IMAGE) ===" && cat /etc/alpine-release
+CMD sh -c 'echo "Alpine version: $(cat /etc/alpine-release)"; node dist/server.js'
 
 USER root
 RUN corepack enable
