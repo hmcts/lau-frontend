@@ -62,11 +62,6 @@ services:
     lauSecret: 'AAAAAAAAAAAAAAAA'
   auto-suggest:
     data-file: 'data/auto-suggest-data-prod.json'
-featureToggles:
-  enabled: true
-  ldKey: 'LD_SDK_KEY'
-  ft_deletedUsers: 'LAU_DELETED_USERS'
-  ft_challengeAccess: 'lau-challenged-access'
 pages:
   userDetailsEnabled: true
 session:

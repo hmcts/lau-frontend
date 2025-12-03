@@ -9,5 +9,3 @@ services:
   s2s:
     enabled: false
     url: 'http://localhost:4552'
-featureToggles:
-  enabled: false

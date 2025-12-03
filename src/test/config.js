@@ -22,11 +22,6 @@ module.exports = {
     microservice: process.env.S2S_MICROSERVICE_KEY_CMC,
     secret: process.env.S2S_MICROSERVICE_KEY_PWD,
   },
-  featureToggles: {
-    enabled: process.env.LD_ENABLED || false,
-    launchDarklyKey: process.env.LAUNCHDARKLY_KEY,
-    flags: {},
-  },
   env: process.env.TEST_ENV || 'local',
   proxy: '',
 };
