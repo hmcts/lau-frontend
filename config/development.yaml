@@ -17,5 +17,3 @@ services:
     url: 'http://localhost:4552'
   auto-suggest:
     data-file: 'data/auto-suggest-data-dev.json'
-featureToggles:
-  enabled: false

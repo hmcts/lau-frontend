@@ -11,7 +11,6 @@ import {SessionStorage} from './modules/session';
 import {OidcMiddleware} from './modules/oidc';
 import {HealthCheck} from './modules/health';
 import {Container} from './modules/awilix';
-import {LaunchDarklyClient} from './components/featureToggle/LaunchDarklyClient';
 
 import config from 'config';
 import {AutoSuggest} from './modules/autosuggest/AutoSuggest';
@@ -38,8 +37,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
-
-LaunchDarklyClient.initialise();
 new Helmet(config.get('security')).enableFor(app);
 new SessionStorage().enableFor(app);
 new CSRFToken().enableFor(app);
