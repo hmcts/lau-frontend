@@ -27,9 +27,6 @@ services:
   s2s:
     enabled: S2S_ENABLED
     url: S2S_URL
-featureToggles:
-  ldKey: LD_SDK_KEY
-  ft_deletedUsers: 'LAU_DELETED_USERS'
 pages:
   userDetailsEnabled: USER_DETAILS_PAGE_ENABLED
 is_dev: IS_DEV
