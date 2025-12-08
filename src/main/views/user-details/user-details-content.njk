@@ -21,7 +21,7 @@
       },
       {
         key: {
-          text: "Professional address"
+          text: "Organisation address"
         },
         value: {
           html: userDetailsAuditData.formattedAddresses | join('<br>')
@@ -56,5 +56,8 @@
 
 {{ govukDetails({
   summaryText: "Understanding user details",
-  html: "Accounts that are locked means the user has attempted the password too many times.<br>Accounts can be suspended manually, which means they cannot be accessed.<br>Accounts are archived if the user has not logged in for 90 days or more."
+  html: "<p>Accounts that are locked means the user has attempted the password too many times.<br>Accounts can be suspended manually, which means they cannot be accessed.<br>Accounts are archived if the user has not logged in for 90 days or more.</p>
+  <p>The organisation address is the address of the organisation that user is registered under. All users belonging to the same organisation share the same address, It does not represent the user's day-to-day working location - only the organisation's official address.</p>
+  <p>This address is only available for users from external organisations(i.e. those registered through the Manage Organisation UI).It is not available for judiciary staff, whose details are managed by the Judicial Case Manager, nor for HMCTS staff such as court admins.</p>
+  <p>Organisation admin set the address, so it may not exactly match other sources such as ordinance survey data.</p>"
 }) }}
