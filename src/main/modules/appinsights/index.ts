@@ -1,29 +1,37 @@
-const appInsights = require('applicationinsights');
+import * as appInsights from 'applicationinsights';
+import type { TelemetryClient } from 'applicationinsights';
 
 import config from 'config';
 
-declare global {
-  var __appInsightsEnabled: boolean | undefined;
-}
-
 export class AppInsights {
 
+  private client: TelemetryClient;
+
   enable(): void {
-    if (global.__appInsightsEnabled) {
-      return;
-    }
-    global.__appInsightsEnabled = true;
 
     if (config.get('appInsights.connectionString')) {
       appInsights.setup(config.get<string>('appInsights.connectionString'))
-        .setSendLiveMetrics(true)
-        .setAutoCollectConsole(true, true)
-        .setAutoCollectExceptions(true)
+        .setSendLiveMetrics(false)
+        .setAutoCollectConsole(false)
+        .setAutoCollectPerformance(false, false)
         .setAutoCollectDependencies(false); // Disable dependency tracking
 
-      appInsights.defaultClient.config.samplingPercentage = config.get('appInsights.samplingPercentage');
-      appInsights.defaultClient.trackTrace({message: 'App insights activated'});
+      this.client = appInsights.defaultClient;
+      this.client.config.samplingPercentage = config.get('appInsights.samplingPercentage');
+      this.client.trackTrace({message: 'App insights activated'});
       appInsights.start();
+    }
+  }
+
+  public trackTrace(trace: string | {'message': string}) {
+    if (!this.client) {
+      console.warn('trackTrace called before AppInsights client initialised, dropped trace: ', trace);
+      return;
+    }
+    if (typeof trace === 'string') {
+      this.client.trackTrace({message: trace});
+    } else {
+      this.client.trackTrace(trace);
     }
   }
 }
