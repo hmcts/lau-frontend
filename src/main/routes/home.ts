@@ -139,9 +139,6 @@ async function caseDeletionHandler(req: AppRequest, res: Response) {
 }
 
 export async function challengedSpecificAccessHandler(req: AppRequest, res: Response) {
-  if(!res.locals.challengedAccessEnabled){
-    return res.redirect('/');
-  }
   const context: Context = {
     caseChallengedAccessForm: req.session?.caseChallengedAccessFormState || {},
     challengedSpecificAccessPage: true,

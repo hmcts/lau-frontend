@@ -61,4 +61,46 @@ export class UserDetailsController {
     const error = validEmail(userIdOrEmail);
     return !error;
   }
+
+  public async postPdf(req: AppRequest<UserDetailsSearchRequest>, res: Response): Promise<void> {
+    try {
+      // Authoritative data must exist in session from previous search
+      const cached = req.session?.userDetailsData;
+      if (!cached) {
+        res.status(400).send('No search results available to generate PDF');
+        return;
+      }
+
+      // Prepare view model for PDF rendering  
+      // Render PDF template directly with session data
+      const pdfHtml: string = await new Promise((resolve, reject) => {
+        req.app.render('user-details/pdf-template.njk', { userDetailsAuditData: cached }, (err?: Error | null, rendered?: string) => {
+          if (err) {
+            return reject(err);
+          }
+          resolve(rendered);
+        });
+      });
+
+      // Generate PDF from the PDF template
+      const pdfBuffer = await (await import('../service/pdf-service')).renderHtmlToPdfBuffer(pdfHtml);
+
+      // Generate filename using userId
+      const filename = `${cached.userId}.pdf`;
+
+      // Return PDF
+      res.set({
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': `attachment; filename="${filename}"`,
+        'Content-Length': pdfBuffer.length,
+      });
+      res.send(pdfBuffer);
+      return;
+    } catch (err) {
+      logger.error(err as Error, { stack: (err as Error)?.stack });
+      res.status(500).send('Failed to generate PDF');
+      return;
+    }
+  }
 }
+
