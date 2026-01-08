@@ -2996,10 +2996,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ioredis/commands@npm:1.5.0":
-  version: 1.5.0
-  resolution: "@ioredis/commands@npm:1.5.0"
-  checksum: 10/b5a842fde4785c20318b4b26c7ae98bb1f9cbdc1ade3e55a2de07d5db8fb4e9281e590fb08559e5a9027909f0f9f1214688af33e6fb469ce4ff3decc7cfde679
+"@ioredis/commands@npm:1.4.0":
+  version: 1.4.0
+  resolution: "@ioredis/commands@npm:1.4.0"
+  checksum: 10/ea299f22057139261ebd7dbc7fc85615e90c254e667620a276d3cf771b9d9190ffbdf25af6586c3f52598a2c830d64bee17f32c3ce734db403e93f73548d54d4
   languageName: node
   linkType: hard
 
@@ -11319,11 +11319,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ioredis@npm:5.9.1":
-  version: 5.9.1
-  resolution: "ioredis@npm:5.9.1"
+"ioredis@npm:5.8.0":
+  version: 5.8.0
+  resolution: "ioredis@npm:5.8.0"
   dependencies:
-    "@ioredis/commands": "npm:1.5.0"
+    "@ioredis/commands": "npm:1.4.0"
     cluster-key-slot: "npm:^1.1.0"
     debug: "npm:^4.3.4"
     denque: "npm:^2.1.0"
@@ -11332,7 +11332,7 @@ __metadata:
     redis-errors: "npm:^1.2.0"
     redis-parser: "npm:^3.0.0"
     standard-as-callback: "npm:^2.1.0"
-  checksum: 10/ea2853b6b342dbc279cc2828ae52d851271616560c1c242f23dba06313478a3f4e8582d198ff4568bc3934b3b6f4f52e1db95ea4f82f98374c9dfb5061291831
+  checksum: 10/cf28889012e18d83b1e1762801426a653ac2f958cd3d79afb71005659a5b3e850acc18cf9315e0525a48c0f6cc948198b26b1339491309c71e62c3f2c47f2f20
   languageName: node
   linkType: hard
 
@@ -12815,7 +12815,7 @@ __metadata:
     helmet: "npm:^8.0.0"
     html-webpack-plugin: "npm:^5.3.2"
     html_codesniffer: "npm:^2.5.1"
-    ioredis: "npm:5.9.1"
+    ioredis: "npm:5.8.0"
     jest: "npm:^30.0.5"
     jquery: "npm:^3.5.1"
     js-yaml: "npm:^4.1.0"
