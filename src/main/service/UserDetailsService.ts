@@ -21,7 +21,8 @@ export class UserDetailsService extends BaseService<UserDetailsSearchRequest> {
     const userIdOrEmail = req.session.userDetailsFormState.userIdOrEmail;
     const queryParam = isEmail? 'email': 'userId';
     const path = `${endpoint}?${queryParam}=${userIdOrEmail}`;
-    logger.info(`Calling userDetails - ${this.baseApiUrl}${path}`);
+    const loggedValue = isEmail ? '[REDACTED]' : userIdOrEmail;
+    logger.info(`Calling userDetails - ${this.baseApiUrl}${endpoint}?${queryParam}=${loggedValue}`);
     const response = await this.get(req.session, path) as UserDetailsAuditData;// as Promise<UserDetailsAuditData>;
     return this.transformData(response, userIdOrEmail);
   }
