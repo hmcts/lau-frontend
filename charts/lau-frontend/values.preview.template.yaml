@@ -4,6 +4,8 @@ nodejs:
   ingressHost: ${SERVICE_FQDN}
   environment:
     OAUTH_CLIENT_REDIRECT: https://${SERVICE_FQDN}/oauth2/callback
+    OTEL_SDK_DISABLED:  true
+    
 
 redis:
   enabled: true
