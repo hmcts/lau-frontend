@@ -7,7 +7,7 @@ import {
   AccountRecordType,
   AccountStatus,
   Address,
-  NOT_AVAILABLE_MSG,
+  NOT_AVAILABLE_MSG, UpdatesStatus,
   UserDetailsSearchRequest,
 } from '../../../main/models/user-details';
 import {AppError, ErrorCode} from '../../../main/models/AppError';
@@ -70,7 +70,13 @@ describe('UserDetailsController.post', () => {
       email: longEmail,
       roles: ['ROLE'],
     };
-    const service = { getUserDetails: jest.fn().mockResolvedValue(userDetailsMock) } as unknown as UserDetailsService;
+    const service = {
+      getUserDetails: jest.fn().mockResolvedValue({
+        details: userDetailsMock,
+        updates: [],
+        updatesStatus: UpdatesStatus.EMPTY,
+      }),
+    } as unknown as UserDetailsService;
     const controller = new UserDetailsController(service);
     const req = makeReq({userIdOrEmail: longEmail });
     const res = makeRes() as unknown as Response;
@@ -88,6 +94,8 @@ describe('UserDetailsController.post', () => {
       ],
       formattedAccCreationDate: NOT_AVAILABLE_MSG,
       displayedStatus: NOT_AVAILABLE_MSG,
+      userUpdateRows: [],
+      updatesStatus: UpdatesStatus.EMPTY,
     });
     expect(res.redirect).toHaveBeenCalledWith('/user-details-audit#results-section');
   });
@@ -102,7 +110,13 @@ describe('UserDetailsController.post', () => {
       email: 'user@example.com',
       roles: ['ROLE'],
     };
-    const service = { getUserDetails: jest.fn().mockResolvedValue(userDetailsMock) } as unknown as UserDetailsService;
+    const service = {
+      getUserDetails: jest.fn().mockResolvedValue({
+        details: userDetailsMock,
+        updates: [],
+        updatesStatus: UpdatesStatus.EMPTY,
+      }),
+    } as unknown as UserDetailsService;
     const controller = new UserDetailsController(service);
     const req = makeReq({ userIdOrEmail: 'user@example.com' });
     const res = makeRes() as unknown as Response;
@@ -119,13 +133,21 @@ describe('UserDetailsController.post', () => {
       ],
       formattedAccCreationDate: NOT_AVAILABLE_MSG,
       displayedStatus: NOT_AVAILABLE_MSG,
+      userUpdateRows: [],
+      updatesStatus: UpdatesStatus.EMPTY,
     });
     expect(res.redirect).toHaveBeenCalledWith('/user-details-audit#results-section');
   });
 
   it('returns results when input looks like UUID', async () => {
     const userDetailsMock = { organisationalAddress: [] as Address[], name: 'John Smith', roles: ['ROLE'] };
-    const service = { getUserDetails: jest.fn().mockResolvedValue(userDetailsMock) } as unknown as UserDetailsService;
+    const service = {
+      getUserDetails: jest.fn().mockResolvedValue({
+        details: userDetailsMock,
+        updates: [],
+        updatesStatus: UpdatesStatus.EMPTY,
+      }),
+    } as unknown as UserDetailsService;
     const controller = new UserDetailsController(service);
     const req = makeReq({ userIdOrEmail: '4f18b03b-7d20-4220-9344-1234567890ab' });
     const res = makeRes() as unknown as Response;
@@ -140,6 +162,8 @@ describe('UserDetailsController.post', () => {
       formattedAddresses: [NOT_AVAILABLE_MSG],
       formattedAccCreationDate: NOT_AVAILABLE_MSG,
       displayedStatus: NOT_AVAILABLE_MSG,
+      userUpdateRows: [],
+      updatesStatus: UpdatesStatus.EMPTY,
     });
     expect(res.redirect).toHaveBeenCalledWith('/user-details-audit#results-section');
   });
@@ -164,7 +188,13 @@ describe('UserDetailsController.post', () => {
       sourceStatus: 'ALL_OK',
     };
 
-    const service = { getUserDetails: jest.fn().mockResolvedValue(rawUserDetails) } as unknown as UserDetailsService;
+    const service = {
+      getUserDetails: jest.fn().mockResolvedValue({
+        details: rawUserDetails,
+        updates: [],
+        updatesStatus: UpdatesStatus.EMPTY,
+      }),
+    } as unknown as UserDetailsService;
     const controller = new UserDetailsController(service);
     const req = {
       ...makeReq({ userIdOrEmail: 'email@example.com' }),
@@ -182,6 +212,8 @@ describe('UserDetailsController.post', () => {
       formattedAddresses: ['123 Main St, Townsville, TS1 1AA'],
       formattedAccCreationDate: '2025-10-15 10:00:00',
       displayedStatus: 'Live but suspended',
+      userUpdateRows: [],
+      updatesStatus: UpdatesStatus.EMPTY,
     });
   });
 
