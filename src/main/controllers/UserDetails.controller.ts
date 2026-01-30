@@ -5,9 +5,17 @@ import {validEmail} from '../util/validators';
 import {UserDetailsService} from '../service/UserDetailsService';
 import {AppError, errorRedirect} from '../models/AppError';
 import logger from '../modules/logging';
-import {formatAddress, formatStatus, NOT_AVAILABLE_MSG, UserDetailsSearchRequest} from '../models/user-details';
-import {requestDateToFormDate} from '../util/Date';
-import {mapOrElse} from '../util/Util';
+import {
+  formatAddress,
+  formatStatus,
+  GovukTableRow,
+  mapEventName,
+  NOT_AVAILABLE_MSG,
+  UserDetailsSearchRequest,
+  UserUpdatesAuditData,
+} from '../models/user-details';
+import {formatDate, requestDateToFormDate} from '../util/Date';
+import {capitalize, mapOrElse} from '../util/Util';
 
 @autobind
 export class UserDetailsController {
@@ -28,12 +36,14 @@ export class UserDetailsController {
     }
 
     try {
-      const userDetails = await this.service.getUserDetails(req, isEmail);
+      const { details, updates, updatesStatus } = await this.service.getUserDetails(req, isEmail);
       req.session.userDetailsData = {
-        ...userDetails,
-        formattedAddresses: mapOrElse(userDetails.organisationalAddress, formatAddress, [NOT_AVAILABLE_MSG]),
-        formattedAccCreationDate: requestDateToFormDate(userDetails.accountCreationDate, NOT_AVAILABLE_MSG),
-        displayedStatus: formatStatus(userDetails.accountStatus, userDetails.recordType, NOT_AVAILABLE_MSG),
+        ...details,
+        formattedAddresses: mapOrElse(details.organisationalAddress, formatAddress, [NOT_AVAILABLE_MSG]),
+        formattedAccCreationDate: requestDateToFormDate(details.accountCreationDate, NOT_AVAILABLE_MSG),
+        displayedStatus: formatStatus(details.accountStatus, details.recordType, NOT_AVAILABLE_MSG),
+        userUpdateRows: this.transformUpdatesToRows(updates),
+        updatesStatus,
       };
       res.redirect('/user-details-audit#results-section');
       return;
@@ -43,6 +53,17 @@ export class UserDetailsController {
       errorRedirect(res, appErr.code);
       return;
     }
+  }
+
+  private transformUpdatesToRows(updates: UserUpdatesAuditData[]): GovukTableRow[] {
+    return updates.map(update => [
+      { text: mapEventName(update.eventName) },
+      { text: capitalize(update.eventType) },
+      { text: update.value },
+      { text: formatDate(update.timestamp) },
+      { text: update.principalId },
+      { text: update.previousValue ?? '-' },
+    ]);
   }
 
   private validateSearchForm(userIdOrEmail: string, isEmail: boolean): FormError[] {
@@ -71,7 +92,7 @@ export class UserDetailsController {
         return;
       }
 
-      // Prepare view model for PDF rendering  
+      // Prepare view model for PDF rendering
       // Render PDF template directly with session data
       const pdfHtml: string = await new Promise((resolve, reject) => {
         req.app.render('user-details/pdf-template.njk', { userDetailsAuditData: cached }, (err?: Error | null, rendered?: string) => {

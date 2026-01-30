@@ -24,6 +24,7 @@ nodejs:
     DUMMY_RESTART_VAR: 1
     IS_DEV: true
     OTEL_SERVICE_NAME: lau-frontend
+    OTEL_METRICS_EXPORTER: "none"
     USER_DETAILS_PAGE_ENABLED: true
 
   keyVaults:
