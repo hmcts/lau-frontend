@@ -1,10 +1,10 @@
 import {escape} from 'lodash';
 
-export interface AccountUpdate {
-  type: 'ADD'|'MODIFY';
-  name: string;
-  value: string;
-}
+export type GovukTableRow = {text: string}[]
+type ISODateTimeString = string;
+type UpstreamResponse = { responseCode: number}
+
+export const NOT_AVAILABLE_MSG = 'Not available - try again later';
 
 export enum AccountStatus {
   ACTIVE = 'ACTIVE',
@@ -17,7 +17,24 @@ export enum AccountRecordType {
   LIVE = 'LIVE',
 }
 
-export const NOT_AVAILABLE_MSG = 'Not available - try again later';
+export enum UpdateEventType {
+  MODIFY = 'MODIFY',
+  ADD = 'ADD',
+  REMOVE = 'REMOVE',
+}
+
+export enum UpdatesStatus {
+  AVAILABLE = 'AVAILABLE',
+  UNAVAILABLE = 'UNAVAILABLE',  // issue fetching updates
+  EMPTY = 'EMPTY', // returned empty result list
+  NOT_APPLICABLE = 'NOT_APPLICABLE', // couldn't even attempt to fetch, for example because user ID is not found
+}
+
+export interface UserDetailsAggregateResult {
+  details: UserDetailsAuditData;
+  updates: UserUpdatesAuditData[];
+  updatesStatus: UpdatesStatus;
+}
 
 export interface Address {
   addressLine1?: string | null;
@@ -29,8 +46,6 @@ export interface Address {
   postCode?: string | null;
 }
 
-type UpstreamResponse = { responseCode: number}
-
 export interface UserDetailsMeta {
   idam: UpstreamResponse;
   refdata: UpstreamResponse;
@@ -41,19 +56,37 @@ export interface UserDetailsAuditData {
   email: string | null;
   accountStatus: AccountStatus | null;
   recordType: AccountRecordType | null;
-  accountCreationDate: string | null;
+  accountCreationDate: ISODateTimeString | null;
   roles: string[];
-  accountUpdates?: AccountUpdate[] | null;
   organisationalAddress: Address[];
   hasData?: boolean;
   meta: UserDetailsMeta;
   sourceStatus: ServiceStatus;
 }
 
+export interface UserUpdatesAuditData {
+  eventName: string;
+  eventType: UpdateEventType;
+  value: string;
+  timestamp: ISODateTimeString;
+  principalId: string;
+  previousValue: string;
+}
+
+export interface UserUpdatesAuditDataResponse {
+  content: UserUpdatesAuditData[];
+  page: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+}
+
 export interface UserDetailsViewModel extends UserDetailsAuditData {
   formattedAddresses?: string[];
   formattedAccCreationDate?: string;
   displayedStatus: string;
+  userUpdateRows: GovukTableRow[];
+  updatesStatus: string;
 }
 
 export enum ServiceStatus {
@@ -94,4 +127,16 @@ export function formatStatus(accountStatus: AccountStatus, recordType: AccountRe
     }
   }
   return defaultMsg;
+}
+
+const eventNameMapping: Record<string, string> = {
+  'accountStatus': 'Account status',
+  'email': 'Email address',
+  'forename': 'Forename',
+  'surname': 'Surname',
+  'displayName': 'Display name',
+};
+
+export function mapEventName(eventName: string): string {
+  return eventNameMapping[eventName] ?? eventName;
 }

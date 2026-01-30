@@ -1,30 +1,62 @@
 import config from 'config';
 import {BaseService} from './BaseService';
 import {ErrorCode} from '../models/AppError';
-import {AppRequest} from '../models/appRequest';
+import {AppRequest, AppSession} from '../models/appRequest';
 import {
   NOT_AVAILABLE_MSG,
   ServiceStatus,
+  UpdatesStatus,
+  UserDetailsAggregateResult,
   UserDetailsAuditData,
   UserDetailsMeta,
+  UserUpdatesAuditData,
+  UserUpdatesAuditDataResponse,
 } from '../models/user-details/UserDetailsAuditData';
 import {UserDetailsSearchRequest} from '../models/user-details/UserDetailsSearchRequest';
-import logger from '../modules/logging';
+import log from '../modules/logging';
 
 
 export class UserDetailsService extends BaseService<UserDetailsSearchRequest> {
   baseApiUrl = String(config.get('services.lau-eud-backend.url'));
+  userDetailsEndpoint = String(config.get('services.lau-eud-backend.endpoints.userDetails'));
+  userUpdatesEndpoint = String(config.get('services.lau-eud-backend.endpoints.userAccountUpdates'));
+  pageSize = Number(config.get('pagination.maxPerPage'));
   errorCode = ErrorCode.EUD_BACKEND;
 
-  public async getUserDetails(req: AppRequest<UserDetailsSearchRequest>, isEmail: boolean): Promise<UserDetailsAuditData> {
-    const endpoint: string = config.get('services.lau-eud-backend.endpoints.userDetails');
+  public async getUserDetails(req: AppRequest<UserDetailsSearchRequest>, isEmail: boolean): Promise<UserDetailsAggregateResult> {
     const userIdOrEmail = req.session.userDetailsFormState.userIdOrEmail;
     const queryParam = isEmail? 'email': 'userId';
-    const path = `${endpoint}?${queryParam}=${userIdOrEmail}`;
     const loggedValue = isEmail ? '[REDACTED]' : userIdOrEmail;
-    logger.info(`Calling userDetails - ${this.baseApiUrl}${endpoint}?${queryParam}=${loggedValue}`);
-    const response = await this.get(req.session, path) as UserDetailsAuditData;// as Promise<UserDetailsAuditData>;
-    return this.transformData(response, userIdOrEmail);
+    const userDetailsPath = `${this.userDetailsEndpoint}?${queryParam}=${userIdOrEmail}`;
+    log.debug(`Calling userDetails - ${this.userDetailsEndpoint}?${queryParam}=${loggedValue}`);
+    const userDetails = await this.get(req.session, userDetailsPath) as UserDetailsAuditData;
+    const updates = await this.tryGetUserUpdates(req.session, userDetails.userId);
+    const details = this.transformData(userDetails, userIdOrEmail);
+    return { details, updates: updates.updates, updatesStatus: updates.status };
+  }
+
+  private async tryGetUserUpdates(session: AppSession, userId?: string | null): Promise<{ updates: UserUpdatesAuditData[]; status: UpdatesStatus }> {
+    if (!userId) {
+      return { updates: [], status: UpdatesStatus.NOT_APPLICABLE };
+    }
+    try {
+
+      const updates = await this.getUserUpdates(session, userId);
+      console.log(updates);
+      return { updates, status: updates.length > 0 ? UpdatesStatus.AVAILABLE: UpdatesStatus.EMPTY };
+    } catch (e) {
+      log.warn('Failed to fetch user updates; continuing with user details only', { error: e, userId });
+      return { updates: [], status: UpdatesStatus.UNAVAILABLE };
+    }
+  }
+
+
+  private async getUserUpdates(session: AppSession, userId?: string): Promise<UserUpdatesAuditData[]> {
+    const userUpdatesPath = `${this.userUpdatesEndpoint}?userId=${userId}&size=${this.pageSize}`;
+    log.debug(`Calling userUpdates - ${this.baseApiUrl}${userUpdatesPath}`);
+    const updatesResponse = await this.get(session, userUpdatesPath) as UserUpdatesAuditDataResponse;
+    // TODO there is a potential for more than one page though unlikely anyone would go over 100 updates
+    return updatesResponse.content;
   }
 
   private transformData(data: UserDetailsAuditData, userId: string): UserDetailsAuditData {

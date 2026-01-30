@@ -5,7 +5,7 @@ import {
   AccountRecordType,
   AccountStatus,
   NOT_AVAILABLE_MSG,
-  ServiceStatus,
+  ServiceStatus, UpdatesStatus,
   UserDetailsAuditData,
   UserDetailsSearchRequest,
 } from '../../../main/models/user-details';
@@ -14,6 +14,8 @@ import {AppRequest} from '../../../main/models/appRequest';
 describe('UserDetailsService', () => {
   const baseApiUrl = config.get('services.lau-eud-backend.url') as string;
   const userDetailsEndpoint = config.get('services.lau-eud-backend.endpoints.userDetails');
+  const userUpdatesEndpoint = config.get('services.lau-eud-backend.endpoints.userAccountUpdates');
+  const pageSize = config.get('pagination.maxPerPage');
   let service: UserDetailsService;
 
   describe('Upstream services work', () => {
@@ -52,14 +54,19 @@ describe('UserDetailsService', () => {
       nock(baseApiUrl)
         .get(`${userDetailsEndpoint}?userId=${data.userId}`)
         .reply(200, data);
+      nock(baseApiUrl)
+        .get(`${userUpdatesEndpoint}?userId=${data.userId}&size=${pageSize}`)
+        .reply(200, {content: [], page: 0, size: 20, totalElements: 0, totalPages: 0});
       const req = {
         session: {
           userDetailsFormState: {userIdOrEmail: data.userId},
         },
       };
-      const auditData = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, false);
+      const {details, updates, updatesStatus} = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, false);
 
-      expect(auditData).toStrictEqual(data);
+      expect(details).toStrictEqual(data);
+      expect(updates.length).toBe(0);
+      expect(updatesStatus).toBe(UpdatesStatus.EMPTY);
     });
 
     it('returns userDetails for user by email', async () => {
@@ -71,8 +78,9 @@ describe('UserDetailsService', () => {
           userDetailsFormState: {userIdOrEmail: data.email},
         },
       };
-      const auditData = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, true);
-      expect(auditData).toStrictEqual(data);
+      const { details, updatesStatus } = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, true);
+      expect(details).toStrictEqual(data);
+      expect(updatesStatus).toBe(UpdatesStatus.UNAVAILABLE);
     });
   });
 
@@ -106,8 +114,9 @@ describe('UserDetailsService', () => {
           userDetailsFormState: {userIdOrEmail: data.email},
         },
       };
-      const auditData = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, true);
-      expect(auditData).toStrictEqual(data);
+      const { details, updatesStatus } = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, true);
+      expect(details).toStrictEqual(data);
+      expect(updatesStatus).toBe(UpdatesStatus.UNAVAILABLE);
     });
   });
 
@@ -147,8 +156,10 @@ describe('UserDetailsService', () => {
           userDetailsFormState: {userIdOrEmail: '1234-5678'},
         },
       };
-      const auditData = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, false);
-      expect(auditData).toStrictEqual({
+      const { details, updatesStatus } = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, false);
+      expect(updatesStatus).toBe(UpdatesStatus.NOT_APPLICABLE);
+
+      expect(details).toStrictEqual({
         ...data,
         userId: '1234-5678',
         email: NOT_AVAILABLE_MSG,
@@ -186,8 +197,8 @@ describe('UserDetailsService', () => {
           userDetailsFormState: {userIdOrEmail: '1234-5678'},
         },
       };
-      const auditData = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, false);
-      expect(auditData).toHaveProperty('hasData', false);
+      const response = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, false);
+      expect(response.details).toHaveProperty('hasData', false);
     });
 
   });

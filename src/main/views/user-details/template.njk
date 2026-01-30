@@ -66,6 +66,8 @@
 
   {% include "user-details/user-details-content.njk" %}
 
+  {% include "user-details/user-updates-content.njk" %}
+
   <form method="post" action="/user-details-search/pdf" target="_blank">
     {{ csrfProtection(csrfToken) }}
     {{ govukButton({

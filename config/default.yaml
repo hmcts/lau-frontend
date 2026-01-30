@@ -47,6 +47,7 @@ services:
     url: 'http://localhost:4553'
     endpoints:
       userDetails: /audit/userData
+      userAccountUpdates: /audit/userUpdates
   idam-api:
     enabled: true
     authorizationURL: 'https://idam-web-public.aat.platform.hmcts.net/login'
