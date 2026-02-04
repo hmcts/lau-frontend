@@ -62,7 +62,6 @@
     "express": "^5.0.0",
     "express-nunjucks": "^3.0.0",
     "express-session": "^1.18.1",
-    "fast-glob": "^3.3.3",
     "git-rev-sync": "^3.0.2",
     "govuk-frontend": "^5.0.0",
     "helmet": "^8.0.0",
