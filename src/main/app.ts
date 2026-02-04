@@ -1,5 +1,4 @@
 import { globSync } from 'node:fs';
-import nodePath from 'node:path';
 
 import express from 'express';
 import compression from 'compression';
@@ -64,7 +63,7 @@ app.use((req, res, next) => {
   next();
 });
 
-globSync(nodePath.join(__dirname, 'routes/**/*.{ts,js}'))
+globSync(`${__dirname}/routes/**/*.{ts,js}`)
   .map(filename => require(filename))
   .forEach(route => route.default(app));
 
