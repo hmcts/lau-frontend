@@ -1,4 +1,4 @@
-import {globSync} from 'glob';
+import fg from 'fast-glob';
 import express from 'express';
 import compression from 'compression';
 import {Helmet} from './modules/helmet';
@@ -62,7 +62,7 @@ app.use((req, res, next) => {
   next();
 });
 
-globSync(__dirname + '/routes/**/*.+(ts|js)')
+fg.sync(__dirname + '/routes/**/*.+(ts|js)')
   .map(filename => require(filename))
   .forEach(route => route.default(app));
 
