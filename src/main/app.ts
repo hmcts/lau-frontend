@@ -64,7 +64,7 @@ app.use((req, res, next) => {
   next();
 });
 
-globSync(path.join(__dirname, 'routes/**/*.{ts,js}'))
+globSync(nodePath.join(__dirname, 'routes/**/*.{ts,js}'))
   .map(filename => require(filename))
   .forEach(route => route.default(app));
 
