@@ -70,7 +70,7 @@ export interface UserUpdatesAuditData {
   value: string;
   timestamp: ISODateTimeString;
   principalId: string;
-  previousValue: string;
+  previousValue: string | null;
 }
 
 export interface UserUpdatesAuditDataResponse {
@@ -86,7 +86,7 @@ export interface UserDetailsViewModel extends UserDetailsAuditData {
   formattedAccCreationDate?: string;
   displayedStatus: string;
   userUpdateRows: GovukTableRow[];
-  updatesStatus: string;
+  updatesStatus: UpdatesStatus;
 }
 
 export enum ServiceStatus {
