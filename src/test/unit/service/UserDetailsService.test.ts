@@ -5,18 +5,30 @@ import {
   AccountRecordType,
   AccountStatus,
   NOT_AVAILABLE_MSG,
-  ServiceStatus, UpdatesStatus,
+  ServiceStatus,
+  UpdatesStatus,
   UserDetailsAuditData,
   UserDetailsSearchRequest,
 } from '../../../main/models/user-details';
 import {AppRequest} from '../../../main/models/appRequest';
+import {UserUpdatesService} from '../../../main/service/UserUpdatesService';
 
 describe('UserDetailsService', () => {
   const baseApiUrl = config.get('services.lau-eud-backend.url') as string;
   const userDetailsEndpoint = config.get('services.lau-eud-backend.endpoints.userDetails');
-  const userUpdatesEndpoint = config.get('services.lau-eud-backend.endpoints.userAccountUpdates');
-  const pageSize = config.get('pagination.maxPerPage');
   let service: UserDetailsService;
+  let userUpdatesService: Pick<UserUpdatesService, 'getUserUpdates'>;
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+
+    // Default behaviour: updates are unavailable unless a test overrides.
+    userUpdatesService = {
+      getUserUpdates: jest.fn().mockRejectedValue(new Error('updates unavailable')),
+    };
+
+    service = new UserDetailsService(userUpdatesService as unknown as UserUpdatesService);
+  });
 
   describe('Upstream services work', () => {
     const data: UserDetailsAuditData = {
@@ -45,28 +57,22 @@ describe('UserDetailsService', () => {
       sourceStatus: ServiceStatus.ALL_OK,
     };
 
-    beforeEach(() => {
-      jest.clearAllMocks();
-      service = new UserDetailsService();
-    });
-
     it('returns userDetails for user by userId', async () => {
       nock(baseApiUrl)
         .get(`${userDetailsEndpoint}?userId=${data.userId}`)
         .reply(200, data);
-      nock(baseApiUrl)
-        .get(`${userUpdatesEndpoint}?userId=${data.userId}&size=${pageSize}`)
-        .reply(200, {content: [], page: 0, size: 20, totalElements: 0, totalPages: 0});
       const req = {
         session: {
           userDetailsFormState: {userIdOrEmail: data.userId},
         },
       };
+      (userUpdatesService.getUserUpdates as jest.Mock).mockResolvedValue([]);
       const {details, updates, updatesStatus} = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, false);
 
       expect(details).toStrictEqual(data);
       expect(updates.length).toBe(0);
       expect(updatesStatus).toBe(UpdatesStatus.EMPTY);
+      expect(userUpdatesService.getUserUpdates).toHaveBeenCalledWith(req.session, data.userId);
     });
 
     it('returns userDetails for user by email', async () => {
@@ -81,6 +87,7 @@ describe('UserDetailsService', () => {
       const { details, updatesStatus } = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, true);
       expect(details).toStrictEqual(data);
       expect(updatesStatus).toBe(UpdatesStatus.UNAVAILABLE);
+      expect(userUpdatesService.getUserUpdates).toHaveBeenCalledWith(req.session, data.userId);
     });
   });
 
@@ -157,7 +164,7 @@ describe('UserDetailsService', () => {
         },
       };
       const { details, updatesStatus } = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, false);
-      expect(updatesStatus).toBe(UpdatesStatus.NOT_APPLICABLE);
+      expect(updatesStatus).toBe(UpdatesStatus.UNAVAILABLE);
 
       expect(details).toStrictEqual({
         ...data,
