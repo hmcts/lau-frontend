@@ -33,7 +33,7 @@ export class UserDetailsService extends BaseService<UserDetailsSearchRequest> {
     const userDetailsPath = `${this.userDetailsEndpoint}?${queryParam}=${encoded}`;
     log.debug(`Calling userDetails - ${this.userDetailsEndpoint}?${queryParam}=${loggedValue}`);
     const userDetails = await this.get(req.session, userDetailsPath) as UserDetailsAuditData;
-    const updates = await this.tryGetUserUpdates(req.session, userDetails.userId, isEmail ? null : userIdOrEmail);
+    const updates = await this.tryGetUserUpdates(req.session, isEmail ? userDetails.userId : userIdOrEmail);
     const details = this.transformData(userDetails, userIdOrEmail);
     return { details, updates: updates.updates, updatesStatus: updates.status };
   }
@@ -41,19 +41,17 @@ export class UserDetailsService extends BaseService<UserDetailsSearchRequest> {
   private async tryGetUserUpdates(
     session: AppSession,
     userId: string | null,
-    queryUserId: string | null,
   ): Promise<{ updates: UserUpdatesAuditData[]; status: UpdatesStatus }> {
-    const chosenUserId = userId ?? queryUserId;
 
-    if (!chosenUserId) {
+    if (!userId) {
       return { updates: [], status: UpdatesStatus.NOT_APPLICABLE };
     }
 
     try {
-      const updates = await this.userUpdatesService.getUserUpdates(session, chosenUserId);
+      const updates = await this.userUpdatesService.getUserUpdates(session, userId);
       return { updates, status: updates.length > 0 ? UpdatesStatus.AVAILABLE: UpdatesStatus.EMPTY };
     } catch (e) {
-      log.warn('Failed to fetch user updates; continuing with user details only', { error: e, chosenUserId });
+      log.warn('Failed to fetch user updates; continuing with user details only', { error: e, userId });
       return { updates: [], status: UpdatesStatus.UNAVAILABLE };
     }
   }
