@@ -5166,26 +5166,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stryker-mutator/api@npm:9.4.0":
-  version: 9.4.0
-  resolution: "@stryker-mutator/api@npm:9.4.0"
+"@stryker-mutator/api@npm:9.5.1":
+  version: 9.5.1
+  resolution: "@stryker-mutator/api@npm:9.5.1"
   dependencies:
-    mutation-testing-metrics: "npm:3.5.1"
-    mutation-testing-report-schema: "npm:3.5.1"
+    mutation-testing-metrics: "npm:3.7.1"
+    mutation-testing-report-schema: "npm:3.7.1"
     tslib: "npm:~2.8.0"
     typed-inject: "npm:~5.0.0"
-  checksum: 10/b96dceb262a3003ca9c22c73d626e32e47e1fa1474af7767d6eacd9a07e5301f52bfd8a3453d6907f18067ffb23579584ed18d54ce38f5df25cff35e2a6382ba
+  checksum: 10/356dea37ec4086a9f7c3e1d5281688c1f91f7739183570913b6dc3508d6e3e4ec1b0590e784a355fee60a86cc56a2d69ce5199dd5da82d4cf1012750a1b3723a
   languageName: node
   linkType: hard
 
 "@stryker-mutator/core@npm:^9.0.0":
-  version: 9.4.0
-  resolution: "@stryker-mutator/core@npm:9.4.0"
+  version: 9.5.1
+  resolution: "@stryker-mutator/core@npm:9.5.1"
   dependencies:
     "@inquirer/prompts": "npm:^8.0.0"
-    "@stryker-mutator/api": "npm:9.4.0"
-    "@stryker-mutator/instrumenter": "npm:9.4.0"
-    "@stryker-mutator/util": "npm:9.4.0"
+    "@stryker-mutator/api": "npm:9.5.1"
+    "@stryker-mutator/instrumenter": "npm:9.5.1"
+    "@stryker-mutator/util": "npm:9.5.1"
     ajv: "npm:~8.17.1"
     chalk: "npm:~5.6.0"
     commander: "npm:~14.0.0"
@@ -5196,9 +5196,9 @@ __metadata:
     lodash.groupby: "npm:~4.6.0"
     minimatch: "npm:~10.1.0"
     mutation-server-protocol: "npm:~0.4.0"
-    mutation-testing-elements: "npm:3.6.0"
-    mutation-testing-metrics: "npm:3.5.1"
-    mutation-testing-report-schema: "npm:3.5.1"
+    mutation-testing-elements: "npm:3.7.1"
+    mutation-testing-metrics: "npm:3.7.1"
+    mutation-testing-report-schema: "npm:3.7.1"
     npm-run-path: "npm:~6.0.0"
     progress: "npm:~2.0.3"
     rxjs: "npm:~7.8.1"
@@ -5207,16 +5207,16 @@ __metadata:
     tree-kill: "npm:~1.2.2"
     tslib: "npm:2.8.1"
     typed-inject: "npm:~5.0.0"
-    typed-rest-client: "npm:~2.1.0"
+    typed-rest-client: "npm:~2.2.0"
   bin:
     stryker: bin/stryker.js
-  checksum: 10/746eca2bf1aad777e60a1d8ed79ff5ade11f5f36f7a1c5c5a4ab59c39bfa84544b5f2fdd3b52e63a1366d4f9a93ea1a5573a6cd304363ae6e187cf2b5dd27a19
+  checksum: 10/0711c987df6cda7be1d7b6fb3af9c5444a2ed7eafdc2601fdc8768c44b294f5010d9dad555771e598237a060db24ad3cf8f35acb69459779ed8617bdc646f16f
   languageName: node
   linkType: hard
 
-"@stryker-mutator/instrumenter@npm:9.4.0":
-  version: 9.4.0
-  resolution: "@stryker-mutator/instrumenter@npm:9.4.0"
+"@stryker-mutator/instrumenter@npm:9.5.1":
+  version: 9.5.1
+  resolution: "@stryker-mutator/instrumenter@npm:9.5.1"
   dependencies:
     "@babel/core": "npm:~7.28.0"
     "@babel/generator": "npm:~7.28.0"
@@ -5224,33 +5224,34 @@ __metadata:
     "@babel/plugin-proposal-decorators": "npm:~7.28.0"
     "@babel/plugin-transform-explicit-resource-management": "npm:^7.28.0"
     "@babel/preset-typescript": "npm:~7.28.0"
-    "@stryker-mutator/api": "npm:9.4.0"
-    "@stryker-mutator/util": "npm:9.4.0"
-    angular-html-parser: "npm:~10.1.0"
+    "@stryker-mutator/api": "npm:9.5.1"
+    "@stryker-mutator/util": "npm:9.5.1"
+    angular-html-parser: "npm:~10.4.0"
     semver: "npm:~7.7.0"
+    tslib: "npm:2.8.1"
     weapon-regex: "npm:~1.3.2"
-  checksum: 10/0336218042d316fa54a76edd2eb033220dd0d9085a696adaeac646bc88ba77c1ee49c59e539c17e0caebe0f08118cb9c91051a58fd77069b03e7786eea68b151
+  checksum: 10/ae2fbba1063c560cc75790323c5b6462bf0717a565d8cf93ba1907c711182e1f030972ba666de49bd1b9b4b10b07b0baa96fb6354e234e3fd102ccb605bd7066
   languageName: node
   linkType: hard
 
 "@stryker-mutator/jest-runner@npm:^9.0.1":
-  version: 9.4.0
-  resolution: "@stryker-mutator/jest-runner@npm:9.4.0"
+  version: 9.5.1
+  resolution: "@stryker-mutator/jest-runner@npm:9.5.1"
   dependencies:
-    "@stryker-mutator/api": "npm:9.4.0"
-    "@stryker-mutator/util": "npm:9.4.0"
+    "@stryker-mutator/api": "npm:9.5.1"
+    "@stryker-mutator/util": "npm:9.5.1"
     semver: "npm:~7.7.0"
     tslib: "npm:~2.8.0"
   peerDependencies:
-    "@stryker-mutator/core": 9.4.0
-  checksum: 10/05f48ce6e81990467d65c007e83437fb4daf0a3bfc5697ea72d36f855d7851fa25b96f5fcd786d0755babee4e2e6edf6f74abd769de01f3753f531e792e44e25
+    "@stryker-mutator/core": 9.5.1
+  checksum: 10/d5077820d87720cb1aaee25c7732331ab7410b9dc44adc941498311738bc3f2eaec6867bd050bb89ec05362825cf52eacfb82d71fcab16728eeec81a684d3c05
   languageName: node
   linkType: hard
 
-"@stryker-mutator/util@npm:9.4.0":
-  version: 9.4.0
-  resolution: "@stryker-mutator/util@npm:9.4.0"
-  checksum: 10/5e00a63b583b646444591c57ad550958b6b4c2f49c124b976494fb0016404e0d054466abd553e86721ed26a3938ff9cae654f155c37ee05ca5a8818fced56182
+"@stryker-mutator/util@npm:9.5.1":
+  version: 9.5.1
+  resolution: "@stryker-mutator/util@npm:9.5.1"
+  checksum: 10/d74ea1a71ca8d61857ad31f26e930c5bdcbf49aa12b8d9a30d351ebb37bf2e1531d631e69943ac73e51f55eba056f5b8d64e82b01f5f76265dcc3bbed025048a
   languageName: node
   linkType: hard
 
@@ -6846,10 +6847,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"angular-html-parser@npm:~10.1.0":
-  version: 10.1.1
-  resolution: "angular-html-parser@npm:10.1.1"
-  checksum: 10/ad2995b43fb5c6465e7d1de5f6909f79e08486724997bb3417934c7bc0541e5604f563147a68e18b71eebba57dc61e184cf5d47451ed8b19a4b34d79cecb5f60
+"angular-html-parser@npm:~10.4.0":
+  version: 10.4.0
+  resolution: "angular-html-parser@npm:10.4.0"
+  checksum: 10/8c3e290930d59e96a5ca8101787208af81a6e0cfdb127dd432d9ec00e507aeb8445c4bf0055057f5c7da13afd9e78d9339787e7c2b992a0b7a54a2ca4305f0bc
   languageName: node
   linkType: hard
 
@@ -14431,26 +14432,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mutation-testing-elements@npm:3.6.0":
-  version: 3.6.0
-  resolution: "mutation-testing-elements@npm:3.6.0"
-  checksum: 10/85d0f6fb5dfeb8097108bc8bcac5431364d18ec5aec9e7c865505178a525cc149651634b9cce27cf138f440ac061d00dc2e35f5ea4deb6e4d81ae08495654f15
+"mutation-testing-elements@npm:3.7.1":
+  version: 3.7.1
+  resolution: "mutation-testing-elements@npm:3.7.1"
+  checksum: 10/39385b00ac682c1e3856ca41a2b1f54814673dd26773fa204f01ede2e834bebea11a570030af19ef61bfc291cc9b9f65d76267946c26f06a1cfd6434a1a0e10b
   languageName: node
   linkType: hard
 
-"mutation-testing-metrics@npm:3.5.1":
-  version: 3.5.1
-  resolution: "mutation-testing-metrics@npm:3.5.1"
+"mutation-testing-metrics@npm:3.7.1":
+  version: 3.7.1
+  resolution: "mutation-testing-metrics@npm:3.7.1"
   dependencies:
-    mutation-testing-report-schema: "npm:3.5.1"
-  checksum: 10/8404fc6415c0427fab5cab5edfbff8f156d02c4153b410a61a44db2926ed198aa728e3f329ad518941c92e68a11d7f66c2a970d54fd3b28d1ecf6670d526526d
+    mutation-testing-report-schema: "npm:3.7.1"
+  checksum: 10/365fa5e825af4228875ff1ff9039ba390fa5a472819513b99c5f9c83d5db73c1ffcd67d280f8789a019af8969ef7de21cf27372da3e4b57c13416bfa54514b2b
   languageName: node
   linkType: hard
 
-"mutation-testing-report-schema@npm:3.5.1":
-  version: 3.5.1
-  resolution: "mutation-testing-report-schema@npm:3.5.1"
-  checksum: 10/ef2a35d48c2cf741df57d7af841e347b68a2f06a29fe98a74eeeeca977d1c06aba0f0df36c3e7ed6f5126dd733167d4b2d32a8788b6db66471557ac543b3bdbb
+"mutation-testing-report-schema@npm:3.7.1":
+  version: 3.7.1
+  resolution: "mutation-testing-report-schema@npm:3.7.1"
+  checksum: 10/eb4d3eef5b6bbb9b19417d2b321c2db8452778b0ffe69e14f385bb7b0e7f6df90390a3aed58c93c6a32ecc11bd488c4bb68034face675ccf3f606298d09e3c1c
   languageName: node
   linkType: hard
 
@@ -18321,16 +18322,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typed-rest-client@npm:~2.1.0":
-  version: 2.1.0
-  resolution: "typed-rest-client@npm:2.1.0"
+"typed-rest-client@npm:~2.2.0":
+  version: 2.2.0
+  resolution: "typed-rest-client@npm:2.2.0"
   dependencies:
     des.js: "npm:^1.1.0"
     js-md4: "npm:^0.3.2"
-    qs: "npm:^6.10.3"
+    qs: "npm:^6.14.1"
     tunnel: "npm:0.0.6"
     underscore: "npm:^1.12.1"
-  checksum: 10/601da14aea1ede39c80067445e3e675ed86fb68d434aa4986767a64dfa14a0d9829ff93042246a134407d2e85f6d0c5fb7b675dc3a9b83425b5c7f3c4c4a8209
+  checksum: 10/0dc8bad57e0c068d3513b24f7c0ee99ff171f373ae05caf2fafb3d353d4f5c48a552b23cc251fbdfa1962ae06d6c7d5c90a4c7059628fcd40fa673f694124ff5
   languageName: node
   linkType: hard
 
