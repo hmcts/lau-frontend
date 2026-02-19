@@ -89,6 +89,59 @@ describe('UserDetailsService', () => {
       expect(updatesStatus).toBe(UpdatesStatus.UNAVAILABLE);
       expect(userUpdatesService.getUserUpdates).toHaveBeenCalledWith(req.session, data.userId);
     });
+
+    it('sorts user updates descending by timestamp', async () => {
+      nock(baseApiUrl)
+        .get(`${userDetailsEndpoint}?userId=${data.userId}`)
+        .reply(200, data);
+
+      const req = {
+        session: {
+          userDetailsFormState: {userIdOrEmail: data.userId},
+        },
+      };
+
+      const unsortedUpdates = [
+        {
+          eventName: 'email',
+          eventType: 'MODIFY',
+          value: 'new@example.net',
+          timestamp: '2025-10-01T10:00:00Z',
+          principalId: 'principal-1',
+          previousValue: 'old@example.net',
+        },
+        {
+          eventName: 'accountStatus',
+          eventType: 'MODIFY',
+          value: 'SUSPENDED',
+          timestamp: '2025-10-02T09:00:00Z',
+          principalId: 'principal-2',
+          previousValue: 'ACTIVE',
+        },
+        {
+          eventName: 'surname',
+          eventType: 'MODIFY',
+          value: 'NewSurname',
+          timestamp: '2025-09-30T23:59:59Z',
+          principalId: 'principal-3',
+          previousValue: 'OldSurname',
+        },
+      ];
+
+      (userUpdatesService.getUserUpdates as jest.Mock).mockResolvedValue(unsortedUpdates);
+
+      const { updates, updatesStatus } = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, false);
+
+      expect(updatesStatus).toBe(UpdatesStatus.AVAILABLE);
+      expect(updates.map(u => u.timestamp)).toStrictEqual([
+        '2025-10-02T09:00:00Z',
+        '2025-10-01T10:00:00Z',
+        '2025-09-30T23:59:59Z',
+      ]);
+
+      expect(updates).toHaveLength(3);
+    });
+
   });
 
   describe('Only idam upstream works', () => {
