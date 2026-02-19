@@ -49,6 +49,7 @@ export class UserDetailsService extends BaseService<UserDetailsSearchRequest> {
 
     try {
       const updates = await this.userUpdatesService.getUserUpdates(session, userId);
+      updates.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
       return { updates, status: updates.length > 0 ? UpdatesStatus.AVAILABLE: UpdatesStatus.EMPTY };
     } catch (e) {
       log.warn('Failed to fetch user updates; continuing with user details only', { error: e, userId });
