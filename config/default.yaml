@@ -45,6 +45,7 @@ services:
   lau-eud-backend:
     enabled: true
     url: 'http://localhost:4553'
+    port: 4553
     endpoints:
       userDetails: /audit/userData
       userAccountUpdates: /audit/userUpdates
