@@ -5752,12 +5752,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/sinon@npm:^20.0.0":
-  version: 20.0.0
-  resolution: "@types/sinon@npm:20.0.0"
+"@types/sinon@npm:^21.0.0":
+  version: 21.0.0
+  resolution: "@types/sinon@npm:21.0.0"
   dependencies:
     "@types/sinonjs__fake-timers": "npm:*"
-  checksum: 10/abb8d86e1d44e1b618b555104a654730844dcb7bfb45bd7f0a83252cdcbcd167f4a0da8bac3dfd60621ad855582a8697cd695104b06c2aa497ecc789004660b7
+  checksum: 10/3add134347bd2b96c4d136bc41108553d31f2b4ca44c118ae69832d8bd9896d9faec07c08ba933cd25ba8699503303e8743d84fc8f5317c16b5cfb8245d0bc29
   languageName: node
   linkType: hard
 
@@ -13074,7 +13074,7 @@ __metadata:
     "@types/pa11y": "npm:^5.3.5"
     "@types/require-directory": "npm:^2.1.1"
     "@types/serve-favicon": "npm:^2.5.1"
-    "@types/sinon": "npm:^20.0.0"
+    "@types/sinon": "npm:^21.0.0"
     "@types/supertest": "npm:^6.0.0"
     "@types/totp-generator": "npm:^0.0.8"
     "@typescript-eslint/eslint-plugin": "npm:^8.0.0"
