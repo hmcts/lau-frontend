@@ -24,7 +24,6 @@ export class Nunjucks {
 
     env.addFilter('numComma', (x) => numberWithCommas(x));
 
-    env.addGlobal('nonce', app.locals.nonce);
     env.addGlobal('env', app.locals.ENV);
 
     if (app.locals.ENV === 'development') {
