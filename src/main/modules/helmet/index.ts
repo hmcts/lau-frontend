@@ -1,6 +1,5 @@
 import { Express, RequestHandler } from 'express';
 import helmet from 'helmet';
-import * as crypto from 'crypto';
 
 export interface HelmetConfig {
   referrerPolicy: ReferrerPolicy;
@@ -26,8 +25,12 @@ export class Helmet {
   }
 
   private setContentSecurityPolicy(app: Express): void {
-    app.locals.nonce = crypto.randomBytes(16).toString('base64');
-    const scriptSrc = [self, googleAnalyticsDomain,dynatraceDomain, "'sha256-GUQ5ad8JK5KmEWmROf3LZd9ge94daqNvd8xy9YS1iDw='", `'nonce-${app.locals.nonce}'`];
+    const scriptSrc = [
+      self,
+      googleAnalyticsDomain,
+      dynatraceDomain,
+      "'sha256-GUQ5ad8JK5KmEWmROf3LZd9ge94daqNvd8xy9YS1iDw='",
+    ];
 
     if (app.locals.ENV === 'development' || app.locals.ENV === 'test') {
       scriptSrc.push("'unsafe-eval'");
