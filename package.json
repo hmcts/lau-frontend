@@ -144,6 +144,7 @@
   "resolutions": {
     "diff": "8.0.3",
     "minimatch@^10.1.1": "10.2.3",
-    "serialize-javascript": "^7.0.3"
+    "serialize-javascript": "^7.0.3",
+    "tar": "^7.5.11"
   }
 }
