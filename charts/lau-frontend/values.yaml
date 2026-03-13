@@ -2,7 +2,7 @@ nodejs:
   applicationPort: 4000
   aadIdentityName: lau
   ingressHost: lau.{{ .Values.global.environment }}.platform.hmcts.net
-  image: 'hmctspublic.azurecr.io/lau/frontend:latest'
+  image: 'hmctsprod.azurecr.io/lau/frontend:latest'
   spotInstances:
     enabled: false
   environment:
