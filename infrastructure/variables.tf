@@ -43,3 +43,8 @@ variable "capacity" {
   description = "The size of the Redis cache to deploy. Valid values are 1, 2, 3, 4, 5"
 }
 
+variable "session_secret_rotation" {
+  default     = "1"
+  description = "Bump to rotate the lau session secret."
+}
+

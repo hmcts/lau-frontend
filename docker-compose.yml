@@ -39,7 +39,7 @@ services:
       - "5051:5432"
 
   idam-api:
-    image: hmctspublic.azurecr.io/idam/api:stable
+    image: hmctsprod.azurecr.io/idam/api:stable
     tmpfs: /opt/app/es
     environment:
       - JAVA_OPTS=-Xms128m -Xms512m
@@ -104,7 +104,7 @@ services:
         condition: service_started
 
   idam-web-public:
-    image: hmctspublic.azurecr.io/idam/web-public:stable
+    image: hmctsprod.azurecr.io/idam/web-public:stable
     mem_limit: 512m
     memswap_limit: 0
     ports:
@@ -117,7 +117,7 @@ services:
         condition: service_started
 
   idam-web-admin:
-    image: "hmctspublic.azurecr.io/idam/web-admin:stable"
+    image: "hmctsprod.azurecr.io/idam/web-admin:stable"
     mem_limit: 512m
     memswap_limit: 0
     ports:
@@ -144,7 +144,7 @@ services:
         condition: service_started
 
   service-auth-provider-api:
-    image: hmctspublic.azurecr.io/rpe/service-auth-provider
+    image: hmctsprod.azurecr.io/rpe/service-auth-provider
     ports:
       - "4552:8080"
     environment:

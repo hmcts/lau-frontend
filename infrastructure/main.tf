@@ -40,3 +40,18 @@ resource "azurerm_key_vault_secret" "redis_access_key" {
   value        = module.lau-frontend-session-storage.access_key
   key_vault_id = data.azurerm_key_vault.key_vault.id
 }
+
+resource "azurerm_key_vault_secret" "session_secret" {
+  name         = "session-secret"
+  value        = random_password.session_secret.result
+  key_vault_id = data.azurerm_key_vault.key_vault.id
+}
+
+resource "random_password" "session_secret" {
+  length           = 32
+  override_special = "()-_"
+
+  keepers = {
+    rotation = var.session_secret_rotation
+  }
+}
