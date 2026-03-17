@@ -55,12 +55,12 @@ services:
     endpoints:
       token: '/o/token'
     clientID: 'lau'
-    clientSecret: 'SECRET'
+    clientSecret:
     callbackURL: 'https://localhost:4000/oauth2/callback'
   s2s:
     enabled: true
     url: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal'
-    lauSecret: 'AAAAAAAAAAAAAAAA'
+    lauSecret:
   auto-suggest:
     data-file: 'data/auto-suggest-data-prod.json'
 pages:

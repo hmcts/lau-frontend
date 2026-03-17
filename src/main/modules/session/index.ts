@@ -45,6 +45,10 @@ export class SessionStorage {
       const port: number = config.get('redis.port');
       const ttl: number = config.get('redis.ttl');
 
+      if (!password || password.trim().length === 0) {
+        throw new Error('Redis password is empty; cannot set up Redis.');
+      }
+
       const tlsOptions = {
         password: password,
         tls: true,
