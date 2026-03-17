@@ -14,7 +14,7 @@ pagination:
 redis:
   host: 'localhost'
   port: 6379
-  password: 
+  password: 'dummy_password'
   useTLS: 'false'
   enabled: false
   proxy: true
@@ -54,12 +54,12 @@ services:
     endpoints:
       token: '/o/token'
     clientID: 'lau'
-    clientSecret: 
+    clientSecret: 'SECRET'
     callbackURL: 'https://localhost:4000/oauth2/callback'
   s2s:
     enabled: true
     url: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal'
-    lauSecret: 
+    lauSecret: 'AAAAAAAAAAAAAAAA'
   auto-suggest:
     data-file: 'data/auto-suggest-data-prod.json'
 pages:

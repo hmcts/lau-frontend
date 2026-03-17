@@ -46,15 +46,6 @@ redis:
     persistence:
       enabled: false
   enabled: false
-  password: 'dummy_password'
 
 idam-pr:
   enabled: false
-services:
-  idam-api:
-    clientSecret: 'SECRET'
-  s2s:
-    lauSecret: 'AAAAAAAAAAAAAAAA'
-
-session:
-  secret: 'local'

@@ -6,11 +6,9 @@ pagination:
 services:
   idam-api:
     enabled: false
-    clientSecret: 'SECRET'
   s2s:
     enabled: false
     url: 'http://localhost:4552'
-    lauSecret: 'AAAAAAAAAAAAAAAA'
 
 session:
   secret: 'local'
