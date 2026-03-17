@@ -17,7 +17,6 @@ redis:
   password: 'dummy_password'
   useTLS: 'false'
   enabled: false
-  secret: 'OVERWRITE_THIS'
   proxy: true
   resave: false
   saveUninitialized: false
@@ -66,5 +65,6 @@ services:
 pages:
   userDetailsEnabled: true
 session:
+  secret: 
   cookieMaxAge: 30 # minutes
 is_dev: true
