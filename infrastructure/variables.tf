@@ -45,6 +45,6 @@ variable "capacity" {
 
 variable "session_secret_rotation" {
   default     = "1"
-  description = "Bump to rotate the cuira session secret."
+  description = "Bump to rotate the lau session secret."
 }
 
