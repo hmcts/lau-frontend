@@ -10,7 +10,6 @@ export class PropertiesVolume {
       PropertiesVolume.setSecret('secrets.lau.frontend-redis-access-key', 'redis.password');
       PropertiesVolume.setSecret('secrets.lau.idam-client-secret', 'services.idam-api.clientSecret');
       PropertiesVolume.setSecret('secrets.lau.s2s-secret', 'services.s2s.lauSecret');
-      PropertiesVolume.setSecret('secrets.lau.session-secret', 'session.secret');
     }
   }
 
