@@ -10,10 +10,24 @@ module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
     await I.amOnLoadedPage('/');
   }
 
-  await I.waitForText('Sign in', testConfig.TestTimeToWaitForText);
+  if (testConfig.IdamSignInFlow === 'modern') {
+    await I.waitForText('Enter your email address', testConfig.TestTimeToWaitForText);
+    await I.fillField('#username', user.email);
+    await I.click('Continue');
 
-  await I.fillField('#username', user.email);
-  await I.fillField('#password', user.password);
-
+    await I.waitForText('Enter your password', testConfig.TestTimeToWaitForText);
+    await I.fillField('#password', user.password);
+    await I.click('Continue');
+   
+  } else {
+    await I.waitForText('Sign in', testConfig.TestTimeToWaitForText);
+    await I.fillField('#username', user.email);
+    await I.fillField('#password', user.password);
+    await I.click('Sign in');
+    
+  }
+  
   await I.waitForNavigationToComplete('input[type="submit"]');
+
+  
 };
