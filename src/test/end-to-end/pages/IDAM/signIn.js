@@ -23,7 +23,6 @@ module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
     await I.waitForText('Sign in', testConfig.TestTimeToWaitForText);
     await I.fillField('#username', user.email);
     await I.fillField('#password', user.password);
-    await I.click('Sign in');
     
   }
   
