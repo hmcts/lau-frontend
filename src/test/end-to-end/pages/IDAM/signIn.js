@@ -12,7 +12,7 @@ module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
 
   if (testConfig.IdamSignInFlow === 'modern') {
     await I.waitForText('Enter your email address', testConfig.TestTimeToWaitForText);
-    await I.fillField('#username', user.email);
+    await I.fillField('#email', user.email);
     await I.click('Continue');
 
     await I.waitForText('Enter your password', testConfig.TestTimeToWaitForText);
@@ -23,10 +23,11 @@ module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
     await I.waitForText('Sign in', testConfig.TestTimeToWaitForText);
     await I.fillField('#username', user.email);
     await I.fillField('#password', user.password);
+    await I.waitForNavigationToComplete('input[type="submit"]');
     
   }
   
-  await I.waitForNavigationToComplete('input[type="submit"]');
+ 
 
   
 };
