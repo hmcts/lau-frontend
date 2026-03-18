@@ -22,7 +22,7 @@ export class SessionStorage {
         name: 'lau-session',
         resave: false,
         saveUninitialized: false,
-        secret: config.get('session.secret'),
+        secret: config.get('redis.password'),
         cookie: {
           httpOnly: true,
           maxAge: this.cookieMaxAgeInMs,
