@@ -50,7 +50,7 @@ services:
       userAccountUpdates: /audit/userUpdates
   idam-api:
     enabled: true
-    authorizationURL: 'https://idam-web-public.aat.platform.hmcts.net/login'
+    authorizationURL: 'https://idam-web-public.aat.platform.hmcts.net/o/authorize'
     url: 'https://idam-api.aat.platform.hmcts.net'
     endpoints:
       token: '/o/token'
