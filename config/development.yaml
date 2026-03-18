@@ -7,7 +7,7 @@ redis:
 services:
   idam-api:
     enabled: false
-    authorizationURL: 'http://localhost:9002/login'
+    authorizationURL: 'http://localhost:9002/o/authorize'
     url: 'http://localhost:5000'
     clientID: 'lau'
     clientSecret: '12345678'
