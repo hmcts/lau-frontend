@@ -33,7 +33,7 @@ export class OidcMiddleware {
     const redirectUri: string = config.get('services.idam-api.callbackURL');
 
     server.get('/login', (req: AppRequest, res) => {
-      res.redirect(loginUrl + '?client_id=' + clientId + '&response_type=code&redirect_uri=' + encodeURI(redirectUri));
+      res.redirect(loginUrl + '?client_id=' + clientId + '&response_type=code&redirect_uri=' + encodeURI(redirectUri)+ '&scope=openid profile roles');
     });
 
     server.get('/oauth2/callback', async (req: AppRequest, res: Response) => {
@@ -43,15 +43,19 @@ export class OidcMiddleware {
     });
 
     server.get('/logout', (req: AppRequest, res) => {
-      req.session.user = undefined;
+      const endSessionUrl: string = config.get('services.idam-api.endSessionURL');
+      const postLogoutRedirect = new URL(redirectUri).origin + '/login';
 
       req.session.destroy((err) => {
         if (err) {
           console.log('Error clearing session:', err);
         }
-        // Redirect the user to the login page
-        res.redirect('/');
+
+        // OIDC RP-initiated logout: end session then return to app login
+        const params = new URLSearchParams({post_logout_redirect_uri: postLogoutRedirect});
+        res.redirect(`${endSessionUrl}?${params.toString()}`);
       });
+
     });
 
     server.use((req: AppRequest, res: Response, next: NextFunction) => {

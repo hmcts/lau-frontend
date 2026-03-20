@@ -37,8 +37,8 @@ services:
       caseAccess: '/audit/accessRequest'
   lau-idam-backend:
     enabled: true
-    url: 'http://localhost:4551'
-    port: 4551
+    url: 'http://localhost:4550'
+    port: 4550
     endpoints:
       logon: '/audit/logon'
       deletedUsers: '/audit/deletedAccounts'
@@ -50,17 +50,26 @@ services:
       userAccountUpdates: /audit/userUpdates
   idam-api:
     enabled: true
-    authorizationURL: 'https://idam-web-public.aat.platform.hmcts.net/login'
+    authorizationURL: 'https://idam-web-public.aat.platform.hmcts.net/o/authorize'
+    endSessionURL: 'https://idam-web-public.aat.platform.hmcts.net/o/endSession'
     url: 'https://idam-api.aat.platform.hmcts.net'
     endpoints:
       token: '/o/token'
     clientID: 'lau'
+<<<<<<< Updated upstream
     clientSecret: 'SECRET'
+=======
+    clientSecret: 'gQ4pHYQ8TTYdQp8d'
+>>>>>>> Stashed changes
     callbackURL: 'https://localhost:4000/oauth2/callback'
   s2s:
     enabled: true
     url: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal'
+<<<<<<< Updated upstream
     lauSecret: 'AAAAAAAAAAAAAAAA'
+=======
+    lauSecret: 'S3UFTWQ5722WSEHE'
+>>>>>>> Stashed changes
   auto-suggest:
     data-file: 'data/auto-suggest-data-prod.json'
 pages:
