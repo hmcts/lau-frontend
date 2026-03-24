@@ -5,7 +5,7 @@
 def type = "nodejs"
 def product = "lau"
 def component = "frontend"
-def branchesToSync = ['demo', 'perftest']
+def branchesToSync = ['demo', 'perftest', 'ithc']
 
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
