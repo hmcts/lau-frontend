@@ -35,6 +35,7 @@ nodejs:
         - frontend-redis-access-key
         - idam-client-secret
         - s2s-secret
+        - session-secret
 
 redis:
   architecture: standalone
