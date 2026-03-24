@@ -32,7 +32,7 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
 
   shared-db:
-    image: hmctsprivate.azurecr.io/idam/shared-db:latest
+    image: hmctsprod.azurecr.io/idam/shared-db:latest
     mem_limit: 512m
     memswap_limit: 0
     ports:
@@ -78,7 +78,7 @@ services:
         condition: service_started
 
   fr-am:
-    image: "hmctsprivate.azurecr.io/idam/idam-fr-am:latest"
+    image: "hmctsprod.azurecr.io/idam/idam-fr-am:latest"
     hostname: localam
     environment:
       JAVA_OPTS: -Xms128m -Xmx512m
@@ -90,7 +90,7 @@ services:
         condition: service_started
 
   fr-idm:
-    image: "hmctsprivate.azurecr.io/idam/idam-fr-idm:latest"
+    image: "hmctsprod.azurecr.io/idam/idam-fr-idm:latest"
     hostname: localidm
     mem_limit: 1024m
     memswap_limit: 0
