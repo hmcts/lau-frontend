@@ -34,7 +34,7 @@ export class OidcMiddleware {
     const scope: string = config.get('services.idam-api.scope');
 
     server.get('/login', (req: AppRequest, res) => {
-      res.redirect(loginUrl + '?client_id=' + clientId + '&response_type=code&redirect_uri=' + encodeURI(redirectUri)+ '&scope=' + scope);
+      res.redirect(`${loginUrl}?client_id=${clientId}&response_type=code&redirect_uri=${encodeURI(redirectUri)}&scope=${scope}`);
     });
 
     server.get('/oauth2/callback', async (req: AppRequest, res: Response) => {
@@ -55,7 +55,9 @@ export class OidcMiddleware {
 
         // OIDC RP-initiated logout: end session then return to app login
         const params = new URLSearchParams({post_logout_redirect_uri: postLogoutRedirect});
-        if (idTokenHint) params.set('id_token_hint', idTokenHint);
+        if (idTokenHint) {
+          params.set('id_token_hint', idTokenHint);
+        }
         res.redirect(`${endSessionUrl}?${params.toString()}`);
       });
     });
