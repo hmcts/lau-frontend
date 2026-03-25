@@ -31,8 +31,6 @@ export const formatDate = (date: string): string => {
   return date ? date.replace('T', ' ').split('.')[0] : '';
 };
 
-
-
 export const csvDate = (): string => {
   return moment().format(CSV_DATE_FORMAT).toString();
 };
