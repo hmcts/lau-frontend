@@ -27,7 +27,12 @@ export const requestDateToFormDate = (date: string, msg='N/A'): string => {
   return date ? moment(date, REQUEST_DATE_FORMAT).format(FORM_DATE_FORMAT).toString() : msg;
 };
 
-export const formatDate = (date: string): string => date.replace('T', ' ').split('.')[0];
+export const formatDate = (date: string): string => {
+  if (!date) {
+    return ' ';
+  }
+  return date.replace('T', ' ').split('.')[0];
+};
 
 
 export const csvDate = (): string => {
@@ -40,4 +45,3 @@ const addSeconds = (date: string): string =>{
   }
   return date;
 };
-
