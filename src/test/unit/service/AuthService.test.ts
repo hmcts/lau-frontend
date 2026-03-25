@@ -1,5 +1,5 @@
 import nock from 'nock';
-import config from 'config';
+import config, {IConfig} from 'config';
 import {jwtDecode} from 'jwt-decode';
 
 jest.mock('totp-generator', () => ({
@@ -46,7 +46,7 @@ describe('AuthService', () => {
       });
 
       try {
-        new AuthService(testConfig as any);
+        new AuthService(testConfig as unknown as IConfig);
         throw new Error('Expected constructor to throw');
       } catch (err) {
         const appErr = err as AppError;
@@ -62,7 +62,7 @@ describe('AuthService', () => {
       });
 
       try {
-        new AuthService(testConfig as any);
+        new AuthService(testConfig as unknown as IConfig);
         throw new Error('Expected constructor to throw');
       } catch (err) {
         const appErr = err as AppError;
@@ -126,7 +126,9 @@ describe('AuthService', () => {
     });
 
     it('returns app error code on non-error lease failure', async () => {
-      global.fetch = jest.fn(() => Promise.reject('test error')) as any;
+      global.fetch = jest.fn<Promise<Response>, Parameters<typeof fetch>>(
+        () => Promise.reject('test error'),
+      ) as unknown as typeof fetch;
 
       return authService.retrieveServiceToken().catch((err: AppError) => {
         expect(err.message).toBe('test error');
@@ -240,7 +242,9 @@ describe('AuthService', () => {
     });
 
     it('returns app error code on non-error idam fetch failure', async () => {
-      global.fetch = jest.fn(() => Promise.reject('test error')) as any;
+      global.fetch = jest.fn<Promise<Response>, Parameters<typeof fetch>>(
+        () => Promise.reject('test error'),
+      ) as unknown as typeof fetch;
 
       return authService.getIdAMResponse(IdamGrantType.AUTH_CODE, {}).catch((err: AppError) => {
         expect(err.message).toBe('test error');
