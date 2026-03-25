@@ -28,11 +28,9 @@ export const requestDateToFormDate = (date: string, msg='N/A'): string => {
 };
 
 export const formatDate = (date: string): string => {
-  if (!date) {
-    return ' ';
-  }
-  return date.replace('T', ' ').split('.')[0];
+  return date ? date.replace('T', ' ').split('.')[0] : '';
 };
+
 
 
 export const csvDate = (): string => {
