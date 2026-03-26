@@ -32,7 +32,10 @@ describe('UserUpdatesService', () => {
   });
 
   test('getUserUpdates returns the content array from the backend response', async () => {
-    const mockResponse = { content: [{ eventName: 'name', value: 'John' }, { eventName: 'lastname', value: 'Smith' }] };
+    const mockResponse = { content: [
+      { eventName: 'name', value: 'John', timestamp: '2025-10-15T10:00:00Z' },
+      { eventName: 'lastname', value: 'Smith', timestamp: '2025-10-15T09:00:00Z' },
+    ] };
 
     const getSpy = jest
       .spyOn(service as any, 'get')
@@ -42,6 +45,26 @@ describe('UserUpdatesService', () => {
 
     expect(result).toEqual(mockResponse.content);
     expect(getSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test('getUserUpdates normalizes null/empty timestamps to empty string', async () => {
+    const mockResponse = { content: [
+      { eventName: 'name', value: 'John', timestamp: null },
+      { eventName: 'lastname', value: 'Smith', timestamp: '' },
+      { eventName: 'nickname', value: 'JS', timestamp: undefined },
+    ] };
+
+    jest
+      .spyOn(service as any, 'get')
+      .mockResolvedValue(mockResponse);
+
+    const result = await service.getUserUpdates(session, 'USER_123');
+
+    expect(result).toEqual([
+      { eventName: 'name', value: 'John', timestamp: '' },
+      { eventName: 'lastname', value: 'Smith', timestamp: '' },
+      { eventName: 'nickname', value: 'JS', timestamp: '' },
+    ]);
   });
 
   test('getUserUpdates calls BaseService.get with endpoint and query string containing userId and size', async () => {

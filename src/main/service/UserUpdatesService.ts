@@ -19,6 +19,16 @@ export class UserUpdatesService extends BaseService<UserUpdatesSearchRequest> {
     const qs = this.getQueryString({ userId, size: this.pageSize });
     const updatesResponse = await this.get(session, this.userUpdatesEndpoint, qs) as UserUpdatesAuditDataResponse;
     // TODO there is a potential for more than one page though unlikely anyone would go over 100 updates
-    return updatesResponse.content;
+    return updatesResponse.content.map(u => ({
+      ...u,
+      timestamp: normalizeTimestamp(u.timestamp),
+    }));
   }
 }
+
+const normalizeTimestamp = (value: unknown): string => {
+  if (value === null || value === undefined || value === '') {
+    return '';
+  }
+  return typeof value === 'string' ? value : String(value);
+};
