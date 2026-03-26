@@ -27,7 +27,7 @@ export class UserUpdatesService extends BaseService<UserUpdatesSearchRequest> {
 }
 
 const normalizeTimestamp = (value: unknown): string => {
-  if (value === null || value === undefined || value === '') {
+  if (value === null || value === '') {
     return '';
   }
   return typeof value === 'string' ? value : String(value);

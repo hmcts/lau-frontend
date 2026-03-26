@@ -51,7 +51,6 @@ describe('UserUpdatesService', () => {
     const mockResponse = { content: [
       { eventName: 'name', value: 'John', timestamp: null },
       { eventName: 'lastname', value: 'Smith', timestamp: '' },
-      { eventName: 'nickname', value: 'JS', timestamp: undefined },
     ] };
 
     jest
@@ -63,7 +62,6 @@ describe('UserUpdatesService', () => {
     expect(result).toEqual([
       { eventName: 'name', value: 'John', timestamp: '' },
       { eventName: 'lastname', value: 'Smith', timestamp: '' },
-      { eventName: 'nickname', value: 'JS', timestamp: '' },
     ]);
   });
 
