@@ -56,9 +56,43 @@ Scenario('Navigate to LAU, perform user details search and authenticate user det
   await I.waitForText('Account status', testConfig.TestTimeToWaitForText);
   await I.waitForText('Latest Activation Date (UTC)', testConfig.TestTimeToWaitForText);
   await I.waitForText('Roles', testConfig.TestTimeToWaitForText);
-  await I.waitForText('Account history', testConfig.TestTimeToWaitForText);
+  
   await I.click('details.govuk-details summary');
 }).retry(testConfig.TestRetryScenarios);
+
+Scenario('User Updates Search', async ({I}) => {
+  await I.amOnLauAppPage('');
+  await I.authenticateWithIdam(userType.AUDITOR, true);
+  await I.seeInCurrentUrl(tabs.CASE_SEARCH);
+  await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
+  await lauHelper.clickNavigationLink(I, tabs.USER_DETAILS_SEARCH);
+  await I.waitForText('User details search', testConfig.TestTimeToWaitForText);
+  await I.performUserUpdateSearch();
+  await I.click('button[name="user-details-search-btn"]');
+  await I.waitForText('Account history', testConfig.TestTimeToWaitForText);
+  
+  const eventNameHeader = await I.grabTextFrom(
+    '//th[normalize-space()="Event name"]');
+  assert.strictEqual(eventNameHeader.trim(), 'Event name');
+
+  const updateTypeHeader = await I.grabTextFrom(
+    '//th[normalize-space()="Update type"]');
+  assert.strictEqual(updateTypeHeader.trim(), 'Update type');
+ 
+  const timestampHeader = await I.grabTextFrom(
+    '//th[normalize-space()="Timestamp (UTC)"]');
+  assert.strictEqual(timestampHeader.trim(), 'Timestamp (UTC)');
+
+  const changedByHeader = await I.grabTextFrom(
+    '//th[normalize-space()="Changed by"]');
+  assert.strictEqual(changedByHeader.trim(), 'Changed by');
+  
+  const previousValueHeader = await I.grabTextFrom(
+    '//th[normalize-space()="Previous value"]');
+  assert.strictEqual(previousValueHeader.trim(), 'Previous value'); 
+
+}).retry(testConfig.TestRetryScenarios);
+
 
 Scenario('User details PDF download', async ({I}) => {
   await goToUserDetailsAndSearch(I);
