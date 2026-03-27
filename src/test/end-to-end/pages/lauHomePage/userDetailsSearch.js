@@ -1,4 +1,4 @@
-module.exports = async function () {
+module.exports = async function (userId) {
   const I = this;
-  await I.fillField('#userIdOrEmail', 'f7d13b63-efdc-482b-8238-df56abe3c169');
+  await I.fillField('#userIdOrEmail', userId);
 };
