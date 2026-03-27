@@ -97,7 +97,7 @@
     "@types/chai-as-promised": "^8.0.0",
     "@types/jest": "^30.0.0",
     "@types/pa11y": "^5.3.5",
-    "@types/sinon": "^20.0.0",
+    "@types/sinon": "^21.0.0",
     "@types/supertest": "^6.0.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/eslint-plugin-tslint": "^7.0.0",
