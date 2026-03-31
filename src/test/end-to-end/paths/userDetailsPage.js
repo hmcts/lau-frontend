@@ -4,7 +4,6 @@ const testConfig = require('../../config');
 const {userType, tabs} = require('../common/Constants');
 const lauHelper = require('../lauApi/lauHelper');
 const idamHelper = require('../lauApi/idamHelper');
-const idamUserHelper = require('../helpers/IdamUserHelper');
 const crypto = require('crypto');
 const assert = require('assert');
 
@@ -15,19 +14,17 @@ logger.info('Running \'User Details Page testing\' feature');
 
 const featureUserEmail = `testUserDetails${crypto.randomBytes(8).toString('hex').toLowerCase()}@gmail.com`;
 const featureUserPassword = 'Password13';
+const idamClientSecret = process.env.IDAM_CLIENT_SECRET;
 let testUserId;
 
 Before(async () => {
-  const createdUser = await idamUserHelper.createAUser(
-    featureUserEmail,
-    featureUserPassword,
-    [{code: 'iud-test-worker'}],
-  );
+  const createAccessToken = await idamHelper.clientCredentialsAccessToken(idamClientSecret,'create-active-user');
+  const createdUser = await idamHelper.createUser(createAccessToken, featureUserEmail,featureUserPassword,'iud-test-worker');
   if (createdUser && createdUser.id) {
     testUserId = createdUser.id;
-    const idamClientSecret = process.env.IDAM_CLIENT_SECRET;
-    const accessToken = await idamHelper.clientCredentialsAccessToken(idamClientSecret,'update-user');
-    await idamHelper.updateUserDetails(accessToken, testUserId, featureUserEmail);
+    
+    const updateAccessToken = await idamHelper.clientCredentialsAccessToken(idamClientSecret,'update-user');
+    await idamHelper.updateUserDetails(updateAccessToken, testUserId, featureUserEmail);
 
     return;
   }
@@ -35,7 +32,8 @@ Before(async () => {
 });
 
 After(async () => {
-  await idamUserHelper.deleteUser(featureUserEmail, featureUserPassword);
+  const deleteAccessToken = await idamHelper.clientCredentialsAccessToken(idamClientSecret,'delete-user');
+  await idamHelper.deleteUser(deleteAccessToken, testUserId);
 });
 
 async function goToUserDetailsAndSearch(I) {

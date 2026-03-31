@@ -6,35 +6,6 @@ const loginEndpoint = 'loginUser';
 const idamUrl = config.url.idamApi;
 
 module.exports = {
-  accessToken: async (user) => {
-    return restHelper.retriedRequest(
-      `${idamUrl}/${loginEndpoint}?username=${encodeURIComponent(user.email)}&password=${user.password}`,
-      {'Content-Type': 'application/x-www-form-urlencoded'},
-      null,
-      'POST')
-      .then(response => response.json())
-      .then(data => data.access_token);
-  },
-
-  userId: async (authToken) => {
-    return restHelper.retriedRequest(
-      `${idamUrl}/o/userinfo`,
-      {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': `Bearer ${authToken}`,
-      },
-      null,
-      'POST')
-      .then(response => response.json())
-      .then(data => data.uid);
-  },
-
-  getPin: async (letterHolderId) => {
-    return restHelper.retriedRequest(
-      `${idamUrl}/testing-support/accounts/pin/${letterHolderId}`,
-      {}, null, 'GET')
-      .then(response => response.text());
-  },
 
   clientCredentialsAccessToken: async(idamClientSecret,scope) => {
     return restHelper.retriedRequest(
@@ -56,5 +27,39 @@ module.exports = {
       JSON.stringify({ email: userEmail, forename: "TestForename", surname: "TestSurname"}),
       'PUT'
     );
+  },
+
+  createUser: async (accessToken, userEmail,userPassword, role = 'cft-audit-investigator') => {
+    let userPayload = {
+        password: userPassword,
+        user: {
+          email: userEmail,
+          forename: "TestForename",
+          surname: "TestSurname",
+          roleNames: [role]
+        }
+      }
+    return restHelper.retriedRequest(
+      `${idamUrl}/api/v2/users`,
+      {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`,
+      },
+      JSON.stringify(userPayload),
+      'POST'
+    ) .then(response => response.json())
+      .then(data => data);
+  },
+
+  deleteUser: async (accessToken, userId) => {
+    return restHelper.retriedRequest(
+      `${idamUrl}/api/v2/users/${userId}`,
+      {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`,
+      },
+      null,
+      'DELETE'
+    ) 
   },
 }; 

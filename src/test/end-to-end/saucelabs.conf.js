@@ -1,9 +1,11 @@
 const supportedBrowsers = require('../crossbrowser/supportedBrowsers.js');
 const testConfig = require('../config');
-const idamUserHelper = require('./helpers/IdamUserHelper');
+const idamHelper = require('./lauApi/idamHelper');
 
 const auditorUser = `auditor${require('crypto').randomBytes(8).toString('hex').toLowerCase()}@gmail.com`;
 const testPassword = 'genericPassword123';
+const idamClientSecret = process.env.IDAM_CLIENT_SECRET;
+let testUserId;
 
 const waitForTimeout = parseInt(process.env.WAIT_FOR_TIMEOUT) || 45000;
 const smartWait = parseInt(process.env.SMART_WAIT) || 30000;
@@ -42,10 +44,17 @@ function getBrowserConfig(browserGroup) {
 
 const setupConfig = {
   async bootstrapAll() {
-    await idamUserHelper.createAUser(auditorUser, testPassword);
+    process.env.USER_EMAIL = auditorUser;
+    process.env.USER_PASSWORD = testPassword;
+    const createAccessToken = await idamHelper.clientCredentialsAccessToken(idamClientSecret,'create-active-user');
+    const createdUser = await idamHelper.createUser(createAccessToken, auditorUser, testPassword);
+    if (createdUser && createdUser.id) {
+      testUserId = createdUser.id;
+    }
   },
   async teardownAll() {
-    await idamUserHelper.deleteUser(auditorUser, testPassword);
+    const deleteAccessToken = await idamHelper.clientCredentialsAccessToken(idamClientSecret,'delete-user');
+    await idamHelper.deleteUser(deleteAccessToken, testUserId);
   },
   'tests': testConfig.TestPathToRun,
   'output': `${process.cwd()}/${testConfig.TestOutputDir}`,
