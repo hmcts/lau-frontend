@@ -10,7 +10,6 @@ module.exports = {
   TestAutoDelayEnabled: process.env.E2E_AUTO_DELAY_ENABLED === 'true',
   TestForAccessibility: process.env.TESTS_FOR_ACCESSIBILITY === 'true',
   TestForCrossBrowser: process.env.TESTS_FOR_CROSS_BROWSER === 'true',
-  IdamSignInFlow: process.env.IDAM_SIGNIN_FLOW || 'classic',
   Auditor: {
     password: process.env.USER_PASSWORD,
     email: process.env.USER_EMAIL,
