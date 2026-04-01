@@ -1,25 +1,15 @@
 const testConfig = require('src/test/config.js');
-const idamHelper = require('./lauApi/idamHelper');
+const idamUserHelper = require('./helpers/IdamUserHelper');
 
 const auditorUser = `auditor${require('crypto').randomBytes(8).toString('hex').toLowerCase()}@gmail.com`;
 const testPassword = 'Password12';
-const idamClientSecret = process.env.IDAM_CLIENT_SECRET;
-let testUserId;
 
 exports.config = {
   async bootstrapAll() {
-    process.env.USER_EMAIL = auditorUser;
-    process.env.USER_PASSWORD = testPassword;
-    const createAccessToken = await idamHelper.clientCredentialsAccessToken(idamClientSecret,'create-active-user');
-    const createdUser = await idamHelper.createUser(createAccessToken, auditorUser, testPassword);
-    if (createdUser && createdUser.id) {
-      testUserId = createdUser.id;
-    }
-
+     await idamUserHelper.createAUser(auditorUser, testPassword);
   },
   async teardownAll() {
-     const deleteAccessToken = await idamHelper.clientCredentialsAccessToken(idamClientSecret,'delete-user');
-     await idamHelper.deleteUser(deleteAccessToken, testUserId);
+     await idamUserHelper.deleteUser(auditorUser, testPassword);
   },
   'tests': testConfig.TestPathToRun,
   'output': testConfig.TestOutputDir,
