@@ -42,8 +42,6 @@ function getBrowserConfig(browserGroup) {
 
 const setupConfig = {
   async bootstrapAll() {
-    process.env.USER_EMAIL = auditorUser;
-    process.env.USER_PASSWORD = testPassword;
     await idamUserHelper.createAUser(auditorUser, testPassword);
   },
   async teardownAll() {

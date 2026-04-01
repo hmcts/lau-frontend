@@ -6,10 +6,10 @@ const testPassword = 'Password12';
 
 exports.config = {
   async bootstrapAll() {
-     await idamUserHelper.createAUser(auditorUser, testPassword);
+    await idamUserHelper.createAUser(auditorUser, testPassword);
   },
   async teardownAll() {
-     await idamUserHelper.deleteUser(auditorUser, testPassword);
+    await idamUserHelper.deleteUser(auditorUser, testPassword);
   },
   'tests': testConfig.TestPathToRun,
   'output': testConfig.TestOutputDir,
