@@ -48,10 +48,13 @@ export class AuthService {
   private microserviceName: string;
   private s2sUrl: string;
   private totpSecret: string;
+  private idamApiEnabled: boolean;
+  private s2sEnabled: boolean;
 
   constructor(
     private config: IConfig,
   ) {
+    this.idamApiEnabled = Boolean(this.config.get('services.idam-api.enabled'));
     this.clientId = this.config.get('services.idam-api.clientID');
     this.clientSecret = this.config.get('services.idam-api.clientSecret');
     this.redirectUri = this.config.get('services.idam-api.callbackURL');
@@ -59,6 +62,14 @@ export class AuthService {
     this.microserviceName = 'lau_frontend';
     this.s2sUrl = this.config.get('services.s2s.url');
     this.totpSecret = this.config.get('services.s2s.lauSecret');
+    this.s2sEnabled = Boolean(this.config.get('services.s2s.enabled'));
+
+    if (this.idamApiEnabled && (!this.clientSecret || this.clientSecret.trim().length === 0)) {
+      throw new AppError('clientSecret can not be empty', ErrorCode.IDAM_API);
+    }
+    if (this.s2sEnabled && (!this.totpSecret || this.totpSecret.trim().length === 0)) {
+      throw new AppError('s2sSecret can not be empty', ErrorCode.S2S);
+    }
   }
 
   async retrieveServiceToken(serviceName?: string): Promise<ServiceAuthToken> {

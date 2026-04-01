@@ -22,7 +22,7 @@ export class SessionStorage {
         name: 'lau-session',
         resave: false,
         saveUninitialized: false,
-        secret: config.get('redis.password'),
+        secret: config.get('session.secret'),
         cookie: {
           httpOnly: true,
           maxAge: this.cookieMaxAgeInMs,
@@ -44,6 +44,10 @@ export class SessionStorage {
       const password: string = config.get('redis.password');
       const port: number = config.get('redis.port');
       const ttl: number = config.get('redis.ttl');
+
+      if (!password || password.trim().length === 0) {
+        throw new Error('Redis password is empty; cannot set up Redis.');
+      }
 
       const tlsOptions = {
         password: password,

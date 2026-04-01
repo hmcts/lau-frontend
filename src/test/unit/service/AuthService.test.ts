@@ -1,6 +1,12 @@
 import nock from 'nock';
-import config from 'config';
+import config, {IConfig} from 'config';
 import {jwtDecode} from 'jwt-decode';
+
+jest.mock('totp-generator', () => ({
+  TOTP: {
+    generate: jest.fn(() => ({otp: '000000'})),
+  },
+}));
 import {AuthService, IdamGrantType, IdamResponseData} from '../../../main/service/AuthService';
 import {BearerToken, ServiceAuthToken} from '../../../main/components/idam/ServiceAuthToken';
 import {AppSession, UserDetails} from '../../../main/models/appRequest';
@@ -9,6 +15,62 @@ import {AppError, ErrorCode} from '../../../main/models/AppError';
 describe('AuthService', () => {
 
   const authService = new AuthService(config);
+  const originalFetch = global.fetch;
+
+  afterEach(() => {
+    global.fetch = originalFetch;
+  });
+
+  describe('constructor validation', () => {
+    const buildConfig = (overrides: Record<string, unknown>) => {
+      const defaults: Record<string, unknown> = {
+        'services.idam-api.enabled': false,
+        'services.idam-api.clientID': 'client-id',
+        'services.idam-api.clientSecret': 'client-secret',
+        'services.idam-api.callbackURL': 'http://localhost/callback',
+        'services.idam-api.url': 'http://localhost:5000',
+        'services.idam-api.endpoints.token': '/token',
+        'services.s2s.url': 'http://localhost:4552',
+        'services.s2s.lauSecret': 'totp-secret',
+        'services.s2s.enabled': false,
+      };
+      return {
+        get: (key: string) => (key in overrides ? overrides[key] : defaults[key]),
+      };
+    };
+
+    it('throws AppError when idam is enabled and clientSecret is empty', () => {
+      const testConfig = buildConfig({
+        'services.idam-api.enabled': true,
+        'services.idam-api.clientSecret': '   ',
+      });
+
+      try {
+        new AuthService(testConfig as unknown as IConfig);
+        throw new Error('Expected constructor to throw');
+      } catch (err) {
+        const appErr = err as AppError;
+        expect(appErr.message).toBe('clientSecret can not be empty');
+        expect(appErr.code).toBe(ErrorCode.IDAM_API);
+      }
+    });
+
+    it('throws AppError when s2s is enabled and s2s secret is empty', () => {
+      const testConfig = buildConfig({
+        'services.s2s.enabled': true,
+        'services.s2s.lauSecret': '',
+      });
+
+      try {
+        new AuthService(testConfig as unknown as IConfig);
+        throw new Error('Expected constructor to throw');
+      } catch (err) {
+        const appErr = err as AppError;
+        expect(appErr.message).toBe('s2sSecret can not be empty');
+        expect(appErr.code).toBe(ErrorCode.S2S);
+      }
+    });
+  });
 
   describe('retrieveServiceToken', () => {
 
@@ -59,6 +121,17 @@ describe('AuthService', () => {
 
       return authService.retrieveServiceToken().catch((err: AppError) => {
         expect(err.message).toContain('test error');
+        expect(err.code).toBe(ErrorCode.S2S);
+      });
+    });
+
+    it('returns app error code on non-error lease failure', async () => {
+      global.fetch = jest.fn<Promise<Response>, Parameters<typeof fetch>>(
+        () => Promise.reject('test error'),
+      ) as unknown as typeof fetch;
+
+      return authService.retrieveServiceToken().catch((err: AppError) => {
+        expect(err.message).toBe('test error');
         expect(err.code).toBe(ErrorCode.S2S);
       });
     });
@@ -164,6 +237,17 @@ describe('AuthService', () => {
 
       return authService.getIdAMToken(IdamGrantType.AUTH_CODE, session as AppSession).catch((err: AppError) => {
         expect(err.message).toContain('test error');
+        expect(err.code).toBe(ErrorCode.IDAM_API);
+      });
+    });
+
+    it('returns app error code on non-error idam fetch failure', async () => {
+      global.fetch = jest.fn<Promise<Response>, Parameters<typeof fetch>>(
+        () => Promise.reject('test error'),
+      ) as unknown as typeof fetch;
+
+      return authService.getIdAMResponse(IdamGrantType.AUTH_CODE, {}).catch((err: AppError) => {
+        expect(err.message).toBe('test error');
         expect(err.code).toBe(ErrorCode.IDAM_API);
       });
     });

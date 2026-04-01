@@ -17,7 +17,6 @@ redis:
   password: 'dummy_password'
   useTLS: 'false'
   enabled: false
-  secret: 'OVERWRITE_THIS'
   proxy: true
   resave: false
   saveUninitialized: false
@@ -56,17 +55,18 @@ services:
     endpoints:
       token: '/o/token'
     clientID: 'lau'
-    clientSecret: 'SECRET'
     scope: 'openid profile roles'
+    clientSecret:
     callbackURL: 'https://localhost:4000/oauth2/callback'
   s2s:
     enabled: true
     url: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal'
-    lauSecret: 'AAAAAAAAAAAAAAAA'
+    lauSecret:
   auto-suggest:
     data-file: 'data/auto-suggest-data-prod.json'
 pages:
   userDetailsEnabled: true
 session:
+  secret:
   cookieMaxAge: 30 # minutes
 is_dev: true
