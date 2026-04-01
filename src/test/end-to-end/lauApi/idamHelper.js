@@ -36,26 +36,4 @@ module.exports = {
       {}, null, 'GET')
       .then(response => response.text());
   },
-
-  clientCredentialsAccessToken: async(idamClientSecret,scope) => {
-    return restHelper.retriedRequest(
-      `${idamUrl}/o/token`,
-      {'Content-Type': 'application/x-www-form-urlencoded'},
-      `grant_type=client_credentials&client_id=lau&client_secret=${idamClientSecret}&scope=${scope}`,
-      'POST')
-      .then(response => response.json())
-      .then(data => data.access_token);
-  },
-
-  updateUserDetails: async (accessToken, userId, userEmail) => {
-    return restHelper.retriedRequest(
-      `${idamUrl}/api/v2/users/${userId}`,
-      {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${accessToken}`,
-      },
-      JSON.stringify({ email: userEmail, forename: "TestForename", surname: "TestSurname"}),
-      'PUT'
-    );
-  },
 }; 

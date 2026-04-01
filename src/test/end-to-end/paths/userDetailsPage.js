@@ -4,7 +4,6 @@ const testConfig = require('../../config');
 const {userType, tabs} = require('../common/Constants');
 const lauHelper = require('../lauApi/lauHelper');
 const idamUserHelper = require('../helpers/IdamUserHelper');
-const idamHelper = require('../lauApi/idamHelper');
 const crypto = require('crypto');
 const assert = require('assert');
 
@@ -25,10 +24,6 @@ Before(async () => {
   );
   if (createdUser && createdUser.id) {
     testUserId = createdUser.id;
-    const idamClientSecret = process.env.IDAM_CLIENT_SECRET;
-    const updateAccessToken = await idamHelper.clientCredentialsAccessToken(idamClientSecret,'update-user');
-    await idamHelper.updateUserDetails(updateAccessToken, testUserId, featureUserEmail);
-
     return;
   }
   throw new Error('IDAM create user response did not include id');
@@ -65,7 +60,9 @@ Scenario('Navigate to LAU, perform user details search and authenticate user det
   await I.click('details.govuk-details summary');
 }).retry(testConfig.TestRetryScenarios);
 
-Scenario('User Updates Search', async ({I}) => {
+//commenting out the below test as the user details update functionality is currently unavailable due to a dependency issue. 
+// Will be re-enabled once we have some mechanism to update the user without using Idam api.
+/*Scenario('User Updates Search', async ({I}) => {
   await goToUserDetailsAndSearch(I);
   await I.waitForText('Account history', testConfig.TestTimeToWaitForText);
   
@@ -89,7 +86,7 @@ Scenario('User Updates Search', async ({I}) => {
     '//th[normalize-space()="Previous value"]');
   assert.strictEqual(previousValueHeader.trim(), 'Previous value'); 
 
-}).retry(testConfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);*/
 
 
 Scenario('User details PDF download', async ({I}) => {
