@@ -1,4 +1,3 @@
-const { update } = require('lodash');
 const config = require('../../config.js');
 const restHelper = require('./restHelper');
 
@@ -6,13 +5,10 @@ const loginEndpoint = 'loginUser';
 const idamUrl = config.url.idamApi;
 
 module.exports = {
-
   accessToken: async (user) => {
     return restHelper.retriedRequest(
       `${idamUrl}/${loginEndpoint}?username=${encodeURIComponent(user.email)}&password=${user.password}`,
-      {'Content-Type': 'application/x-www-form-urlencoded'},
-      null,
-      'POST')
+      {'Content-Type': 'application/x-www-form-urlencoded'})
       .then(response => response.json())
       .then(data => data.access_token);
   },
@@ -23,9 +19,7 @@ module.exports = {
       {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': `Bearer ${authToken}`,
-      },
-      null,
-      'POST')
+      })
       .then(response => response.json())
       .then(data => data.uid);
   },
@@ -36,4 +30,4 @@ module.exports = {
       {}, null, 'GET')
       .then(response => response.text());
   },
-}; 
+};
