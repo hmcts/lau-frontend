@@ -1,6 +1,6 @@
 'use strict';
 
-const { tryTo } = require('codeceptjs');
+const { tryTo } = require('codeceptjs/effects');
 const testConfig = require('src/test/config.js');
 
 module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
