@@ -7,24 +7,40 @@ const idamArgs = {};
 
 const logger = require('../logger');
 
+const parseJson = body => {
+  if (!body) {
+    return body;
+  }
+  if (typeof body === 'object') {
+    return body;
+  }
+  try {
+    return JSON.parse(body);
+  } catch (error) {
+    return body;
+  }
+};
+
 module.exports = {
 
-  async createAUser(userEmail, userPwd) {
+  async createAUser(userEmail, userPwd, role = 'cft-audit-investigator') {
 
     idamArgs.testEmail = userEmail;
     idamArgs.testPassword = userPwd;
-    idamArgs.roles = [{code: 'cft-audit-investigator'}];
+    idamArgs.roles = Array.isArray(role) ? role : [{code: role}];
     idamArgs.idamApiUrl = testConfig.url.idamApi;
 
     process.env.USER_EMAIL = userEmail;
     process.env.USER_PASSWORD = userPwd;
     return idamExpressTestHarness.createUser(idamArgs, testConfig.proxy)
-      .then(() => {
+      .then(body => {
+        const createdUser = parseJson(body);
         logger.info(
           null,
           'idam_user_created',
           `Created IDAM test user: ${idamArgs.testEmail}`,
         );
+        return createdUser;
       })
       .catch(error => {
         logger.info(
@@ -36,10 +52,10 @@ module.exports = {
       });
   },
 
-  async deleteUser(userEmail, userPwd) {
+  async deleteUser(userEmail, userPwd, role = 'cft-audit-investigator') {
     idamArgs.testEmail = userEmail;
     idamArgs.testPassword = userPwd;
-    idamArgs.roles = [{code: 'cft-audit-investigator'}];
+    idamArgs.roles = Array.isArray(role) ? role : [{code: role}];
     idamArgs.idamApiUrl = testConfig.url.idamApi;
 
     idamExpressTestHarness.removeUser(idamArgs, testConfig.proxy)
