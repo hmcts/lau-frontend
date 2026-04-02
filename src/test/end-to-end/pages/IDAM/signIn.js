@@ -1,5 +1,6 @@
 'use strict';
 
+const { tryTo } = require('codeceptjs/effects');
 const testConfig = require('src/test/config.js');
 
 module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
@@ -10,10 +11,29 @@ module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
     await I.amOnLoadedPage('/');
   }
 
-  await I.waitForText('Sign in', testConfig.TestTimeToWaitForText);
+  const doClassicLogin = await tryTo(async () => {
+    await I.waitForText('Sign in', testConfig.TestTimeToWaitForText);
+    await I.fillField('#username', user.email);
+    await I.fillField('#password', user.password);
+    await I.waitForNavigationToComplete('input[type="submit"]');
+  });
 
-  await I.fillField('#username', user.email);
-  await I.fillField('#password', user.password);
+  if (doClassicLogin) {
+    return;
+  }
 
-  await I.waitForNavigationToComplete('input[type="submit"]');
+  const doModernLogin = await tryTo(async () => {
+    await I.waitForText('Enter your email address', testConfig.TestTimeToWaitForText);
+    await I.fillField('#email', user.email);
+    await I.click('Continue');
+
+    await I.waitForText('Enter your password', testConfig.TestTimeToWaitForText);
+    await I.fillField('#password', user.password);
+    await I.click('Continue');
+  });
+
+  if (doModernLogin) {
+    return;
+  }
+
 };
