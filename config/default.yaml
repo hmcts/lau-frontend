@@ -49,12 +49,8 @@ services:
       userAccountUpdates: /audit/userUpdates
   idam-api:
     enabled: true
-<<<<<<< HEAD
     authorizationURL: 'https://idam-web-public.aat.platform.hmcts.net/o/authorize'
     endSessionURL: 'https://idam-web-public.aat.platform.hmcts.net/o/endSession'
-=======
-    authorizationURL: 'https://idam-web-public.aat.platform.hmcts.net/login'
->>>>>>> 86f8174 (moving back to login)
     url: 'https://idam-api.aat.platform.hmcts.net'
     endpoints:
       token: '/o/token'
