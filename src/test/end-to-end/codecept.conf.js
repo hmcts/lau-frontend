@@ -54,6 +54,9 @@ exports.config = {
     'I': './pages/steps.js',
   },
   'plugins': {
+    'tryTo': {
+      'enabled': true,
+    },
     'autoDelay': {
       'enabled': testConfig.TestAutoDelayEnabled,
     },

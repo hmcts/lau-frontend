@@ -1,6 +1,7 @@
 'use strict';
 
 const testConfig = require('src/test/config.js');
+const { tryTo } = require('codeceptjs/effects');
 
 module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
   const I = this;
@@ -9,23 +10,19 @@ module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
   if (!isAlreadyAtSignOnPage) {
     await I.amOnLoadedPage('/');
   }
-  let doClassicLogin = true;
-  let doModernLogin = true;
-  try 
-  {
-      await I.waitForText('Sign in', testConfig.TestTimeToWaitForText);
-      await I.fillField('#username', user.email);
-      await I.fillField('#password', user.password);
-      await I.waitForNavigationToComplete('input[type="submit"]');
-  } catch (e){
-    doClassicLogin = false;
-  }
 
-  if (doClassicLogin) {
+  const didClassicLoginWork = await tryTo(async () => {
+    await I.waitForText('Sign in', testConfig.TestTimeToWaitForText);
+    await I.fillField('#username', user.email);
+    await I.fillField('#password', user.password);
+    await I.waitForNavigationToComplete('input[type="submit"]');
+  });
+
+  if (didClassicLoginWork) {
     return;
   }
 
-  try{
+  const didModernLoginWork = await tryTo(async () => {
     await I.waitForText('Enter your email address', testConfig.TestTimeToWaitForText);
     await I.fillField('#email', user.email);
     await I.click('Continue');
@@ -33,12 +30,11 @@ module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
     await I.waitForText('Enter your password', testConfig.TestTimeToWaitForText);
     await I.fillField('#password', user.password);
     await I.click('Continue');
-  } catch (e){
-    doModernLogin = false;
-  }
+  });
 
-  if (doModernLogin) {
+  if (didModernLoginWork) {
     return;
   }
 
+  throw new Error('IDAM login page did not show classic or modern login form within the configured timeout.');
 };
