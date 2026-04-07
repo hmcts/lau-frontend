@@ -56,7 +56,6 @@ export class OidcMiddleware {
 
     server.get('/logout', async (req: AppRequest, res) => {
       await this.clearSessionMapping(req);
-      req.session.user = undefined;
       const endSessionUrl: string = config.get('services.idam-api.endSessionURL');
       const postLogoutRedirect = new URL(redirectUri).origin + '/login';
       const idTokenHint = req.session.user?.idToken;
