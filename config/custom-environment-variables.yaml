@@ -20,6 +20,7 @@ services:
   idam-api:
     enabled: IDAM_ENABLED
     authorizationURL: IDAM_WEB_URL
+    endSessionURL: IDAM_END_SESSION_URL
     url: IDAM_API_URL
     clientID: IDAM_CLIENT_ID
     clientSecret: IDAM_CLIENT_SECRET

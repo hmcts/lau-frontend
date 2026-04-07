@@ -36,9 +36,10 @@ export class OidcMiddleware {
     const redirectUri: string = config.get('services.idam-api.callbackURL');
     const sessionCookieMaxAgeMinutes: number = config.get('session.cookieMaxAge');
     const sessionCookieMaxAgeMs = sessionCookieMaxAgeMinutes * 60 * 1000;
+    const scope: string = config.get('services.idam-api.scope');
 
     server.get('/login', (req: AppRequest, res) => {
-      res.redirect(loginUrl + '?client_id=' + clientId + '&response_type=code&redirect_uri=' + encodeURI(redirectUri));
+      res.redirect(`${loginUrl}?client_id=${clientId}&response_type=code&redirect_uri=${encodeURI(redirectUri)}&scope=${scope}`);
     });
 
     server.get('/oauth2/callback', async (req: AppRequest, res: Response) => {
@@ -55,15 +56,22 @@ export class OidcMiddleware {
 
     server.get('/logout', async (req: AppRequest, res) => {
       await this.clearSessionMapping(req);
-
       req.session.user = undefined;
+      const endSessionUrl: string = config.get('services.idam-api.endSessionURL');
+      const postLogoutRedirect = new URL(redirectUri).origin + '/login';
+      const idTokenHint = req.session.user?.idToken;
 
       req.session.destroy((err) => {
         if (err) {
           console.log('Error clearing session:', err);
         }
-        // Redirect the user to the login page
-        res.redirect('/');
+
+        // OIDC RP-initiated logout: end session then return to app login
+        const params = new URLSearchParams({post_logout_redirect_uri: postLogoutRedirect});
+        if (idTokenHint) {
+          params.set('id_token_hint', idTokenHint);
+        }
+        res.redirect(`${endSessionUrl}?${params.toString()}`);
       });
     });
 

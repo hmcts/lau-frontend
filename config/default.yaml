@@ -49,11 +49,13 @@ services:
       userAccountUpdates: /audit/userUpdates
   idam-api:
     enabled: true
-    authorizationURL: 'https://idam-web-public.aat.platform.hmcts.net/login'
+    authorizationURL: 'https://idam-web-public.aat.platform.hmcts.net/o/authorize'
+    endSessionURL: 'https://idam-web-public.aat.platform.hmcts.net/o/endSession'
     url: 'https://idam-api.aat.platform.hmcts.net'
     endpoints:
       token: '/o/token'
     clientID: 'lau'
+    scope: 'openid profile roles'
     clientSecret:
     callbackURL: 'https://localhost:4000/oauth2/callback'
   s2s:
