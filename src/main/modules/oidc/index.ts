@@ -3,7 +3,7 @@ import {Application, NextFunction, Response} from 'express';
 import config from 'config';
 import {MINUTE_IN_MS} from '../../util/Util';
 import {AppRequest} from '../../models/appRequest';
-import {AppError, ErrorCode, errorRedirect} from '../../models/AppError';
+import {AppError, errorRedirect} from '../../models/AppError';
 import {SessionStorage} from '../session';
 
 /**
