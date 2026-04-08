@@ -20,7 +20,7 @@ Before(async () => {
   const createdUser = await idamUserHelper.createAUser(
     featureUserEmail,
     featureUserPassword,
-    [{code: 'iud-test-worker'}],
+    'iud-test-worker'
   );
   if (createdUser && createdUser.id) {
     testUserId = createdUser.id;
@@ -30,7 +30,7 @@ Before(async () => {
 });
 
 After(async () => {
-  await idamUserHelper.deleteUser(featureUserEmail, featureUserPassword);
+  await idamUserHelper.deleteUser(featureUserEmail);
 });
 
 async function goToUserDetailsAndSearch(I) {

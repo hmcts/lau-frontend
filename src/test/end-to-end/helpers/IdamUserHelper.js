@@ -1,78 +1,45 @@
-'use strict';
+const config = require('../../config.js');
+const restHelper = require('./RestHelper.js');
+const idamApiUrl = config.url.idamApi;
+const testingEndpoint = `${idamApiUrl}/testing-support/accounts`;
 
-const testConfig = require('src/test/config.js');
-const idamExpressTestHarness = require('@hmcts/div-idam-test-harness');
+const createAUser = async (userEmail, userPassword, roleName = 'cft-audit-investigator') => {
+  process.env.USER_EMAIL = userEmail;
+  process.env.USER_PASSWORD = userPassword;
+  const requestBody = {
+    email: userEmail,
+    forename: 'TestForename',
+    password: userPassword,
+    surname: 'TestSurname',
+    roles: [
+      {code: roleName}
+    ],
+  };
 
-const idamArgs = {};
+  const response = await restHelper.retriedRequest(
+    `${testingEndpoint}`,
+    {
+      'Content-Type': 'application/json'
+    },
+    JSON.stringify(requestBody),
+    'POST'
+  );
 
-const logger = require('../logger');
+  return response.json();
+};
 
-const parseJson = body => {
-  if (!body) {
-    return body;
-  }
-  if (typeof body === 'object') {
-    return body;
-  }
-  try {
-    return JSON.parse(body);
-  } catch (error) {
-    return body;
-  }
+const deleteUser = async (userEmail) => {
+  return restHelper.retriedRequest(
+    `${testingEndpoint}/${userEmail}`,
+    {
+      'Content-Type': 'application/json'
+    },
+    null,
+    'DELETE'
+  );
 };
 
 module.exports = {
-
-  async createAUser(userEmail, userPwd, role = 'cft-audit-investigator') {
-
-    idamArgs.testEmail = userEmail;
-    idamArgs.testPassword = userPwd;
-    idamArgs.roles = Array.isArray(role) ? role : [{code: role}];
-    idamArgs.idamApiUrl = testConfig.url.idamApi;
-
-    process.env.USER_EMAIL = userEmail;
-    process.env.USER_PASSWORD = userPwd;
-    return idamExpressTestHarness.createUser(idamArgs, testConfig.proxy)
-      .then(body => {
-        const createdUser = parseJson(body);
-        logger.info(
-          null,
-          'idam_user_created',
-          `Created IDAM test user: ${idamArgs.testEmail}`,
-        );
-        return createdUser;
-      })
-      .catch(error => {
-        logger.info(
-          null, 'idam_user_created',
-          'Unable to create IDAM test user/token',
-          error,
-        );
-        throw error;
-      });
-  },
-
-  async deleteUser(userEmail, userPwd, role = 'cft-audit-investigator') {
-    idamArgs.testEmail = userEmail;
-    idamArgs.testPassword = userPwd;
-    idamArgs.roles = Array.isArray(role) ? role : [{code: role}];
-    idamArgs.idamApiUrl = testConfig.url.idamApi;
-
-    idamExpressTestHarness.removeUser(idamArgs, testConfig.proxy)
-      .then(() => {
-        logger.info(
-          null,
-          'idam_user_removed',
-          `Removed IDAM test user: ${idamArgs.testEmail}`,
-        );
-      })
-      .catch(error => {
-        logger.info(
-          null,
-          'idam_user_remove_error',
-          'Unable to remove IDAM test user',
-          error,
-        );
-      });
-  },
+  createAUser,
+  deleteUser,
 };

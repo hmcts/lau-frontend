@@ -9,7 +9,7 @@ exports.config = {
     await idamUserHelper.createAUser(auditorUser, testPassword);
   },
   async teardownAll() {
-    await idamUserHelper.deleteUser(auditorUser, testPassword);
+    await idamUserHelper.deleteUser(auditorUser);
   },
   'tests': testConfig.TestPathToRun,
   'output': testConfig.TestOutputDir,
