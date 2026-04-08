@@ -12,29 +12,26 @@ module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
   }
 
   const didClassicLoginWork = await tryTo(async () => {
-    await I.waitForText('Sign in', testConfig.TestTimeToWaitForText);
-    await I.fillField('#username', user.email);
-    await I.fillField('#password', user.password);
-    await I.waitForNavigationToComplete('input[type="submit"]');
+    I.see('Sign in', 'h1');
+    I.fillField('#username', user.email);
+    I.fillField('#password', user.password);
+    I.click('Sign in');
+  
   });
 
-  if (didClassicLoginWork) {
-    return;
-  }
+  if (!didClassicLoginWork) {
+    const didModernLoginWork = await tryTo(async () => {
+      I.see('Enter your email address', 'h1');
+      I.fillField('#email', user.email);
+      I.click('Continue');
 
-  const didModernLoginWork = await tryTo(async () => {
-    await I.waitForText('Enter your email address', testConfig.TestTimeToWaitForText);
-    await I.fillField('#email', user.email);
-    await I.click('Continue');
+      I.see('Enter your password', 'h1');
+      I.fillField('#password', user.password);
+      I.click('Continue');
+    });
 
-    await I.waitForText('Enter your password', testConfig.TestTimeToWaitForText);
-    await I.fillField('#password', user.password);
-    await I.click('Continue');
-  });
-
-  if (didModernLoginWork) {
-    return;
-  }
-
-  throw new Error('IDAM login page did not show classic or modern login form within the configured timeout.');
+    if (!didModernLoginWork) {
+      throw new Error('Classic and modern login both failed.');
+    }
+  };
 };
