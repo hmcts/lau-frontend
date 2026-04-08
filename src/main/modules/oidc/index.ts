@@ -1,11 +1,10 @@
 import {AuthService, IdamGrantType} from '../../service/AuthService';
 import {Application, NextFunction, Response} from 'express';
 import config from 'config';
+import {MINUTE_IN_MS} from '../../util/Util';
 import {AppRequest} from '../../models/appRequest';
 import {AppError, ErrorCode, errorRedirect} from '../../models/AppError';
-import Redis from 'ioredis';
-import type {Store} from 'express-session';
-import logger from '../../modules/logging';
+import {SessionStorage} from '../session';
 
 /**
  * Adds the oidc middleware to add oauth authentication
@@ -29,13 +28,14 @@ export class OidcMiddleware {
   ];
 
   private authService = new AuthService(config);
+  private sessionStorage = new SessionStorage();
 
   public enableFor(server: Application): void {
     const loginUrl: string = config.get('services.idam-api.authorizationURL');
     const clientId: string = config.get('services.idam-api.clientID');
     const redirectUri: string = config.get('services.idam-api.callbackURL');
     const sessionCookieMaxAgeMinutes: number = config.get('session.cookieMaxAge');
-    const sessionCookieMaxAgeMs = sessionCookieMaxAgeMinutes * 60 * 1000;
+    const sessionCookieMaxAgeMs = sessionCookieMaxAgeMinutes * MINUTE_IN_MS;
     const scope: string = config.get('services.idam-api.scope');
 
     server.get('/login', (req: AppRequest, res) => {
@@ -46,7 +46,7 @@ export class OidcMiddleware {
       try {
         await this.authService.getIdAMToken(IdamGrantType.AUTH_CODE, req.session, req.query.code as string);
 
-        await this.terminateOtherSessions(req, sessionCookieMaxAgeMs);
+        await this.sessionStorage.terminateOtherSessions(req, sessionCookieMaxAgeMs);
 
         return res.redirect('/');
       } catch (error) {
@@ -55,7 +55,7 @@ export class OidcMiddleware {
     });
 
     server.get('/logout', async (req: AppRequest, res) => {
-      await this.clearSessionMapping(req);
+      await this.sessionStorage.clearSessionMapping(req);
       const endSessionUrl: string = config.get('services.idam-api.endSessionURL');
       const postLogoutRedirect = new URL(redirectUri).origin + '/login';
       const idTokenHint = req.session.user?.idToken;
@@ -99,53 +99,4 @@ export class OidcMiddleware {
 
     return js.test(path) || css.test(path);
   }
-
-  private getUserSessionKey(userId: string): string {
-    return `user-session:${userId}`;
-  }
-
-  private async terminateOtherSessions(req: AppRequest, ttlMs: number): Promise<void> {
-    const userId = req.session.user?.id;
-    const redisEnabled = Boolean(config.get('redis.enabled'));
-    const redisClient = req.app.locals.redisClient as Redis | undefined;
-    const sessionStore = req.app.locals.sessionStore as Store | undefined;
-
-    if (!userId) return;
-
-    if (!redisEnabled) {
-      return;
-    }
-
-    if (!redisClient || !sessionStore) {
-      logger.error('Redis is enabled but session store or redis client is missing');
-      throw new AppError('Redis is unavailable', ErrorCode.REDIS);
-    }
-
-    const key = this.getUserSessionKey(userId);
-    const currentSessionId = req.sessionID;
-
-    try {
-      const previousSessionId = await redisClient.get(key);
-      if (previousSessionId && previousSessionId !== currentSessionId) {
-        await new Promise<void>((resolve) => {
-          sessionStore.destroy(previousSessionId, () => resolve());
-        });
-      }
-
-      await redisClient.set(key, currentSessionId, 'PX', ttlMs);
-    } catch (error) {
-      logger.error(`Redis error when terminating other sessions: ${error}`);
-      throw new AppError('Redis is unavailable', ErrorCode.REDIS);
-    }
-  }
-
-  private async clearSessionMapping(req: AppRequest): Promise<void> {
-    const userId = req.session.user?.id;
-    const redisClient = req.app.locals.redisClient as Redis | undefined;
-
-    if (!userId || !redisClient) return;
-    const key = this.getUserSessionKey(userId);
-    await redisClient.del(key);
-  }
-
 }

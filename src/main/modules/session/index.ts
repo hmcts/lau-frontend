@@ -3,15 +3,18 @@ import { RedisStore } from 'connect-redis';
 import cookieParser from 'cookie-parser';
 import { Application } from 'express';
 import session from 'express-session';
+import type { Store } from 'express-session';
 import Redis from 'ioredis';
 
 import logger from '../../modules/logging';
+import {MINUTE_IN_MS} from '../../util/Util';
+import {AppRequest} from '../../models/appRequest';
+import {AppError, ErrorCode} from '../../models/AppError';
 
 export class SessionStorage {
   private readonly MemoryStore = require('express-session').MemoryStore;
 
-  private readonly minuteInMs = 60 * 1000;
-  private readonly cookieMaxAgeInMs: number = (config.get('session.cookieMaxAge') as number) * this.minuteInMs;
+  private readonly cookieMaxAgeInMs: number = (config.get('session.cookieMaxAge') as number) * MINUTE_IN_MS;
 
   public enableFor(app: Application): void {
     app.use(cookieParser());
@@ -77,5 +80,53 @@ export class SessionStorage {
 
     // FOR DEV ONLY
     return new this.MemoryStore();
+  }
+
+  private getUserSessionKey(userId: string): string {
+    return `user-session:${userId}`;
+  }
+
+  public async terminateOtherSessions(req: AppRequest, ttlMs: number): Promise<void> {
+    const userId = req.session.user?.id;
+    const redisEnabled = Boolean(config.get('redis.enabled'));
+    const redisClient = req.app.locals.redisClient as Redis | undefined;
+    const sessionStore = req.app.locals.sessionStore as Store | undefined;
+
+    if (!userId) return;
+
+    if (!redisEnabled) {
+      return;
+    }
+
+    if (!redisClient || !sessionStore) {
+      logger.error('Redis is enabled but session store or redis client is missing');
+      throw new AppError('Redis is unavailable', ErrorCode.REDIS);
+    }
+
+    const key = this.getUserSessionKey(userId);
+    const currentSessionId = req.sessionID;
+
+    try {
+      const previousSessionId = await redisClient.get(key);
+      if (previousSessionId && previousSessionId !== currentSessionId) {
+        await new Promise<void>((resolve) => {
+          sessionStore.destroy(previousSessionId, () => resolve());
+        });
+      }
+
+      await redisClient.set(key, currentSessionId, 'PX', ttlMs);
+    } catch (error) {
+      logger.error(`Redis error when terminating other sessions: ${error}`);
+      throw new AppError('Redis is unavailable', ErrorCode.REDIS);
+    }
+  }
+
+  public async clearSessionMapping(req: AppRequest): Promise<void> {
+    const userId = req.session.user?.id;
+    const redisClient = req.app.locals.redisClient as Redis | undefined;
+
+    if (!userId || !redisClient) return;
+    const key = this.getUserSessionKey(userId);
+    await redisClient.del(key);
   }
 }
