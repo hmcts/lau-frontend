@@ -15,6 +15,8 @@ export class SessionStorage {
   private readonly MemoryStore = require('express-session').MemoryStore;
 
   private readonly cookieMaxAgeInMs: number = (config.get('session.cookieMaxAge') as number) * MINUTE_IN_MS;
+  private readonly redisTtlInMs: number = (config.get('redis.ttl') as number) * 1000;
+  private readonly sessionMappingTtlInMs: number = Math.min(this.cookieMaxAgeInMs, this.redisTtlInMs);
 
   public enableFor(app: Application): void {
     app.use(cookieParser());
@@ -91,7 +93,6 @@ export class SessionStorage {
     const redisEnabled = Boolean(config.get('redis.enabled'));
     const redisClient = req.app.locals.redisClient as Redis | undefined;
     const sessionStore = req.app.locals.sessionStore as Store | undefined;
-    const ttl: number = config.get('redis.ttl');
 
     if (!userId) return;
 
@@ -115,7 +116,7 @@ export class SessionStorage {
         });
       }
 
-      await redisClient.set(key, currentSessionId, 'PX', ttl);
+      await redisClient.set(key, currentSessionId, 'PX', this.sessionMappingTtlInMs);
     } catch (error) {
       logger.error(`Redis error when terminating other sessions: ${error}`);
       throw new AppError('Redis is unavailable', ErrorCode.REDIS);
