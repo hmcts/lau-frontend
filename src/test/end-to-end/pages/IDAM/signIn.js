@@ -1,6 +1,7 @@
 'use strict';
 
 const testConfig = require('src/test/config.js');
+const { tryTo } = require('codeceptjs/effects');
 
 module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
   const I = this;
@@ -10,10 +11,27 @@ module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
     await I.amOnLoadedPage('/');
   }
 
-  await I.waitForText('Sign in', testConfig.TestTimeToWaitForText);
+  const didClassicLoginWork = await tryTo(async () => {
+    I.see('Sign in', 'h1');
+    I.fillField('#username', user.email);
+    I.fillField('#password', user.password);
+    I.click('Sign in');
+  
+  });
 
-  await I.fillField('#username', user.email);
-  await I.fillField('#password', user.password);
+  if (!didClassicLoginWork) {
+    const didModernLoginWork = await tryTo(async () => {
+      I.see('Enter your email address', 'h1');
+      I.fillField('#email', user.email);
+      I.click('Continue');
 
-  await I.waitForNavigationToComplete('input[type="submit"]');
+      I.see('Enter your password', 'h1');
+      I.fillField('#password', user.password);
+      I.click('Continue');
+    });
+
+    if (!didModernLoginWork) {
+      throw new Error('Classic and modern login both failed.');
+    }
+  };
 };
