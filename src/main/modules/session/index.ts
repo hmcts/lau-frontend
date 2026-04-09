@@ -16,6 +16,7 @@ export class SessionStorage {
 
   private readonly cookieMaxAgeInMs: number = (config.get('session.cookieMaxAge') as number) * MINUTE_IN_MS;
   private readonly redisTtlInMs: number = (config.get('redis.ttl') as number) * 1000;
+  // Keep the user-session mapping no longer than either cookie lifetime or Redis session TTL.
   private readonly sessionMappingTtlInMs: number = Math.min(this.cookieMaxAgeInMs, this.redisTtlInMs);
 
   public enableFor(app: Application): void {
