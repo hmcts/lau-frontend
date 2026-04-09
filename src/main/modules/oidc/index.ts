@@ -1,7 +1,6 @@
 import {AuthService, IdamGrantType} from '../../service/AuthService';
 import {Application, NextFunction, Response} from 'express';
 import config from 'config';
-import {MINUTE_IN_MS} from '../../util/Util';
 import {AppRequest} from '../../models/appRequest';
 import {AppError, errorRedirect} from '../../models/AppError';
 import {SessionStorage} from '../session';
@@ -34,8 +33,6 @@ export class OidcMiddleware {
     const loginUrl: string = config.get('services.idam-api.authorizationURL');
     const clientId: string = config.get('services.idam-api.clientID');
     const redirectUri: string = config.get('services.idam-api.callbackURL');
-    const sessionCookieMaxAgeMinutes: number = config.get('session.cookieMaxAge');
-    const sessionCookieMaxAgeMs = sessionCookieMaxAgeMinutes * MINUTE_IN_MS;
     const scope: string = config.get('services.idam-api.scope');
 
     server.get('/login', (req: AppRequest, res) => {
@@ -46,7 +43,7 @@ export class OidcMiddleware {
       try {
         await this.authService.getIdAMToken(IdamGrantType.AUTH_CODE, req.session, req.query.code as string);
 
-        await this.sessionStorage.terminateOtherSessions(req, sessionCookieMaxAgeMs);
+        await this.sessionStorage.terminateOtherSessions(req);
 
         return res.redirect('/');
       } catch (error) {

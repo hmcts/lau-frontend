@@ -86,11 +86,12 @@ export class SessionStorage {
     return `user-session:${userId}`;
   }
 
-  public async terminateOtherSessions(req: AppRequest, ttlMs: number): Promise<void> {
+  public async terminateOtherSessions(req: AppRequest): Promise<void> {
     const userId = req.session.user?.id;
     const redisEnabled = Boolean(config.get('redis.enabled'));
     const redisClient = req.app.locals.redisClient as Redis | undefined;
     const sessionStore = req.app.locals.sessionStore as Store | undefined;
+    const ttl: number = config.get('redis.ttl');
 
     if (!userId) return;
 
@@ -114,7 +115,7 @@ export class SessionStorage {
         });
       }
 
-      await redisClient.set(key, currentSessionId, 'PX', ttlMs);
+      await redisClient.set(key, currentSessionId, 'PX', ttl);
     } catch (error) {
       logger.error(`Redis error when terminating other sessions: ${error}`);
       throw new AppError('Redis is unavailable', ErrorCode.REDIS);
