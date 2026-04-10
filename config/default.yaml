@@ -59,7 +59,7 @@ services:
     clientSecret:
     callbackURL: 'https://localhost:4000/oauth2/callback'
   hmcts-access:
-    enabled: true
+    enabled: false
     url: 'https://hmcts-access.aat.platform.hmcts.net'
   s2s:
     enabled: true
