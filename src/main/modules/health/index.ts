@@ -8,9 +8,8 @@ interface HealthResponse {
 }
 
 import logger from '../../modules/logging';
-const healthcheck = require('@hmcts/nodejs-healthcheck');
-
-const config = require('config');
+import config from 'config';
+import * as healthcheck from '@hmcts/nodejs-healthcheck';
 
 /**
  * Sets up the HMCTS info and health endpoints
@@ -24,6 +23,7 @@ export class HealthCheck {
       'lau-case-backend',
       'lau-idam-backend',
       'idam-api',
+      'hmcts-access',
       's2s',
     ];
 
