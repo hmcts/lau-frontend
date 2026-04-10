@@ -24,6 +24,7 @@ export class HealthCheck {
       'lau-case-backend',
       'lau-idam-backend',
       'idam-api',
+      'hmctsAccess',
       's2s',
     ];
 

@@ -58,6 +58,9 @@ services:
     scope: 'openid profile roles'
     clientSecret:
     callbackURL: 'https://localhost:4000/oauth2/callback'
+  hmctsAccess:
+    enabled: true
+    url: 'https://hmcts-access.aat.platform.hmcts.net'
   s2s:
     enabled: true
     url: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal'
