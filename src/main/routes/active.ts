@@ -1,11 +1,11 @@
 import {AppRequest} from '../models/appRequest';
 import {Application, RequestHandler, Response} from 'express';
 import config from 'config';
+import {MINUTE_IN_MS} from '../util/Util';
 
 async function activeHandler(req: AppRequest, res: Response) {
-  const minuteInMs = 60 * 1000;
   const cookieMaxAge: number = config.get('session.cookieMaxAge');
-  const cookieMaxAgeInMs: number =  minuteInMs * cookieMaxAge;
+  const cookieMaxAgeInMs: number =  MINUTE_IN_MS * cookieMaxAge;
 
   if (!req.session.user) {
     return res.redirect('/logout');

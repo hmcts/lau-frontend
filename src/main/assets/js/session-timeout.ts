@@ -1,6 +1,7 @@
 import { throttle } from 'lodash';
+import {MINUTE_IN_MS} from '../../util/Util';
 
-const oneMinute = 60 * 1000;
+const oneMinute = MINUTE_IN_MS;
 const callHomeEventTimer = 5 * oneMinute;
 
 class SessionTimeout {
