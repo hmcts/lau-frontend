@@ -3,6 +3,7 @@ import {Application, NextFunction, Response} from 'express';
 import config from 'config';
 import {AppRequest} from '../../models/appRequest';
 import {AppError, errorRedirect} from '../../models/AppError';
+import {SessionStorage} from '../session';
 
 /**
  * Adds the oidc middleware to add oauth authentication
@@ -26,6 +27,7 @@ export class OidcMiddleware {
   ];
 
   private authService = new AuthService(config);
+  private sessionStorage = new SessionStorage();
 
   public enableFor(server: Application): void {
     const loginUrl: string = config.get('services.idam-api.authorizationURL');
@@ -38,12 +40,19 @@ export class OidcMiddleware {
     });
 
     server.get('/oauth2/callback', async (req: AppRequest, res: Response) => {
-      this.authService.getIdAMToken(IdamGrantType.AUTH_CODE, req.session, req.query.code as string)
-        .then(() => res.redirect('/'))
-        .catch((error: AppError) => errorRedirect(res, error.code));
+      try {
+        await this.authService.getIdAMToken(IdamGrantType.AUTH_CODE, req.session, req.query.code as string);
+
+        await this.sessionStorage.terminateOtherSessions(req);
+
+        return res.redirect('/');
+      } catch (error) {
+        return errorRedirect(res, (error as AppError).code);
+      }
     });
 
-    server.get('/logout', (req: AppRequest, res) => {
+    server.get('/logout', async (req: AppRequest, res) => {
+      await this.sessionStorage.clearSessionMapping(req);
       const endSessionUrl: string = config.get('services.idam-api.endSessionURL');
       const postLogoutRedirect = new URL(redirectUri).origin + '/login';
       const idTokenHint = req.session.user?.idToken;
@@ -87,5 +96,4 @@ export class OidcMiddleware {
 
     return js.test(path) || css.test(path);
   }
-
 }
