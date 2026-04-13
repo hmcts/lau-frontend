@@ -10,3 +10,5 @@ export function mapOrElse<T, R>(arr: T[]|null|undefined, mapFn: (t: T) => R, els
 export function capitalize(word: string): string {
   return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 }
+
+export const MINUTE_IN_MS = 60 * 1000;
