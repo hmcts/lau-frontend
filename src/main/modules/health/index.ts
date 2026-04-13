@@ -43,7 +43,7 @@ export class HealthCheck {
       checks,
       readinessChecks,
       buildInfo: {
-        name: config.service.name,
+        name: config.get('service.name') as string,
         host: os.hostname(),
         uptime: process.uptime(),
       },
