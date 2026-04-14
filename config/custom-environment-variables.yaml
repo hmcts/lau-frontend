@@ -25,6 +25,9 @@ services:
     clientID: IDAM_CLIENT_ID
     clientSecret: IDAM_CLIENT_SECRET
     callbackURL: OAUTH_CLIENT_REDIRECT
+  hmcts-access:
+    enabled: HMCTS_ACCESS_ENABLED
+    url: HMCTS_ACCESS_URL
   s2s:
     enabled: S2S_ENABLED
     url: S2S_URL

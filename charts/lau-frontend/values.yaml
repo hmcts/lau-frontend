@@ -18,6 +18,7 @@ nodejs:
     LAU_EUD_BACKEND_URL: http://lau-eud-backend-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
     IDAM_WEB_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login
     IDAM_API_URL: https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net
+    HMCTS_ACCESS_URL: 'https://hmcts-access.{{ .Values.global.environment }}.platform.hmcts.net'
     S2S_URL: http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
     OAUTH_CLIENT_REDIRECT: https://lau.{{ .Values.global.environment }}.platform.hmcts.net/oauth2/callback
     ALLOW_CONFIG_MUTATIONS: true
