@@ -155,8 +155,20 @@ export class AuthService {
       id: jwt.uid,
       roles: jwt.roles,
     };
-    session.save(() => session.user);
+    await this.saveSession(session);
     return session.user;
+  }
+
+  private async saveSession(session: AppSession): Promise<void> {
+    await new Promise<void>((resolve, reject) => {
+      session.save((error?: unknown) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+        resolve();
+      });
+    });
   }
 
 
