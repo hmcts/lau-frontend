@@ -2,9 +2,9 @@ import config from 'config';
 import { RedisStore } from 'connect-redis';
 import cookieParser from 'cookie-parser';
 import { Application } from 'express';
+import { createClient, type RedisClientType } from 'redis';
 import session from 'express-session';
 import type { Store } from 'express-session';
-import Redis from 'ioredis';
 
 import logger from '../../modules/logging';
 import {MINUTE_IN_MS} from '../../util/Util';
@@ -55,25 +55,25 @@ export class SessionStorage {
         throw new Error('Redis password is empty; cannot set up Redis.');
       }
 
-      const tlsOptions = {
-        password: password,
-        tls: true,
-        connectTimeout: 15000,
-      };
-
-      const redisOptions = config.get('redis.useTLS') === 'true' ? tlsOptions : {};
-
       logger.info(`Redis Connection - Host: ${host}, Port: ${port}`);
+      const useTLS = config.get('redis.useTLS') === 'true';
 
-      const client = new Redis(port, host, redisOptions);
+      const client = createClient({
+        password,
+        socket: useTLS
+          ? { host, port, tls: true, connectTimeout: 15000 }
+          : { host, port, connectTimeout: 15000 },
+      });
 
       // Azure Cache for Redis has issues with a 10 minute connection idle timeout, the recommendation is to keep the connection alive
       // https://gist.github.com/JonCole/925630df72be1351b21440625ff2671f#file-redis-bestpractices-node-js-md
       client.on('ready', () => {
         setInterval(() => {
-          client.ping();
+          void client.ping();
         }, 60000); // 60s
       });
+      client.on('error', error => logger.error(`Redis client error: ${error}`));
+      void client.connect().catch(error => logger.error(`Redis connection failed: ${error}`));
 
       app.locals.redisClient = client;
       return new RedisStore({ client, ttl });
@@ -92,7 +92,7 @@ export class SessionStorage {
   public async terminateOtherSessions(req: AppRequest): Promise<void> {
     const userId = req.session.user?.id;
     const redisEnabled = Boolean(config.get('redis.enabled'));
-    const redisClient = req.app.locals.redisClient as Redis | undefined;
+    const redisClient = req.app.locals.redisClient as RedisClientType | undefined;
     const sessionStore = req.app.locals.sessionStore as Store | undefined;
 
     if (!userId) return;
@@ -110,14 +110,14 @@ export class SessionStorage {
     const currentSessionId = req.sessionID;
 
     try {
-      const previousSessionId = await redisClient.get(key);
+      const previousSessionId = await redisClient.get(key) as string | null;
       if (previousSessionId && previousSessionId !== currentSessionId) {
         await new Promise<void>((resolve) => {
           sessionStore.destroy(previousSessionId, () => resolve());
         });
       }
 
-      await redisClient.set(key, currentSessionId, 'PX', this.sessionMappingTtlInMs);
+      await redisClient.set(key, currentSessionId, {PX: this.sessionMappingTtlInMs});
     } catch (error) {
       logger.error(`Redis error when terminating other sessions: ${error}`);
       throw new AppError('Redis is unavailable', ErrorCode.REDIS);
@@ -126,7 +126,7 @@ export class SessionStorage {
 
   public async clearSessionMapping(req: AppRequest): Promise<void> {
     const userId = req.session.user?.id;
-    const redisClient = req.app.locals.redisClient as Redis | undefined;
+    const redisClient = req.app.locals.redisClient as RedisClientType | undefined;
 
     if (!userId || !redisClient) return;
     const key = this.getUserSessionKey(userId);
