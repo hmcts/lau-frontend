@@ -22,6 +22,7 @@ export class HealthCheck {
     const services = [
       'lau-case-backend',
       'lau-idam-backend',
+      'lau-eud-backend',
       'idam-api',
       'hmcts-access',
       's2s',
