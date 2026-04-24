@@ -10,7 +10,12 @@ This service will allow an investigator to see a report detailing all case inter
 ## Overview
 
 <p align="center">
-<b><a href="https://github.com/hmcts/lau-frontend">lau-frontend</a></b> • <a href="https://github.com/hmcts/lau-case-backend">lau-case-backend</a> • <a href="https://github.com/hmcts/lau-idam-backend">lau-idam-backend</a> • <a href="https://github.com/hmcts/lau-shared-infrastructure">lau-shared-infrastructure</a>
+<b>
+  <a href="https://github.com/hmcts/lau-frontend">lau-frontend</a></b>
+  • <a href="https://github.com/hmcts/lau-case-backend">lau-case-backend</a>
+  • <a href="https://github.com/hmcts/lau-idam-backend">lau-idam-backend</a>
+  • <a href="https://github.com/hmcts/lau-eud-backend">lau-eud-backend</a>
+  • <a href="https://github.com/hmcts/lau-shared-infrastructure">lau-shared-infrastructure</a>
 </p>
 
 <br>
@@ -25,7 +30,7 @@ This service will allow an investigator to see a report detailing all case inter
 
 Running the application requires the following tools to be installed in your environment:
 
-  * [Node.js](https://nodejs.org/) v18.16.0 or later
+  * [Node.js](https://nodejs.org/) v24.14.0 or later
   * [yarn](https://yarnpkg.com/)
   * [Docker](https://www.docker.com)
 
