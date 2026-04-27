@@ -28,4 +28,5 @@ module.exports = {
     'enableFindRelatedTests': true,
   },
   logLevel: 'debug',
+  ignoreStatic: true,
 };
