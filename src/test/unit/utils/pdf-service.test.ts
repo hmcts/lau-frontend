@@ -29,7 +29,7 @@ describe('pdf-service', () => {
     // Reset all mocks
     jest.clearAllMocks();
     jest.resetModules();
-    
+
     // Setup default mock implementations
     mockBrowser.createBrowserContext = jest.fn().mockResolvedValue(mockContext);
     mockContext.newPage = jest.fn().mockResolvedValue(mockPage);
@@ -39,7 +39,7 @@ describe('pdf-service', () => {
     mockPage.close = jest.fn().mockResolvedValue(undefined);
     mockContext.close = jest.fn().mockResolvedValue(undefined);
     mockBrowser.close = jest.fn().mockResolvedValue(undefined);
-    
+
     mockPuppeteerLaunch.mockResolvedValue(mockBrowser);
   });
 

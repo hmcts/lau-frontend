@@ -212,7 +212,7 @@ describe('Deleted Users Controller', () => {
         .get(pathQuery)
         .reply(200, {});
 
-      const res = { 
+      const res = {
         redirect: jest.fn(),
       };
 

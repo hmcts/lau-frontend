@@ -4,7 +4,6 @@ import {AppRequest} from '../../../main/models/appRequest';
 import {DeletedUsersSearchController} from '../../../main/controllers/DeletedUsersSearch.controller';
 import config from 'config';
 
-
 describe('Deleted Users Search Controller', () => {
   describe('Search form validation', () => {
     const deletedUsersSearchController: DeletedUsersSearchController = new DeletedUsersSearchController();
@@ -46,7 +45,7 @@ describe('Deleted Users Search Controller', () => {
       expect(errors.length).toBe(1);
       expect(errors[0]).toStrictEqual({propertyName: 'startTimestamp', errorType: 'required'});
     });
-    
+
     it('ensures dates are valid', async () => {
       const errors = deletedUsersSearchController.validateSearchForm({
         startTimestamp: '2021-14-01 00:00:00',

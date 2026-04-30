@@ -12,6 +12,7 @@ import {SessionStorage} from './modules/session';
 import {OidcMiddleware} from './modules/oidc';
 import {HealthCheck} from './modules/health';
 import {Container} from './modules/awilix';
+import { correlation } from './modules/correlation';
 
 import config from 'config';
 import {AutoSuggest} from './modules/autosuggest/AutoSuggest';
@@ -30,6 +31,7 @@ const options = {
   acceptRanges: false,
 };
 
+app.use(correlation.middleware);
 app.use(compression());
 app.use(favicon(path.join(__dirname, '/public/assets/images/favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public'), options));
