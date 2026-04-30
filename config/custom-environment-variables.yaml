@@ -10,6 +10,8 @@ redis:
 pagination:
   maxPerPage: MAX_PER_PAGE
   maxTotal: MAX_TOTAL
+appInsights:
+  connectionString: APPLICATIONINSIGHTS_CONNECTION_STRING
 services:
   lau-case-backend:
     url: LAU_CASE_BACKEND_URL
