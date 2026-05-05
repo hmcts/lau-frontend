@@ -9,5 +9,5 @@ Given('user is on lau start page', () => {
 });
 
 Then('user should see the gov uk header', () => {
-  I.see('GOV.UK');
+  I.seeElement('svg[aria-label="GOV.UK"]');
 });

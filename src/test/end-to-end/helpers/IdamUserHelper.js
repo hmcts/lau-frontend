@@ -12,17 +12,17 @@ const createAUser = async (userEmail, userPassword, roleName = 'cft-audit-invest
     password: userPassword,
     surname: 'TestSurname',
     roles: [
-      {code: roleName}
+      {code: roleName},
     ],
   };
 
   const response = await restHelper.retriedRequest(
     `${testingEndpoint}`,
     {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     JSON.stringify(requestBody),
-    'POST'
+    'POST',
   );
 
   return response.json();
@@ -32,10 +32,10 @@ const deleteUser = async (userEmail) => {
   return restHelper.retriedRequest(
     `${testingEndpoint}/${userEmail}`,
     {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     null,
-    'DELETE'
+    'DELETE',
   );
 };
 

@@ -20,7 +20,7 @@ Before(async () => {
   const createdUser = await idamUserHelper.createAUser(
     featureUserEmail,
     featureUserPassword,
-    'iud-test-worker'
+    'iud-test-worker',
   );
   if (createdUser && createdUser.id) {
     testUserId = createdUser.id;
