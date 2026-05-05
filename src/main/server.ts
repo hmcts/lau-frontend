@@ -10,13 +10,15 @@ new PropertiesVolume().enableFor(env);
 appInsights.enable();
 
 const shutdown = async () => {
-  await appInsights.flush();
+  try {
+    await appInsights.flush();
+  } finally {
+    process.exit(0);
+  }
+
 };
-process.on('beforeExit', shutdown);
 process.on('SIGINT', shutdown);
 process.on('SIGTERM', shutdown);
-process.on('uncaughtException', shutdown);
-process.on('unhandledRejection', shutdown);
 
 import { app } from './app';
 import logger from './modules/logging';
