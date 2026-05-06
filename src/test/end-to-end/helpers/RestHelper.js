@@ -20,7 +20,7 @@ const retriedRequest = async (url, headers = {}, body = null, method = null) => 
         ...headers,
       },
       ...(body && { body: typeof body === 'string' ? body : JSON.stringify(body) }),
-    })
+    }),
   );
 };
 

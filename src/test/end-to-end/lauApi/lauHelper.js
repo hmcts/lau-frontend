@@ -129,5 +129,5 @@ module.exports = {
   getPdfPath,
   assertCsvLineCount,
   assertPdfHeader,
-  waitForPdfPath
+  waitForPdfPath,
 };

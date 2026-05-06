@@ -152,6 +152,7 @@
     "rimraf@npm:3.0.2/glob": "^9.0.0",
     "shelljs/glob": "^9.0.0",
     "test-exclude/glob": "^9.0.0",
-    "protobufjs": "^8.0.1"
+    "protobufjs": "^8.0.1",
+    "uuid": "^11.1.1"
   }
 }
