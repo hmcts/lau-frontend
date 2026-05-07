@@ -38,7 +38,8 @@ const setUserRoleEndpoints = (app: express.Express): void => {
   });
 
   app.get('/set-role/:role', (req: AppRequest, res) => {
-    req.session.user.roles.push(req.params.role);
+    const role = req.params.role as string;
+    req.session.user.roles.push(role);
     req.session.save(() => res.redirect('/'));
   });
 

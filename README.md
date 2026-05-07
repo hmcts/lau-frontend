@@ -30,7 +30,7 @@ This service will allow an investigator to see a report detailing all case inter
 
 Running the application requires the following tools to be installed in your environment:
 
-  * [Node.js](https://nodejs.org/) v24.14.0 or later
+  * [Node.js](https://nodejs.org/) v24.14.1 or later
   * [yarn](https://yarnpkg.com/)
   * [Docker](https://www.docker.com)
 
