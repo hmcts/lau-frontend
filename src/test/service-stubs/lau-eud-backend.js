@@ -8,8 +8,10 @@ const app = express();
 const router = express.Router();
 const BACKEND_PORT = config.get('services.lau-eud-backend.port');
 const USER_DETAILS_ENDPOINT = config.get('services.lau-eud-backend.endpoints.userDetails');
+const USER_ACCOUNT_UPDATES_ENDPOINT = config.get('services.lau-eud-backend.endpoints.userAccountUpdates');
 
 const userDetails = require('../data/userDetails.json');
+const userAccountUpdates = require('../data/userAccountUpdates.json');
 
 app.use(express.json());
 
@@ -24,6 +26,13 @@ router.get(USER_DETAILS_ENDPOINT, (req, res) => {
   res.status(200);
 
   res.json(userDetails);
+});
+
+router.get(USER_ACCOUNT_UPDATES_ENDPOINT, (req, res) => {
+  res.contentType('application/json');
+  res.status(200);
+
+  res.json(userAccountUpdates);
 });
 
 app.use(router);
