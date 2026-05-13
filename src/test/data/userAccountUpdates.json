@@ -1,0 +1,22 @@
+{
+  "page": 0,
+  "size": 1,
+  "totalElements": 2,
+  "totalPages": 1,
+  "content": [{
+    "eventName": "email",
+    "eventType": "Modify",
+    "value": "current-email@example.org",
+    "timestamp": "2024-06-17T12:00:00.000Z",
+    "principalId": "abcd-1234-5678-efgh",
+    "previousValue": "previous-email@example.org"
+  },
+  {
+    "eventName": "Roles",
+    "eventType": "Modify",
+    "value": "prd-admin",
+    "timestamp": "2024-06-18T12:00:00.000Z",
+    "principalId": "abcd-1234-5678-efgh",
+    "previousValue": null
+  }]
+}

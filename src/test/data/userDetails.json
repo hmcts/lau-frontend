@@ -1,0 +1,22 @@
+{
+  "userId": "1234-5678",
+  "email": "email@example.org",
+  "accountStatus": "ACTIVE",
+  "recordType": "LIVE",
+  "accountCreationDate": "2025-11-17T14:32:43.012",
+  "roles": ["user", "citizen"],
+  "organisationalAddress": [{
+    "addressLine1": "249 Redcatch Rd",
+    "townCity": "Bristol",
+    "country": "England",
+    "postCode": "BS4 2HQ"
+  }],
+  "meta": {
+    "idam": {
+      "responseCode": 200
+    },
+    "refdata": {
+      "responseCode": 200
+    }
+  }
+}
