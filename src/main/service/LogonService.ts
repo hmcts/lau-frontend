@@ -19,7 +19,7 @@ export class LogonService extends BaseService<LogonSearchRequest> {
       searchParameters.page = 1;
       searchParameters.size = req.session.logons?.totalNumberOfRecords || 0;
     }
-    logger.info('getLogons: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
+    logger.info('getLogons called', {...searchParameters, 'CSV': csv});
     return this.get(req.session, endpoint, this.getQueryString(searchParameters)) as Promise<LogonAudit>;
   }
 }

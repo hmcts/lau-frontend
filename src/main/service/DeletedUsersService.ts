@@ -18,7 +18,7 @@ export class DeletedUsersService extends BaseService<DeletedUsersSearchRequest> 
       searchParameters.page = 1;
       searchParameters.size = req.session.userDeletions?.totalNumberOfRecords || 0;
     }
-    logger.info('getDeletedUsers: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
+    logger.info('getDeletedUsers called', {...searchParameters, 'CSV': csv});
     return this.get(req.session, endpoint, this.getQueryString(searchParameters)) as Promise<DeletedUsersAudit>;
   }
 }

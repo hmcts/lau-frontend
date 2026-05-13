@@ -1,12 +1,24 @@
 #!/usr/bin/env node
 
-import {AppInsights} from './modules/appinsights';
+// appinsights and properties volume need to be above app import
+import {appInsights} from './modules/appinsights';
 import {PropertiesVolume} from './modules/properties-volume';
 
 const env = process.env.NODE_ENV || 'development';
 
 new PropertiesVolume().enableFor(env);
-new AppInsights().enable();
+appInsights.enable();
+
+const shutdown = async () => {
+  try {
+    await appInsights.flush();
+  } finally {
+    process.exit(0);
+  }
+
+};
+process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown);
 
 import { app } from './app';
 import logger from './modules/logging';

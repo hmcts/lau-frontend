@@ -13,7 +13,6 @@ import {
 import {AppError, ErrorCode} from '../../../main/models/AppError';
 import {UserDetailsViewModel} from '../../../main/models/user-details/UserDetailsAuditData';
 
-
 describe('UserDetailsController.post', () => {
   const makeRes = () => ({ redirect: jest.fn() });
 

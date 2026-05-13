@@ -185,6 +185,69 @@ describe('AuthService', () => {
       expect((expectedExpire - 3) < userDetails.expiresAt && userDetails.expiresAt < (expectedExpire + 3)).toBeTruthy();
     });
 
+    it('waits for the session save to complete before resolving', async () => {
+      const idamResponse: IdamResponseData = {
+        access_token: 'accessToken',
+        refresh_token: 'refreshToken',
+        scope: 'scope',
+        id_token: serviceToken,
+        token_type: 'tokenType',
+        expires_in: 123,
+      };
+
+      nock(config.get('services.idam-api.url'))
+        .post(config.get('services.idam-api.endpoints.token'))
+        .reply(200, idamResponse);
+
+      let releaseSave: (() => void) | undefined;
+      let saveCalledResolve: (() => void) | undefined;
+      const saveCalled = new Promise<void>(resolve => {
+        saveCalledResolve = resolve;
+      });
+      const session = {
+        save: (callback: (error?: unknown) => void) => {
+          saveCalledResolve?.();
+          releaseSave = () => callback();
+        },
+      };
+
+      let resolved = false;
+      const tokenPromise = authService.getIdAMToken(IdamGrantType.AUTH_CODE, session as AppSession)
+        .then(() => {
+          resolved = true;
+        });
+
+      await saveCalled;
+      expect(resolved).toBeFalsy();
+
+      releaseSave?.();
+      await tokenPromise;
+      expect(resolved).toBeTruthy();
+    });
+
+    it('returns app error code when session save fails', async () => {
+      const idamResponse: IdamResponseData = {
+        access_token: 'accessToken',
+        refresh_token: 'refreshToken',
+        scope: 'scope',
+        id_token: serviceToken,
+        token_type: 'tokenType',
+        expires_in: 123,
+      };
+
+      nock(config.get('services.idam-api.url'))
+        .post(config.get('services.idam-api.endpoints.token'))
+        .reply(200, idamResponse);
+
+      const session = {
+        save: (callback: (error?: unknown) => void) => callback(new Error('save failed')),
+      };
+
+      await expect(authService.getIdAMToken(IdamGrantType.AUTH_CODE, session as AppSession))
+        .rejects
+        .toThrow('save failed');
+    });
+
     it('requests a token refresh', async () => {
       const idamResponse: IdamResponseData = {
         access_token: 'accessToken',

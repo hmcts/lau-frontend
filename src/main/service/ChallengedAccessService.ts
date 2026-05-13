@@ -19,7 +19,7 @@ export class challengedAccessService extends BaseService<CaseChallengedAccessReq
       searchParameters.page = 1;
       searchParameters.size = req.session.challengedAccessData?.totalNumberOfRecords || 0;
     }
-    logger.info('getChallengedAccess: ' + JSON.stringify(searchParameters) + ' CSV: ' + csv);
+    logger.info('getChallengedAccess called', {...searchParameters, 'CSV': csv});
     return this.get(req.session, endpoint, this.getQueryString(searchParameters)) as Promise<CaseChallengedAccesses>;
   }
 }

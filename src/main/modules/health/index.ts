@@ -1,16 +1,15 @@
 import { Application } from 'express';
 import {MetadataObj} from '../../models/common';
 import * as os from 'os';
-import Redis from 'ioredis';
+import type { RedisClientType } from 'redis';
 
 interface HealthResponse {
   body: { status: string; }
 }
 
 import logger from '../../modules/logging';
-const healthcheck = require('@hmcts/nodejs-healthcheck');
-
-const config = require('config');
+import config from 'config';
+import * as healthcheck from '@hmcts/nodejs-healthcheck';
 
 /**
  * Sets up the HMCTS info and health endpoints
@@ -23,7 +22,9 @@ export class HealthCheck {
     const services = [
       'lau-case-backend',
       'lau-idam-backend',
+      'lau-eud-backend',
       'idam-api',
+      'hmcts-access',
       's2s',
     ];
 
@@ -43,7 +44,7 @@ export class HealthCheck {
       checks,
       readinessChecks,
       buildInfo: {
-        name: config.service.name,
+        name: config.get('service.name') as string,
         host: os.hostname(),
         uptime: process.uptime(),
       },
@@ -68,7 +69,7 @@ export class HealthCheck {
   }
 
   private redisHealthCheck(app: Application) {
-    const redisClient: Redis = app.locals.redisClient;
+    const redisClient = app.locals.redisClient as RedisClientType;
 
     return healthcheck.raw(async () => {
       const healthy = await this.getRedisHealth(redisClient);
@@ -79,7 +80,7 @@ export class HealthCheck {
     });
   }
 
-  private getRedisHealth(redisClient: Redis, timeout = 5000): Promise<boolean> {
+  private getRedisHealth(redisClient: RedisClientType, timeout = 5000): Promise<boolean> {
     // If the ping response is not returned within the specified timeout, false is return.
     return Promise.race([
       redisClient.ping().then(value => value === 'PONG'),
