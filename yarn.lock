@@ -4553,13 +4553,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/config@npm:^3.0.0":
-  version: 3.3.5
-  resolution: "@types/config@npm:3.3.5"
-  checksum: 10/6e8595d00e4df85e3e982f812a3fdfd9a952df11776800b0ddf7893963fc179c684a2d82c84f2160d09e90345bce7cb68a49c95dc864f0c9052019ea2c0e31bb
-  languageName: node
-  linkType: hard
-
 "@types/connect@npm:*":
   version: 3.4.38
   resolution: "@types/connect@npm:3.4.38"
@@ -11940,7 +11933,6 @@ __metadata:
     "@stryker-mutator/jest-runner": "npm:^9.0.1"
     "@types/chai-as-promised": "npm:^8.0.0"
     "@types/compression": "npm:^1.8.1"
-    "@types/config": "npm:^3.0.0"
     "@types/cookie-parser": "npm:^1.4.2"
     "@types/es6-promisify": "npm:^6.0.0"
     "@types/express": "npm:^5.0.0"

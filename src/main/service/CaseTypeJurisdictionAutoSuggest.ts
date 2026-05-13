@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import {IConfig} from 'config';
+import {Config} from 'config';
 
 import logger from '../modules/logging';
 import path from 'path';
@@ -25,7 +25,7 @@ export class CaseTypeJurisdictionAutoSuggest implements AutoSuggestService {
   private is_development: boolean;
   private staticData: JurisdictionsCaseTypes;
 
-  constructor(config: IConfig) {
+  constructor(config: Config) {
     this.staticData = {jurisdictions: [], caseTypes: []};
     this.is_development = JSON.parse(config.get('is_dev'));
     this.dataFile = this.is_development ? 'data/auto-suggest-data-dev.json' : 'data/auto-suggest-data-prod.json';

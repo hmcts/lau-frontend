@@ -44,7 +44,6 @@
     "@opentelemetry/sdk-logs": "0.208.0",
     "@opentelemetry/semantic-conventions": "1.38.0",
     "@types/compression": "^1.8.1",
-    "@types/config": "^3.0.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/es6-promisify": "^6.0.0",
     "@types/express": "^5.0.0",

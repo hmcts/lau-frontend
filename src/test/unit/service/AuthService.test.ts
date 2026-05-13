@@ -1,5 +1,5 @@
 import nock from 'nock';
-import config, {IConfig} from 'config';
+import config, {Config} from 'config';
 import {jwtDecode} from 'jwt-decode';
 
 jest.mock('totp-generator', () => ({
@@ -46,7 +46,7 @@ describe('AuthService', () => {
       });
 
       try {
-        new AuthService(testConfig as unknown as IConfig);
+        new AuthService(testConfig as unknown as Config);
         throw new Error('Expected constructor to throw');
       } catch (err) {
         const appErr = err as AppError;
@@ -62,7 +62,7 @@ describe('AuthService', () => {
       });
 
       try {
-        new AuthService(testConfig as unknown as IConfig);
+        new AuthService(testConfig as unknown as Config);
         throw new Error('Expected constructor to throw');
       } catch (err) {
         const appErr = err as AppError;
