@@ -1,4 +1,4 @@
-import { IConfig } from 'config';
+import { Config } from 'config';
 import {TOTP} from 'totp-generator';
 import {ServiceAuthToken} from '../components/idam/ServiceAuthToken';
 import {jwtDecode} from 'jwt-decode';
@@ -52,7 +52,7 @@ export class AuthService {
   private s2sEnabled: boolean;
 
   constructor(
-    private config: IConfig,
+    private config: Config,
   ) {
     this.idamApiEnabled = Boolean(this.config.get('services.idam-api.enabled'));
     this.clientId = this.config.get('services.idam-api.clientID');
