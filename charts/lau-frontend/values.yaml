@@ -26,6 +26,9 @@ nodejs:
     DUMMY_RESTART_VAR: 1
     IS_DEV: true
     OTEL_SERVICE_NAME: lau-frontend
+    # Disable Azure Monitor exporter internal statsbeat metrics.
+    # Statsbeat crashes in k8s via @opentelemetry/sdk-metrics ObservableRegistry / Promise.allSettled.
+    APPLICATION_INSIGHTS_NO_STATSBEAT: true
     USER_DETAILS_PAGE_ENABLED: true
 
   keyVaults:
