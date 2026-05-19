@@ -18,7 +18,7 @@
     "build:server": "tsc",
     "test": "NODE_ENV=test jest",
     "test:coverage": "NODE_ENV=test jest --coverage",
-    "test:a11y": "NODE_ENV=test jest -c jest.a11y.config.js --maxWorkers 1",
+    "test:a11y": "PUPPETEER_SKIP_DOWNLOAD=false PUPPETEER_SKIP_CHROME_DOWNLOAD=false PUPPETEER_SKIP_CHROME_HEADLESS_SHELL_DOWNLOAD=true node node_modules/puppeteer/install.mjs && NODE_ENV=test jest -c jest.a11y.config.js --maxWorkers 1",
     "sonar-scan": "sonar-scanner",
     "fortifyScan": "./src/test/java/gradlew -p src/test/java fortifyScan",
     "test:smoke": "./bin/run-smoke-tests.sh",
