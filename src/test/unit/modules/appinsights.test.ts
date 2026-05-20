@@ -35,6 +35,11 @@ import config from 'config';
 import { AzureMonitorLogExporter } from '@azure/monitor-opentelemetry-exporter';
 import { SeverityNumber } from '@opentelemetry/api-logs';
 import { BatchLogRecordProcessor, LoggerProvider } from '@opentelemetry/sdk-logs';
+import {
+  ATTR_EXCEPTION_MESSAGE,
+  ATTR_EXCEPTION_STACKTRACE,
+  ATTR_EXCEPTION_TYPE,
+} from '@opentelemetry/semantic-conventions';
 import { AppInsights } from '../../../main/modules/appinsights';
 
 describe('AppInsights', () => {
@@ -107,6 +112,42 @@ describe('AppInsights', () => {
       severityText: 'error',
       attributes: {
         requestId: 'abc-123',
+      },
+    }));
+  });
+
+  it('emits errors as Azure Monitor exception log records', () => {
+    mockedConfigGet.mockImplementation((key: string) => {
+      const values: Record<string, unknown> = {
+        'appInsights.connectionString': 'InstrumentationKey=test',
+        'service.name': 'lau-frontend',
+      };
+
+      return values[key];
+    });
+    const appInsights = new AppInsights();
+    appInsights.enable();
+    mockEmit.mockClear();
+    const error = new TypeError('Cannot read properties of undefined');
+    error.stack = 'TypeError: Cannot read properties of undefined\n    at getTokenFromRequest';
+
+    appInsights.trackException(error, {
+      method: 'POST',
+      path: '/case-search',
+      statusCode: 500,
+    });
+
+    expect(mockEmit).toHaveBeenCalledWith(expect.objectContaining({
+      body: 'Cannot read properties of undefined',
+      severityNumber: SeverityNumber.ERROR,
+      severityText: 'error',
+      attributes: {
+        [ATTR_EXCEPTION_TYPE]: 'TypeError',
+        [ATTR_EXCEPTION_MESSAGE]: 'Cannot read properties of undefined',
+        [ATTR_EXCEPTION_STACKTRACE]: 'TypeError: Cannot read properties of undefined\n    at getTokenFromRequest',
+        method: 'POST',
+        path: '/case-search',
+        statusCode: 500,
       },
     }));
   });
