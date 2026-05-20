@@ -2,7 +2,12 @@ import { AzureMonitorLogExporter } from '@azure/monitor-opentelemetry-exporter';
 import { SeverityNumber, type LogAttributes, type Logger } from '@opentelemetry/api-logs';
 import { resourceFromAttributes } from '@opentelemetry/resources';
 import { BatchLogRecordProcessor, LoggerProvider } from '@opentelemetry/sdk-logs';
-import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
+import {
+  ATTR_EXCEPTION_MESSAGE,
+  ATTR_EXCEPTION_STACKTRACE,
+  ATTR_EXCEPTION_TYPE,
+  ATTR_SERVICE_NAME,
+} from '@opentelemetry/semantic-conventions';
 import { correlation } from '../correlation';
 
 import config from 'config';
@@ -63,6 +68,30 @@ export class AppInsights {
     });
   }
 
+  public trackException(error: unknown, properties: Record<string, unknown> = {}): void {
+    if (!this.logger) {
+      console.warn('trackException called before AppInsights client initialised, dropped exception: ', error);
+      return;
+    }
+
+    const traceId = correlation.getTraceId();
+    const exception = AppInsights.exceptionDetails(error);
+
+    this.logger.emit({
+      timestamp: new Date(),
+      severityNumber: SeverityNumber.ERROR,
+      severityText: 'error',
+      body: exception.message,
+      attributes: {
+        ...AppInsights.attributes(properties),
+        [ATTR_EXCEPTION_TYPE]: exception.type,
+        [ATTR_EXCEPTION_MESSAGE]: exception.message,
+        [ATTR_EXCEPTION_STACKTRACE]: exception.stack,
+        ...(traceId ? { traceId } : {}),
+      },
+    });
+  }
+
   public async flush(): Promise<void> {
     await this.loggerProvider?.forceFlush();
   }
@@ -105,6 +134,30 @@ export class AppInsights {
     }
 
     return JSON.stringify(value);
+  }
+
+  private static exceptionDetails(error: unknown): { type: string; message: string; stack: string } {
+    if (error instanceof Error) {
+      return {
+        type: error.name || 'Error',
+        message: error.message || String(error),
+        stack: error.stack || error.message || String(error),
+      };
+    }
+
+    let message: string;
+
+    try {
+      message = typeof error === 'string' ? error : JSON.stringify(error) ?? String(error);
+    } catch {
+      message = String(error);
+    }
+
+    return {
+      type: 'Error',
+      message,
+      stack: message,
+    };
   }
 }
 
