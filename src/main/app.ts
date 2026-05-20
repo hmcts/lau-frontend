@@ -5,7 +5,6 @@ import compression from 'compression';
 import {Helmet} from './modules/helmet';
 import * as path from 'path';
 import favicon from 'serve-favicon';
-import {HTTPError} from './HttpError';
 import {Nunjucks} from './modules/nunjucks';
 import {CSRFToken} from './modules/csrf';
 import {SessionStorage} from './modules/session';
@@ -13,6 +12,7 @@ import {OidcMiddleware} from './modules/oidc';
 import {HealthCheck} from './modules/health';
 import {Container} from './modules/awilix';
 import { correlation } from './modules/correlation';
+import { appInsights } from './modules/appinsights';
 
 import config from 'config';
 import {AutoSuggest} from './modules/autosuggest/AutoSuggest';
@@ -52,6 +52,10 @@ import logger from './modules/logging';
 logger.info('Environment: ' + env);
 logger.info(`User details page enabled? - ${config.get('pages.userDetailsEnabled')}`);
 
+type ExpressError = Error & {
+  status?: number;
+};
+
 setupDev(app, developmentMode);
 setupTest(app);
 
@@ -76,12 +80,24 @@ app.use((req, res) => {
 });
 
 // error handler
-app.use((err: HTTPError, req: express.Request, res: express.Response) => {
+app.use((err: ExpressError, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const statusCode = err.status || 500;
+
+  appInsights.trackException(err, {
+    method: req.method,
+    path: req.path,
+    statusCode,
+  });
+
   logger.error(`${err.stack || err}`);
+
+  if (res.headersSent) {
+    return next(err);
+  }
 
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = env === 'development' ? err : {};
-  res.status(err.status || 500);
+  res.status(statusCode);
   res.render('common/error');
 });
