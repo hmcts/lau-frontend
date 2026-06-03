@@ -16,7 +16,7 @@ import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 @autobind
 export class LogonController {
 
-  private service = new LogonService();
+  private readonly service = new LogonService();
 
   public async getLogData(req: AppRequest): Promise<LogData> {
     logger.info('getLogData called');

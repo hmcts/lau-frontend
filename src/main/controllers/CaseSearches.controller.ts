@@ -17,7 +17,7 @@ import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 @autobind
 export class CaseSearchesController {
 
-  private service = new CaseService();
+  private readonly service = new CaseService();
 
   public async getLogData(req: AppRequest): Promise<LogData> {
     logger.info('getLogData called');
@@ -49,7 +49,7 @@ export class CaseSearchesController {
         });
       });
     } else {
-      return Promise.resolve(null);
+      return null;
     }
   }
 
@@ -102,7 +102,7 @@ export class CaseSearchesController {
   private formatRowData(log: CaseSearchLog, key: keyof CaseSearchLog): {text: string, classes?: string} {
     switch (key) {
       case 'caseRefs':
-        return { text: String(log[key]).replace(/,/g, ', '), classes: 'overflow-wrap' };
+        return { text: String(log[key]).replaceAll(',', ', '), classes: 'overflow-wrap' };
       case 'timestamp':
         return { text: requestDateToFormDate(log[key]), classes: 'overflow-wrap' };
       default:

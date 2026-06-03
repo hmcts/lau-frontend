@@ -1,0 +1,11 @@
+# This is a Gradle generated file for dependency locking.
+# Manual edits can break the build and are not advised.
+# This file is expected to be part of source control.
+ch.qos.logback:logback-classic:1.5.18=testRuntimeClasspath
+ch.qos.logback:logback-core:1.5.18=testRuntimeClasspath
+com.github.hmcts:fortify-client:1.4.9=testCompileClasspath,testRuntimeClasspath
+commons-io:commons-io:2.19.0=testRuntimeClasspath
+org.apache.commons:commons-lang3:3.17.0=testRuntimeClasspath
+org.slf4j:slf4j-api:2.0.17=testCompileClasspath,testRuntimeClasspath
+org.slf4j:slf4j-simple:2.0.17=testCompileClasspath,testRuntimeClasspath
+empty=annotationProcessor,compileClasspath,runtimeClasspath,testAnnotationProcessor

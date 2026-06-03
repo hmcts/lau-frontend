@@ -5,6 +5,6 @@ function cookiesHandler(req: Request, res: Response) {
   res.render('footer/cookies/template', content);
 }
 
-export default function (app: Application): void {
+export default function registerCookiesRoute(app: Application): void {
   app.get('/cookies', cookiesHandler);
 }

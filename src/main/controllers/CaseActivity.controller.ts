@@ -16,7 +16,7 @@ import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 @autobind
 export class CaseActivityController {
 
-  private service = new CaseService();
+  private readonly service = new CaseService();
 
   public async getLogData(req: AppRequest): Promise<LogData> {
     logger.info('getLogData called');

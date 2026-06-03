@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import {Config} from 'config';
 
 import logger from '../modules/logging';
-import path from 'path';
+import path from 'node:path';
 import {AutoSuggestService} from '../modules/autosuggest/AutoSuggestService';
 import autobind from 'autobind-decorator';
 
@@ -22,7 +22,7 @@ const resourcesDirectory = path.join(__dirname, '../resources');
 export class CaseTypeJurisdictionAutoSuggest implements AutoSuggestService {
 
   private readonly dataFile: string;
-  private is_development: boolean;
+  private readonly is_development: boolean;
   private staticData: JurisdictionsCaseTypes;
 
   constructor(config: Config) {

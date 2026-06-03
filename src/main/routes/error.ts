@@ -6,6 +6,6 @@ function errorHandler(req: Request, res: Response) {
   });
 }
 
-export default function (app: Application): void {
+export default function registerErrorRoute(app: Application): void {
   app.get('/error', errorHandler);
 }

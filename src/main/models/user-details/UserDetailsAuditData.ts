@@ -1,7 +1,6 @@
 import {escape} from 'lodash';
 
 export type GovukTableRow = {text: string}[]
-type ISODateTimeString = string;
 type UpstreamResponse = { responseCode: number}
 
 export const NOT_AVAILABLE_MSG = 'Not available - try again later';
@@ -56,7 +55,7 @@ export interface UserDetailsAuditData {
   email: string | null;
   accountStatus: AccountStatus | null;
   recordType: AccountRecordType | null;
-  accountCreationDate: ISODateTimeString | null;
+  accountCreationDate: string | null;
   roles: string[];
   organisationalAddress: Address[];
   hasData?: boolean;
@@ -68,7 +67,7 @@ export interface UserUpdatesAuditData {
   eventName: string;
   eventType: UpdateEventType;
   value: string;
-  timestamp: ISODateTimeString;
+  timestamp: string;
   principalId: string;
   previousValue: string | null;
 }
