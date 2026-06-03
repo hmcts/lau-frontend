@@ -35,7 +35,7 @@
     "stub:lau-eud-backend": "NODE_PATH=. node src/test/service-stubs/lau-eud-backend.js"
   },
   "dependencies": {
-    "@azure/monitor-opentelemetry-exporter": "1.0.0-beta.41",
+    "@azure/monitor-opentelemetry-exporter": "1.0.0-beta.42",
     "@hmcts/cookie-manager": "^1.0.0",
     "@hmcts/nodejs-healthcheck": "^1.8.6",
     "@hmcts/properties-volume": "~1.4.0",
