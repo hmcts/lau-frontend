@@ -2,7 +2,7 @@ import {Application} from 'express';
 import {CaseActivityController} from '../controllers/CaseActivity.controller';
 import {CaseSearchesController} from '../controllers/CaseSearches.controller';
 
-export default function (app: Application): void {
+export default function registerCaseActivityRoutes(app: Application): void {
   const activityController = new CaseActivityController();
   app.get('/case-activity/page/:pageNumber', activityController.getPage);
   app.get('/case-activity/csv', activityController.getCsv);

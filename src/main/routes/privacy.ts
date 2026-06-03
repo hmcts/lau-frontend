@@ -5,6 +5,6 @@ function privacyHandler(req: Request, res: Response) {
   res.render('footer/privacy-policy/template', content);
 }
 
-export default function (app: Application): void {
+export default function registerPrivacyRoute(app: Application): void {
   app.get('/privacy', privacyHandler);
 }

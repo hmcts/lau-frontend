@@ -11,8 +11,8 @@ export abstract class BaseService<RequestType> {
   abstract baseApiUrl: string;
   abstract errorCode: ErrorCode;
 
-  private authService: AuthService;
-  private s2sEnabled: string = config.get('services.s2s.enabled');
+  private readonly authService: AuthService;
+  private readonly s2sEnabled: string = config.get('services.s2s.enabled');
 
   constructor(authService?: AuthService) {
     // Allow for Inversion of Control
@@ -44,8 +44,7 @@ export abstract class BaseService<RequestType> {
       }
 
       const jsonData = await response.json();
-
-      return JSON.parse(JSON.stringify(jsonData));
+      return structuredClone(jsonData);
     } catch (err) {
       logger.error(err);
 

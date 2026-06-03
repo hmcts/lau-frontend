@@ -21,6 +21,6 @@ async function activeHandler(req: AppRequest, res: Response) {
   });
 }
 
-export default function (app: Application): void {
+export default function registerActiveRoute(app: Application): void {
   app.get('/active', activeHandler as RequestHandler);
 }

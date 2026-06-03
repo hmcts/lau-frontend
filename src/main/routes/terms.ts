@@ -5,6 +5,6 @@ function termsHandler(req: Request, res: Response) {
   res.render('footer/terms-and-conditions/template', content);
 }
 
-export default function (app: Application): void {
+export default function registerTermsRoute(app: Application): void {
   app.get('/terms-and-conditions', termsHandler);
 }

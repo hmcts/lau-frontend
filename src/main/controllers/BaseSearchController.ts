@@ -124,7 +124,7 @@ export abstract class BaseSearchController<SearchType extends SearchTypeCommon> 
       key !== 'endTimestamp'
       ) {
       // Sanitize all string fields except timestamps
-        request[typedKey] = this.sanitizeInput(request[typedKey] as string) as unknown as SearchType[typeof typedKey];
+        request[typedKey] = this.sanitizeInput(request[typedKey]) as unknown as SearchType[typeof typedKey];
       }
     });
 

@@ -13,7 +13,7 @@ import logger from '../modules/logging';
  */
 @autobind
 export class CaseChallengedAccessSearchController extends BaseSearchController<CaseChallengedAccessRequest> {
-  private caseChallengedAccessController = new CaseChallengedAccessController();
+  private readonly caseChallengedAccessController = new CaseChallengedAccessController();
 
   formId = 'caseChallengedAccessSearchForm';
   requiredFields = [

@@ -14,7 +14,7 @@ import logger from '../modules/logging';
  */
 @autobind
 export class DeletedUsersSearchController extends BaseSearchController<DeletedUsersSearchRequest> {
-  private deletedUsersController = new DeletedUsersController();
+  private readonly deletedUsersController = new DeletedUsersController();
 
   formId = 'deletedUsersSearchForm';
   requiredFields = [

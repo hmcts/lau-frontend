@@ -14,8 +14,8 @@ import logger from '../modules/logging';
  */
 @autobind
 export class CaseSearchController extends BaseSearchController<CaseSearchRequest> {
-  private caseActivityController = new CaseActivityController();
-  private caseSearchesController = new CaseSearchesController();
+  private readonly caseActivityController = new CaseActivityController();
+  private readonly caseSearchesController = new CaseSearchesController();
 
   formId = 'caseSearchForm';
   requiredFields = [
