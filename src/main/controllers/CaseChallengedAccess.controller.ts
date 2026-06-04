@@ -7,7 +7,7 @@ import {Response} from 'express';
 import {CaseChallengedAccesses} from '../models/challenged-access/CaseChallengedAccesses';
 import {CaseChallengedAccessLog, CaseChallengedAccessLogs, caseChallengedAccessLogOrder} from '../models/challenged-access/CaseChallengedAccessLogs';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
-import {challengedAccessService} from '../service/ChallengedAccessService';
+import {ChallengedAccessService} from '../service/ChallengedAccessService';
 import {csvDate, requestDateToFormDate} from '../util/Date';
 import {csvJson} from '../util/CsvHandler';
 
@@ -17,7 +17,7 @@ import {csvJson} from '../util/CsvHandler';
 @autobind
 export class CaseChallengedAccessController {
 
-  private service = new challengedAccessService();
+  private readonly service = new ChallengedAccessService();
 
   public async getLogData(req: AppRequest): Promise<LogData> {
     logger.info('getLogData called');
@@ -93,7 +93,7 @@ export class CaseChallengedAccessController {
 
   private getFieldText(fieldName: string, log: CaseChallengedAccessLog): string {
     if (fieldName === 'reason') {
-      return log[fieldName] == null ? 'N/A' : log[fieldName];
+      return log[fieldName] ?? 'N/A';
     }
 
     if (fieldName === 'timestamp' || fieldName === 'requestEndTimestamp') {

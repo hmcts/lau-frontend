@@ -18,7 +18,6 @@ export class UserUpdatesService extends BaseService<UserUpdatesSearchRequest> {
   public async getUserUpdates(session: AppSession, userId: string): Promise<UserUpdatesAuditData[]> {
     const qs = this.getQueryString({ userId, size: this.pageSize });
     const updatesResponse = await this.get(session, this.userUpdatesEndpoint, qs) as UserUpdatesAuditDataResponse;
-    // TODO there is a potential for more than one page though unlikely anyone would go over 100 updates
     return updatesResponse.content;
   }
 }

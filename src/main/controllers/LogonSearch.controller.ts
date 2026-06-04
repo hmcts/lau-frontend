@@ -14,7 +14,7 @@ import logger from '../modules/logging';
  */
 @autobind
 export class LogonSearchController extends BaseSearchController<LogonSearchRequest> {
-  private logonsController = new LogonController();
+  private readonly logonsController = new LogonController();
 
   formId = 'logonSearchForm';
   requiredFields = [

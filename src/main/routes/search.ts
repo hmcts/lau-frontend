@@ -7,7 +7,7 @@ import {CaseChallengedAccessSearchController} from '../controllers/CaseChallenge
 import {UserDetailsController} from '../controllers/UserDetails.controller';
 
 
-export default function (app: Application): void {
+export default function registerSearchRoutes(app: Application): void {
   app.post('/case-search', (new CaseSearchController().post));
   app.post('/logon-search', (new LogonSearchController().post));
   app.post('/case-deletions-search', (new CaseDeletionsSearchController().post));
