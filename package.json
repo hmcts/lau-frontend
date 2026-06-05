@@ -21,7 +21,7 @@
     "test:a11y": "PUPPETEER_SKIP_DOWNLOAD=false PUPPETEER_SKIP_CHROME_DOWNLOAD=false PUPPETEER_SKIP_CHROME_HEADLESS_SHELL_DOWNLOAD=true node node_modules/puppeteer/install.mjs && NODE_ENV=test jest -c jest.a11y.config.js --maxWorkers 1",
     "sonar-scan": "sonar-scanner",
     "fortifyScan": "./src/test/java/gradlew -p src/test/java fortifyScan",
-    "test:smoke": "./bin/run-smoke-tests.sh",
+    "test:smoke": "PUPPETEER_SKIP_DOWNLOAD=false PUPPETEER_SKIP_CHROME_DOWNLOAD=false PUPPETEER_SKIP_CHROME_HEADLESS_SHELL_DOWNLOAD=true node node_modules/puppeteer/install.mjs && ./bin/run-smoke-tests.sh",
     "test:mutation": "yarn build && NODE_ENV=test stryker run src/test/mutation/stryker.conf.js",
     "test:functional": "NODE_PATH=. node ./node_modules/codeceptjs/bin/codecept.js run-multiple parallel -c ./src/test/end-to-end/ --steps --reporter mocha-multi",
     "test:fullfunctional": "./bin/run-e2e-tests.sh",
