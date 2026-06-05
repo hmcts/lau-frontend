@@ -14,7 +14,7 @@ import logger from '../modules/logging';
  */
 @autobind
 export class CaseDeletionsSearchController extends BaseSearchController<CaseDeletionsSearchRequest> {
-  private caseDeletionsController = new CaseDeletionsController();
+  private readonly caseDeletionsController = new CaseDeletionsController();
 
   formId = 'caseDeletionsSearchForm';
   requiredFields = [

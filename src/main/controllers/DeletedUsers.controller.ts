@@ -16,7 +16,7 @@ import logger from '../modules/logging';
 @autobind
 export class DeletedUsersController {
 
-  private service = new DeletedUsersService();
+  private readonly service = new DeletedUsersService();
 
   public async getDeletedUsersData(req: AppRequest): Promise<LogData> {
     logger.info('getDeletedUsersData called');

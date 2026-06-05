@@ -5,6 +5,6 @@ function accessibilityHandler(req: Request, res: Response) {
   res.render('footer/accessibility-statement/template', content);
 }
 
-export default function (app: Application): void {
+export default function registerAccessibilityRoute(app: Application): void {
   app.get('/accessibility', accessibilityHandler);
 }

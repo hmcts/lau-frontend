@@ -41,24 +41,26 @@ export enum IdamGrantType {
 
 export class AuthService {
 
-  private clientId: string;
-  private clientSecret: string;
-  private redirectUri: string;
-  private tokenUrl: string;
-  private microserviceName: string;
-  private s2sUrl: string;
-  private totpSecret: string;
-  private idamApiEnabled: boolean;
-  private s2sEnabled: boolean;
+  private readonly clientId: string;
+  private readonly clientSecret: string;
+  private readonly redirectUri: string;
+  private readonly tokenUrl: string;
+  private readonly microserviceName: string;
+  private readonly s2sUrl: string;
+  private readonly totpSecret: string;
+  private readonly idamApiEnabled: boolean;
+  private readonly s2sEnabled: boolean;
 
   constructor(
-    private config: Config,
+    private readonly config: Config,
   ) {
     this.idamApiEnabled = Boolean(this.config.get('services.idam-api.enabled'));
     this.clientId = this.config.get('services.idam-api.clientID');
     this.clientSecret = this.config.get('services.idam-api.clientSecret');
     this.redirectUri = this.config.get('services.idam-api.callbackURL');
-    this.tokenUrl = `${this.config.get('services.idam-api.url')}${this.config.get('services.idam-api.endpoints.token')}`;
+    const idamBaseUrl = this.config.get<string>('services.idam-api.url');
+    const idamTokenPath = this.config.get<string>('services.idam-api.endpoints.token');
+    this.tokenUrl = `${idamBaseUrl}${idamTokenPath}`;
     this.microserviceName = 'lau_frontend';
     this.s2sUrl = this.config.get('services.s2s.url');
     this.totpSecret = this.config.get('services.s2s.lauSecret');

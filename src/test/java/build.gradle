@@ -15,6 +15,10 @@ repositories {
 }
 // end::repositories[]
 
+dependencyLocking {
+  lockAllConfigurations()
+}
+
 // tag::dependencies[]
 dependencies {
     testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.17'

@@ -7,7 +7,7 @@ import {CaseChallengedAccessRequest} from '../models/challenged-access/CaseChall
 import {CaseChallengedAccesses} from '../models/challenged-access/CaseChallengedAccesses';
 import logger from '../modules/logging';
 
-export class challengedAccessService extends BaseService<CaseChallengedAccessRequest> {
+export class ChallengedAccessService extends BaseService<CaseChallengedAccessRequest> {
   baseApiUrl = String(config.get('services.lau-case-backend.url'));
   errorCode = ErrorCode.CASE_BACKEND;
 

@@ -37,7 +37,7 @@ interface Context {
 async function homeHandler(req: AppRequest, res: Response) {
   req.session.fromPost = false;
   const roles = req.session.user?.roles;
-  if (roles && roles.length == 1 && roles.includes('cft-service-logs')) {
+  if (roles?.length == 1 && roles.includes('cft-service-logs')) {
     res.redirect('/case-deletion-audit');
   } else {
     res.redirect('/case-audit');
@@ -159,7 +159,7 @@ export async function userDetailsHandler(req: AppRequest, res: Response) {
   return auditHandler(req, res, 'user-details/template.njk', context);
 }
 
-export default function (app: Application): void {
+export default function registerHomeRoutes(app: Application): void {
   app.get('/', homeHandler);
   app.get('/case-audit', caseHandler);
   app.get('/logon-audit', logonHandler);
