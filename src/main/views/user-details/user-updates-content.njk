@@ -3,7 +3,7 @@
 
 <h2>Account history</h2>
 {% if userDetailsAuditData.updatesStatus === 'EMPTY' %}
-No updates were found.
+There are no account history events for this user.
 {% elif userDetailsAuditData.updatesStatus === 'AVAILABLE' %}
 
 {{ govukTable({
