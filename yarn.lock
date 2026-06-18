@@ -5680,11 +5680,11 @@ __metadata:
   linkType: hard
 
 "awilix@npm:^13.0.0":
-  version: 13.0.3
-  resolution: "awilix@npm:13.0.3"
+  version: 13.0.5
+  resolution: "awilix@npm:13.0.5"
   dependencies:
     fast-glob: "npm:^3.3.3"
-  checksum: 10/f24968b30771c8abe40dd055b79c1a04b9f5cb0a517aeb6f654cf480ba9388522bd5057d023f6f53aa46ac9f3c828bbe110b8bc6316eb797b3377734df51c095
+  checksum: 10/6c6fc8a8804918617b7791bc2838f713e6822072431347211081ecc80082ab3054769d48ebc0e62aabc2968078ec7bba5f76b9612f718c8013005cfcc751b74b
   languageName: node
   linkType: hard
 
@@ -15467,8 +15467,8 @@ __metadata:
   linkType: hard
 
 "ts-loader@npm:^9.5.0":
-  version: 9.6.0
-  resolution: "ts-loader@npm:9.6.0"
+  version: 9.6.1
+  resolution: "ts-loader@npm:9.6.1"
   dependencies:
     chalk: "npm:^4.1.0"
     enhanced-resolve: "npm:^5.0.0"
@@ -15482,7 +15482,7 @@ __metadata:
   peerDependenciesMeta:
     loader-utils:
       optional: true
-  checksum: 10/0f4b5fcafb419aee49b29a68fd05149d3dcdff17fcba7277b866125e3df6bd7ecfd8f7208dd755ace9b371bb3f4cefdc0d3de71da12a9342c3ebd2adb21ca5fc
+  checksum: 10/c0353835445ff31ac5a21f40760c745f7727b1a340058cf44e25791427956fb9f89d2c35dde0ee734677ec747c7e3ff7bbd447ca49ee16cf207d0bfe8118c965
   languageName: node
   linkType: hard
 
