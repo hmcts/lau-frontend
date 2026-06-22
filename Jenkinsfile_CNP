@@ -42,7 +42,6 @@ withEnv([
         export PUPPETEER_SKIP_DOWNLOAD=true
 
         yarn install
-        yarn playwright install
       '''
     }
 
@@ -55,7 +54,6 @@ withEnv([
         export PUPPETEER_SKIP_DOWNLOAD=true
 
         yarn install
-        yarn playwright install
       '''
     }
 
