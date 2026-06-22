@@ -9,25 +9,74 @@ def branchesToSync = ['demo', 'perftest', 'ithc']
 
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
-withPipeline(type, product, component) {
+withEnv([
+    'PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable',
+    'PUPPETEER_SKIP_DOWNLOAD=true'
+]) {
 
-  onPR {
-    env.TEST_E2E_URL = "https://lau-frontend-pr-${CHANGE_ID}.preview.platform.hmcts.net/"
-    env.TEST_FRONT_END_URL = "https://lau-frontend-pr-${CHANGE_ID}.preview.platform.hmcts.net/"
+  withPipeline(type, product, component) {
+
+    before('build') {
+      sh '''
+        rm -rf /home/jenkinsssh/.cache/puppeteer
+        rm -rf /home/jenkinsssh/.cache/puppeteer-core
+
+        if ! command -v google-chrome-stable >/dev/null 2>&1; then
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+        fi
+
+        google-chrome-stable --version || true
+        # Format check (safe, non-blocking)
+        yarn install --immutable || yarn install
+        yarn prettier --write .github/workflows/checks.yml || true
+      '''
+    }
+
+    before('smoketest:preview') {
+      sh '''
+        rm -rf /home/jenkinsssh/.cache/ms-playwright
+        rm -rf /home/jenkinsssh/.cache/puppeteer
+
+        export PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
+        export PUPPETEER_SKIP_DOWNLOAD=true
+
+        yarn install
+        yarn playwright install
+      '''
+    }
+
+    before('smoketest:aat') {
+      sh '''
+        rm -rf /home/jenkinsssh/.cache/ms-playwright
+        rm -rf /home/jenkinsssh/.cache/puppeteer
+
+        export PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
+        export PUPPETEER_SKIP_DOWNLOAD=true
+
+        yarn install
+        yarn playwright install
+      '''
+    }
+
+    onPR {
+      env.TEST_E2E_URL = "https://lau-frontend-pr-${CHANGE_ID}.preview.platform.hmcts.net/"
+      env.TEST_FRONT_END_URL = "https://lau-frontend-pr-${CHANGE_ID}.preview.platform.hmcts.net/"
+    }
+
+    onNonPR() {
+      env.TEST_E2E_URL = "https://lau-frontend-staging.aat.platform.hmcts.net/"
+      env.TEST_FRONT_END_URL = "https://lau-frontend-staging.aat.platform.hmcts.net/"
+    }
+
+    enableAksStagingDeployment()
+    disableLegacyDeployment()
+    enableCveDashboardIngestion()
+    syncBranchesWithMaster(branchesToSync)
+
+    afterAlways('build') {
+      yarnBuilder.yarn('rebuild puppeteer')
+      yarnBuilder.yarn('build')
+    }
   }
-
-  onNonPR() {
-    env.TEST_E2E_URL = "https://lau-frontend-staging.aat.platform.hmcts.net/"
-    env.TEST_FRONT_END_URL = "https://lau-frontend-staging.aat.platform.hmcts.net/"
-  }
-
-  enableAksStagingDeployment()
-  disableLegacyDeployment()
-  enableCveDashboardIngestion()
-  syncBranchesWithMaster(branchesToSync)
-
-  afterAlways('build') {
-    yarnBuilder.yarn('build')
-  }
-
 }
