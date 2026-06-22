@@ -11,11 +11,30 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: '1'
+      PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome-stable
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
         with:
           node-version: 24
-      - run: yarn --version
-      - run: yarn install
-      - run: yarn cichecks
+
+      - name: Enable Corepack
+        run: |
+          corepack enable
+          yarn --version
+
+      - name: Clean Puppeteer cache
+        run: |
+          rm -rf ~/.cache/puppeteer
+          rm -rf ~/.cache/puppeteer-core
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Run CI checks
+        run: yarn cichecks
