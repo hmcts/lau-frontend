@@ -27,7 +27,24 @@ module "lau-frontend-session-storage" {
   sku_name                      = var.sku_name
   family                        = var.family
   capacity                      = var.capacity
+}
 
+module "lau-frontend-managed-redis" {
+  source      = "git@github.com:hmcts/terraform-module-azure-managed-redis?ref=main"
+  product     = var.product
+  location    = var.location
+  env         = var.env
+  common_tags = var.common_tags
+  component   = var.component
+
+  sku_name = var.managed_sku_name
+
+  public_network_access   = "Disabled"
+  create_private_endpoint = true
+  subnet_id               = data.azurerm_subnet.core_infra_redis_subnet.id
+  private_dns_zone_ids    = ["/subscriptions/${var.private_dns_subscription_id}/resourceGroups/core-infra-intsvc-rg/providers/Microsoft.Network/privateDnsZones/privatelink.redis.azure.net"]
+
+  access_keys_authentication_enabled = true
 }
 
 data "azurerm_key_vault" "key_vault" {
@@ -38,6 +55,12 @@ data "azurerm_key_vault" "key_vault" {
 resource "azurerm_key_vault_secret" "redis_access_key" {
   name         = "${var.component}-redis-access-key"
   value        = module.lau-frontend-session-storage.access_key
+  key_vault_id = data.azurerm_key_vault.key_vault.id
+}
+
+resource "azurerm_key_vault_secret" "managed_redis_connection_string" {
+  name         = "managed-redis-connection-string"
+  value        = "rediss://:${urlencode(module.lau-frontend-managed-redis.primary_access_key)}@${module.lau-frontend-managed-redis.hostname}:${module.lau-frontend-managed-redis.port}?tls=true"
   key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
