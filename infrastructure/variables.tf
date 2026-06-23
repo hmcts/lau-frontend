@@ -38,6 +38,11 @@ variable "sku_name" {
   description = "The SKU of Redis to use. Possible values are `Basic`, `Standard` and `Premium`."
 }
 
+variable "managed_sku_name" {
+  default     = "Balanced_B1"
+  description = "The SKU of Redis to use. E.g. Balanced_B1, MemoryOptimized_M10, FlashOptimized_A250"
+}
+
 variable "capacity" {
   default     = "1"
   description = "The size of the Redis cache to deploy. Valid values are 1, 2, 3, 4, 5"
@@ -48,3 +53,6 @@ variable "session_secret_rotation" {
   description = "Bump to rotate the lau session secret."
 }
 
+variable "private_dns_subscription_id" {
+  default = "1baf5470-1c3e-40d3-a6f7-74bfbce4b348"
+}
