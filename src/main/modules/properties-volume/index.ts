@@ -11,6 +11,7 @@ export class PropertiesVolume {
       PropertiesVolume.setSecret('secrets.lau.idam-client-secret', 'services.idam-api.clientSecret');
       PropertiesVolume.setSecret('secrets.lau.s2s-secret', 'services.s2s.lauSecret');
       PropertiesVolume.setSecret('secrets.lau.session-secret', 'session.secret');
+      PropertiesVolume.setSecret('secrets.lau.managed-redis-connection-string', 'redis.connectionString');
     }
   }
 
