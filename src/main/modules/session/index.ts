@@ -46,37 +46,15 @@ export class SessionStorage {
   public getStore(app: Application): RedisStore {
     const redisEnabled = config.get('redis.enabled');
     if (redisEnabled) {
-      const host: string = config.get('redis.host');
-      const password: string = config.get('redis.password');
-      const port: number = config.get('redis.port');
-      const ttl: number = config.get('redis.ttl');
-
-      if (!password || password.trim().length === 0) {
-        throw new Error('Redis password is empty; cannot set up Redis.');
-      }
-
-      logger.info(`Redis Connection - Host: ${host}, Port: ${port}`);
-      const useTLS = config.get('redis.useTLS') === 'true';
-
       const client = createClient({
-        password,
-        socket: useTLS
-          ? { host, port, tls: true, connectTimeout: 15000 }
-          : { host, port, connectTimeout: 15000 },
+        url: config.get('redis.connectionString') as string,
       });
 
-      // Azure Cache for Redis has issues with a 10 minute connection idle timeout, the recommendation is to keep the connection alive
-      // https://gist.github.com/JonCole/925630df72be1351b21440625ff2671f#file-redis-bestpractices-node-js-md
-      client.on('ready', () => {
-        setInterval(() => {
-          void client.ping();
-        }, 60000); // 60s
-      });
       client.on('error', error => logger.error(`Redis client error: ${error}`));
       void client.connect().catch(error => logger.error(`Redis connection failed: ${error}`));
 
       app.locals.redisClient = client;
-      return new RedisStore({ client, ttl });
+      return new RedisStore({ client });
     } else if (config.get('environment') === 'prod') {
       throw new Error('Redis disabled in production!');
     }
