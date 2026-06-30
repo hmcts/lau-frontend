@@ -10,9 +10,6 @@ nodejs:
     REFORM_SERVICE_NAME: lau-frontend
     REFORM_ENVIRONMENT: '{{ .Values.global.environment }}'
     USE_REDIS: true
-    REDIS_USE_TLS: true
-    REDIS_PORT: 6380
-    REDIS_HOST: lau-frontend-session-storage-{{ .Values.global.environment }}.redis.cache.windows.net
     LAU_CASE_BACKEND_URL: http://lau-case-backend-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
     LAU_IDAM_BACKEND_URL: http://lau-idam-backend-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
     LAU_EUD_BACKEND_URL: http://lau-eud-backend-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
@@ -37,7 +34,6 @@ nodejs:
       secrets:
         - managed-redis-connection-string
         - app-insights-connection-string
-        - frontend-redis-access-key
         - idam-client-secret
         - s2s-secret
         - session-secret
