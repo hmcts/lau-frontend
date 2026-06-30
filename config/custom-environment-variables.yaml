@@ -1,10 +1,6 @@
 ---
 testUrl: TEST_URL
 redis:
-  host: REDIS_HOST
-  port: REDIS_PORT
-  password: REDIS_PASSWORD
-  useTLS: REDIS_USE_TLS
   enabled: USE_REDIS
   secret: REDIS_SECRET
 pagination:

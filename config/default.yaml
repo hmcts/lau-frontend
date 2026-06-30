@@ -12,10 +12,7 @@ pagination:
   maxPerPage: 100
   maxTotal: 10000
 redis:
-  host: 'localhost'
-  port: 6379
-  password: 'dummy_password'
-  useTLS: 'false'
+  connectionString: 'redis://:dummy_password@localhost:6379'
   enabled: false
   proxy: true
   resave: false
