@@ -80,11 +80,16 @@ export class HealthCheck {
     });
   }
 
-  private getRedisHealth(redisClient: RedisClientType, timeout = 5000): Promise<boolean> {
-    // If the ping response is not returned within the specified timeout, false is return.
-    return Promise.race([
-      redisClient.ping().then(value => value === 'PONG'),
-      new Promise(resolve => setTimeout(() => resolve(false), timeout)),
-    ]) as Promise<boolean>;
+  private async getRedisHealth(redisClient: RedisClientType, timeout = 5000): Promise<boolean> {
+    try {
+      const reply = await Promise.race([
+        redisClient.ping(),
+        new Promise<'TIMEOUT'>((resolve) => setTimeout(() => resolve('TIMEOUT'), timeout)),
+      ]);
+      return reply === 'PONG';
+    } catch (error) {
+      logger.warn(`Redis PING failed: ${error}`);
+      return false;
+    }
   }
 }

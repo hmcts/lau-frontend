@@ -2,7 +2,7 @@ import config from 'config';
 import { RedisStore } from 'connect-redis';
 import cookieParser from 'cookie-parser';
 import { Application } from 'express';
-import { createClient, type RedisClientType } from 'redis';
+import { createCluster, type RedisClientType } from 'redis';
 import session from 'express-session';
 import type { Store } from 'express-session';
 
@@ -12,7 +12,7 @@ import {AppRequest} from '../../models/appRequest';
 import {AppError, ErrorCode} from '../../models/AppError';
 
 export class SessionStorage {
-  private readonly MemoryStore = require('express-session').MemoryStore;
+  private readonly MemoryStore = session.MemoryStore;
 
   private readonly cookieMaxAgeInMs: number = (config.get('session.cookieMaxAge') as number) * MINUTE_IN_MS;
   private readonly redisTtlInMs: number = (config.get('redis.ttl') as number) * 1000;
@@ -43,15 +43,30 @@ export class SessionStorage {
     app.locals.sessionStore = sessionStore;
   }
 
-  public getStore(app: Application): RedisStore {
+  public getStore(app: Application): Store {
     const redisEnabled = config.get('redis.enabled');
     if (redisEnabled) {
-      const client = createClient({
-        url: config.get('redis.connectionString') as string,
+      const url = new URL(config.get('redis.connectionString') as string);
+      const rootUrl = `${url.protocol}//${url.hostname}:${url.port}`;
+
+      const client = createCluster({
+        rootNodes: [{ url: rootUrl }],
+        defaults: {
+          password: decodeURIComponent(url.password),
+          socket: {
+            tls: true,
+            servername: url.hostname,
+          },
+        },
       });
 
       client.on('error', error => logger.error(`Redis client error: ${error}`));
-      void client.connect().catch(error => logger.error(`Redis connection failed: ${error}`));
+      client.on('reconnecting', () => logger.warn('Redis reconnecting'));
+      client.on('node-connect', node => logger.info(`Redis node connected: ${node.host}:${node.port}`));
+
+      void client.connect()
+        .then(() => logger.info('Redis cluster connected'))
+        .catch(error => logger.error(`Redis cluster connection error: ${error}`));
 
       app.locals.redisClient = client;
       return new RedisStore({ client });
