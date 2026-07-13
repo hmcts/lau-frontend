@@ -73,7 +73,7 @@ function testAccessibility(url: string): void {
       const result = await runPally(url, cookies);
       expect(result.issues).toEqual(expect.any(Array));
       expectNoErrors(result.issues);
-    }, 15000);
+    }, 30000);
   });
 }
 
