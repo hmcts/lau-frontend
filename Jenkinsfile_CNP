@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@cve-dashboard")
+@Library("Infrastructure@2.4.3")
 
 def type = "nodejs"
 def product = "lau"
@@ -69,7 +69,6 @@ withEnv([
 
     enableAksStagingDeployment()
     disableLegacyDeployment()
-    enableCveDashboardIngestion()
     syncBranchesWithMaster(branchesToSync)
 
     afterAlways('build') {
