@@ -5,7 +5,7 @@
   "engines": {
     "node": ">=24.14.1"
   },
-  "packageManager": "yarn@4.17.0",
+  "packageManager": "yarn@4.17.1",
   "scripts": {
     "preinstall": "./bin/preinstalls.sh || true",
     "setup": "NODE_PATH=. node createVersionFile.mjs",
