@@ -61,6 +61,8 @@ export class UserDetailsService extends BaseService<UserDetailsSearchRequest> {
     const base = {
       userId: data.userId ?? userId,
       email: data.email ?? null,
+      forename: data.forename ?? null,
+      surname: data.surname ?? null,
       accountStatus: data.accountStatus ?? null,
       recordType: data.recordType ?? null,
       accountCreationDate: data.accountCreationDate ?? null,
