@@ -34,6 +34,8 @@ describe('UserDetailsService', () => {
     const data: UserDetailsAuditData = {
       userId: '7246bbec-29ed-4029-b8a2-ff76c74c1b10',
       email: 'email@example.net',
+      forename: 'John',
+      surname: 'Smith',
       accountStatus: AccountStatus.ACTIVE,
       recordType: AccountRecordType.LIVE,
       accountCreationDate: '2025-10-01T13:14:15Z',
@@ -148,6 +150,8 @@ describe('UserDetailsService', () => {
     const data: UserDetailsAuditData = {
       userId: '7246bbec-29ed-4029-b8a2-ff76c74c1b10',
       email: 'email@example.net',
+      forename: 'John',
+      surname: 'Smith',
       accountStatus: AccountStatus.ACTIVE,
       recordType: AccountRecordType.LIVE,
       accountCreationDate: '2025-10-01T13:14:15Z',
@@ -184,6 +188,8 @@ describe('UserDetailsService', () => {
     const data: UserDetailsAuditData = {
       userId: null,
       email: null,
+      forename: null,
+      surname: null,
       accountStatus: null,
       recordType: null,
       accountCreationDate: null,
@@ -232,6 +238,8 @@ describe('UserDetailsService', () => {
     const data: UserDetailsAuditData = {
       userId: null,
       email: null,
+      forename: null,
+      surname: null,
       accountStatus: null,
       recordType: null,
       accountCreationDate: null,

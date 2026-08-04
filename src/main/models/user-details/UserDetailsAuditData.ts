@@ -53,6 +53,8 @@ export interface UserDetailsMeta {
 export interface UserDetailsAuditData {
   userId: string;
   email: string | null;
+  forename?: string | null;
+  surname?: string | null;
   accountStatus: AccountStatus | null;
   recordType: AccountRecordType | null;
   accountCreationDate: string | null;
