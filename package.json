@@ -145,7 +145,6 @@
   "resolutions": {
     "body-parser": "^2.3.0",
     "uuid": "^11.1.1",
-    "ws": "^8.21.0",
-    "@opentelemetry/core": "^2.8.0"
+    "ws": "^8.21.0"
   }
 }
