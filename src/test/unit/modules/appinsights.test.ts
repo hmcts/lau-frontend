@@ -73,7 +73,9 @@ describe('AppInsights', () => {
     new AppInsights().enable();
 
     expect(AzureMonitorLogExporter).toHaveBeenCalledWith({ connectionString: 'InstrumentationKey=test' });
-    expect(BatchLogRecordProcessor).toHaveBeenCalledWith(expect.any(AzureMonitorLogExporter));
+    expect(BatchLogRecordProcessor).toHaveBeenCalledWith({
+      exporter: expect.any(AzureMonitorLogExporter),
+    });
     expect(LoggerProvider).toHaveBeenCalledWith(expect.objectContaining({
       resource: { attributes: { 'service.name': 'lau-frontend' } },
       processors: [expect.any(BatchLogRecordProcessor)],

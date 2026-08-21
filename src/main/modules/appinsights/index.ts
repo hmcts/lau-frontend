@@ -36,7 +36,7 @@ export class AppInsights {
           [ATTR_SERVICE_NAME]: process.env.OTEL_SERVICE_NAME || config.get<string>('service.name'),
         }),
         processors: [
-          new BatchLogRecordProcessor(exporter),
+          new BatchLogRecordProcessor({ exporter }),
         ],
       });
       this.logger = this.loggerProvider.getLogger('lau-frontend');
