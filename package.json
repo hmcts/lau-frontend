@@ -23,7 +23,7 @@
     "fortifyScan": "./src/test/java/gradlew -p src/test/java fortifyScan",
     "test:smoke": "PUPPETEER_SKIP_DOWNLOAD=false PUPPETEER_SKIP_CHROME_DOWNLOAD=false PUPPETEER_SKIP_CHROME_HEADLESS_SHELL_DOWNLOAD=true node node_modules/puppeteer/install.mjs && ./bin/run-smoke-tests.sh",
     "test:mutation": "yarn build && NODE_ENV=test stryker run src/test/mutation/stryker.conf.js",
-    "test:functional": "NODE_PATH=. node ./node_modules/codeceptjs/bin/codecept.js run -c ./src/test/end-to-end/ --steps --reporter mocha-multi",
+    "test:functional": "NODE_PATH=. node ./node_modules/codeceptjs/bin/codecept.js run-multiple parallel -c ./src/test/end-to-end/ --steps --reporter mocha-multi",
     "test:fullfunctional": "./bin/run-e2e-tests.sh",
     "test-crossbrowser-e2e": "NODE_PATH=. codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c src/test/end-to-end/saucelabs.conf.js --plugins retryFailedStep --steps --grep '@crossbrowser' --reporter mocha-multi",
     "test:crossbrowser": "./bin/run-crossbrowser-tests.sh",
