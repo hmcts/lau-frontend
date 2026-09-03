@@ -16,11 +16,19 @@ module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
     I.fillField('#username', user.email);
     I.fillField('#password', user.password);
     I.click('Sign in');
-  
+
   });
 
   if (!didClassicLoginWork) {
     const didModernLoginWork = await tryTo(async () => {
+      console.log('IDAM user:', {
+        givenUserType,
+        hasUser: Boolean(user),
+        hasEmail: Boolean(user?.email),
+        hasPassword: Boolean(user?.password),
+      });
+
+
       I.see('Enter your email address', 'h1');
       I.fillField('#email', user.email);
       I.click('Continue');
