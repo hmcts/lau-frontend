@@ -59,7 +59,7 @@
     "autobind-decorator": "^2.4.0",
     "awilix": "^13.0.0",
     "compression": "^1.8.1",
-    "config": "^4.0.0",
+    "config": "^5.0.0",
     "connect-redis": "^10.0.0",
     "cookie-parser": "^1.4.5",
     "csrf-sync": "^4.0.3",
