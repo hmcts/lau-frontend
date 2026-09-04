@@ -4890,10 +4890,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/totp-generator@npm:^0.0.8":
-  version: 0.0.8
-  resolution: "@types/totp-generator@npm:0.0.8"
-  checksum: 10/70f0378e2c56b2a00dbe452c406cfe1834bd11b12e3228774c1a9664218f06bf89515b4864fc91a9ff015e34e08cf1b51b3a1b0082cd6c7d504a8ae720ba845d
+"@types/totp-generator@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "@types/totp-generator@npm:2.0.1"
+  dependencies:
+    totp-generator: "npm:*"
+  checksum: 10/b3ad8b9b75f5f0f61722418082006be2f2e001a07eb59b96fe945b836505121cfb0236556b8142948a4e4e05acded3e747ed2d0b57efac0d379b99fa08b1269d
   languageName: node
   linkType: hard
 
@@ -11693,7 +11695,7 @@ __metadata:
     "@types/serve-favicon": "npm:^2.5.1"
     "@types/sinon": "npm:^22.0.0"
     "@types/supertest": "npm:^7.0.0"
-    "@types/totp-generator": "npm:^0.0.8"
+    "@types/totp-generator": "npm:^2.0.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.0.0"
     "@typescript-eslint/eslint-plugin-tslint": "npm:^7.0.0"
     "@typescript-eslint/parser": "npm:^8.0.0"
@@ -15944,7 +15946,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"totp-generator@npm:^2.0.0":
+"totp-generator@npm:*, totp-generator@npm:^2.0.0":
   version: 2.0.1
   resolution: "totp-generator@npm:2.0.1"
   dependencies:
