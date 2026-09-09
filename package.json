@@ -74,7 +74,7 @@
     "moment": "^2.29.4",
     "nunjucks": "^3.2.4",
     "postcss": "^8.4.14",
-    "puppeteer": "^24.31.0",
+    "puppeteer": "^25.0.0",
     "redis": "^5.8.2",
     "require-directory": "^2.1.1",
     "serve-favicon": "^2.5.0",
