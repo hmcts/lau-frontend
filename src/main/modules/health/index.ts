@@ -15,6 +15,10 @@ import * as healthcheck from '@hmcts/nodejs-healthcheck';
  * Sets up the HMCTS info and health endpoints
  */
 export class HealthCheck {
+  private redisDownSince: number | null = null;
+  private redisRecoveryInFlight = false;
+  private static readonly REDIS_RECOVERY_THRESHOLD_MS = 10 * 60 * 1000;
+
   public enableFor(app: Application): void {
     const checks: MetadataObj = {};
     const readinessChecks: MetadataObj = {};
@@ -73,11 +77,41 @@ export class HealthCheck {
 
     return healthcheck.raw(async () => {
       const healthy = await this.getRedisHealth(redisClient);
-      if (!healthy) {
+      if (healthy) {
+        this.redisDownSince = null;
+      } else {
         logger.info('redis is DOWN');
+        this.handleSustainedRedisFailure(redisClient);
       }
       return healthy ? healthcheck.up() : healthcheck.down();
     });
+  }
+
+  private handleSustainedRedisFailure(redisClient: RedisClientType): void {
+    const now = Date.now();
+    if (!this.redisDownSince) {
+      this.redisDownSince = now;
+      return;
+    }
+
+    const downForMs = now - this.redisDownSince;
+    if (downForMs > HealthCheck.REDIS_RECOVERY_THRESHOLD_MS && !this.redisRecoveryInFlight) {
+      this.redisRecoveryInFlight = true;
+      logger.error(`Redis has been down for ${Math.round(downForMs / 1000)}s - forcing reconnect`);
+
+      void this.forceReconnect(redisClient)
+        .catch(error => logger.error(`Forced Redis reconnect failed: ${error}`))
+        .finally(() => {
+          this.redisRecoveryInFlight = false;
+          this.redisDownSince = Date.now();
+        });
+    }
+  }
+
+  private async forceReconnect(redisClient: RedisClientType): Promise<void> {
+    await redisClient.close().catch(() => undefined);
+    await redisClient.connect();
+    logger.warn('Redis client force-reconnected after sustained health check failures');
   }
 
   private async getRedisHealth(redisClient: RedisClientType, timeout = 5000): Promise<boolean> {
