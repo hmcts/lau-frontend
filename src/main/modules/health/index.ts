@@ -109,7 +109,11 @@ export class HealthCheck {
   }
 
   private async forceReconnect(redisClient: RedisClientType): Promise<void> {
-    await redisClient.close().catch(() => undefined);
+    try {
+      await redisClient.close();
+    } catch {
+      // ignore
+    }
     await redisClient.connect();
     logger.warn('Redis client force-reconnected after sustained health check failures');
   }
