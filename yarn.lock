@@ -4875,15 +4875,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/totp-generator@npm:^2.0.0":
-  version: 2.0.1
-  resolution: "@types/totp-generator@npm:2.0.1"
-  dependencies:
-    totp-generator: "npm:*"
-  checksum: 10/b3ad8b9b75f5f0f61722418082006be2f2e001a07eb59b96fe945b836505121cfb0236556b8142948a4e4e05acded3e747ed2d0b57efac0d379b99fa08b1269d
-  languageName: node
-  linkType: hard
-
 "@types/triple-beam@npm:^1.3.2":
   version: 1.3.5
   resolution: "@types/triple-beam@npm:1.3.5"
@@ -11701,7 +11692,6 @@ __metadata:
     "@types/serve-favicon": "npm:^2.5.1"
     "@types/sinon": "npm:^22.0.0"
     "@types/supertest": "npm:^7.0.0"
-    "@types/totp-generator": "npm:^2.0.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.0.0"
     "@typescript-eslint/eslint-plugin-tslint": "npm:^7.0.0"
     "@typescript-eslint/parser": "npm:^8.0.0"
@@ -15987,7 +15977,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"totp-generator@npm:*, totp-generator@npm:^2.0.0":
+"totp-generator@npm:^2.0.0":
   version: 2.0.1
   resolution: "totp-generator@npm:2.0.1"
   dependencies:
