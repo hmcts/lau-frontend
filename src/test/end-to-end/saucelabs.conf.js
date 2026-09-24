@@ -1,5 +1,5 @@
-const supportedBrowsers = require('../crossbrowser/supportedBrowsers.js');
-const testConfig = require('../config');
+const supportedBrowsers = require('../crossbrowser/supportedBrowsers.cjs');
+const testConfig = require('../config.cjs');
 const idamUserHelper = require('./helpers/IdamUserHelper');
 
 const auditorUser = `auditor${require('crypto').randomBytes(8).toString('hex').toLowerCase()}@gmail.com`;

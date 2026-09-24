@@ -1,4 +1,4 @@
-const testConfig = require('src/test/config.js');
+const testConfig = require('src/test/config.cjs');
 const idamUserHelper = require('./helpers/IdamUserHelper');
 
 const auditorUser = `auditor${require('crypto').randomBytes(8).toString('hex').toLowerCase()}@gmail.com`;
