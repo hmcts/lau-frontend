@@ -1,6 +1,6 @@
 'use strict';
 
-const testConfig = require('../../config');
+const testConfig = require('../../config.cjs');
 const {userType, tabs} = require('../common/Constants');
 const lauHelper = require('../lauApi/lauHelper');
 
