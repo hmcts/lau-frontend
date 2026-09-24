@@ -49,7 +49,7 @@ export class UserDetailsController {
       return;
     } catch (error) {
       const appErr = error as AppError;
-      logger.error(appErr, {stack: (error as Error)?.stack});
+      logger.error(appErr.message, {code: appErr.code, stack: (error as Error)?.stack});
       errorRedirect(res, appErr.code);
       return;
     }
@@ -118,7 +118,9 @@ export class UserDetailsController {
       res.send(pdfBuffer);
       return;
     } catch (err) {
-      logger.error(err as Error, { stack: (err as Error)?.stack });
+      const error = err instanceof Error ? err: new Error(String(err));
+
+      logger.error(error.message, {name: error.name, stack: error.stack});
       res.status(500).send('Failed to generate PDF');
       return;
     }
