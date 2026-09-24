@@ -1,4 +1,6 @@
-const winston = require('winston');
+import winston from 'winston';
+// const winston = require('winston');
+// import * as winston from 'winston';
 import TransportStream from 'winston-transport';
 import {type LogLevel, appInsights } from '../appinsights';
 
@@ -31,7 +33,7 @@ class AppInsightsTransport extends TransportStream {
 const logger = winston.createLogger({
   level: process.env.LOG_LEVEL || 'info',
   format: winston.format.combine(
-    winston.format((info: Record<string, unknown>) => {
+    winston.format(info => {
       KEYS_TO_FILTER.forEach((key: string) => {
         if (key in info) {
           delete info[key];

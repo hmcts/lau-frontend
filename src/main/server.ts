@@ -23,7 +23,8 @@ process.on('SIGTERM', shutdown);
 import { app } from './app';
 import logger from './modules/logging';
 
-const sslConfig = require('ssl-config')('modern');
+import createSslConfig from 'ssl-config';
+const sslConfig = createSslConfig('modern');
 
 import * as fs from 'node:fs';
 import * as https from 'node:https';
