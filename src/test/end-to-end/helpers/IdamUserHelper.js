@@ -1,4 +1,4 @@
-const config = require('../../config.js');
+const config = require('../../config.cjs');
 const restHelper = require('./RestHelper.js');
 const idamApiUrl = config.url.idamApi;
 const testingEndpoint = `${idamApiUrl}/testing-support/accounts`;
