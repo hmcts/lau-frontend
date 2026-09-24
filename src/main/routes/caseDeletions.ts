@@ -1,4 +1,4 @@
-import {Application} from 'express';
+import type {Application} from 'express';
 import {CaseDeletionsController} from '../controllers/CaseDeletions.controller';
 
 export default function registerCaseDeletionRoutes(app: Application): void {

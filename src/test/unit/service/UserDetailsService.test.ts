@@ -7,11 +7,11 @@ import {
   NOT_AVAILABLE_MSG,
   ServiceStatus,
   UpdatesStatus,
-  UserDetailsAuditData,
-  UserDetailsSearchRequest,
+  type UserDetailsAuditData,
+  type UserDetailsSearchRequest,
 } from '../../../main/models/user-details';
-import {AppRequest} from '../../../main/models/appRequest';
-import {UserUpdatesService} from '../../../main/service/UserUpdatesService';
+import type {AppRequest} from '../../../main/models/appRequest';
+import type {UserUpdatesService} from '../../../main/service/UserUpdatesService';
 
 describe('UserDetailsService', () => {
   const baseApiUrl = config.get('services.lau-eud-backend.url') as string;

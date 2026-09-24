@@ -1,6 +1,6 @@
 import config from 'config';
-import {AppRequest, FormError} from '../models/appRequest';
-import {Response} from 'express';
+import type {AppRequest, FormError} from '../models/appRequest';
+import type {Response} from 'express';
 import {
   atLeastOneFieldIsFilled,
   fillPartialTimestamp,

@@ -2,10 +2,10 @@ import logger from '../modules/logging';
 
 import autobind from 'autobind-decorator';
 import config from 'config';
-import {Response} from 'express';
+import type {Response} from 'express';
 import {CaseService} from '../service/CaseService';
-import {AppRequest, LogData} from '../models/appRequest';
-import {CaseActivityLog, CaseActivityLogs} from '../models/case/CaseActivityLogs';
+import type {AppRequest, LogData} from '../models/appRequest';
+import {type CaseActivityLog, CaseActivityLogs} from '../models/case/CaseActivityLogs';
 import {csvDate, requestDateToFormDate} from '../util/Date';
 import {csvJson} from '../util/CsvHandler';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';

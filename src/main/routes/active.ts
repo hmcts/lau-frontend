@@ -1,5 +1,5 @@
-import {AppRequest} from '../models/appRequest';
-import {Application, RequestHandler, Response} from 'express';
+import type {AppRequest} from '../models/appRequest';
+import type {Application, RequestHandler, Response} from 'express';
 import config from 'config';
 import {MINUTE_IN_MS} from '../util/Util';
 

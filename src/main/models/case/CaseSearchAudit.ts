@@ -1,4 +1,4 @@
-import {CaseSearchLog} from './CaseSearchLogs';
+import type {CaseSearchLog} from './CaseSearchLogs';
 
 export interface CaseSearchAudit {
   searchLog: CaseSearchLog[];

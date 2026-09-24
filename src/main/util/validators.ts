@@ -1,4 +1,4 @@
-import moment, {Moment} from 'moment';
+import moment, {type Moment} from 'moment';
 import {REQUEST_DATE_FORMAT,isDateValid, partialDateRegex} from './Date';
 import * as EmailValidator from 'email-validator';
 

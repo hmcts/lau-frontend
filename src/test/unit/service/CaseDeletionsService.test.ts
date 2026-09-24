@@ -1,8 +1,8 @@
 import nock from 'nock';
 import config from 'config';
-import {AppRequest} from '../../../main/models/appRequest';
-import {CaseDeletions} from '../../../main/models/deletions/CaseDeletions';
-import {CaseDeletionsSearchRequest} from '../../../main/models/deletions/CaseDeletionsSearchRequest';
+import type {AppRequest} from '../../../main/models/appRequest';
+import type {CaseDeletions} from '../../../main/models/deletions/CaseDeletions';
+import type {CaseDeletionsSearchRequest} from '../../../main/models/deletions/CaseDeletionsSearchRequest';
 import {CaseService} from '../../../main/service/CaseService';
 
 describe('Case Deletions Service', () => {

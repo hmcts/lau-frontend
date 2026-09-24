@@ -1,9 +1,9 @@
 import {BaseService} from './BaseService';
 import config from 'config';
 import {ErrorCode} from '../models/AppError';
-import {AppRequest} from '../models/appRequest';
-import {DeletedUsersSearchRequest} from '../models/user-deletions/DeletedUsersSearchRequest';
-import {DeletedUsersAudit} from '../models/user-deletions/DeletedUsersAudit';
+import type {AppRequest} from '../models/appRequest';
+import type {DeletedUsersSearchRequest} from '../models/user-deletions/DeletedUsersSearchRequest';
+import type {DeletedUsersAudit} from '../models/user-deletions/DeletedUsersAudit';
 import logger from '../modules/logging';
 
 export class DeletedUsersService extends BaseService<DeletedUsersSearchRequest> {

@@ -1,4 +1,4 @@
-import {DeletedUsersLog} from './DeletedUsersLog';
+import type {DeletedUsersLog} from './DeletedUsersLog';
 
 export interface DeletedUsersAudit {
   deletionLogs: DeletedUsersLog[];

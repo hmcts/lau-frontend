@@ -1,8 +1,8 @@
 import nock from 'nock';
 import config from 'config';
-import {AppRequest} from '../../../main/models/appRequest';
-import {DeletedUsersAudit} from '../../../main/models/user-deletions/DeletedUsersAudit';
-import {DeletedUsersSearchRequest} from '../../../main/models/user-deletions/DeletedUsersSearchRequest';
+import type {AppRequest} from '../../../main/models/appRequest';
+import type {DeletedUsersAudit} from '../../../main/models/user-deletions/DeletedUsersAudit';
+import type {DeletedUsersSearchRequest} from '../../../main/models/user-deletions/DeletedUsersSearchRequest';
 import {DeletedUsersService} from '../../../main/service/DeletedUsersService';
 
 describe('Deleted Users Service', () => {

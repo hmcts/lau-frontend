@@ -1,4 +1,4 @@
-import { Express, RequestHandler } from 'express';
+import type { Express, RequestHandler } from 'express';
 import helmet from 'helmet';
 
 export interface HelmetConfig {

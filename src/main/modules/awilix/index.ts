@@ -1,4 +1,4 @@
-import {Express} from 'express';
+import type {Express} from 'express';
 import {createContainer, asClass, InjectionMode} from 'awilix';
 
 import {CaseTypeJurisdictionAutoSuggest} from '../../service/CaseTypeJurisdictionAutoSuggest';

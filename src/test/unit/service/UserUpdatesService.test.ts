@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import {UserUpdatesService} from '../../../main/service/UserUpdatesService';
-import {AppSession} from '../../../main/models/appRequest';
+import type {AppSession} from '../../../main/models/appRequest';
 
 jest.mock('config', () => {
   const get = jest.fn((key: string) => {

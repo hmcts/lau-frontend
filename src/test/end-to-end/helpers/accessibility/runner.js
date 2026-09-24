@@ -1,5 +1,5 @@
 const HTMLCS = require('html_codesniffer');
-const fs = require('fs');
+const fs = require('node:fs');
 const testConfig = require('src/test/config.cjs');
 
 const result = {

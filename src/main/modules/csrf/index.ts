@@ -1,5 +1,5 @@
-import { Express, Request, Response, NextFunction } from 'express';
-import { csrfSync, CsrfSyncOptions } from 'csrf-sync';
+import type { Express, Request, Response, NextFunction } from 'express';
+import { type CsrfSyncOptions, csrfSync } from 'csrf-sync';
 
 const csrfOptions: CsrfSyncOptions = {
   getTokenFromRequest: (req: Request): string => {
@@ -11,7 +11,7 @@ const {
   csrfSynchronisedProtection,
   generateToken,
 } = csrfSync(csrfOptions);
-  
+
 /**
  * Module that enables csurf in the application
  */

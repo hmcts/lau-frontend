@@ -2,10 +2,10 @@ import nock from 'nock';
 import config from 'config';
 import sinon from 'sinon';
 import {CaseService} from '../../../main/service/CaseService';
-import {CaseActivityAudit} from '../../../main/models/case/CaseActivityAudit';
-import {CaseSearchRequest} from '../../../main/models/case/CaseSearchRequest';
-import {CaseSearchAudit} from '../../../main/models/case/CaseSearchAudit';
-import {AppRequest} from '../../../main/models/appRequest';
+import type {CaseActivityAudit} from '../../../main/models/case/CaseActivityAudit';
+import type {CaseSearchRequest} from '../../../main/models/case/CaseSearchRequest';
+import type {CaseSearchAudit} from '../../../main/models/case/CaseSearchAudit';
+import type {AppRequest} from '../../../main/models/appRequest';
 import {AuthService} from '../../../main/service/AuthService';
 
 describe('Case Service', () => {

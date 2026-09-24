@@ -3,12 +3,12 @@ import logger from '../modules/logging';
 import autobind from 'autobind-decorator';
 import config from 'config';
 import {CaseService} from '../service/CaseService';
-import {AppRequest, LogData} from '../models/appRequest';
+import type {AppRequest, LogData} from '../models/appRequest';
 import {csvDate, requestDateToFormDate} from '../util/Date';
-import {CaseSearchLog, CaseSearchLogs} from '../models/case/CaseSearchLogs';
-import {Response} from 'express';
+import {type CaseSearchLog, CaseSearchLogs} from '../models/case/CaseSearchLogs';
+import type {Response} from 'express';
 import {csvJson} from '../util/CsvHandler';
-import {CaseSearchRequest} from '../models/case/CaseSearchRequest';
+import type {CaseSearchRequest} from '../models/case/CaseSearchRequest';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 
 /**

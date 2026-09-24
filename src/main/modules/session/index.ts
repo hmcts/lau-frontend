@@ -1,14 +1,14 @@
 import config from 'config';
 import { RedisStore } from 'connect-redis';
 import cookieParser from 'cookie-parser';
-import { Application } from 'express';
+import type { Application } from 'express';
 import { createCluster, type RedisClientType } from 'redis';
 import session from 'express-session';
 import type { Store } from 'express-session';
 
 import logger from '../../modules/logging';
 import {MINUTE_IN_MS} from '../../util/Util';
-import {AppRequest} from '../../models/appRequest';
+import type {AppRequest} from '../../models/appRequest';
 import {AppError, ErrorCode} from '../../models/AppError';
 
 export class SessionStorage {

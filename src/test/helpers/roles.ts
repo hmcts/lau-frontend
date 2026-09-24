@@ -1,4 +1,4 @@
-import supertest from 'supertest';
+import type supertest from 'supertest';
 import { getCSRFToken } from './csrf';
 
 export interface RoleData {

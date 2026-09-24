@@ -1,7 +1,7 @@
 const testConfig = require('src/test/config.cjs');
 const idamUserHelper = require('./helpers/IdamUserHelper');
 
-const auditorUser = `auditor${require('crypto').randomBytes(8).toString('hex').toLowerCase()}@gmail.com`;
+const auditorUser = `auditor${require('node:crypto').randomBytes(8).toString('hex').toLowerCase()}@gmail.com`;
 const testPassword = 'Password12';
 
 exports.config = {

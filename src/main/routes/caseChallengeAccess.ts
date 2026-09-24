@@ -1,4 +1,4 @@
-import {Application} from 'express';
+import type {Application} from 'express';
 import {CaseChallengedAccessController} from '../controllers/CaseChallengedAccess.controller';
 
 export default function registerChallengedSpecificRoutes(app: Application): void {

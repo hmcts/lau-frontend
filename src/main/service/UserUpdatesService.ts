@@ -1,8 +1,8 @@
 import config from 'config';
 import {BaseService} from './BaseService';
 import {ErrorCode} from '../models/AppError';
-import {AppSession} from '../models/appRequest';
-import {UserUpdatesAuditData, UserUpdatesAuditDataResponse} from '../models/user-details/UserDetailsAuditData';
+import type {AppSession} from '../models/appRequest';
+import type {UserUpdatesAuditData, UserUpdatesAuditDataResponse} from '../models/user-details/UserDetailsAuditData';
 
 export interface UserUpdatesSearchRequest {
   userId: string;

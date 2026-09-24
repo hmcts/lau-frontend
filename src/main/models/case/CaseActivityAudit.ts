@@ -1,4 +1,4 @@
-import {CaseActivityLog} from './CaseActivityLogs';
+import type {CaseActivityLog} from './CaseActivityLogs';
 
 export interface CaseActivityAudit {
   actionLog: CaseActivityLog[];

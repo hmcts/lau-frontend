@@ -1,13 +1,13 @@
 import nock from 'nock';
 import sinon from 'sinon';
-import {AppRequest, LogData} from '../../../main/models/appRequest';
+import type {AppRequest, LogData} from '../../../main/models/appRequest';
 import caseChallengedAccessLogs from '../../data/caseChallengedAccessLogs.json';
-import {NextFunction, Response} from 'express';
-import {AppError, ErrorCode} from '../../../main/models/AppError';
+import type {NextFunction, Response} from 'express';
+import {type AppError, ErrorCode} from '../../../main/models/AppError';
 import {CaseChallengedAccessController} from '../../../main/controllers/CaseChallengedAccess.controller';
-import {CaseChallengedAccessRequest} from '../../../main/models/challenged-access/CaseChallengedAccessRequest';
-import {CaseChallengedAccessLog} from '../../../main/models/challenged-access/CaseChallengedAccessLogs';
-import {CaseChallengedAccesses} from '../../../main/models/challenged-access/CaseChallengedAccesses';
+import type {CaseChallengedAccessRequest} from '../../../main/models/challenged-access/CaseChallengedAccessRequest';
+import type {CaseChallengedAccessLog} from '../../../main/models/challenged-access/CaseChallengedAccessLogs';
+import type {CaseChallengedAccesses} from '../../../main/models/challenged-access/CaseChallengedAccesses';
 
 describe('Case Challenged Access Controller', () => {
   const controller = new CaseChallengedAccessController();

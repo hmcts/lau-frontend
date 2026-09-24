@@ -2,13 +2,13 @@ import config from 'config';
 import nock from 'nock';
 import sinon from 'sinon';
 import {DeletedUsersController} from '../../../main/controllers/DeletedUsers.controller';
-import {DeletedUsersSearchRequest} from '../../../main/models/user-deletions/DeletedUsersSearchRequest';
-import {AppRequest, LogData} from '../../../main/models/appRequest';
-import {DeletedUsersLog} from '../../../main/models/user-deletions/DeletedUsersLog';
-import {DeletedUsersAudit} from '../../../main/models/user-deletions/DeletedUsersAudit';
+import type {DeletedUsersSearchRequest} from '../../../main/models/user-deletions/DeletedUsersSearchRequest';
+import type {AppRequest, LogData} from '../../../main/models/appRequest';
+import type {DeletedUsersLog} from '../../../main/models/user-deletions/DeletedUsersLog';
+import type {DeletedUsersAudit} from '../../../main/models/user-deletions/DeletedUsersAudit';
 import deletedUsersLogs from '../../data/deletedUsersLogs.json';
-import {Response} from 'express';
-import {AppError, ErrorCode} from '../../../main/models/AppError';
+import type {Response} from 'express';
+import {type AppError, ErrorCode} from '../../../main/models/AppError';
 
 describe('Deleted Users Controller', () => {
   const deletedUsersController = new DeletedUsersController();

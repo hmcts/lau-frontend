@@ -1,7 +1,7 @@
 const logger = require('../logger');
-const fs = require('fs');
+const fs = require('node:fs');
 const path = require('path');
-const assert = require('assert');
+const assert = require('node:assert');
 
 async function clickNavigationLink(I, linkHref) {
   logger.info('Clicking on navigation link: ' + linkHref);
@@ -113,7 +113,7 @@ async function waitForPdfPath(timeoutMs = 10000, intervalMs = 500) {
 function assertCsvLineCount(csvPath, lines) {
   let i;
   let count = 0;
-  require('fs').createReadStream(csvPath)
+  require('node:fs').createReadStream(csvPath)
     .on('data', function(chunk) {
       for (i=0; i < chunk.length; ++i)
         if (chunk[i] === 10) count++;

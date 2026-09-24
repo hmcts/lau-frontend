@@ -2,10 +2,10 @@ import logger from '../modules/logging';
 
 import autobind from 'autobind-decorator';
 import config from 'config';
-import {AppRequest, LogData} from '../models/appRequest';
-import {Response} from 'express';
-import {CaseChallengedAccesses} from '../models/challenged-access/CaseChallengedAccesses';
-import {CaseChallengedAccessLog, CaseChallengedAccessLogs, caseChallengedAccessLogOrder} from '../models/challenged-access/CaseChallengedAccessLogs';
+import type {AppRequest, LogData} from '../models/appRequest';
+import type {Response} from 'express';
+import type {CaseChallengedAccesses} from '../models/challenged-access/CaseChallengedAccesses';
+import { type CaseChallengedAccessLog, CaseChallengedAccessLogs, caseChallengedAccessLogOrder} from '../models/challenged-access/CaseChallengedAccessLogs';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 import {ChallengedAccessService} from '../service/ChallengedAccessService';
 import {csvDate, requestDateToFormDate} from '../util/Date';

@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { randomUUID } from 'crypto';
+import { randomUUID } from 'node:crypto';
 
 type Store = {
   traceId: string;

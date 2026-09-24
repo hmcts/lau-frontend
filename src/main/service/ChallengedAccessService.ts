@@ -1,10 +1,10 @@
 import {BaseService} from './BaseService';
 import config from 'config';
 import {ErrorCode} from '../models/AppError';
-import {AppRequest} from '../models/appRequest';
+import type {AppRequest} from '../models/appRequest';
 
-import {CaseChallengedAccessRequest} from '../models/challenged-access/CaseChallengedAccessRequest';
-import {CaseChallengedAccesses} from '../models/challenged-access/CaseChallengedAccesses';
+import type {CaseChallengedAccessRequest} from '../models/challenged-access/CaseChallengedAccessRequest';
+import type {CaseChallengedAccesses} from '../models/challenged-access/CaseChallengedAccesses';
 import logger from '../modules/logging';
 
 export class ChallengedAccessService extends BaseService<CaseChallengedAccessRequest> {

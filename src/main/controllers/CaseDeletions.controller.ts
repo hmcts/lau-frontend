@@ -2,14 +2,14 @@ import logger from '../modules/logging';
 
 import autobind from 'autobind-decorator';
 import config from 'config';
-import {Response} from 'express';
-import {AppRequest, LogData} from '../models/appRequest';
+import type {Response} from 'express';
+import type {AppRequest, LogData} from '../models/appRequest';
 import {csvDate, requestDateToFormDate} from '../util/Date';
 import {csvJson} from '../util/CsvHandler';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
-import {CaseDeletionsLog, CaseDeletionsLogs} from '../models/deletions/CaseDeletionsLogs';
+import {type CaseDeletionsLog, CaseDeletionsLogs} from '../models/deletions/CaseDeletionsLogs';
 import {CaseService} from '../service/CaseService';
-import {CaseDeletions} from '../models/deletions/CaseDeletions';
+import type {CaseDeletions} from '../models/deletions/CaseDeletions';
 
 /**
  * Case Deletions Controller class to handle case deletions results tab functionality.

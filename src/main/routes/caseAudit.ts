@@ -1,4 +1,4 @@
-import {Application} from 'express';
+import type {Application} from 'express';
 import {CaseActivityController} from '../controllers/CaseActivity.controller';
 import {CaseSearchesController} from '../controllers/CaseSearches.controller';
 

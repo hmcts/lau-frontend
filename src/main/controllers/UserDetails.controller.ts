@@ -1,18 +1,18 @@
 import autobind from 'autobind-decorator';
-import {AppRequest, FormError} from '../models/appRequest';
-import {Response} from 'express';
+import type {AppRequest, FormError} from '../models/appRequest';
+import type {Response} from 'express';
 import {validEmail} from '../util/validators';
 import {UserDetailsService} from '../service/UserDetailsService';
-import {AppError, errorRedirect} from '../models/AppError';
+import {type AppError, errorRedirect} from '../models/AppError';
 import logger from '../modules/logging';
 import {
   formatAddress,
   formatStatus,
-  GovukTableRow,
+  type GovukTableRow,
   mapEventName,
   NOT_AVAILABLE_MSG,
-  UserDetailsSearchRequest,
-  UserUpdatesAuditData,
+  type UserDetailsSearchRequest,
+  type UserUpdatesAuditData,
 } from '../models/user-details';
 import {formatDate, requestDateToFormDate} from '../util/Date';
 import {capitalize, mapOrElse} from '../util/Util';
@@ -124,4 +124,3 @@ export class UserDetailsController {
     }
   }
 }
-

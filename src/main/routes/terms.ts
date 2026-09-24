@@ -1,4 +1,4 @@
-import {Application, Request, Response} from 'express';
+import type {Application, Request, Response} from 'express';
 import {content} from '../views/footer/terms-and-conditions/content';
 
 function termsHandler(req: Request, res: Response) {

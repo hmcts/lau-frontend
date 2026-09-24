@@ -1,13 +1,13 @@
 import nock from 'nock';
 import sinon from 'sinon';
-import {AppRequest, LogData} from '../../../main/models/appRequest';
+import type {AppRequest, LogData} from '../../../main/models/appRequest';
 import caseDeletionsLogs from '../../data/caseDeletionsLogs.json';
-import {Response} from 'express';
-import {AppError, ErrorCode} from '../../../main/models/AppError';
+import type {Response} from 'express';
+import {type AppError, ErrorCode} from '../../../main/models/AppError';
 import {CaseDeletionsController} from '../../../main/controllers/CaseDeletions.controller';
-import {CaseDeletionsSearchRequest} from '../../../main/models/deletions/CaseDeletionsSearchRequest';
-import {CaseDeletionsLog} from '../../../main/models/deletions/CaseDeletionsLogs';
-import {CaseDeletions} from '../../../main/models/deletions/CaseDeletions';
+import type {CaseDeletionsSearchRequest} from '../../../main/models/deletions/CaseDeletionsSearchRequest';
+import type {CaseDeletionsLog} from '../../../main/models/deletions/CaseDeletionsLogs';
+import type {CaseDeletions} from '../../../main/models/deletions/CaseDeletions';
 import {CaseActions} from '../../../main/models/case/CaseActivityLogs';
 
 describe('Case Deletions Controller', () => {

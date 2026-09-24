@@ -1,4 +1,5 @@
-import puppeteer, { Browser, BrowserContext, Page, PDFOptions } from 'puppeteer';
+import type { Browser, BrowserContext, Page, PDFOptions } from 'puppeteer';
+import puppeteer from 'puppeteer';
 import logger from '../modules/logging';
 
 type PdfServiceOptions = {

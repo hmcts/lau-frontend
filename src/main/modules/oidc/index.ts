@@ -1,8 +1,8 @@
 import {AuthService, IdamGrantType} from '../../service/AuthService';
-import {Application, NextFunction, Response} from 'express';
+import type {Application, NextFunction, Response} from 'express';
 import config from 'config';
-import {AppRequest} from '../../models/appRequest';
-import {AppError, errorRedirect} from '../../models/AppError';
+import type {AppRequest} from '../../models/appRequest';
+import {type AppError, errorRedirect} from '../../models/AppError';
 import {SessionStorage} from '../session';
 
 /**

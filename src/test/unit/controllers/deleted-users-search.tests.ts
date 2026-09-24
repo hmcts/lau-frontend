@@ -1,6 +1,6 @@
 import nock from 'nock';
 import sinon from 'sinon';
-import {AppRequest} from '../../../main/models/appRequest';
+import type {AppRequest} from '../../../main/models/appRequest';
 import {DeletedUsersSearchController} from '../../../main/controllers/DeletedUsersSearch.controller';
 import config from 'config';
 

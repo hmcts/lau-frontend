@@ -1,6 +1,6 @@
 import config from 'config';
 import {CaseTypeJurisdictionAutoSuggest} from '../../../main/service/CaseTypeJurisdictionAutoSuggest';
-import fs from 'fs';
+import fs from 'node:fs';
 
 describe('AutoSuggestService', () => {
 

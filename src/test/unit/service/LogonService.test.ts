@@ -1,9 +1,9 @@
 import nock from 'nock';
 import config from 'config';
 import {LogonService} from '../../../main/service/LogonService';
-import {LogonAudit} from '../../../main/models/idam/LogonAudit';
-import {LogonSearchRequest} from '../../../main/models/idam/LogonSearchRequest';
-import {AppRequest} from '../../../main/models/appRequest';
+import type {LogonAudit} from '../../../main/models/idam/LogonAudit';
+import type {LogonSearchRequest} from '../../../main/models/idam/LogonSearchRequest';
+import type {AppRequest} from '../../../main/models/appRequest';
 
 describe('Logon Service', () => {
   const logonService = new LogonService();

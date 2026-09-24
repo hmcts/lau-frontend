@@ -1,17 +1,17 @@
 import sinon from 'sinon';
-import {Response} from 'express';
-import {AppRequest, AppSession} from '../../../main/models/appRequest';
-import {UserDetailsService} from '../../../main/service/UserDetailsService';
+import type {Response} from 'express';
+import type {AppRequest, AppSession} from '../../../main/models/appRequest';
+import type {UserDetailsService} from '../../../main/service/UserDetailsService';
 import {UserDetailsController} from '../../../main/controllers/UserDetails.controller';
 import {
   AccountRecordType,
   AccountStatus,
-  Address,
+  type Address,
   NOT_AVAILABLE_MSG, UpdatesStatus,
-  UserDetailsSearchRequest,
+  type UserDetailsSearchRequest,
 } from '../../../main/models/user-details';
 import {AppError, ErrorCode} from '../../../main/models/AppError';
-import {UserDetailsViewModel} from '../../../main/models/user-details/UserDetailsAuditData';
+import type {UserDetailsViewModel} from '../../../main/models/user-details/UserDetailsAuditData';
 
 describe('UserDetailsController.post', () => {
   const makeRes = () => ({ redirect: jest.fn() });
@@ -342,4 +342,3 @@ describe('UserDetailsController.postPdf', () => {
     expect(res.send).toHaveBeenCalledWith('Failed to generate PDF');
   });
 });
-

@@ -1,4 +1,4 @@
-import supertest from 'supertest';
+import type supertest from 'supertest';
 
 export async function getCSRFToken(agent: supertest.Agent) {
   const csrfRes = await agent.get('/csrf-token');

@@ -1,6 +1,6 @@
 import nock from 'nock';
 import sinon from 'sinon';
-import {AppRequest} from '../../../main/models/appRequest';
+import type {AppRequest} from '../../../main/models/appRequest';
 import {CaseDeletionsSearchController} from '../../../main/controllers/CaseDeletionsSearch.controller';
 
 describe('Case Deletions Search Controller', () => {
