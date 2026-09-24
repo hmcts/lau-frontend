@@ -1,12 +1,12 @@
 import autobind from 'autobind-decorator';
 import config from 'config';
-import {Response} from 'express';
-import {AppRequest, LogData} from '../models/appRequest';
+import type {Response} from 'express';
+import type {AppRequest, LogData} from '../models/appRequest';
 import {csvDate, requestDateToFormDate} from '../util/Date';
 import {csvJson} from '../util/CsvHandler';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
 import {DeletedUsersService} from '../service/DeletedUsersService';
-import {DeletedUsersLog, DeletedUsersLogs, deletedUsersLogsOrder} from '../models/user-deletions/DeletedUsersLog';
+import {type DeletedUsersLog, DeletedUsersLogs, deletedUsersLogsOrder} from '../models/user-deletions/DeletedUsersLog';
 
 import logger from '../modules/logging';
 

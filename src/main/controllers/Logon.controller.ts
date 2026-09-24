@@ -2,10 +2,10 @@ import logger from '../modules/logging';
 
 import autobind from 'autobind-decorator';
 import config from 'config';
-import {Response} from 'express';
+import type {Response} from 'express';
 import {LogonService} from '../service/LogonService';
-import {AppRequest, LogData} from '../models/appRequest';
-import {LogonLog, LogonLogs, logonLogsOrder} from '../models/idam/LogonLogs';
+import type {AppRequest, LogData} from '../models/appRequest';
+import {type LogonLog, LogonLogs, logonLogsOrder} from '../models/idam/LogonLogs';
 import {csvDate, requestDateToFormDate} from '../util/Date';
 import {csvJson} from '../util/CsvHandler';
 import {AppError, ErrorCode, errorRedirect} from '../models/AppError';

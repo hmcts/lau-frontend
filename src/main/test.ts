@@ -1,5 +1,5 @@
 import * as express from 'express';
-import {AppRequest, UserDetails} from './models/appRequest';
+import type {AppRequest, UserDetails} from './models/appRequest';
 
 const setupTest = (app: express.Express): void => {
   if (app.locals.ENV === 'test') {

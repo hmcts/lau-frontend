@@ -2,7 +2,7 @@
 
 const event = require('codeceptjs').event;
 const container = require('codeceptjs').container;
-const exec = require('child_process').exec;
+const exec = require('node:child_process').exec;
 
 function updateSauceLabsResult(result, sessionId) {
   console.log('SauceOnDemandSessionID=' + sessionId + ' job-name=cmc-ccd-e2e-tests');

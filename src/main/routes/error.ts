@@ -1,4 +1,4 @@
-import {Application, Request, Response} from 'express';
+import type {Application, Request, Response} from 'express';
 
 function errorHandler(req: Request, res: Response) {
   res.render('common/error', {

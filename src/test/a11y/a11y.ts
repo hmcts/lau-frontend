@@ -1,8 +1,8 @@
 import { app } from '../../main/app';
-import fs from 'fs';
+import fs from 'node:fs';
 import * as supertest from 'supertest';
 import pa11y from 'pa11y';
-import { Server } from 'http';
+import type { Server } from 'node:http';
 import { setRoles } from './../helpers/roles';
 const config = require('./pa11y-config.json');
 

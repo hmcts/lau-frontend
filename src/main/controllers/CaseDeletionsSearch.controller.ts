@@ -1,10 +1,10 @@
 import {BaseSearchController} from './BaseSearchController';
 
 import autobind from 'autobind-decorator';
-import {AppRequest} from '../models/appRequest';
-import {Response} from 'express';
-import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
-import {CaseDeletionsSearchRequest} from '../models/deletions/CaseDeletionsSearchRequest';
+import type {AppRequest} from '../models/appRequest';
+import type {Response} from 'express';
+import {type AppError, ErrorCode, errorRedirect} from '../models/AppError';
+import type {CaseDeletionsSearchRequest} from '../models/deletions/CaseDeletionsSearchRequest';
 import {CaseDeletionsController} from './CaseDeletions.controller';
 import {CaseActions} from '../models/case/CaseActivityLogs';
 import logger from '../modules/logging';

@@ -1,7 +1,7 @@
 import nock from 'nock';
 import sinon from 'sinon';
 import {CaseSearchController} from '../../../main/controllers/CaseSearch.controller';
-import {AppRequest} from '../../../main/models/appRequest';
+import type {AppRequest} from '../../../main/models/appRequest';
 
 describe('Case Search Controller', () => {
   describe('Search form validation', () => {

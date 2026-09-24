@@ -1,12 +1,12 @@
-import {Request} from 'express';
-import {Session} from 'express-session';
-import {CaseSearchRequest} from './case/CaseSearchRequest';
-import {LogonSearchRequest} from './idam/LogonSearchRequest';
-import {CaseDeletionsSearchRequest} from './deletions/CaseDeletionsSearchRequest';
-import {DeletedUsersSearchRequest} from './user-deletions/DeletedUsersSearchRequest';
-import {CaseChallengedAccessRequest} from './challenged-access/CaseChallengedAccessRequest';
-import {UserDetailsSearchRequest} from './user-details/UserDetailsSearchRequest';
-import {UserDetailsViewModel} from './user-details/UserDetailsAuditData';
+import type {Request} from 'express';
+import type {Session} from 'express-session';
+import type {CaseSearchRequest} from './case/CaseSearchRequest';
+import type {LogonSearchRequest} from './idam/LogonSearchRequest';
+import type {CaseDeletionsSearchRequest} from './deletions/CaseDeletionsSearchRequest';
+import type {DeletedUsersSearchRequest} from './user-deletions/DeletedUsersSearchRequest';
+import type {CaseChallengedAccessRequest} from './challenged-access/CaseChallengedAccessRequest';
+import type {UserDetailsSearchRequest} from './user-details/UserDetailsSearchRequest';
+import type {UserDetailsViewModel} from './user-details/UserDetailsAuditData';
 
 export type FormError = {
   propertyName: string;

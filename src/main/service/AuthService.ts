@@ -1,8 +1,8 @@
-import { Config } from 'config';
+import type { Config } from 'config';
 import {TOTP} from 'totp-generator';
 import {ServiceAuthToken} from '../components/idam/ServiceAuthToken';
 import {jwtDecode} from 'jwt-decode';
-import {AppSession, UserDetails} from '../models/appRequest';
+import type {AppSession, UserDetails} from '../models/appRequest';
 import {HttpResponseError} from '../util/HttpResponseError';
 import {AppError, ErrorCode} from '../models/AppError';
 

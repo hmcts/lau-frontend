@@ -1,4 +1,4 @@
-import {CaseDeletionsLog} from './CaseDeletionsLogs';
+import type {CaseDeletionsLog} from './CaseDeletionsLogs';
 
 export interface CaseDeletions {
   actionLog: CaseDeletionsLog[];

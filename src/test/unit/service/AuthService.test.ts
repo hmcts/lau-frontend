@@ -1,5 +1,6 @@
 import nock from 'nock';
-import config, {Config} from 'config';
+import config from 'config';
+import type {Config} from 'config';
 import {jwtDecode} from 'jwt-decode';
 
 jest.mock('totp-generator', () => ({
@@ -7,10 +8,12 @@ jest.mock('totp-generator', () => ({
     generate: jest.fn(() => ({otp: '000000'})),
   },
 }));
-import {AuthService, IdamGrantType, IdamResponseData} from '../../../main/service/AuthService';
-import {BearerToken, ServiceAuthToken} from '../../../main/components/idam/ServiceAuthToken';
-import {AppSession, UserDetails} from '../../../main/models/appRequest';
-import {AppError, ErrorCode} from '../../../main/models/AppError';
+import {AuthService, IdamGrantType} from '../../../main/service/AuthService';
+import type {IdamResponseData} from '../../../main/service/AuthService';
+import type {BearerToken, ServiceAuthToken} from '../../../main/components/idam/ServiceAuthToken';
+import type {AppSession, UserDetails} from '../../../main/models/appRequest';
+import {ErrorCode} from '../../../main/models/AppError';
+import type {AppError} from '../../../main/models/AppError';
 
 describe('AuthService', () => {
 

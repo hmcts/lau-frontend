@@ -1,4 +1,4 @@
-import {Application, Request, Response} from 'express';
+import type {Application, Request, Response} from 'express';
 import {content} from '../views/footer/cookies/content';
 
 function cookiesHandler(req: Request, res: Response) {

@@ -1,11 +1,11 @@
 import {BaseSearchController} from './BaseSearchController';
 
 import autobind from 'autobind-decorator';
-import {AppRequest} from '../models/appRequest';
-import {Response} from 'express';
-import {LogonSearchRequest} from '../models/idam/LogonSearchRequest';
+import type {AppRequest} from '../models/appRequest';
+import type {Response} from 'express';
+import type {LogonSearchRequest} from '../models/idam/LogonSearchRequest';
 import {LogonController} from './Logon.controller';
-import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
+import { type AppError, ErrorCode, errorRedirect} from '../models/AppError';
 import {validEmail} from '../util/validators';
 import logger from '../modules/logging';
 

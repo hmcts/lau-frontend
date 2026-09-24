@@ -25,8 +25,8 @@ import logger from './modules/logging';
 
 const sslConfig = require('ssl-config')('modern');
 
-import * as fs from 'fs';
-import * as https from 'https';
+import * as fs from 'node:fs';
+import * as https from 'node:https';
 import * as path from 'path';
 
 const port: number = parseInt(process.env.PORT, 10) || 4000;

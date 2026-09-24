@@ -1,4 +1,4 @@
-import {Application} from 'express';
+import type {Application} from 'express';
 import {UserDetailsController} from '../controllers/UserDetails.controller';
 
 

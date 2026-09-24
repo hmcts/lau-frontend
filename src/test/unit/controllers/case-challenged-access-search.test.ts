@@ -1,8 +1,8 @@
 import nock from 'nock';
 import sinon from 'sinon';
 import {CaseChallengedAccessSearchController} from '../../../main/controllers/CaseChallengedAccessSearch.controller';
-import {AppRequest} from '../../../main/models/appRequest';
-import { NextFunction } from 'express';
+import type {AppRequest} from '../../../main/models/appRequest';
+import type { NextFunction } from 'express';
 
 describe('Case Challenged Access Search Controller', () => {
   describe('Search form validation', () => {

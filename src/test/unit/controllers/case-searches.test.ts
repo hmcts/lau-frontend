@@ -1,13 +1,13 @@
 import nock from 'nock';
 import sinon from 'sinon';
-import {CaseSearchRequest} from '../../../main/models/case/CaseSearchRequest';
-import {AppRequest, LogData} from '../../../main/models/appRequest';
+import type {CaseSearchRequest} from '../../../main/models/case/CaseSearchRequest';
+import type {AppRequest, LogData} from '../../../main/models/appRequest';
 import caseSearchLogs from '../../data/caseSearchLogs.json';
-import {Response} from 'express';
+import type {Response} from 'express';
 import {CaseSearchesController} from '../../../main/controllers/CaseSearches.controller';
-import {CaseSearchLog} from '../../../main/models/case/CaseSearchLogs';
-import {CaseSearchAudit} from '../../../main/models/case/CaseSearchAudit';
-import {AppError, ErrorCode} from '../../../main/models/AppError';
+import type {CaseSearchLog} from '../../../main/models/case/CaseSearchLogs';
+import type {CaseSearchAudit} from '../../../main/models/case/CaseSearchAudit';
+import {type AppError, ErrorCode} from '../../../main/models/AppError';
 
 describe('Case Searches Controller', () => {
   const caseSearchesController = new CaseSearchesController();

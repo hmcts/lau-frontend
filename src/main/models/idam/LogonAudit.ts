@@ -1,4 +1,4 @@
-import {LogonLog} from './LogonLogs';
+import type {LogonLog} from './LogonLogs';
 
 export interface LogonAudit {
   logonLog: LogonLog[];

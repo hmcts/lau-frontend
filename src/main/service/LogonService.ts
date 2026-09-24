@@ -1,9 +1,9 @@
 import {BaseService} from './BaseService';
 
 import config from 'config';
-import {LogonAudit} from '../models/idam/LogonAudit';
-import {LogonSearchRequest} from '../models/idam/LogonSearchRequest';
-import {AppRequest} from '../models/appRequest';
+import type {LogonAudit} from '../models/idam/LogonAudit';
+import type {LogonSearchRequest} from '../models/idam/LogonSearchRequest';
+import type {AppRequest} from '../models/appRequest';
 import {ErrorCode} from '../models/AppError';
 import logger from '../modules/logging';
 

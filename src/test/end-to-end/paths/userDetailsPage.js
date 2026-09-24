@@ -4,8 +4,8 @@ const testConfig = require('../../config.cjs');
 const {userType, tabs} = require('../common/Constants');
 const lauHelper = require('../lauApi/lauHelper');
 const idamUserHelper = require('../helpers/IdamUserHelper');
-const crypto = require('crypto');
-const assert = require('assert');
+const crypto = require('node:crypto');
+const assert = require('node:assert');
 
 Feature('User Details Check');
 

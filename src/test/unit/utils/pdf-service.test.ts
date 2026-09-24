@@ -1,4 +1,4 @@
-import { Browser, BrowserContext, Page } from 'puppeteer';
+import type { Browser, BrowserContext, Page } from 'puppeteer';
 
 // Mock puppeteer module
 const mockPage = {

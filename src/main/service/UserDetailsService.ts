@@ -1,17 +1,18 @@
 import config from 'config';
 import {BaseService} from './BaseService';
 import {ErrorCode} from '../models/AppError';
-import {AppRequest, AppSession} from '../models/appRequest';
+import type {AppRequest, AppSession} from '../models/appRequest';
+import type {
+  UserDetailsAggregateResult,
+  UserDetailsAuditData,
+  UserDetailsMeta,
+  UserUpdatesAuditData} from '../models/user-details/UserDetailsAuditData';
 import {
   NOT_AVAILABLE_MSG,
   ServiceStatus,
   UpdatesStatus,
-  UserDetailsAggregateResult,
-  UserDetailsAuditData,
-  UserDetailsMeta,
-  UserUpdatesAuditData,
 } from '../models/user-details/UserDetailsAuditData';
-import {UserDetailsSearchRequest} from '../models/user-details/UserDetailsSearchRequest';
+import type {UserDetailsSearchRequest} from '../models/user-details/UserDetailsSearchRequest';
 import log from '../modules/logging';
 import {UserUpdatesService} from './UserUpdatesService';
 

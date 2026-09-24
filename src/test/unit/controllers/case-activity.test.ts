@@ -1,13 +1,13 @@
 import nock from 'nock';
 import sinon from 'sinon';
-import {CaseSearchRequest} from '../../../main/models/case/CaseSearchRequest';
+import type {CaseSearchRequest} from '../../../main/models/case/CaseSearchRequest';
 import {CaseActivityController} from '../../../main/controllers/CaseActivity.controller';
-import {AppRequest, LogData} from '../../../main/models/appRequest';
-import {CaseActions, CaseActivityLog} from '../../../main/models/case/CaseActivityLogs';
-import {CaseActivityAudit} from '../../../main/models/case/CaseActivityAudit';
+import type {AppRequest, LogData} from '../../../main/models/appRequest';
+import {CaseActions, type CaseActivityLog} from '../../../main/models/case/CaseActivityLogs';
+import type {CaseActivityAudit} from '../../../main/models/case/CaseActivityAudit';
 import caseActivityLogs from '../../data/caseActivityLogs.json';
-import {Response} from 'express';
-import {AppError, ErrorCode} from '../../../main/models/AppError';
+import type {Response} from 'express';
+import {type AppError, ErrorCode} from '../../../main/models/AppError';
 
 describe('Case Activity Controller', () => {
   const caseActivityController = new CaseActivityController();

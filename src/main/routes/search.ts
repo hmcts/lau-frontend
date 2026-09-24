@@ -1,4 +1,4 @@
-import {Application} from 'express';
+import type {Application} from 'express';
 import {CaseSearchController} from '../controllers/CaseSearch.controller';
 import {LogonSearchController} from '../controllers/LogonSearch.controller';
 import {CaseDeletionsSearchController} from '../controllers/CaseDeletionsSearch.controller';

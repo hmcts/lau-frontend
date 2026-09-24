@@ -73,6 +73,15 @@ const tsconfig = {
   },
   rules: {
     ...tseslint.configs.recommended[2].rules,
+
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      {
+        prefer: 'type-imports',
+        fixStyle: 'separate-type-imports',
+      },
+    ],
+
     indent: ['error', 2, {'SwitchCase': 1}],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single', {avoidEscape: true}],

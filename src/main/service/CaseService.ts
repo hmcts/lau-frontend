@@ -1,13 +1,13 @@
 import {BaseService} from './BaseService';
 
 import config from 'config';
-import {CaseActivityAudit} from '../models/case/CaseActivityAudit';
-import {CaseSearchRequest} from '../models/case/CaseSearchRequest';
-import {CaseDeletionsSearchRequest} from '../models/deletions/CaseDeletionsSearchRequest';
-import {CaseSearchAudit} from '../models/case/CaseSearchAudit';
-import {AppRequest} from '../models/appRequest';
+import type {CaseActivityAudit} from '../models/case/CaseActivityAudit';
+import type {CaseSearchRequest} from '../models/case/CaseSearchRequest';
+import type {CaseDeletionsSearchRequest} from '../models/deletions/CaseDeletionsSearchRequest';
+import type {CaseSearchAudit} from '../models/case/CaseSearchAudit';
+import type {AppRequest} from '../models/appRequest';
 import {ErrorCode} from '../models/AppError';
-import {CaseDeletions} from '../models/deletions/CaseDeletions';
+import type {CaseDeletions} from '../models/deletions/CaseDeletions';
 import logger from '../modules/logging';
 
 export class CaseService extends BaseService<CaseSearchRequest | CaseDeletionsSearchRequest> {

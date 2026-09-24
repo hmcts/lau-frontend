@@ -1,10 +1,10 @@
 import {BaseSearchController} from './BaseSearchController';
 
 import autobind from 'autobind-decorator';
-import {AppRequest} from '../models/appRequest';
-import {Response} from 'express';
-import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
-import {DeletedUsersSearchRequest} from '../models/user-deletions/DeletedUsersSearchRequest';
+import type {AppRequest} from '../models/appRequest';
+import type {Response} from 'express';
+import { type AppError,ErrorCode, errorRedirect} from '../models/AppError';
+import type {DeletedUsersSearchRequest} from '../models/user-deletions/DeletedUsersSearchRequest';
 import {DeletedUsersController} from './DeletedUsers.controller';
 import {validEmail} from '../util/validators';
 import logger from '../modules/logging';

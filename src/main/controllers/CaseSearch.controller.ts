@@ -1,12 +1,12 @@
 import autobind from 'autobind-decorator';
-import {AppRequest} from '../models/appRequest';
-import {Response} from 'express';
-import {CaseSearchRequest} from '../models/case/CaseSearchRequest';
+import type {AppRequest} from '../models/appRequest';
+import type {Response} from 'express';
+import type {CaseSearchRequest} from '../models/case/CaseSearchRequest';
 import {CaseActivityController} from './CaseActivity.controller';
 import {CaseSearchesController} from './CaseSearches.controller';
 import {BaseSearchController} from './BaseSearchController';
 import {validCaseRef} from '../util/validators';
-import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
+import {type AppError, ErrorCode, errorRedirect} from '../models/AppError';
 import logger from '../modules/logging';
 
 /**

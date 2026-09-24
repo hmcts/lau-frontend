@@ -1,6 +1,6 @@
-import * as express from 'express';
+import type * as express from 'express';
 import config from 'config';
-import {AppRequest, UserDetails} from './models/appRequest';
+import type {AppRequest, UserDetails} from './models/appRequest';
 
 const setupDev = (app: express.Express, developmentMode: boolean): void => {
   if (developmentMode) {

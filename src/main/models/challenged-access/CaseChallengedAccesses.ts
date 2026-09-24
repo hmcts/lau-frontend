@@ -1,4 +1,4 @@
-import {CaseChallengedAccessLog} from './CaseChallengedAccessLogs';
+import type {CaseChallengedAccessLog} from './CaseChallengedAccessLogs';
 
 export interface CaseChallengedAccesses {
   accessLog: CaseChallengedAccessLog[];

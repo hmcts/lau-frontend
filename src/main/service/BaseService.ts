@@ -1,7 +1,7 @@
 import config from 'config';
 import {AuthService, IdamGrantType} from './AuthService';
-import {AppSession} from '../models/appRequest';
-import {AppError, ErrorCode} from '../models/AppError';
+import type {AppSession} from '../models/appRequest';
+import {AppError, type ErrorCode} from '../models/AppError';
 import {HttpResponseError} from '../util/HttpResponseError';
 
 

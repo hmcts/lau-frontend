@@ -1,10 +1,10 @@
 import autobind from 'autobind-decorator';
-import {AppRequest} from '../models/appRequest';
-import {Response} from 'express';
-import {CaseChallengedAccessRequest} from '../models/challenged-access/CaseChallengedAccessRequest';
+import type {AppRequest} from '../models/appRequest';
+import type {Response} from 'express';
+import type {CaseChallengedAccessRequest} from '../models/challenged-access/CaseChallengedAccessRequest';
 import {BaseSearchController} from './BaseSearchController';
 import {validCaseRef} from '../util/validators';
-import {AppError, ErrorCode, errorRedirect} from '../models/AppError';
+import {type AppError, ErrorCode, errorRedirect} from '../models/AppError';
 import {CaseChallengedAccessController} from './CaseChallengedAccess.controller';
 import logger from '../modules/logging';
 

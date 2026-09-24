@@ -1,4 +1,4 @@
-import {Application, Request, Response} from 'express';
+import type {Application, Request, Response} from 'express';
 import {content} from '../views/footer/accessibility-statement/content';
 
 function accessibilityHandler(req: Request, res: Response) {

@@ -1,4 +1,4 @@
-import {Application, Request, Response} from 'express';
+import type {Application, Request, Response} from 'express';
 
 function unauthorizedHandler(req: Request, res: Response) {
   res.render('unauthorized/template');

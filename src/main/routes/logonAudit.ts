@@ -1,4 +1,4 @@
-import {Application} from 'express';
+import type {Application} from 'express';
 import {LogonController} from '../controllers/Logon.controller';
 
 export default function registerLogonsRoutes(app: Application): void {

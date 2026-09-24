@@ -1,4 +1,4 @@
-import {Application} from 'express';
+import type {Application} from 'express';
 import {DeletedUsersController} from '../controllers/DeletedUsers.controller';
 
 export default function registerDeletedUsersRoutes(app: Application): void {

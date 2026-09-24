@@ -1,9 +1,9 @@
 import fs from 'node:fs';
-import {Config} from 'config';
+import type {Config} from 'config';
 
 import logger from '../modules/logging';
 import path from 'node:path';
-import {AutoSuggestService} from '../modules/autosuggest/AutoSuggestService';
+import type {AutoSuggestService} from '../modules/autosuggest/AutoSuggestService';
 import autobind from 'autobind-decorator';
 
 interface JurisdictionsCaseTypes {

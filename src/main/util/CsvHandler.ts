@@ -1,4 +1,4 @@
-import {Logs as LogsModel} from '../models/Logs';
+import type {Logs as LogsModel} from '../models/Logs';
 import {CaseChallengedAccessLogs, textMapping} from '../models/challenged-access/CaseChallengedAccessLogs';
 
 interface CsvJson {

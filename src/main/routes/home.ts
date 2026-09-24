@@ -1,14 +1,14 @@
-import {Application, Response} from 'express';
-import {AppRequest, FormError, LogData} from '../models/appRequest';
+import type {Application, Response} from 'express';
+import type {AppRequest, FormError, LogData} from '../models/appRequest';
 import config from 'config';
-import {CaseSearchRequest} from '../models/case/CaseSearchRequest';
-import {LogonSearchRequest} from '../models/idam/LogonSearchRequest';
-import {DeletedUsersSearchRequest} from '../models/user-deletions/DeletedUsersSearchRequest';
-import {CaseDeletionsSearchRequest} from '../models/deletions/CaseDeletionsSearchRequest';
-import {CaseChallengedAccessRequest} from '../models/challenged-access/CaseChallengedAccessRequest';
+import type {CaseSearchRequest} from '../models/case/CaseSearchRequest';
+import type {LogonSearchRequest} from '../models/idam/LogonSearchRequest';
+import type {DeletedUsersSearchRequest} from '../models/user-deletions/DeletedUsersSearchRequest';
+import type {CaseDeletionsSearchRequest} from '../models/deletions/CaseDeletionsSearchRequest';
+import type {CaseChallengedAccessRequest} from '../models/challenged-access/CaseChallengedAccessRequest';
 import {getCaseChallengedAccessLogOrder} from './../models/challenged-access/CaseChallengedAccessLogs';
-import {UserDetailsSearchRequest} from '../models/user-details/UserDetailsSearchRequest';
-import {UserDetailsAuditData} from '../models/user-details/UserDetailsAuditData';
+import type {UserDetailsSearchRequest} from '../models/user-details/UserDetailsSearchRequest';
+import type {UserDetailsAuditData} from '../models/user-details/UserDetailsAuditData';
 
 interface Context {
   caseForm?: Partial<CaseSearchRequest>;

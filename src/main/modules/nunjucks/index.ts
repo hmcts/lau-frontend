@@ -1,8 +1,8 @@
 import * as path from 'path';
-import * as express from 'express';
+import type * as express from 'express';
 import * as nunjucks from 'nunjucks';
 import {numberWithCommas} from '../../util/Util';
-import {AppRequest} from '../../models/appRequest';
+import type {AppRequest} from '../../models/appRequest';
 import config from 'config';
 
 export class Nunjucks {

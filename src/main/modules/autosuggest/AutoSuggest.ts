@@ -1,6 +1,6 @@
-import {Express} from 'express';
+import type {Express} from 'express';
 
-import {AutoSuggestService} from './AutoSuggestService';
+import type {AutoSuggestService} from './AutoSuggestService';
 import autobind from 'autobind-decorator';
 
 

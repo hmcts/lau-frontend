@@ -1,13 +1,13 @@
 import nock from 'nock';
 import sinon from 'sinon';
-import {LogonSearchRequest} from '../../../main/models/idam/LogonSearchRequest';
+import type {LogonSearchRequest} from '../../../main/models/idam/LogonSearchRequest';
 import {LogonController} from '../../../main/controllers/Logon.controller';
-import {AppRequest, LogData} from '../../../main/models/appRequest';
-import {LogonLog} from '../../../main/models/idam/LogonLogs';
-import {LogonAudit} from '../../../main/models/idam/LogonAudit';
+import type {AppRequest, LogData} from '../../../main/models/appRequest';
+import type {LogonLog} from '../../../main/models/idam/LogonLogs';
+import type {LogonAudit} from '../../../main/models/idam/LogonAudit';
 import logonLogs from '../../data/logonLogs.json';
-import {Response} from 'express';
-import {AppError, ErrorCode} from '../../../main/models/AppError';
+import type {Response} from 'express';
+import {type AppError, ErrorCode} from '../../../main/models/AppError';
 import config from 'config';
 
 describe('Logon Controller', () => {

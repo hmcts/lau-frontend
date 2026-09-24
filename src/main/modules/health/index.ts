@@ -1,6 +1,6 @@
-import { Application } from 'express';
-import {MetadataObj} from '../../models/common';
-import * as os from 'os';
+import type { Application } from 'express';
+import type {MetadataObj} from '../../models/common';
+import * as os from 'node:os';
 import type { RedisClientType } from 'redis';
 
 interface HealthResponse {
