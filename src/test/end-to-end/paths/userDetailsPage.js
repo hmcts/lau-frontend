@@ -1,6 +1,6 @@
 'use strict';
 
-const testConfig = require('../../config');
+const testConfig = require('../../config.cjs');
 const {userType, tabs} = require('../common/Constants');
 const lauHelper = require('../lauApi/lauHelper');
 const idamUserHelper = require('../helpers/IdamUserHelper');
@@ -56,16 +56,16 @@ Scenario('Navigate to LAU, perform user details search and authenticate user det
   await I.waitForText('Account status', testConfig.TestTimeToWaitForText);
   await I.waitForText('Latest Activation Date (UTC)', testConfig.TestTimeToWaitForText);
   await I.waitForText('Roles', testConfig.TestTimeToWaitForText);
-  
+
   await I.click('details.govuk-details summary');
 }).retry(testConfig.TestRetryScenarios);
 
-//commenting out the below test as the user details update functionality is currently unavailable due to a dependency issue. 
+//commenting out the below test as the user details update functionality is currently unavailable due to a dependency issue.
 // Will be re-enabled once we have some mechanism to update the user without using Idam api.
 /*Scenario('User Updates Search', async ({I}) => {
   await goToUserDetailsAndSearch(I);
   await I.waitForText('Account history', testConfig.TestTimeToWaitForText);
-  
+
   const eventNameHeader = await I.grabTextFrom(
     '//th[normalize-space()="Event name"]');
   assert.strictEqual(eventNameHeader.trim(), 'Event name');
@@ -73,7 +73,7 @@ Scenario('Navigate to LAU, perform user details search and authenticate user det
   const updateTypeHeader = await I.grabTextFrom(
     '//th[normalize-space()="Update type"]');
   assert.strictEqual(updateTypeHeader.trim(), 'Update type');
- 
+
   const timestampHeader = await I.grabTextFrom(
     '//th[normalize-space()="Timestamp (UTC)"]');
   assert.strictEqual(timestampHeader.trim(), 'Timestamp (UTC)');
@@ -81,10 +81,10 @@ Scenario('Navigate to LAU, perform user details search and authenticate user det
   const changedByHeader = await I.grabTextFrom(
     '//th[normalize-space()="Changed by"]');
   assert.strictEqual(changedByHeader.trim(), 'Changed by');
-  
+
   const previousValueHeader = await I.grabTextFrom(
     '//th[normalize-space()="Previous value"]');
-  assert.strictEqual(previousValueHeader.trim(), 'Previous value'); 
+  assert.strictEqual(previousValueHeader.trim(), 'Previous value');
 
 }).retry(testConfig.TestRetryScenarios);*/
 
