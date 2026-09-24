@@ -1,4 +1,4 @@
-import {escape} from 'lodash';
+import escape from 'lodash/escape.js';
 
 export type GovukTableRow = {text: string}[]
 type UpstreamResponse = { responseCode: number}

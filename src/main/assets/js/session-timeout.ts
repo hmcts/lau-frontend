@@ -1,4 +1,4 @@
-import { throttle } from 'lodash';
+import throttle from 'lodash/throttle.js';
 import {MINUTE_IN_MS} from '../../util/Util';
 
 const oneMinute = MINUTE_IN_MS;

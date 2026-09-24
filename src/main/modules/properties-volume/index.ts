@@ -1,6 +1,7 @@
 import config from 'config';
 import * as propertiesVolume from '@hmcts/properties-volume';
-import { get, set } from 'lodash';
+import get from 'lodash/get.js';
+import set from 'lodash/set.js';
 
 export class PropertiesVolume {
   enableFor(env: string): void {
