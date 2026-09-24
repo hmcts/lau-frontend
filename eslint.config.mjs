@@ -93,7 +93,7 @@ export default [
       '**/*.d.ts',
       'src/main/public/',
       'src/main/types/',
-      'jest.*config.js',
+      'jest.*config.*',
       'src/test/reporter/',
       'functional-output/',
       '.yarn/',

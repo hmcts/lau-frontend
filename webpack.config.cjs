@@ -1,10 +1,10 @@
 const path = require('path');
 
 const sourcePath = path.resolve(__dirname, 'src/main/');
-const app = require(path.resolve(__dirname, 'webpack/app'));
-const govukFrontend = require(path.resolve(__dirname, 'webpack/govukFrontend'));
-const scss = require(path.resolve(__dirname, 'webpack/scss'));
-const HtmlWebpack = require(path.resolve(__dirname, 'webpack/htmlWebpack'));
+const app = require(path.resolve(__dirname, 'webpack/app.cjs'));
+const govukFrontend = require(path.resolve(__dirname, 'webpack/govukFrontend.cjs'));
+const scss = require(path.resolve(__dirname, 'webpack/scss.cjs'));
+const HtmlWebpack = require(path.resolve(__dirname, 'webpack/htmlWebpack.cjs'));
 
 const devMode = process.env.NODE_ENV !== 'production';
 const fileNameSuffix = devMode ? '-dev' : '.[contenthash]';
