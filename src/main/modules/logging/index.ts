@@ -1,6 +1,4 @@
 import winston from 'winston';
-// const winston = require('winston');
-// import * as winston from 'winston';
 import TransportStream from 'winston-transport';
 import {type LogLevel, appInsights } from '../appinsights';
 

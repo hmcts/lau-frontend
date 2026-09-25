@@ -1,5 +1,3 @@
-import { globSync } from 'node:fs';
-
 import express from 'express';
 import compression from 'compression';
 import {Helmet} from './modules/helmet';
@@ -13,6 +11,7 @@ import {HealthCheck} from './modules/health';
 import {Container} from './modules/awilix';
 import { correlation } from './modules/correlation';
 import { appInsights } from './modules/appinsights';
+import { registerRoutes } from './routes';
 
 import config from 'config';
 import {AutoSuggest} from './modules/autosuggest/AutoSuggest';
@@ -69,9 +68,7 @@ app.use((req, res, next) => {
   next();
 });
 
-globSync(`${__dirname}/routes/**/*.{ts,js}`)
-  .map(filename => require(filename))
-  .forEach(route => route.default(app));
+registerRoutes(app);
 
 // returning "not found" page for requests with paths not resolved by the router
 app.use((req, res) => {
