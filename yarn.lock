@@ -5954,14 +5954,14 @@ __metadata:
   linkType: hard
 
 "accessible-autocomplete@npm:^3.0.0":
-  version: 3.0.1
-  resolution: "accessible-autocomplete@npm:3.0.1"
+  version: 3.0.2
+  resolution: "accessible-autocomplete@npm:3.0.2"
   peerDependencies:
     preact: ^8.0.0
   peerDependenciesMeta:
     preact:
       optional: true
-  checksum: 10/240e22c1c1fe68a011c26a6fbe7f54db23e766313d594607f5cbba6d703f70296282d11b4dc110efa00974d6edf1b3165fb6366314acd176f0b470c58c7beed7
+  checksum: 10/9330e866b0937b18c864c3877f996690e441c919bddf00b5ac5e5e2580440f85985bb91fa19ae9e999e6f3dcfa937e1120ce6909e705254a6d5cb837d7fff509
   languageName: node
   linkType: hard
 
@@ -16222,8 +16222,8 @@ __metadata:
   linkType: hard
 
 "ts-jest@npm:^29.0.3":
-  version: 29.4.12
-  resolution: "ts-jest@npm:29.4.12"
+  version: 29.4.13
+  resolution: "ts-jest@npm:29.4.13"
   dependencies:
     bs-logger: "npm:^0.2.6"
     fast-json-stable-stringify: "npm:^2.1.0"
@@ -16235,7 +16235,7 @@ __metadata:
     type-fest: "npm:^4.41.0"
     yargs-parser: "npm:^21.1.1"
   peerDependencies:
-    "@babel/core": ">=7.0.0-beta.0 <8"
+    "@babel/core": ">=7.0.0-beta.0 <9"
     "@jest/transform": ^29.0.0 || ^30.0.0
     "@jest/types": ^29.0.0 || ^30.0.0
     babel-jest: ^29.0.0 || ^30.0.0
@@ -16257,7 +16257,7 @@ __metadata:
       optional: true
   bin:
     ts-jest: cli.js
-  checksum: 10/640678eb12d0911d99b0a2ac52ebfbf0ab170ba24ab73697d71de0e00ee95f2f468299a877a5e27dadf08265d5588e8cc982a6945c16b8893657390de7baa662
+  checksum: 10/ef146e599a9f307a748027594e778cf820939ec9d7781a727fb70ce834df081205c824802ec934619769710685eb6428d3da175a561e09ba4996d288c3b5b83c
   languageName: node
   linkType: hard
 
