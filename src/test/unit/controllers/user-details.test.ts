@@ -12,6 +12,7 @@ import {
 } from '../../../main/models/user-details';
 import {AppError, ErrorCode} from '../../../main/models/AppError';
 import type {UserDetailsViewModel} from '../../../main/models/user-details/UserDetailsAuditData';
+import logger from '../../../main/modules/logging';
 
 describe('UserDetailsController.post', () => {
   const makeRes = () => ({ redirect: jest.fn() });
@@ -218,6 +219,7 @@ describe('UserDetailsController.post', () => {
 
   it('throws an error when service throws an AppError', async () => {
     const appErr = new AppError('Boom', ErrorCode.EUD_BACKEND);
+    const loggerSpy = jest.spyOn(logger, 'error').mockImplementation();
     const service = { getUserDetails: jest.fn().mockRejectedValue(appErr) } as unknown as UserDetailsService;
     const controller = new UserDetailsController(service);
     const req = makeReq({ userIdOrEmail: 'user@example.com' });
@@ -225,6 +227,10 @@ describe('UserDetailsController.post', () => {
 
     await controller.post(req as AppRequest<UserDetailsSearchRequest>, res);
 
+    expect(loggerSpy).toHaveBeenCalledWith('Boom', {
+      code: ErrorCode.EUD_BACKEND,
+      stack: appErr.stack,
+    });
     expect(res.redirect).toHaveBeenCalledWith(`/error?code=${ErrorCode.EUD_BACKEND}`);
   });
 });
@@ -338,6 +344,31 @@ describe('UserDetailsController.postPdf', () => {
 
     await controller.postPdf(req as AppRequest<UserDetailsSearchRequest>, res);
 
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.send).toHaveBeenCalledWith('Failed to generate PDF');
+  });
+
+  it('should normalize and log non-Error PDF generation failures', async () => {
+    const mockSessionData = {
+      userId: 'test-user-id',
+      email: 'test@example.com',
+    };
+    const loggerSpy = jest.spyOn(logger, 'error').mockImplementation();
+
+    jest.doMock('../../../main/service/pdf-service', () => ({
+      renderHtmlToPdfBuffer: jest.fn().mockRejectedValue('PDF generation failed'),
+    }));
+
+    const controller = new UserDetailsController();
+    const req = makeReq(mockSessionData);
+    const res = makeRes() as unknown as Response;
+
+    await controller.postPdf(req as AppRequest<UserDetailsSearchRequest>, res);
+
+    expect(loggerSpy).toHaveBeenCalledWith('PDF generation failed', {
+      name: 'Error',
+      stack: expect.any(String),
+    });
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.send).toHaveBeenCalledWith('Failed to generate PDF');
   });
