@@ -2,7 +2,7 @@
 
 import { actor } from 'codeceptjs';
 
-export = function () {
+export default function () {
   return actor({
 
     // Define custom steps here, use 'this' to access default methods of I.

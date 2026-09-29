@@ -1,6 +1,9 @@
 import HTMLCS from 'html_codesniffer';
 import fs from 'node:fs';
 import testConfig from '../../../config.cjs';
+import {createRequire} from 'node:module';
+
+const require = createRequire(import.meta.url);
 
 const result = {
   PASSED: 'passed',

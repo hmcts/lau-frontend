@@ -1,4 +1,5 @@
 import CONF from 'config';
+import { inject } from 'codeceptjs';
 
 const {I} = inject();
 

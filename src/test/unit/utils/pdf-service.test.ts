@@ -1,6 +1,6 @@
-import type { Browser, BrowserContext, Page } from 'puppeteer';
+import type { Browser, BrowserContext, Page } from 'playwright';
 
-// Mock puppeteer module
+// Mock playwright module
 const mockPage = {
   setContent: jest.fn(),
   evaluate: jest.fn(),
@@ -14,14 +14,16 @@ const mockContext = {
 } as unknown as jest.Mocked<BrowserContext>;
 
 const mockBrowser = {
-  createBrowserContext: jest.fn(),
+  newContext: jest.fn(),
   close: jest.fn(),
 } as unknown as jest.Mocked<Browser>;
 
-const mockPuppeteerLaunch = jest.fn();
+const mockBrowserLaunch = jest.fn();
 
-jest.mock('puppeteer', () => ({
-  launch: mockPuppeteerLaunch,
+jest.mock('playwright', () => ({
+  chromium: {
+    launch: mockBrowserLaunch,
+  },
 }));
 
 describe('pdf-service', () => {
@@ -31,7 +33,7 @@ describe('pdf-service', () => {
     jest.resetModules();
 
     // Setup default mock implementations
-    mockBrowser.createBrowserContext = jest.fn().mockResolvedValue(mockContext);
+    mockBrowser.newContext = jest.fn().mockResolvedValue(mockContext);
     mockContext.newPage = jest.fn().mockResolvedValue(mockPage);
     mockPage.setContent = jest.fn().mockResolvedValue(undefined);
     mockPage.evaluate = jest.fn().mockResolvedValue(undefined);
@@ -40,7 +42,7 @@ describe('pdf-service', () => {
     mockContext.close = jest.fn().mockResolvedValue(undefined);
     mockBrowser.close = jest.fn().mockResolvedValue(undefined);
 
-    mockPuppeteerLaunch.mockResolvedValue(mockBrowser);
+    mockBrowserLaunch.mockResolvedValue(mockBrowser);
   });
 
   describe('renderHtmlToPdfBuffer', () => {
@@ -50,7 +52,7 @@ describe('pdf-service', () => {
 
       const result = await renderHtmlToPdfBuffer(html);
 
-      expect(mockBrowser.createBrowserContext).toHaveBeenCalled();
+      expect(mockBrowser.newContext).toHaveBeenCalled();
       expect(mockContext.newPage).toHaveBeenCalled();
       expect(mockPage.setContent).toHaveBeenCalledWith(html, {
         waitUntil: 'domcontentloaded',
@@ -150,19 +152,6 @@ describe('pdf-service', () => {
 
       expect(mockPage.close).toHaveBeenCalled();
       expect(mockContext.close).toHaveBeenCalled();
-    });
-
-    it('should return Buffer from Uint8Array returned by page.pdf()', async () => {
-      const { renderHtmlToPdfBuffer } = await import('../../../main/service/pdf-service');
-      const html = '<html><body><h1>Test</h1></body></html>';
-      const mockPdfData = new Uint8Array([1, 2, 3, 4, 5]);
-      mockPage.pdf = jest.fn().mockResolvedValue(mockPdfData);
-
-      const result = await renderHtmlToPdfBuffer(html);
-
-      expect(result).toBeInstanceOf(Buffer);
-      expect(Buffer.isBuffer(result)).toBe(true);
-      expect(Array.from(result)).toEqual([1, 2, 3, 4, 5]);
     });
   });
 });

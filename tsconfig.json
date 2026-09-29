@@ -3,6 +3,7 @@
     "files": true
   },
   "compilerOptions": {
+    "rootDir": "./src/main",
     "outDir": "./dist/",
     "module": "commonjs",
     "esModuleInterop": true,
@@ -19,13 +20,12 @@
       "es2022.object",
       "dom"
     ],
-    "baseUrl": "src/main",
     "paths": {
       "router/*": [
-        "router/*"
+        "./src/main/router/*"
       ],
       "routes/*": [
-        "routes/*"
+        "./src/main/routes/*"
       ]
     },
     "typeRoots": [
@@ -34,5 +34,6 @@
       "./src/test"
     ],
     "types": ["jest", "node", "express"]
-  }
+  },
+  "include": ["src/main/**/*.ts"],
 }

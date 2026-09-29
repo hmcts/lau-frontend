@@ -68,9 +68,6 @@ const setupConfig = {
     SauceLabsReportingHelper: {
       require: './helpers/SauceLabsReportingHelper.js',
     },
-    JSWait: {
-      require: './helpers/JSWait.js',
-    },
   },
   plugins: {
     retryFailedStep: {
