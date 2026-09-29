@@ -1,4 +1,6 @@
-class JSWait extends codecept_helper {
+import Helper from '@codeceptjs/helper';
+
+class JSWait extends Helper {
 
   async amOnLoadedPage(url) {
     const helper = this.helpers.WebDriver || this.helpers.Puppeteer;
@@ -22,4 +24,4 @@ class JSWait extends codecept_helper {
   }
 }
 
-module.exports = JSWait;
+export default JSWait;

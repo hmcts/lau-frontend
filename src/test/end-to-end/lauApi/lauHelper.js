@@ -1,7 +1,7 @@
-const logger = require('../logger');
-const fs = require('node:fs');
-const path = require('path');
-const assert = require('node:assert');
+import logger from '../logger.js';
+import fs, {createReadStream} from 'node:fs';
+import path from 'path';
+import assert from 'node:assert';
 
 async function clickNavigationLink(I, linkHref) {
   logger.info('Clicking on navigation link: ' + linkHref);
@@ -14,18 +14,19 @@ async function clickNavigationLink(I, linkHref) {
  * @returns {null|{fullPath: string, filename: *, codeceptPath: string}}
  */
 function getCsvPath() {
-  const outputDir = fs.readdirSync(path.resolve(__dirname, '../functional-output'), {withFileTypes: true})
+  const testOutput = path.resolve(import.meta.dirname, '../functional-output');
+  const outputDir = fs.readdirSync(testOutput, {withFileTypes: true})
     .filter(item => item.isDirectory())
     .map(dir => dir.name);
 
   if (outputDir && outputDir.length > 0) {
     for (const dir of outputDir) {
-      const chunkDir = fs.readdirSync(path.resolve(__dirname, '../functional-output', dir), {withFileTypes: true})
+      const chunkDir = fs.readdirSync(path.resolve(testOutput, dir), {withFileTypes: true})
         .filter(item => item.isDirectory())
         .map(d => d.name);
 
       if (chunkDir.includes('downloads')) {
-        const csvFile = fs.readdirSync(path.resolve(__dirname, '../functional-output', dir, 'downloads'), {withFileTypes: true})
+        const csvFile = fs.readdirSync(path.resolve(testOutput, dir, 'downloads'), {withFileTypes: true})
           .filter(item => item.isFile() && item.name.substr(-3) === 'csv')
           .map(file => file.name);
 
@@ -34,7 +35,7 @@ function getCsvPath() {
           return {
             codeceptPath: `functional-output/${dir}/downloads`,
             filename: csvFile[0],
-            fullPath: path.resolve(__dirname, '../functional-output', dir, 'downloads', csvFile[0]),
+            fullPath: path.resolve(testOutput, dir, 'downloads', csvFile[0]),
           };
         }
       }
@@ -51,18 +52,19 @@ function getCsvPath() {
  * @returns {null|{fullPath: string, filename: *, codeceptPath: string}}
  */
 function getPdfPath() {
-  const outputDir = fs.readdirSync(path.resolve(__dirname, '../functional-output'), {withFileTypes: true})
+  const testOutput = path.resolve(import.meta.dirname, '../functional-output');
+  const outputDir = fs.readdirSync(testOutput, {withFileTypes: true})
     .filter(item => item.isDirectory())
     .map(dir => dir.name);
 
   if (outputDir && outputDir.length > 0) {
     for (const dir of outputDir) {
-      const chunkDir = fs.readdirSync(path.resolve(__dirname, '../functional-output', dir), {withFileTypes: true})
+      const chunkDir = fs.readdirSync(path.resolve(testOutput, dir), {withFileTypes: true})
         .filter(item => item.isDirectory())
         .map(d => d.name);
 
       if (chunkDir.includes('downloads')) {
-        const downloadsPath = path.resolve(__dirname, '../functional-output', dir, 'downloads');
+        const downloadsPath = path.resolve(testOutput, dir, 'downloads');
         const downloadEntries = fs.readdirSync(downloadsPath, {withFileTypes: true});
         const pdfFile = downloadEntries
           .filter(item => item.isFile() && item.name.substr(-3) === 'pdf')
@@ -73,7 +75,7 @@ function getPdfPath() {
           return {
             codeceptPath: `functional-output/${dir}/downloads`,
             filename: pdfFile[0],
-            fullPath: path.resolve(__dirname, '../functional-output', dir, 'downloads', pdfFile[0]),
+            fullPath: path.resolve(testOutput, dir, 'downloads', pdfFile[0]),
           };
         }
       }
@@ -113,7 +115,7 @@ async function waitForPdfPath(timeoutMs = 10000, intervalMs = 500) {
 function assertCsvLineCount(csvPath, lines) {
   let i;
   let count = 0;
-  require('node:fs').createReadStream(csvPath)
+  createReadStream(csvPath)
     .on('data', function(chunk) {
       for (i=0; i < chunk.length; ++i)
         if (chunk[i] === 10) count++;
@@ -123,7 +125,7 @@ function assertCsvLineCount(csvPath, lines) {
     });
 }
 
-module.exports = {
+export default {
   clickNavigationLink,
   getCsvPath,
   getPdfPath,

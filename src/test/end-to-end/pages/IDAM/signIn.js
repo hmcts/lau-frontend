@@ -1,9 +1,9 @@
 'use strict';
 
-const testConfig = require('src/test/config.cjs');
-const { tryTo } = require('codeceptjs/effects');
+import testConfig from '../../../config.cjs';
+import { tryTo } from 'codeceptjs/effects';
 
-module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
+export default async function (givenUserType, isAlreadyAtSignOnPage = false) {
   const I = this;
   const user = testConfig.Auditor;
 

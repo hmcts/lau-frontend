@@ -10,7 +10,7 @@ const tabs = {
   USER_DETAILS_SEARCH: '/user-details-audit',
 };
 
-module.exports = {
+export {
   userType,
   tabs,
 };

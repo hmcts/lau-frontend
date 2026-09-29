@@ -1,4 +1,4 @@
-module.exports = async function () {
+export async function caseChallengedAccessSearchWithoutSearchData() {
   const I = this;
   await I.fillField('startTimestamp', '');
   await I.fillField('endTimestamp', '');

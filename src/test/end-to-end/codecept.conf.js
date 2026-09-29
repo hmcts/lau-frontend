@@ -1,10 +1,12 @@
-const testConfig = require('src/test/config.cjs');
-const idamUserHelper = require('./helpers/IdamUserHelper');
+import {randomBytes} from 'node:crypto';
+import testConfig from '../config.cjs';
+import idamUserHelper from './helpers/IdamUserHelper.js';
 
-const auditorUser = `auditor${require('node:crypto').randomBytes(8).toString('hex').toLowerCase()}@gmail.com`;
+const auditorUser = `auditor${randomBytes(8).toString('hex').toLowerCase()}@gmail.com`;
 const testPassword = 'Password12';
 
-exports.config = {
+export default {
+  noGlobals: true,
   async bootstrapAll() {
     await idamUserHelper.createAUser(auditorUser, testPassword);
   },
@@ -45,9 +47,6 @@ exports.config = {
     'JSWait': {
       require: './helpers/JSWait.js',
     },
-    'Mochawesome': {
-      uniqueScreenshotNames: true,
-    },
     'FileSystem': {},
   },
   'include': {
@@ -57,9 +56,11 @@ exports.config = {
     'autoDelay': {
       'enabled': testConfig.TestAutoDelayEnabled,
     },
-    'screenshotOnFail': {
+    'screenshot': {
       'enabled': true,
+      'on': 'fail',
       'fullPageScreenshots': true,
+      'uniqueScreenshotNames': true,
     },
     'retryFailedStep': {
       'enabled': true,

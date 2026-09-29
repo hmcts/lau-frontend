@@ -1,10 +1,10 @@
 'use strict';
 
-const Helper = codecept_helper;
-const helperName = 'Puppeteer';
-const testConfig = require('src/test/config.cjs');
+import Helper from '@codeceptjs/helper';
+import testConfig from '../../config.cjs';
+import {runAccessibility} from './accessibility/runner.js';
 
-const {runAccessibility} = require('./accessibility/runner');
+const helperName = 'Puppeteer';
 
 class PuppeteerHelper extends Helper {
 
@@ -69,4 +69,4 @@ class PuppeteerHelper extends Helper {
   }
 }
 
-module.exports = PuppeteerHelper;
+export default PuppeteerHelper;

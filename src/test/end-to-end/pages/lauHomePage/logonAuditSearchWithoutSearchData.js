@@ -1,4 +1,4 @@
-module.exports = async function () {
+export async function logonAuditSearchWithoutSearchData () {
   const I = this;
   await I.fillField('User ID', '');
   await I.fillField('Email', '');

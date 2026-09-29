@@ -1,12 +1,10 @@
-'use strict';
-
-const testConfig = require('../../config.cjs');
-const {userType, tabs} = require('../common/Constants');
-const lauHelper = require('../lauApi/lauHelper');
+import testConfig from '../../config.cjs';
+import {userType, tabs} from '../common/Constants.js';
+import lauHelper from '../lauApi/lauHelper.js';
+import logger from '../logger.js';
 
 Feature('Challenged and Specific Access Page Check');
 
-const logger = require('../logger');
 logger.info('Running \'Challenged and Specific Access Page testing\' feature');
 
 Scenario('Navigate to LAU, perform challenged/specific access search and check results', async ({I}) => {

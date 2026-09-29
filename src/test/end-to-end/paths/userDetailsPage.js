@@ -1,15 +1,14 @@
 'use strict';
 
-const testConfig = require('../../config.cjs');
-const {userType, tabs} = require('../common/Constants');
-const lauHelper = require('../lauApi/lauHelper');
-const idamUserHelper = require('../helpers/IdamUserHelper');
-const crypto = require('node:crypto');
-const assert = require('node:assert');
+import testConfig from '../../config.cjs';
+import {userType, tabs} from '../common/Constants.js';
+import lauHelper from '../lauApi/lauHelper.js';
+import idamUserHelper from '../helpers/IdamUserHelper.js';
+import crypto from 'node:crypto';
+import assert from 'node:assert';
+import logger from '../logger.js';
 
 Feature('User Details Check');
-
-const logger = require('../logger');
 logger.info('Running \'User Details Page testing\' feature');
 
 const featureUserEmail = `testUserDetails${crypto.randomBytes(8).toString('hex').toLowerCase()}@gmail.com`;
