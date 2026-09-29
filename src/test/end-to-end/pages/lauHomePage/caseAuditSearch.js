@@ -1,4 +1,4 @@
-module.exports = async function () {
+export async function caseAuditSearch () {
   const I = this;
   await I.fillField('#caseTypeId', 'GrantOfRepresentation');
   await I.click('#caseTypeId__listbox');

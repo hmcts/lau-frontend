@@ -1,4 +1,4 @@
-const { retry } = require('../lauApi/retryHelper');
+import { retry } from '../lauApi/retryHelper.js';
 
 /**
  * Make a retried HTTP request with automatic retry logic
@@ -24,6 +24,6 @@ const retriedRequest = async (url, headers = {}, body = null, method = null) => 
   );
 };
 
-module.exports = {
+export default {
   retriedRequest,
 };

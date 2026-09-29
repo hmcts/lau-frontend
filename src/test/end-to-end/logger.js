@@ -1,4 +1,4 @@
-const winston = require('winston');
+import winston from 'winston';
 
 
 const logger = winston.createLogger({
@@ -8,4 +8,4 @@ const logger = winston.createLogger({
   ],
 });
 
-module.exports = logger;
+export default logger;

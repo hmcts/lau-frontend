@@ -1,12 +1,12 @@
 'use strict';
 
-const testConfig = require('../../config.cjs');
-const {userType, tabs} = require('../common/Constants');
-const lauHelper = require('../lauApi/lauHelper');
+import testConfig from '../../config.cjs';
+import {userType, tabs} from '../common/Constants.js';
+import lauHelper from '../lauApi/lauHelper.js';
+import logger from '../logger.js';
 
 Feature('Deleted Users Check)');
 
-const logger = require('../logger');
 logger.info('Running \'Deleted Users Page testing\' feature');
 
 Scenario('Navigate to LAU, perform deleted user search and authenticate deleted user results', async ({I}) => {

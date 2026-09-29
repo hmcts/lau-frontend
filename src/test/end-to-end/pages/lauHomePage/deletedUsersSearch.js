@@ -1,4 +1,4 @@
-module.exports = async function () {
+export async function deletedUsersSearch () {
   const I = this;
   await I.fillField('userId', '4f18-b03b-7d2042209344');
   await I.fillStartTime('2023-08-29T09:00:00');

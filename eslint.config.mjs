@@ -19,13 +19,11 @@ const jsconfig = {
       ...globals.node,
       'Atomics': 'readonly',
       'SharedArrayBuffer': 'readonly',
-      'actor': true,
       'Feature': true,
       'Before': true,
       'After': true,
       'Scenario': true,
       'xScenario': true,
-      'codecept_helper': true,
     },
   },
   rules: {

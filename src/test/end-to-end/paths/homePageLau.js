@@ -1,12 +1,12 @@
 'use strict';
 
-const testConfig = require('../../config.cjs');
-const {userType, tabs} = require('../common/Constants');
-const lauHelper = require('../lauApi/lauHelper');
+import testConfig from '../../config.cjs';
+import {userType, tabs} from '../common/Constants.js';
+import lauHelper from '../lauApi/lauHelper.js';
+import logger from '../logger.js';
 
 Feature('Home Screen Sanity Check)');
 
-const logger = require('../logger');
 logger.info('Running \'Home Screen Sanity Check\' feature');
 
 Scenario('Navigate to LAU, authenticate and view home screen', async ({I}) => {

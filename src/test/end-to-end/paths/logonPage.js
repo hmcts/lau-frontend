@@ -1,12 +1,12 @@
 'use strict';
 
-const testConfig = require('../../config.cjs');
-const {userType, tabs} = require('../common/Constants');
-const lauHelper = require('../lauApi/lauHelper');
+import testConfig from '../../config.cjs';
+import {userType, tabs} from '../common/Constants.js';
+import lauHelper from '../lauApi/lauHelper.js';
+import logger from '../logger.js';
 
 Feature('Logon Page Testing)');
 
-const logger = require('../logger');
 logger.info('Running \'Logon Page Testing\' feature');
 
 Scenario('Navigate to LAU, perform logon audit search and authenticate logon search results', async ({I}) => {

@@ -1,8 +1,9 @@
-const supportedBrowsers = require('../crossbrowser/supportedBrowsers.cjs');
-const testConfig = require('../config.cjs');
-const idamUserHelper = require('./helpers/IdamUserHelper');
+import {randomBytes} from 'node:crypto';
+import supportedBrowsers from'../crossbrowser/supportedBrowsers.cjs';
+import testConfig from'../config.cjs';
+import idamUserHelper from'./helpers/IdamUserHelper.js';
 
-const auditorUser = `auditor${require('node:crypto').randomBytes(8).toString('hex').toLowerCase()}@gmail.com`;
+const auditorUser = `auditor${randomBytes(8).toString('hex').toLowerCase()}@gmail.com`;
 const testPassword = 'genericPassword123';
 
 const waitForTimeout = parseInt(process.env.WAIT_FOR_TIMEOUT) || 45000;
@@ -69,9 +70,6 @@ const setupConfig = {
     },
     JSWait: {
       require: './helpers/JSWait.js',
-    },
-    Mochawesome: {
-      uniqueScreenshotNames: 'true',
     },
   },
   plugins: {

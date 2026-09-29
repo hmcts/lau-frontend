@@ -1,4 +1,4 @@
-module.exports = async function () {
+export async function caseChallengedAccessSearch () {
   const I = this;
   await I.fillField('#caseRef', '0123456789012345');
   await I.fillField('#first-search-field', '00000000-1111-2222-3333-445566778899');

@@ -1,4 +1,4 @@
-module.exports = async function () {
+export async function caseAuditSearchWithoutSearchData () {
   const I = this;
   await I.fillField({css: '#caseTypeId'}, '');
   await I.fillField({css: '#caseJurisdictionId'}, '');

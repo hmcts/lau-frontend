@@ -1,4 +1,4 @@
-module.exports = async function () {
+export async function caseSearch () {
   const I = this;
   await I.fillField('User ID', 'da3fad06-6408-4402-bfcd-dbdc24696b12');
   await I.fillField('Case reference', '1641158512635045');

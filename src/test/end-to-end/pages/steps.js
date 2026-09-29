@@ -1,21 +1,29 @@
-'use strict';
+import { actor } from 'codeceptjs';
+import signIn from './IDAM/signIn.js';
+import { caseAuditSearch } from './lauHomePage/caseAuditSearch.js';
+import { caseSearch } from './lauHomePage/caseSearch.js';
+import { logonAuditSearch } from './lauHomePage/logonAuditSearch.js';
+import { deletedUsersSearch } from './lauHomePage/deletedUsersSearch.js';
+import { caseChallengedAccessSearch } from './lauHomePage/caseChallengedAccessSearch.js';
+import { caseAuditSearchWithoutSearchData } from './lauHomePage/caseAuditSearchWithoutSearchData.js';
+import { logonAuditSearchWithoutSearchData } from './lauHomePage/logonAuditSearchWithoutSearchData.js';
+import { deletedUsersSearchWithoutSearchData } from './lauHomePage/deletedUsersSearchWithoutSearchData.js';
+import { caseChallengedAccessSearchWithoutSearchData } from './lauHomePage/caseChallengedAccessSearchWithoutSearchData.js';
+import { userDetailsSearch } from './lauHomePage/userDetailsSearch.js';
 
-const requireDirectory = require('require-directory');
-const steps = requireDirectory(module);
 
-module.exports = function () {
+export default function () {
   return actor({
-    authenticateWithIdam: steps.IDAM.signIn,
-    performCaseAuditSearch: steps.lauHomePage.caseAuditSearch,
-    performCaseSearch: steps.lauHomePage.caseSearch,
-    performLogonAuditSearch: steps.lauHomePage.logonAuditSearch,
-    performDeletedUsersSearch: steps.lauHomePage.deletedUsersSearch,
-    performCaseChallengedAccessSearch: steps.lauHomePage.caseChallengedAccessSearch,
-    performCaseAuditSearchWithoutSearchData: steps.lauHomePage.caseAuditSearchWithoutSearchData,
-    performLogonAuditSearchWithoutSearchData: steps.lauHomePage.logonAuditSearchWithoutSearchData,
-    performDeletedUsersSearchWithoutSearchData: steps.lauHomePage.deletedUsersSearchWithoutSearchData,
-    performChallengedAccessSearchWithoutSearchData: steps.lauHomePage.caseChallengedAccessSearchWithoutSearchData,
-    performUserDetailsSearch: steps.lauHomePage.userDetailsSearch,
-    performUserUpdateSearch: steps.lauHomePage.userUpdateSearch,
+    authenticateWithIdam: signIn,
+    performCaseAuditSearch: caseAuditSearch,
+    performCaseSearch: caseSearch,
+    performLogonAuditSearch: logonAuditSearch,
+    performDeletedUsersSearch: deletedUsersSearch,
+    performCaseChallengedAccessSearch: caseChallengedAccessSearch,
+    performCaseAuditSearchWithoutSearchData: caseAuditSearchWithoutSearchData,
+    performLogonAuditSearchWithoutSearchData: logonAuditSearchWithoutSearchData,
+    performDeletedUsersSearchWithoutSearchData: deletedUsersSearchWithoutSearchData,
+    performChallengedAccessSearchWithoutSearchData: caseChallengedAccessSearchWithoutSearchData,
+    performUserDetailsSearch: userDetailsSearch,
   });
 };
