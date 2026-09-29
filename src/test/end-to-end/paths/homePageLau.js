@@ -86,15 +86,11 @@ Scenario('Navigate to LAU, perform case audit search and download CSV', async ({
   await I.performCaseAuditSearch();
   await I.click('button[name="case-search-btn"]');
   await I.waitForText('Results', testConfig.TestTimeToWaitForText);
-  await I.handleDownloads();
-  await I.click('#activityCsvBtn');
+  const csvPath = await I.downloadFile('#activityCsvBtn');
   await I.waitForText('Generating CSV ...', testConfig.TestTimeToWaitForText);
   await I.waitForText('Download all records to CSV', testConfig.TestTimeToWaitForText);
-  const csvPath = lauHelper.getCsvPath();
 
-  await I.amInPath(csvPath.codeceptPath);
-  await I.seeFile(csvPath.filename);
-  lauHelper.assertCsvLineCount(csvPath.fullPath, 10000);
+  lauHelper.assertCsvLineCount(csvPath, 10000);
 
 }).retry(testConfig.TestRetryScenarios);
 
@@ -110,16 +106,11 @@ Scenario('Navigate to LAU, perform case search and download CSV', async ({I}) =>
   await I.waitForText('Results', testConfig.TestTimeToWaitForText);
   await I.click('#tab_case-search');
   await I.waitForText('Case search', testConfig.TestTimeToWaitForText);
-  await I.handleDownloads();
-  await I.click('#searchesCsvBtn');
+  const csvPath = await I.downloadFile('#searchesCsvBtn');
   await I.waitForText('Generating CSV ...', testConfig.TestTimeToWaitForText);
   await I.waitForText('Download all records to CSV', testConfig.TestTimeToWaitForText);
 
-  const csvPath = lauHelper.getCsvPath();
-
-  await I.amInPath(csvPath.codeceptPath);
-  await I.seeFile(csvPath.filename);
-  lauHelper.assertCsvLineCount(csvPath.fullPath, 132);
+  lauHelper.assertCsvLineCount(csvPath, 132);
 
 }).retry(testConfig.TestRetryScenarios);
 

@@ -1,5 +1,5 @@
-import type { Browser, BrowserContext, Page, PDFOptions } from 'puppeteer';
-import puppeteer from 'puppeteer';
+import type { Browser, BrowserContext, Page } from 'playwright';
+import { chromium } from 'playwright';
 import logger from '../modules/logging';
 
 type PdfServiceOptions = {
@@ -7,17 +7,17 @@ type PdfServiceOptions = {
   footerTemplate?: string;
 };
 
-const PDF_TIMEOUT = 60000; 
+const PDF_TIMEOUT = 60000;
 const DEFAULT_HEADER = '<div style="font-family: Arial, Helvetica, sans-serif; font-size:14px; width:100%; text-align:center; margin-top: 6px;">OFFICIAL-SENSITIVE</div>';
 const DEFAULT_FOOTER = '<div style="font-family: Arial, Helvetica, sans-serif; font-size:10px; width:100%; text-align:center; margin-bottom:6px;">OFFICIAL-SENSITIVE — Page <span class="pageNumber"></span> of <span class="totalPages"></span></div>';
 
 /**
- * Singleton promise for a Puppeteer Browser instance.
+ * Singleton promise for a Playwright Browser instance.
  * Use Promise<Browser> so multiple callers don't trigger multiple launches.
  */
 let browserPromise: Promise<Browser> | null = null;
 
-/** Launch and return a singleton Puppeteer Browser (lazy). */
+/** Launch and return a singleton Playwright Browser (lazy). */
 export async function getBrowser(): Promise<Browser> {
   if (browserPromise === null) {
     const launchOptions = {
@@ -28,13 +28,13 @@ export async function getBrowser(): Promise<Browser> {
         '--disable-gpu',
       ],
       headless: true,
-      // Use system Chrome if PUPPETEER_EXECUTABLE_PATH is set (in Docker)
-      ...(process.env.PUPPETEER_EXECUTABLE_PATH && {
-        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+      // Use system Chrome if PLAYWRIGHT_EXECUTABLE_PATH is set (in Docker)
+      ...(process.env.PLAYWRIGHT_EXECUTABLE_PATH && {
+        executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH,
       }),
     };
-    
-    browserPromise = puppeteer.launch(launchOptions);
+
+    browserPromise = chromium.launch(launchOptions);
 
     // Graceful close on process exit / termination signals
     const closeBrowser = async () => {
@@ -72,7 +72,7 @@ async function expandDetailsElements(page: Page): Promise<void> {
 }
 
 /**
- * Render HTML to a PDF Buffer using Puppeteer.
+ * Render HTML to a PDF Buffer using Playwright.
  * - Inlines header/footer templates if provided.
  * - Uses an incognito context to reduce cross-request leakage.
  */
@@ -81,18 +81,18 @@ export async function renderHtmlToPdfBuffer(
   options: PdfServiceOptions = {},
 ): Promise<Buffer> {
   const browser = await getBrowser();
-  const context: BrowserContext = await browser.createBrowserContext();
+  const context: BrowserContext = await browser.newContext();
   const page = await context.newPage();
 
   try {
-    await page.setContent(html, { 
+    await page.setContent(html, {
       waitUntil: 'domcontentloaded',
       timeout: PDF_TIMEOUT,
     });
 
     await expandDetailsElements(page);
 
-    const pdfOptions: PDFOptions = {
+    const pdfOptions = {
       format: 'A4',
       printBackground: true,
       displayHeaderFooter: true,
@@ -106,8 +106,7 @@ export async function renderHtmlToPdfBuffer(
       },
     };
 
-    const pdfUint8Array = await page.pdf(pdfOptions);
-    return Buffer.from(pdfUint8Array);
+    return await page.pdf(pdfOptions);
   } finally {
     await page.close().catch((err) => {
       logger.warn('Error closing PDF page', err as Error);

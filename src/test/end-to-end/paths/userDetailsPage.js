@@ -90,10 +90,7 @@ Scenario('Navigate to LAU, perform user details search and authenticate user det
 
 Scenario('User details PDF download', async ({I}) => {
   await goToUserDetailsAndSearch(I);
-  await I.handleDownloads();
-  await I.click('button[name="download-pdf-btn"]');
-  const pdfPath = await lauHelper.waitForPdfPath(10000, 500);
-  await I.amInPath(pdfPath.codeceptPath);
-  await I.seeFile(pdfPath.filename);
-  lauHelper.assertPdfHeader(pdfPath.fullPath);
-}).retry(testConfig.TestRetryScenarios);
+  const pdfPath = await I.downloadFile('button[name="download-pdf-btn"]');
+
+  lauHelper.assertPdfHeader(pdfPath);
+});
