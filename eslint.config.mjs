@@ -22,6 +22,8 @@ const jsconfig = {
       'Feature': true,
       'Before': true,
       'After': true,
+      'Given': true,
+      'Then': true,
       'Scenario': true,
       'xScenario': true,
     },

@@ -4,12 +4,14 @@ module.exports = {
   TestShowBrowserWindow: process.env.SHOW_BROWSER_WINDOW || false,
   TestRetryFeatures: process.env.RETRY_FEATURES || 0,
   TestRetryScenarios: process.env.RETRY_SCENARIOS || 3,
+  TestRetryFailedStepEnabled: process.env.RETRY_FAILED_STEP_ENABLED !== 'false',
   TestPathToRun: process.env.E2E_TEST_PATH || './paths/**/*.js',
   TestOutputDir: process.env.E2E_OUTPUT_DIR || './functional-output',
   TestTimeToWaitForText: parseInt(process.env.E2E_TEST_TIME_TO_WAIT_FOR_TEXT || 30),
   TestAutoDelayEnabled: process.env.E2E_AUTO_DELAY_ENABLED === 'true',
   TestForAccessibility: process.env.TESTS_FOR_ACCESSIBILITY === 'true',
   TestForCrossBrowser: process.env.TESTS_FOR_CROSS_BROWSER === 'true',
+
   Auditor: {
     password: process.env.USER_PASSWORD,
     email: process.env.USER_EMAIL,

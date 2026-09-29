@@ -11,13 +11,13 @@ export default async function (givenUserType, isAlreadyAtSignOnPage = false) {
     await I.amOnLoadedPage('/');
   }
 
-  console.log('IDAM user:', {
-    givenUserType,
-    hasUser: Boolean(user),
-    hasEmail: Boolean(user?.email),
-    hasPassword: Boolean(user?.password),
-    currentUrl: await I.grabCurrentUrl(),
-  });
+  // console.log('IDAM user:', {
+  //   givenUserType,
+  //   hasUser: Boolean(user),
+  //   hasEmail: Boolean(user?.email),
+  //   hasPassword: Boolean(user?.password),
+  //   currentUrl: await I.grabCurrentUrl(),
+  // });
 
   const didModernLoginWork = await tryTo(async () => {
     I.see('Enter your email address', 'h1');
@@ -32,4 +32,13 @@ export default async function (givenUserType, isAlreadyAtSignOnPage = false) {
   if (!didModernLoginWork) {
     throw new Error('Classic and modern login both failed.');
   }
+  await I.waitForText(
+    'Log and Audit',
+    testConfig.TestTimeToWaitForText,
+  );
+
+  await I.waitForInvisible(
+    '.loading-overlay',
+    testConfig.TestTimeToWaitForText,
+  );
 };

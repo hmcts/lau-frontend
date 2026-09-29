@@ -44,16 +44,11 @@ Scenario('Navigate to LAU, perform deleted user search and download CSV', async 
   await I.performDeletedUsersSearch();
   await I.click('button[name="user-deletions-search-btn"]');
   await I.waitForText('Results', testConfig.TestTimeToWaitForText);
-  await I.handleDownloads();
-  await I.click('#deletedUsersCsvBtn');
+  const csvPath = await I.downloadFile('#deletedUsersCsvBtn');
   await I.waitForText('Generating CSV ...', testConfig.TestTimeToWaitForText);
   await I.waitForText('Download all records to CSV', testConfig.TestTimeToWaitForText);
 
-  const csvPath = lauHelper.getCsvPath();
-
-  await I.amInPath(csvPath.codeceptPath);
-  await I.seeFile(csvPath.filename);
-  lauHelper.assertCsvLineCount(csvPath.fullPath, 200);
+  lauHelper.assertCsvLineCount(csvPath, 200);
 
 }).retry(testConfig.TestRetryScenarios);
 

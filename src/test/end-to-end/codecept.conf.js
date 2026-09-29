@@ -16,33 +16,25 @@ export default {
   'tests': testConfig.TestPathToRun,
   'output': testConfig.TestOutputDir,
   'helpers': {
-    'Puppeteer': {
-      'url': testConfig.TestEndToEndUrl,
-      'waitForTimeout': 90000,
-      'getPageTimeout': 90000,
-      // 'waitForAction': 1,
-      'show': testConfig.TestShowBrowserWindow,
-      'waitForNavigation': ['domcontentloaded'],
-      'chrome': {
-        'ignoreHTTPSErrors': true,
-        'ignore-certificate-errors': true,
-        'defaultViewport': {
-          'width': 1280,
-          'height': 960,
-        },
+    'Playwright': {
+      url: testConfig.TestEndToEndUrl,
+      browser: 'chromium',
+      show: testConfig.TestShowBrowserWindow,
+      timeout: 30_000,
+      waitForTimeout: 30_000,
+      getPageTimeout: 30_000,
+      windowSize: '1280x960',
+      ignoreHTTPSErrors: true,
+      restart: 'context',
+      chromium: {
         args: [
-          // '--headless',
-          '--disable-gpu',
           '--no-sandbox',
           '--allow-running-insecure-content',
-          '--ignore-certificate-errors',
-          '--window-size=1440,1400',
         ],
       },
-
     },
-    'PuppeteerHelper': {
-      'require': './helpers/PuppeteerHelper.js',
+    'PlaywrightHelper': {
+      require: './helpers/PlaywrightHelper.js',
     },
     'JSWait': {
       require: './helpers/JSWait.js',
@@ -63,7 +55,7 @@ export default {
       'uniqueScreenshotNames': true,
     },
     'retryFailedStep': {
-      'enabled': true,
+      'enabled': testConfig.TestRetryFailedStepEnabled,
       'retries': 2,
     },
   },
