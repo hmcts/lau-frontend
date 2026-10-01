@@ -44,7 +44,6 @@ const tsconfig = {
   languageOptions: {
     parser: typescriptParser,
     parserOptions: {
-      project: './tsconfig.json',
     },
     ecmaVersion: 2022,
     sourceType: 'module',
@@ -73,6 +72,9 @@ const tsconfig = {
   },
   rules: {
     ...tseslint.configs.recommended[2].rules,
+
+    // TypeScript handles undefined identifiers itself.
+    'no-undef': 'off',
 
     '@typescript-eslint/consistent-type-imports': [
       'error',
