@@ -1,12 +1,12 @@
 'use strict';
 
-const testConfig = require('../../config.cjs');
-const {userType, tabs} = require('../common/Constants');
-const lauHelper = require('../lauApi/lauHelper');
+import testConfig from '../../config.cjs';
+import {userType, tabs} from '../common/Constants.js';
+import lauHelper from '../lauApi/lauHelper.js';
+import logger from '../logger.js';
 
 Feature('Logon Page Testing)');
 
-const logger = require('../logger');
 logger.info('Running \'Logon Page Testing\' feature');
 
 Scenario('Navigate to LAU, perform logon audit search and authenticate logon search results', async ({I}) => {
@@ -51,14 +51,11 @@ Scenario('Navigate to LAU, perform logon audit search and download CSV', async (
   await I.click('button[name="logon-search-btn"]');
 
   await I.waitForText('Results', testConfig.TestTimeToWaitForText);
-  await I.handleDownloads();
-  await I.click('#logonsCsvBtn');
+  const csvPath = await I.downloadFile('#logonsCsvBtn');
+
   await I.waitForText('Generating CSV ...', testConfig.TestTimeToWaitForText);
   await I.waitForText('Download all records to CSV', testConfig.TestTimeToWaitForText);
-  const csvPath = lauHelper.getCsvPath();
-  await I.amInPath(csvPath.codeceptPath);
-  await I.seeFile(csvPath.filename);
-  lauHelper.assertCsvLineCount(csvPath.fullPath, 10000);
+  lauHelper.assertCsvLineCount(csvPath, 10000);
 }).retry(testConfig.TestRetryScenarios);
 
 //Negative Scenario for Logons audit Search without search data and assert error text

@@ -1,5 +1,6 @@
-const config = require('../../config.cjs');
-const restHelper = require('./RestHelper.js');
+import config from '../../config.cjs';
+import restHelper from './RestHelper.js';
+
 const idamApiUrl = config.url.idamApi;
 const testingEndpoint = `${idamApiUrl}/testing-support/accounts`;
 
@@ -39,7 +40,7 @@ const deleteUser = async (userEmail) => {
   );
 };
 
-module.exports = {
+export default {
   createAUser,
   deleteUser,
 };

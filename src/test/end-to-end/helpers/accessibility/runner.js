@@ -1,6 +1,9 @@
-const HTMLCS = require('html_codesniffer');
-const fs = require('node:fs');
-const testConfig = require('src/test/config.cjs');
+import HTMLCS from 'html_codesniffer';
+import fs from 'node:fs';
+import testConfig from '../../../config.cjs';
+import {createRequire} from 'node:module';
+
+const require = createRequire(import.meta.url);
 
 const result = {
   PASSED: 'passed',
@@ -85,4 +88,4 @@ function getAccessibilityTestResult() {
   return resultObj;
 }
 
-module.exports = {runAccessibility, getAccessibilityTestResult};
+export {runAccessibility, getAccessibilityTestResult};

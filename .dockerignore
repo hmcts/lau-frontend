@@ -3,7 +3,7 @@
 *
 
 # exceptions from `exclude all` rule
-
+!.yarn
 !.yarn/**
 !.yarnrc.yml
 !package.json
@@ -11,6 +11,9 @@
 
 !tsconfig.json
 !webpack/**
+!src
+src/test
+!src/main
 !src/main/**
 !config/**
 !webpack.config.cjs

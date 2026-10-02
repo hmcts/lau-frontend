@@ -37,10 +37,6 @@ withEnv([
     before('smoketest:preview') {
       sh '''
         rm -rf /home/jenkinsssh/.cache/ms-playwright
-        rm -rf /home/jenkinsssh/.cache/puppeteer
-
-        export PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
-        export PUPPETEER_SKIP_DOWNLOAD=true
 
         yarn install
       '''
@@ -49,10 +45,6 @@ withEnv([
     before('smoketest:aat') {
       sh '''
         rm -rf /home/jenkinsssh/.cache/ms-playwright
-        rm -rf /home/jenkinsssh/.cache/puppeteer
-
-        export PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
-        export PUPPETEER_SKIP_DOWNLOAD=true
 
         yarn install
       '''

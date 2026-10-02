@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   'goButton': 'form button[type="submit"]',
   'continueButton': 'div.form-group.form-group-related > button[type="submit"]',
   'createDraftClaim': 'form div.notice > input[type="submit"]',

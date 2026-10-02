@@ -24,13 +24,12 @@ RUN yarn install --immutable \
 # ---- Runtime image ----
 FROM base AS runtime
 
-# Install Chromium and dependencies for Puppeteer
+# Install Chromium and dependencies for PDF generation
 USER root
 RUN apk add --no-cache chromium
 
-# Tell Puppeteer to use the installed Chromium
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+# Tell Playwright to use the installed Chromium
+ENV PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 USER hmcts
 

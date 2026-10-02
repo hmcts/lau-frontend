@@ -1,35 +1,30 @@
 'use strict';
 
-const testConfig = require('src/test/config.cjs');
-const { tryTo } = require('codeceptjs/effects');
+import testConfig from '../../../config.cjs';
 
-module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
+export default async function (givenUserType, isAlreadyAtSignOnPage = false) {
   const I = this;
   const user = testConfig.Auditor;
 
-  if (!isAlreadyAtSignOnPage) {
-    await I.amOnLoadedPage('/');
-  }
+  let loginStage = 'Checking email page';
 
-  console.log('IDAM user:', {
-    givenUserType,
-    hasUser: Boolean(user),
-    hasEmail: Boolean(user?.email),
-    hasPassword: Boolean(user?.password),
-    currentUrl: await I.grabCurrentUrl(),
-  });
+  await I.see('Enter your email address', 'h1');
+  loginStage = 'Submitting email';
+  await I.fillField('#email', user.email);
+  await I.click('Continue');
 
-  const didModernLoginWork = await tryTo(async () => {
-    I.see('Enter your email address', 'h1');
-    I.fillField('#email', user.email);
-    I.click('Continue');
+  loginStage = 'Password page';
+  await I.see('Enter your password', 'h1');
 
-    I.see('Enter your password', 'h1');
-    I.fillField('#password', user.password);
-    I.click('Continue');
-  });
+  loginStage = 'Submitting password';
+  await I.fillField('#password', user.password);
+  await I.click('Continue');
 
-  if (!didModernLoginWork) {
-    throw new Error('Classic and modern login both failed.');
-  }
+  loginStage = 'Waiting for Log and Audit page';
+  await I.waitForText('Log and Audit', testConfig.TestTimeToWaitForText);
+
+  await I.waitForInvisible(
+    '.loading-overlay',
+    testConfig.TestTimeToWaitForText,
+  );
 };

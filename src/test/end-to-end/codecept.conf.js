@@ -1,10 +1,12 @@
-const testConfig = require('src/test/config.cjs');
-const idamUserHelper = require('./helpers/IdamUserHelper');
+import {randomBytes} from 'node:crypto';
+import testConfig from '../config.cjs';
+import idamUserHelper from './helpers/IdamUserHelper.js';
 
-const auditorUser = `auditor${require('node:crypto').randomBytes(8).toString('hex').toLowerCase()}@gmail.com`;
+const auditorUser = `auditor${randomBytes(8).toString('hex').toLowerCase()}@gmail.com`;
 const testPassword = 'Password12';
 
-exports.config = {
+export default {
+  noGlobals: true,
   async bootstrapAll() {
     await idamUserHelper.createAUser(auditorUser, testPassword);
   },
@@ -14,39 +16,25 @@ exports.config = {
   'tests': testConfig.TestPathToRun,
   'output': testConfig.TestOutputDir,
   'helpers': {
-    'Puppeteer': {
-      'url': testConfig.TestEndToEndUrl,
-      'waitForTimeout': 90000,
-      'getPageTimeout': 90000,
-      // 'waitForAction': 1,
-      'show': testConfig.TestShowBrowserWindow,
-      'waitForNavigation': ['domcontentloaded'],
-      'chrome': {
-        'ignoreHTTPSErrors': true,
-        'ignore-certificate-errors': true,
-        'defaultViewport': {
-          'width': 1280,
-          'height': 960,
-        },
+    'Playwright': {
+      url: testConfig.TestEndToEndUrl,
+      browser: 'chromium',
+      show: testConfig.TestShowBrowserWindow,
+      timeout: 30_000,
+      waitForTimeout: 30_000,
+      getPageTimeout: 30_000,
+      windowSize: '1280x960',
+      ignoreHTTPSErrors: true,
+      restart: 'context',
+      chromium: {
         args: [
-          // '--headless',
-          '--disable-gpu',
           '--no-sandbox',
           '--allow-running-insecure-content',
-          '--ignore-certificate-errors',
-          '--window-size=1440,1400',
         ],
       },
-
     },
-    'PuppeteerHelper': {
-      'require': './helpers/PuppeteerHelper.js',
-    },
-    'JSWait': {
-      require: './helpers/JSWait.js',
-    },
-    'Mochawesome': {
-      uniqueScreenshotNames: true,
+    'PlaywrightHelper': {
+      require: './helpers/PlaywrightHelper.js',
     },
     'FileSystem': {},
   },
@@ -57,12 +45,14 @@ exports.config = {
     'autoDelay': {
       'enabled': testConfig.TestAutoDelayEnabled,
     },
-    'screenshotOnFail': {
+    'screenshot': {
       'enabled': true,
+      'on': 'fail',
       'fullPageScreenshots': true,
+      'uniqueScreenshotNames': true,
     },
     'retryFailedStep': {
-      'enabled': true,
+      'enabled': testConfig.TestRetryFailedStepEnabled,
       'retries': 2,
     },
   },

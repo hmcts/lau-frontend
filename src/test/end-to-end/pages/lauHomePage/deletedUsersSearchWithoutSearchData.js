@@ -1,4 +1,4 @@
-module.exports = async function () {
+export async function deletedUsersSearchWithoutSearchData() {
   const I = this;
   await I.fillField('userId', '');
   await I.fillField('emailAddress', '');

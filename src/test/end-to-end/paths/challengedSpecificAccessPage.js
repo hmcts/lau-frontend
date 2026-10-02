@@ -1,12 +1,10 @@
-'use strict';
-
-const testConfig = require('../../config.cjs');
-const {userType, tabs} = require('../common/Constants');
-const lauHelper = require('../lauApi/lauHelper');
+import testConfig from '../../config.cjs';
+import {userType, tabs} from '../common/Constants.js';
+import lauHelper from '../lauApi/lauHelper.js';
+import logger from '../logger.js';
 
 Feature('Challenged and Specific Access Page Check');
 
-const logger = require('../logger');
 logger.info('Running \'Challenged and Specific Access Page testing\' feature');
 
 Scenario('Navigate to LAU, perform challenged/specific access search and check results', async ({I}) => {
@@ -45,16 +43,11 @@ Scenario('Navigate to LAU, perform challenged/specific access search and downloa
   await I.performCaseChallengedAccessSearch();
   await I.click('button[name="challenged-access-search-btn"]');
   await I.waitForText('Results', testConfig.TestTimeToWaitForText);
-  await I.handleDownloads();
-  await I.click('#challendedCsvBtn');
+  const csvPath = await I.downloadFile('#challendedCsvBtn');
+
   await I.waitForText('Generating CSV ...', testConfig.TestTimeToWaitForText);
   await I.waitForText('Download all records to CSV', testConfig.TestTimeToWaitForText);
-
-  const csvPath = lauHelper.getCsvPath();
-
-  await I.amInPath(csvPath.codeceptPath);
-  await I.seeFile(csvPath.filename);
-  lauHelper.assertCsvLineCount(csvPath.fullPath, 200);
+  lauHelper.assertCsvLineCount(csvPath, 200);
 
 }).retry(testConfig.TestRetryScenarios);
 

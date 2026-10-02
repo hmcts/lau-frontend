@@ -1,7 +1,5 @@
-'use strict';
-
-const Helper = codecept_helper;
-const testConfig = require('src/test/config.cjs');
+import Helper from '@codeceptjs/helper';
+import testConfig from '../../config.cjs';
 
 class WebDriverHelper extends Helper {
 
@@ -54,4 +52,4 @@ class WebDriverHelper extends Helper {
   }
 }
 
-module.exports = WebDriverHelper;
+export default WebDriverHelper;
