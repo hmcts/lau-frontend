@@ -76,6 +76,7 @@
   {"jurisdiction": "HRS", "caseType": "HearingRecordings"},
   {"jurisdiction": "IA", "caseType": "Asylum"},
   {"jurisdiction": "IA", "caseType": "Bail"},
+  {"jurisdiction": "PCS", "caseType": "PCS"},
   {"jurisdiction": "PRIVATELAW", "caseType": "PRIVATELAW_ExceptionRecord"},
   {"jurisdiction": "PRIVATELAW", "caseType": "PRLAPPS"},
   {"jurisdiction": "PROBATE", "caseType": "Caveat"},
