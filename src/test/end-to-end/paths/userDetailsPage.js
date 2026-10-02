@@ -93,4 +93,4 @@ Scenario('User details PDF download', async ({I}) => {
   const pdfPath = await I.downloadFile('button[name="download-pdf-btn"]');
 
   lauHelper.assertPdfHeader(pdfPath);
-}).retry(testConfig.TestRetryScenarios);
+});

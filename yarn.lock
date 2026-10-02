@@ -11062,7 +11062,6 @@ __metadata:
     pa11y: "npm:^9.0.0"
     playwright: "npm:^1.63.0"
     postcss: "npm:^8.4.14"
-    puppeteer: "npm:^24.31.0"
     redis: "npm:~6.1.0"
     sass: "npm:^1.63.4"
     sass-loader: "npm:^14.0.0"
@@ -12986,7 +12985,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"puppeteer@npm:^24.31.0, puppeteer@npm:^24.37.5":
+"puppeteer@npm:^24.37.5":
   version: 24.43.1
   resolution: "puppeteer@npm:24.43.1"
   dependencies:

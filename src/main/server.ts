@@ -23,26 +23,31 @@ process.on('SIGTERM', shutdown);
 import { app } from './app';
 import logger from './modules/logging';
 
-import createSslConfig from 'ssl-config';
-const sslConfig = createSslConfig('modern');
-
 import * as fs from 'node:fs';
 import * as https from 'node:https';
 import * as path from 'path';
 
 const port: number = parseInt(process.env.PORT, 10) || 4000;
 
-if (app.locals.ENV === 'development') {
+async function startDevelopmentServer(): Promise<void> {
+  const { default: createSslConfig } = await import('ssl-config');
+  const sslConfig = createSslConfig('modern');
   const sslDirectory = path.join(__dirname, 'resources', 'localhost-ssl');
+
   const server = https.createServer({
     cert: fs.readFileSync(path.join(sslDirectory, 'localhost.crt')),
     key: fs.readFileSync(path.join(sslDirectory, 'localhost.key')),
     ciphers: sslConfig.ciphers,
     secureOptions: sslConfig.minimumTLSVersion,
   }, app);
+
   server.listen(port, () => {
     logger.info(`Application started: https://localhost:${port}`);
   });
+}
+
+if (app.locals.ENV === 'development') {
+  startDevelopmentServer();
 } else {
   app.listen(port, () => {
     logger.info(`Express application started: http://localhost:${port}`);
