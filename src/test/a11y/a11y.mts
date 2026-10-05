@@ -1,10 +1,12 @@
 import { app } from '../../main/app';
 import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import * as supertest from 'supertest';
 import pa11y from 'pa11y';
 import type { Server } from 'node:http';
 import { setRoles } from './../helpers/roles';
-const config = require('./pa11y-config.json');
+const config = JSON.parse(fs.readFileSync(new URL('./pa11y-config.json', import.meta.url), 'utf8'));
 
 interface Results {
   documentTitle: string;
@@ -21,8 +23,8 @@ interface ResultIssue {
   typeCode: number;
 }
 
-const agent = supertest.agent(app);
 const baseUrl = 'http://127.0.0.1:8888';
+const agent = supertest.agent(baseUrl);
 
 function ensurePageCallWillSucceed(url: string): Promise<void> {
   return agent.get(url).then((res: supertest.Response) => {
@@ -37,7 +39,7 @@ function ensurePageCallWillSucceed(url: string): Promise<void> {
 
 function runPally(url: string, cookies: string = ''): Promise<Results> {
   const fullurl = `${baseUrl}${url}`;
-  const screenshotDir = `${__dirname}/../../../functional-output/pa11y`;
+  const screenshotDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../functional-output/pa11y');
   fs.mkdirSync(screenshotDir, { recursive: true });
   let filename = fullurl.replace(/https?:\/\//gi, '').replace(/[^a-zA-Z0-9.-]/g, '_');
 
