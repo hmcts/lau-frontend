@@ -40,7 +40,7 @@ const jsconfig = {
 };
 
 const tsconfig = {
-  files: ['**/*.ts', '**/*.tsx'],
+  files: ['**/*.ts', '**/*.tsx', '**/*.mts'],
   languageOptions: {
     parser: typescriptParser,
     parserOptions: {

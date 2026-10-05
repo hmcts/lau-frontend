@@ -106,7 +106,7 @@ Running accessibility tests:
 $ yarn test:a11y
 ```
 
-Make sure all the paths in your application are covered by accessibility tests (see [a11y.ts](src/test/a11y/a11y.ts)).
+Make sure all the paths in your application are covered by accessibility tests (see [a11y.mts](src/test/a11y/a11y.mts)).
 
 ### Security
 
