@@ -11,31 +11,38 @@ export const content = {
   howAreCookiesUsedHeading2: 'How cookies are used in the Log and Audit service',
   websiteUsageCookiesHeading3: 'To measure website usage',
   websiteUsageCookiesParagraph1:
-    'We use Google Analytics software to collect information about how you use this service. We do this to help make sure the service is meeting the needs of its users and to help us make improvements, for example improving site search.',
-  websiteUsageCookiesParagraph2: 'Google Analytics stores information about:',
-  websiteUsageCookiesItem1: 'the pages you visit',
-  websiteUsageCookiesItem2: 'how long you spend on each page',
-  websiteUsageCookiesItem3: 'how you got to the service',
-  websiteUsageCookiesItem4: 'what you click on while you&rsquo;re visiting the service',
+    'We use Dynatrace Software Intelligence Platform to provide an Application Performance Monitoring Service to collect information about how you use HMCTS services. We do this to monitor HM Courts and Tribunals (HMCTS) services in order to resolve issues within our services as well as collect data on how our services can be improved. HMCTS stores information about:',
+  websiteUsageCookiesItem1: 'site performance',
+  websiteUsageCookiesItem2: 'website usage',
+  websiteUsageCookiesItem3: 'user behaviour',
   websiteUsageCookiesParagraph3:
-    'We allow Google to use or share our analytics data. You can find out more about how Google use this information in their <a class="govuk-link" href="https://www.google.com/policies/privacy/partners/">Privacy Policy</a>.',
-  websiteUsageCookiesParagraph4:
-    'You can <a class="govuk-link" href="https://tools.google.com/dlpage/gaoptout">opt out of Google Analytics</a> if you do not want Google to have access to your information.',
-  websiteUsageCookiesParagraph5: 'List of google analytics cookies used.',
-  websiteUsageCookiesAriaDescribedby: 'Google Analytics sets the following cookies',
+    'Information is presented within the Application Performance Monitoring service for the purposes detailed above. We do not use or share the information for any other purpose. We do not allow Dynatrace to use or share the information for any other purposes.',
+  websiteUsageCookiesAriaDescribedby: 'Dynatrace sets the following cookies',
+
   cookieNameHeader: 'Name',
   cookiePurposeHeader: 'Purpose',
   cookieExpiryHeader: 'Expires',
-  googleAnalyticsCookieName1: '_ga',
-  googleAnalyticsCookiePurpose1:
-    'This helps us count how many people visit the service by tracking if you&rsquo;ve visited before',
-  googleAnalyticsCookieExpiry1: '2 years',
-  googleAnalyticsCookieName2: '_gat',
-  googleAnalyticsCookiePurpose2: 'Manages the rate at which page view requests are made',
-  googleAnalyticsCookieExpiry2: '10 minutes',
-  googleAnalyticsCookieName3: '_gid',
-  googleAnalyticsCookiePurpose3: 'Identifies you to the service',
-  googleAnalyticsCookieExpiry3: '24 hours',
+
+  analyticsCookieName1: 'dtCookie',
+  analyticsCookiePurpose1: 'Tracks a visit across multiple requests',
+  analyticsCookieExpiry1: 'Session ends',
+
+  analyticsCookieName2: 'dtPC',
+  analyticsCookiePurpose2: 'Required to identify proper endpoints for beacon transmission; includes session ID for correlation',
+  analyticsCookieExpiry2: 'Session ends',
+
+  analyticsCookieName3: 'dtSa',
+  analyticsCookiePurpose3: 'Intermediate store for page-spanning actions',
+  analyticsCookieExpiry3: 'Session ends',
+
+  analyticsCookieName4: 'rxVisitor',
+  analyticsCookiePurpose4: 'Visitor ID to correlate sessions',
+  analyticsCookieExpiry4: '7 days',
+
+  analyticsCookieName5: 'rxvt',
+  analyticsCookiePurpose5: 'Session timeout',
+  analyticsCookieExpiry5: 'Session ends',
+
   introMessageCookiesHeading1: 'To turn our introductory message off',
   introMessageCookiesParagraph1:
     'You may see a pop-up welcome message when you first visit the service. We’ll store a cookie so that your computer knows you’ve seen it and knows not to show it again.',

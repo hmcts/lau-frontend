@@ -31,16 +31,13 @@
     <section>
       <h3 class="govuk-heading-s">{{ websiteUsageCookiesHeading3 }}</h3>
       <p class="govuk-body">{{ websiteUsageCookiesParagraph1 }}</p>
-      <p class="govuk-body">{{ websiteUsageCookiesParagraph2 }}</p>
       <ul class="govuk-list govuk-list--bullet">
         <li>{{ websiteUsageCookiesItem1 }}</li>
         <li>{{ websiteUsageCookiesItem2 }}</li>
         <li>{{ websiteUsageCookiesItem3 }}</li>
-        <li>{{ websiteUsageCookiesItem4 | safe }}</li>
       </ul>
       <p class="govuk-body">{{ websiteUsageCookiesParagraph3 | safe }}</p>
-      <p class="govuk-body">{{ websiteUsageCookiesParagraph4 | safe }}</p>
-      <p class="govuk-body">{{ websiteUsageCookiesParagraph5 }}</p>
+
       <table class="govuk-table" aria-describedby="{{ websiteUsageCookiesAriaDescribedby }}">
         <tr class="govuk-table__row">
           <th class="govuk-table__header" scope="col">{{ cookieNameHeader }}</th>
@@ -48,19 +45,29 @@
           <th class="govuk-table__header" scope="col">{{ cookieExpiryHeader }}</th>
         </tr>
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell">{{ googleAnalyticsCookieName1 }}</td>
-          <td class="govuk-table__cell">{{ googleAnalyticsCookiePurpose1 | safe }}</td>
-          <td class="govuk-table__cell">{{ googleAnalyticsCookieExpiry1 }}</td>
+          <td class="govuk-table__cell">{{ analyticsCookieName1 }}</td>
+          <td class="govuk-table__cell">{{ analyticsCookiePurpose1 | safe }}</td>
+          <td class="govuk-table__cell">{{ analyticsCookieExpiry1 }}</td>
         </tr>
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell">{{ googleAnalyticsCookieName2 }}</td>
-          <td class="govuk-table__cell">{{ googleAnalyticsCookiePurpose2 }}</td>
-          <td class="govuk-table__cell">{{ googleAnalyticsCookieExpiry2 }}</td>
+          <td class="govuk-table__cell">{{ analyticsCookieName2 }}</td>
+          <td class="govuk-table__cell">{{ analyticsCookiePurpose2 }}</td>
+          <td class="govuk-table__cell">{{ analyticsCookieExpiry2 }}</td>
         </tr>
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell">{{ googleAnalyticsCookieName3 }}</td>
-          <td class="govuk-table__cell">{{ googleAnalyticsCookiePurpose3 }}</td>
-          <td class="govuk-table__cell">{{ googleAnalyticsCookieExpiry3 }}</td>
+          <td class="govuk-table__cell">{{ analyticsCookieName3 }}</td>
+          <td class="govuk-table__cell">{{ analyticsCookiePurpose3 }}</td>
+          <td class="govuk-table__cell">{{ analyticsCookieExpiry3 }}</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">{{ analyticsCookieName4 }}</td>
+          <td class="govuk-table__cell">{{ analyticsCookiePurpose4 }}</td>
+          <td class="govuk-table__cell">{{ analyticsCookieExpiry4 }}</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">{{ analyticsCookieName5 }}</td>
+          <td class="govuk-table__cell">{{ analyticsCookiePurpose5 }}</td>
+          <td class="govuk-table__cell">{{ analyticsCookieExpiry5 }}</td>
         </tr>
       </table>
     </section>

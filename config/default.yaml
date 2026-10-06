@@ -4,7 +4,7 @@ service:
 environment: 'prod'
 useCSRFProtection: true
 security:
-  referrerPolicy: origin
+  referrerPolicy: strict-origin-when-cross-origin
 appInsights:
   connectionString: false
   samplingPercentage: 100 # 100% of all telemetry will be sent to Application Insights
