@@ -5,10 +5,10 @@ export interface HelmetConfig {
   referrerPolicy: ReferrerPolicy;
 }
 
-const googleAnalyticsDomain = '*.google-analytics.com';
 const dynatraceDomain = '*.dynatrace.com';
 const self = "'self'";
-const hmctsDomain ='*.platform.hmcts.net';
+const none = "'none'";
+
 
 /**
  * Module that enables helmet in the application
@@ -22,14 +22,25 @@ export class Helmet {
 
     this.setContentSecurityPolicy(app);
     this.setReferrerPolicy(app, this.config.referrerPolicy);
+    this.setPermissionsPolicy(app);
   }
+
+  private setPermissionsPolicy(app: Express): void {
+    app.use((_req, res, next) => {
+      res.setHeader(
+        'Permissions-Policy',
+        'camera=(), microphone=(), geolocation=(), payment=(), usb=()',
+      );
+      next();
+    });
+  }
+
 
   private setContentSecurityPolicy(app: Express): void {
     const scriptSrc = [
       self,
-      googleAnalyticsDomain,
-      dynatraceDomain,
-      "'sha256-GUQ5ad8JK5KmEWmROf3LZd9ge94daqNvd8xy9YS1iDw='",
+      'https://js-cdn.dynatrace.com',
+      "'sha256-GUQ5ad8JK5KmEWmROf3LZd9ge94daqNvd8xy9YS1iDw='", // coming from govuk frontend template
     ];
 
     if (app.locals.ENV === 'development' || app.locals.ENV === 'test') {
@@ -39,11 +50,11 @@ export class Helmet {
     app.use(
       helmet.contentSecurityPolicy({
         directives: {
-          connectSrc: [self, googleAnalyticsDomain, dynatraceDomain,hmctsDomain],
-          defaultSrc: ["'none'"],
+          connectSrc: [self, dynatraceDomain], // cannot use explicit as it uses some hashed url prefix, e.g. https://bf24054dsx.bf.dynatrace.com/...
+          defaultSrc: [none],
           fontSrc: [self, 'data:'],
-          imgSrc: [self, googleAnalyticsDomain],
-          objectSrc: [self],
+          imgSrc: [self],
+          objectSrc: [none],
           scriptSrc,
           styleSrc: [self],
           manifestSrc: [self],
