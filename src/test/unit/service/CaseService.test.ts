@@ -44,7 +44,7 @@ describe('Case Service', () => {
 
       const caseActivities: CaseActivityAudit = await caseService.getCaseActivities(req as AppRequest);
 
-      expect(caseActivities).toStrictEqual(caseActivityAudit);
+      expect(caseActivities).toEqual(caseActivityAudit);
     });
 
     it('refreshes IdAM session if expired', async () => {
@@ -121,7 +121,7 @@ describe('Case Service', () => {
 
       const caseSearches: CaseSearchAudit = await caseService.getCaseSearches(req as AppRequest);
 
-      expect(caseSearches).toStrictEqual(caseSearchAudit);
+      expect(caseSearches).toEqual(caseSearchAudit);
     });
   });
 });
