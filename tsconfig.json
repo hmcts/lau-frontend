@@ -28,11 +28,6 @@
         "./src/main/routes/*"
       ]
     },
-    "typeRoots": [
-      "./src/main/types",
-      "./node_modules/@types",
-      "./src/test"
-    ],
     "types": ["jest", "node", "express"]
   },
   "include": ["src/main/**/*.ts"],

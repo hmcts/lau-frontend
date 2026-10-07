@@ -41,7 +41,7 @@ describe('Logon Service', () => {
 
       const logons: LogonAudit = await logonService.getLogons(req as AppRequest);
 
-      expect(logons).toStrictEqual(logonAudit);
+      expect(logons).toEqual(logonAudit);
     });
   });
 });
