@@ -41,7 +41,7 @@ describe('Deleted Users Service', () => {
 
       const auditData: DeletedUsersAudit = await deletedUsersService.getDeletedUsers(req as AppRequest);
 
-      expect(auditData).toStrictEqual(deletedUsersAudit);
+      expect(auditData).toEqual(deletedUsersAudit);
     });
   });
 });

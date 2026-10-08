@@ -43,8 +43,7 @@ export abstract class BaseService<RequestType> {
         throw new HttpResponseError(response);
       }
 
-      const jsonData = await response.json();
-      return structuredClone(jsonData);
+      return await response.json();
     } catch (err) {
       logger.error(err);
 

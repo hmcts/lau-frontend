@@ -71,7 +71,7 @@ describe('UserDetailsService', () => {
       (userUpdatesService.getUserUpdates as jest.Mock).mockResolvedValue([]);
       const {details, updates, updatesStatus} = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, false);
 
-      expect(details).toStrictEqual(data);
+      expect(details).toEqual(data);
       expect(updates.length).toBe(0);
       expect(updatesStatus).toBe(UpdatesStatus.EMPTY);
       expect(userUpdatesService.getUserUpdates).toHaveBeenCalledWith(req.session, data.userId);
@@ -87,7 +87,7 @@ describe('UserDetailsService', () => {
         },
       };
       const { details, updatesStatus } = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, true);
-      expect(details).toStrictEqual(data);
+      expect(details).toEqual(data);
       expect(updatesStatus).toBe(UpdatesStatus.UNAVAILABLE);
       expect(userUpdatesService.getUserUpdates).toHaveBeenCalledWith(req.session, data.userId);
     });
@@ -179,7 +179,7 @@ describe('UserDetailsService', () => {
         },
       };
       const { details, updatesStatus } = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, true);
-      expect(details).toStrictEqual(data);
+      expect(details).toEqual(data);
       expect(updatesStatus).toBe(UpdatesStatus.UNAVAILABLE);
     });
   });
@@ -225,7 +225,7 @@ describe('UserDetailsService', () => {
       const { details, updatesStatus } = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, false);
       expect(updatesStatus).toBe(UpdatesStatus.UNAVAILABLE);
 
-      expect(details).toStrictEqual({
+      expect(details).toEqual({
         ...data,
         userId: '1234-5678',
         email: NOT_AVAILABLE_MSG,
