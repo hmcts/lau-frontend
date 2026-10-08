@@ -1,4 +1,4 @@
 #!/bin/bash
 set -ex
 
-NODE_ENV=test node ./node_modules/codeceptjs/bin/codecept.js run -c ./src/test/smoke/smoke.conf.js
+NODE_ENV=test codeceptjs run -c ./src/test/smoke/smoke.conf.js
