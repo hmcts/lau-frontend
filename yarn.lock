@@ -10839,9 +10839,6 @@ __metadata:
     ws: "npm:^8.17.1"
     yaml: "npm:^2.9.1"
     yarn-audit-fix: "npm:^10.0.0"
-  dependenciesMeta:
-    govuk-frontend:
-      unplugged: true
   languageName: unknown
   linkType: soft
 
