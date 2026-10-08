@@ -30,6 +30,7 @@ COPY --from=build --chown=hmcts:hmcts /opt/app/dist ./dist
 COPY --from=build --chown=hmcts:hmcts /opt/app/src/main/views ./dist/views
 COPY --from=build --chown=hmcts:hmcts /opt/app/src/main/public ./dist/public
 COPY --from=build --chown=hmcts:hmcts /opt/app/src/main/resources/data ./dist/resources/data
+COPY --from=build --chown=hmcts:hmcts /opt/app/config ./config
 
 COPY --from=build --chown=hmcts:hmcts /opt/app/.yarn .yarn/
 COPY --from=build --chown=hmcts:hmcts /opt/app/.pnp.cjs .pnp.cjs
