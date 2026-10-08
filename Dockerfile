@@ -15,6 +15,12 @@ RUN yarn install --immutable \
     && yarn build:prod \
     && yarn build:server
 
+# ---- Production dependencies ----
+
+FROM build AS prod-deps
+
+RUN yarn workspaces focus --production
+
 # ---- Runtime image ----
 FROM base AS runtime
 
@@ -32,12 +38,12 @@ COPY --from=build --chown=hmcts:hmcts /opt/app/src/main/public ./dist/public
 COPY --from=build --chown=hmcts:hmcts /opt/app/src/main/resources/data ./dist/resources/data
 COPY --from=build --chown=hmcts:hmcts /opt/app/config ./config
 
-COPY --from=build --chown=hmcts:hmcts /opt/app/.yarn .yarn/
-COPY --from=build --chown=hmcts:hmcts /opt/app/.pnp.cjs .pnp.cjs
-COPY --from=build --chown=hmcts:hmcts /opt/app/.pnp.loader.mjs .pnp.loader.mjs
-COPY --from=build --chown=hmcts:hmcts /opt/app/package.json ./package.json
-COPY --from=build --chown=hmcts:hmcts /opt/app/yarn.lock ./yarn.lock
-COPY --from=build --chown=hmcts:hmcts /opt/app/.yarnrc.yml ./.yarnrc.yml
+COPY --from=prod-deps --chown=hmcts:hmcts /opt/app/.yarn ./.yarn/
+COPY --from=prod-deps --chown=hmcts:hmcts /opt/app/.pnp.cjs ./.pnp.cjs
+COPY --from=prod-deps --chown=hmcts:hmcts /opt/app/.pnp.loader.mjs ./.pnp.loader.mjs
+COPY --from=prod-deps --chown=hmcts:hmcts /opt/app/package.json ./package.json
+COPY --from=prod-deps --chown=hmcts:hmcts /opt/app/yarn.lock ./yarn.lock
+COPY --from=prod-deps --chown=hmcts:hmcts /opt/app/.yarnrc.yml ./.yarnrc.yml
 # COPY --from=build $WORKDIR/version ./
 
 EXPOSE 4000
