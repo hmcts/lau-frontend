@@ -35,6 +35,7 @@ COPY --from=build --chown=hmcts:hmcts /opt/app/.yarn .yarn/
 COPY --from=build --chown=hmcts:hmcts /opt/app/.pnp.cjs .pnp.cjs
 COPY --from=build --chown=hmcts:hmcts /opt/app/.pnp.loader.mjs .pnp.loader.mjs
 COPY --from=build --chown=hmcts:hmcts /opt/app/package.json ./package.json
+COPY --from=build --chown=hmcts:hmcts /opt/app/yarn.lock ./yarn.lock
 COPY --from=build --chown=hmcts:hmcts /opt/app/.yarnrc.yml ./.yarnrc.yml
 # COPY --from=build $WORKDIR/version ./
 
