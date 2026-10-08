@@ -10,7 +10,7 @@ COPY --chown=hmcts:hmcts . .
 # ---- Build image ----
 FROM node:24.21.0-alpine3.24 AS build
 
-COPY --chown=hmcts:hmcts . ./
+# COPY --chown=hmcts:hmcts . ./
 
 RUN yarn install --immutable \
     && yarn build:prod \
