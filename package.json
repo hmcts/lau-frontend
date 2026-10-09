@@ -136,7 +136,7 @@
     "webpack-cli": "^6.0.0",
     "webpack-dev-middleware": "^7.0.0",
     "webpack-node-externals": "^3.0.0",
-    "yarn-audit-fix": "^10.0.0"
+    "yarn-audit-fix": "^11.0.0"
   },
   "resolutions": {
     "body-parser": "^2.3.0",
