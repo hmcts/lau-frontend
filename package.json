@@ -115,7 +115,7 @@
     "mini-css-extract-plugin": "^2.2.0",
     "mocha-multi": "^1.1.6",
     "mochawesome": "^8.1.0",
-    "nock": "^14.0.6",
+    "nock": "^15.0.0",
     "nodemon": "^3.0.0",
     "pa11y": "^10.0.0",
     "sass": "^1.63.4",
