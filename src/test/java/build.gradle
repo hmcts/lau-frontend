@@ -9,7 +9,10 @@ targetCompatibility = '21'
 repositories {
     mavenLocal()
     maven {
-      url = 'https://pkgs.dev.azure.com/hmcts/Artifacts/_packaging/hmcts-lib/maven/v1'
+        url 'https://pkgs.dev.azure.com/hmcts/Artifacts/_packaging/hmcts-lib/maven/v1'
+    }
+    maven {
+        url "https://artifactory.platform.hmcts.net/artifactory/maven-remotes"
     }
     mavenCentral()
 }
@@ -21,8 +24,8 @@ dependencyLocking {
 
 // tag::dependencies[]
 dependencies {
-    testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.17'
-    testImplementation 'com.github.hmcts:fortify-client:1.4.9:all'
+    testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.20'
+    testImplementation group: 'com.github.hmcts', name: 'fortify-client', version: '1.4.10', classifier: 'all'
 }
 // end::dependencies[]
 
