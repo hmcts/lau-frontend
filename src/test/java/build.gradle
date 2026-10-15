@@ -2,32 +2,34 @@ plugins {
     id 'application'
 }
 
-sourceCompatibility = '21'
-targetCompatibility = '21'
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(25)
+  }
+}
 
 // tag::repositories[]
 repositories {
     mavenLocal()
     maven {
-      url = 'https://pkgs.dev.azure.com/hmcts/Artifacts/_packaging/hmcts-lib/maven/v1'
+        url = 'https://pkgs.dev.azure.com/hmcts/Artifacts/_packaging/hmcts-lib/maven/v1'
+    }
+    maven {
+        url = "https://artifactory.platform.hmcts.net/artifactory/maven-remotes"
     }
     mavenCentral()
 }
 // end::repositories[]
 
-dependencyLocking {
-  lockAllConfigurations()
-}
-
 // tag::dependencies[]
 dependencies {
-    testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.17'
-    testImplementation 'com.github.hmcts:fortify-client:1.4.9:all'
+    testImplementation "org.slf4j:slf4j-simple:2.0.20"
+    testImplementation "com.github.hmcts:fortify-client:1.4.10:all"
 }
 // end::dependencies[]
 
 task fortifyScan(type: JavaExec)  {
-    main = "uk.gov.hmcts.fortifyclient.FortifyClientMainApp"
+    mainClass = "uk.gov.hmcts.fortifyclient.FortifyClientMainApp"
     classpath += sourceSets.test.runtimeClasspath
     jvmArgs = ['--add-opens=java.base/java.lang.reflect=ALL-UNNAMED']
 }
