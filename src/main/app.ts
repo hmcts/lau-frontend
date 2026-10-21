@@ -24,9 +24,13 @@ const developmentMode = env === 'development';
 
 export const app = express();
 app.locals.ENV = env;
+const thirtyDaysInMs = 2592000000;
 
+// cache control is usually in seconds
+// but express.static takes it in ms
 const options = {
   cacheControl: true,
+  maxAge: thirtyDaysInMs,
   acceptRanges: false,
 };
 
