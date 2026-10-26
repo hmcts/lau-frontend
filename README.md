@@ -30,7 +30,7 @@ This service will allow an investigator to see a report detailing all case inter
 
 Running the application requires the following tools to be installed in your environment:
 
-  * [Node.js](https://nodejs.org/) v24.14.1 or later
+  * [Node.js](https://nodejs.org/) v24.22.1 or later
   * [yarn](https://yarnpkg.com/)
   * [Docker](https://www.docker.com)
 
@@ -41,16 +41,13 @@ Install dependencies by executing the following command:
  ```bash
 $ yarn install
  ```
-Bundle:
+
+Update `config` and set session secret for your environment. It can be any value for development. Easiest way is to create `config/local-development.yaml` in config directory and copy sections you need from `config/default.yaml`. `local-development.yaml` file is git-ignored, and there is no risk of accidentally commiting it to the repository.
+
+Run dev version, that will bundle assets and run dev server:
 
 ```bash
-$ yarn build
-```
-
-Run:
-
-```bash
-$ yarn start
+$ yarn dev
 ```
 
 The application's home page will be available at https://localhost:4000
@@ -78,11 +75,16 @@ An import script is run to import the service, roles and users into IdAM. Detail
 ### Code style
 
 We use [ESLint](https://github.com/typescript-eslint/typescript-eslint)
-alongside [sass-lint](https://github.com/sasstools/sass-lint)
+alongside [stylelint](https://stylelint.io/)
 
-Running the linting with auto fix:
+Running the linting:
 ```bash
-$ yarn lint --fix
+$ yarn lint
+```
+
+And running with auto fix:
+```bash
+$ yarn lint:fix
 ```
 
 ### Running the tests
@@ -92,12 +94,6 @@ the following command:
 
 ```bash
 $ yarn test
-```
-
-Here's how to run functional tests (the template contains just one sample test):
-
-```bash
-$ yarn test:routes
 ```
 
 Running accessibility tests:

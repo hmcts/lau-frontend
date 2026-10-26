@@ -18,8 +18,7 @@ COPY --chown=hmcts:hmcts . ./
 
 RUN yarn install --immutable \
     && yarn setup \
-    && yarn build:prod \
-    && yarn build:server
+    && yarn build:prod
 
 # ---- Runtime image ----
 FROM base AS runtime

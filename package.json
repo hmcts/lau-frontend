@@ -1,20 +1,22 @@
 {
   "name": "lau-frontend",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "private": true,
   "engines": {
-    "node": ">=24.14.1"
+    "node": ">=24.22.1"
   },
   "packageManager": "yarn@4.18.1",
   "scripts": {
     "preinstall": "./bin/preinstalls.sh || true",
     "setup": "NODE_PATH=. node createVersionFile.mjs",
+    "dev": "yarn build && yarn start:dev",
     "start": "NODE_ENV=production node dist/server.js",
     "start:dev": "NODE_ENV=development nodemon --config nodemon.json",
     "start:test": "NODE_ENV=test nodemon --config nodemon.json",
-    "lint": "stylelint '**/*.scss' && eslint . --fix",
+    "lint": "stylelint '**/*.scss' && eslint .",
+    "lint:fix": "stylelint '**/*.scss' --fix && eslint . --fix",
     "build": "yarn webpack --config webpack.config.cjs",
-    "build:prod": "NODE_ENV=production yarn webpack --mode production --config webpack.config.cjs",
+    "build:prod": "NODE_ENV=production yarn webpack --mode production --config webpack.config.cjs && yarn build:server",
     "build:server": "tsc",
     "test": "NODE_ENV=test jest --config jest.config.cjs",
     "test:coverage": "NODE_ENV=test jest --config jest.config.cjs --coverage",
@@ -27,7 +29,7 @@
     "test:fullfunctional": "./bin/run-e2e-tests.sh",
     "test-crossbrowser-e2e": "codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c src/test/end-to-end/saucelabs.conf.js --plugins retryFailedStep --steps --grep '@crossbrowser' --reporter mocha-multi",
     "test:crossbrowser": "./bin/run-crossbrowser-tests.sh",
-    "cichecks": "yarn && yarn build && yarn lint  && yarn test",
+    "cichecks": "yarn && yarn build && yarn lint && yarn test",
     "start-local-env": "./bin/start-local-env.sh",
     "yarn-audit-fix": "yarn-audit-fix",
     "stub:lau-case-backend": "NODE_PATH=. node src/test/service-stubs/lau-case-backend.cjs",
