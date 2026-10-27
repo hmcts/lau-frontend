@@ -111,7 +111,7 @@ describe('Deleted Users Controller', () => {
 
     it('returns valid deleted users data - with > 12 entries', () => {
       const deletedUsersAudit: DeletedUsersAudit = {
-        deletionLogs: deletedUsersLogs.deletedUsersLog as DeletedUsersLog[],
+        deletionLogs: deletedUsersLogs.deletionLogs as DeletedUsersLog[],
         moreRecords: false,
         startRecordNumber: 1,
         totalNumberOfRecords: 14,
@@ -187,7 +187,7 @@ describe('Deleted Users Controller', () => {
 
     it('repeats the search using same criteria with new page number', async () => {
       const deletedUsersAudit: DeletedUsersAudit = {
-        deletionLogs: deletedUsersLogs.deletedUsersLog as DeletedUsersLog[],
+        deletionLogs: deletedUsersLogs.deletionLogs as DeletedUsersLog[],
         moreRecords: false,
         startRecordNumber: 1,
         totalNumberOfRecords: 0,
