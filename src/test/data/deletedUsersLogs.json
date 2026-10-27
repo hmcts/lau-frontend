@@ -1,5 +1,5 @@
 {
-  "deletedUsersLog": [
+  "deletionLogs": [
     {
       "userId":  "U0001",
       "firstName": "John01",
@@ -98,5 +98,8 @@
       "emailAddress": "john14.smith14@example.org",
       "deletionTimestamp": "2023-08-02 17:30:45"
     }
-  ]
+  ],
+  "totalNumberOfRecords": 14,
+  "startRecordNumber": 1,
+  "moreRecords": false
 }

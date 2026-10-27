@@ -30,29 +30,111 @@ This service will allow an investigator to see a report detailing all case inter
 
 Running the application requires the following tools to be installed in your environment:
 
-  * [Node.js](https://nodejs.org/) v24.22.1 or later
+  * [Node.js](https://nodejs.org/) v24.22.1 or later (check .nvmrc file for exact version)
   * [yarn](https://yarnpkg.com/)
-  * [Docker](https://www.docker.com)
+  * [nvm (node version manager)](https://www.nvmnode.com/) - optional but highly recommended to install. Commands below assume you have it on your path.
+  * [Docker](https://www.docker.com) - only needed for optional containerized stack.
 
-### Running the application
+The app uses port 4000 therefore make sure it is not bound by any other service.
 
-Install dependencies by executing the following command:
+In order to run locally -
 
- ```bash
-$ yarn install
- ```
+1. clone the repository, select node version and install dependencies from the repository root:
 
-Update `config` and set session secret for your environment. It can be any value for development. Easiest way is to create `config/local-development.yaml` in config directory and copy sections you need from `config/default.yaml`. `local-development.yaml` file is git-ignored, and there is no risk of accidentally commiting it to the repository.
+    ```bash
+    git clone https://github.com/hmcts/lau-frontend.git
+    cd lau-frontend
+    nvm install
+    nvm use
+    yarn install
+    ```
+    If you do not use `nvm`, have Node v24.22.1 or later installed and ready.
 
-Run dev version, that will bundle assets and run dev server:
+2. Create git ignored file `config/local-development.yaml` with a local session secret:
 
-```bash
-$ yarn dev
-```
+    ```yaml
+    session:
+      secret: 'replace-with-a-local-development-secret'
+    ```
+
+
+For the local development path below, install [Node.js](https://nodejs.org/) v24.22.1 (the version in `.nvmrc`), [Corepack](https://nodejs.org/api/corepack.html) to run the pinned Yarn 4.18.1, and OpenSSL to generate a local HTTPS certificate. Docker is only needed for the optional container stack. Make sure ports 4000, 4550, 4551, and 4553 are free.
+
+### Run locally with optional stub backends
+
+This path runs the frontend on your machine with the three bundled, fixture-backed API stubs. It does not need Docker, Redis, IdAM, or credentials for the real backend services.
+
+1. Clone the repository, select the pinned Node version, and install dependencies from the repository root:
+
+
+   If you do not use `nvm`, select Node v24.22.1 with your preferred version manager. The repository pins Yarn through `.yarnrc.yml` and `package.json`.
+
+1. Create the ignored file `config/local-development.yaml` with a local session secret.
+
+   ```yaml
+   session:
+     secret: 'replace-with-a-local-development-secret'
+   ```
+
+   The settings in `config/default.yaml` and `config/development.yaml` provide the other development defaults. Keep real credentials out of this file and out of Git.
+
+1. Start the frontend:
+    ```bash
+    yarn dev
+    ```
+
+    `yarn dev` builds browser assets, then runs the TypeScript server with `nodemon`. The server generates a self-signed certificate on first start. At this stage app should be up and running on [localhost:4000](https://localhost:4000). It will ask to accept local certificate warning, which is fine. User will be presented with two different role options - CFT_AUDIT_INVESTIGATOR and CFT_SERVICE_LOGS. These links set roles on a development-only session. Trying to search for any data on the site would throw error due to missing backend services. For trying out and testing purposes fixture-backend services can be started as explained in the step below.
+
+1. In three separate terminals, from the repository root, start the fixture-backed services:
+
+    ```bash
+    $ yarn stub:lau-case-backend
+    ```
+
+    ```bash
+    $ yarn stub:lau-idam-backend
+    ```
+
+    ```bash
+    $ yarn stub:lau-eud-backend
+    ```
+
+    They listen on ports 4550, 4551, and 4553 respectively. Each exposes `/health`; their responses come from static files under `src/test/data/`. They will serve static data no matter the input parameters.
+
+1. Stop the frontend and stubs with Ctrl+C in their terminals.
+
+## Architecture
+
+The server uses Express 5 and TypeScript. It renders Nunjucks templates with GOV.UK Frontend components; browser JavaScript and SCSS are bundled with webpack. The responsibility of each layer is:
+
+| Layer | Location | Responsibility |
+| --- | --- | --- |
+| App and middleware | `src/main/app.ts`, `src/main/modules/` | Configure sessions, CSRF, authentication, health checks, Nunjucks, and routes. |
+| Routes | `src/main/routes/` | Map HTTP paths to handlers and controllers. `home.ts` also renders audit pages. |
+| Controllers | `src/main/controllers/` | Validate form input, coordinate service calls, prepare table data, store search state in the session, and redirect. |
+| Services | `src/main/service/` | Build backend requests and handle authentication, HTTP calls, and responses. |
+| Models | `src/main/models/` | Define request, session, API response, and view data shapes. |
+| Views | `src/main/views/` | Render HTML from the controller and session data; shared layouts and macros live under `common/`. |
+
+`src/main/index.ts` is the browser entry point. It imports `src/main/assets/scss/main.scss`, browser javascript code under `src/main/assets/js/`, and GOV.UK Frontend JavaScript. Edit those source files for styling and client behavior; edit `src/main/views/` for page markup.
+
+`webpack.config.cjs` and `webpack/` compile TypeScript and SCSS, copy GOV.UK assets and the PDFs in `src/main/assets/pdfs/`, and write browser assets to `src/main/public/`. Nunjucks templates include the generated CSS and JavaScript. Avoid editing generated files in `src/main/public/` directly.
+
+| Command | Result |
+| --- | --- |
+| `yarn build` | Development browser assets (`main-dev.js` and `main-dev.css`). |
+| `yarn build:server` | Compiled server JavaScript in `dist/`. |
+| `yarn build:prod` | Content-hashed production browser assets and compiled server. |
+| `yarn dev` | Builds browser assets and starts the development server. |
+
+The development server also runs webpack dev middleware. The production Docker build copies the compiled server, views, browser assets, and data files into the runtime image.
 
 The application's home page will be available at https://localhost:4000
 
 ### Running with Docker
+
+<blockquote><p>[!CAUTION]
+This section hasn't been updated since initial commit and likely won't work without major changes.</p></blockquote>
 
 A script has been created to start the application with IdAM and it's dependencies.
 Run this script with the following command:
@@ -126,25 +208,12 @@ included in this template app. Your njk file would look like this:
 
 #### Helmet
 
-This application uses [Helmet](https://helmetjs.github.io/), which adds various security-related HTTP headers
-to the responses. Apart from default Helmet functions, following headers are set:
-
-* [Referrer-Policy](https://helmetjs.github.io/docs/referrer-policy/)
-* [Content-Security-Policy](https://helmetjs.github.io/docs/csp/)
-
-There is a configuration section related with those headers, where you can specify:
-* `referrerPolicy` - value of the `Referrer-Policy` header
-
-
-Here's an example setup:
-
-```
-    "security": {
-      "referrerPolicy": "origin",
-    }
-```
-
-Make sure you have those values set correctly for your application.
+The application enables [Helmet](https://helmetjs.github.io/) defaults, then applies its own
+Content-Security-Policy and Referrer-Policy, and adds a Permissions-Policy header. The
+Referrer-Policy value is read from `security.referrerPolicy` in [config/default.yaml](config/default.yaml).
+The CSP directives and Permissions-Policy are defined in the
+[Helmet module](src/main/modules/helmet/index.ts); the CSP also allows `unsafe-eval` in
+development and test environments. Review that module when changing security headers.
 
 ### Healthcheck
 
