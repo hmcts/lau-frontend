@@ -28,9 +28,7 @@ withEnv([
         fi
 
         google-chrome-stable --version || true
-        # Format check (safe, non-blocking)
         yarn install --immutable || yarn install
-        yarn prettier --write .github/workflows/checks.yml || true
       '''
     }
 

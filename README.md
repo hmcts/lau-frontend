@@ -33,7 +33,6 @@ Running the application requires the following tools to be installed in your env
   * [Node.js](https://nodejs.org/) v24.22.1 or later (check .nvmrc file for exact version)
   * [yarn](https://yarnpkg.com/)
   * [nvm (node version manager)](https://www.nvmnode.com/) - optional but highly recommended to install. Commands below assume you have it on your path.
-  * [Docker](https://www.docker.com) - only needed for optional containerized stack.
 
 The app uses port 4000 therefore make sure it is not bound by any other service.
 
@@ -57,8 +56,7 @@ In order to run locally -
       secret: 'replace-with-a-local-development-secret'
     ```
 
-
-For the local development path below, install [Node.js](https://nodejs.org/) v24.22.1 (the version in `.nvmrc`), [Corepack](https://nodejs.org/api/corepack.html) to run the pinned Yarn 4.18.1, and OpenSSL to generate a local HTTPS certificate. Docker is only needed for the optional container stack. Make sure ports 4000, 4550, 4551, and 4553 are free.
+For the local development path below, install [Node.js](https://nodejs.org/) v24.22.1 (the version in `.nvmrc`), [Corepack](https://nodejs.org/api/corepack.html) to run the pinned Yarn 4.18.1, and OpenSSL to generate a local HTTPS certificate. Make sure ports 4000, 4550, 4551, and 4553 are free.
 
 ### Run locally with optional stub backends
 
@@ -130,27 +128,6 @@ The server uses Express 5 and TypeScript. It renders Nunjucks templates with GOV
 The development server also runs webpack dev middleware. The production Docker build copies the compiled server, views, browser assets, and data files into the runtime image.
 
 The application's home page will be available at https://localhost:4000
-
-### Running with Docker
-
-<blockquote><p>[!CAUTION]
-This section hasn't been updated since initial commit and likely won't work without major changes.</p></blockquote>
-
-A script has been created to start the application with IdAM and it's dependencies.
-Run this script with the following command:
-
-Create docker image:
-
-```bash
-  yarn run start-local-env
-```
-
-This will start the frontend container exposing the application's port
-(set to `4000`).
-
-The IdAM web admin will be available at http://localhost:8082
-
-An import script is run to import the service, roles and users into IdAM. Details of the users can be found in the [create-users script](docker/idam-importer/scripts/create-users.sh).
 
 ## Developing
 
