@@ -9718,7 +9718,7 @@ __metadata:
     jwt-decode: "npm:^4.0.0"
     lodash: "npm:^4.17.21"
     mini-css-extract-plugin: "npm:^2.2.0"
-    mocha: "npm:11.7.5"
+    mocha: "npm:11.8.0"
     mochawesome: "npm:^8.1.0"
     moment: "npm:^2.29.4"
     nock: "npm:^14.0.6"
@@ -10335,9 +10335,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mocha@npm:11.7.5":
-  version: 11.7.5
-  resolution: "mocha@npm:11.7.5"
+"mocha@npm:11.8.0":
+  version: 11.8.0
+  resolution: "mocha@npm:11.8.0"
   dependencies:
     browser-stdout: "npm:^1.3.1"
     chokidar: "npm:^4.0.1"
@@ -10363,7 +10363,7 @@ __metadata:
   bin:
     _mocha: bin/_mocha
     mocha: bin/mocha.js
-  checksum: 10/878fcec45d79dad3ec01b896ae75eabd0075b8f91866b338b81b2ef8a2279f1e70fb07fc89054108a46864fbc1e6f6898dc31e64c033ded585748c5fcbf7e704
+  checksum: 10/4387620673d47c1249a5aac8d2becc6f54db004d96cf189cf4bd878e7333871228a9911dfd62fa0b71ef61a4b147a9032820c6401fcef77ec46ebcf17fc977c2
   languageName: node
   linkType: hard
 
