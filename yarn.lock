@@ -9091,7 +9091,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-environment-node@npm:30.5.2":
+"jest-environment-node@npm:30.5.2, jest-environment-node@npm:^30.5.2":
   version: 30.5.2
   resolution: "jest-environment-node@npm:30.5.2"
   dependencies:
@@ -9713,6 +9713,7 @@ __metadata:
     html-webpack-plugin: "npm:^5.3.2"
     html_codesniffer: "npm:^2.5.1"
     jest: "npm:^30.0.0"
+    jest-environment-node: "npm:^30.5.2"
     jest-util: "npm:^30.0.0"
     jquery: "npm:^4.0.0"
     jwt-decode: "npm:^4.0.0"

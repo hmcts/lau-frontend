@@ -7,7 +7,12 @@ const setupDev = (app: express.Express, developmentMode: boolean): void => {
     const webpackDev = require('webpack-dev-middleware');
     const webpack = require('webpack');
     const webpackconfig = require('../../webpack.config.cjs');
-    const compiler = webpack(webpackconfig);
+    const compiler = webpack({
+      ...webpackconfig,
+      plugins: webpackconfig.plugins.filter(
+        (plugin: {constructor: {name: string}}) => plugin.constructor.name !== 'HtmlWebpackPlugin',
+      ),
+    });
     app.use(webpackDev(compiler, {
       publicPath: '/',
     }));
