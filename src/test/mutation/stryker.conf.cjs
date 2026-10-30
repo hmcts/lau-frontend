@@ -27,6 +27,7 @@ module.exports = {
     'configFile': 'jest.config.cjs',
     'enableFindRelatedTests': true,
   },
+  plugins: ['@stryker-mutator/jest-runner'],
   logLevel: 'debug',
   ignoreStatic: true,
 };
