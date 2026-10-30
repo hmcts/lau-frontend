@@ -64,15 +64,10 @@ export default {
   },
   'mocha': {
     'reporterOptions': {
-      mochawesome: {
-        stdout: testConfig.TestOutputDir + '/console.log',
-        options: {
-          reportDir: testConfig.TestOutputDir,
-          reportName: 'index',
-          reportTitle: 'Functional Test results',
-          inlineAssets: true,
-        },
-      },
+      reportDir: testConfig.TestOutputDir,
+      reportName: 'index',
+      reportTitle: 'Functional Test results',
+      inlineAssets: true,
     },
   },
   'name': 'LAU Codecept Tests',
