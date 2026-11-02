@@ -2,7 +2,7 @@ import type * as express from 'express';
 import config from 'config';
 import type {AppRequest, UserDetails} from './models/appRequest';
 
-const setupDev = (app: express.Express, developmentMode: boolean): void => {
+export const setupDev = (app: express.Express, developmentMode: boolean): void => {
   if (developmentMode) {
     const webpackDev = require('webpack-dev-middleware');
     const webpack = require('webpack');
@@ -53,5 +53,3 @@ const setUserRoleEndpoints = (app: express.Express): void => {
     req.session.save(() => res.redirect('/'));
   });
 };
-
-module.exports = {setupDev};
