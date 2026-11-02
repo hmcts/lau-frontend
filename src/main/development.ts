@@ -1,12 +1,14 @@
 import type * as express from 'express';
 import config from 'config';
 import type {AppRequest, UserDetails} from './models/appRequest';
+import { createRequire } from 'node:module';
 
 export const setupDev = (app: express.Express, developmentMode: boolean): void => {
   if (developmentMode) {
-    const webpackDev = require('webpack-dev-middleware');
-    const webpack = require('webpack');
-    const webpackconfig = require('../../webpack.config.cjs');
+    const loadDev = createRequire(__filename);
+    const webpackDev = loadDev('webpack-dev-middleware');
+    const webpack = loadDev('webpack');
+    const webpackconfig = loadDev('../../webpack.config.cjs');
     const compiler = webpack({
       ...webpackconfig,
       plugins: webpackconfig.plugins.filter(

@@ -2,11 +2,10 @@ import {Logs} from '../Logs';
 
 export interface CaseChallengedAccessLog {
   requestType: string;
-  caseId: string;
   caseRef: string;
   userId: string;
   action: string;
-  requestEnd: string;
+  requestEndTimestamp: string;
   reason: string;
   timestamp: string;
 }
