@@ -1,16 +1,19 @@
 import {csvJson} from '../../../main/util/CsvHandler';
-import {CaseActivityLogs} from '../../../main/models/case/CaseActivityLogs';
+import {type CaseActions, CaseActivityLogs} from '../../../main/models/case/CaseActivityLogs';
 import {CaseSearchLogs} from '../../../main/models/case/CaseSearchLogs';
 import {CaseChallengedAccessLogs} from '../../../main/models/challenged-access/CaseChallengedAccessLogs';
 
-const caseActivityAuditResponse = require('../../data/caseActivityAuditResponse.json');
-const caseSearchAuditResponse = require('../../data/caseSearchAuditResponse.json');
-const caseChallengedAccessResponse = require('../../data/caseChallengedAccessLogs.json');
+import caseActivityAuditResponse from '../../data/caseActivityAuditResponse.json';
+import caseSearchAuditResponse from '../../data/caseSearchAuditResponse.json';
+import caseChallengedAccessResponse from '../../data/caseChallengedAccessLogs.json';
 
 describe('CsvHandler', () => {
 
   it('Converts Case View JSON object to CSV', async () => {
-    const caseActivityLogs = new CaseActivityLogs(caseActivityAuditResponse.actionLog);
+    const caseActivityLogs = new CaseActivityLogs(caseActivityAuditResponse.actionLog.map(log => ({
+      ...log,
+      caseAction: log.caseAction as CaseActions,
+    })));
     expect(csvJson(caseActivityLogs)).toStrictEqual({
       'fields': [
         {
