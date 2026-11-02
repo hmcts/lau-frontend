@@ -1,7 +1,7 @@
 import * as express from 'express';
 import type {AppRequest, UserDetails} from './models/appRequest';
 
-const setupTest = (app: express.Express): void => {
+export const setupTest = (app: express.Express): void => {
   if (app.locals.ENV === 'test') {
     app.use(express.json());
 
@@ -19,5 +19,3 @@ const setupTest = (app: express.Express): void => {
     });
   }
 };
-
-module.exports = {setupTest};

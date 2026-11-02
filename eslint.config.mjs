@@ -99,6 +99,8 @@ export default [
   tsconfig,
   {
     ignores: [
+      '.stryker-tmp',
+      '.pnp.cjs',
       'dist/',
       'coverage/',
       '**/*.d.ts',

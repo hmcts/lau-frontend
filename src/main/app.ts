@@ -12,12 +12,10 @@ import {Container} from './modules/awilix';
 import { correlation } from './modules/correlation';
 import { appInsights } from './modules/appinsights';
 import { registerRoutes } from './routes';
-
 import config from 'config';
-import {AutoSuggest} from './modules/autosuggest/AutoSuggest';
-
-const { setupDev } = require('./development');
-const { setupTest } = require('./test');
+import { AutoSuggest } from './modules/autosuggest/AutoSuggest';
+import { setupDev }  from './development';
+import { setupTest }  from './test';
 
 const env = process.env.NODE_ENV || 'development';
 const developmentMode = env === 'development';
