@@ -1,13 +1,43 @@
 #!/usr/bin/env node
 
-// appinsights and properties volume need to be above app import
-import {appInsights} from './modules/appinsights';
-import {PropertiesVolume} from './modules/properties-volume';
+import * as http from 'node:http';
+import * as https from 'node:https';
+import path from 'node:path';
+import process from 'node:process';
+import { readFileSync } from 'node:fs';
+import { once } from 'node:events';
+import type { Application } from 'express';
+import type { Server } from 'node:net';
 
-const env = process.env.NODE_ENV || 'development';
+import { appInsights } from './modules/appinsights';
+import { PropertiesVolume } from './modules/properties-volume';
 
-new PropertiesVolume().enableFor(env);
-appInsights.enable();
+async function bootstrap(): Promise<void> {
+  const env = process.env.NODE_ENV || 'development';
+
+  // Initialize properties volume and application insights before importing the app
+  new PropertiesVolume().enableFor(env);
+  appInsights.enable();
+
+  const { app } = await import('./app');
+  const { default: logger } = await import('./modules/logging');
+  const port: number = parseInt(process.env.PORT, 10) || 4000;
+
+  const server = env === 'development'
+    ? await createDevelopmentServer(app)
+    : http.createServer(app);
+
+  server.listen(port);
+  await once(server, 'listening');
+
+  logger.info(`Application started: localhost:${port}`);
+}
+
+bootstrap().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
+
 
 const shutdown = async () => {
   try {
@@ -15,41 +45,22 @@ const shutdown = async () => {
   } finally {
     process.exit(0);
   }
-
 };
+
 process.on('SIGINT', shutdown);
 process.on('SIGTERM', shutdown);
 
-import { app } from './app';
-import logger from './modules/logging';
-
-import * as fs from 'node:fs';
-import * as https from 'node:https';
-import * as path from 'path';
-
-const port: number = parseInt(process.env.PORT, 10) || 4000;
-
-async function startDevelopmentServer(): Promise<void> {
+async function createDevelopmentServer(app: Application): Promise<Server> {
   const { default: createSslConfig } = await import('ssl-config');
   const sslConfig = createSslConfig('modern');
   const sslDirectory = path.join(__dirname, 'resources', 'localhost-ssl');
 
   const server = https.createServer({
-    cert: fs.readFileSync(path.join(sslDirectory, 'localhost.crt')),
-    key: fs.readFileSync(path.join(sslDirectory, 'localhost.key')),
+    cert: readFileSync(path.join(sslDirectory, 'localhost.crt')),
+    key: readFileSync(path.join(sslDirectory, 'localhost.key')),
     ciphers: sslConfig.ciphers,
     secureOptions: sslConfig.minimumTLSVersion,
   }, app);
 
-  server.listen(port, () => {
-    logger.info(`Application started: https://localhost:${port}`);
-  });
-}
-
-if (app.locals.ENV === 'development') {
-  startDevelopmentServer();
-} else {
-  app.listen(port, () => {
-    logger.info(`Express application started: http://localhost:${port}`);
-  });
+  return server;
 }

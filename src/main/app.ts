@@ -1,7 +1,8 @@
 import express from 'express';
 import compression from 'compression';
 import {Helmet} from './modules/helmet';
-import * as path from 'path';
+import * as path from 'node:path';
+import process from 'node:process';
 import favicon from 'serve-favicon';
 import {Nunjucks} from './modules/nunjucks';
 import {CSRFToken} from './modules/csrf';
