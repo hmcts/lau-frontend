@@ -1,5 +1,5 @@
 module.exports = {
-  tsconfigFile: 'tsconfig.json',
+  tsconfigFile: 'tsconfig.test.json',
   reporters:
     [
       'clear-text',
@@ -20,6 +20,8 @@ module.exports = {
     '!src/main/**',
     '!src/test/**',
     '!jest.config.cjs',
+    '!tsconfig.json',
+    '!tsconfig.test.json',
     '!jest.setup.cjs',
   ],
   testRunner: 'jest',
