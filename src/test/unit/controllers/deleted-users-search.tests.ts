@@ -18,7 +18,7 @@ describe('Deleted Users Search Controller', () => {
         endTimestamp: '2021-01-01T00:00:01',
         page: 1,
       });
-      expect(errors.length).toBe(1);
+      expect(errors).toHaveLength(1);
       expect(errors[0]).toStrictEqual({propertyName: 'deletedUsersSearchForm', errorType: 'stringFieldRequired'});
     });
 
@@ -27,7 +27,7 @@ describe('Deleted Users Search Controller', () => {
         startTimestamp: '',
         endTimestamp: '',
       });
-      expect(errors.length).toBe(2);
+      expect(errors).toHaveLength(2);
       expect(errors[0].errorType).toBe('required');
       expect(errors[1].errorType).toBe('required');
 
@@ -35,14 +35,14 @@ describe('Deleted Users Search Controller', () => {
         startTimestamp: '2021-01-01T00:00:00',
         endTimestamp: '',
       });
-      expect(errors.length).toBe(1);
+      expect(errors).toHaveLength(1);
       expect(errors[0]).toStrictEqual({propertyName: 'endTimestamp', errorType: 'required'});
 
       errors = deletedUsersSearchController.validateSearchForm({
         startTimestamp: '',
         endTimestamp: '2021-01-01T00:00:00',
       });
-      expect(errors.length).toBe(1);
+      expect(errors).toHaveLength(1);
       expect(errors[0]).toStrictEqual({propertyName: 'startTimestamp', errorType: 'required'});
     });
 
@@ -51,7 +51,7 @@ describe('Deleted Users Search Controller', () => {
         startTimestamp: '2021-14-01 00:00:00',
         endTimestamp: '2021-12-01T00:00:00',
       });
-      expect(errors.length).toBe(1);
+      expect(errors).toHaveLength(1);
       expect(errors[0]).toStrictEqual({propertyName: 'startTimestamp', errorType: 'invalid'});
     });
 
@@ -60,7 +60,7 @@ describe('Deleted Users Search Controller', () => {
         startTimestamp: '2021-01-01T00:00:00',
         endTimestamp: '2021-01-01T00:00:01',
       });
-      expect(errors.length).toBe(0);
+      expect(errors).toHaveLength(0);
     });
 
     it('ensures email are in correct format', async () => {
@@ -69,7 +69,7 @@ describe('Deleted Users Search Controller', () => {
         startTimestamp: '2021-01-01T00:00:00',
         endTimestamp: '2021-01-01T00:00:01',
       });
-      expect(errors.length).toBe(1);
+      expect(errors).toHaveLength(1);
       expect(errors[0]).toStrictEqual({propertyName: 'emailAddress', errorType: 'invalid'});
     });
 
@@ -79,7 +79,7 @@ describe('Deleted Users Search Controller', () => {
         startTimestamp: '2021-01-01T00:00:00',
         endTimestamp: '2021-01-01T00:00:01',
       });
-      expect(errors.length).toBe(0);
+      expect(errors).toHaveLength(0);
     });
   });
 

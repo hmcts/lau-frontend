@@ -72,7 +72,7 @@ describe('UserDetailsService', () => {
       const {details, updates, updatesStatus} = await service.getUserDetails(req as AppRequest<UserDetailsSearchRequest>, false);
 
       expect(details).toEqual(data);
-      expect(updates.length).toBe(0);
+      expect(updates).toHaveLength(0);
       expect(updatesStatus).toBe(UpdatesStatus.EMPTY);
       expect(userUpdatesService.getUserUpdates).toHaveBeenCalledWith(req.session, data.userId);
     });

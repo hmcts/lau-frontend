@@ -194,7 +194,7 @@ describe('Case Searches Controller', () => {
       };
 
       return caseSearchesController.getLogData(req as AppRequest).then((caseSearches: LogData) => {
-        expect(caseSearches).toStrictEqual(null);
+        expect(caseSearches).toBeNull();
       });
     });
 
