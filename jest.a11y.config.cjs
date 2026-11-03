@@ -4,8 +4,8 @@ module.exports = {
   "testEnvironment": "node",
   extensionsToTreatAsEsm: ['.mts'],
   transform: {
-    '^.+\\.mts$': ['ts-jest', { useESM: true, tsconfig: { module: 'NodeNext', moduleResolution: 'NodeNext', isolatedModules: true } }],
-    '^.+\\.ts$': 'ts-jest',
+    '^.+\\.mts$': ['ts-jest', { useESM: true, tsconfig: { module: 'NodeNext', moduleResolution: 'NodeNext', isolatedModules: true, types: ['jest', 'node', 'express'] } }],
+    '^.+\\.ts$': ['ts-jest', { tsconfig: 'tsconfig.test.json' }],
   },
   moduleFileExtensions: ['mts', 'ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 }

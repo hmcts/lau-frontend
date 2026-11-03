@@ -125,6 +125,8 @@ The server uses Express 5 and TypeScript. It renders Nunjucks templates with GOV
 | `yarn build:prod` | Content-hashed production browser assets and compiled server. |
 | `yarn dev` | Builds browser assets and starts the development server. |
 
+`tsconfig.json` contains TypeScript options shared by the server and tests. `tsconfig.prod.json` adds the server output directories and is used by `yarn build:server`. `tsconfig.test.json` adds Jest types and test sources, disables output, and is used by Jest and `yarn typecheck:test`. The accessibility `.mts` test keeps its ESM compiler overrides in `jest.a11y.config.cjs`.
+
 The development server also runs webpack dev middleware. The production Docker build copies the compiled server, views, browser assets, and data files into the runtime image.
 
 The application's home page will be available at https://localhost:4000
