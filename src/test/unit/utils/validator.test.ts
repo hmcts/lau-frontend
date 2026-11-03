@@ -25,7 +25,7 @@ describe('Validator', () => {
 
     it('does not return an error type if an object property has a non-empty string value', async () => {
       const errorType = atLeastOneFieldIsFilled({userId: '1', caseTypeId: '', caseRef: '', caseJurisdictionId: ''});
-      expect(errorType).toBe(undefined);
+      expect(errorType).toBeUndefined();
     });
   });
 
@@ -42,26 +42,26 @@ describe('Validator', () => {
 
     it('doesn\'t return an error type if the date is valid', async () => {
       const errorType = validDateInput('2021-01-01T00:00:00');
-      expect(errorType).toBe(undefined);
+      expect(errorType).toBeUndefined();
     });
   });
 
   describe('startDateBeforeEndDate', () => {
     it('doesn\'t return an error type if the date fields are not filled', async () => {
       let errorType = startDateBeforeEndDate({});
-      expect(errorType).toBe(undefined);
+      expect(errorType).toBeUndefined();
       errorType = startDateBeforeEndDate({startTimestamp: ''});
-      expect(errorType).toBe(undefined);
+      expect(errorType).toBeUndefined();
       errorType = startDateBeforeEndDate({endTimestamp: ''});
-      expect(errorType).toBe(undefined);
+      expect(errorType).toBeUndefined();
     });
 
     it('doesn\'t return an error type if the dates are invalid', async () => {
       let errorType = startDateBeforeEndDate({startTimestamp: '2021-01-01T00:00:00', endTimestamp: '2021-01-01 00:00:00'});
-      expect(errorType).toBe(undefined);
+      expect(errorType).toBeUndefined();
 
       errorType = startDateBeforeEndDate({startTimestamp: '2021-01-01 00:00:00', endTimestamp: '2021-01-01T00:00:00'});
-      expect(errorType).toBe(undefined);
+      expect(errorType).toBeUndefined();
     });
 
     it('returns error type if the end date is before the start date or the same', async () => {
@@ -74,7 +74,7 @@ describe('Validator', () => {
 
     it('doesn\'t return an error type if the dates are valid', async () => {
       const errorType = startDateBeforeEndDate({startTimestamp: '2021-01-01 00:00:00', endTimestamp: '2021-01-01 00:00:01'});
-      expect(errorType).toBe(undefined);
+      expect(errorType).toBeUndefined();
     });
   });
 
@@ -91,7 +91,7 @@ describe('Validator', () => {
 
     it('doesn\'t return an error type if the field is filled ', async () => {
       const errorType = isFilledIn('filled');
-      expect(errorType).toBe(undefined);
+      expect(errorType).toBeUndefined();
     });
   });
 
@@ -129,11 +129,11 @@ describe('Validator', () => {
     });
 
     it('doesn\'t return an error if case ref is valid', async () => {
-      expect(validCaseRef('1234567890123456')).toBe(undefined);
+      expect(validCaseRef('1234567890123456')).toBeUndefined();
     });
 
     it('doesn\'t return an error if case ref is empty', async () => {
-      expect(validCaseRef(null)).toBe(undefined);
+      expect(validCaseRef(null)).toBeUndefined();
     });
   });
 });
