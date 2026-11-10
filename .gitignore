@@ -34,8 +34,9 @@ config/dev.yaml
 
 version
 
-.pnp.*
+
 .yarn/*
+!.yarn/cache
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases

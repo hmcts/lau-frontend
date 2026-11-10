@@ -5,7 +5,11 @@
 # exceptions from `exclude all` rule
 !.yarn
 !.yarn/**
+.yarn/install-state.gz
+.yarn/unplugged/**
 !.yarnrc.yml
+!.pnp.cjs
+!.pnp.loader.mjs
 !package.json
 !yarn.lock
 
