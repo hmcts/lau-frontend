@@ -41,7 +41,7 @@ const RAW_RUNTIME_STATE =
           ["@opentelemetry/api-logs", "npm:0.223.0"],\
           ["@opentelemetry/resources", "virtual:63e775422c2ac4c592e96cd011557d9e3a79e13d7312a2a8b545d97f303aff5a0c84b49220e9efc904e1a95528be2a1c75b0ad2cdf3483cfe18122f20ec17e54#npm:2.12.1"],\
           ["@opentelemetry/sdk-logs", "virtual:63e775422c2ac4c592e96cd011557d9e3a79e13d7312a2a8b545d97f303aff5a0c84b49220e9efc904e1a95528be2a1c75b0ad2cdf3483cfe18122f20ec17e54#npm:0.223.1"],\
-          ["@opentelemetry/semantic-conventions", "npm:1.44.0"],\
+          ["@opentelemetry/semantic-conventions", "npm:1.45.0"],\
           ["@stryker-mutator/core", "npm:10.1.1"],\
           ["@stryker-mutator/jest-runner", "virtual:63e775422c2ac4c592e96cd011557d9e3a79e13d7312a2a8b545d97f303aff5a0c84b49220e9efc904e1a95528be2a1c75b0ad2cdf3483cfe18122f20ec17e54#npm:10.1.1"],\
           ["@types/chai-as-promised", "npm:8.0.2"],\
@@ -6154,10 +6154,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["npm:1.44.0", {\
-        "packageLocation": "./.yarn/cache/@opentelemetry-semantic-conventions-npm-1.44.0-ec8e195f09-3780e8cbe4.zip/node_modules/@opentelemetry/semantic-conventions/",\
+      ["npm:1.45.0", {\
+        "packageLocation": "./.yarn/cache/@opentelemetry-semantic-conventions-npm-1.45.0-2f3bd015a2-a95d97b3ee.zip/node_modules/@opentelemetry/semantic-conventions/",\
         "packageDependencies": [\
-          ["@opentelemetry/semantic-conventions", "npm:1.44.0"]\
+          ["@opentelemetry/semantic-conventions", "npm:1.45.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -13613,7 +13613,7 @@ const RAW_RUNTIME_STATE =
           ["@opentelemetry/api-logs", "npm:0.223.0"],\
           ["@opentelemetry/resources", "virtual:63e775422c2ac4c592e96cd011557d9e3a79e13d7312a2a8b545d97f303aff5a0c84b49220e9efc904e1a95528be2a1c75b0ad2cdf3483cfe18122f20ec17e54#npm:2.12.1"],\
           ["@opentelemetry/sdk-logs", "virtual:63e775422c2ac4c592e96cd011557d9e3a79e13d7312a2a8b545d97f303aff5a0c84b49220e9efc904e1a95528be2a1c75b0ad2cdf3483cfe18122f20ec17e54#npm:0.223.1"],\
-          ["@opentelemetry/semantic-conventions", "npm:1.44.0"],\
+          ["@opentelemetry/semantic-conventions", "npm:1.45.0"],\
           ["@stryker-mutator/core", "npm:10.1.1"],\
           ["@stryker-mutator/jest-runner", "virtual:63e775422c2ac4c592e96cd011557d9e3a79e13d7312a2a8b545d97f303aff5a0c84b49220e9efc904e1a95528be2a1c75b0ad2cdf3483cfe18122f20ec17e54#npm:10.1.1"],\
           ["@types/chai-as-promised", "npm:8.0.2"],\
