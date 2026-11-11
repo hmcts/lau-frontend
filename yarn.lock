@@ -234,9 +234,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@azure/monitor-opentelemetry-exporter@npm:1.0.0-beta.46":
-  version: 1.0.0-beta.46
-  resolution: "@azure/monitor-opentelemetry-exporter@npm:1.0.0-beta.46"
+"@azure/monitor-opentelemetry-exporter@npm:1.0.0-beta.47":
+  version: 1.0.0-beta.47
+  resolution: "@azure/monitor-opentelemetry-exporter@npm:1.0.0-beta.47"
   dependencies:
     "@azure-rest/core-client": "npm:^2.5.2"
     "@azure/core-auth": "npm:^1.9.0"
@@ -253,7 +253,7 @@ __metadata:
     "@opentelemetry/sdk-trace-base": "npm:^2.10.0"
     "@opentelemetry/semantic-conventions": "npm:^1.43.0"
     tslib: "npm:^2.8.1"
-  checksum: 10/9b5a1ba983657a263ceb65ee7bd06323d4880fdb1730bea4a0e80877d6324a29cd49e17e22cea02154e491998f9e40251601486ac784c1de7fddd3df66e7ab76
+  checksum: 10/c5a499a6084df1b4c2bd7cb2cd6b75909cb4efc5be09bc7581c73b4aee059f017e53eba394e304051bd9e778a98c26e7001be1d57f72f838a14dbca71f775cd8
   languageName: node
   linkType: hard
 
@@ -3611,6 +3611,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@opentelemetry/api-logs@npm:0.223.1":
+  version: 0.223.1
+  resolution: "@opentelemetry/api-logs@npm:0.223.1"
+  dependencies:
+    "@opentelemetry/api": "npm:^1.3.0"
+  checksum: 10/025e3231effb5b5a99b27949d8f20d9257750b5a24f6c28af16675d1d7c38c439b4e44ebe6fd75a07c7d4648960a4b637dbebf1d6215c6d9af73c74fe1619126
+  languageName: node
+  linkType: hard
+
 "@opentelemetry/api@npm:1.10.0":
   version: 1.10.0
   resolution: "@opentelemetry/api@npm:1.10.0"
@@ -3647,6 +3656,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@opentelemetry/core@npm:2.12.1":
+  version: 2.12.1
+  resolution: "@opentelemetry/core@npm:2.12.1"
+  dependencies:
+    "@opentelemetry/semantic-conventions": "npm:^1.29.0"
+  peerDependencies:
+    "@opentelemetry/api": ">=1.0.0 <1.10.0"
+  checksum: 10/98523e103928144ef32bfb505c2004c3de2ef46d5da3d67bbfdebb8c663045dfbffa0a0e6160c6e2c5f3652629019c55975d78c4824f7970689ed6f77f838aac
+  languageName: node
+  linkType: hard
+
 "@opentelemetry/resources@npm:2.10.0":
   version: 2.10.0
   resolution: "@opentelemetry/resources@npm:2.10.0"
@@ -3671,17 +3691,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/sdk-logs@npm:0.223.0":
-  version: 0.223.0
-  resolution: "@opentelemetry/sdk-logs@npm:0.223.0"
+"@opentelemetry/resources@npm:2.12.1":
+  version: 2.12.1
+  resolution: "@opentelemetry/resources@npm:2.12.1"
   dependencies:
-    "@opentelemetry/api-logs": "npm:0.223.0"
-    "@opentelemetry/core": "npm:2.12.0"
-    "@opentelemetry/resources": "npm:2.12.0"
+    "@opentelemetry/core": "npm:2.12.1"
+    "@opentelemetry/semantic-conventions": "npm:^1.29.0"
+  peerDependencies:
+    "@opentelemetry/api": ">=1.3.0 <1.10.0"
+  checksum: 10/121dd0b8dfcd62e6541be212874b404172a36b538c699fe61f49662e14ac14081aeefefba1299e298391a27653793f2a306a885e647bc4c950532e4496eecf96
+  languageName: node
+  linkType: hard
+
+"@opentelemetry/sdk-logs@npm:0.223.1":
+  version: 0.223.1
+  resolution: "@opentelemetry/sdk-logs@npm:0.223.1"
+  dependencies:
+    "@opentelemetry/api-logs": "npm:0.223.1"
+    "@opentelemetry/core": "npm:2.12.1"
+    "@opentelemetry/resources": "npm:2.12.1"
     "@opentelemetry/semantic-conventions": "npm:^1.29.0"
   peerDependencies:
     "@opentelemetry/api": ">=1.4.0 <1.10.0"
-  checksum: 10/d8b03c19850b4cecb4545129d2cff52d6c2ba6925d74b3c35fa2edc391029e8804ce92b26ad8bc4beab5d899af483e4e627f5ce037589523d38925951d633002
+  checksum: 10/92352ac593a61d90f2b954d97df6a03d1c27f7d42eaae32b0ba1f2c74a8e879882fae4a1c8deb0ef4c0a44594566d5e4d32913a88a70608092e234abef7e766a
   languageName: node
   linkType: hard
 
@@ -9826,7 +9858,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "lau-frontend@workspace:."
   dependencies:
-    "@azure/monitor-opentelemetry-exporter": "npm:1.0.0-beta.46"
+    "@azure/monitor-opentelemetry-exporter": "npm:1.0.0-beta.47"
     "@babel/core": "npm:^8.0.0"
     "@babel/eslint-parser": "npm:^8.0.0"
     "@babel/preset-env": "npm:^8.0.0"
@@ -9837,8 +9869,8 @@ __metadata:
     "@hmcts/properties-volume": "npm:~1.4.0"
     "@opentelemetry/api": "npm:1.10.0"
     "@opentelemetry/api-logs": "npm:0.223.0"
-    "@opentelemetry/resources": "npm:2.12.0"
-    "@opentelemetry/sdk-logs": "npm:0.223.0"
+    "@opentelemetry/resources": "npm:2.12.1"
+    "@opentelemetry/sdk-logs": "npm:0.223.1"
     "@opentelemetry/semantic-conventions": "npm:1.44.0"
     "@stryker-mutator/core": "npm:^10.0.0"
     "@stryker-mutator/jest-runner": "npm:^10.0.0"
