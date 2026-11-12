@@ -8,6 +8,7 @@ $color-grey: #808080;
 $color-white: #fff;
 $lighter-grey: #f3f2f1;
 $blue: #1d70b8;
+$footer-background-grey: #dee0e2;
 $tablet-breakpoint: map.get(govuk-frontend.$govuk-breakpoints, "tablet");
 $desktop-breakpoint: map.get(govuk-frontend.$govuk-breakpoints, "desktop");
 
@@ -80,6 +81,11 @@ $desktop-breakpoint: map.get(govuk-frontend.$govuk-breakpoints, "desktop");
   padding: 3px;
   font-size: 19px;
   font-family: "GDS Transport", arial, sans-serif;;
+}
+
+.govuk-footer {
+  background-color: $footer-background-grey;
+  font-size: 16px;
 }
 
 select.govuk-select {

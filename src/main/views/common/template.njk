@@ -1,6 +1,7 @@
 {% extends "govuk/template.njk" %}
 {% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
 {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "govuk/components/footer/macro.njk" import govukFooter %}
 
@@ -33,9 +34,7 @@
   <div class="loading-overlay">
     <div class='spinner'></div>
   </div>
-{% endblock %}
 
-{% block header %}
   {{ govukCookieBanner({
     classes: 'cookie-banner',
     ariaLabel: 'Cookies on Log and Audit',
@@ -94,11 +93,18 @@
       }
     ]
   }) }}
+{% endblock %}
 
+{% block govukHeader %}
+  {{ govukHeader({
+    homepageUrl: "/"
+  }) }}
+{% endblock %}
+
+{% block govukServiceNavigation %}
   {% if env === 'development' and not idamEnabled %}
 
-  {{ govukHeader({
-    homepageUrl: "/",
+  {{ govukServiceNavigation({
     serviceName: "Log and Audit",
     serviceUrl: "/",
     navigation: [
@@ -117,8 +123,7 @@
 
   {% else %}
 
-  {{ govukHeader({
-    homepageUrl: "/",
+  {{ govukServiceNavigation({
     serviceName: "Log and Audit",
     serviceUrl: "/",
     navigation: [
@@ -130,7 +135,6 @@
   }) }}
 
   {% endif %}
-
 {% endblock %}
 
 {% block beforeContent %}
@@ -143,7 +147,7 @@
 {% endblock %}
 
 
-{% block footer %}
+{% block govukFooter %}
   {{ govukFooter({
     meta: {
       items: [
