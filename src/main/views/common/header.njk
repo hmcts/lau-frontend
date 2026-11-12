@@ -1,0 +1,48 @@
+{% from "govuk/macros/logo.njk" import govukLogo %}
+
+{% if env === 'development' and not idamEnabled %}
+  {% set headerNavigation = [
+    {
+      href: "/unset-role/cft-audit-investigator" if userRoles and 'cft-audit-investigator' in userRoles else "/set-role/cft-audit-investigator",
+      text: "Unset CFT_AUDIT_INVESTIGATOR" if userRoles and 'cft-audit-investigator' in userRoles else "Set CFT_AUDIT_INVESTIGATOR",
+      active: userRoles and 'cft-audit-investigator' in userRoles
+    },
+    {
+      href: "/unset-role/cft-service-logs" if userRoles and 'cft-service-logs' in userRoles else "/set-role/cft-service-logs",
+      text: "Unset CFT_SERVICE_LOGS" if userRoles and 'cft-service-logs' in userRoles else "Set CFT_SERVICE_LOGS",
+      active: userRoles and 'cft-service-logs' in userRoles
+    }
+  ] %}
+{% else %}
+  {% set headerNavigation = [
+    {
+      href: "/logout" if isLoggedIn else "/login",
+      text: "Logout" if isLoggedIn else "Login"
+    }
+  ] %}
+{% endif %}
+
+<div class="govuk-header app-header">
+  <div class="govuk-header__container govuk-width-container app-header__container">
+    <div class="govuk-header__logo app-header__logo">
+      <a href="/" class="govuk-header__homepage-link">
+        {{ govukLogo({
+          classes: "govuk-header__logotype",
+          ariaLabelText: "GOV.UK"
+        }) | trim }}
+      </a>
+    </div>
+    <div class="app-header__content">
+      <a href="/" class="app-header__link app-header__service-name">Log and Audit</a>
+      <nav aria-label="Menu" class="app-header__navigation">
+        <ul class="app-header__navigation-list">
+          {% for item in headerNavigation %}
+            <li class="app-header__navigation-item {%- if item.active %} app-header__navigation-item--active{% endif %}">
+              <a class="app-header__link" href="{{ item.href }}">{{ item.text }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

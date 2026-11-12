@@ -1,7 +1,5 @@
 {% extends "govuk/template.njk" %}
 {% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
-{% from "govuk/components/header/macro.njk" import govukHeader %}
-{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "govuk/components/footer/macro.njk" import govukFooter %}
 
@@ -96,46 +94,10 @@
 {% endblock %}
 
 {% block govukHeader %}
-  {{ govukHeader({
-    homepageUrl: "/"
-  }) }}
+  {% include "./header.njk" %}
 {% endblock %}
 
-{% block govukServiceNavigation %}
-  {% if env === 'development' and not idamEnabled %}
-
-  {{ govukServiceNavigation({
-    serviceName: "Log and Audit",
-    serviceUrl: "/",
-    navigation: [
-      {
-        href: "/unset-role/cft-audit-investigator" if userRoles and 'cft-audit-investigator' in userRoles else "/set-role/cft-audit-investigator",
-        text: "Unset CFT_AUDIT_INVESTIGATOR" if userRoles and 'cft-audit-investigator' in userRoles else "Set CFT_AUDIT_INVESTIGATOR",
-        active: userRoles and 'cft-audit-investigator' in userRoles
-      },
-      {
-        href: "/unset-role/cft-service-logs" if userRoles and 'cft-service-logs' in userRoles else "/set-role/cft-service-logs",
-        text: "Unset CFT_SERVICE_LOGS" if userRoles and 'cft-service-logs' in userRoles else "Set CFT_SERVICE_LOGS",
-        active: userRoles and 'cft-service-logs' in userRoles
-      }
-    ]
-  }) }}
-
-  {% else %}
-
-  {{ govukServiceNavigation({
-    serviceName: "Log and Audit",
-    serviceUrl: "/",
-    navigation: [
-      {
-        href: "/logout" if isLoggedIn else "/login",
-        text: "Logout" if isLoggedIn else "Login"
-      }
-    ]
-  }) }}
-
-  {% endif %}
-{% endblock %}
+{% block govukServiceNavigation %}{% endblock %}
 
 {% block beforeContent %}
   {% block modal %}
