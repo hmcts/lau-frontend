@@ -8,6 +8,7 @@ $color-grey: #808080;
 $color-white: #fff;
 $lighter-grey: #f3f2f1;
 $blue: #1d70b8;
+$footer-background-grey: #dee0e2;
 $tablet-breakpoint: map.get(govuk-frontend.$govuk-breakpoints, "tablet");
 $desktop-breakpoint: map.get(govuk-frontend.$govuk-breakpoints, "desktop");
 
@@ -80,6 +81,127 @@ $desktop-breakpoint: map.get(govuk-frontend.$govuk-breakpoints, "desktop");
   padding: 3px;
   font-size: 19px;
   font-family: "GDS Transport", arial, sans-serif;;
+}
+
+$header-black: #0b0c0c;
+$header-link-active: #1d8feb;
+
+.app-header {
+  border-bottom: 10px solid $color-white;
+  background: $header-black;
+  color: $color-white;
+}
+
+.app-header__container {
+  position: relative;
+  margin-bottom: -10px;
+  padding-top: 10px;
+  border-bottom: 10px solid $blue;
+
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+.app-header__logo {
+  box-sizing: border-box;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 10px;
+
+  @media (min-width: $desktop-breakpoint) {
+    float: left;
+    width: 33.33%;
+    padding-right: 15px;
+  }
+}
+
+.app-header__content {
+  box-sizing: border-box;
+
+  @media (min-width: $desktop-breakpoint) {
+    float: left;
+    width: 66.66%;
+    padding-left: 15px;
+  }
+}
+
+.app-header__link {
+  font-family: "GDS Transport", arial, sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    color: $color-white;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+  }
+
+  &:focus {
+    @include govuk-frontend.govuk-focused-text;
+  }
+}
+
+.app-header__service-name {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.app-header__navigation {
+  margin-bottom: 10px;
+}
+
+.app-header__navigation-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app-header__navigation-item {
+  display: inline-block;
+  margin-right: 15px;
+  padding: 5px 0;
+  font-size: 14px;
+  line-height: 1.14;
+
+  @media (min-width: $tablet-breakpoint) {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.app-header__navigation-item--active .app-header__link {
+  &:link,
+  &:hover,
+  &:visited {
+    color: $header-link-active;
+  }
+
+  &:focus {
+    color: $header-black;
+  }
+}
+
+// Footer and page background must match, otherwise the area below the footer on short pages shows a different colour
+.govuk-template {
+  background-color: $footer-background-grey;
+}
+
+.govuk-footer {
+  background-color: $footer-background-grey;
+  font-size: 16px;
 }
 
 select.govuk-select {
