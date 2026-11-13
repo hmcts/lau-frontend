@@ -351,7 +351,7 @@ const RAW_RUNTIME_STATE =
           ["@azure/identity", "npm:4.14.0"],\
           ["@azure/logger", "npm:1.4.0"],\
           ["@azure/msal-browser", "npm:5.27.0"],\
-          ["@azure/msal-node", "npm:6.0.1"],\
+          ["@azure/msal-node", "npm:7.1.2"],\
           ["open", "npm:11.0.4"],\
           ["tslib", "npm:2.8.1"]\
         ],\
@@ -442,13 +442,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@azure/msal-common", [\
-      ["npm:16.14.1", {\
-        "packageLocation": "./.yarn/cache/@azure-msal-common-npm-16.14.1-54e4c8b52f-7b8355aa95.zip/node_modules/@azure/msal-common/",\
-        "packageDependencies": [\
-          ["@azure/msal-common", "npm:16.14.1"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:16.15.0", {\
         "packageLocation": "./.yarn/cache/@azure-msal-common-npm-16.15.0-61ade8268e-359f55848b.zip/node_modules/@azure/msal-common/",\
         "packageDependencies": [\
@@ -458,11 +451,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@azure/msal-node", [\
-      ["npm:6.0.1", {\
-        "packageLocation": "./.yarn/cache/@azure-msal-node-npm-6.0.1-70ef5bab4e-75c8f2d42f.zip/node_modules/@azure/msal-node/",\
+      ["npm:7.1.2", {\
+        "packageLocation": "./.yarn/cache/@azure-msal-node-npm-7.1.2-35261b8856-22ae1c46b6.zip/node_modules/@azure/msal-node/",\
         "packageDependencies": [\
-          ["@azure/msal-common", "npm:16.14.1"],\
-          ["@azure/msal-node", "npm:6.0.1"],\
+          ["@azure/msal-common", "npm:16.15.0"],\
+          ["@azure/msal-node", "npm:7.1.2"],\
           ["jsonwebtoken", "npm:9.0.3"]\
         ],\
         "linkType": "HARD"\

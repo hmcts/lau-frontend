@@ -144,5 +144,8 @@
     "webpack-dev-middleware": "^8.0.0",
     "webpack-node-externals": "^3.0.0",
     "yarn-audit-fix": "^11.0.0"
+  },
+  "resolutions": {
+    "@azure/msal-node@npm:^6.0.0": "npm:7.1.2"
   }
 }
