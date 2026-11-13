@@ -44,7 +44,7 @@ function runPally(url: string, cookies: string = ''): Promise<Results> {
   let filename = fullurl.replace(/https?:\/\//gi, '').replace(/[^a-zA-Z0-9.-]/g, '_');
 
   return pa11y(fullurl, {
-    hideElements: '.govuk-footer__licence-logo, .govuk-header__logotype',
+    hideElements: '.govuk-footer__licence-logo, .govuk-footer__crown',
     screenCapture: `${screenshotDir}/${filename}.png`,
     wait: 500,
     headers: {
