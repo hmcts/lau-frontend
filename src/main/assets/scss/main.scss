@@ -29,9 +29,7 @@ $desktop-breakpoint: map.get(govuk-frontend.$govuk-breakpoints, "desktop");
   font-size: 16px;
 }
 
-// Wider layout for page content only (set via `containerClasses` in common/template.njk),
-// so the GOV.UK header, service navigation and footer keep their standard width
-.govuk-width-container.app-width-container {
+.govuk-width-container {
   max-width: 80%;
 }
 
