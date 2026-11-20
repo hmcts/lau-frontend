@@ -3,6 +3,8 @@
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "govuk/components/footer/macro.njk" import govukFooter %}
 
+{% set containerClasses = "app-width-container" %}
+
 {% block pageTitle %}GOV.UK - Log and Audit{% endblock %}
 
 {% block head %}
@@ -97,15 +99,14 @@
   {% include "./header.njk" %}
 {% endblock %}
 
-{% block govukServiceNavigation %}{% endblock %}
+{% block govukServiceNavigation %}
+  {% include "./navigation.njk" %}
+{% endblock %}
 
 {% block beforeContent %}
   {% block modal %}
     {% include "./timeout-dialog.njk" %}
   {% endblock %}
-
-{% include "./navigation.njk" %}
-
 {% endblock %}
 
 
@@ -115,15 +116,15 @@
       items: [
         {
           href: "/privacy",
-          text: "Privacy policy"
+          text: "Privacy"
+        },
+        {
+          href: "/accessibility",
+          text: "Accessibility"
         },
         {
           href: "/cookies",
           text: "Cookies"
-        },
-        {
-          href: "/accessibility",
-          text: "Accessibility statement"
         },
         {
           href: "/terms-and-conditions",

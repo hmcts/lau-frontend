@@ -1,6 +1,6 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 <div id="timeout-modal-container" class="modal" hidden>
-  <div #outerContainer id="timeout-modal" class="modal-content govuk-width-container clearfix" tabindex="0">
+  <div #outerContainer id="timeout-modal" class="modal-content govuk-width-container app-width-container clearfix" tabindex="0">
     <h1 class="govuk-heading-l">You are about to be logged out</h1>
     <p class="govuk-body">You are about to be signed out of your application in <span id="countdown-timer"
                                                    data-minutes="{{ timeout.minutes }}"
