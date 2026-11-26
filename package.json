@@ -146,6 +146,6 @@
     "yarn-audit-fix": "^11.0.0"
   },
   "resolutions": {
-    "@azure/msal-node@npm:^6.0.0": "npm:7.1.2"
+    "@azure/msal-node@npm:^6.0.0": "npm:@azure/msal-node@7.2.3"
   }
 }
