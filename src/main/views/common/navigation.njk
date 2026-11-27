@@ -1,33 +1,40 @@
-<div class="govuk-service-navigation">
-  <div class="govuk-width-container govuk-!-margin-left-4">
-  <div class="govuk-service-navigation__container">
-        <ul class="govuk-service-navigation__list">
-          {% if userRoles and 'cft-audit-investigator' in userRoles %}
-          <li class="govuk-service-navigation__item {% if caseSearchPage %}govuk-service-navigation__item--active{% endif %}">
-            <a class="govuk-service-navigation__link" href="/case-audit" {% if caseSearchPage %}aria-current="page" {% endif %}>Case audit</a>
-          </li>
-          <li class="govuk-service-navigation__item {% if challengedSpecificAccessPage %}govuk-service-navigation__item--active{% endif %}">
-            <a class="govuk-service-navigation__link" href="/challenged-specific-access" {% if challengedSpecificAccessPage %}aria-current="page" {% endif %}>Challenged & specific access</a>
-          </li>
-          <li class="govuk-service-navigation__item {% if logonSearchPage %}govuk-service-navigation__item--active{% endif %}">
-            <a class="govuk-service-navigation__link" href="/logon-audit" {% if logonSearchPage %}aria-current="page" {% endif %}>Log ons audit</a>
-          </li>
-          <li class="govuk-service-navigation__item {% if userDeletionSearchPage %}govuk-service-navigation__item--active{% endif %}">
-            <a class="govuk-service-navigation__link" href="/user-deletion-audit" {% if userDeletionSearchPage %}aria-current="page" {% endif %}>Deleted users</a>
-          </li>
-          {% if userDetailsEnabled %}
-          <li class="govuk-service-navigation__item {% if userDetailsPage %}govuk-service-navigation__item--active{% endif %}">
-            <a class="govuk-service-navigation__link" href="/user-details-audit" {% if userDetailsPage %}aria-current="page" {% endif %}>User details</a>
-          </li>
-          {% endif %}
-          {% endif %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
-          {% if userRoles and 'cft-service-logs' in userRoles %}
-          <li class="govuk-service-navigation__item {% if caseDeletionSearchPage %}govuk-service-navigation__item--active{% endif %}">
-            <a class="govuk-service-navigation__link" href="/case-deletion-audit" {% if caseDeletionSearchPage %}aria-current="page" {% endif %}>Case deletions</a>
-          </li>
-          {% endif %}
-        </ul>
-    </div>
-  </div>
-</div>
+{% set isAuditInvestigator = userRoles and 'cft-audit-investigator' in userRoles %}
+{% set isServiceLogs = userRoles and 'cft-service-logs' in userRoles %}
+
+{% if env === 'development' and not idamEnabled %}
+  {% set accountNavigation = [
+    {
+      href: "/unset-role/cft-audit-investigator" if isAuditInvestigator else "/set-role/cft-audit-investigator",
+      text: "Unset CFT_AUDIT_INVESTIGATOR" if isAuditInvestigator else "Set CFT_AUDIT_INVESTIGATOR"
+    },
+    {
+      href: "/unset-role/cft-service-logs" if isServiceLogs else "/set-role/cft-service-logs",
+      text: "Unset CFT_SERVICE_LOGS" if isServiceLogs else "Set CFT_SERVICE_LOGS"
+    }
+  ] %}
+{% else %}
+  {% set accountNavigation = [
+    {
+      href: "/logout" if isLoggedIn else "/login",
+      text: "Logout" if isLoggedIn else "Login"
+    }
+  ] %}
+{% endif %}
+
+{# Falsy entries are dropped by the macro, so role-gated items use `if` without `else` #}
+{% set pageNavigation = [
+  { href: "/case-audit", text: "Case audit", current: caseSearchPage } if isAuditInvestigator,
+  { href: "/challenged-specific-access", text: "Challenged & specific access", current: challengedSpecificAccessPage } if isAuditInvestigator,
+  { href: "/logon-audit", text: "Log ons audit", current: logonSearchPage } if isAuditInvestigator,
+  { href: "/user-deletion-audit", text: "Deleted users", current: userDeletionSearchPage } if isAuditInvestigator,
+  { href: "/user-details-audit", text: "User details", current: userDetailsPage } if isAuditInvestigator and userDetailsEnabled,
+  { href: "/case-deletion-audit", text: "Case deletions", current: caseDeletionSearchPage } if isServiceLogs
+] %}
+
+{{ govukServiceNavigation({
+  serviceName: "Log and Audit",
+  serviceUrl: "/",
+  navigation: pageNavigation.concat(accountNavigation)
+}) }}

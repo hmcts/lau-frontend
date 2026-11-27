@@ -3,8 +3,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const rootExport = require.resolve('govuk-frontend');
 const root = path.resolve(rootExport, '..');
-const sass = path.resolve(root, 'all.scss');
-const javascript = path.resolve(root, 'all.js');
 const components = path.resolve(root, 'components');
 const assets = path.resolve(root, 'assets');
 const images = path.resolve(assets, 'images');
@@ -19,6 +17,6 @@ const copyGovukTemplateAssets = new CopyWebpackPlugin({
 });
 
 module.exports = {
-  paths: { template: root, components, sass, javascript, assets },
+  paths: { template: root, components, assets },
   plugins: [copyGovukTemplateAssets],
 };
